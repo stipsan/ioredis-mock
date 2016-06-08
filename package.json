@@ -1,0 +1,22 @@
+{
+  "name": "ioredis-mock",
+  "version": "0.0.1",
+  "description": "This library emulates ioredis by performing all operations in-memory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stipsan/ioredis-mock.git"
+  },
+  "keywords": [
+    "ioredis"
+  ],
+  "author": "Stian Didriksen <stipsan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stipsan/ioredis-mock/issues"
+  },
+  "homepage": "https://github.com/stipsan/ioredis-mock#readme"
+}
