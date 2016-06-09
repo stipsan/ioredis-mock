@@ -2,8 +2,11 @@
   "name": "ioredis-mock",
   "version": "0.0.1",
   "description": "This library emulates ioredis by performing all operations in-memory.",
-  "main": "index.js",
+  "main": "./lib",
   "scripts": {
+    "clean": "rimraf lib",
+    "build": "mkdirp lib && babel src --out-file lib/index.js",
+    "build:watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
