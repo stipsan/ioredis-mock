@@ -1,7 +1,8 @@
 ioredis-mock
 ============
 
-[![Build Status](https://travis-ci.org/stipsan/ioredis-mock.svg)](https://travis-ci.org/stipsan/ioredis-mock)
+[![AppVeyor branch](https://img.shields.io/appveyor/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
+[![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
 
 This library emulates [ioredis](https://github.com/luin/ioredis) by performing all operations in-memory.
 The best way to do integration testing against redis and ioredis is on a real redis-server instance.
