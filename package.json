@@ -22,6 +22,7 @@
   "bugs": {
     "url": "https://github.com/stipsan/ioredis-mock/issues"
   },
+  "tonicExampleFilename": "example.js",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "devDependencies": {
     "babel-cli": "6.9.0",

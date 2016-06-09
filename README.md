@@ -21,7 +21,7 @@ Cases like:
 ## Usage
 
 ```js
-var RedisMock = require('ioredis-mock')
+var RedisMock = require('ioredis-mock').default
 var redis = new RedisMock({
   data: {
     user_next: '3',
