@@ -10,6 +10,6 @@ describe('incr', () => {
       },
     });
 
-    redis.incr('user_next').then(userNext => expect(userNext).toBe('2'));
+    return redis.incr('user_next').then(userNext => expect(userNext).toBe('2'));
   });
 });
