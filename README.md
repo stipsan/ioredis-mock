@@ -13,9 +13,9 @@ Cases like:
 * The GitHub repo have bots that run the testing suite and is limited through npm package.json install scripts and can't fire up servers. (Having [Greenkeeper](https://greenkeeper.io/) notifying you when a new release of ioredis is out and wether your code breaks or not is awesome).
 
 ## Install
-
+```bash
 	npm install ioredis-mock
-
+```
 ## Usage
 
 ```js
