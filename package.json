@@ -7,7 +7,8 @@
     "clean": "rimraf lib",
     "build": "mkdirp lib && babel src --out-file lib/index.js",
     "build:watch": "npm run build -- --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch --growl"
   },
   "repository": {
     "type": "git",
