@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/stipsan/ioredis-mock/issues"
   },
-  "homepage": "https://github.com/stipsan/ioredis-mock#readme"
+  "homepage": "https://github.com/stipsan/ioredis-mock#readme",
+  "devDependencies": {
+    "babel-cli": "6.9.0",
+    "babel-preset-es2015": "6.9.0",
+    "mkdirp": "0.5.1",
+    "rimraf": "2.5.2"
+  }
 }
