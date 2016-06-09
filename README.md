@@ -4,6 +4,7 @@ ioredis-mock
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
 [![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
 [![Code Climate](https://codeclimate.com/github/stipsan/ioredis-mock/badges/gpa.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
+[![Coverage Status](https://coveralls.io/repos/github/stipsan/ioredis-mock/badge.svg?branch=master)](https://coveralls.io/github/stipsan/ioredis-mock?branch=master)
 [![npm package](https://img.shields.io/npm/dm/ioredis-mock.svg)](https://www.npmjs.com/package/ioredis-mock)
 
 [![NPM](https://nodei.co/npm/ioredis-mock.png)](https://www.npmjs.com/package/ioredis-mock)
@@ -22,7 +23,7 @@ Cases like:
 ## Usage
 
 ```js
-var RedisMock = require('ioredis-mock').default
+var RedisMock = require('ioredis-mock').default;
 var redis = new RedisMock({
   data: {
     user_next: '3',
@@ -53,9 +54,10 @@ var redis = new RedisMock({
 * multi
 * exec
 
-# Todo
+# Roadmap
 This project started off as just an utility in [another project](https://github.com/stipsan/epic) and just recently got open sourced to benefit the rest of the ioredis community. This means there's work to do before it's feature complete:
 - [ ] Setup testing suite for the library itself.
+- [ ] Refactor to bluebird promises like ioredis, support node style callback too.
 - [ ] Implement remaining basic features that read/write data.
 - [ ] Connection Events
 - [ ] Offline Queue

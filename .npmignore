@@ -1,3 +1,4 @@
 .babelrc
+coverage
 src
 test
