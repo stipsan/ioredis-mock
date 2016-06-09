@@ -4,6 +4,8 @@ ioredis-mock
 [![AppVeyor branch](https://img.shields.io/appveyor/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
 [![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
 
+[![NPM](https://nodei.co/npm/ioredis-mock.png)](https://www.npmjs.com/package/ioredis-mock)
+
 This library emulates [ioredis](https://github.com/luin/ioredis) by performing all operations in-memory.
 The best way to do integration testing against redis and ioredis is on a real redis-server instance.
 However, there are cases where mocking the redis-server is a better option.
@@ -15,10 +17,6 @@ Cases like:
 * You're running tests on a CI, setting it up is complicated. If you combine it with CI that also run selenium acceptance testing it's even more complicated, as two redis-server instances on the same CI build is hard.
 * The GitHub repo have bots that run the testing suite and is limited through npm package.json install scripts and can't fire up servers. (Having [Greenkeeper](https://greenkeeper.io/) notifying you when a new release of ioredis is out and wether your code breaks or not is awesome).
 
-## Install
-```bash
-	npm install ioredis-mock
-```
 ## Usage
 
 ```js
