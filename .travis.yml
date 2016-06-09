@@ -1,9 +1,10 @@
 sudo: false
 language: node_js
 node_js:
-- "6"
-- "5"
 - "4"
+- "5"
+- "6"
+script: "npm test && npm run lint"
 notifications:
   email: false
 env:

@@ -8,7 +8,8 @@
     "build": "mkdirp lib && babel src --out-file lib/index.js",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch --growl"
+    "test:watch": "npm test -- --watch --growl",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
