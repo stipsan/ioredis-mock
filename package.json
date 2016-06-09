@@ -22,9 +22,6 @@
   "bugs": {
     "url": "https://github.com/stipsan/ioredis-mock/issues"
   },
-  "eslintConfig": {
-    "extends": "xo-space/esnext"
-  },
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "devDependencies": {
     "babel-cli": "6.9.0",
