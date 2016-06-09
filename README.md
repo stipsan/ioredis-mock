@@ -3,6 +3,7 @@ ioredis-mock
 
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
 [![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
+[![Code Climate](https://codeclimate.com/github/stipsan/ioredis-mock/badges/gpa.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
 [![npm package](https://img.shields.io/npm/dm/ioredis-mock.svg)](https://www.npmjs.com/package/ioredis-mock)
 
 [![NPM](https://nodei.co/npm/ioredis-mock.png)](https://www.npmjs.com/package/ioredis-mock)
