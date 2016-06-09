@@ -47,8 +47,8 @@ class RedisMock {
       resolve(1);
     });
   }
-  hget(key, value) {
-    return new Promise(resolve => resolve(this.data[key][value]));
+  hget(key, hashKey) {
+    return new Promise(resolve => resolve(this.data[key][hashKey]));
   }
   hvals(key) {
     return new Promise(resolve => {
@@ -70,8 +70,9 @@ class RedisMock {
       resolve(this.data[key].indexOf(val) !== -1);
     });
   }
-  hset() {
+  hset(key, hashKey, hashVal) {
     return new Promise(resolve => {
+      this.data[key][hashKey] = hashVal;
       resolve('OK');
     });
   }
