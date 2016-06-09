@@ -55,7 +55,7 @@ This project started off as just an utility in [another project](https://github.
 - [ ] Setup testing suite for the library itself.
 - [ ] Implement remaining basic features that read/write data.
 - [ ] Connection Events
-– [ ] Offline Queue
+- [ ] Offline Queue
 - [ ] Pub/Sub
 - [ ] Error Handling
 
