@@ -13,7 +13,6 @@ class RedisMock {
   }
   hsetnx(key, hashKey, hashVal) {
     return new Promise(resolve => {
-
       if (!this.data.hasOwnProperty(key)) {
         this.data[key] = {};
       }
@@ -49,9 +48,7 @@ class RedisMock {
     });
   }
   hget(key, value) {
-    return new Promise(resolve => {
-      return resolve(this.data[key][value]);
-    });
+    return new Promise(resolve => resolve(this.data[key][value]));
   }
   hvals(key) {
     return new Promise(resolve => {
@@ -59,12 +56,12 @@ class RedisMock {
     });
   }
   hgetall(key) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       resolve(this.data[key]);
     });
   }
   smembers(key) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       resolve(this.data[key]);
     });
   }
