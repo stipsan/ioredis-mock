@@ -1,6 +1,6 @@
 import expect from 'expect'
 
-import MockRedis from '..'
+import MockRedis from '../src'
 
 describe('incr', () => {
   it('should increment an integer', () => {
