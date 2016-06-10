@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 class RedisMock {
-  constructor({ data }) {
+  constructor({ data } = { data: {} }) {
     this.data = data;
   }
   incr(key) {
