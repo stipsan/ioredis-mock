@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 class RedisMock {
+  // @FIXME if no data is supplied it should default to an empty {}
   constructor({ data }) {
     this.data = data;
   }
