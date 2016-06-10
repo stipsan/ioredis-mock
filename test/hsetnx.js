@@ -14,7 +14,8 @@ describe('hsetnx', () => {
     redis.hsetnx('emails', 'bruce@wayne.enterprises', '2')
          .then(userNext => expect(userNext).toBeTruthy())
          .then(() => {
-           expect(redis.data.emails['bruce@wayne.enterprises']).toBe('2', 'hash map value persisted');
+           expect(redis.data.emails['bruce@wayne.enterprises'])
+           .toBe('2', 'hash map value persisted');
            return redis.hsetnx('emails', 'clark@daily.planet', '2');
          })
          .then(userNext => expect(userNext).toBeFalsy('hsetnx no-op failed on existing key'))
