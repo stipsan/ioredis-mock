@@ -1,6 +1,6 @@
 {
   "name": "ioredis-mock",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
   "scripts": {

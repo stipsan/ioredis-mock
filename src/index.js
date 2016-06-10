@@ -7,8 +7,8 @@ class RedisMock {
   incr(key) {
     return new Promise(resolve => {
       const curVal = Number(this.data[key]);
-      const incVal = curVal + 1;
-      resolve(incVal.toString());
+      this.data[key] = curVal + 1;
+      resolve(this.data[key].toString());
     });
   }
   hsetnx(key, hashKey, hashVal) {
