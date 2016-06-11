@@ -29,7 +29,7 @@
   "tonicExampleFilename": "example.js",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "devDependencies": {
-    "babel-cli": "6.9.0",
+    "babel-cli": "6.10.1",
     "babel-eslint": "6.0.4",
     "babel-preset-es2015": "6.9.0",
     "babel-register": "6.9.0",
