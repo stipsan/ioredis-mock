@@ -4,11 +4,22 @@ class RedisMock {
   constructor({ data } = { data: {} }) {
     this.data = data;
   }
+  get(key) {
+    return new Promise(resolve => resolve(
+      this.data.hasOwnProperty(key) ? this.data[key] : null
+    ));
+  }
   incr(key) {
     return new Promise(resolve => {
       const curVal = Number(this.data[key]);
       this.data[key] = curVal + 1;
       resolve(this.data[key].toString());
+    });
+  }
+  set(key, value) {
+    return new Promise(resolve => {
+      this.data[key] = value;
+      resolve('OK');
     });
   }
   hsetnx(key, hashKey, hashVal) {
