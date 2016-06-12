@@ -1,12 +1,12 @@
 ioredis-mock
 ============
 
-[![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
-[![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
+[![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
+[![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
 [![CircleCI](https://img.shields.io/circleci/project/stipsan/ioredis-mock.svg?label=node+matrix)](https://circleci.com/gh/stipsan/ioredis-mock)
 [![Code Climate](https://codeclimate.com/github/stipsan/ioredis-mock/badges/gpa.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
-[![Issue Count](https://img.shields.io/codeclimate/issues/github/me-and/mdf.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
-[![Coverage Status](https://coveralls.io/repos/github/stipsan/ioredis-mock/badge.svg?branch=master)](https://coveralls.io/github/stipsan/ioredis-mock?branch=master)
+[![Issue Count](https://img.shields.io/codeclimate/issues/github/stipsan/ioredis-mock.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
+[![Coverage Status](https://coveralls.io/repos/github/stipsan/ioredis-mock/badge.svg)](https://coveralls.io/github/stipsan/ioredis-mock)
 [![npm package](https://img.shields.io/npm/dm/ioredis-mock.svg)](https://www.npmjs.com/package/ioredis-mock)
 
 [![NPM](https://nodei.co/npm/ioredis-mock.png)](https://www.npmjs.com/package/ioredis-mock)
