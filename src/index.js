@@ -16,6 +16,12 @@ class RedisMock {
       resolve(this.data[key].toString());
     });
   }
+  set(key, value) {
+    return new Promise(resolve => {
+      this.data[key] = value;
+      resolve('OK');
+    });
+  }
   hsetnx(key, hashKey, hashVal) {
     return new Promise(resolve => {
       if (!this.data.hasOwnProperty(key)) {
