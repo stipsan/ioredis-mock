@@ -36,6 +36,9 @@ class RedisMock {
   }
   sadd(key, val) {
     return new Promise(resolve => {
+      if (!this.data.hasOwnProperty(key)) {
+        this.data[key] = [];
+      }
       this.data[key].push(val);
       resolve(1);
     });
