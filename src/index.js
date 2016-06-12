@@ -34,20 +34,22 @@ class RedisMock {
       resolve('OK');
     });
   }
-  sadd(key, val) {
+  sadd(key, ...vals) {
     return new Promise(resolve => {
       if (!this.data.hasOwnProperty(key)) {
         this.data[key] = [];
       }
-      this.data[key].push(val);
-      resolve(1);
+      this.data[key].push(...vals);
+      resolve(vals.length);
     });
   }
-  srem(key, val) {
+  srem(key, ...vals) {
     return new Promise(resolve => {
-      const index = this.data[key].indexOf(val);
-      this.data[key].splice(index, 1);
-      resolve(1);
+      vals.forEach(val => {
+        const index = this.data[key].indexOf(val);
+        this.data[key].splice(index, 1);
+      });
+      resolve(vals.length);
     });
   }
   hget(key, hashKey) {
