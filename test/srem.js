@@ -8,12 +8,12 @@ describe('srem', () => {
       foos: ['bar', 'foo', 'baz'],
     },
   });
-  it('should remove 1 item from list', () => {
-    return redis.srem('foos', 'bar').then(status => expect(status).toBe(1))
-                  .then(() => expect(redis.data.foos).toNotInclude('bar'));
-  });
-  it('should remove 2 items from list', () => {
-    return redis.srem('foos', 'foo', 'baz').then(status => expect(status).toBe(2))
-                  .then(() => expect(redis.data.foos).toNotInclude('foo').toNotInclude('baz'));
-  });
+  it('should remove 1 item from list', () =>
+    redis.srem('foos', 'bar').then(status => expect(status).toBe(1))
+         .then(() => expect(redis.data.foos).toNotInclude('bar'))
+  );
+  it('should remove 2 items from list', () =>
+    redis.srem('foos', 'foo', 'baz').then(status => expect(status).toBe(2))
+         .then(() => expect(redis.data.foos).toNotInclude('foo').toNotInclude('baz'))
+  );
 });
