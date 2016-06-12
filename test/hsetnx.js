@@ -9,7 +9,7 @@ describe('hsetnx', () => {
          .then(userNext => expect(userNext).toBeTruthy())
          .then(() => {
            expect(redis.data.emails['bruce@wayne.enterprises'])
-           .toBe('1', 'hash map value persisted');
+           .toBe('1', 'hash map value failed to persist');
            return redis.hsetnx('emails', 'bruce@wayne.enterprises', '2');
          })
          .then(userNext => expect(userNext).toBeFalsy('hsetnx no-op failed on existing key'))
