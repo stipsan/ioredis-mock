@@ -53,6 +53,7 @@
     "rimraf": "2.5.2"
   },
   "dependencies": {
+    "bluebird": "3.4.0",
     "lodash": "4.13.1",
     "redis-commands": "1.2.0"
   }
