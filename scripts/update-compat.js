@@ -3,7 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const commands = require('redis-commands');
 const redis = require('ioredis');
-const redisMock = require('../src').default;
+const RedisMock = require('../src').default;
+const mockedRedis = new RedisMock;
 
 let tableMd = `
 ### Supported commands
@@ -12,7 +13,7 @@ let tableMd = `
 commands.list.forEach(command => {
   const redisCol = `${command}`;
   const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
-  const ioredisMockCol = command in redisMock.prototype ? ':white_check_mark:' : ':x:';
+  const ioredisMockCol = command in mockedRedis ? ':white_check_mark:' : ':x:';
   tableMd += `
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`;
 });
