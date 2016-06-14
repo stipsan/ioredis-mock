@@ -1,3 +1,4 @@
+export * from './del';
 export * from './get';
 export * from './hget';
 export * from './hgetall';
