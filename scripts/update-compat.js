@@ -1,8 +1,9 @@
+require('babel-register');
 const path = require('path');
 const fs = require('fs');
 const commands = require('redis-commands');
 const redis = require('ioredis');
-const redisMock = require('..').default;
+const redisMock = require('../src').default;
 
 let tableMd = `
 ### Supported commands
