@@ -1,10 +1,14 @@
 import * as commands from './commands';
 
+import createCommand from './command';
+
 class RedisMock {
   constructor({ data } = { data: {} }) {
     this.data = data;
 
-    Object.keys(commands).forEach(command => { this[command] = commands[command]; });
+    Object.keys(commands).forEach(command => {
+      this[command] = createCommand(commands[command].bind(this));
+    });
   }
   multi(batch) {
     this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));
