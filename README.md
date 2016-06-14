@@ -39,25 +39,9 @@ var redis = new RedisMock({
 // Basically use it just like ioredis
 ```
 
-## Mocked ioredis features
+## [Mocked ioredis features](compat.md)
 
-* incr
-* get
-* set
-* hsetnx
-* hmset
-* sadd
-* srem
-* hget
-* hvals
-* hgetall
-* smembers
-* sismember
-* hset
-* multi
-* exec
-
-# Roadmap
+## Roadmap
 This project started off as just an utility in [another project](https://github.com/stipsan/epic) and just recently got open sourced to benefit the rest of the ioredis community. This means there's work to do before it's feature complete:
 - [x] Setup testing suite for the library itself.
 - [ ] Refactor to bluebird promises like ioredis, support node style callback too.
@@ -67,6 +51,6 @@ This project started off as just an utility in [another project](https://github.
 - [ ] Pub/Sub
 - [ ] Error Handling
 
-# I need a feature not listed here
+## I need a feature not listed here
 
 Just create an issue and tell us all about it or submit a PR with it! :-)
