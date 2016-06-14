@@ -48,6 +48,7 @@
     "rimraf": "2.5.2"
   },
   "dependencies": {
-    "lodash": "4.13.1"
+    "lodash": "4.13.1",
+    "redis-commands": "1.2.0"
   }
 }
