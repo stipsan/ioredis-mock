@@ -44,7 +44,7 @@ var redis = new RedisMock({
 ## Roadmap
 This project started off as just an utility in [another project](https://github.com/stipsan/epic) and just recently got open sourced to benefit the rest of the ioredis community. This means there's work to do before it's feature complete:
 - [x] Setup testing suite for the library itself.
-- [ ] Refactor to bluebird promises like ioredis, support node style callback too.
+- [x] Refactor to bluebird promises like ioredis, support node style callback too.
 - [ ] Implement remaining basic features that read/write data.
 - [ ] Connection Events
 - [ ] Offline Queue
