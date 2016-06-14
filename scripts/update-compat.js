@@ -17,6 +17,6 @@ commands.list.forEach(command => {
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`;
 });
 
-fs.writeFile(path.resolve('..', 'compat.md'), tableMd, (err) => {
+fs.writeFile(path.resolve(__dirname, '..', 'compat.md'), tableMd, (err) => {
   if (err) throw err;
 });
