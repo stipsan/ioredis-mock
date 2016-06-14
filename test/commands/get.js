@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('get', () => {
   it('should return null on keys that do not exist', () => {

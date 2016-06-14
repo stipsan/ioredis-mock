@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('hsetnx', () => {
   it('should set a key in a hash map if it does not exist already', () => {

@@ -1,96 +1,10 @@
-import _ from 'lodash';
+import * as commands from './commands';
 
 class RedisMock {
   constructor({ data } = { data: {} }) {
     this.data = data;
-  }
-  get(key) {
-    return new Promise(resolve => resolve(
-      this.data.hasOwnProperty(key) ? this.data[key] : null
-    ));
-  }
-  incr(key) {
-    return new Promise(resolve => {
-      const curVal = Number(this.data[key]);
-      this.data[key] = curVal + 1;
-      resolve(this.data[key].toString());
-    });
-  }
-  set(key, value) {
-    return new Promise(resolve => {
-      this.data[key] = value;
-      resolve('OK');
-    });
-  }
-  hsetnx(key, hashKey, hashVal) {
-    return new Promise(resolve => {
-      if (!this.data.hasOwnProperty(key)) {
-        this.data[key] = {};
-      }
-      const exists = this.data[key].hasOwnProperty(hashKey);
-      this.data[key][hashKey] = hashVal;
 
-      resolve(!exists);
-    });
-  }
-  hmset(key, ...hmsetData) {
-    return new Promise(resolve => {
-      if (!this.data.hasOwnProperty(key)) {
-        this.data[key] = {};
-      }
-      for (let i = 0; i < hmsetData.length; i += 2) {
-        this.data[key][hmsetData[i]] = hmsetData[i + 1];
-      }
-
-      resolve('OK');
-    });
-  }
-  sadd(key, ...vals) {
-    return new Promise(resolve => {
-      if (!this.data.hasOwnProperty(key)) {
-        this.data[key] = [];
-      }
-      this.data[key].push(...vals);
-      resolve(vals.length);
-    });
-  }
-  srem(key, ...vals) {
-    return new Promise(resolve => {
-      vals.forEach(val => {
-        const index = this.data[key].indexOf(val);
-        this.data[key].splice(index, 1);
-      });
-      resolve(vals.length);
-    });
-  }
-  hget(key, hashKey) {
-    return new Promise(resolve => resolve(this.data[key][hashKey]));
-  }
-  hvals(key) {
-    return new Promise(resolve => {
-      resolve(_.values(this.data[key]));
-    });
-  }
-  hgetall(key) {
-    return new Promise(resolve => {
-      resolve(this.data[key]);
-    });
-  }
-  smembers(key) {
-    return new Promise(resolve => {
-      resolve(this.data[key]);
-    });
-  }
-  sismember(key, val) {
-    return new Promise(resolve => {
-      resolve(this.data[key].indexOf(val) !== -1);
-    });
-  }
-  hset(key, hashKey, hashVal) {
-    return new Promise(resolve => {
-      this.data[key][hashKey] = hashVal;
-      resolve('OK');
-    });
+    Object.keys(commands).forEach(command => { this[command] = commands[command]; });
   }
   multi(batch) {
     this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));

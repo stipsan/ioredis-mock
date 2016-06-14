@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('hgetall', () => {
   it('should return all the keys and values in a hash map', () => {
