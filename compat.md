@@ -1,3 +1,5 @@
+
+### Supported commands
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
 |append|:white_check_mark:|:x:|
@@ -44,20 +46,20 @@
 |getset|:white_check_mark:|:x:|
 |hdel|:white_check_mark:|:x:|
 |hexists|:white_check_mark:|:x:|
-|hget|:white_check_mark:|:white_check_mark:|
-|hgetall|:white_check_mark:|:white_check_mark:|
+|hget|:white_check_mark:|:x:|
+|hgetall|:white_check_mark:|:x:|
 |hincrby|:white_check_mark:|:x:|
 |hincrbyfloat|:white_check_mark:|:x:|
 |hkeys|:white_check_mark:|:x:|
 |hlen|:white_check_mark:|:x:|
 |hmget|:white_check_mark:|:x:|
-|hmset|:white_check_mark:|:white_check_mark:|
+|hmset|:white_check_mark:|:x:|
 |hscan|:white_check_mark:|:x:|
-|hset|:white_check_mark:|:white_check_mark:|
-|hsetnx|:white_check_mark:|:white_check_mark:|
+|hset|:white_check_mark:|:x:|
+|hsetnx|:white_check_mark:|:x:|
 |hstrlen|:white_check_mark:|:x:|
-|hvals|:white_check_mark:|:white_check_mark:|
-|incr|:white_check_mark:|:white_check_mark:|
+|hvals|:white_check_mark:|:x:|
+|incr|:white_check_mark:|:x:|
 |incrby|:white_check_mark:|:x:|
 |incrbyfloat|:white_check_mark:|:x:|
 |info|:white_check_mark:|:x:|
@@ -112,7 +114,7 @@
 |rpoplpush|:white_check_mark:|:x:|
 |rpush|:white_check_mark:|:x:|
 |rpushx|:white_check_mark:|:x:|
-|sadd|:white_check_mark:|:white_check_mark:|
+|sadd|:white_check_mark:|:x:|
 |save|:white_check_mark:|:x:|
 |scan|:white_check_mark:|:x:|
 |scard|:white_check_mark:|:x:|
@@ -128,15 +130,15 @@
 |shutdown|:white_check_mark:|:x:|
 |sinter|:white_check_mark:|:x:|
 |sinterstore|:white_check_mark:|:x:|
-|sismember|:white_check_mark:|:white_check_mark:|
+|sismember|:white_check_mark:|:x:|
 |slaveof|:white_check_mark:|:x:|
 |slowlog|:white_check_mark:|:x:|
-|smembers|:white_check_mark:|:white_check_mark:|
+|smembers|:white_check_mark:|:x:|
 |smove|:white_check_mark:|:x:|
 |sort|:white_check_mark:|:x:|
 |spop|:white_check_mark:|:x:|
 |srandmember|:white_check_mark:|:x:|
-|srem|:white_check_mark:|:white_check_mark:|
+|srem|:white_check_mark:|:x:|
 |sscan|:white_check_mark:|:x:|
 |strlen|:white_check_mark:|:x:|
 |subscribe|:white_check_mark:|:x:|
