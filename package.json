@@ -1,10 +1,12 @@
 {
   "name": "ioredis-mock",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
   "scripts": {
     "clean": "rimraf lib",
+    "prepublish": "npm run clean && npm run build",
+    "preversion": "node scripts/update-compat",
     "build": "mkdirp lib && babel src --out-file lib/index.js",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-register --recursive",
@@ -28,6 +30,9 @@
   },
   "tonicExampleFilename": "example.js",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
+  "peerDependencies": {
+    "ioredis": "2.x"
+  },
   "devDependencies": {
     "babel-cli": "6.10.1",
     "babel-eslint": "6.0.4",
@@ -41,13 +46,14 @@
     "eslint-plugin-import": "1.8.1",
     "expect": "1.20.1",
     "growl": "1.9.2",
+    "ioredis": "2.0.1",
     "istanbul": "1.0.0-alpha.2",
     "mkdirp": "0.5.1",
     "mocha": "2.5.3",
     "rimraf": "2.5.2"
   },
   "dependencies": {
-    "ioredis": "2.0.1",
-    "lodash": "4.13.1"
+    "lodash": "4.13.1",
+    "redis-commands": "1.2.0"
   }
 }

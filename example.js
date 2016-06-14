@@ -1,4 +1,4 @@
-var RedisMock = require('ioredis-mock').default
+var RedisMock = require('ioredis-mock').default;
 var redis = new RedisMock({
   data: {
     user_next: '3',
@@ -11,4 +11,4 @@ var redis = new RedisMock({
   }
 });
 
-await redis.incr('user_next')
+await redis.incr('user_next');
