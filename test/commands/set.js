@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('set', () => {
   it('should return OK when setting a hash key', () => {

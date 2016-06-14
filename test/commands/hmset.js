@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('hmset', () => {
   it('should let you set multiple hash map keys and values in a single command', () => {

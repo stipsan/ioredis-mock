@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import MockRedis from '../src';
+import MockRedis from '../../src';
 
 describe('hvals', () => {
   it('should return an array over all the values in a hash map', () => {
