@@ -3,6 +3,7 @@ engines:
     enabled: true
     exclude_paths:
     - "test/"
+    - "src/commands/"
     config:
       languages:
       - javascript
