@@ -7,7 +7,7 @@
     "clean": "rimraf lib",
     "prepublish": "npm run clean && npm run build",
     "preversion": "node scripts/update-compat",
-    "build": "mkdirp lib && babel src --out-file lib/index.js",
+    "build": "mkdirp lib && babel src --out-dir lib",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch --growl",
