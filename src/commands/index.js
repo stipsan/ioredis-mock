@@ -1,4 +1,5 @@
 export * from './decr';
+export * from './decrby';
 export * from './del';
 export * from './get';
 export * from './hget';
