@@ -21,7 +21,7 @@
 |[dbsize](http://redis.io/commands/DBSIZE)|:white_check_mark:|:x:|
 |[debug](http://redis.io/commands/DEBUG)|:white_check_mark:|:x:|
 |[decr](http://redis.io/commands/DECR)|:white_check_mark:|:white_check_mark:|
-|[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:x:|
+|[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:white_check_mark:|
 |[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
 |[discard](http://redis.io/commands/DISCARD)|:white_check_mark:|:x:|
 |[dump](http://redis.io/commands/DUMP)|:white_check_mark:|:x:|
@@ -60,7 +60,7 @@
 |[hstrlen](http://redis.io/commands/HSTRLEN)|:white_check_mark:|:x:|
 |[hvals](http://redis.io/commands/HVALS)|:white_check_mark:|:white_check_mark:|
 |[incr](http://redis.io/commands/INCR)|:white_check_mark:|:white_check_mark:|
-|[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:x:|
+|[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:white_check_mark:|
 |[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:x:|
 |[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
 |[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:x:|
