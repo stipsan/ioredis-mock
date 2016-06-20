@@ -3,6 +3,7 @@ export * from './decrby';
 export * from './del';
 export * from './exists';
 export * from './get';
+export * from './getset';
 export * from './hget';
 export * from './hgetall';
 export * from './hmset';
