@@ -1,5 +1,6 @@
-import microtime from 'microtime';
-
 export function time() {
-  return microtime.nowStruct();
+  return [
+    Math.round(new Date().getTime() / 1000),
+    Math.round(process.hrtime()[1] / 1000),
+  ];
 }
