@@ -15,3 +15,4 @@ export * from './set';
 export * from './sismember';
 export * from './smembers';
 export * from './srem';
+export * from './time';
