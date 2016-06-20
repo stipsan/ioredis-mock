@@ -29,7 +29,7 @@
 |[eval](http://redis.io/commands/EVAL)|:white_check_mark:|:x:|
 |[evalsha](http://redis.io/commands/EVALSHA)|:white_check_mark:|:x:|
 |[exec](http://redis.io/commands/EXEC)|:white_check_mark:|:white_check_mark:|
-|[exists](http://redis.io/commands/EXISTS)|:white_check_mark:|:x:|
+|[exists](http://redis.io/commands/EXISTS)|:white_check_mark:|:white_check_mark:|
 |[expire](http://redis.io/commands/EXPIRE)|:white_check_mark:|:x:|
 |[expireat](http://redis.io/commands/EXPIREAT)|:white_check_mark:|:x:|
 |[flushall](http://redis.io/commands/FLUSHALL)|:white_check_mark:|:x:|
@@ -43,7 +43,7 @@
 |[get](http://redis.io/commands/GET)|:white_check_mark:|:white_check_mark:|
 |[getbit](http://redis.io/commands/GETBIT)|:white_check_mark:|:x:|
 |[getrange](http://redis.io/commands/GETRANGE)|:white_check_mark:|:x:|
-|[getset](http://redis.io/commands/GETSET)|:white_check_mark:|:x:|
+|[getset](http://redis.io/commands/GETSET)|:white_check_mark:|:white_check_mark:|
 |[hdel](http://redis.io/commands/HDEL)|:white_check_mark:|:x:|
 |[hexists](http://redis.io/commands/HEXISTS)|:white_check_mark:|:x:|
 |[hget](http://redis.io/commands/HGET)|:white_check_mark:|:white_check_mark:|
@@ -146,7 +146,7 @@
 |[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:x:|
 |[sunionstore](http://redis.io/commands/SUNIONSTORE)|:white_check_mark:|:x:|
 |[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
-|[time](http://redis.io/commands/TIME)|:white_check_mark:|:x:|
+|[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
 |[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:x:|
 |[type](http://redis.io/commands/TYPE)|:white_check_mark:|:x:|
 |[unlink](http://redis.io/commands/UNLINK)|:white_check_mark:|:x:|
