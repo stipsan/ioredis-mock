@@ -1,6 +1,7 @@
 export * from './decr';
 export * from './decrby';
 export * from './del';
+export * from './exists';
 export * from './get';
 export * from './hget';
 export * from './hgetall';
