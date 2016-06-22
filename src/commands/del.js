@@ -1,6 +1,6 @@
 export function del(...keys) {
   keys.forEach(key => {
-    delete this.data[key];
+    this.data[key] = undefined;
   });
   return keys.length;
 }
