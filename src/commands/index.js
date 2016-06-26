@@ -1,3 +1,4 @@
+export * from './append';
 export * from './decr';
 export * from './decrby';
 export * from './del';
