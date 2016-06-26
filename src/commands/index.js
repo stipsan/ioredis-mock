@@ -12,6 +12,7 @@ export * from './hsetnx';
 export * from './hvals';
 export * from './incr';
 export * from './incrby';
+export * from './rename';
 export * from './sadd';
 export * from './set';
 export * from './sismember';
