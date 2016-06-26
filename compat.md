@@ -2,7 +2,7 @@
 ### Supported commands
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
-|[append](http://redis.io/commands/APPEND)|:white_check_mark:|:x:|
+|[append](http://redis.io/commands/APPEND)|:white_check_mark:|:white_check_mark:|
 |[asking](http://redis.io/commands/ASKING)|:white_check_mark:|:x:|
 |[auth](http://redis.io/commands/AUTH)|:white_check_mark:|:x:|
 |[bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)|:white_check_mark:|:x:|
@@ -52,7 +52,7 @@
 |[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:x:|
 |[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:x:|
 |[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:x:|
-|[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:x:|
+|[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:white_check_mark:|
 |[hmset](http://redis.io/commands/HMSET)|:white_check_mark:|:white_check_mark:|
 |[hscan](http://redis.io/commands/HSCAN)|:white_check_mark:|:x:|
 |[hset](http://redis.io/commands/HSET)|:white_check_mark:|:white_check_mark:|
@@ -104,7 +104,7 @@
 |[randomkey](http://redis.io/commands/RANDOMKEY)|:white_check_mark:|:x:|
 |[readonly](http://redis.io/commands/READONLY)|:white_check_mark:|:x:|
 |[readwrite](http://redis.io/commands/READWRITE)|:white_check_mark:|:x:|
-|[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:x:|
+|[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:white_check_mark:|
 |[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:x:|
 |[replconf](http://redis.io/commands/REPLCONF)|:white_check_mark:|:x:|
 |[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
