@@ -21,6 +21,15 @@ describe('hincrby', () => {
 
     return redis.hincrby('stats', 'hits', 100).then(userNext => expect(userNext).toBe('100'));
   });
+  it('should create field in hash if not exists', () => {
+    const redis = new MockRedis({
+      data: {
+        stats: {},
+      },
+    });
+
+    return redis.hincrby('stats', 'hits', 100).then(userNext => expect(userNext).toBe('100'));
+  });
   it('should decrement value in hash if negative integer is passed', () => {
     const redis = new MockRedis({
       data: {
