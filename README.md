@@ -39,6 +39,9 @@ var redis = new RedisMock({
 // Basically use it just like ioredis
 ```
 
+## Try it out
+This project implements a Tonic example file so you can quickly [test ioredis-mock in your browser.](https://tonicdev.com/npm/ioredis-mock)
+
 ## [Mocked ioredis features](compat.md)
 
 ## Roadmap
