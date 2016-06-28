@@ -11,6 +11,7 @@ export * from './hmget';
 export * from './hmset';
 export * from './hset';
 export * from './hsetnx';
+export * from './hstrlen';
 export * from './hvals';
 export * from './incr';
 export * from './incrby';
