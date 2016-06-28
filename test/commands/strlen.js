@@ -9,7 +9,7 @@ describe('strlen', () => {
     return redis.strlen('nonexisting').then(result => expect(result).toBe('0'));
   });
 
-  it('should return null on keys that do not exist', () => {
+  it('should return string length of keys that do exist', () => {
     const redis = new MockRedis({
       data: {
         mykey: 'Hello world',
