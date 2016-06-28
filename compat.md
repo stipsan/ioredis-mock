@@ -44,11 +44,11 @@
 |[getbit](http://redis.io/commands/GETBIT)|:white_check_mark:|:x:|
 |[getrange](http://redis.io/commands/GETRANGE)|:white_check_mark:|:x:|
 |[getset](http://redis.io/commands/GETSET)|:white_check_mark:|:white_check_mark:|
-|[hdel](http://redis.io/commands/HDEL)|:white_check_mark:|:x:|
-|[hexists](http://redis.io/commands/HEXISTS)|:white_check_mark:|:x:|
+|[hdel](http://redis.io/commands/HDEL)|:white_check_mark:|:white_check_mark:|
+|[hexists](http://redis.io/commands/HEXISTS)|:white_check_mark:|:white_check_mark:|
 |[hget](http://redis.io/commands/HGET)|:white_check_mark:|:white_check_mark:|
 |[hgetall](http://redis.io/commands/HGETALL)|:white_check_mark:|:white_check_mark:|
-|[hincrby](http://redis.io/commands/HINCRBY)|:white_check_mark:|:x:|
+|[hincrby](http://redis.io/commands/HINCRBY)|:white_check_mark:|:white_check_mark:|
 |[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:x:|
 |[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:x:|
 |[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:x:|
@@ -57,7 +57,7 @@
 |[hscan](http://redis.io/commands/HSCAN)|:white_check_mark:|:x:|
 |[hset](http://redis.io/commands/HSET)|:white_check_mark:|:white_check_mark:|
 |[hsetnx](http://redis.io/commands/HSETNX)|:white_check_mark:|:white_check_mark:|
-|[hstrlen](http://redis.io/commands/HSTRLEN)|:white_check_mark:|:x:|
+|[hstrlen](http://redis.io/commands/HSTRLEN)|:white_check_mark:|:white_check_mark:|
 |[hvals](http://redis.io/commands/HVALS)|:white_check_mark:|:white_check_mark:|
 |[incr](http://redis.io/commands/INCR)|:white_check_mark:|:white_check_mark:|
 |[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:white_check_mark:|
@@ -140,7 +140,7 @@
 |[srandmember](http://redis.io/commands/SRANDMEMBER)|:white_check_mark:|:x:|
 |[srem](http://redis.io/commands/SREM)|:white_check_mark:|:white_check_mark:|
 |[sscan](http://redis.io/commands/SSCAN)|:white_check_mark:|:x:|
-|[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:x:|
+|[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:white_check_mark:|
 |[subscribe](http://redis.io/commands/SUBSCRIBE)|:white_check_mark:|:x:|
 |[substr](http://redis.io/commands/SUBSTR)|:white_check_mark:|:x:|
 |[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:x:|
