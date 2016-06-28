@@ -9,6 +9,7 @@ export * from './hdel';
 export * from './hexists';
 export * from './hget';
 export * from './hgetall';
+export * from './hincrby';
 export * from './hmget';
 export * from './hmset';
 export * from './hset';
