@@ -5,6 +5,7 @@ export * from './del';
 export * from './exists';
 export * from './get';
 export * from './getset';
+export * from './hdel';
 export * from './hexists';
 export * from './hget';
 export * from './hgetall';
