@@ -44,7 +44,7 @@
     "eslint-config-airbnb-base": "3.0.1",
     "eslint-config-xo-space": "0.14.0",
     "eslint-plugin-import": "1.9.2",
-    "expect": "1.20.1",
+    "expect": "1.20.2",
     "growl": "1.9.2",
     "ioredis": "2.2.0",
     "istanbul": "1.1.0-alpha.1",
