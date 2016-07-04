@@ -1,16 +1,16 @@
 test:
   override:
-    - nvm use 0.12 && npm test
-    - nvm use 4.0 && npm test
-    - nvm use 4.1 && npm test
-    - nvm use 4.2 && npm test
-    - nvm use 4.3 && npm test
-    - nvm use 5.0 && npm test
-    - nvm use 5.1 && npm test
-    - nvm use 5.2 && npm test
-    - nvm use 5.3 && npm test
-    - nvm use 5.4 && npm test
-    - nvm use 5.5 && npm test
-    - nvm use 5.6 && npm test
-    - nvm use 5.7 && npm test
-    - nvm use 6.1 && npm test
+    - nvm use 0.12 && npm install -g npm@3.x.x && npm test
+    - nvm use 4.0 && npm install -g npm@3.x.x && npm test
+    - nvm use 4.1 && npm install -g npm@3.x.x && npm test
+    - nvm use 4.2 && npm install -g npm@3.x.x && npm test
+    - nvm use 4.3 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.0 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.1 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.2 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.3 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.4 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.5 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.6 && npm install -g npm@3.x.x && npm test
+    - nvm use 5.7 && npm install -g npm@3.x.x && npm test
+    - nvm use 6.1 && npm install -g npm@3.x.x && npm test
