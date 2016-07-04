@@ -21,6 +21,7 @@ export * from './incrby';
 export * from './rename';
 export * from './sadd';
 export * from './set';
+export * from './setnx';
 export * from './sismember';
 export * from './smembers';
 export * from './srem';
