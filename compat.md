@@ -125,7 +125,7 @@
 |[set](http://redis.io/commands/SET)|:white_check_mark:|:white_check_mark:|
 |[setbit](http://redis.io/commands/SETBIT)|:white_check_mark:|:x:|
 |[setex](http://redis.io/commands/SETEX)|:white_check_mark:|:x:|
-|[setnx](http://redis.io/commands/SETNX)|:white_check_mark:|:x:|
+|[setnx](http://redis.io/commands/SETNX)|:white_check_mark:|:white_check_mark:|
 |[setrange](http://redis.io/commands/SETRANGE)|:white_check_mark:|:x:|
 |[shutdown](http://redis.io/commands/SHUTDOWN)|:white_check_mark:|:x:|
 |[sinter](http://redis.io/commands/SINTER)|:white_check_mark:|:x:|
