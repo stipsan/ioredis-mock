@@ -42,7 +42,6 @@
     "coveralls": "2.11.9",
     "eslint": "3.0.0",
     "eslint-config-airbnb-base": "3.0.1",
-    "eslint-config-xo-space": "0.14.0",
     "eslint-plugin-import": "1.10.1",
     "expect": "1.20.2",
     "growl": "1.9.2",
