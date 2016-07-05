@@ -40,7 +40,7 @@
     "babel-register": "6.9.0",
     "codeclimate-test-reporter": "0.3.3",
     "coveralls": "2.11.9",
-    "eslint": "3.0.0",
+    "eslint": "3.0.1",
     "eslint-config-airbnb-base": "3.0.1",
     "eslint-plugin-import": "1.10.2",
     "expect": "1.20.2",
