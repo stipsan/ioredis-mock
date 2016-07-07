@@ -3,9 +3,9 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('hsetnx', () => {
-  it('should set a key in a hash map if it does not exist already', () => {
-    const redis = new MockRedis();
-    return redis.hsetnx('emails', 'bruce@wayne.enterprises', '1')
+ it('should set a key in a hash map if it does not exist already', () => {
+   const redis = new MockRedis();
+   return redis.hsetnx('emails', 'bruce@wayne.enterprises', '1')
          .then(status => expect(status).toBe('1'))
          .then(() => {
            expect(redis.data.emails['bruce@wayne.enterprises'])
@@ -17,5 +17,5 @@ describe('hsetnx', () => {
            expect(redis.data.emails['bruce@wayne.enterprises'])
            .toBe('1', 'existing hash map value was overwritten');
          });
-  });
+ });
 });
