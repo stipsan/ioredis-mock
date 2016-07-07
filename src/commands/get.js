@@ -1,3 +1,3 @@
 export function get(key) {
-  return this.data.hasOwnProperty(key) ? this.data[key] : null;
+  return {}.hasOwnProperty.call(this.data, key) ? this.data[key] : null;
 }

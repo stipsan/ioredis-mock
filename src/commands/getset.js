@@ -1,5 +1,5 @@
 export function getset(key, val) {
-  const old = this.data.hasOwnProperty(key) ? this.data[key] : '';
+  const old = {}.hasOwnProperty.call(this.data, key) ? this.data[key] : '';
   this.data[key] = val;
   return old;
 }

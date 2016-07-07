@@ -1,4 +1,4 @@
 export function hstrlen(key, field) {
-  return (this.data.hasOwnProperty(key) && this.data[key].hasOwnProperty(field)) ?
+  return ({}.hasOwnProperty.call(this.data, key) && {}.hasOwnProperty.call(this.data[key], field)) ?
          this.data[key][field].length.toString() : '0';
 }

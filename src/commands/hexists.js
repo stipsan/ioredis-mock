@@ -1,3 +1,3 @@
 export function hexists(key, field) {
-  return this.data[key].hasOwnProperty(field) ? '1' : '0';
+  return {}.hasOwnProperty.call(this.data[key], field) ? '1' : '0';
 }

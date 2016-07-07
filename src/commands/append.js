@@ -1,5 +1,5 @@
 export function append(key, value) {
-  if (!this.data.hasOwnProperty(key)) {
+  if (!{}.hasOwnProperty.call(this.data, key)) {
     this.data[key] = '';
   }
   this.data[key] += value;
