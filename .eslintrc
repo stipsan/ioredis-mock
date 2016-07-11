@@ -3,5 +3,8 @@
     "node": "true"
   },
   "extends": "airbnb-base",
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "import/prefer-default-export": "off"
+  }
 }

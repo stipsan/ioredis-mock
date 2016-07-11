@@ -1,5 +1,5 @@
 export function hmset(key, ...hmsetData) {
-  if (!this.data.hasOwnProperty(key)) {
+  if (!{}.hasOwnProperty.call(this.data, key)) {
     this.data[key] = {};
   }
   for (let i = 0; i < hmsetData.length; i += 2) {

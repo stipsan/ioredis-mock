@@ -1,5 +1,5 @@
 export function sadd(key, ...vals) {
-  if (!this.data.hasOwnProperty(key)) {
+  if (!{}.hasOwnProperty.call(this.data, key)) {
     this.data[key] = [];
   }
   this.data[key].push(...vals);

@@ -1,9 +1,9 @@
 export function hsetnx(key, hashKey, hashVal) {
-  if (!this.data.hasOwnProperty(key)) {
+  if (!{}.hasOwnProperty.call(this.data, key)) {
     this.data[key] = {};
   }
 
-  if (!this.data[key].hasOwnProperty(hashKey)) {
+  if (!{}.hasOwnProperty.call(this.data[key], hashKey)) {
     this.data[key][hashKey] = hashVal;
 
     return '1';

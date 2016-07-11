@@ -1,6 +1,6 @@
 export function hdel(key, ...fields) {
   return fields.filter(field => {
-    if (this.data[key].hasOwnProperty(field)) {
+    if ({}.hasOwnProperty.call(this.data[key], field)) {
       delete this.data[key][field];
       return true;
     }
