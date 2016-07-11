@@ -11,13 +11,13 @@ let tableMd = `
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|`;
 commands.list.forEach(command => {
- const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
- const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
- const ioredisMockCol = command in mockedRedis ? ':white_check_mark:' : ':x:';
- tableMd += `
+  const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
+  const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
+  const ioredisMockCol = command in mockedRedis ? ':white_check_mark:' : ':x:';
+  tableMd += `
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`;
 });
 
 fs.writeFile(path.resolve(__dirname, '..', 'compat.md'), tableMd, (err) => {
- if (err) throw err;
+  if (err) throw err;
 });

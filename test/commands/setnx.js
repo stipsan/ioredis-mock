@@ -3,9 +3,9 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('setnx', () => {
- it('should set a key with value if it does not exist already', () => {
-   const redis = new MockRedis();
-   return redis.setnx('foo', 'bar')
+  it('should set a key with value if it does not exist already', () => {
+    const redis = new MockRedis();
+    return redis.setnx('foo', 'bar')
          .then(status => expect(status).toBe('1'))
          .then(() => {
            expect(redis.data.foo)
@@ -17,5 +17,5 @@ describe('setnx', () => {
            expect(redis.data.foo)
            .toBe('bar', 'existing value was overwritten');
          });
- });
+  });
 });
