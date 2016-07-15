@@ -41,7 +41,7 @@
     "codeclimate-test-reporter": "0.3.3",
     "coveralls": "2.11.11",
     "eslint": "3.0.1",
-    "eslint-config-airbnb-base": "4.0.0",
+    "eslint-config-airbnb-base": "4.0.2",
     "eslint-plugin-import": "1.10.3",
     "expect": "1.20.2",
     "growl": "1.9.2",
