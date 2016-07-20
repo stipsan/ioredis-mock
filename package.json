@@ -42,7 +42,7 @@
     "coveralls": "2.11.11",
     "eslint": "3.1.1",
     "eslint-config-airbnb-base": "4.0.2",
-    "eslint-plugin-import": "1.11.0",
+    "eslint-plugin-import": "1.11.1",
     "expect": "1.20.2",
     "growl": "1.9.2",
     "ioredis": "2.2.0",
