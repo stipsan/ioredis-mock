@@ -7,7 +7,7 @@ describe('hmset', () => {
     const redis = new MockRedis();
     const hash = { id: '1', email: 'bruce@wayne.enterprises' };
     return redis.hmset('user:1', 'id', '1', 'email', 'bruce@wayne.enterprises')
-         .then(status => expect(status).toBe('OK'))
-         .then(() => expect(redis.data['user:1']).toEqual(hash));
+      .then(status => expect(status).toBe('OK'))
+      .then(() => expect(redis.data['user:1']).toEqual(hash));
   });
 });
