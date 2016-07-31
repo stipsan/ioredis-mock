@@ -4,7 +4,8 @@ const fs = require('fs');
 const commands = require('redis-commands');
 const redis = require('ioredis');
 const RedisMock = require('../src').default;
-const mockedRedis = new RedisMock;
+
+const mockedRedis = new RedisMock();
 
 let tableMd = `
 ### Supported commands
