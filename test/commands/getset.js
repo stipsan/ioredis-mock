@@ -10,6 +10,6 @@ describe('getset', () => {
       },
     });
     return redis.getset('foo', 'World').then(result => expect(result).toBe('Hello'))
-           .then(() => expect(redis.data.foo).toBe('World'));
+      .then(() => expect(redis.data.foo).toBe('World'));
   });
 });

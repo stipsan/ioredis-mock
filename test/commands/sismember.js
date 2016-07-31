@@ -11,7 +11,7 @@ describe('sismember', () => {
     });
 
     return redis.sismember('foos', 'foo').then(result => expect(result).toBe(true))
-                .then(() => redis.sismember('foos', 'foobar'))
-                .then(result => expect(result).toBe(false));
+      .then(() => redis.sismember('foos', 'foobar'))
+      .then(result => expect(result).toBe(false));
   });
 });

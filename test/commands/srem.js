@@ -10,10 +10,10 @@ describe('srem', () => {
   });
   it('should remove 1 item from list', () =>
     redis.srem('foos', 'bar').then(status => expect(status).toBe(1))
-         .then(() => expect(redis.data.foos).toNotInclude('bar'))
+      .then(() => expect(redis.data.foos).toNotInclude('bar'))
   );
   it('should remove 2 items from list', () =>
     redis.srem('foos', 'foo', 'baz').then(status => expect(status).toBe(2))
-         .then(() => expect(redis.data.foos).toNotInclude('foo').toNotInclude('baz'))
+      .then(() => expect(redis.data.foos).toNotInclude('foo').toNotInclude('baz'))
   );
 });

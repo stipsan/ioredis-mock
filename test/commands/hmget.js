@@ -10,8 +10,8 @@ describe('hmget', () => {
       },
     });
     return redis.hmget('user:1', 'id', 'email', 'location')
-         .then(values => expect(values).toEqual([
-           '1', 'bruce@wayne.enterprises', null,
-         ]));
+      .then(values => expect(values).toEqual([
+        '1', 'bruce@wayne.enterprises', null,
+      ]));
   });
 });
