@@ -63,7 +63,7 @@
 |[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:white_check_mark:|
 |[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:x:|
 |[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
-|[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:x:|
+|[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:white_check_mark:|
 |[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:x:|
 |[latency](http://redis.io/commands/LATENCY)|:white_check_mark:|:x:|
 |[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:x:|
