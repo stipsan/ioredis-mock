@@ -18,6 +18,7 @@ export * from './hstrlen';
 export * from './hvals';
 export * from './incr';
 export * from './incrby';
+export * from './keys';
 export * from './rename';
 export * from './sadd';
 export * from './set';
