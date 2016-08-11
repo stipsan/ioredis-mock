@@ -5,7 +5,8 @@ import createCommand from './command';
 class RedisMock {
   constructor({ data } = { data: {} }) {
     this.data = data;
-
+    this.channels = {};
+    
     Object.keys(commands).forEach(command => {
       this[command] = createCommand(commands[command].bind(this));
     });
