@@ -1,5 +1,5 @@
 {
-  "name": "ioredis-mock",
+  "name": "ioredis-mock-lpl",
   "version": "1.7.0",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stipsan/ioredis-mock.git"
+    "url": "git+https://github.com/launchpadlab/ioredis-mock-lpl.git"
   },
   "keywords": [
     "ioredis"
