@@ -23,6 +23,7 @@ export * from './lpush';
 export * from './lrem';
 export * from './keys';
 export * from './rename';
+export * from './rpoplpush';
 export * from './rpush';
 export * from './sadd';
 export * from './set';
