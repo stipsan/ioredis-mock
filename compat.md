@@ -13,7 +13,7 @@
 |[bitpos](http://redis.io/commands/BITPOS)|:white_check_mark:|:x:|
 |[blpop](http://redis.io/commands/BLPOP)|:white_check_mark:|:x:|
 |[brpop](http://redis.io/commands/BRPOP)|:white_check_mark:|:x:|
-|[brpoplpush](http://redis.io/commands/BRPOPLPUSH)|:white_check_mark:|:x:|
+|[brpoplpush](http://redis.io/commands/BRPOPLPUSH)|:white_check_mark:|:white_check_mark:|
 |[client](http://redis.io/commands/CLIENT)|:white_check_mark:|:x:|
 |[cluster](http://redis.io/commands/CLUSTER)|:white_check_mark:|:x:|
 |[command](http://redis.io/commands/COMMAND)|:white_check_mark:|:x:|
@@ -68,12 +68,12 @@
 |[latency](http://redis.io/commands/LATENCY)|:white_check_mark:|:x:|
 |[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:x:|
 |[linsert](http://redis.io/commands/LINSERT)|:white_check_mark:|:x:|
-|[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:x:|
+|[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:white_check_mark:|
 |[lpop](http://redis.io/commands/LPOP)|:white_check_mark:|:x:|
-|[lpush](http://redis.io/commands/LPUSH)|:white_check_mark:|:x:|
+|[lpush](http://redis.io/commands/LPUSH)|:white_check_mark:|:white_check_mark:|
 |[lpushx](http://redis.io/commands/LPUSHX)|:white_check_mark:|:x:|
 |[lrange](http://redis.io/commands/LRANGE)|:white_check_mark:|:x:|
-|[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:x:|
+|[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:white_check_mark:|
 |[lset](http://redis.io/commands/LSET)|:white_check_mark:|:x:|
 |[ltrim](http://redis.io/commands/LTRIM)|:white_check_mark:|:x:|
 |[mget](http://redis.io/commands/MGET)|:white_check_mark:|:x:|
@@ -97,7 +97,7 @@
 |[psubscribe](http://redis.io/commands/PSUBSCRIBE)|:white_check_mark:|:x:|
 |[psync](http://redis.io/commands/PSYNC)|:white_check_mark:|:x:|
 |[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:x:|
-|[publish](http://redis.io/commands/PUBLISH)|:white_check_mark:|:x:|
+|[publish](http://redis.io/commands/PUBLISH)|:white_check_mark:|:white_check_mark:|
 |[pubsub](http://redis.io/commands/PUBSUB)|:white_check_mark:|:x:|
 |[punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)|:white_check_mark:|:x:|
 |[quit](http://redis.io/commands/QUIT)|:white_check_mark:|:x:|
@@ -111,8 +111,8 @@
 |[restore-asking](http://redis.io/commands/RESTORE-ASKING)|:white_check_mark:|:x:|
 |[role](http://redis.io/commands/ROLE)|:white_check_mark:|:x:|
 |[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:x:|
-|[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:x:|
-|[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:x:|
+|[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:white_check_mark:|
+|[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:white_check_mark:|
 |[rpushx](http://redis.io/commands/RPUSHX)|:white_check_mark:|:x:|
 |[sadd](http://redis.io/commands/SADD)|:white_check_mark:|:white_check_mark:|
 |[save](http://redis.io/commands/SAVE)|:white_check_mark:|:x:|
