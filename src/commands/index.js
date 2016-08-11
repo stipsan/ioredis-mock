@@ -18,6 +18,8 @@ export * from './hstrlen';
 export * from './hvals';
 export * from './incr';
 export * from './incrby';
+export * from './llen';
+export * from './lpush';
 export * from './keys';
 export * from './rename';
 export * from './sadd';
