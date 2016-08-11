@@ -20,6 +20,7 @@ export * from './incr';
 export * from './incrby';
 export * from './llen';
 export * from './lpush';
+export * from './lrem';
 export * from './keys';
 export * from './rename';
 export * from './rpush';
