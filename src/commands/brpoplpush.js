@@ -1,3 +1,3 @@
-export function brpoplpush(source, destination, timeout) {
+export function brpoplpush(source, destination) {
   return this.rpoplpush(source, destination);
 }

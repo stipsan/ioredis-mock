@@ -21,7 +21,8 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar').then(() => expect(redis.data.bar).toEqual(['bar', 'baz']));
+    return redis.brpoplpush('foo', 'bar')
+      .then(() => expect(redis.data.bar).toEqual(['bar', 'baz']));
   });
 
   it('should return null if the source list does not exist', () => {

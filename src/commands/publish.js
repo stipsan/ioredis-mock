@@ -1,3 +1,3 @@
-export function publish(channel, message) {
+export function publish() {
   return 0;
 }
