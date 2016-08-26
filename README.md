@@ -8,7 +8,8 @@ ioredis-mock
 [![Coverage Status](https://coveralls.io/repos/github/stipsan/ioredis-mock/badge.svg)](https://coveralls.io/github/stipsan/ioredis-mock)
 [![npm package](https://img.shields.io/npm/dm/ioredis-mock.svg)](https://www.npmjs.com/package/ioredis-mock)
 
-[![NPM](https://nodei.co/npm/ioredis-mock.png)](https://www.npmjs.com/package/ioredis-mock)
+[![NPM](https://nodei.co/npm/ioredis-mock.png?downloadRank=true)](https://www.npmjs.com/package/ioredis-mock)
+[![NPM](https://nodei.co/npm-dl/ioredis-mock.png?months=3&height=2)](https://nodei.co/npm/ioredis-mock/)
 
 This library emulates [ioredis](https://github.com/luin/ioredis) by performing all operations in-memory.
 The best way to do integration testing against redis and ioredis is on a real redis-server instance.
