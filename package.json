@@ -53,7 +53,7 @@
     "rimraf": "2.5.4"
   },
   "dependencies": {
-    "bluebird": "3.4.5",
+    "bluebird": "3.4.6",
     "lodash": "4.15.0",
     "minimatch": "3.0.3",
     "object-assign": "4.1.0",
