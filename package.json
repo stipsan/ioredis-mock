@@ -21,7 +21,8 @@
     "url": "git+https://github.com/stipsan/ioredis-mock.git"
   },
   "keywords": [
-    "ioredis"
+    "ioredis",
+    "mock-ioredis"
   ],
   "author": "Stian Didriksen <stipsan@gmail.com>",
   "license": "MIT",
