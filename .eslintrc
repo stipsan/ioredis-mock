@@ -5,6 +5,7 @@
   "extends": "airbnb-base",
   "parser": "babel-eslint",
   "rules": {
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off"
   }
 }
