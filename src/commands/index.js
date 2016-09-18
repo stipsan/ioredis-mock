@@ -23,6 +23,7 @@ export * from './keys';
 export * from './llen';
 export * from './lpush';
 export * from './lrem';
+export * from './mget';
 export * from './publish';
 export * from './rename';
 export * from './rpoplpush';
