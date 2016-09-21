@@ -11,7 +11,7 @@ let tableMd = `
 ### Supported commands
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|`;
-commands.list.forEach(command => {
+commands.list.forEach((command) => {
   const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
   const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
   const ioredisMockCol = command in mockedRedis ? ':white_check_mark:' : ':x:';
