@@ -1,5 +1,5 @@
 export function srem(key, ...vals) {
-  vals.forEach(val => {
+  vals.forEach((val) => {
     const index = this.data[key].indexOf(val);
     this.data[key].splice(index, 1);
   });

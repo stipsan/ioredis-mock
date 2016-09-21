@@ -7,7 +7,7 @@ class RedisMock {
     this.data = data;
     this.channels = {};
 
-    Object.keys(commands).forEach(command => {
+    Object.keys(commands).forEach((command) => {
       this[command] = createCommand(commands[command].bind(this));
     });
   }
