@@ -76,7 +76,7 @@
 |[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:white_check_mark:|
 |[lset](http://redis.io/commands/LSET)|:white_check_mark:|:x:|
 |[ltrim](http://redis.io/commands/LTRIM)|:white_check_mark:|:x:|
-|[mget](http://redis.io/commands/MGET)|:white_check_mark:|:x:|
+|[mget](http://redis.io/commands/MGET)|:white_check_mark:|:white_check_mark:|
 |[migrate](http://redis.io/commands/MIGRATE)|:white_check_mark:|:x:|
 |[monitor](http://redis.io/commands/MONITOR)|:white_check_mark:|:x:|
 |[move](http://redis.io/commands/MOVE)|:white_check_mark:|:x:|
