@@ -105,7 +105,7 @@
 |[readonly](http://redis.io/commands/READONLY)|:white_check_mark:|:x:|
 |[readwrite](http://redis.io/commands/READWRITE)|:white_check_mark:|:x:|
 |[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:white_check_mark:|
-|[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:x:|
+|[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:white_check_mark:|
 |[replconf](http://redis.io/commands/REPLCONF)|:white_check_mark:|:x:|
 |[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
 |[restore-asking](http://redis.io/commands/RESTORE-ASKING)|:white_check_mark:|:x:|
