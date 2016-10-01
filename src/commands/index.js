@@ -9,6 +9,7 @@ export * from './del';
 export * from './echo';
 export * from './exists';
 export * from './expire';
+export * from './flushall';
 export * from './get';
 export * from './getrange';
 export * from './getset';
