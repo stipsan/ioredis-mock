@@ -47,6 +47,7 @@ export * from './rpush';
 export * from './sadd';
 export * from './save';
 export * from './set';
+export * from './setex';
 export * from './setnx';
 export * from './sismember';
 export * from './smembers';
