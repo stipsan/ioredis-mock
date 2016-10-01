@@ -36,6 +36,7 @@ export * from './lrem';
 export * from './mget';
 export * from './persist';
 export * from './ping';
+export * from './pttl';
 export * from './publish';
 export * from './randomkey';
 export * from './rename';
