@@ -8,13 +8,13 @@ describe('setnx', () => {
     return redis.setnx('foo', 'bar')
       .then(status => expect(status).toBe('1'))
       .then(() => {
-        expect(redis.data.foo)
+        expect(redis.data.get('foo'))
           .toBe('bar', 'value failed to persist');
         return redis.setnx('foo', 'baz');
       })
       .then(status => expect(status).toBe('0', 'setnx no-op failed on existing key'))
       .then(() => {
-        expect(redis.data.foo)
+        expect(redis.data.get('foo'))
           .toBe('bar', 'existing value was overwritten');
       });
   });

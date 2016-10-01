@@ -11,7 +11,7 @@ describe('lrem', () => {
     });
 
     return redis.lrem('foo', -2, 'foo')
-      .then(() => expect(redis.data.foo).toEqual(['foo', 'bar', 'baz']));
+      .then(() => expect(redis.data.get('foo')).toEqual(['foo', 'bar', 'baz']));
   });
 
   it('should remove the items from the beginning of the list when count is positive', () => {
@@ -22,7 +22,7 @@ describe('lrem', () => {
     });
 
     return redis.lrem('foo', 2, 'foo')
-      .then(() => expect(redis.data.foo).toEqual(['bar', 'baz', 'foo']));
+      .then(() => expect(redis.data.get('foo')).toEqual(['bar', 'baz', 'foo']));
   });
 
   it('should remove all the items when count is 0', () => {
@@ -33,7 +33,7 @@ describe('lrem', () => {
     });
 
     return redis.lrem('foo', 0, 'foo')
-      .then(() => expect(redis.data.foo).toEqual(['bar', 'baz']));
+      .then(() => expect(redis.data.get('foo')).toEqual(['bar', 'baz']));
   });
 
   it('should return the number of items removed ', () => {

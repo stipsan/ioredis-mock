@@ -1,8 +1,8 @@
 export function incr(key) {
-  if (!this.data[key]) {
-    this.data[key] = '0';
+  if (!this.data.has(key)) {
+    this.data.set(key, '0');
   }
-  const curVal = Number(this.data[key]);
-  this.data[key] = curVal + 1;
-  return this.data[key].toString();
+  const curVal = Number(this.data.get(key));
+  this.data.set(key, (curVal + 1).toString());
+  return this.data.get(key);
 }

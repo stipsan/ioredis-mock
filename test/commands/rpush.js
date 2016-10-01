@@ -10,7 +10,7 @@ describe('rpush', () => {
       },
     });
 
-    return redis.rpush('foo', 9, 8, 7).then(() => expect(redis.data.foo).toEqual([1, 9, 8, 7]));
+    return redis.rpush('foo', 9, 8, 7).then(() => expect(redis.data.get('foo')).toEqual([1, 9, 8, 7]));
   });
 
   it('should return the new length of the list', () => {

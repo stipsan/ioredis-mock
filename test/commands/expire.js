@@ -18,7 +18,7 @@ describe('expire', () => {
       expect(status).toBe('1');
       expect(beforeExpire).toBe('bar');
       expect(afterExpire).toBe(null);
-      expect(redis.data.foo).toBe(undefined);
+      expect(redis.data.has('foo')).toBe(false);
     });
   });
 
@@ -29,7 +29,7 @@ describe('expire', () => {
       },
     });
     return redis.expire('foo', 0).then(Promise.delay(1000)).then(() => {
-      expect(redis.data.foo).toBe(undefined);
+      expect(redis.data.has('foo')).toBe(false);
     });
   });
 

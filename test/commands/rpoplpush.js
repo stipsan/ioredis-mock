@@ -10,7 +10,7 @@ describe('rpoplpush', () => {
       },
     });
 
-    return redis.rpoplpush('foo', 'bar').then(() => expect(redis.data.foo).toEqual(['foo']));
+    return redis.rpoplpush('foo', 'bar').then(() => expect(redis.data.get('foo')).toEqual(['foo']));
   });
 
   it('should add one item to the head of the destination list', () => {
@@ -21,7 +21,7 @@ describe('rpoplpush', () => {
       },
     });
 
-    return redis.rpoplpush('foo', 'bar').then(() => expect(redis.data.bar).toEqual(['bar', 'baz']));
+    return redis.rpoplpush('foo', 'bar').then(() => expect(redis.data.get('bar')).toEqual(['bar', 'baz']));
   });
 
   it('should return null if the source list does not exist', () => {
