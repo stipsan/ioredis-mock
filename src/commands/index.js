@@ -35,6 +35,7 @@ export * from './publish';
 export * from './randomkey';
 export * from './rename';
 export * from './renamenx';
+export * from './role';
 export * from './rpoplpush';
 export * from './rpush';
 export * from './sadd';
