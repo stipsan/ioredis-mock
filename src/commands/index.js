@@ -32,6 +32,7 @@ export * from './lpush';
 export * from './lrem';
 export * from './mget';
 export * from './publish';
+export * from './randomkey';
 export * from './rename';
 export * from './renamenx';
 export * from './rpoplpush';
