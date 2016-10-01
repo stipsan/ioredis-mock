@@ -28,9 +28,7 @@ describe('expire', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 0).then(() => {
-      expect(redis.data.has('foo')).toBe(false);
-    });
+    return redis.expire('foo', 0).then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
   it('should return 0 if key does not exist', () => {

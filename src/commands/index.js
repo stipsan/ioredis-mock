@@ -33,6 +33,7 @@ export * from './llen';
 export * from './lpush';
 export * from './lrem';
 export * from './mget';
+export * from './persist';
 export * from './ping';
 export * from './publish';
 export * from './randomkey';
