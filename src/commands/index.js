@@ -35,6 +35,7 @@ export * from './lpush';
 export * from './lrem';
 export * from './mget';
 export * from './persist';
+export * from './pexpire';
 export * from './pexpireat';
 export * from './ping';
 export * from './pttl';
