@@ -3,7 +3,6 @@
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
 |[append](http://redis.io/commands/APPEND)|:white_check_mark:|:white_check_mark:|
-|[asking](http://redis.io/commands/ASKING)|:white_check_mark:|:x:|
 |[auth](http://redis.io/commands/AUTH)|:white_check_mark:|:x:|
 |[bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)|:white_check_mark:|:x:|
 |[bgsave](http://redis.io/commands/BGSAVE)|:white_check_mark:|:x:|
@@ -19,7 +18,6 @@
 |[command](http://redis.io/commands/COMMAND)|:white_check_mark:|:x:|
 |[config](http://redis.io/commands/CONFIG)|:white_check_mark:|:x:|
 |[dbsize](http://redis.io/commands/DBSIZE)|:white_check_mark:|:x:|
-|[debug](http://redis.io/commands/DEBUG)|:white_check_mark:|:x:|
 |[decr](http://redis.io/commands/DECR)|:white_check_mark:|:white_check_mark:|
 |[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:white_check_mark:|
 |[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
@@ -30,7 +28,7 @@
 |[evalsha](http://redis.io/commands/EVALSHA)|:white_check_mark:|:x:|
 |[exec](http://redis.io/commands/EXEC)|:white_check_mark:|:white_check_mark:|
 |[exists](http://redis.io/commands/EXISTS)|:white_check_mark:|:white_check_mark:|
-|[expire](http://redis.io/commands/EXPIRE)|:white_check_mark:|:x:|
+|[expire](http://redis.io/commands/EXPIRE)|:white_check_mark:|:white_check_mark:|
 |[expireat](http://redis.io/commands/EXPIREAT)|:white_check_mark:|:x:|
 |[flushall](http://redis.io/commands/FLUSHALL)|:white_check_mark:|:x:|
 |[flushdb](http://redis.io/commands/FLUSHDB)|:white_check_mark:|:x:|
@@ -65,7 +63,6 @@
 |[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
 |[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:white_check_mark:|
 |[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:x:|
-|[latency](http://redis.io/commands/LATENCY)|:white_check_mark:|:x:|
 |[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:x:|
 |[linsert](http://redis.io/commands/LINSERT)|:white_check_mark:|:x:|
 |[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:white_check_mark:|
@@ -89,13 +86,10 @@
 |[pexpireat](http://redis.io/commands/PEXPIREAT)|:white_check_mark:|:x:|
 |[pfadd](http://redis.io/commands/PFADD)|:white_check_mark:|:x:|
 |[pfcount](http://redis.io/commands/PFCOUNT)|:white_check_mark:|:x:|
-|[pfdebug](http://redis.io/commands/PFDEBUG)|:white_check_mark:|:x:|
 |[pfmerge](http://redis.io/commands/PFMERGE)|:white_check_mark:|:x:|
-|[pfselftest](http://redis.io/commands/PFSELFTEST)|:white_check_mark:|:x:|
 |[ping](http://redis.io/commands/PING)|:white_check_mark:|:x:|
 |[psetex](http://redis.io/commands/PSETEX)|:white_check_mark:|:x:|
 |[psubscribe](http://redis.io/commands/PSUBSCRIBE)|:white_check_mark:|:x:|
-|[psync](http://redis.io/commands/PSYNC)|:white_check_mark:|:x:|
 |[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:x:|
 |[publish](http://redis.io/commands/PUBLISH)|:white_check_mark:|:white_check_mark:|
 |[pubsub](http://redis.io/commands/PUBSUB)|:white_check_mark:|:x:|
@@ -106,9 +100,7 @@
 |[readwrite](http://redis.io/commands/READWRITE)|:white_check_mark:|:x:|
 |[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:white_check_mark:|
 |[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:white_check_mark:|
-|[replconf](http://redis.io/commands/REPLCONF)|:white_check_mark:|:x:|
 |[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
-|[restore-asking](http://redis.io/commands/RESTORE-ASKING)|:white_check_mark:|:x:|
 |[role](http://redis.io/commands/ROLE)|:white_check_mark:|:x:|
 |[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:x:|
 |[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:white_check_mark:|
@@ -142,14 +134,12 @@
 |[sscan](http://redis.io/commands/SSCAN)|:white_check_mark:|:x:|
 |[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:white_check_mark:|
 |[subscribe](http://redis.io/commands/SUBSCRIBE)|:white_check_mark:|:x:|
-|[substr](http://redis.io/commands/SUBSTR)|:white_check_mark:|:x:|
 |[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:x:|
 |[sunionstore](http://redis.io/commands/SUNIONSTORE)|:white_check_mark:|:x:|
 |[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
 |[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
-|[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:x:|
+|[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:white_check_mark:|
 |[type](http://redis.io/commands/TYPE)|:white_check_mark:|:x:|
-|[unlink](http://redis.io/commands/UNLINK)|:white_check_mark:|:x:|
 |[unsubscribe](http://redis.io/commands/UNSUBSCRIBE)|:white_check_mark:|:x:|
 |[unwatch](http://redis.io/commands/UNWATCH)|:white_check_mark:|:x:|
 |[wait](http://redis.io/commands/WAIT)|:white_check_mark:|:x:|

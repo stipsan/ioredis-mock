@@ -15,6 +15,9 @@ const blacklist = [
   'pfselftest',
   'psync',
   'replconf',
+  'restore-asking',
+  'substr',
+  'unlink',
 ];
 const filteredCommands = commands.list.filter(command => blacklist.indexOf(command) === -1);
 
