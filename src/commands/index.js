@@ -39,6 +39,7 @@ export * from './persist';
 export * from './pexpire';
 export * from './pexpireat';
 export * from './ping';
+export * from './psetex';
 export * from './pttl';
 export * from './publish';
 export * from './randomkey';
