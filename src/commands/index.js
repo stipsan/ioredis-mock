@@ -9,6 +9,7 @@ export * from './del';
 export * from './exists';
 export * from './expire';
 export * from './get';
+export * from './getrange';
 export * from './getset';
 export * from './hdel';
 export * from './hexists';
