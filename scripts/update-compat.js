@@ -56,7 +56,7 @@ if (percentage === 100) {
   color = 'brightgreen';
 }
 
-const tableMd = `![Commands: ${percentage}%](https://img.shields.io/badge/commands-${percentage}%25-${color}.svg)
+const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
 ${tableRows}`;
 
 fs.writeFile(path.resolve(__dirname, '..', 'compat.md'), tableMd, (err) => {

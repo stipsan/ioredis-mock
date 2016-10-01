@@ -1,4 +1,4 @@
-![Commands: 29%](https://img.shields.io/badge/commands-29%25-orange.svg)
+## Supported commands ![Commands Coverage: 29%](https://img.shields.io/badge/coverage-29%25-orange.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
