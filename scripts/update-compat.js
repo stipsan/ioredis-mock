@@ -22,7 +22,8 @@ const blacklist = [
 const filteredCommands = commands.list.filter(command => blacklist.indexOf(command) === -1);
 
 let supportedCommands = 0;
-let tableRows = `| redis | ioredis | ioredis-mock |
+let tableRows = `
+| redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|`;
 filteredCommands.forEach((command) => {
   const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
