@@ -1,21 +1,33 @@
 
 export default function createData(expires, initial = {}) {
+  const raw = {};
   const data = Object.freeze({
-    raw: {},
     keys() {
-      return Object.keys(this.raw);
+      return Object.keys(raw);
     },
     get(key) {
-      return this.raw[key];
+      if (expires.has(key) && expires.isExpired(key)) {
+        this.delete(key);
+      }
+
+      return raw[key];
     },
     set(key, val) {
-      this.raw[key] = val;
+      raw[key] = val;
     },
     has(key) {
-      return this.raw.hasOwnProperty.call(this.raw, key);
+      if (expires.has(key) && expires.isExpired(key)) {
+        this.delete(key);
+      }
+
+      return {}.hasOwnProperty.call(raw, key);
     },
     delete(key) {
-      delete this.raw[key];
+      if (expires.has(key)) {
+        expires.delete(key);
+      }
+
+      delete raw[key];
     },
   });
 

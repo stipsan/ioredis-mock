@@ -2,14 +2,20 @@ export default function createExpires() {
   const expires = {};
 
   return {
-    setExpire(key, timestamp) {
+    get(key) {
+      return expires[key];
+    },
+    set(key, timestamp) {
       expires[key] = timestamp;
     },
-    isExpired(key) {
-      return expires[key] >= (Date.now() / 1000);
+    has(key) {
+      return {}.hasOwnProperty.call(expires, key);
     },
-    getExpire(key) {
-      return expires[key];
+    isExpired(key) {
+      return expires[key] <= Date.now();
+    },
+    delete(key) {
+      delete expires[key];
     },
   };
 }
