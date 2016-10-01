@@ -1,11 +1,11 @@
+## Supported commands ![Commands Coverage: 29%](https://img.shields.io/badge/coverage-29%25-orange.svg)
 
-### Supported commands
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
 |[append](http://redis.io/commands/APPEND)|:white_check_mark:|:white_check_mark:|
-|[auth](http://redis.io/commands/AUTH)|:white_check_mark:|:x:|
-|[bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)|:white_check_mark:|:x:|
-|[bgsave](http://redis.io/commands/BGSAVE)|:white_check_mark:|:x:|
+|[auth](http://redis.io/commands/AUTH)|:white_check_mark:|:white_check_mark:|
+|[bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)|:white_check_mark:|:white_check_mark:|
+|[bgsave](http://redis.io/commands/BGSAVE)|:white_check_mark:|:white_check_mark:|
 |[bitcount](http://redis.io/commands/BITCOUNT)|:white_check_mark:|:x:|
 |[bitfield](http://redis.io/commands/BITFIELD)|:white_check_mark:|:x:|
 |[bitop](http://redis.io/commands/BITOP)|:white_check_mark:|:x:|
@@ -62,7 +62,7 @@
 |[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:x:|
 |[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
 |[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:white_check_mark:|
-|[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:x:|
+|[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:white_check_mark:|
 |[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:x:|
 |[linsert](http://redis.io/commands/LINSERT)|:white_check_mark:|:x:|
 |[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:white_check_mark:|
@@ -107,7 +107,7 @@
 |[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:white_check_mark:|
 |[rpushx](http://redis.io/commands/RPUSHX)|:white_check_mark:|:x:|
 |[sadd](http://redis.io/commands/SADD)|:white_check_mark:|:white_check_mark:|
-|[save](http://redis.io/commands/SAVE)|:white_check_mark:|:x:|
+|[save](http://redis.io/commands/SAVE)|:white_check_mark:|:white_check_mark:|
 |[scan](http://redis.io/commands/SCAN)|:white_check_mark:|:x:|
 |[scard](http://redis.io/commands/SCARD)|:white_check_mark:|:x:|
 |[script](http://redis.io/commands/SCRIPT)|:white_check_mark:|:x:|
