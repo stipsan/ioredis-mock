@@ -1,14 +1,16 @@
 import * as commands from './commands';
 
 import createCommand from './command';
+import createData from './data';
 import createExpires from './expires';
 
 class RedisMock {
-  constructor({ data } = { data: {} }) {
-    this.data = data;
+  constructor({ data = {} } = { }) {
     this.channels = {};
 
     this.expires = createExpires();
+
+    this.data = createData(this.expires, data);
 
     Object.keys(commands).forEach((command) => {
       this[command] = createCommand(commands[command].bind(this));
