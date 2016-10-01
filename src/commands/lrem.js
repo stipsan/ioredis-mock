@@ -1,8 +1,8 @@
 export function lrem(key, count, value) {
-  if (this.data[key] && !(this.data[key] instanceof Array)) {
+  if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     return 0;
   }
-  const list = [...this.data[key]] || [];
+  const list = [...(this.data.get(key) || [])];
   const indexFun = (count < 0 ? [].lastIndexOf : [].indexOf).bind(list);
   const max = count === 0 ? list.length : Math.abs(count);
   let removed = 0;
@@ -12,6 +12,6 @@ export function lrem(key, count, value) {
     list.splice(idx, 1);
     idx = indexFun(value);
   }
-  this.data[key] = list;
+  this.data.set(key, list);
   return removed;
 }

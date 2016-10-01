@@ -1,6 +1,6 @@
 export function llen(key) {
-  if (this.data[key] && !(this.data[key] instanceof Array)) {
+  if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`);
   }
-  return (this.data[key] || []).length;
+  return (this.data.get(key) || []).length;
 }

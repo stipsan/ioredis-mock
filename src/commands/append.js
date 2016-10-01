@@ -1,7 +1,7 @@
 export function append(key, value) {
-  if (!{}.hasOwnProperty.call(this.data, key)) {
-    this.data[key] = '';
+  if (!this.data.has(key)) {
+    this.data.set(key, '');
   }
-  this.data[key] += value;
-  return this.data[key].length.toString();
+  this.data.set(key, this.data.get(key) + value);
+  return this.data.get(key).length.toString();
 }

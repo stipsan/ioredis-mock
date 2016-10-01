@@ -11,12 +11,12 @@ describe('append', () => {
     });
 
     return redis.append('mykey', ' World').then(newLength => expect(newLength).toBe('11'))
-      .then(() => expect(redis.data.mykey).toBe('Hello World'));
+      .then(() => expect(redis.data.get('mykey')).toBe('Hello World'));
   });
   it('should set empty string if key does not exist', () => {
     const redis = new MockRedis();
 
     return redis.append('mykey', ' World').then(newLength => expect(newLength).toBe('6'))
-      .then(() => expect(redis.data.mykey).toBe(' World'));
+      .then(() => expect(redis.data.get('mykey')).toBe(' World'));
   });
 });

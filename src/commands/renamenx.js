@@ -1,7 +1,7 @@
 import { rename } from './rename';
 
 export function renamenx(key, newKey) {
-  if ({}.hasOwnProperty.call(this.data, newKey)) {
+  if (this.data.has(newKey)) {
     return '0';
   }
 
