@@ -4,6 +4,7 @@ export * from './decr';
 export * from './decrby';
 export * from './del';
 export * from './exists';
+export * from './expire';
 export * from './get';
 export * from './getset';
 export * from './hdel';
