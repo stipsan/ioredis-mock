@@ -19,6 +19,7 @@ export * from './hexists';
 export * from './hget';
 export * from './hgetall';
 export * from './hincrby';
+export * from './hkeys';
 export * from './hmget';
 export * from './hmset';
 export * from './hset';
