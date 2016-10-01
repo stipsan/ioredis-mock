@@ -33,6 +33,7 @@ export * from './renamenx';
 export * from './rpoplpush';
 export * from './rpush';
 export * from './sadd';
+export * from './save';
 export * from './set';
 export * from './setnx';
 export * from './sismember';
