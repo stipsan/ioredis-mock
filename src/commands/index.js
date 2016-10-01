@@ -6,6 +6,7 @@ export * from './brpoplpush';
 export * from './decr';
 export * from './decrby';
 export * from './del';
+export * from './echo';
 export * from './exists';
 export * from './expire';
 export * from './get';
