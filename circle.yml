@@ -3,31 +3,17 @@ dependencies:
     - npm install -g npm@3
 test:
   override:
-    - nvm use 0.12 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 0.12 && npm test ;; 1) nvm use 4.0 && npm test ;; esac
         parallel: true
-    - nvm use 4.0 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 4.1 && npm test ;; 1) nvm use 4.2 && npm test ;; esac
         parallel: true
-    - nvm use 4.1 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 4.3 && npm test ;; 1) nvm use 5.0 && npm test ;; esac
         parallel: true
-    - nvm use 4.2 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 5.1 && npm test ;; 1) nvm use 5.2 && npm test ;; esac
         parallel: true
-    - nvm use 4.3 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 5.3 && npm test ;; 1) nvm use 5.4 && npm test ;; esac
         parallel: true
-    - nvm use 5.0 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 5.5 && npm test ;; 1) nvm use 5.6 && npm test ;; esac
         parallel: true
-    - nvm use 5.1 && npm test:
-        parallel: true
-    - nvm use 5.2 && npm test:
-        parallel: true
-    - nvm use 5.3 && npm test:
-        parallel: true
-    - nvm use 5.4 && npm test:
-        parallel: true
-    - nvm use 5.5 && npm test:
-        parallel: true
-    - nvm use 5.6 && npm test:
-        parallel: true
-    - nvm use 5.7 && npm test:
-        parallel: true
-    - nvm use 6.1 && npm test:
+    - case $CIRCLE_NODE_INDEX in 0) nvm use 5.7 && npm test ;; 1) nvm use 6.1 && npm test ;; esac
         parallel: true
