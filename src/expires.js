@@ -1,13 +1,15 @@
-const expires = {};
+export default function createExpires() {
+  const expires = {};
 
-export function setExpire(key, timestamp) {
-  expires[key] = timestamp;
-}
-
-export function isExpired(key) {
-  return expires[key] >= (Date.now() / 1000);
-}
-
-export function getExpire(key) {
-  return expires[key];
+  return {
+    setExpire(key, timestamp) {
+      expires[key] = timestamp;
+    },
+    isExpired(key) {
+      return expires[key] >= (Date.now() / 1000);
+    },
+    getExpire(key) {
+      return expires[key];
+    },
+  };
 }
