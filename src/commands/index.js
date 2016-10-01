@@ -1,6 +1,7 @@
 export * from './append';
 export * from './auth';
 export * from './bgrewriteaof';
+export * from './bgsave';
 export * from './brpoplpush';
 export * from './decr';
 export * from './decrby';
