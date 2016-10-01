@@ -23,6 +23,7 @@ export * from './hvals';
 export * from './incr';
 export * from './incrby';
 export * from './keys';
+export * from './lastsave';
 export * from './llen';
 export * from './lpush';
 export * from './lrem';
