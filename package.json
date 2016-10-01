@@ -1,12 +1,12 @@
 {
   "name": "ioredis-mock",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
   "scripts": {
     "clean": "rimraf lib",
     "prepublish": "npm run clean && npm run build",
-    "preversion": "node scripts/update-compat",
+    "preversion": "node scripts/update-compat && git add . && git commit --allow-empty -m \"chore(compat): update feature table\"",
     "build": "mkdirp lib && babel src --out-dir lib",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-register --recursive",
