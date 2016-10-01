@@ -1,5 +1,5 @@
 export function expire(key, seconds) {
-  if (!{}.hasOwnProperty.call(this.data, key)) {
+  if (!this.data.has(key)) {
     return '0';
   }
 

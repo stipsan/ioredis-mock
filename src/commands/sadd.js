@@ -1,7 +1,7 @@
 export function sadd(key, ...vals) {
-  if (!{}.hasOwnProperty.call(this.data, key)) {
-    this.data[key] = [];
+  if (!this.data.has(key)) {
+    this.data.set(key, []);
   }
-  this.data[key].push(...vals);
+  this.data.get(key).push(...vals);
   return vals.length;
 }

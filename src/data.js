@@ -2,6 +2,9 @@
 export default function createData(expires, initial = {}) {
   const data = Object.freeze({
     raw: {},
+    keys() {
+      return Object.keys(this.raw);
+    },
     get(key) {
       return this.raw[key];
     },

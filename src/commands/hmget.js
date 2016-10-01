@@ -1,3 +1,3 @@
 export function hmget(key, ...fields) {
-  return fields.map(field => this.data[key][field] || null);
+  return fields.map(field => this.data.get(key)[field] || null);
 }

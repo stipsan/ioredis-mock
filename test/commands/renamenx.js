@@ -10,7 +10,10 @@ describe('renamenx', () => {
       },
     });
     return redis.renamenx('foo', 'bar').then(status => expect(status).toBe('1'))
-      .then(() => expect(redis.data).toEqual({ bar: 'baz' }));
+      .then(() => {
+        expect(redis.data.has('foo')).toBe(false);
+        expect(redis.data.get('bar')).toBe('baz');
+      });
   });
 
   it('should return integer 0 if new key already exist', () => {
@@ -21,6 +24,9 @@ describe('renamenx', () => {
       },
     });
     return redis.renamenx('foo', 'bar').then(status => expect(status).toBe('0'))
-      .then(() => expect(redis.data).toEqual({ foo: 'baz', bar: 'foobar' }));
+      .then(() => {
+        expect(redis.data.get('foo')).toBe('baz');
+        expect(redis.data.get('bar')).toBe('foobar');
+      });
   });
 });

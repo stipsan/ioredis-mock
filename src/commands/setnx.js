@@ -1,6 +1,6 @@
 export function setnx(key, val) {
-  if (!{}.hasOwnProperty.call(this.data, key)) {
-    this.data[key] = val;
+  if (!this.data.has(key)) {
+    this.data.set(key, val);
 
     return '1';
   }

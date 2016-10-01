@@ -1,5 +1,5 @@
 export function hincrby(key, field, increment = 0) {
-  if (!{}.hasOwnProperty.call(this.data, key)) {
+  if (!this.data.has(key)) {
     this.data[key] = { [field]: 0 };
   }
   if (!{}.hasOwnProperty.call(this.data[key], field)) {
