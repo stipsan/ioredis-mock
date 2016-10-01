@@ -1,4 +1,5 @@
 export * from './append';
+export * from './auth';
 export * from './brpoplpush';
 export * from './decr';
 export * from './decrby';
