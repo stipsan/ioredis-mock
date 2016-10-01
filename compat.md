@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 29%](https://img.shields.io/badge/coverage-29%25-orange.svg)
+## Supported commands ![Commands Coverage: 38%](https://img.shields.io/badge/coverage-38%25-orange.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -23,14 +23,14 @@
 |[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
 |[discard](http://redis.io/commands/DISCARD)|:white_check_mark:|:x:|
 |[dump](http://redis.io/commands/DUMP)|:white_check_mark:|:x:|
-|[echo](http://redis.io/commands/ECHO)|:white_check_mark:|:x:|
+|[echo](http://redis.io/commands/ECHO)|:white_check_mark:|:white_check_mark:|
 |[eval](http://redis.io/commands/EVAL)|:white_check_mark:|:x:|
 |[evalsha](http://redis.io/commands/EVALSHA)|:white_check_mark:|:x:|
 |[exec](http://redis.io/commands/EXEC)|:white_check_mark:|:white_check_mark:|
 |[exists](http://redis.io/commands/EXISTS)|:white_check_mark:|:white_check_mark:|
 |[expire](http://redis.io/commands/EXPIRE)|:white_check_mark:|:white_check_mark:|
-|[expireat](http://redis.io/commands/EXPIREAT)|:white_check_mark:|:x:|
-|[flushall](http://redis.io/commands/FLUSHALL)|:white_check_mark:|:x:|
+|[expireat](http://redis.io/commands/EXPIREAT)|:white_check_mark:|:white_check_mark:|
+|[flushall](http://redis.io/commands/FLUSHALL)|:white_check_mark:|:white_check_mark:|
 |[flushdb](http://redis.io/commands/FLUSHDB)|:white_check_mark:|:x:|
 |[geoadd](http://redis.io/commands/GEOADD)|:white_check_mark:|:x:|
 |[geodist](http://redis.io/commands/GEODIST)|:white_check_mark:|:x:|
@@ -40,7 +40,7 @@
 |[georadiusbymember](http://redis.io/commands/GEORADIUSBYMEMBER)|:white_check_mark:|:x:|
 |[get](http://redis.io/commands/GET)|:white_check_mark:|:white_check_mark:|
 |[getbit](http://redis.io/commands/GETBIT)|:white_check_mark:|:x:|
-|[getrange](http://redis.io/commands/GETRANGE)|:white_check_mark:|:x:|
+|[getrange](http://redis.io/commands/GETRANGE)|:white_check_mark:|:white_check_mark:|
 |[getset](http://redis.io/commands/GETSET)|:white_check_mark:|:white_check_mark:|
 |[hdel](http://redis.io/commands/HDEL)|:white_check_mark:|:white_check_mark:|
 |[hexists](http://redis.io/commands/HEXISTS)|:white_check_mark:|:white_check_mark:|
@@ -48,8 +48,8 @@
 |[hgetall](http://redis.io/commands/HGETALL)|:white_check_mark:|:white_check_mark:|
 |[hincrby](http://redis.io/commands/HINCRBY)|:white_check_mark:|:white_check_mark:|
 |[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:x:|
-|[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:x:|
-|[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:x:|
+|[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:white_check_mark:|
+|[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:white_check_mark:|
 |[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:white_check_mark:|
 |[hmset](http://redis.io/commands/HMSET)|:white_check_mark:|:white_check_mark:|
 |[hscan](http://redis.io/commands/HSCAN)|:white_check_mark:|:x:|
@@ -81,27 +81,27 @@
 |[msetnx](http://redis.io/commands/MSETNX)|:white_check_mark:|:x:|
 |[multi](http://redis.io/commands/MULTI)|:white_check_mark:|:white_check_mark:|
 |[object](http://redis.io/commands/OBJECT)|:white_check_mark:|:x:|
-|[persist](http://redis.io/commands/PERSIST)|:white_check_mark:|:x:|
-|[pexpire](http://redis.io/commands/PEXPIRE)|:white_check_mark:|:x:|
-|[pexpireat](http://redis.io/commands/PEXPIREAT)|:white_check_mark:|:x:|
+|[persist](http://redis.io/commands/PERSIST)|:white_check_mark:|:white_check_mark:|
+|[pexpire](http://redis.io/commands/PEXPIRE)|:white_check_mark:|:white_check_mark:|
+|[pexpireat](http://redis.io/commands/PEXPIREAT)|:white_check_mark:|:white_check_mark:|
 |[pfadd](http://redis.io/commands/PFADD)|:white_check_mark:|:x:|
 |[pfcount](http://redis.io/commands/PFCOUNT)|:white_check_mark:|:x:|
 |[pfmerge](http://redis.io/commands/PFMERGE)|:white_check_mark:|:x:|
-|[ping](http://redis.io/commands/PING)|:white_check_mark:|:x:|
-|[psetex](http://redis.io/commands/PSETEX)|:white_check_mark:|:x:|
+|[ping](http://redis.io/commands/PING)|:white_check_mark:|:white_check_mark:|
+|[psetex](http://redis.io/commands/PSETEX)|:white_check_mark:|:white_check_mark:|
 |[psubscribe](http://redis.io/commands/PSUBSCRIBE)|:white_check_mark:|:x:|
-|[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:x:|
+|[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:white_check_mark:|
 |[publish](http://redis.io/commands/PUBLISH)|:white_check_mark:|:white_check_mark:|
 |[pubsub](http://redis.io/commands/PUBSUB)|:white_check_mark:|:x:|
 |[punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)|:white_check_mark:|:x:|
 |[quit](http://redis.io/commands/QUIT)|:white_check_mark:|:x:|
-|[randomkey](http://redis.io/commands/RANDOMKEY)|:white_check_mark:|:x:|
+|[randomkey](http://redis.io/commands/RANDOMKEY)|:white_check_mark:|:white_check_mark:|
 |[readonly](http://redis.io/commands/READONLY)|:white_check_mark:|:x:|
 |[readwrite](http://redis.io/commands/READWRITE)|:white_check_mark:|:x:|
 |[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:white_check_mark:|
 |[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:white_check_mark:|
 |[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
-|[role](http://redis.io/commands/ROLE)|:white_check_mark:|:x:|
+|[role](http://redis.io/commands/ROLE)|:white_check_mark:|:white_check_mark:|
 |[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:x:|
 |[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:white_check_mark:|
 |[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:white_check_mark:|
@@ -116,7 +116,7 @@
 |[select](http://redis.io/commands/SELECT)|:white_check_mark:|:x:|
 |[set](http://redis.io/commands/SET)|:white_check_mark:|:white_check_mark:|
 |[setbit](http://redis.io/commands/SETBIT)|:white_check_mark:|:x:|
-|[setex](http://redis.io/commands/SETEX)|:white_check_mark:|:x:|
+|[setex](http://redis.io/commands/SETEX)|:white_check_mark:|:white_check_mark:|
 |[setnx](http://redis.io/commands/SETNX)|:white_check_mark:|:white_check_mark:|
 |[setrange](http://redis.io/commands/SETRANGE)|:white_check_mark:|:x:|
 |[shutdown](http://redis.io/commands/SHUTDOWN)|:white_check_mark:|:x:|
