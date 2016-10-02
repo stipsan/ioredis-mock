@@ -50,6 +50,7 @@ This project started off as just an utility in [another project](https://github.
 - [x] Setup testing suite for the library itself.
 - [x] Refactor to bluebird promises like ioredis, support node style callback too.
 - [ ] Implement remaining basic features that read/write data.
+- [ ] Implement ioredis [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
 - [ ] Connection Events
 - [ ] Offline Queue
 - [ ] Pub/Sub
