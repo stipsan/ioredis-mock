@@ -34,6 +34,7 @@ export * from './keys';
 export * from './lastsave';
 export * from './llen';
 export * from './lpush';
+export * from './lpushx';
 export * from './lrem';
 export * from './mget';
 export * from './mset';

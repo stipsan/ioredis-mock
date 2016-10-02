@@ -1,4 +1,4 @@
-import { set } from './set';
+import { set } from './index';
 
 export function mset(...msetData) {
   for (let i = 0; i < msetData.length; i += 2) {

@@ -20,7 +20,7 @@ describe('lpush', () => {
       },
     });
 
-    return redis.lpush('foo', 9, 8, 7).then(length => expect(length).toBe(3));
+    return redis.lpush('foo', 9, 8, 7).then(length => expect(length).toBe('3'));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
