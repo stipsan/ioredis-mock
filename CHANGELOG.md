@@ -64,6 +64,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Tests
 * circleci now run parallel builds to distribute node v4 - v6 tests between containers, speeding things up a bit
 
-[1.13.0]: https://github.com/ungoldman/gh-release/compare/v1.12.0...v1.13.0
-[1.12.0]: https://github.com/ungoldman/gh-release/compare/v1.11.0...v1.12.0
-[1.11.0]: https://github.com/ungoldman/gh-release/compare/v1.10.0...v1.11.0
+[1.13.0]: https://github.com/stipsan/ioredis-mock/compare/v1.12.0...v1.13.0
+[1.12.0]: https://github.com/stipsan/ioredis-mock/compare/v1.11.0...v1.12.0
+[1.11.0]: https://github.com/stipsan/ioredis-mock/compare/v1.10.0...v1.11.0
