@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 38%](https://img.shields.io/badge/coverage-38%25-orange.svg)
+## Supported commands ![Commands Coverage: 46%](https://img.shields.io/badge/coverage-46%25-yellow.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -17,7 +17,7 @@
 |[cluster](http://redis.io/commands/CLUSTER)|:white_check_mark:|:x:|
 |[command](http://redis.io/commands/COMMAND)|:white_check_mark:|:x:|
 |[config](http://redis.io/commands/CONFIG)|:white_check_mark:|:x:|
-|[dbsize](http://redis.io/commands/DBSIZE)|:white_check_mark:|:x:|
+|[dbsize](http://redis.io/commands/DBSIZE)|:white_check_mark:|:white_check_mark:|
 |[decr](http://redis.io/commands/DECR)|:white_check_mark:|:white_check_mark:|
 |[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:white_check_mark:|
 |[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
@@ -47,7 +47,7 @@
 |[hget](http://redis.io/commands/HGET)|:white_check_mark:|:white_check_mark:|
 |[hgetall](http://redis.io/commands/HGETALL)|:white_check_mark:|:white_check_mark:|
 |[hincrby](http://redis.io/commands/HINCRBY)|:white_check_mark:|:white_check_mark:|
-|[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:x:|
+|[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:white_check_mark:|
 |[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:white_check_mark:|
 |[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:white_check_mark:|
 |[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:white_check_mark:|
@@ -59,26 +59,26 @@
 |[hvals](http://redis.io/commands/HVALS)|:white_check_mark:|:white_check_mark:|
 |[incr](http://redis.io/commands/INCR)|:white_check_mark:|:white_check_mark:|
 |[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:white_check_mark:|
-|[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:x:|
+|[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:white_check_mark:|
 |[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
 |[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:white_check_mark:|
 |[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:white_check_mark:|
-|[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:x:|
+|[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:white_check_mark:|
 |[linsert](http://redis.io/commands/LINSERT)|:white_check_mark:|:x:|
 |[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:white_check_mark:|
-|[lpop](http://redis.io/commands/LPOP)|:white_check_mark:|:x:|
+|[lpop](http://redis.io/commands/LPOP)|:white_check_mark:|:white_check_mark:|
 |[lpush](http://redis.io/commands/LPUSH)|:white_check_mark:|:white_check_mark:|
-|[lpushx](http://redis.io/commands/LPUSHX)|:white_check_mark:|:x:|
+|[lpushx](http://redis.io/commands/LPUSHX)|:white_check_mark:|:white_check_mark:|
 |[lrange](http://redis.io/commands/LRANGE)|:white_check_mark:|:x:|
 |[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:white_check_mark:|
-|[lset](http://redis.io/commands/LSET)|:white_check_mark:|:x:|
+|[lset](http://redis.io/commands/LSET)|:white_check_mark:|:white_check_mark:|
 |[ltrim](http://redis.io/commands/LTRIM)|:white_check_mark:|:x:|
 |[mget](http://redis.io/commands/MGET)|:white_check_mark:|:white_check_mark:|
 |[migrate](http://redis.io/commands/MIGRATE)|:white_check_mark:|:x:|
 |[monitor](http://redis.io/commands/MONITOR)|:white_check_mark:|:x:|
 |[move](http://redis.io/commands/MOVE)|:white_check_mark:|:x:|
-|[mset](http://redis.io/commands/MSET)|:white_check_mark:|:x:|
-|[msetnx](http://redis.io/commands/MSETNX)|:white_check_mark:|:x:|
+|[mset](http://redis.io/commands/MSET)|:white_check_mark:|:white_check_mark:|
+|[msetnx](http://redis.io/commands/MSETNX)|:white_check_mark:|:white_check_mark:|
 |[multi](http://redis.io/commands/MULTI)|:white_check_mark:|:white_check_mark:|
 |[object](http://redis.io/commands/OBJECT)|:white_check_mark:|:x:|
 |[persist](http://redis.io/commands/PERSIST)|:white_check_mark:|:white_check_mark:|
@@ -102,10 +102,10 @@
 |[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:white_check_mark:|
 |[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
 |[role](http://redis.io/commands/ROLE)|:white_check_mark:|:white_check_mark:|
-|[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:x:|
+|[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:white_check_mark:|
 |[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:white_check_mark:|
 |[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:white_check_mark:|
-|[rpushx](http://redis.io/commands/RPUSHX)|:white_check_mark:|:x:|
+|[rpushx](http://redis.io/commands/RPUSHX)|:white_check_mark:|:white_check_mark:|
 |[sadd](http://redis.io/commands/SADD)|:white_check_mark:|:white_check_mark:|
 |[save](http://redis.io/commands/SAVE)|:white_check_mark:|:white_check_mark:|
 |[scan](http://redis.io/commands/SCAN)|:white_check_mark:|:x:|
@@ -128,8 +128,8 @@
 |[smembers](http://redis.io/commands/SMEMBERS)|:white_check_mark:|:white_check_mark:|
 |[smove](http://redis.io/commands/SMOVE)|:white_check_mark:|:x:|
 |[sort](http://redis.io/commands/SORT)|:white_check_mark:|:x:|
-|[spop](http://redis.io/commands/SPOP)|:white_check_mark:|:x:|
-|[srandmember](http://redis.io/commands/SRANDMEMBER)|:white_check_mark:|:x:|
+|[spop](http://redis.io/commands/SPOP)|:white_check_mark:|:white_check_mark:|
+|[srandmember](http://redis.io/commands/SRANDMEMBER)|:white_check_mark:|:white_check_mark:|
 |[srem](http://redis.io/commands/SREM)|:white_check_mark:|:white_check_mark:|
 |[sscan](http://redis.io/commands/SSCAN)|:white_check_mark:|:x:|
 |[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:white_check_mark:|
