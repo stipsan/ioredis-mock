@@ -1,5 +1,4 @@
-import { expire } from './expire';
-import { set } from './set';
+import { expire, set } from './index';
 
 export function setex(key, seconds, value) {
   set.call(this, key, value);
