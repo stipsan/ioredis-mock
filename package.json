@@ -1,6 +1,6 @@
 {
   "name": "ioredis-mock",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
   "scripts": {
@@ -22,7 +22,21 @@
   },
   "keywords": [
     "ioredis",
-    "mock-ioredis"
+    "mock-ioredis",
+    "redis",
+    "redis-mock",
+    "mock-redis",
+    "redis test",
+    "redis mock",
+    "redis testing",
+    "redis fake",
+    "redis-js",
+    "redis js",
+    "redisjs",
+    "redis standalone",
+    "redis inmemory",
+    "redis memory",
+    "in-memory"
   ],
   "author": "Stian Didriksen <stipsan@gmail.com>",
   "license": "MIT",
