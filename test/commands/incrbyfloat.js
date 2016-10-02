@@ -10,8 +10,10 @@ describe('incrbyfloat', () => {
       },
     });
 
-    return redis.incrbyfloat('mykey', 0.1).then(result => expect(result).toBe('10.6'))
-      .then(() => redis.incrbyfloat('mykey', -5)).then(result => expect(result).toBe('5.6'));
+    return redis.incrbyfloat('mykey', 0.1)
+      .then(result => expect(result).toBe('10.6'))
+      .then(() => redis.incrbyfloat('mykey', -5))
+      .then(result => expect(result).toBe('5.6'));
   });
 
   it('should support exponents', () => {
