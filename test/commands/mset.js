@@ -1,0 +1,15 @@
+import expect from 'expect';
+
+import MockRedis from '../../src';
+
+describe('mset', () => {
+  it('should batch set values', () => {
+    const redis = new MockRedis();
+    return redis.mset('key1', 'Hello', 'key2', 'World')
+      .then(status => expect(status).toBe('OK'))
+      .then(() => {
+        expect(redis.data.get('key1')).toEqual('Hello');
+        expect(redis.data.get('key2')).toEqual('World');
+      });
+  });
+});
