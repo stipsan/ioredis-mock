@@ -40,16 +40,16 @@ filteredCommands.forEach((command) => {
 const percentage = Math.floor((supportedCommands / filteredCommands.length) * 100);
 
 let color = 'red';
-if (percentage >= 25) {
+if (percentage >= 28) {
   color = 'orange';
 }
-if (percentage >= 55) {
+if (percentage >= 46) {
   color = 'yellow';
 }
-if (percentage >= 70) {
+if (percentage >= 64) {
   color = 'yellowgreen';
 }
-if (percentage >= 85) {
+if (percentage >= 82) {
   color = 'green';
 }
 if (percentage === 100) {
