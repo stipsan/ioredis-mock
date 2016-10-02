@@ -20,6 +20,7 @@ export * from './hexists';
 export * from './hget';
 export * from './hgetall';
 export * from './hincrby';
+export * from './hincrbyfloat';
 export * from './hkeys';
 export * from './hlen';
 export * from './hmget';
