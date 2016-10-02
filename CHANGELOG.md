@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Features
+
+* added `scard` command ()
+
 ### Documentation
 - added CHANGELOG.md file
 
@@ -214,7 +218,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * fixes to documentation
 * added tonicExample
 
-## [1.0.0] - 2016-06-09
+## 1.0.0 - 2016-06-09
 
 ### Supported operations
 
