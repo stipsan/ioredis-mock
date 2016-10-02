@@ -3,6 +3,7 @@ export * from './auth';
 export * from './bgrewriteaof';
 export * from './bgsave';
 export * from './brpoplpush';
+export * from './dbsize';
 export * from './decr';
 export * from './decrby';
 export * from './del';
