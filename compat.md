@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 46%](https://img.shields.io/badge/coverage-46%25-yellow.svg)
+## Supported commands ![Commands Coverage: 47%](https://img.shields.io/badge/coverage-47%25-yellow.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -21,7 +21,7 @@
 |[decr](http://redis.io/commands/DECR)|:white_check_mark:|:white_check_mark:|
 |[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:white_check_mark:|
 |[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
-|[discard](http://redis.io/commands/DISCARD)|:white_check_mark:|:x:|
+|[discard](http://redis.io/commands/DISCARD)|:white_check_mark:|:white_check_mark:|
 |[dump](http://redis.io/commands/DUMP)|:white_check_mark:|:x:|
 |[echo](http://redis.io/commands/ECHO)|:white_check_mark:|:white_check_mark:|
 |[eval](http://redis.io/commands/EVAL)|:white_check_mark:|:x:|
@@ -109,7 +109,7 @@
 |[sadd](http://redis.io/commands/SADD)|:white_check_mark:|:white_check_mark:|
 |[save](http://redis.io/commands/SAVE)|:white_check_mark:|:white_check_mark:|
 |[scan](http://redis.io/commands/SCAN)|:white_check_mark:|:x:|
-|[scard](http://redis.io/commands/SCARD)|:white_check_mark:|:x:|
+|[scard](http://redis.io/commands/SCARD)|:white_check_mark:|:white_check_mark:|
 |[script](http://redis.io/commands/SCRIPT)|:white_check_mark:|:x:|
 |[sdiff](http://redis.io/commands/SDIFF)|:white_check_mark:|:x:|
 |[sdiffstore](http://redis.io/commands/SDIFFSTORE)|:white_check_mark:|:x:|
