@@ -29,6 +29,17 @@ describe('srandmember', () => {
       });
   });
 
+  it('should return list if positive count is bigger than list', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: ['one', 'two', 'three'],
+      },
+    });
+
+    return redis.srandmember('myset', 5)
+      .then(results => expect(results).toEqual(['one', 'two', 'three']));
+  });
+
   it('should return random items with specified length', () => {
     const redis = new MockRedis({
       data: {
