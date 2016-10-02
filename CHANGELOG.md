@@ -5,12 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [1.14.0] - 2016-10-02
 
 ### Features
 
-* added `scard` command ()
-* added `discard` command ()
+* added `scard` command (#201)
+* added `discard` command (#200)
 
 ### Documentation
 - added CHANGELOG.md file
@@ -241,6 +241,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  * multi
  * exec
 
+[1.14.0]: https://github.com/stipsan/ioredis-mock/compare/v1.13.1...v1.14.0
 [1.13.0]: https://github.com/stipsan/ioredis-mock/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/stipsan/ioredis-mock/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/stipsan/ioredis-mock/compare/v1.10.0...v1.11.0
