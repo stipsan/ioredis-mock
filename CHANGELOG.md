@@ -66,39 +66,153 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.10.0] - 2016-10-01
 
+### Features
+
+* added `renamenx` command (#152)
+
 ## [1.9.0] - 2016-09-26
+
+### Features
+
+* added `mget` command (#134 @kesla)
+
+### Misc
+
+* updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.8.0] - 2016-08-13
 
+### Features
+
+* added `brpoplpush` command (#106 @davemcorwin)
+* added `llen ` command (#106 @davemcorwin)
+* added `lpush ` command (#106 @davemcorwin)
+* added `lrem ` command (#106 @davemcorwin)
+* added `publish ` stub (#106 @davemcorwin)
+* added `rpoplpush ` command (#106 @davemcorwin)
+* added `rpush ` command (#106 @davemcorwin)
+
+### Fixes
+
+* `hmset` command supports objects (#106 @davemcorwin)
+* `incr` command sets default value `'0'` if not exists  (#106 @davemcorwin)
+
+### Misc
+
+* updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
+
 ## [1.7.0] - 2016-08-02
+
+### Features
+
+* added `keys` command (#92 @pivotal-csaa)
+
+### Misc
+
+* updated test and linting dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.6.0] - 2016-07-04
 
+### Features
+
+* added `setnx` command
+
+### Bugfixes
+
+* `hsetnx` would report '0' to signal the key was a no-op but in reality did change the existing value.
+
 ## [1.5.0] - 2016-06-28
+
+### Features
+
+* added strlen command (#53)
+* added hdel command (#54)
+* added hexists command (#55)
+* added hincrby command (#56)
+* added hstrlen command (#57)
+
+### Documentation
+
+* Added a note about tonicdev to readme (#52)
 
 ## [1.4.1] - 2016-06-27
 
+### Minor changes
+
+* updated istanbul devDependency
+
 ## [1.4.0] - 2016-06-26
+
+### Features
+
+* added `hmget` command
+* added `rename` command
+* added `append` command
+
+### Bugfixes
+
+* performance penalties for using delete (#45)
 
 ## [1.3.0] - 2016-06-21
 
+### Features
+
+* added `exists` command.
+* added `time` command.
+* added `getset` command.
+
 ## [1.2.0] - 2016-06-16
+
+### Features
+
+* added incrby and decrby commands (#34).
+
+### Documentation
+
+* compat.md now links to redis docs for easy lookup.
 
 ## [1.1.1] - 2016-06-15
 
+* #30 Fix regression in v1.1.0 that broke the whole module (sorry!).
+
 ## [1.1.0] - 2016-06-14
+
+* refactored to Bluebird promises.
+* node style callbacks supported, like in ioredis.
+* added del and decr.
 
 ## [1.0.6] - 2016-06-14
 
+* added [compat table](https://github.com/stipsan/ioredis-mock/compat.md).
+* added npm preversion and prepublish scripts to prevent easy maintenance mistakes.
+
 ## [1.0.5] - 2016-06-14
+
+* updated readme
 
 ## [1.0.4] - 2016-06-12
 
+* 100% test coverage
+* srem and sadd accepts multiple items
+* added set and get commands
+
 ## [1.0.3] - 2016-06-12
+
+* setup CircleCI to cover latest stable node releases.
+* incr didn't persist changes to data.
 
 ## [1.0.2] - 2016-06-10
 
+* Setup travis CI and AppVeyor integrations.
+* Added tests for exec, hget, hset, hsetnx and incr.
+* Setup coveralls and codeclimate integrations.
+* Fixed broken hset implementation.
+
 ## [1.0.1] - 2016-06-09
+
+* lodash was missing in the package.json dependencies
+* fixes to documentation
+* added tonicExample
 
 ## [1.0.0] - 2016-06-09
 
@@ -138,3 +252,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [1.1.1]: https://github.com/stipsan/ioredis-mock/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/stipsan/ioredis-mock/compare/v1.0.6...v1.1.0
 [1.0.6]: https://github.com/stipsan/ioredis-mock/compare/v1.0.5...v1.0.6
+[1.0.5]: https://github.com/stipsan/ioredis-mock/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/stipsan/ioredis-mock/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/stipsan/ioredis-mock/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/stipsan/ioredis-mock/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/stipsan/ioredis-mock/compare/v1.0.0...v1.0.1
