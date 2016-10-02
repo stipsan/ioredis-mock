@@ -1,6 +1,6 @@
 import { random } from 'lodash';
 
-export function srandmember(key, count) {
+export function spop(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a set`);
   }
@@ -13,22 +13,20 @@ export function srandmember(key, count) {
   }
 
   const shouldReturnArray = count !== undefined;
-  const max = shouldReturnArray ? Math.abs(count) : 1;
-  const skipDuplicates = shouldReturnArray && count > -1;
+  const max = shouldReturnArray ? count : 1;
 
-  if (total <= max && skipDuplicates) {
+  if (total <= max) {
+    this.data.set(key, []);
     return list;
   }
 
   const items = [];
   let results = 0;
   while (results < max) {
-    const item = list[random(0, total - 1)];
+    const item = list.splice(random(0, list.length - 1), 1);
 
-    if (!skipDuplicates || items.indexOf(item) === -1) {
-      results += 1;
-      items.push(item);
-    }
+    results += 1;
+    items.push(item);
   }
 
   return shouldReturnArray ? items : items[0];
