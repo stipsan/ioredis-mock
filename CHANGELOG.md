@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Features
 
 * added `scard` command ()
+* added `discard` command ()
 
 ### Documentation
 - added CHANGELOG.md file
