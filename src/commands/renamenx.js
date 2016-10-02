@@ -1,4 +1,4 @@
-import { rename } from './rename';
+import { rename } from './index';
 
 export function renamenx(key, newKey) {
   if (this.data.has(newKey)) {

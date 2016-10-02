@@ -5,5 +5,5 @@ export function lpush(key, ...values) {
   const list = this.data.get(key) || [];
   const length = list.unshift(...values.reverse());
   this.data.set(key, list);
-  return length;
+  return length.toString();
 }

@@ -1,5 +1,4 @@
-import { pexpire } from './pexpire';
-import { set } from './set';
+import { pexpire, set } from './index';
 
 export function psetex(key, milliseconds, value) {
   set.call(this, key, value);
