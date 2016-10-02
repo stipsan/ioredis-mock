@@ -37,6 +37,7 @@ export * from './lpush';
 export * from './lrem';
 export * from './mget';
 export * from './mset';
+export * from './msetnx';
 export * from './persist';
 export * from './pexpire';
 export * from './pexpireat';
