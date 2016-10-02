@@ -40,6 +40,7 @@ export * from './lpop';
 export * from './lpush';
 export * from './lpushx';
 export * from './lrem';
+export * from './lset';
 export * from './mget';
 export * from './mset';
 export * from './msetnx';
