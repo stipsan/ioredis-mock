@@ -54,6 +54,7 @@ export * from './renamenx';
 export * from './role';
 export * from './rpoplpush';
 export * from './rpush';
+export * from './rpushx';
 export * from './sadd';
 export * from './save';
 export * from './set';
