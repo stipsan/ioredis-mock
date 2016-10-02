@@ -22,7 +22,21 @@
   },
   "keywords": [
     "ioredis",
-    "mock-ioredis"
+    "mock-ioredis",
+    "redis",
+    "redis-mock",
+    "mock-redis",
+    "redis test",
+    "redis mock",
+    "redis testing",
+    "redis fake",
+    "redis-js",
+    "redis js",
+    "redisjs",
+    "redis standalone",
+    "redis inmemory",
+    "redis memory",
+    "in-memory"
   ],
   "author": "Stian Didriksen <stipsan@gmail.com>",
   "license": "MIT",
