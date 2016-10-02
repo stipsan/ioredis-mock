@@ -34,6 +34,7 @@ export * from './incrby';
 export * from './incrbyfloat';
 export * from './keys';
 export * from './lastsave';
+export * from './lindex';
 export * from './llen';
 export * from './lpop';
 export * from './lpush';
