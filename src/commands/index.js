@@ -7,6 +7,7 @@ export * from './dbsize';
 export * from './decr';
 export * from './decrby';
 export * from './del';
+export * from './discard';
 export * from './echo';
 export * from './exists';
 export * from './expire';

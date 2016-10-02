@@ -7,6 +7,7 @@ import createExpires from './expires';
 class RedisMock {
   constructor({ data = {} } = { }) {
     this.channels = {};
+    this.batch = [];
 
     this.expires = createExpires();
 
