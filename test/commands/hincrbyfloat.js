@@ -40,6 +40,6 @@ describe('hincrbyfloat', () => {
       },
     });
 
-    return redis.hincrby('stats', 'health', 0.5).then(result => expect(result).toBe('0.5'));
+    return redis.hincrbyfloat('stats', 'health', 0.5).then(result => expect(result).toBe('0.5'));
   });
 });
