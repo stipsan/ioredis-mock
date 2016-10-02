@@ -26,4 +26,20 @@ describe('hincrbyfloat', () => {
     return redis.hincrbyfloat('mykey', 'field', '2.0e2')
       .then(result => expect(result).toBe('5200'));
   });
+
+  it('should create hash if not exists', () => {
+    const redis = new MockRedis();
+
+    return redis.hincrbyfloat('stats', 'health', 0.5).then(result => expect(result).toBe('0.5'));
+  });
+
+  it('should create field in hash if not exists', () => {
+    const redis = new MockRedis({
+      data: {
+        stats: {},
+      },
+    });
+
+    return redis.hincrby('stats', 'health', 0.5).then(result => expect(result).toBe('0.5'));
+  });
 });
