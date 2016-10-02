@@ -24,4 +24,15 @@ describe('rpop', () => {
 
     return redis.rpop('foo').then(result => expect(result).toBe(null));
   });
+
+  it('should throw an exception if the key contains something other than a list', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: 'not a list',
+      },
+    });
+
+    return redis.rpop('foo')
+      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+  });
 });
