@@ -66,6 +66,7 @@ export * from './setex';
 export * from './setnx';
 export * from './sismember';
 export * from './smembers';
+export * from './spop';
 export * from './srandmember';
 export * from './srem';
 export * from './strlen';
