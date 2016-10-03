@@ -74,3 +74,4 @@ export * from './srem';
 export * from './strlen';
 export * from './time';
 export * from './ttl';
+export * from './type';
