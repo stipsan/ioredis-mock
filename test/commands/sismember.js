@@ -1,4 +1,5 @@
 import expect from 'expect';
+import Set from 'es6-set';
 
 import MockRedis from '../../src';
 
@@ -6,7 +7,7 @@ describe('sismember', () => {
   it('should check if item exists in list', () => {
     const redis = new MockRedis({
       data: {
-        foos: ['foo', 'bar'],
+        foos: new Set(['foo', 'bar']),
       },
     });
 

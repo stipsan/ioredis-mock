@@ -69,7 +69,9 @@
     "rimraf": "2.5.4"
   },
   "dependencies": {
+    "array-from": "^2.1.1",
     "bluebird": "3.4.6",
+    "es6-set": "^0.1.4",
     "lodash": "4.16.2",
     "minimatch": "3.0.3",
     "object-assign": "4.1.0",

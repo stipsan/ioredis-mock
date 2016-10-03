@@ -1,3 +1,5 @@
+import arrayFrom from 'array-from';
+
 export function smembers(key) {
-  return this.data.get(key);
+  return arrayFrom(this.data.get(key));
 }

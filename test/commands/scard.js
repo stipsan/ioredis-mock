@@ -1,4 +1,5 @@
 import expect from 'expect';
+import Set from 'es6-set';
 
 import MockRedis from '../../src';
 
@@ -6,7 +7,7 @@ describe('scard', () => {
   it('should return the number of items in the set', () => {
     const redis = new MockRedis({
       data: {
-        foo: [1, 3, 4],
+        foo: new Set([1, 3, 4]),
       },
     });
 
