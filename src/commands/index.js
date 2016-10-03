@@ -13,6 +13,7 @@ export * from './exists';
 export * from './expire';
 export * from './expireat';
 export * from './flushall';
+export * from './flushdb';
 export * from './get';
 export * from './getrange';
 export * from './getset';

@@ -6,7 +6,7 @@ describe('ttl', () => {
   it('should return -2 if key does not exist', () => {
     const redis = new MockRedis();
 
-    return redis.ttl('foo').then(result => expect(result).toBe('-2'));
+    return redis.ttl('foo').then(result => expect(result).toBe(-2));
   });
 
   it('should return -1 if key exist but have no expire', () => {
@@ -16,7 +16,7 @@ describe('ttl', () => {
       },
     });
 
-    return redis.ttl('foo').then(result => expect(result).toBe('-1'));
+    return redis.ttl('foo').then(result => expect(result).toBe(-1));
   });
 
   it('should return seconds left until expire', () => {
@@ -27,6 +27,6 @@ describe('ttl', () => {
     });
 
     return redis.expire('foo', 1).then(() => redis.ttl('foo'))
-      .then(result => expect(result).toBe('1'));
+      .then(result => expect(result).toBe(1));
   });
 });

@@ -6,7 +6,7 @@ describe('llen', () => {
   it('should return the number of items in the list', () => {
     const redis = new MockRedis({
       data: {
-        foo: [1, 3, 4],
+        foo: ['1', '3', '4'],
       },
     });
 

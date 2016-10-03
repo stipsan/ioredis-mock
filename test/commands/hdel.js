@@ -9,7 +9,7 @@ describe('hdel', () => {
     },
   });
   it('should delete passed in keys from hash map', () =>
-    redis.hdel('user:1', 'id', 'email', 'location').then(status => expect(status).toBe('2'))
+    redis.hdel('user:1', 'id', 'email', 'location').then(status => expect(status).toBe(2))
       .then(() => expect(redis.data.get('user:1')).toEqual({ name: 'Bruce Wayne' }))
   );
 });

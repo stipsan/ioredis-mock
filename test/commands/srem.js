@@ -10,11 +10,11 @@ describe('srem', () => {
     },
   });
   it('should remove 1 item from set', () =>
-    redis.srem('foos', 'bar').then(status => expect(status).toBe(1))
+    redis.srem('foos', 'bar').then(status => expect(status).toBe('1'))
       .then(() => expect(redis.data.get('foos').has('bar')).toBe(false))
   );
   it('should remove 2 items from set', () =>
-    redis.srem('foos', 'foo', 'baz', 'none existent').then(status => expect(status).toBe(2))
+    redis.srem('foos', 'foo', 'baz', 'none existent').then(status => expect(status).toBe('2'))
       .then(() => {
         expect(redis.data.get('foos').has('bar')).toBe(false);
         expect(redis.data.get('foos').has('baz')).toBe(false);

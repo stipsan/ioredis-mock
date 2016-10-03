@@ -8,4 +8,10 @@ describe('set', () => {
     return redis.set('foo', 'bar').then(status => expect(status).toBe('OK'))
       .then(() => expect(redis.data.get('foo')).toBe('bar'));
   });
+
+  it('should turn number to string', () => {
+    const redis = new MockRedis();
+    return redis.set('foo', 1.5).then(status => expect(status).toBe('OK'))
+      .then(() => expect(redis.data.get('foo')).toBe('1.5'));
+  });
 });
