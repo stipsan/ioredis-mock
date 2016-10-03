@@ -5,8 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.14.0] - 2016-10-02
+## [Unreleased]
+### Changed
+* `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set` instead of `Array` (#204 @kesla)
 
+### Fixed
+* `sadd` no longer allow duplicate values (#204 @kesla)
+
+## [1.14.0] - 2016-10-02
 ### Features
 
 * added `scard` command (#201)
@@ -16,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - added CHANGELOG.md file
 
 ## [1.13.0] - 2016-10-02
-
 ### Features
 
 * added `mset` command (#181)
@@ -33,7 +38,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * added `lset` command (#193)
 
 ## [1.12.0] - 2016-10-02
-
 ### Features
 
 * added `auth` command (#160)
@@ -58,7 +62,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * added `psetex` command (#179)
 
 ## [1.11.0] - 2016-10-01
-
 ### Features
 * added `expire` command (#155)
 * added `ttl` command (#157)
@@ -70,13 +73,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * circleci now run parallel builds to distribute node v4 - v6 tests between containers, speeding things up a bit
 
 ## [1.10.0] - 2016-10-01
-
 ### Features
 
 * added `renamenx` command (#152)
 
 ## [1.9.0] - 2016-09-26
-
 ### Features
 
 * added `mget` command (#134 @kesla)
@@ -86,7 +87,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.8.0] - 2016-08-13
-
 ### Features
 
 * added `brpoplpush` command (#106 @davemcorwin)
@@ -107,7 +107,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.7.0] - 2016-08-02
-
 ### Features
 
 * added `keys` command (#92 @pivotal-csaa)
@@ -117,7 +116,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * updated test and linting dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.6.0] - 2016-07-04
-
 ### Features
 
 * added `setnx` command
@@ -127,7 +125,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `hsetnx` would report '0' to signal the key was a no-op but in reality did change the existing value.
 
 ## [1.5.0] - 2016-06-28
-
 ### Features
 
 * added strlen command (#53)
@@ -141,13 +138,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Added a note about tonicdev to readme (#52)
 
 ## [1.4.1] - 2016-06-27
-
 ### Minor changes
 
 * updated istanbul devDependency
 
 ## [1.4.0] - 2016-06-26
-
 ### Features
 
 * added `hmget` command
@@ -159,7 +154,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * performance penalties for using delete (#45)
 
 ## [1.3.0] - 2016-06-21
-
 ### Features
 
 * added `exists` command.
@@ -167,7 +161,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * added `getset` command.
 
 ## [1.2.0] - 2016-06-16
-
 ### Features
 
 * added incrby and decrby commands (#34).
@@ -220,7 +213,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * added tonicExample
 
 ## 1.0.0 - 2016-06-09
-
 ### Supported operations
 
 * Integers

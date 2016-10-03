@@ -1,6 +1,12 @@
+import Set from 'es6-set';
+
 export function scard(key) {
-  if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
+  const set = this.data.get(key);
+  if (!set) {
+    return '0';
+  }
+  if (!(set instanceof Set)) {
     throw new Error(`Key ${key} does not contain a set`);
   }
-  return (this.data.get(key) || []).length.toString();
+  return this.data.get(key).size.toString();
 }

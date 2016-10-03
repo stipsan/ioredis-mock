@@ -1,7 +1,16 @@
+import Set from 'es6-set';
+
 export function sadd(key, ...vals) {
   if (!this.data.has(key)) {
-    this.data.set(key, []);
+    this.data.set(key, new Set());
   }
-  this.data.get(key).push(...vals);
-  return vals.length;
+  let added = 0;
+  const set = this.data.get(key);
+  vals.forEach((value) => {
+    if (!set.has(value)) {
+      added++;
+    }
+    set.add(value);
+  });
+  return added;
 }

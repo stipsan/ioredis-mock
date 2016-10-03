@@ -1,12 +1,15 @@
 import { random } from 'lodash';
+import Set from 'es6-set';
+import arrayFrom from 'array-from';
 
 export function spop(key, count) {
-  if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
+  if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
     throw new Error(`Key ${key} does not contain a set`);
   }
 
-  const list = this.data.get(key) || [];
-  const total = list.length;
+  const set = this.data.get(key) || new Set();
+  const list = arrayFrom(set);
+  const total = set.size;
 
   if (total === 0) {
     return null;
@@ -16,7 +19,7 @@ export function spop(key, count) {
   const max = shouldReturnArray ? count : 1;
 
   if (total <= max) {
-    this.data.set(key, []);
+    this.data.set(key, new Set());
     return list;
   }
 
@@ -28,6 +31,7 @@ export function spop(key, count) {
     results += 1;
     items.push(item);
   }
+  this.data.set(key, new Set(list));
 
   return shouldReturnArray ? items : items[0];
 }

@@ -1,7 +1,11 @@
 export function srem(key, ...vals) {
+  let removed = 0;
+  const set = this.data.get(key);
   vals.forEach((val) => {
-    const index = this.data.get(key).indexOf(val);
-    this.data.get(key).splice(index, 1);
+    if (set.has(val)) {
+      removed++;
+    }
+    set.delete(val);
   });
-  return vals.length;
+  return removed;
 }
