@@ -6,11 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Changed
-* `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set` instead of `Array` (#204 @kesla)
+### Added
+* `type` command ()
 
 ### Fixed
 * `sadd` no longer allow duplicate values (#204 @kesla)
+* `hset` learned to create a new hash if not existing instead of throwing error ()
+* `hset` updated to return integer reply according to redis spec ()
+
+### Internal
+* `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set` instead of `Array` (#204 @kesla)
+* `hset` tests refactored ()
 
 ## [1.14.0] - 2016-10-02
 ### Features
