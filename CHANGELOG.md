@@ -5,18 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.15.0] - 2016-10-03
 ### Added
-* `type` command ()
+* `type` command (#207)
 
 ### Fixed
 * `sadd` no longer allow duplicate values (#204 @kesla)
-* `hset` learned to create a new hash if not existing instead of throwing error ()
-* `hset` updated to return integer reply according to redis spec ()
+* `hset` learned to create a new hash if not existing instead of throwing error (#207)
+* `hset` updated to return integer reply according to redis spec (#207)
 
 ### Internal
 * `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set` instead of `Array` (#204 @kesla)
-* `hset` tests refactored ()
+* `hset` tests refactored (#207)
 
 ## [1.14.0] - 2016-10-02
 ### Features
@@ -239,6 +239,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  * multi
  * exec
 
+[1.15.0]: https://github.com/stipsan/ioredis-mock/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/stipsan/ioredis-mock/compare/v1.13.1...v1.14.0
 [1.13.0]: https://github.com/stipsan/ioredis-mock/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/stipsan/ioredis-mock/compare/v1.11.0...v1.12.0
