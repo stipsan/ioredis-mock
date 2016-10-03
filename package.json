@@ -5,7 +5,7 @@
   "main": "./lib",
   "scripts": {
     "clean": "rimraf lib",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "npm run clean && npm run build && gh-release",
     "preversion": "node scripts/update-compat && git add . && git commit --allow-empty -m \"chore(compat): update feature table\"",
     "postversion": "git add package.json && git commit -m \"chore(package): update version\"",
     "build": "mkdirp lib && babel src --out-dir lib",
