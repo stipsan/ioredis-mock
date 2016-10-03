@@ -3,12 +3,12 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('sadd', () => {
-  it('should add 1 item to list', () => {
+  it('should add 1 item to set', () => {
     const redis = new MockRedis();
     redis.sadd('foos', 'bar').then(status => expect(status).toBe(1))
       .then(() => expect(redis.data.get('foos').has('bar')).toBe(true));
   });
-  it('should add 2 items to list', () => {
+  it('should add 2 items to set', () => {
     const redis = new MockRedis();
     redis.sadd('foos', 'foo', 'baz').then(status => expect(status).toBe(2))
       .then(() => {
