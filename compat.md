@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 47%](https://img.shields.io/badge/coverage-47%25-yellow.svg)
+## Supported commands ![Commands Coverage: 48%](https://img.shields.io/badge/coverage-48%25-yellow.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -139,7 +139,7 @@
 |[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
 |[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
 |[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:white_check_mark:|
-|[type](http://redis.io/commands/TYPE)|:white_check_mark:|:x:|
+|[type](http://redis.io/commands/TYPE)|:white_check_mark:|:white_check_mark:|
 |[unsubscribe](http://redis.io/commands/UNSUBSCRIBE)|:white_check_mark:|:x:|
 |[unwatch](http://redis.io/commands/UNWATCH)|:white_check_mark:|:x:|
 |[wait](http://redis.io/commands/WAIT)|:white_check_mark:|:x:|
