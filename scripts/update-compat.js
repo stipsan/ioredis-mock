@@ -59,6 +59,18 @@ if (percentage === 100) {
 const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
 ${tableRows}`;
 
-fs.writeFile(path.resolve(__dirname, '..', 'compat.md'), tableMd, (err) => {
+fs.writeFile(path.resolve(__dirname, '..', 'compat.md'), tableMd, 'utf8', (err) => {
   if (err) throw err;
+});
+
+const readme = path.resolve(__dirname, '..', 'README.md');
+fs.readFile(readme, 'utf8', (err, readmeMd) => {
+  if (err) throw err;
+
+  fs.writeFile(readme, readmeMd.toString().replace(
+    /\[\!\[.+\(compat\.md\)/g,
+    `[![Redis Compatibility: ${percentage}%](https://img.shields.io/badge/redis-${percentage}%25-${color}.svg)](compat.md)`
+  ), 'utf8', (err) => {
+    if (err) throw err;
+  });
 });
