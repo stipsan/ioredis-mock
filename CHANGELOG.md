@@ -5,6 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [unreleased]
+
+Bumping the version to v2 as there are fixes in this release that are breaking changes.
+
+### Added
+* `flushdb` command
+
+### Changed
+* Command arguments is now transformed to strings before being passed to the command itself helping the mock behave more like a real ioredis client.
+
+### Fixed
+* `append` updated to return an integer
+* `dbsize` updated to return an integer
+* `decr` updated to return an integer
+* `decrby` updated to return an integer
+* `expire` updated to return an integer
+* `expireat` updated to return an integer
+* `hdel` updated to return an integer
+* `hexists` updated to return an integer
+* `hincrby` updated to return an integer
+* `hlen` updated to return an integer
+* `hset` updated to return an integer
+* `hsetnx` updated to return an integer
+* `hstrlen` updated to return an integer
+* `incr` updated to return an integer
+* `incrby` updated to return an integer
+* `lpush` updated to return an integer
+* `lpushx` updated to return an integer
+* `mget` required a single array argument, updated to use multiple arguments (single array support will be added later when ioredis Argument Transformers is properly implemented).
+* `msetnx` updated to return an integer
+* `persist` updated to return an integer
+* `pexpire` updated to return an integer
+* `pexpireat` updated to return an integer
+* `pttl` updated to return an integer
+* `renamenx` updated to return an integer
+* `rpush` updated to return an integer
+* `rpushx` updated to return an integer
+* `scard` updated to return an integer
+* `setnx` updated to return an integer
+* `sismember` updated to return an integer
+* `strlen` updated to return an integer
+* `ttl` updated to return an integer
+
+### Deprecated
+* `hmset` no longer accepts passing an object with keys and values directly. This will be added later when ioredis Argument Transformers is properly implemented.
+
 ## [1.15.0] - 2016-10-03
 ### Added
 * `type` command (#207)
