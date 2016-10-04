@@ -5,5 +5,5 @@ export function hdel(key, ...fields) {
       return true;
     }
     return false;
-  }).length.toString();
+  }).length;
 }

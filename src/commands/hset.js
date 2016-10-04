@@ -3,11 +3,11 @@ export function hset(key, hashKey, hashVal) {
     this.data.set(key, {});
   }
 
-  let reply = '1';
+  let reply = 1;
   const hash = this.data.get(key);
 
   if ({}.hasOwnProperty.call(hash, hashKey)) {
-    reply = '0';
+    reply = 0;
   }
 
   hash[hashKey] = hashVal;

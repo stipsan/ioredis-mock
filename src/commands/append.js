@@ -3,5 +3,5 @@ export function append(key, value) {
     this.data.set(key, '');
   }
   this.data.set(key, this.data.get(key) + value);
-  return this.data.get(key).length.toString();
+  return this.data.get(key).length;
 }

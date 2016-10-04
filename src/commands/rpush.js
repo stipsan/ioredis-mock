@@ -5,5 +5,5 @@ export function rpush(key, ...values) {
   const list = this.data.get(key) || [];
   const length = list.push(...values);
   this.data.set(key, list);
-  return length.toString();
+  return length;
 }

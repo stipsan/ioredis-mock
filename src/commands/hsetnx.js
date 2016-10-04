@@ -6,8 +6,8 @@ export function hsetnx(key, hashKey, hashVal) {
   if (!{}.hasOwnProperty.call(this.data.get(key), hashKey)) {
     this.data.get(key)[hashKey] = hashVal;
 
-    return '1';
+    return 1;
   }
 
-  return '0';
+  return 0;
 }
