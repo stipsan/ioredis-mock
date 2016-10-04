@@ -1,5 +1,7 @@
-export function getrange(key, start, end) {
+export function getrange(key, s, e) {
   const val = this.data.get(key);
+  const start = parseInt(s, 10);
+  const end = parseInt(e, 10);
 
   if (end === -1) {
     return val.slice(start);

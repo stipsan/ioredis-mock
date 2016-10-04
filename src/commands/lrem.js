@@ -1,7 +1,8 @@
-export function lrem(key, count, value) {
+export function lrem(key, c, value) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     return 0;
   }
+  const count = parseInt(c, 10);
   const list = [...(this.data.get(key) || [])];
   const indexFun = (count < 0 ? [].lastIndexOf : [].indexOf).bind(list);
   const max = count === 0 ? list.length : Math.abs(count);

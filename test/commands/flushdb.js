@@ -2,7 +2,7 @@ import expect from 'expect';
 
 import MockRedis from '../../src';
 
-describe('flushall', () => {
+describe('flushdb', () => {
   const redis = new MockRedis({
     data: {
       deleteme: 'please',
@@ -10,8 +10,8 @@ describe('flushall', () => {
     },
   });
   it('should empty current db', () =>
-    redis.flushall().then(status => expect(status).toBe('OK'))
+    redis.flushdb().then(status => expect(status).toBe('OK'))
       .then(() => expect(redis.data.keys().length).toBe(0))
   );
-  it('should empty every db');
+  it('should empty other db after SELECT');
 });

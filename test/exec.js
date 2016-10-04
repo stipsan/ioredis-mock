@@ -14,6 +14,6 @@ describe('exec', () => {
     return redis.multi([
       ['incr', 'user_next'],
       ['incr', 'post_next'],
-    ]).exec().then(results => expect(results).toEqual([[null, '2'], [null, '2']]));
+    ]).exec().then(results => expect(results).toEqual([[null, 2], [null, 2]]));
   });
 });

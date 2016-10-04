@@ -12,6 +12,6 @@ describe('dbsize', () => {
     });
 
     return redis.dbsize()
-      .then(result => expect(result).toBe('2'));
+      .then(result => expect(result).toBe(2));
   });
 });

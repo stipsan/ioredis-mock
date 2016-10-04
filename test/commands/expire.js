@@ -15,7 +15,7 @@ describe('expire', () => {
       redis.get('foo'),
       Promise.delay(1000).then(() => redis.get('foo')),
     ]).then(([status, beforeExpire, afterExpire]) => {
-      expect(status).toBe('1');
+      expect(status).toBe(1);
       expect(beforeExpire).toBe('bar');
       expect(afterExpire).toBe(null);
       expect(redis.data.has('foo')).toBe(false);
@@ -33,7 +33,7 @@ describe('expire', () => {
 
   it('should return 0 if key does not exist', () => {
     const redis = new MockRedis();
-    return redis.expire('foo', 1).then(status => expect(status).toBe('0'));
+    return redis.expire('foo', 1).then(status => expect(status).toBe(0));
   });
 
   it('should remove expire on SET', () => {
