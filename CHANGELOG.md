@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [unreleased]
+
+### Changed
+* added compat table badge to readme.
+
 ## [2.0.0] - 2016-10-03
 
 Bumping the version to v2 as there are fixes in this release that are breaking changes.
