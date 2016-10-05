@@ -3,19 +3,18 @@ import Set from 'es6-set';
 
 import MockRedis from '../../src';
 
-describe('sunion', () => {
-  it('should return the union between the first set and all the successive sets', () => {
+describe('sinter', () => {
+  it('should return the members from the intersection of all the given sets', () => {
     const redis = new MockRedis({
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
-        // key3: keys that do not exist are considered to be empty sets
-        key4: new Set(['a', 'c', 'e']),
+        key3: new Set(['a', 'c', 'e']),
       },
     });
 
-    return redis.sunion('key1', 'key2', 'key3', 'key4')
-      .then(result => expect(result).toEqual(['a', 'b', 'c', 'd', 'e']));
+    return redis.sinter('key1', 'key2', 'key3')
+      .then(result => expect(result).toEqual(['c']));
   });
 
   it('should throw an exception if one of the keys is not a set', () => {
@@ -26,7 +25,7 @@ describe('sunion', () => {
       },
     });
 
-    return redis.sunion('foo', 'bar')
+    return redis.sinter('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
 });

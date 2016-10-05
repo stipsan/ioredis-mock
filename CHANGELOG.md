@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * `smove` command. ()
 * `sdiff` command. ()
 * `sunion` command. ()
+* `sinter` command. ()
 
 ### Changed
 * added compat table badge to readme. ()

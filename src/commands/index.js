@@ -68,6 +68,7 @@ export * from './sdiff';
 export * from './set';
 export * from './setex';
 export * from './setnx';
+export * from './sinter';
 export * from './sismember';
 export * from './smembers';
 export * from './smove';
