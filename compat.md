@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-yellow.svg)
+## Supported commands ![Commands Coverage: 51%](https://img.shields.io/badge/coverage-51%25-yellow.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -111,7 +111,7 @@
 |[scan](http://redis.io/commands/SCAN)|:white_check_mark:|:x:|
 |[scard](http://redis.io/commands/SCARD)|:white_check_mark:|:white_check_mark:|
 |[script](http://redis.io/commands/SCRIPT)|:white_check_mark:|:x:|
-|[sdiff](http://redis.io/commands/SDIFF)|:white_check_mark:|:x:|
+|[sdiff](http://redis.io/commands/SDIFF)|:white_check_mark:|:white_check_mark:|
 |[sdiffstore](http://redis.io/commands/SDIFFSTORE)|:white_check_mark:|:x:|
 |[select](http://redis.io/commands/SELECT)|:white_check_mark:|:x:|
 |[set](http://redis.io/commands/SET)|:white_check_mark:|:white_check_mark:|
@@ -120,13 +120,13 @@
 |[setnx](http://redis.io/commands/SETNX)|:white_check_mark:|:white_check_mark:|
 |[setrange](http://redis.io/commands/SETRANGE)|:white_check_mark:|:x:|
 |[shutdown](http://redis.io/commands/SHUTDOWN)|:white_check_mark:|:x:|
-|[sinter](http://redis.io/commands/SINTER)|:white_check_mark:|:x:|
+|[sinter](http://redis.io/commands/SINTER)|:white_check_mark:|:white_check_mark:|
 |[sinterstore](http://redis.io/commands/SINTERSTORE)|:white_check_mark:|:x:|
 |[sismember](http://redis.io/commands/SISMEMBER)|:white_check_mark:|:white_check_mark:|
 |[slaveof](http://redis.io/commands/SLAVEOF)|:white_check_mark:|:x:|
 |[slowlog](http://redis.io/commands/SLOWLOG)|:white_check_mark:|:x:|
 |[smembers](http://redis.io/commands/SMEMBERS)|:white_check_mark:|:white_check_mark:|
-|[smove](http://redis.io/commands/SMOVE)|:white_check_mark:|:x:|
+|[smove](http://redis.io/commands/SMOVE)|:white_check_mark:|:white_check_mark:|
 |[sort](http://redis.io/commands/SORT)|:white_check_mark:|:x:|
 |[spop](http://redis.io/commands/SPOP)|:white_check_mark:|:white_check_mark:|
 |[srandmember](http://redis.io/commands/SRANDMEMBER)|:white_check_mark:|:white_check_mark:|
@@ -134,7 +134,7 @@
 |[sscan](http://redis.io/commands/SSCAN)|:white_check_mark:|:x:|
 |[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:white_check_mark:|
 |[subscribe](http://redis.io/commands/SUBSCRIBE)|:white_check_mark:|:x:|
-|[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:x:|
+|[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:white_check_mark:|
 |[sunionstore](http://redis.io/commands/SUNIONSTORE)|:white_check_mark:|:x:|
 |[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
 |[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
