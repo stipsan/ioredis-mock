@@ -64,6 +64,7 @@ export * from './rpushx';
 export * from './sadd';
 export * from './save';
 export * from './scard';
+export * from './sdiff';
 export * from './set';
 export * from './setex';
 export * from './setnx';
