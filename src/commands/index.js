@@ -74,6 +74,7 @@ export * from './spop';
 export * from './srandmember';
 export * from './srem';
 export * from './strlen';
+export * from './sunion';
 export * from './time';
 export * from './ttl';
 export * from './type';
