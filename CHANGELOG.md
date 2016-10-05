@@ -5,16 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [unreleased]
+## [2.1.0] - 2016-10-05
 
 ### Added
-* `smove` command. ()
-* `sdiff` command. ()
-* `sunion` command. ()
-* `sinter` command. ()
+* `smove` command. (#217)
+* `sdiff` command. (#216)
+* `sunion` command. (#215)
+* `sinter` command. (#214)
 
 ### Changed
-* added compat table badge to readme. ()
+* added compat table badge to readme. (#213)
 
 ## [2.0.0] - 2016-10-03
 
@@ -296,6 +296,7 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
+[2.1.0]: https://github.com/stipsan/ioredis-mock/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/stipsan/ioredis-mock/compare/v1.15.0...v2.0.0
 [1.15.0]: https://github.com/stipsan/ioredis-mock/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/stipsan/ioredis-mock/compare/v1.13.1...v1.14.0
