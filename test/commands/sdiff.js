@@ -4,7 +4,7 @@ import Set from 'es6-set';
 import MockRedis from '../../src';
 
 describe('sdiff', () => {
-  it('should return the members of the set resulting from the difference between the first set and all the successive sets', () => {
+  it('should return the difference between the first set and all the successive sets', () => {
     const redis = new MockRedis({
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
