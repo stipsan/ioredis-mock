@@ -19,5 +19,5 @@ export function sdiff(ours, ...theirs) {
     ))
   )));
 
-  return [...difference];
+  return arrayFrom(difference);
 }
