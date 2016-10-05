@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [unreleased]
 
+### Added
+* `smove` command.
+
 ### Changed
 * added compat table badge to readme.
 
