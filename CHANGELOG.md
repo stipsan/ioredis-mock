@@ -8,11 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [unreleased]
 
 ### Added
-* `smove` command.
-* `sdiff` command.
+* `smove` command. ()
+* `sdiff` command. ()
+* `sunion` command. ()
 
 ### Changed
-* added compat table badge to readme.
+* added compat table badge to readme. ()
 
 ## [2.0.0] - 2016-10-03
 
