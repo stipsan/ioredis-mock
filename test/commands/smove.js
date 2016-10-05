@@ -43,7 +43,7 @@ describe('smove', () => {
     });
 
     return redis.smove('foo', 'bar', 'two')
-      .catch(err => expect(err.message).toBe('Source foo does not contain a set'));
+      .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 
   it('should throw an exception if the destination contains something other than a set', () => {
@@ -55,6 +55,6 @@ describe('smove', () => {
     });
 
     return redis.smove('foo', 'bar', 'two')
-      .catch(err => expect(err.message).toBe('Destination bar does not contain a set'));
+      .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
 });
