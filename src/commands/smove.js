@@ -2,10 +2,10 @@ import Set from 'es6-set';
 
 export function smove(source, destination, member) {
   if (this.data.has(source) && !(this.data.get(source) instanceof Set)) {
-    throw new Error(`Source ${source} does not contain a set`);
+    throw new Error(`Key ${source} does not contain a set`);
   }
   if (this.data.has(destination) && !(this.data.get(destination) instanceof Set)) {
-    throw new Error(`Destination ${destination} does not contain a set`);
+    throw new Error(`Key ${destination} does not contain a set`);
   }
 
   if (!this.data.has(source)) {
