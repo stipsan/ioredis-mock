@@ -16,7 +16,7 @@ export function sdiff(ours, ...theirs) {
   const difference = new Set(arrayFrom(ourSet).filter(ourValue => (
     theirSets.reduce((isUnique, set) => (
       set.has(ourValue) ? false : isUnique
-    ))
+    ), /* isUnique*/true)
   )));
 
   return arrayFrom(difference);
