@@ -23,7 +23,9 @@ Cases like:
 * You're running tests on a CI, setting it up is complicated. If you combine it with CI that also run selenium acceptance testing it's even more complicated, as two redis-server instances on the same CI build is hard.
 * The GitHub repo have bots that run the testing suite and is limited through npm package.json install scripts and can't fire up servers. (Having [Greenkeeper](https://greenkeeper.io/) notifying you when a new release of ioredis is out and wether your code breaks or not is awesome).
 
-## Usage
+Check the [compatibility table](compat.md) for supported redis commands.
+
+## Usage ([try it in your browser](https://runkit.com/npm/ioredis-mock))
 
 ```js
 var RedisMock = require('ioredis-mock').default;
@@ -40,11 +42,6 @@ var redis = new RedisMock({
 });
 // Basically use it just like ioredis
 ```
-
-## Try it out
-This project implements a Tonic example file so you can quickly [test ioredis-mock in your browser.](https://tonicdev.com/npm/ioredis-mock)
-
-## [Mocked ioredis features](compat.md)
 
 ## Roadmap
 This project started off as just an utility in [another project](https://github.com/stipsan/epic) and just recently got open sourced to benefit the rest of the ioredis community. This means there's work to do before it's feature complete:
