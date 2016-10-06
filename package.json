@@ -73,7 +73,7 @@
     "array-from": "^2.1.1",
     "bluebird": "3.4.6",
     "es6-set": "^0.1.4",
-    "lodash": "4.16.3",
+    "lodash": "4.16.4",
     "minimatch": "3.0.3",
     "object-assign": "4.1.0",
     "redis-commands": "1.2.0"
