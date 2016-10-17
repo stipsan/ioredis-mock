@@ -57,7 +57,7 @@
     "babel-register": "6.16.3",
     "codeclimate-test-reporter": "0.4.0",
     "coveralls": "2.11.14",
-    "eslint": "3.8.0",
+    "eslint": "3.8.1",
     "eslint-config-airbnb-base": "9.0.0",
     "eslint-plugin-import": "2.0.1",
     "expect": "1.20.2",
