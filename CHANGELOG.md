@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Added
+* yarn lockfile.
+
 ### Changed
 * updated redis-commands dependency and updated the compat table with new commands.
 
