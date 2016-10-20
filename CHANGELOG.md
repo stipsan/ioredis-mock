@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Changed
+* updated redis-commands dependency and updated the compat table with new commands.
+
 ## [2.1.0] - 2016-10-05
 
 ### Added
