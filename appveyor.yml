@@ -12,11 +12,12 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm install -g npm@3
-  - npm install
+  - choco install yarn
+  - refreshenv
 
 test_script: npm test
 
 build: off
 
-cache: node_modules -> package.json
+cache:
+  - "%LOCALAPPDATA%/Yarn"
