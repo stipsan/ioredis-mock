@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 51%](https://img.shields.io/badge/coverage-51%25-yellow.svg)
+## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-yellow.svg)
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
@@ -52,6 +52,7 @@
 |[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:white_check_mark:|
 |[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:white_check_mark:|
 |[hmset](http://redis.io/commands/HMSET)|:white_check_mark:|:white_check_mark:|
+|[host:](http://redis.io/commands/HOST:)|:white_check_mark:|:x:|
 |[hscan](http://redis.io/commands/HSCAN)|:white_check_mark:|:x:|
 |[hset](http://redis.io/commands/HSET)|:white_check_mark:|:white_check_mark:|
 |[hsetnx](http://redis.io/commands/HSETNX)|:white_check_mark:|:white_check_mark:|
@@ -73,8 +74,10 @@
 |[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:white_check_mark:|
 |[lset](http://redis.io/commands/LSET)|:white_check_mark:|:white_check_mark:|
 |[ltrim](http://redis.io/commands/LTRIM)|:white_check_mark:|:x:|
+|[memory](http://redis.io/commands/MEMORY)|:white_check_mark:|:x:|
 |[mget](http://redis.io/commands/MGET)|:white_check_mark:|:white_check_mark:|
 |[migrate](http://redis.io/commands/MIGRATE)|:white_check_mark:|:x:|
+|[module](http://redis.io/commands/MODULE)|:white_check_mark:|:x:|
 |[monitor](http://redis.io/commands/MONITOR)|:white_check_mark:|:x:|
 |[move](http://redis.io/commands/MOVE)|:white_check_mark:|:x:|
 |[mset](http://redis.io/commands/MSET)|:white_check_mark:|:white_check_mark:|
@@ -88,6 +91,7 @@
 |[pfcount](http://redis.io/commands/PFCOUNT)|:white_check_mark:|:x:|
 |[pfmerge](http://redis.io/commands/PFMERGE)|:white_check_mark:|:x:|
 |[ping](http://redis.io/commands/PING)|:white_check_mark:|:white_check_mark:|
+|[post](http://redis.io/commands/POST)|:white_check_mark:|:x:|
 |[psetex](http://redis.io/commands/PSETEX)|:white_check_mark:|:white_check_mark:|
 |[psubscribe](http://redis.io/commands/PSUBSCRIBE)|:white_check_mark:|:x:|
 |[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:white_check_mark:|
@@ -136,8 +140,10 @@
 |[subscribe](http://redis.io/commands/SUBSCRIBE)|:white_check_mark:|:x:|
 |[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:white_check_mark:|
 |[sunionstore](http://redis.io/commands/SUNIONSTORE)|:white_check_mark:|:x:|
+|[swapdb](http://redis.io/commands/SWAPDB)|:white_check_mark:|:x:|
 |[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
 |[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
+|[touch](http://redis.io/commands/TOUCH)|:white_check_mark:|:x:|
 |[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:white_check_mark:|
 |[type](http://redis.io/commands/TYPE)|:white_check_mark:|:white_check_mark:|
 |[unsubscribe](http://redis.io/commands/UNSUBSCRIBE)|:white_check_mark:|:x:|
