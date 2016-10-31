@@ -1,3 +1,3 @@
 export function lpopBuffer(key) {
-  return this.lpop(key)
+  return this.lpop(key);
 }
