@@ -10,7 +10,8 @@ describe('rpoplpushBuffer', () => {
       },
     });
 
-    return redis.rpoplpushBuffer('foo', 'bar').then(() => expect(redis.data.get('foo')).toEqual(['foo']));
+    return redis.rpoplpushBuffer('foo', 'bar')
+      .then(() => expect(redis.data.get('foo')).toEqual(['foo']));
   });
 
   it('should add one item to the head of the destination list', () => {
