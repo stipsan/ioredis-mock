@@ -16,7 +16,7 @@ describe('rpopBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = new Buffer([0xb3,0xf9,0x94,0xa7,0xe2,0xf6,0x27,0x95,0xab,0xd8,0xc8,0x4a,0xef,0xb5,0xea,0xe3]);
+    const bufferVal = new Buffer('bar');
     const redis = new MockRedis({
       data: {
         foo: ['1', '2', bufferVal],
@@ -24,7 +24,7 @@ describe('rpopBuffer', () => {
     });
 
     return redis.rpopBuffer('foo')
-      .then(result => expect(result).toBe(bufferVal))
+      .then(result => expect(result).toBe(bufferVal));
   });
 
   it('should return null on empty list', () => {
