@@ -14,8 +14,8 @@ describe('basic command', () => {
   });
 
   it('should convert non-buffer arguments to strings', () => {
-    const args = [new Buffer("foo"), "bar", 1]
-    return stub(...args).then(reply => expect(reply).toEqual([new Buffer("foo"), "bar", "1"]))
+    const args = [new Buffer('foo'), 'bar', 1];
+    return stub(...args).then(reply => expect(reply).toEqual([new Buffer('foo'), 'bar', '1']));
   });
 
   it('should reject the promise if the first argument is bool false to allow simulating failures');
