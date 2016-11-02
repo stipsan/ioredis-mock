@@ -10,8 +10,10 @@ export default function command(emulate) {
       args.length = lastArgIndex; // eslint-disable-line no-param-reassign
     }
 
-    // transform arguments to strings to simulate real ioredis behavior
-    const stringArgs = args.map(arg => arg.toString());
+    // transform non-buffer arguments to strings to simulate real ioredis behavior
+    const stringArgs = args.map(arg =>                  // eslint-disable-line no-confusing-arrow
+      arg instanceof Buffer ? arg : arg.toString()
+    );
 
     return new Promise(resolve => resolve(emulate(...stringArgs))).asCallback(callback);
   };
