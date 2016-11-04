@@ -12,11 +12,9 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - choco install -i yarn
-  - refreshenv
   - yarn install
 
-test_script: npm test
+test_script: yarn test
 
 build: off
 
