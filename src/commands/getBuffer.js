@@ -1,3 +1,3 @@
 export function getBuffer(key) {
-  return this.get(key);
+  return this.data.has(key) ? Buffer.from(this.data.get(key)) : null;
 }

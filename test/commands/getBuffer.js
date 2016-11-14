@@ -1,32 +1,56 @@
-import expect from 'expect';
-
-import MockRedis from '../../src';
+import expect from 'expect'
+import MockRedis from '../../src'
+import { eventuallyExpect } from '../helpers'
 
 describe('getBuffer', () => {
-  it('should return null on keys that do not exist', () => {
-    const redis = new MockRedis();
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe(null));
-  });
+  let redis
 
-  it('should return value of key', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: 'bar',
-      },
-    });
+  beforeEach(() => {
+    redis = new MockRedis()
+  })
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe('bar'));
-  });
+  context('when key does not exist', () => {
 
-  it('should return buffer values correctly', () => {
-    const bufferVal = new Buffer('bar');
-    const redis = new MockRedis({
-      data: {
-        foo: bufferVal,
-      },
-    });
+    it('should return null', () => {
+      const actual = redis.getBuffer('foo')
+      return eventuallyExpect(actual).toBe(null)
+    })
+  })
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe(bufferVal));
-  });
-});
+  context('when value for key is a buffer', () => {
+
+    const key = 'foo'
+    const value = Buffer.from('bar')
+
+    beforeEach(() => {
+      redis.set(key, value)
+    })
+
+    it('returns a buffer', () => {
+      return eventuallyExpect(redis.getBuffer(key)).toBeA(Buffer)
+    })
+
+    it('returns the correct value', () => {
+      return eventuallyExpect(redis.getBuffer(key)).toEqual(value)
+    })
+  })
+
+  context('when value for key is a string', () => {
+
+    const key = 'foo'
+    const value = 'bar'
+
+    beforeEach(() => {
+      redis.set(key, value)
+    })
+
+    it('returns a buffer', () => {
+      return eventuallyExpect(redis.getBuffer(key)).toBeA(Buffer)
+    })
+
+    it('returns the correct value', () => {
+      return eventuallyExpect(redis.getBuffer(key)).toEqual(Buffer.from(value))
+    })
+  })
+})
