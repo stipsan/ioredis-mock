@@ -34,20 +34,34 @@ const expectMethods = [
     'withContext'
 ]
 
-export function eventuallyExpect (actual) {
-
-  function wrapMethod(method) {
-    return (...args) => actual.then(result => expect(result)[method](...args));
-  }
+export function eventuallyExpect(actual) {
 
   // ghetto check for promise
   if (!actual.then) {
     return expect(actual);
   }
 
-  return expectMethods
-    .reduce(
-      (obj, method) => Object.assign(obj, { [method]: wrapMethod(method) }),
-      {}
-    );
+  const methods = [];
+
+  const promise = new Promise((resolve, reject) => {
+    actual.then(result => {
+      const expectation = expect(result);
+      try {
+        methods.forEach(method => method(expectation));
+        resolve(true);
+      } catch(e) {
+        reject(e);
+      }
+    })
+  })
+
+  expectMethods
+    .forEach(method => {
+      promise[method] = (...args) => {
+        methods.push(expectation => expectation[method](...args));
+        return promise;
+      }
+    });
+
+  return promise;
 }

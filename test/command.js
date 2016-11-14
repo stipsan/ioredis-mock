@@ -1,9 +1,9 @@
 import expect, { createSpy } from 'expect';
 
-import command from '../src/command';
+import { createCommand, createBufferCommand } from '../src/command';
 
 describe('basic command', () => {
-  const stub = command((...args) => args);
+  const stub = createCommand((...args) => args);
   it('should return a Promise that resolves the returned value', () =>
     stub('OK').then(reply => expect(reply).toEqual(['OK']))
   );

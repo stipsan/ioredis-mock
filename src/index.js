@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import * as commands from './commands';
 import bufferMethods from './buffer-methods';
-import createCommand from './command';
+import { createCommand, createBufferCommand } from './command';
 import createData from './data';
 import createExpires from './expires';
 
@@ -13,14 +14,21 @@ class RedisMock {
 
     this.data = createData(this.expires, data);
 
-    Object
-      .keys(commands)
-      .forEach((command) => {
-        this[command] = createCommand(commands[command].bind(this));
-        if (bufferMethods.includes(command)) {
-          this[`${command}Buffer`] = createCommand(commands[command].bind(this), true);
-        }
-      });
+    // All commands
+    Object.assign(this, _.chain(commands)
+      .mapValues(command => command.bind(this))
+      .mapValues(createCommand)
+      .value()
+    );
+
+    // Buffer commands
+    Object.assign(this, _.chain(commands)
+      .pick(bufferMethods)
+      .mapValues(command => command.bind(this))
+      .mapValues(createBufferCommand)
+      .mapKeys((_, name) => `${name}Buffer`)
+      .value()
+    );
   }
   multi(batch) {
     this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));
