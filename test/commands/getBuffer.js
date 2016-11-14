@@ -1,4 +1,3 @@
-import expect from 'expect'
 import MockRedis from '../../src'
 import { eventuallyExpect } from '../helpers'
 
