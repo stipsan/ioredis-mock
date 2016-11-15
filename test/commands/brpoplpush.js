@@ -1,81 +1,126 @@
 import expect from 'expect';
-
 import MockRedis from '../../src';
+import {
+  createStringItems,
+  createBufferItems,
+  eventuallyExpect
+} from '../helpers'
 
-describe('brpoplpush', () => {
-  it('should remove one item from the tail of the source list', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
+describe('brpoplpush', sharedTests(false, createStringItems()))
+describe('brpoplpushBuffer', sharedTests(true, createBufferItems()))
+
+function sharedTests(isBuffer, items) {
+
+  const command = 'brpoplpush' + (isBuffer ? 'Buffer' : '');
+  const getter = 'get' + (isBuffer ? 'Buffer' : '');
+
+  return () => {
+    it('should remove one item from the tail of the source list', () => {
+
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        fooItems = items(2),
+        remaining = fooItems.slice(0,1)
+
+      redis.rpush(fooKey, ...fooItems)
+
+      return redis[command](fooKey, '')
+        .then(() =>
+          eventuallyExpect(redis[getter](fooKey))
+            .toEqual(remaining));
     });
 
-    return redis.brpoplpush('foo', 'bar')
-      .then(() => expect(redis.data.get('foo')).toEqual(['foo']));
-  });
+    it('should add one item to the head of the destination list', () => {
 
-  it('should add one item to the head of the destination list', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: ['foo', 'bar'],
-        bar: ['baz'],
-      },
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar',
+        fooItems = items(2),
+        barItems = items(2),
+        expected = fooItems.slice(1).concat(barItems)
+
+      redis.rpush(fooKey, ...fooItems)
+      redis.rpush(barKey, ...barItems)
+
+      return redis[command](fooKey, barKey)
+        .then(() =>
+          eventuallyExpect(redis[getter](barKey))
+            .toEqual(expected)
+        );
     });
 
-    return redis.brpoplpush('foo', 'bar')
-      .then(() => expect(redis.data.get('bar')).toEqual(['bar', 'baz']));
-  });
+    it('should return null if the source list does not exist', () => {
 
-  it('should return null if the source list does not exist', () => {
-    const redis = new MockRedis({
-      data: {},
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar'
+
+      return
+        eventuallyExpect(redis[command](fooKey, barKey))
+          .toEqual(null);
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toEqual(null));
-  });
+    it('should return null if the source list is empty', () => {
 
-  it('should return null if the source list is empty', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: [],
-      },
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar'
+
+      redis.rpush(fooKey)
+
+      return
+        eventuallyExpect(redis[command](fooKey, barKey))
+          .toEqual(null);
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toEqual(null));
-  });
+    it('should return the item', () => {
 
-  it('should return the item', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar',
+        fooItems = items(2),
+        expected = fooItems[1]
+
+      redis.rpush(fooKey, ...fooItems)
+
+      return
+        eventuallyExpect(redis[command](fooKey, barKey))
+          .toEqual(expected);
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toBe('bar'));
-  });
+    it('should throw an exception if the source key contains something other than a list', () => {
 
-  it('should throw an exception if the source key contains something other than a list', () => {
-    const redis = new MockRedis({
-      data: {
-        foo: 'not a list',
-        bar: [],
-      },
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar'
+
+      redis.set(fooKey, 'foo')
+
+      return redis[command](fooKey, barKey)
+        .catch(err =>
+          expect(err.message)
+            .toBe(`Key ${fooKey} does not contain a list`));
     });
 
-    return redis.brpoplpush('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
-  });
+    it('should throw an exception if the destination key contains something other than a list', () => {
 
-  it('should throw an exception if the destination key contains something other than a list',
-    () => {
-      const redis = new MockRedis({
-        data: {
-          foo: [],
-          bar: 'not a list',
-        },
+      const
+        redis = new MockRedis(),
+        fooKey = 'foo',
+        barKey = 'bar'
+
+      redis.set(barKey, 'foo')
+
+      return redis[command](fooKey, barKey)
+        .catch(err =>
+          expect(err.message)
+            .toBe(`Key ${barKey} does not contain a list`));
       });
-
-      return redis.brpoplpush('foo', 'bar')
-        .catch(err => expect(err.message).toBe('Key bar does not contain a list'));
-    });
-});
+  };
+}

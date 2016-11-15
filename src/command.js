@@ -3,16 +3,27 @@ import _ from 'lodash';
 
 // transform non-buffer arguments to strings to simulate real ioredis behavior
 function nonBufToString(args) {
-  return args.map(arg => (arg instanceof Buffer) ? arg : arg.toString());
+  return args.map(arg => _.isBuffer(arg) ? arg : arg && arg.toString());
 }
 
 // Convert strings and string values of arrays to buffers
 function toBuf(value) {
-  if (value instanceof String) {
+  if (_.isString(value)) {
     return Buffer.from(value);
   }
-  if (value instanceof Array) {
-    return value.map(v => (v instanceof String) ? Buffer.from(v) : v);
+  if (_.isArray(value)) {
+    return value.map(v => _.isString(v) ? Buffer.from(v) : v);
+  }
+  return value;
+}
+
+// Convert buffers and buffer values of arrays to strings
+function toString(value) {
+  if (_.isBuffer(value)) {
+    return value.toString();
+  }
+  if (_.isArray(value)) {
+    return value.map(v => _.isBuffer(v) ? v.toString() : v);
   }
   return value;
 }
@@ -34,6 +45,7 @@ function commandImpl(pipeline) {
 
 export function createCommand(emulate) {
   const pipeline = _.flowRight([
+    toString,
     _.spread(emulate),
     nonBufToString
   ]);

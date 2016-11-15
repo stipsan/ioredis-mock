@@ -65,3 +65,13 @@ export function eventuallyExpect(actual) {
 
   return promise;
 }
+
+export function createStringItems() {
+  let i = 0;
+  return n => (new Array(n)).fill('').map(() => `msg${i++}`);
+}
+
+export function createBufferItems() {
+  let i = 0;
+  return n => (new Array(n)).fill('').map(() => Buffer.from(`msg${i++}`));
+}
