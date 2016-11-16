@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { chain } from 'lodash';
 import * as commands from './commands';
 import bufferMethods from './buffer-methods';
 import { createCommand, createBufferCommand } from './command';
@@ -15,14 +15,14 @@ class RedisMock {
     this.data = createData(this.expires, data);
 
     // All commands
-    Object.assign(this, _.chain(commands)
+    Object.assign(this, chain(commands)
       .mapValues(command => command.bind(this))
       .mapValues(createCommand)
       .value()
     );
 
     // Buffer commands
-    Object.assign(this, _.chain(commands)
+    Object.assign(this, chain(commands)
       .pick(bufferMethods)
       .mapValues(command => command.bind(this))
       .mapValues(createBufferCommand)

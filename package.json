@@ -11,7 +11,7 @@
     "postversion": "git add package.json && git commit -m \"chore(package): update version\"",
     "build": "mkdirp lib && babel src --out-dir lib",
     "build:watch": "npm run build -- --watch",
-    "test": "mocha --require babel-polyfill --compilers js:babel-register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch --growl",
     "lint": "eslint .",
     "coveralls": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
