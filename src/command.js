@@ -3,11 +3,10 @@ import { flowRight, spread } from 'lodash';
 import {
   bufsToString,
   nonBufsToString,
-  stringsToBuf
+  stringsToBuf,
 } from './utils';
 
 function commandImpl(pipeline) {
-
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -25,7 +24,7 @@ export function createCommand(emulate) {
   const pipeline = flowRight([
     bufsToString,
     spread(emulate),
-    nonBufsToString
+    nonBufsToString,
   ]);
   return commandImpl(pipeline);
 }
@@ -34,7 +33,7 @@ export function createBufferCommand(emulate) {
   const pipeline = flowRight([
     stringsToBuf,
     spread(emulate),
-    nonBufsToString
+    nonBufsToString,
   ]);
   return commandImpl(pipeline);
 }

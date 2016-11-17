@@ -4,5 +4,5 @@ export default [
   'lpop',
   'lrange',
   'rpop',
-  'rpoplpush'
-]
+  'rpoplpush',
+];

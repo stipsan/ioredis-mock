@@ -5,13 +5,13 @@ export function bufsToString(value) {
     return value.toString();
   }
   if (isArray(value)) {
-    return value.map(val => isBuffer(val) ? val.toString() : val);
+    return value.map(val => (isBuffer(val) ? val.toString() : val));
   }
   return value;
 }
 
 export function nonBufsToString(values) {
-  return values.map(value => isBuffer(value) ? value : value && value.toString());
+  return values.map(value => (isBuffer(value) ? value : value && value.toString()));
 }
 
 export function stringsToBuf(value) {
@@ -19,7 +19,7 @@ export function stringsToBuf(value) {
     return Buffer.from(value);
   }
   if (isArray(value)) {
-    return value.map(val => isString(val) ? Buffer.from(val) : val);
+    return value.map(val => (isString(val) ? Buffer.from(val) : val));
   }
   return value;
 }

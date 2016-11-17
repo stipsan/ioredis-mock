@@ -2,7 +2,7 @@ import expect from 'expect';
 import {
   bufsToString,
   nonBufsToString,
-  stringsToBuf
+  stringsToBuf,
 } from '../src/utils';
 
 

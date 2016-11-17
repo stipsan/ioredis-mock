@@ -1,9 +1,7 @@
 import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('lrange', () => {
-
   it('should throw an exception if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {

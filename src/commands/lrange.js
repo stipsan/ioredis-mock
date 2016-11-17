@@ -5,14 +5,14 @@ export function lrange(key, start, stop) {
   const list = this.data.get(key) || [];
 
   if (start >= list.length) {
-    return []
+    return [];
   }
 
-  const modStop = stop + 1
+  const modStop = stop + 1;
 
   if (modStop >= list.length) {
-    return list.slice(start)
+    return list.slice(start);
   }
 
-  return list.slice(start, modStop)
+  return list.slice(start, modStop);
 }

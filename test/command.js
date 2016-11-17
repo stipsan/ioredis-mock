@@ -2,7 +2,6 @@ import expect, { createSpy } from 'expect';
 import { createCommand, createBufferCommand } from '../src/command';
 
 const sharedTests = stub => () => {
-
   it('should return a Promise', () =>
     expect(stub('OK').then).toExist()
   );
@@ -16,7 +15,6 @@ const sharedTests = stub => () => {
 };
 
 describe('basic command', () => {
-
   const stub = createCommand((...args) => args);
 
   describe('shared', sharedTests(stub));
@@ -29,7 +27,6 @@ describe('basic command', () => {
 });
 
 describe('buffer command', () => {
-
   const stub = createBufferCommand((...args) => args);
 
   describe('shared', sharedTests(stub));
