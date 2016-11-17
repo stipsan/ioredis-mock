@@ -1,6 +1,6 @@
 export default [
-  'get',
   'brpoplpush',
+  'get',
   'lpop',
   'lrange',
   'rpop',
