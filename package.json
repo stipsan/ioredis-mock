@@ -1,5 +1,5 @@
 {
-  "name": "ioredis-mock",
+  "name": "@launchpadlab/ioredis-mock",
   "version": "2.2.0",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "main": "./lib",
