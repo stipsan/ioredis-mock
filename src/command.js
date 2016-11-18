@@ -1,6 +1,12 @@
 import Promise from 'bluebird';
+import { flowRight, spread } from 'lodash';
+import {
+  bufsToString,
+  nonBufsToString,
+  stringsToBuf,
+} from './utils';
 
-export default function command(emulate) {
+function commandImpl(pipeline) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -10,11 +16,24 @@ export default function command(emulate) {
       args.length = lastArgIndex; // eslint-disable-line no-param-reassign
     }
 
-    // transform non-buffer arguments to strings to simulate real ioredis behavior
-    const stringArgs = args.map(arg =>                  // eslint-disable-line no-confusing-arrow
-      arg instanceof Buffer ? arg : arg.toString()
-    );
-
-    return new Promise(resolve => resolve(emulate(...stringArgs))).asCallback(callback);
+    return new Promise(resolve => resolve(pipeline(args))).asCallback(callback);
   };
+}
+
+export function createCommand(emulate) {
+  const pipeline = flowRight([
+    bufsToString,
+    spread(emulate),
+    nonBufsToString,
+  ]);
+  return commandImpl(pipeline);
+}
+
+export function createBufferCommand(emulate) {
+  const pipeline = flowRight([
+    stringsToBuf,
+    spread(emulate),
+    nonBufsToString,
+  ]);
+  return commandImpl(pipeline);
 }

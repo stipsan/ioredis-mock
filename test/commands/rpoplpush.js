@@ -46,11 +46,11 @@ describe('rpoplpush', () => {
   it('should return the item', () => {
     const redis = new MockRedis({
       data: {
-        foo: ['foo', 'bar'],
+        foo: ['bar', 'baz'],
       },
     });
 
-    return redis.rpoplpush('foo', 'bar').then(item => expect(item).toBe('bar'));
+    return redis.rpoplpush('foo', 'bar').then(item => expect(item).toBe('baz'));
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
