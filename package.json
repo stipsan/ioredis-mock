@@ -66,7 +66,7 @@
     "ioredis": "2.4.0",
     "istanbul": "1.1.0-alpha.1",
     "mkdirp": "0.5.1",
-    "mocha": "3.1.2",
+    "mocha": "3.2.0",
     "rimraf": "2.5.4"
   },
   "dependencies": {
