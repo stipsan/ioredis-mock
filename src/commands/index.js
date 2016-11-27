@@ -8,7 +8,6 @@ export * from './decr';
 export * from './decrby';
 export * from './del';
 export * from './discard';
-export * from './duplicate';
 export * from './echo';
 export * from './exists';
 export * from './expire';
