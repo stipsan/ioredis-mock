@@ -29,6 +29,8 @@ class RedisMock {
       .mapKeys((_, name) => `${name}Buffer`)
       .value()
     );
+
+    this.duplicate = () => this
   }
   multi(batch) {
     this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));
