@@ -1,11 +1,14 @@
+import EventEmitter from 'events';
+
 import * as commands from './commands';
 
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
 
-class RedisMock {
+class RedisMock extends EventEmitter {
   constructor({ data = {} } = { }) {
+    super();
     this.channels = {};
     this.batch = [];
 
