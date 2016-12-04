@@ -61,7 +61,7 @@
     "eslint-config-airbnb-base": "9.0.0",
     "eslint-plugin-import": "2.2.0",
     "expect": "1.20.2",
-    "gh-release": "2.1.0",
+    "gh-release": "2.2.0",
     "growl": "1.9.2",
     "ioredis": "2.4.0",
     "istanbul": "1.1.0-alpha.1",
