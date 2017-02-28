@@ -19,6 +19,11 @@ class RedisMock extends EventEmitter {
     Object.keys(commands).forEach((command) => {
       this[command] = createCommand(commands[command].bind(this));
     });
+
+    process.nextTick(() => {
+      this.emit('connect');
+      this.emit('ready');
+    });
   }
   multi(batch) {
     this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));
