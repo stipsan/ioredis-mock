@@ -14,6 +14,6 @@ describe('hgetall', () => {
       },
     });
 
-    return redis.hgetall('emails').then(result => expect(result).toBe(emails));
+    return redis.hgetall('emails').then(result => expect(result).toEqual(emails));
   });
 });

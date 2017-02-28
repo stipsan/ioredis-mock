@@ -14,8 +14,14 @@ export function rpoplpush(source, destination) {
     this.data.set(destination, []);
   }
 
-  const item = this.data.get(source).pop();
-  this.data.get(destination).unshift(item);
+  const newSource = this.data.get(source);
+  const item = newSource.pop();
+
+  const newDest = this.data.get(destination);
+  newDest.unshift(item);
+
+  this.data.set(source, newSource);
+  this.data.set(destination, newDest);
 
   return item;
 }

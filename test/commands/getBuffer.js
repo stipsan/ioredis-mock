@@ -27,6 +27,6 @@ describe('getBuffer', () => {
       },
     });
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe(bufferVal));
+    return redis.getBuffer('foo').then(result => expect(result.equals(bufferVal)).toBe(true));
   });
 });

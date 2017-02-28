@@ -4,5 +4,9 @@ export function lpop(key) {
   }
   const list = this.data.get(key) || [];
 
-  return list.length > 0 ? list.shift() : null;
+  const item = list.length > 0 ? list.shift() : null;
+
+  this.data.set(key, list);
+
+  return item;
 }

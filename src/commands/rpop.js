@@ -4,5 +4,9 @@ export function rpop(key) {
   }
   const list = this.data.get(key) || [];
 
-  return list.length > 0 ? list.pop() : null;
+  const item = list.length > 0 ? list.pop() : null;
+
+  this.data.set(key, list);
+
+  return item;
 }
