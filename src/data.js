@@ -1,3 +1,7 @@
+import { assign } from 'lodash';
+
+import createBuffer from './buffer';
+
 export default function createData(expires, initial = {}) {
   let raw = {};
   const data = Object.freeze({
@@ -23,7 +27,7 @@ export default function createData(expires, initial = {}) {
       }
 
       if (Buffer.isBuffer(value)) {
-        return Buffer.from(value);
+        return createBuffer(value);
       }
 
       if (value instanceof Set) {
@@ -31,7 +35,7 @@ export default function createData(expires, initial = {}) {
       }
 
       if (typeof value === 'object' && value) {
-        return Object.assign({}, value);
+        return assign({}, value);
       }
 
       return value;
@@ -52,11 +56,11 @@ export default function createData(expires, initial = {}) {
       if (Array.isArray(val)) {
         item = val.slice();
       } else if (Buffer.isBuffer(val)) {
-        item = Buffer.from(val);
+        item = createBuffer(val);
       } else if (val instanceof Set) {
         item = new Set(val);
       } else if (typeof val === 'object' && val) {
-        item = Object.assign({}, val);
+        item = assign({}, val);
       }
 
       raw[key] = item;
