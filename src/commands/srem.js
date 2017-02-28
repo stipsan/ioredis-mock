@@ -7,5 +7,6 @@ export function srem(key, ...vals) {
     }
     set.delete(val);
   });
+  this.data.set(key, set);
   return removed;
 }

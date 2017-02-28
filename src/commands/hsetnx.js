@@ -4,7 +4,9 @@ export function hsetnx(key, hashKey, hashVal) {
   }
 
   if (!{}.hasOwnProperty.call(this.data.get(key), hashKey)) {
-    this.data.get(key)[hashKey] = hashVal;
+    const hash = this.data.get(key);
+    hash[hashKey] = hashVal;
+    this.data.set(key, hash);
 
     return 1;
   }
