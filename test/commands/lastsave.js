@@ -7,7 +7,7 @@ describe('lastsave', () => {
     const redis = new MockRedis();
 
     return redis.lastsave().then(result =>
-      expect(result).toBeLessThanOrEqualTo(Math.floor(new Date().getTime() / 1000))
+      expect(result).toBeLessThanOrEqualTo(Math.floor(new Date().getTime() / 1000)),
     );
   });
 });

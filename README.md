@@ -1,6 +1,8 @@
 ioredis-mock
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/stipsan/ioredis-mock.svg)](https://greenkeeper.io/)
+
 [![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
 [![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
 [![CircleCI](https://img.shields.io/circleci/project/stipsan/ioredis-mock/master.svg?label=node+matrix)](https://circleci.com/gh/stipsan/ioredis-mock)
