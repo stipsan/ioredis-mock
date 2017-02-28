@@ -5,7 +5,7 @@ import command from '../src/command';
 describe('basic command', () => {
   const stub = command((...args) => args);
   it('should return a Promise that resolves the returned value', () =>
-    stub('OK').then(reply => expect(reply).toEqual(['OK']))
+    stub('OK').then(reply => expect(reply).toEqual(['OK'])),
   );
 
   it('should support node style callbacks', () => {
