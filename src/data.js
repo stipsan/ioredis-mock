@@ -16,7 +16,25 @@ export default function createData(expires, initial = {}) {
         this.delete(key);
       }
 
-      return raw[key];
+      const value = raw[key];
+
+      if (Array.isArray(value)) {
+        return value.slice();
+      }
+
+      if (Buffer.isBuffer(value)) {
+        return Buffer.from(value);
+      }
+
+      if (value instanceof Set) {
+        return new Set(value);
+      }
+
+      if (typeof value === 'object' && value) {
+        return Object.assign({}, value);
+      }
+
+      return value;
     },
     has(key) {
       if (expires.has(key) && expires.isExpired(key)) {
