@@ -47,7 +47,19 @@ export default function createData(expires, initial = {}) {
       return Object.keys(raw);
     },
     set(key, val) {
-      raw[key] = val;
+      let item = val;
+
+      if (Array.isArray(val)) {
+        item = val.slice();
+      } else if (Buffer.isBuffer(val)) {
+        item = Buffer.from(val);
+      } else if (val instanceof Set) {
+        item = new Set(val);
+      } else if (typeof val === 'object' && val) {
+        item = Object.assign({}, val);
+      }
+
+      raw[key] = item;
     },
   });
 

@@ -53,3 +53,44 @@ describe('get', () => {
     expect(data.get('myBuffer')).toEqual(Buffer.from([0x31, 0x32, 0x33]));
   });
 });
+
+describe('set', () => {
+  let data;
+
+  beforeEach(() => {
+    data = createData(createExpires(), {});
+  });
+
+  it('should set string values in the cache', () => {
+    data.set('myString', 'qwerty');
+    expect(data.get('myString')).toEqual('qwerty');
+  });
+
+  it('should set copies of arrays in the cache', () => {
+    const myArray = [1, 2, 3];
+    data.set('myArray', myArray);
+    myArray.push(4);
+    expect(data.get('myArray')).toEqual([1, 2, 3]);
+  });
+
+  it('should set copies of objects in the cache', () => {
+    const myObject = { a: 1, b: 2, c: 3 };
+    data.set('myObject', myObject);
+    myObject.d = 4;
+    expect(data.get('myObject')).toEqual({ a: 1, b: 2, c: 3 });
+  });
+
+  it('should set copies of sets in the cache', () => {
+    const mySet = new Set([1, 2, 3]);
+    data.set('mySet', mySet);
+    mySet.add(4);
+    expect(data.get('mySet')).toEqual(new Set([1, 2, 3]));
+  });
+
+  it('should set copies of buffers in the cache', () => {
+    const myBuffer = Buffer.from([0x31, 0x32, 0x33]);
+    data.set('myBuffer', myBuffer);
+    myBuffer[0] = 0x32;
+    expect(data.get('myBuffer')).toEqual(Buffer.from([0x31, 0x32, 0x33]));
+  });
+});
