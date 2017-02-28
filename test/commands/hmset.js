@@ -11,7 +11,7 @@ describe('hmset', () => {
       .then(() => expect(redis.data.get('user:1')).toEqual(hash));
   });
 
-  it('should let you set multiple hash map keys and values with an object', /* , () => {
+  it('should let you set multiple hash map keys and values with an object' /* , () => {
     const redis = new MockRedis();
     const hash = { id: '1', email: 'bruce@wayne.enterprises' };
     return redis.hmset('user:1', hash)
