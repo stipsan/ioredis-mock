@@ -7,6 +7,6 @@ describe('publish', () => {
     data: {},
   });
   it('should return 0 when publishing', () =>
-    redis.publish('emails', 'clark@daily.planet').then(subscribers => expect(subscribers).toBe(0)),
+    redis.publish('emails', 'clark@daily.planet').then(subscribers => expect(subscribers).toBe(0))
   );
 });
