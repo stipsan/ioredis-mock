@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Add event emitter inheritance. (#248 @xsellier)
 * Trigger connect & ready events on instantiation. (#280 @rexxars)
 
+### Changed
+* Prevent conversion of buffer arguments to strings. (#236 @dpikt)
+
 ## [2.2.0] - 2016-10-31
 
 ### Added
