@@ -1,3 +1,9 @@
 export function hmget(key, ...fields) {
-  return fields.map(field => this.data.get(key)[field] || null);
+  const hash = this.data.get(key);
+  return fields.map((field) => {
+    if (!hash || hash[field] === undefined) {
+      return null;
+    }
+    return hash[field];
+  });
 }
