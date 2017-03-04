@@ -16,4 +16,9 @@ describe('hgetall', () => {
 
     return redis.hgetall('emails').then(result => expect(result).toEqual(emails));
   });
+
+  it('should return an empty object if the hash does not exist', () => {
+    const redis = new MockRedis();
+    return redis.hgetall('emails').then(result => expect(result).toEqual({}));
+  });
 });
