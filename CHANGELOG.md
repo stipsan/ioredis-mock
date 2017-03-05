@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.4.0] - 2017-03-05
 
 ### Features
 * `exec` supports a callback argument. (#290)
@@ -326,7 +326,8 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...HEAD
+[v2.4.0]: https://github.com/stipsan/ioredis-mock/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/stipsan/ioredis-mock/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/stipsan/ioredis-mock/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/stipsan/ioredis-mock/compare/v2.0.0...v2.1.0
