@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixes
 * Don't modify objects passed to or returned from the internal datastore. (#281 @jeffkenney)
+* Fix hash get commands for missing hashes. (#284 @jeffkenney)
 
 ## [2.3.0] - 2017-02-28
 

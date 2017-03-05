@@ -7,8 +7,11 @@ version: '1.0.{build}'
 skip_tags: true
 
 environment:
-  matrix:
-    - nodejs_version: '6'
+  nodejs_version: "6"
+
+platform:
+  - x86
+  - x64
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -19,5 +22,4 @@ test_script: yarn test
 build: off
 
 cache:
-  - node_modules
-  - "%LOCALAPPDATA%/Yarn"
+ - "%LOCALAPPDATA%\\Yarn"
