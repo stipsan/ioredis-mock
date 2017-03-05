@@ -1,4 +1,5 @@
 import EventEmitter from 'events';
+import Promise from 'bluebird';
 
 import * as commands from './commands';
 
@@ -30,9 +31,9 @@ class RedisMock extends EventEmitter {
 
     return this;
   }
-  exec() {
+  exec(callback) {
     return Promise.all(this.batch.map(promise => promise()))
-      .then(results => results.map(result => [null, result]));
+      .then(results => results.map(result => [null, result])).nodeify(callback);
   }
 }
 
