@@ -1,8 +1,12 @@
+machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
 dependencies:
   override:
     - yarn
   cache_directories:
-    - "~/.yarn-cache"
+    - ~/.cache/yarn
 test:
   override:
     - case $CIRCLE_NODE_INDEX in 0) (nvm use 0.12 && yarn test) ;; 1) (nvm use 4.0 && yarn test) ;; esac:
