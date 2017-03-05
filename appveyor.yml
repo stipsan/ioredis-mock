@@ -22,5 +22,4 @@ test_script: yarn test
 build: off
 
 cache:
-  - node_modules
-  - "%LOCALAPPDATA%/Yarn"
+ - "%LOCALAPPDATA%\\Yarn"
