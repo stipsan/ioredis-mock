@@ -1,6 +1,4 @@
 language: node_js
-node_js:
-- "node"
 cache: yarn
 script: "yarn test && yarn lint"
 after_script: yarn coverage
