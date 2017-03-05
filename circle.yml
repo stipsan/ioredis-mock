@@ -1,27 +1,25 @@
+machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
 dependencies:
-  pre:
-    # Install Yarn
-    - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
-    - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update -qq
-    - sudo apt-get install -y -qq yarn
   override:
-    - yarn install
+    - yarn
   cache_directories:
-    - "~/.yarn-cache"
+    - ~/.cache/yarn
 test:
   override:
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 0.12 && npm test) ;; 1) (nvm use 4.0 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 0.12 && npm test) ;; 1) (nvm use 4.0 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 4.1 && npm test) ;; 1) (nvm use 4.2 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 4.1 && yarn test) ;; 1) (nvm use 4.2 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 4.3 && npm test) ;; 1) (nvm use 5.0 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 4.3 && yarn test) ;; 1) (nvm use 5.0 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.1 && npm test) ;; 1) (nvm use 5.2 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.1 && yarn test) ;; 1) (nvm use 5.2 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.3 && npm test) ;; 1) (nvm use 5.4 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.3 && yarn test) ;; 1) (nvm use 5.4 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.5 && npm test) ;; 1) (nvm use 5.6 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.5 && yarn test) ;; 1) (nvm use 5.6 && yarn test) ;; esac:
         parallel: true
-    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.7 && npm test) ;; 1) (nvm use 6.1 && npm test) ;; esac:
+    - case $CIRCLE_NODE_INDEX in 0) (nvm use 5.7 && yarn test) ;; 1) (nvm use 6.1 && yarn test) ;; esac:
         parallel: true
