@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Fixes
+* Don't modify objects passed to or returned from the internal datastore. (#281 @jeffkenney)
+* Fix hash get commands for missing hashes. (#284 @jeffkenney)
+
 ## [2.3.0] - 2017-02-28
 
 ### Added
@@ -15,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Prevent conversion of buffer arguments to strings. (#236 @dpikt)
 
 ### Misc
-* updated all dependencies to latest stable versions (@greenkeeperio-bot)
+* updated all dependencies to latest stable versions. (@greenkeeperio-bot)
 
 ## [2.2.0] - 2016-10-31
 
