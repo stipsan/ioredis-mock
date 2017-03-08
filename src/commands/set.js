@@ -9,8 +9,8 @@ function createGroupedArray(arr, groupSize) {
 }
 
 export function set(key, value, ...options) {
-  const nx = options.includes('NX');
-  const xx = options.includes('XX');
+  const nx = options.indexOf('NX') !== -1;
+  const xx = options.indexOf('XX') !== -1;
   const filteredOptions = options.filter(option => option !== 'NX' && option !== 'XX');
 
   if (nx && xx) throw new Error('ERR syntax error');
