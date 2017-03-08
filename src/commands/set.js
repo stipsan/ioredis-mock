@@ -13,7 +13,7 @@ export function set(key, value, ...options) {
   const xx = options.includes('XX');
   const filteredOptions = options.filter(option => option !== 'NX' && option !== 'XX');
 
-  if (nx && xx) return null;
+  if (nx && xx) throw new Error('ERR syntax error');
   if (nx && this.data.has(key)) return null;
   if (xx && !this.data.has(key)) return null;
 
