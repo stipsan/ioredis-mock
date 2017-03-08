@@ -24,6 +24,8 @@ export function set(key, value, ...options) {
 
   if (ttlSeconds) {
     expire.call(this, key, ttlSeconds);
+  } else {
+    this.expires.delete(key);
   }
 
   return 'OK';
