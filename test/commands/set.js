@@ -15,6 +15,15 @@ describe('set', () => {
       .then(() => expect(redis.data.get('foo')).toBe('1.5'));
   });
 
+  it('should set value and expire', () => {
+    const redis = new MockRedis();
+    return redis.set('foo', 'bar', 'EX', 1).then(status => expect(status).toBe('OK'))
+      .then(() => {
+        expect(redis.data.get('foo')).toBe('bar');
+        expect(redis.expires.has('foo')).toBe(true);
+      });
+  });
+
   it('should throw an exception if both NX and XX are specified', () => {
     const redis = new MockRedis();
 
