@@ -2,10 +2,9 @@ language: node_js
 node_js:
 - "node"
 cache: yarn
+before_install: "bash <(curl -sL https://gist.github.com/stipsan/e69536d1a22c08e6e4feb4e14844face/raw/)"
 script: "yarn test && yarn lint"
 after_script: yarn coverage
-after_success:
-  - bash yarn.sh
 notifications:
   email: false
 addons:
