@@ -16,12 +16,12 @@ describe('discard', () => {
     });
   });
 
-  it('errors if you discard without starting a pipeline', function() {
-      const redis = new MockRedis();
+  it('errors if you discard without starting a pipeline', () => {
+    const redis = new MockRedis();
 
-      return redis.discard()
-      .catch( (err) => {
-          expect(err).toBeA(Error);
+    return redis.discard()
+      .catch((err) => {
+        expect(err).toBeA(Error);
       });
   });
 });

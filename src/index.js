@@ -9,7 +9,7 @@ import createExpires from './expires';
 import Pipeline from './pipeline';
 
 class RedisMock extends EventEmitter {
-  constructor({ data = {} } = { }) {
+  constructor({ data = {} } = {}) {
     super();
     this.channels = {};
     this.batch = undefined;
@@ -27,7 +27,7 @@ class RedisMock extends EventEmitter {
       this.emit('ready');
     });
   }
-  multi(batch=[]) {
+  multi(batch = []) {
     this.batch = new Pipeline(this);
 
     batch.forEach(([command, ...options]) => this.batch[command](...options));
@@ -35,12 +35,12 @@ class RedisMock extends EventEmitter {
     return this.batch;
   }
   pipeline() {
-      this.batch = new Pipeline(this);
-      return this.batch;
+    this.batch = new Pipeline(this);
+    return this.batch;
   }
   exec(callback) {
     if (!this.batch) {
-        return Promise.reject(new Error('ERR EXEC without MULTI'));
+      return Promise.reject(new Error('ERR EXEC without MULTI'));
     }
     const pipeline = this.batch;
     this.batch = undefined;

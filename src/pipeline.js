@@ -1,4 +1,3 @@
-import EventEmitter from 'events';
 import Promise from 'bluebird';
 
 import * as commands from './commands';
@@ -14,11 +13,11 @@ function createCommand(pipeline, emulate) {
     }
 
     // transform non-buffer arguments to strings to simulate real ioredis behavior
-    const stringArgs = args.map(arg =>                  // eslint-disable-line no-confusing-arrow
+    const stringArgs = args.map(arg => // eslint-disable-line no-confusing-arrow
       arg instanceof Buffer ? arg : arg.toString()
     );
 
-    pipeline.batch.push( () => emulate(...stringArgs) );
+    pipeline.batch.push(() => emulate(...stringArgs));
     return pipeline;
   };
 }
@@ -34,7 +33,7 @@ class Pipeline {
   exec(callback) {
     const batch = this.batch;
     this.batch = [];
-    return Promise.resolve(batch.map(cmd => [null, cmd()] )).asCallback(callback);
+    return Promise.resolve(batch.map(cmd => [null, cmd()])).asCallback(callback);
   }
 }
 

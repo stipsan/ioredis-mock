@@ -17,26 +17,26 @@ describe('multi', () => {
     expect(redis.batch.batch[1]).toBeA('function');
   });
 
-  it('allows for pipelining methods', function() {
+  it('allows for pipelining methods', () => {
     const redis = new MockRedis();
 
     return redis.pipeline()
-    .incr('user_next')
-    .incr('post_next')
-    .exec()
-    .then( (results) => {
+      .incr('user_next')
+      .incr('post_next')
+      .exec()
+      .then((results) => {
         expect(results).toBeA('array');
         expect(results.length).toBe(2);
         expect(results[0]).toEqual([null, 1]);
         expect(results[1]).toEqual([null, 1]);
-    });
+      });
   });
 
-  it('errors if you exec without starting a pipeline', function() {
-      const redis = new MockRedis();
+  it('errors if you exec without starting a pipeline', () => {
+    const redis = new MockRedis();
 
-      return redis.exec().catch( (err) => {
-          expect(err).toBeA(Error);
-      })
+    return redis.exec().catch((err) => {
+      expect(err).toBeA(Error);
+    });
   });
 });
