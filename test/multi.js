@@ -31,4 +31,12 @@ describe('multi', () => {
         expect(results[1]).toEqual([null, 1]);
     });
   });
+
+  it('errors if you exec without starting a pipeline', function() {
+      const redis = new MockRedis();
+
+      return redis.exec().catch( (err) => {
+          expect(err).toBeA(Error);
+      })
+  });
 });

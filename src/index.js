@@ -40,7 +40,7 @@ class RedisMock extends EventEmitter {
   }
   exec(callback) {
     if (!this.batch) {
-        return Promise.reject('ERR EXEC without MULTI');
+        return Promise.reject(new Error('ERR EXEC without MULTI'));
     }
     const pipeline = this.batch;
     this.batch = undefined;
