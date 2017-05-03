@@ -12,7 +12,7 @@ describe('discard', () => {
     ]);
     return redis.discard().then((result) => {
       expect(result).toBe('OK');
-      expect(redis.batch.length).toBe(0);
+      expect(redis.batch).toBe(undefined);
     });
   });
 });

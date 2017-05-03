@@ -6,12 +6,13 @@ import * as commands from './commands';
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
+import Pipeline from './pipeline';
 
 class RedisMock extends EventEmitter {
   constructor({ data = {} } = { }) {
     super();
     this.channels = {};
-    this.batch = [];
+    this.batch = undefined;
 
     this.expires = createExpires();
 
@@ -26,14 +27,24 @@ class RedisMock extends EventEmitter {
       this.emit('ready');
     });
   }
-  multi(batch) {
-    this.batch = batch.map(([command, ...options]) => this[command].bind(this, ...options));
+  multi(batch=[]) {
+    this.batch = new Pipeline(this);
 
-    return this;
+    batch.forEach(([command, ...options]) => this.batch[command](...options));
+
+    return this.batch;
+  }
+  pipeline() {
+      this.batch = new Pipeline(this);
+      return this.batch;
   }
   exec(callback) {
-    return Promise.all(this.batch.map(promise => promise()))
-      .then(results => results.map(result => [null, result])).nodeify(callback);
+    if (!this.batch) {
+        return Promise.reject('ERR EXEC without MULTI');
+    }
+    const pipeline = this.batch;
+    this.batch = undefined;
+    return pipeline.exec(callback);
   }
 }
 
