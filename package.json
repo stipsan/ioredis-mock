@@ -48,7 +48,7 @@
   "tonicExampleFilename": "example.js",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "peerDependencies": {
-    "ioredis": "2.x"
+    "ioredis": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
