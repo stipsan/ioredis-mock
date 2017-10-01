@@ -22,15 +22,15 @@ jobs:
 
       # ioredis supports version 0.10.16 and later
       # @TODO we don't support v0.10
-      # - run: npx -p node-bin@0.10.16 -- npm test
+      # - run: npx -p node-bin@0.10.16 -p npm@1 -- npm test
 
       # yarn itself only supports v4 and later
-      - run: npx -p node-bin@0.11 -- npm test
+      - run: npx -p node-bin@0.11 -p npm@2 -- npm test
 
-      - run: npx -p node-bin@0.12 -- npm test
+      - run: npx -p node-bin@0.12 -p npm@3 -- npm test
 
       # @TODO submit fix to iojs-bin to make this command possible
-      # - run: npx -p iojs-bin -- npm test
+      # - run: npx -p iojs-bin  -p npm@3 -- npm test
 
       - run: npx -p node-bin@4 -- yarn test
 
