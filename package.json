@@ -11,6 +11,7 @@
     "postversion": "git add package.json && git commit -m \"chore(package): update version\"",
     "build": "mkdirp lib && babel src --out-dir lib",
     "build:watch": "npm run build -- --watch",
+    "pretest": "printf \"node \" && node --version",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch --growl",
     "lint": "eslint .",
