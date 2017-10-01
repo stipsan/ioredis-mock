@@ -69,7 +69,7 @@ fs.readFile(readme, 'utf8', (err, readmeMd) => {
 
   fs.writeFile(readme, readmeMd.toString().replace(
     /\[!\[.+\(compat\.md\)/g,
-    `[![Redis Compatibility: ${percentage}%](https://img.shields.io/badge/redis-${percentage}%25-${color}.svg)](compat.md)`
+    `[![Redis Compatibility: ${percentage}%](https://img.shields.io/badge/redis-${percentage}%25-${color}.svg?style=flat-square)](compat.md)`
   ), 'utf8', (err2) => {
     if (err2) throw err2;
   });
