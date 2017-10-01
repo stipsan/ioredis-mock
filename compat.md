@@ -10,6 +10,7 @@
 |[bitfield](http://redis.io/commands/BITFIELD)|:white_check_mark:|:x:|
 |[bitop](http://redis.io/commands/BITOP)|:white_check_mark:|:x:|
 |[bitpos](http://redis.io/commands/BITPOS)|:white_check_mark:|:x:|
+|[blpop](http://redis.io/commands/BLPOP)|:white_check_mark:|:x:|
 |[brpop](http://redis.io/commands/BRPOP)|:white_check_mark:|:x:|
 |[brpoplpush](http://redis.io/commands/BRPOPLPUSH)|:white_check_mark:|:white_check_mark:|
 |[client](http://redis.io/commands/CLIENT)|:white_check_mark:|:x:|
