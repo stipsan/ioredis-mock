@@ -18,7 +18,7 @@ jobs:
 
       - run: yarn lint
 
-      - run: npm install -g npx
+      - run: sudo npm install -g npx
 
       # ioredis supports version 0.10.16 and later
       # @TODO we don't support v0.10
