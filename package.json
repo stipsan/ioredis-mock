@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "prepublish": "npm run clean && npm run build",
+    "prepush": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"Chore: Update feature compat table\" &> /dev/null || true",
     "preversion": "node scripts/update-compat && git add . && git commit --allow-empty -m \"chore(compat): update feature table\"",
     "postversion": "git add package.json && git commit -m \"chore(package): update version\"",
     "build": "mkdirp lib && babel src --out-dir lib",
