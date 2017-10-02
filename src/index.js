@@ -7,10 +7,6 @@ import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
 
-//const {EventEmitter} = require('events')
-
-console.log(EventEmitter)
-
 class RedisMock extends EventEmitter {
   constructor({ data = {} } = { }) {
     super();

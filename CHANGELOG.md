@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.2] - 2017-10-02
+### Fixes
+* Add back support for node v0.10.x like ioredis
+
 ## [3.0.1] - 2017-10-02
 ### Fixes
 * Remove README and RunKit references to old import style
@@ -342,7 +346,8 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/stipsan/ioredis-mock/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/stipsan/ioredis-mock/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/stipsan/ioredis-mock/compare/v2.4.1...v3.0.0
 [2.4.1]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...v2.4.1
