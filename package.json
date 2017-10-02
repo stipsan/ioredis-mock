@@ -61,7 +61,6 @@
     "babel-cli": "6.24.1",
     "babel-eslint": "7.2.1",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "6.24.0",
     "babel-register": "6.24.0",
     "codeclimate-test-reporter": "0.4.1",
     "coveralls": "2.13.0",
@@ -76,11 +75,13 @@
     "mkdirp": "0.5.1",
     "mocha": "3.2.0",
     "release-relief": "^1.0.1",
-    "rimraf": "2.6.1"
+    "rimraf": "2.6.1",
+    "semver": "^5.4.1"
   },
   "dependencies": {
     "array-from": "^2.1.1",
     "bluebird": "3.5.0",
+    "es6-map": "^0.1.5",
     "es6-set": "^0.1.4",
     "lodash": "4.17.4",
     "minimatch": "3.0.3",
