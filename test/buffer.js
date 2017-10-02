@@ -3,11 +3,11 @@ import expect from 'expect';
 
 import createBuffer from '../src/buffer';
 
-const shouldSkip = semver.lt(process.versions.node, '0.11.0')
+const shouldSkip = semver.lt(process.versions.node, '0.11.0');
 
 describe('createBuffer', () => {
-  before(function() {
-    if(shouldSkip) {
+  before(function () {
+    if (shouldSkip) {
       this.skip();
     }
   });

@@ -3,7 +3,7 @@ import expect, { createSpy } from 'expect';
 
 import command from '../src/command';
 
-const shouldSkip = semver.lt(process.versions.node, '0.11.0')
+const shouldSkip = semver.lt(process.versions.node, '0.11.0');
 
 describe('basic command', () => {
   const stub = command((...args) => args);
@@ -16,8 +16,8 @@ describe('basic command', () => {
     return stub(spy).then(() => expect(spy).toHaveBeenCalled());
   });
 
-  it('should convert non-buffer arguments to strings', function() {
-    if(shouldSkip) {
+  it('should convert non-buffer arguments to strings', function () {
+    if (shouldSkip) {
       this.skip();
     }
     const args = [new Buffer('foo'), 'bar', 1];
