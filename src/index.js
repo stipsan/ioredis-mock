@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import {EventEmitter} from 'events'
 import Promise from 'bluebird';
 
 import * as commands from './commands';
@@ -6,6 +6,10 @@ import * as commands from './commands';
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
+
+//const {EventEmitter} = require('events')
+
+console.log(EventEmitter)
 
 class RedisMock extends EventEmitter {
   constructor({ data = {} } = { }) {
