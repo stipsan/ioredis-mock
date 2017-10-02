@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.1] - 2017-10-02
+### Fixes
+* Allow ioredis 3 as peer dependency (#317 @aruberto)
+
 ## [2.4.0] - 2017-03-05
 
 ### Features
@@ -327,7 +331,8 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...HEAD
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v2.4.1...HEAD
+[2.4.1]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/stipsan/ioredis-mock/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/stipsan/ioredis-mock/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/stipsan/ioredis-mock/compare/v2.1.0...v2.2.0
