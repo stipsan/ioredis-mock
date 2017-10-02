@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.0.1] - 2017-10-02
+### Fixes
+* Remove README and RunKit references to old import style
+
+## [3.0.0] - 2017-10-02
 ### Changed
 * Use module.exports to be in line with ioredis (#311 @rexxars)
 
@@ -336,7 +342,9 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v2.4.1...HEAD
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/stipsan/ioredis-mock/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/stipsan/ioredis-mock/compare/v2.4.1...v3.0.0
 [2.4.1]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/stipsan/ioredis-mock/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/stipsan/ioredis-mock/compare/v2.2.0...v2.3.0
