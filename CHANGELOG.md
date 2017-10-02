@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 * Use module.exports to be in line with ioredis (#311 @rexxars)
 
+### Fixes
+* Error thrown in sismember() if key does not exist (#318 @theogravity)
+
 ## [2.4.1] - 2017-10-02
 ### Fixes
 * Allow ioredis 3 as peer dependency (#317 @aruberto)
