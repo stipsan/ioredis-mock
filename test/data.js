@@ -1,3 +1,4 @@
+import Set from 'es6-set';
 import expect from 'expect';
 
 import createBuffer from '../src/buffer';
