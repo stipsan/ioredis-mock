@@ -7,6 +7,7 @@
   "rules": {
     "import/prefer-default-export": "off",
     "no-plusplus": "off",
+    "func-names": "off",
     "comma-dangle": ["error", {
         "arrays": "always-multiline",
         "objects": "always-multiline",

@@ -1,3 +1,4 @@
+import Set from 'es6-set';
 import { assign } from 'lodash';
 
 import createBuffer from './buffer';
