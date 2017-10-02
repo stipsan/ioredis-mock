@@ -37,4 +37,4 @@ class RedisMock extends EventEmitter {
   }
 }
 
-export default RedisMock;
+module.exports = RedisMock;
