@@ -1,18 +1,4 @@
-ioredis-mock
-============
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/stipsan/ioredis-mock.svg)](https://greenkeeper.io/)
-
-[![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?label=windows)](https://ci.appveyor.com/project/stipsan/ioredis-mock)
-[![Travis branch](https://img.shields.io/travis/stipsan/ioredis-mock/master.svg?label=linux)](https://travis-ci.org/stipsan/ioredis-mock)
-[![CircleCI](https://img.shields.io/circleci/project/stipsan/ioredis-mock/master.svg?label=node+matrix)](https://circleci.com/gh/stipsan/ioredis-mock)
-[![Code Climate](https://codeclimate.com/github/stipsan/ioredis-mock/badges/gpa.svg)](https://codeclimate.com/github/stipsan/ioredis-mock)
-[![Coverage Status](https://coveralls.io/repos/github/stipsan/ioredis-mock/badge.svg)](https://coveralls.io/github/stipsan/ioredis-mock)
-[![Redis Compatibility: 49%](https://img.shields.io/badge/redis-49%25-yellow.svg)](compat.md)
-[![npm package](https://img.shields.io/npm/dm/ioredis-mock.svg)](https://www.npmjs.com/package/ioredis-mock)
-
-[![NPM](https://nodei.co/npm/ioredis-mock.png?downloadRank=true)](https://www.npmjs.com/package/ioredis-mock)
-[![NPM](https://nodei.co/npm-dl/ioredis-mock.png?months=3&height=2)](https://nodei.co/npm/ioredis-mock/)
+# ioredis-mock &middot; [![CircleCI Status](https://img.shields.io/circleci/project/github/stipsan/ioredis-mock.svg?style=flat-square)](https://circleci.com/gh/stipsan/ioredis-mock) [![AppVeyor branch](https://img.shields.io/appveyor/ci/stipsan/ioredis-mock/master.svg?style=flat-square&label=win)](https://ci.appveyor.com/project/stipsan/ioredis-mock)  [![npm](https://img.shields.io/npm/dm/ioredis-mock.svg?style=flat-square)](https://npm-stat.com/charts.html?package=ioredis-mock) [![npm version](https://img.shields.io/npm/v/ioredis-mock.svg?style=flat-square)](https://www.npmjs.com/package/ioredis-mock) [![Redis Compatibility: 49%](https://img.shields.io/badge/redis-49%25-yellow.svg?style=flat-square)](compat.md) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 This library emulates [ioredis](https://github.com/luin/ioredis) by performing all operations in-memory.
 The best way to do integration testing against redis and ioredis is on a real redis-server instance.
