@@ -6,7 +6,7 @@ import createBuffer from '../src/buffer';
 import createData from '../src/data';
 import createExpires from '../src/expires';
 
-const shouldSkip = semver.lt(process.versions.node, '0.11.0')
+const shouldSkip = semver.lt(process.versions.node, '0.11.0');
 
 describe('createData', () => {
   const expires = createExpires();
