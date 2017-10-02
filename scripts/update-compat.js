@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const commands = require('redis-commands');
 const redis = require('ioredis');
-const RedisMock = require('../src').default;
+const RedisMock = require('../src');
 
 const mockedRedis = new RedisMock();
 

@@ -16,7 +16,7 @@ Check the [compatibility table](compat.md) for supported redis commands.
 ## Usage ([try it in your browser](https://runkit.com/npm/ioredis-mock))
 
 ```js
-var RedisMock = require('ioredis-mock').default;
+var RedisMock = require('ioredis-mock');
 var redis = new RedisMock({
   data: {
     user_next: '3',
