@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import Promise from 'bluebird';
 
 import * as commands from './commands';
@@ -48,4 +48,4 @@ class RedisMock extends EventEmitter {
   }
 }
 
-export default RedisMock;
+module.exports = RedisMock;

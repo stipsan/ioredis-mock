@@ -1,4 +1,4 @@
-var RedisMock = require('ioredis-mock').default;
+var RedisMock = require('ioredis-mock');
 var redis = new RedisMock({
   data: {
     user_next: '3',
