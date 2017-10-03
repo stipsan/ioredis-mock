@@ -11,7 +11,7 @@
     "pretest": "printf \"node \" && node --version",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch --growl",
-    "lint": "eslint .",
+    "lint": "./node_modules/.bin/eslint .",
     "coveralls": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "coverage": "npm run coveralls && npm run codeclimate",

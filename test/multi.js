@@ -10,9 +10,33 @@ describe('multi', () => {
       ['incr', 'user_next'],
       ['incr', 'post_next'],
     ]);
-    expect(redis.batch).toBeA('array');
-    expect(redis.batch.length).toBe(2);
-    expect(redis.batch[0]).toBeA('function');
-    expect(redis.batch[1]).toBeA('function');
+    expect(redis.batch).toBeA('object');
+    expect(redis.batch.batch).toBeA('array');
+    expect(redis.batch.batch.length).toBe(2);
+    expect(redis.batch.batch[0]).toBeA('function');
+    expect(redis.batch.batch[1]).toBeA('function');
+  });
+
+  it('allows for pipelining methods', () => {
+    const redis = new MockRedis();
+
+    return redis.pipeline()
+      .incr('user_next')
+      .incr('post_next')
+      .exec()
+      .then((results) => {
+        expect(results).toBeA('array');
+        expect(results.length).toBe(2);
+        expect(results[0]).toEqual([null, 1]);
+        expect(results[1]).toEqual([null, 1]);
+      });
+  });
+
+  it('errors if you exec without starting a pipeline', () => {
+    const redis = new MockRedis();
+
+    return redis.exec().catch((err) => {
+      expect(err).toBeA(Error);
+    });
   });
 });
