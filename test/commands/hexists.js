@@ -1,3 +1,7 @@
+import expect from 'expect';
+
+import MockRedis from '../../src';
+
 describe('hexists', () => {
   context('hash exists', () => {
     const redis = new MockRedis({
