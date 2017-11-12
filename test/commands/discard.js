@@ -12,7 +12,16 @@ describe('discard', () => {
     ]);
     return redis.discard().then((result) => {
       expect(result).toBe('OK');
-      expect(redis.batch.length).toBe(0);
+      expect(redis.batch).toBe(undefined);
     });
+  });
+
+  it('errors if you discard without starting a pipeline', () => {
+    const redis = new MockRedis();
+
+    return redis.discard()
+      .catch((err) => {
+        expect(err).toBeA(Error);
+      });
   });
 });

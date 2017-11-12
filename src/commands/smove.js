@@ -18,12 +18,15 @@ export function smove(source, destination, member) {
   }
 
   sourceSet.delete(member);
+  this.data.set(source, sourceSet);
 
   if (!this.data.has(destination)) {
     this.data.set(destination, new Set());
   }
 
-  this.data.get(destination).add(member);
+  const destSet = this.data.get(destination);
+  destSet.add(member);
+  this.data.set(destination, destSet);
 
   return 1;
 }

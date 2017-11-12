@@ -10,5 +10,7 @@ export function lset(key, i, value) {
   const index = parseInt(i, 10);
   const list = this.data.get(key) || [];
   list[index < 0 ? list.length + index : index] = value;
+  this.data.set(key, list);
+
   return 'OK';
 }

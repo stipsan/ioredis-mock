@@ -12,5 +12,6 @@ export function sadd(key, ...vals) {
     }
     set.add(value);
   });
+  this.data.set(key, set);
   return added;
 }

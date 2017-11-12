@@ -1,5 +1,7 @@
 export function discard() {
-  this.batch.length = 0;
-
+  if (!this.batch) {
+    throw new Error('ERR DISCARD without MULTI');
+  }
+  this.batch = undefined;
   return 'OK';
 }

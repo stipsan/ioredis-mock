@@ -1,4 +1,5 @@
 .babelrc
+.codeclimate.yml
 coverage
 src
 test

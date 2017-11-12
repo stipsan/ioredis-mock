@@ -12,5 +12,7 @@ export function hset(key, hashKey, hashVal) {
 
   hash[hashKey] = hashVal;
 
+  this.data.set(key, hash);
+
   return reply;
 }

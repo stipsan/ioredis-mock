@@ -1,9 +1,62 @@
-# ioredis-mock change log
-
+# Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [3.1.2] - 2017-11-09
+### Fixes
+* Fixed hexists edge cases (#331 @wraytw) 
+
+## [3.1.1] - 2017-10-19
+### Fixes
+* Ignore codeclimate in npm package
+
+## [3.1.0] - 2017-10-03
+### Features
+* Add `pipeline` with method chaining (#312 @funnisimo)
+
+## [3.0.2] - 2017-10-02
+### Fixes
+* Add back support for node v0.10.x like ioredis
+
+## [3.0.1] - 2017-10-02
+### Fixes
+* Remove README and RunKit references to old import style
+
+## [3.0.0] - 2017-10-02
+### Changed
+* Use module.exports to be in line with ioredis (#311 @rexxars)
+
+### Fixes
+* Error thrown in sismember() if key does not exist (#318 @theogravity)
+
+## [2.4.1] - 2017-10-02
+### Fixes
+* Allow ioredis 3 as peer dependency (#317 @aruberto)
+
+## [2.4.0] - 2017-03-05
+
+### Features
+* `exec` supports a callback argument. (#290)
+
+### Fixes
+* Don't modify objects passed to or returned from the internal datastore. (#281 @jeffkenney)
+* Fix hash get commands for missing hashes. (#284 @jeffkenney)
+
+## [2.3.0] - 2017-02-28
+
+### Added
+* Add event emitter inheritance. (#248 @xsellier)
+* Trigger connect & ready events on instantiation. (#280 @rexxars)
+
+### Changed
+* Prevent conversion of buffer arguments to strings. (#236 @dpikt)
+
+### Misc
+* updated all dependencies to latest stable versions. (@greenkeeperio-bot)
 
 ## [2.2.0] - 2016-10-31
 
@@ -305,6 +358,16 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...HEAD
+[3.1.2]: https://github.com/stipsan/ioredis-mock/compare/v3.1.1...v3.1.2
+[3.1.1]: https://github.com/stipsan/ioredis-mock/compare/v3.1.0...v3.1.1
+[3.1.0]: https://github.com/stipsan/ioredis-mock/compare/v3.0.2...v3.1.0
+[3.0.2]: https://github.com/stipsan/ioredis-mock/compare/v3.0.1...v3.0.2
+[3.0.1]: https://github.com/stipsan/ioredis-mock/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/stipsan/ioredis-mock/compare/v2.4.1...v3.0.0
+[2.4.1]: https://github.com/stipsan/ioredis-mock/compare/v2.4.0...v2.4.1
+[2.4.0]: https://github.com/stipsan/ioredis-mock/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/stipsan/ioredis-mock/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/stipsan/ioredis-mock/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/stipsan/ioredis-mock/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/stipsan/ioredis-mock/compare/v1.15.0...v2.0.0

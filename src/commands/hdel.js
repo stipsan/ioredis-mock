@@ -1,9 +1,12 @@
 export function hdel(key, ...fields) {
-  return fields.filter((field) => {
-    if ({}.hasOwnProperty.call(this.data.get(key), field)) {
-      delete this.data.get(key)[field];
+  const value = this.data.get(key);
+  const numDeleted = fields.filter((field) => {
+    if ({}.hasOwnProperty.call(value, field)) {
+      delete value[field];
       return true;
     }
     return false;
   }).length;
+  this.data.set(key, value);
+  return numDeleted;
 }
