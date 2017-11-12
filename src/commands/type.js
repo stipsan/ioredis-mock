@@ -1,7 +1,8 @@
 import Set from 'es6-set';
 import { isArray, isPlainObject, isString } from 'lodash';
 
-export function type(key) { // eslint-disable-line consistent-return
+export function type(key) {
+  // eslint-disable-line consistent-return
   if (!this.data.has(key)) {
     return 'none';
   }
