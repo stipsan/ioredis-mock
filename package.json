@@ -72,8 +72,11 @@
     "husky": "^0.14.3",
     "ioredis": "^3.1.1",
     "istanbul": "1.1.0-alpha.1",
+    "lint-staged": "^5.0.0",
     "mkdirp": "0.5.1",
     "mocha": "3.2.0",
+    "prettier": "^1.8.2",
+    "prettier-package-json": "^1.4.0",
     "release-relief": "^1.0.1",
     "rimraf": "2.6.1",
     "semver": "^5.4.1"
