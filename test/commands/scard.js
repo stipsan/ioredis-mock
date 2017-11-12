@@ -15,10 +15,7 @@ describe('scard', () => {
   });
 
   it('should return 0 if the set does not exist', () => {
-    const redis = new MockRedis({
-      data: {
-      },
-    });
+    const redis = new MockRedis();
 
     return redis.scard('foo').then(length => expect(length).toBe(0));
   });

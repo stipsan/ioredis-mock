@@ -27,9 +27,7 @@ describe('rpoplpushBuffer', () => {
   });
 
   it('should return null if the source list does not exist', () => {
-    const redis = new MockRedis({
-      data: {},
-    });
+    const redis = new MockRedis();
 
     return redis.rpoplpushBuffer('foo', 'bar').then(item => expect(item).toEqual(null));
   });
