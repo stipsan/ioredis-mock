@@ -10,22 +10,24 @@ describe('sdiff', () => {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
         // key3: keys that do not exist are considered to be empty sets
-        key4: new Set(['a', 'c', 'e']),
-      },
+        key4: new Set(['a', 'c', 'e'])
+      }
     });
 
-    return redis.sdiff('key1', 'key2', 'key3', 'key4')
+    return redis
+      .sdiff('key1', 'key2', 'key3', 'key4')
       .then(result => expect(result).toEqual(['b', 'd']));
   });
 
   it('should throw an exception if the first key is not of a set', () => {
     const redis = new MockRedis({
       data: {
-        foo: 'not a set',
-      },
+        foo: 'not a set'
+      }
     });
 
-    return redis.sdiff('foo', 'bar')
+    return redis
+      .sdiff('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 
@@ -33,11 +35,18 @@ describe('sdiff', () => {
     const redis = new MockRedis({
       data: {
         foo: new Set(),
-        bar: 'not a set',
-      },
+        bar: 'not a set'
+      }
     });
 
-    return redis.sdiff('foo', 'bar')
+    return redis
+      .sdiff('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
+  });
+
+  it("should return empty array if sources don't exists", () => {
+    const redis = new MockRedis();
+
+    return redis.sdiff('foo', 'bar').then(result => expect(result).toEqual([]));
   });
 });

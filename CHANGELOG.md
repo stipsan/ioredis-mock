@@ -1,94 +1,133 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+and this project adheres to
+[Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [3.1.2] - 2017-11-09
+## [3.1.3] - 2017-11-12
+
 ### Fixes
-* Fixed hexists edge cases (#331 @wraytw) 
+
+* Fixed errors in smembers and srem when no data is set (#332)
+
+## [3.1.2] - 2017-11-09
+
+### Fixes
+
+* Fixed hexists edge cases (#331 @wraytw)
 
 ## [3.1.1] - 2017-10-19
+
 ### Fixes
+
 * Ignore codeclimate in npm package
 
 ## [3.1.0] - 2017-10-03
+
 ### Features
+
 * Add `pipeline` with method chaining (#312 @funnisimo)
 
 ## [3.0.2] - 2017-10-02
+
 ### Fixes
+
 * Add back support for node v0.10.x like ioredis
 
 ## [3.0.1] - 2017-10-02
+
 ### Fixes
+
 * Remove README and RunKit references to old import style
 
 ## [3.0.0] - 2017-10-02
+
 ### Changed
+
 * Use module.exports to be in line with ioredis (#311 @rexxars)
 
 ### Fixes
+
 * Error thrown in sismember() if key does not exist (#318 @theogravity)
 
 ## [2.4.1] - 2017-10-02
+
 ### Fixes
+
 * Allow ioredis 3 as peer dependency (#317 @aruberto)
 
 ## [2.4.0] - 2017-03-05
 
 ### Features
+
 * `exec` supports a callback argument. (#290)
 
 ### Fixes
-* Don't modify objects passed to or returned from the internal datastore. (#281 @jeffkenney)
+
+* Don't modify objects passed to or returned from the internal datastore. (#281
+  @jeffkenney)
 * Fix hash get commands for missing hashes. (#284 @jeffkenney)
 
 ## [2.3.0] - 2017-02-28
 
 ### Added
+
 * Add event emitter inheritance. (#248 @xsellier)
 * Trigger connect & ready events on instantiation. (#280 @rexxars)
 
 ### Changed
+
 * Prevent conversion of buffer arguments to strings. (#236 @dpikt)
 
 ### Misc
+
 * updated all dependencies to latest stable versions. (@greenkeeperio-bot)
 
 ## [2.2.0] - 2016-10-31
 
 ### Added
+
 * buffer operation aliases. (#234 @dpikt)
 * yarn lockfile.
 
 ### Changed
-* updated redis-commands dependency and updated the compat table with new commands.
+
+* updated redis-commands dependency and updated the compat table with new
+  commands.
 
 ## [2.1.0] - 2016-10-05
 
 ### Added
+
 * `smove` command. (#217)
 * `sdiff` command. (#216)
 * `sunion` command. (#215)
 * `sinter` command. (#214)
 
 ### Changed
+
 * added compat table badge to readme. (#213)
 
 ## [2.0.0] - 2016-10-03
 
-Bumping the version to v2 as there are fixes in this release that are breaking changes.
+Bumping the version to v2 as there are fixes in this release that are breaking
+changes.
 
 ### Added
+
 * `flushdb` command.
 
 ### Changed
-* Command arguments is now transformed to strings before being passed to the command itself helping the mock behave more like a real ioredis client.
+
+* Command arguments is now transformed to strings before being passed to the
+  command itself helping the mock behave more like a real ioredis client.
 
 ### Fixed
+
 * `append` updated to return an integer.
 * `dbsize` updated to return an integer.
 * `decr` updated to return an integer.
@@ -106,7 +145,9 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * `incrby` updated to return an integer.
 * `lpush` updated to return an integer.
 * `lpushx` updated to return an integer.
-* `mget` required a single array argument, updated to use multiple arguments (single array support will be added later when ioredis Argument Transformers is properly implemented).
+* `mget` required a single array argument, updated to use multiple arguments
+  (single array support will be added later when ioredis Argument Transformers
+  is properly implemented).
 * `msetnx` updated to return an integer.
 * `persist` updated to return an integer.
 * `pexpire` updated to return an integer.
@@ -122,31 +163,43 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * `ttl` updated to return an integer.
 
 ### Deprecated
-* `hmset` no longer accepts passing an object with keys and values directly. This will be added later when ioredis Argument Transformers is properly implemented.
+
+* `hmset` no longer accepts passing an object with keys and values directly.
+  This will be added later when ioredis Argument Transformers is properly
+  implemented.
 
 ## [1.15.0] - 2016-10-03
+
 ### Added
+
 * `type` command (#207)
 
 ### Fixed
+
 * `sadd` no longer allow duplicate values (#204 @kesla)
-* `hset` learned to create a new hash if not existing instead of throwing error (#207)
+* `hset` learned to create a new hash if not existing instead of throwing error
+  (#207)
 * `hset` updated to return integer reply according to redis spec (#207)
 
 ### Internal
-* `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set` instead of `Array` (#204 @kesla)
+
+* `set` related commands (`sadd`, `scard`, etc) implemented using es6 `Set`
+  instead of `Array` (#204 @kesla)
 * `hset` tests refactored (#207)
 
 ## [1.14.0] - 2016-10-02
+
 ### Features
 
 * added `scard` command (#201)
 * added `discard` command (#200)
 
 ### Documentation
-- added CHANGELOG.md file
+
+* added CHANGELOG.md file
 
 ## [1.13.0] - 2016-10-02
+
 ### Features
 
 * added `mset` command (#181)
@@ -163,6 +216,7 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * added `lset` command (#193)
 
 ## [1.12.0] - 2016-10-02
+
 ### Features
 
 * added `auth` command (#160)
@@ -187,22 +241,29 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * added `psetex` command (#179)
 
 ## [1.11.0] - 2016-10-01
+
 ### Features
+
 * added `expire` command (#155)
 * added `ttl` command (#157)
 
 ### Documentation
+
 * cleaned up compat table (#158)
 
 ### Tests
-* circleci now run parallel builds to distribute node v4 - v6 tests between containers, speeding things up a bit
+
+* circleci now run parallel builds to distribute node v4 - v6 tests between
+  containers, speeding things up a bit
 
 ## [1.10.0] - 2016-10-01
+
 ### Features
 
 * added `renamenx` command (#152)
 
 ## [1.9.0] - 2016-09-26
+
 ### Features
 
 * added `mget` command (#134 @kesla)
@@ -212,44 +273,50 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.8.0] - 2016-08-13
+
 ### Features
 
 * added `brpoplpush` command (#106 @davemcorwin)
-* added `llen ` command (#106 @davemcorwin)
-* added `lpush ` command (#106 @davemcorwin)
-* added `lrem ` command (#106 @davemcorwin)
-* added `publish ` stub (#106 @davemcorwin)
-* added `rpoplpush ` command (#106 @davemcorwin)
-* added `rpush ` command (#106 @davemcorwin)
+* added `llen` command (#106 @davemcorwin)
+* added `lpush` command (#106 @davemcorwin)
+* added `lrem` command (#106 @davemcorwin)
+* added `publish` stub (#106 @davemcorwin)
+* added `rpoplpush` command (#106 @davemcorwin)
+* added `rpush` command (#106 @davemcorwin)
 
 ### Fixes
 
 * `hmset` command supports objects (#106 @davemcorwin)
-* `incr` command sets default value `'0'` if not exists  (#106 @davemcorwin)
+* `incr` command sets default value `'0'` if not exists (#106 @davemcorwin)
 
 ### Misc
 
 * updated all dependencies to latest versions (thanks, @greenkeeperio-bot!)
 
 ## [1.7.0] - 2016-08-02
+
 ### Features
 
 * added `keys` command (#92 @pivotal-csaa)
 
 ### Misc
 
-* updated test and linting dependencies to latest versions (thanks, @greenkeeperio-bot!)
+* updated test and linting dependencies to latest versions (thanks,
+  @greenkeeperio-bot!)
 
 ## [1.6.0] - 2016-07-04
+
 ### Features
 
 * added `setnx` command
 
 ### Bugfixes
 
-* `hsetnx` would report '0' to signal the key was a no-op but in reality did change the existing value.
+* `hsetnx` would report '0' to signal the key was a no-op but in reality did
+  change the existing value.
 
 ## [1.5.0] - 2016-06-28
+
 ### Features
 
 * added strlen command (#53)
@@ -263,11 +330,13 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * Added a note about tonicdev to readme (#52)
 
 ## [1.4.1] - 2016-06-27
+
 ### Minor changes
 
 * updated istanbul devDependency
 
 ## [1.4.0] - 2016-06-26
+
 ### Features
 
 * added `hmget` command
@@ -279,6 +348,7 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * performance penalties for using delete (#45)
 
 ## [1.3.0] - 2016-06-21
+
 ### Features
 
 * added `exists` command.
@@ -286,6 +356,7 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * added `getset` command.
 
 ## [1.2.0] - 2016-06-16
+
 ### Features
 
 * added incrby and decrby commands (#34).
@@ -307,7 +378,8 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 ## [1.0.6] - 2016-06-14
 
 * added [compat table](https://github.com/stipsan/ioredis-mock/compat.md).
-* added npm preversion and prepublish scripts to prevent easy maintenance mistakes.
+* added npm preversion and prepublish scripts to prevent easy maintenance
+  mistakes.
 
 ## [1.0.5] - 2016-06-14
 
@@ -338,27 +410,29 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
 * added tonicExample
 
 ## 1.0.0 - 2016-06-09
+
 ### Supported operations
 
 * Integers
- * incr
+* incr
 * Hashing
- * hset
- * hget
- * hgetall
- * hsetnx
- * hmset
- * hvals
+* hset
+* hget
+* hgetall
+* hsetnx
+* hmset
+* hvals
 * Lists
- * sadd
- * srem
- * smembers
- * sismember
+* sadd
+* srem
+* smembers
+* sismember
 * Transaction
- * multi
- * exec
+* multi
+* exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...HEAD
+[3.1.3]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/stipsan/ioredis-mock/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/stipsan/ioredis-mock/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/stipsan/ioredis-mock/compare/v3.0.2...v3.1.0

@@ -87,6 +87,9 @@
     "redis-mock",
     "redisjs"
   ],
+  "engines": {
+    "node": ">=0.10.16"
+  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
