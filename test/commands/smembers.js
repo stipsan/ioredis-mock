@@ -7,8 +7,8 @@ describe('smembers', () => {
   it('should returns items in set as array', () => {
     const redis = new MockRedis({
       data: {
-        foos: new Set(['bar', 'foo'])
-      }
+        foos: new Set(['bar', 'foo']),
+      },
     });
 
     return redis

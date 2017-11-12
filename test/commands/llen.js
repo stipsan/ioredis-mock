@@ -15,8 +15,7 @@ describe('llen', () => {
 
   it('should return 0 if the list does not exist', () => {
     const redis = new MockRedis({
-      data: {
-      },
+      data: {},
     });
 
     return redis.llen('foo').then(length => expect(length).toBe(0));
@@ -29,7 +28,10 @@ describe('llen', () => {
       },
     });
 
-    return redis.llen('foo')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .llen('foo')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });

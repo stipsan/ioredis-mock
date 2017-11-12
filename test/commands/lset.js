@@ -6,8 +6,8 @@ describe('lset', () => {
   it('should set the list element at index to value', () => {
     const redis = new MockRedis({
       data: {
-        mylist: ['one', 'two', 'three']
-      }
+        mylist: ['one', 'two', 'three'],
+      },
     });
 
     return redis
@@ -31,8 +31,8 @@ describe('lset', () => {
   it('should throw an exception if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
-        foo: 'not a list'
-      }
+        foo: 'not a list',
+      },
     });
 
     return redis
@@ -45,8 +45,8 @@ describe('lset', () => {
   it('should throw errors when index is out of range', () => {
     const redis = new MockRedis({
       data: {
-        mylist: ['one', 'two', 'three']
-      }
+        mylist: ['one', 'two', 'three'],
+      },
     });
 
     return redis

@@ -10,14 +10,14 @@ describe('lpush', () => {
       },
     });
 
-    return redis.lpush('foo', 9, 8, 7)
+    return redis
+      .lpush('foo', 9, 8, 7)
       .then(() => expect(redis.data.get('foo')).toEqual(['7', '8', '9', '1']));
   });
 
   it('should return the new length of the list', () => {
     const redis = new MockRedis({
-      data: {
-      },
+      data: {},
     });
 
     return redis.lpush('foo', 9, 8, 7).then(length => expect(length).toBe(3));
@@ -30,7 +30,10 @@ describe('lpush', () => {
       },
     });
 
-    return redis.lpush('foo', 1)
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .lpush('foo', 1)
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });

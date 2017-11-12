@@ -52,7 +52,7 @@ describe('get', () => {
     expect(data.get('mySet')).toEqual(new Set([1, 2, 3]));
   });
 
-  it('should return buffer copies from the cache', function () {
+  it('should return buffer copies from the cache', function() {
     if (shouldSkip) {
       this.skip();
     }
@@ -95,7 +95,7 @@ describe('set', () => {
     expect(data.get('mySet')).toEqual(new Set([1, 2, 3]));
   });
 
-  it('should set copies of buffers in the cache', function () {
+  it('should set copies of buffers in the cache', function() {
     if (shouldSkip) {
       this.skip();
     }

@@ -6,8 +6,8 @@ describe('rpoplpushBuffer', () => {
   it('should remove one item from the tail of the source list', () => {
     const redis = new MockRedis({
       data: {
-        foo: ['foo', 'bar']
-      }
+        foo: ['foo', 'bar'],
+      },
     });
 
     return redis
@@ -19,8 +19,8 @@ describe('rpoplpushBuffer', () => {
     const redis = new MockRedis({
       data: {
         foo: ['foo', 'bar'],
-        bar: ['baz']
-      }
+        bar: ['baz'],
+      },
     });
 
     return redis
@@ -39,8 +39,8 @@ describe('rpoplpushBuffer', () => {
   it('should return null if the source list is empty', () => {
     const redis = new MockRedis({
       data: {
-        foo: []
-      }
+        foo: [],
+      },
     });
 
     return redis
@@ -51,8 +51,8 @@ describe('rpoplpushBuffer', () => {
   it('should return the item', () => {
     const redis = new MockRedis({
       data: {
-        foo: ['foo', 'bar']
-      }
+        foo: ['foo', 'bar'],
+      },
     });
 
     return redis
@@ -64,8 +64,8 @@ describe('rpoplpushBuffer', () => {
     const bufferVal = new Buffer('bar');
     const redis = new MockRedis({
       data: {
-        foo: ['foo', bufferVal]
-      }
+        foo: ['foo', bufferVal],
+      },
     });
 
     return redis
@@ -77,8 +77,8 @@ describe('rpoplpushBuffer', () => {
     const redis = new MockRedis({
       data: {
         foo: 'not a list',
-        bar: []
-      }
+        bar: [],
+      },
     });
 
     return redis
@@ -92,8 +92,8 @@ describe('rpoplpushBuffer', () => {
     const redis = new MockRedis({
       data: {
         foo: [],
-        bar: 'not a list'
-      }
+        bar: 'not a list',
+      },
     });
 
     return redis

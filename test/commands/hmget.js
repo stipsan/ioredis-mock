@@ -9,16 +9,17 @@ describe('hmget', () => {
         'user:1': { id: '1', email: 'bruce@wayne.enterprises' },
       },
     });
-    return redis.hmget('user:1', 'id', 'email', 'location')
-      .then(values => expect(values).toEqual([
-        '1', 'bruce@wayne.enterprises', null,
-      ]));
+    return redis
+      .hmget('user:1', 'id', 'email', 'location')
+      .then(values =>
+        expect(values).toEqual(['1', 'bruce@wayne.enterprises', null])
+      );
   });
 
   it('should return an array of nulls if the hash does not exist', () => {
     const redis = new MockRedis();
-    return redis.hmget('user:1', 'id', 'email', 'location').then(values =>
-      expect(values).toEqual([null, null, null])
-    );
+    return redis
+      .hmget('user:1', 'id', 'email', 'location')
+      .then(values => expect(values).toEqual([null, null, null]));
   });
 });

@@ -12,14 +12,16 @@ describe('hincrby', () => {
       },
     });
 
-    return redis.hincrby('highscores', 'user:1', 100)
+    return redis
+      .hincrby('highscores', 'user:1', 100)
       .then(result => expect(result).toBe(9100))
       .then(() => expect(redis.data.get('highscores')['user:1']).toBe('9100'));
   });
   it('should create hash if not exists', () => {
     const redis = new MockRedis();
 
-    return redis.hincrby('stats', 'hits', 100)
+    return redis
+      .hincrby('stats', 'hits', 100)
       .then(result => expect(result).toBe(100))
       .then(() => expect(redis.data.get('stats').hits).toBe('100'));
   });
@@ -30,7 +32,8 @@ describe('hincrby', () => {
       },
     });
 
-    return redis.hincrby('stats', 'hits', 100)
+    return redis
+      .hincrby('stats', 'hits', 100)
       .then(result => expect(result).toBe(100))
       .then(() => expect(redis.data.get('stats').hits).toBe('100'));
   });
@@ -43,7 +46,8 @@ describe('hincrby', () => {
       },
     });
 
-    return redis.hincrby('highscores', 'user:1', -100)
+    return redis
+      .hincrby('highscores', 'user:1', -100)
       .then(result => expect(result).toBe(8900))
       .then(() => expect(redis.data.get('highscores')['user:1']).toBe('8900'));
   });

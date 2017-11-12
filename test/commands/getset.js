@@ -9,7 +9,9 @@ describe('getset', () => {
         foo: 'Hello',
       },
     });
-    return redis.getset('foo', 'World').then(result => expect(result).toBe('Hello'))
+    return redis
+      .getset('foo', 'World')
+      .then(result => expect(result).toBe('Hello'))
       .then(() => expect(redis.data.get('foo')).toBe('World'));
   });
 });

@@ -8,9 +8,9 @@ describe('hvals', () => {
       data: {
         emails: {
           'clark@daily.planet': '1',
-          'bruce@wayne.enterprises': '2'
-        }
-      }
+          'bruce@wayne.enterprises': '2',
+        },
+      },
     });
 
     return redis

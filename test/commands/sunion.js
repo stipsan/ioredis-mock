@@ -14,7 +14,8 @@ describe('sunion', () => {
       },
     });
 
-    return redis.sunion('key1', 'key2', 'key3', 'key4')
+    return redis
+      .sunion('key1', 'key2', 'key3', 'key4')
       .then(result => expect(result).toEqual(['a', 'b', 'c', 'd', 'e']));
   });
 
@@ -26,7 +27,8 @@ describe('sunion', () => {
       },
     });
 
-    return redis.sunion('foo', 'bar')
+    return redis
+      .sunion('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
 });

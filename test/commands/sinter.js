@@ -9,8 +9,8 @@ describe('sinter', () => {
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
-        key3: new Set(['a', 'c', 'e'])
-      }
+        key3: new Set(['a', 'c', 'e']),
+      },
     });
 
     return redis
@@ -22,8 +22,8 @@ describe('sinter', () => {
     const redis = new MockRedis({
       data: {
         foo: new Set(),
-        bar: 'not a set'
-      }
+        bar: 'not a set',
+      },
     });
 
     return redis

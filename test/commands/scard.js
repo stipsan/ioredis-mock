@@ -7,8 +7,8 @@ describe('scard', () => {
   it('should return the number of items in the set', () => {
     const redis = new MockRedis({
       data: {
-        foo: new Set([1, 3, 4])
-      }
+        foo: new Set([1, 3, 4]),
+      },
     });
 
     return redis.scard('foo').then(length => expect(length).toBe(3));
@@ -23,8 +23,8 @@ describe('scard', () => {
   it('should throw an exception if the key contains something other than a set', () => {
     const redis = new MockRedis({
       data: {
-        foo: 'not a set'
-      }
+        foo: 'not a set',
+      },
     });
 
     return redis

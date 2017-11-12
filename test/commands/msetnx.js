@@ -5,7 +5,8 @@ import MockRedis from '../../src';
 describe('msetnx', () => {
   it('should batch set values', () => {
     const redis = new MockRedis();
-    return redis.msetnx('key1', 'Hello', 'key2', 'World')
+    return redis
+      .msetnx('key1', 'Hello', 'key2', 'World')
       .then(status => expect(status).toBe(1))
       .then(() => {
         expect(redis.data.get('key1')).toBe('Hello');
@@ -19,7 +20,8 @@ describe('msetnx', () => {
         key1: 'Nope',
       },
     });
-    return redis.msetnx('key1', 'Hello', 'key2', 'World')
+    return redis
+      .msetnx('key1', 'Hello', 'key2', 'World')
       .then(status => expect(status).toBe(0))
       .then(() => {
         expect(redis.data.get('key1')).toBe('Nope');

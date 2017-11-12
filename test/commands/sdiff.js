@@ -10,8 +10,8 @@ describe('sdiff', () => {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
         // key3: keys that do not exist are considered to be empty sets
-        key4: new Set(['a', 'c', 'e'])
-      }
+        key4: new Set(['a', 'c', 'e']),
+      },
     });
 
     return redis
@@ -22,8 +22,8 @@ describe('sdiff', () => {
   it('should throw an exception if the first key is not of a set', () => {
     const redis = new MockRedis({
       data: {
-        foo: 'not a set'
-      }
+        foo: 'not a set',
+      },
     });
 
     return redis
@@ -35,8 +35,8 @@ describe('sdiff', () => {
     const redis = new MockRedis({
       data: {
         foo: new Set(),
-        bar: 'not a set'
-      }
+        bar: 'not a set',
+      },
     });
 
     return redis

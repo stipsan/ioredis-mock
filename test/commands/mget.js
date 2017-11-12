@@ -16,6 +16,8 @@ describe('mget', () => {
       },
     });
 
-    return redis.mget('foo', 'hello').then(result => expect(result).toEqual(['bar', null]));
+    return redis
+      .mget('foo', 'hello')
+      .then(result => expect(result).toEqual(['bar', null]));
   });
 });

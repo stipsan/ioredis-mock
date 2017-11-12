@@ -17,7 +17,9 @@ describe('keys', () => {
       },
     });
 
-    return redis.keys('*').then(result => expect(result).toEqual(['foo', 'baz']));
+    return redis
+      .keys('*')
+      .then(result => expect(result).toEqual(['foo', 'baz']));
   });
 
   it('should only return keys matching the given pattern', () => {
@@ -29,6 +31,8 @@ describe('keys', () => {
       },
     });
 
-    return redis.keys('f*').then(result => expect(result).toEqual(['foo', 'flambé']));
+    return redis
+      .keys('f*')
+      .then(result => expect(result).toEqual(['foo', 'flambé']));
   });
 });

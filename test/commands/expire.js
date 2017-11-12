@@ -28,7 +28,9 @@ describe('expire', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 0).then(() => expect(redis.data.has('foo')).toBe(false));
+    return redis
+      .expire('foo', 0)
+      .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
   it('should return 0 if key does not exist', () => {
@@ -42,7 +44,8 @@ describe('expire', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 1)
+    return redis
+      .expire('foo', 1)
       .then(() => redis.set('foo', 'baz'))
       .then(() => expect(redis.expires.has('foo')).toBe(false));
   });
@@ -53,7 +56,8 @@ describe('expire', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 1)
+    return redis
+      .expire('foo', 1)
       .then(() => redis.getset('foo', 'baz'))
       .then(() => expect(redis.expires.has('foo')).toBe(false));
   });
@@ -64,7 +68,8 @@ describe('expire', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 1)
+    return redis
+      .expire('foo', 1)
       .then(() => redis.rename('foo', 'baz'))
       .then(() => expect(redis.expires.has('baz')).toBe(true));
   });

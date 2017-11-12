@@ -10,7 +10,8 @@ describe('lindex', () => {
       },
     });
 
-    return redis.lindex('mylist', 0)
+    return redis
+      .lindex('mylist', 0)
       .then(result => expect(result).toBe('Hello'))
       .then(() => redis.lindex('mylist', -1))
       .then(result => expect(result).toBe('World'))
@@ -20,8 +21,7 @@ describe('lindex', () => {
 
   it('should return null if the list does not exist', () => {
     const redis = new MockRedis({
-      data: {
-      },
+      data: {},
     });
 
     return redis.lindex('foo', 0).then(result => expect(result).toBe(null));
@@ -34,7 +34,10 @@ describe('lindex', () => {
       },
     });
 
-    return redis.lindex('foo', 0)
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .lindex('foo', 0)
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });

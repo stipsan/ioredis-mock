@@ -9,7 +9,9 @@ describe('rename', () => {
         foo: 'baz',
       },
     });
-    return redis.rename('foo', 'bar').then(status => expect(status).toBe('OK'))
+    return redis
+      .rename('foo', 'bar')
+      .then(status => expect(status).toBe('OK'))
       .then(() => {
         expect(redis.data.has('foo')).toBe(false);
         expect(redis.data.get('bar')).toBe('baz');

@@ -10,7 +10,8 @@ describe('rpopBuffer', () => {
       },
     });
 
-    return redis.rpopBuffer('foo')
+    return redis
+      .rpopBuffer('foo')
       .then(result => expect(result).toBe('3'))
       .then(() => expect(redis.data.get('foo')).toEqual(['1', '2']));
   });
@@ -23,7 +24,8 @@ describe('rpopBuffer', () => {
       },
     });
 
-    return redis.rpopBuffer('foo')
+    return redis
+      .rpopBuffer('foo')
       .then(result => expect(result).toBe(bufferVal));
   });
 
@@ -44,7 +46,10 @@ describe('rpopBuffer', () => {
       },
     });
 
-    return redis.rpopBuffer('foo')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .rpopBuffer('foo')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });

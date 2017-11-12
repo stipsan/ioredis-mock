@@ -5,19 +5,25 @@ import MockRedis from '../../src';
 describe('set', () => {
   it('should return OK when setting a hash key', () => {
     const redis = new MockRedis();
-    return redis.set('foo', 'bar').then(status => expect(status).toBe('OK'))
+    return redis
+      .set('foo', 'bar')
+      .then(status => expect(status).toBe('OK'))
       .then(() => expect(redis.data.get('foo')).toBe('bar'));
   });
 
   it('should turn number to string', () => {
     const redis = new MockRedis();
-    return redis.set('foo', 1.5).then(status => expect(status).toBe('OK'))
+    return redis
+      .set('foo', 1.5)
+      .then(status => expect(status).toBe('OK'))
       .then(() => expect(redis.data.get('foo')).toBe('1.5'));
   });
 
   it('should set value and expire', () => {
     const redis = new MockRedis();
-    return redis.set('foo', 'bar', 'EX', 1).then(status => expect(status).toBe('OK'))
+    return redis
+      .set('foo', 'bar', 'EX', 1)
+      .then(status => expect(status).toBe('OK'))
       .then(() => {
         expect(redis.data.get('foo')).toBe('bar');
         expect(redis.expires.has('foo')).toBe(true);
@@ -27,7 +33,8 @@ describe('set', () => {
   it('should throw an exception if both NX and XX are specified', () => {
     const redis = new MockRedis();
 
-    return redis.set('foo', 1, 'NX', 'XX')
+    return redis
+      .set('foo', 1, 'NX', 'XX')
       .catch(err => expect(err.message).toBe('ERR syntax error'));
   });
 

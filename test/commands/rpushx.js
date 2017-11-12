@@ -10,7 +10,8 @@ describe('rpushx', () => {
       },
     });
 
-    return redis.rpushx('foo', 2)
+    return redis
+      .rpushx('foo', 2)
       .then(() => expect(redis.data.get('foo')).toEqual(['1', '2']));
   });
 

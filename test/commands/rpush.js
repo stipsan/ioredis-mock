@@ -6,8 +6,8 @@ describe('rpush', () => {
   it('should add the values to the list in the correct order', () => {
     const redis = new MockRedis({
       data: {
-        foo: ['1']
-      }
+        foo: ['1'],
+      },
     });
 
     return redis
@@ -24,8 +24,8 @@ describe('rpush', () => {
   it('should throw an exception if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
-        foo: 'not a list'
-      }
+        foo: 'not a list',
+      },
     });
 
     return redis

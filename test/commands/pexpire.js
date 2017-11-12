@@ -9,12 +9,15 @@ describe('pexpire', () => {
         foo: 'bar',
       },
     });
-    return redis.pexpire('foo', 100).then((status) => {
-      expect(status).toBe(1);
-      expect(redis.expires.has('foo')).toBe(true);
+    return redis
+      .pexpire('foo', 100)
+      .then(status => {
+        expect(status).toBe(1);
+        expect(redis.expires.has('foo')).toBe(true);
 
-      return redis.pttl('foo');
-    }).then(result => expect(result).toBeGreaterThanOrEqualTo(1));
+        return redis.pttl('foo');
+      })
+      .then(result => expect(result).toBeGreaterThanOrEqualTo(1));
   });
 
   it('should return 0 if key does not exist', () => {
