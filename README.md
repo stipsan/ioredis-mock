@@ -24,17 +24,17 @@ Check the [compatibility table](compat.md) for supported redis commands.
 ## Usage ([try it in your browser](https://runkit.com/npm/ioredis-mock))
 
 ```js
-var Redis = require("ioredis-mock");
+var Redis = require('ioredis-mock');
 var redis = new Redis({
   // `options.data` does not exist in `ioredis`, only `ioredis-mock`
   data: {
-    user_next: "3",
+    user_next: '3',
     emails: {
-      "clark@daily.planet": "1",
-      "bruce@wayne.enterprises": "2"
+      'clark@daily.planet': '1',
+      'bruce@wayne.enterprises': '2'
     },
-    "user:1": { id: "1", username: "superman", email: "clark@daily.planet" },
-    "user:2": { id: "2", username: "batman", email: "bruce@wayne.enterprises" }
+    'user:1': { id: '1', username: 'superman', email: 'clark@daily.planet' },
+    'user:2': { id: '2', username: 'batman', email: 'bruce@wayne.enterprises' }
   }
 });
 // Basically use it just like ioredis
@@ -50,7 +50,7 @@ it's feature complete:
 * [x] Setup testing suite for the library itself.
 * [x] Refactor to bluebird promises like ioredis, support node style callback
       too.
-* [ ] Implement remaining basic features that read/write data.
+* [x] Implement remaining basic features that read/write data.
 * [ ] Implement ioredis
       [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
 * [ ] Connection Events
