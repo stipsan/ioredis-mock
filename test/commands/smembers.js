@@ -13,7 +13,9 @@ describe('smembers', () => {
 
     return redis.smembers('foos').then(result => expect(result.sort()).toEqual(['bar', 'foo']));
   });
-  it('should return empty array if source don\'t exists', () =>
-    redis.smembers('bars').then(result => expect(result).toEqual([]))
-  )
+  it('should return empty array if source don\'t exists', () => {
+    const redis = new MockRedis();
+
+    return redis.smembers('bars').then(result => expect(result).toEqual([]));
+  })
 });
