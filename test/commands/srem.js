@@ -22,5 +22,5 @@ describe('srem', () => {
   );
   it('should return 0 if source don\'t exists', () =>
     redis.srem('bars', 'foo').then(status => expect(status).toBe(0))
-  )
+  );
 });

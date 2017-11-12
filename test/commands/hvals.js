@@ -19,6 +19,6 @@ describe('hvals', () => {
   it('should return empty array if sources don\'t exists', () => {
     const redis = new MockRedis();
 
-    return redis.hvals('emails').then(result => expect(result).toEqual([]))
+    return redis.hvals('emails').then(result => expect(result).toEqual([]));
   });
 });

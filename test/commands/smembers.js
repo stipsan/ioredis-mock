@@ -17,5 +17,5 @@ describe('smembers', () => {
     const redis = new MockRedis();
 
     return redis.smembers('bars').then(result => expect(result).toEqual([]));
-  })
+  });
 });

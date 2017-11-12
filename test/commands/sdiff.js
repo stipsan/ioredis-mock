@@ -44,6 +44,6 @@ describe('sdiff', () => {
   it('should return empty array if sources don\'t exists', () => {
     const redis = new MockRedis();
 
-    return redis.sdiff('foo', 'bar').then(result => expect(result).toEqual([]))
+    return redis.sdiff('foo', 'bar').then(result => expect(result).toEqual([]));
   });
 });

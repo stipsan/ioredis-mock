@@ -32,6 +32,6 @@ describe('sinter', () => {
   it('should return empty array if sources don\'t exists', () => {
     const redis = new MockRedis();
 
-    return redis.sinter('foo', 'bar').then(result => expect(result).toEqual([]))
-  })
+    return redis.sinter('foo', 'bar').then(result => expect(result).toEqual([]));
+  });
 });
