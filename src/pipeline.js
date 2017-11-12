@@ -9,14 +9,13 @@ function createCommand(pipeline, emulate) {
     if (typeof callback !== 'function') {
       callback = undefined;
     } else {
-      args.length = lastArgIndex; // eslint-disable-line no-param-reassign
+      // eslint-disable-next-line no-param-reassign
+      args.length = lastArgIndex;
     }
 
     // transform non-buffer arguments to strings to simulate real ioredis behavior
     const stringArgs = args.map(
-      (
-        arg // eslint-disable-line no-confusing-arrow
-      ) => (arg instanceof Buffer ? arg : arg.toString())
+      arg => (arg instanceof Buffer ? arg : arg.toString())
     );
 
     pipeline.batch.push(() => emulate(...stringArgs));

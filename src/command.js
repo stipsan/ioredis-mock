@@ -7,7 +7,8 @@ export default function command(emulate) {
     if (typeof callback !== 'function') {
       callback = undefined;
     } else {
-      args.length = lastArgIndex; // eslint-disable-line no-param-reassign
+      // eslint-disable-next-line no-param-reassign
+      args.length = lastArgIndex;
     }
 
     // transform non-buffer arguments to strings to simulate real ioredis behavior
