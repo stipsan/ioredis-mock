@@ -1,5 +1,14 @@
-.babelrc
-.codeclimate.yml
+.circleci
+.vscode
 coverage
 src
 test
+scripts
+.babelrc
+.codeclimate.yml
+.eslintignore
+.eslintrc
+appveyor.yml
+compat.md
+example.js
+yarn.lock
