@@ -2,7 +2,7 @@
   "env": {
     "node": "true"
   },
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "prettier"],
   "parser": "babel-eslint",
   "rules": {
     "import/prefer-default-export": "off",
@@ -13,7 +13,7 @@
         "objects": "always-multiline",
         "imports": "always-multiline",
         "exports": "always-multiline",
-        "functions": "never",
-    }],
+        "functions": "never"
+    }]
   }
 }
