@@ -1,7 +1,6 @@
 {
   "name": "ioredis-mock",
-  "description":
-    "This library emulates ioredis by performing all operations in-memory.",
+  "description": "This library emulates ioredis by performing all operations in-memory.",
   "author": "Stian Didriksen <stipsan@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
@@ -22,14 +21,11 @@
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precommit": "lint-staged",
     "coverage": "npm run coveralls && npm run codeclimate",
-    "coveralls":
-      "node_modules/.bin/babel-node node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "./node_modules/.bin/eslint .",
     "prepublish": "npm run clean && npm run build",
-    "prepush":
-      "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"Chore: Update feature compat table\" &> /dev/null || true",
-    "semantic-release":
-      "semantic-release pre && npm publish && semantic-release post",
+    "prepush": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"Chore: Update feature compat table\" &> /dev/null || true",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "printf \"node \" && node --version",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch --growl"
@@ -75,6 +71,7 @@
   "keywords": [
     "in-memory",
     "ioredis",
+    "ioredis-mock",
     "mock-ioredis",
     "mock-redis",
     "redis",
@@ -91,10 +88,23 @@
     "redisjs"
   ],
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write", "git add"],
-    "*.json": ["prettier --write", "git add"],
-    "*.md": ["prettier --write", "git add"],
-    "package.json": ["prettier-package-json --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "prettier-package-json --write",
+      "git add"
+    ]
   },
   "release": {
     "analyzeCommits": "semantic-release-tamia/analyzeCommits",
