@@ -18,10 +18,7 @@ describe('lset', () => {
   });
 
   it('should throw an exception if the key does not exist', () => {
-    const redis = new MockRedis({
-      data: {
-      },
-    });
+    const redis = new MockRedis();
 
     return redis.lset('mylist', 0, 'foo')
       .catch(err => expect(err.message).toBe('no such key'));

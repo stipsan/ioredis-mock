@@ -28,4 +28,10 @@ describe('sinter', () => {
     return redis.sinter('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
+
+  it('should return empty array if sources don\'t exists', () => {
+    const redis = new MockRedis();
+
+    return redis.sinter('foo', 'bar').then(result => expect(result).toEqual([]));
+  });
 });

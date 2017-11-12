@@ -15,9 +15,7 @@ describe('rpush', () => {
   });
 
   it('should return the new length of the list', () => {
-    const redis = new MockRedis({
-      data: {},
-    });
+    const redis = new MockRedis();
 
     return redis.rpush('foo', 9, 8, 7).then(length => expect(length).toBe(3));
   });

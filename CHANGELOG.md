@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.3] - 2017-11-12
+### Fixes
+* Fixed errors in smembers and srem when no data is set (#332)
+
 ## [3.1.2] - 2017-11-09
 ### Fixes
 * Fixed hexists edge cases (#331 @wraytw) 
@@ -358,7 +362,8 @@ Bumping the version to v2 as there are fixes in this release that are breaking c
  * multi
  * exec
 
-[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...HEAD
+[Unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...HEAD
+[3.1.3]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/stipsan/ioredis-mock/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/stipsan/ioredis-mock/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/stipsan/ioredis-mock/compare/v3.0.2...v3.1.0
