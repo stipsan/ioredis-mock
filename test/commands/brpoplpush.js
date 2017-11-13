@@ -10,7 +10,8 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar')
+    return redis
+      .brpoplpush('foo', 'bar')
       .then(() => expect(redis.data.get('foo')).toEqual(['foo']));
   });
 
@@ -22,7 +23,8 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar')
+    return redis
+      .brpoplpush('foo', 'bar')
       .then(() => expect(redis.data.get('bar')).toEqual(['bar', 'baz']));
   });
 
@@ -31,7 +33,9 @@ describe('brpoplpush', () => {
       data: {},
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toEqual(null));
+    return redis
+      .brpoplpush('foo', 'bar')
+      .then(item => expect(item).toEqual(null));
   });
 
   it('should return null if the source list is empty', () => {
@@ -41,7 +45,9 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toEqual(null));
+    return redis
+      .brpoplpush('foo', 'bar')
+      .then(item => expect(item).toEqual(null));
   });
 
   it('should return the item', () => {
@@ -51,7 +57,9 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar').then(item => expect(item).toBe('bar'));
+    return redis
+      .brpoplpush('foo', 'bar')
+      .then(item => expect(item).toBe('bar'));
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
@@ -62,20 +70,25 @@ describe('brpoplpush', () => {
       },
     });
 
-    return redis.brpoplpush('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .brpoplpush('foo', 'bar')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 
-  it('should throw an exception if the destination key contains something other than a list',
-    () => {
-      const redis = new MockRedis({
-        data: {
-          foo: [],
-          bar: 'not a list',
-        },
-      });
-
-      return redis.brpoplpush('foo', 'bar')
-        .catch(err => expect(err.message).toBe('Key bar does not contain a list'));
+  it('should throw an exception if the destination key contains something other than a list', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: [],
+        bar: 'not a list',
+      },
     });
+
+    return redis
+      .brpoplpush('foo', 'bar')
+      .catch(err =>
+        expect(err.message).toBe('Key bar does not contain a list')
+      );
+  });
 });

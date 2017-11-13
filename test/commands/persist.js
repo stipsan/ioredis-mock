@@ -9,9 +9,10 @@ describe('persist', () => {
         foo: 'bar',
       },
     });
-    return redis.expire('foo', 1)
+    return redis
+      .expire('foo', 1)
       .then(() => redis.persist('foo'))
-      .then((status) => {
+      .then(status => {
         expect(status).toBe(1);
         expect(redis.expires.has('foo')).toBe(false);
       });

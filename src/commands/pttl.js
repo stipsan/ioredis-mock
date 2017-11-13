@@ -7,5 +7,5 @@ export function pttl(key) {
     return -1;
   }
 
-  return Math.ceil((this.expires.get(key) - Date.now()));
+  return Math.ceil(this.expires.get(key) - Date.now());
 }

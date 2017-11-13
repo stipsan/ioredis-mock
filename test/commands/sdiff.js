@@ -14,7 +14,8 @@ describe('sdiff', () => {
       },
     });
 
-    return redis.sdiff('key1', 'key2', 'key3', 'key4')
+    return redis
+      .sdiff('key1', 'key2', 'key3', 'key4')
       .then(result => expect(result).toEqual(['b', 'd']));
   });
 
@@ -25,7 +26,8 @@ describe('sdiff', () => {
       },
     });
 
-    return redis.sdiff('foo', 'bar')
+    return redis
+      .sdiff('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 
@@ -37,11 +39,12 @@ describe('sdiff', () => {
       },
     });
 
-    return redis.sdiff('foo', 'bar')
+    return redis
+      .sdiff('foo', 'bar')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
 
-  it('should return empty array if sources don\'t exists', () => {
+  it("should return empty array if sources don't exists", () => {
     const redis = new MockRedis();
 
     return redis.sdiff('foo', 'bar').then(result => expect(result).toEqual([]));

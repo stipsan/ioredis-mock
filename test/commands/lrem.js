@@ -10,7 +10,8 @@ describe('lrem', () => {
       },
     });
 
-    return redis.lrem('foo', -2, 'foo')
+    return redis
+      .lrem('foo', -2, 'foo')
       .then(() => expect(redis.data.get('foo')).toEqual(['foo', 'bar', 'baz']));
   });
 
@@ -21,7 +22,8 @@ describe('lrem', () => {
       },
     });
 
-    return redis.lrem('foo', 2, 'foo')
+    return redis
+      .lrem('foo', 2, 'foo')
       .then(() => expect(redis.data.get('foo')).toEqual(['bar', 'baz', 'foo']));
   });
 
@@ -32,7 +34,8 @@ describe('lrem', () => {
       },
     });
 
-    return redis.lrem('foo', 0, 'foo')
+    return redis
+      .lrem('foo', 0, 'foo')
       .then(() => expect(redis.data.get('foo')).toEqual(['bar', 'baz']));
   });
 
@@ -43,7 +46,9 @@ describe('lrem', () => {
       },
     });
 
-    return redis.lrem('foo', -2, 'baz').then(removed => expect(removed).toBe(1));
+    return redis
+      .lrem('foo', -2, 'baz')
+      .then(removed => expect(removed).toBe(1));
   });
 
   it('should return 0 if the key contains something other than a list', () => {

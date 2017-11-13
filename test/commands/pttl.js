@@ -26,7 +26,9 @@ describe('pttl', () => {
       },
     });
 
-    return redis.expire('foo', 1).then(() => redis.pttl('foo'))
+    return redis
+      .expire('foo', 1)
+      .then(() => redis.pttl('foo'))
       .then(result => expect(result).toBeGreaterThan(0));
   });
 });

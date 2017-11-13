@@ -11,7 +11,8 @@ describe('randomkey', () => {
       },
     });
 
-    return redis.randomkey()
+    return redis
+      .randomkey()
       .then(result => expect(['foo', 'bar']).toInclude(result));
   });
 

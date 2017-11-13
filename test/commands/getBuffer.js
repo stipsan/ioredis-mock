@@ -22,7 +22,7 @@ describe('getBuffer', () => {
     return redis.getBuffer('foo').then(result => expect(result).toBe('bar'));
   });
 
-  it('should return buffer values correctly', function () {
+  it('should return buffer values correctly', function() {
     if (shouldSkip) {
       this.skip();
     }
@@ -34,6 +34,8 @@ describe('getBuffer', () => {
       },
     });
 
-    return redis.getBuffer('foo').then(result => expect(result.equals(bufferVal)).toBe(true));
+    return redis
+      .getBuffer('foo')
+      .then(result => expect(result.equals(bufferVal)).toBe(true));
   });
 });

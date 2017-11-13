@@ -3,7 +3,7 @@ export function expireat(key, at) {
     return 0;
   }
 
-  this.expires.set(key, (at * 1000));
+  this.expires.set(key, at * 1000);
 
   return 1;
 }

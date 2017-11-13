@@ -26,7 +26,9 @@ describe('ttl', () => {
       },
     });
 
-    return redis.expire('foo', 1).then(() => redis.ttl('foo'))
+    return redis
+      .expire('foo', 1)
+      .then(() => redis.ttl('foo'))
       .then(result => expect(result).toBe(1));
   });
 });

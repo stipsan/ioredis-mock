@@ -11,7 +11,9 @@ describe('smove', () => {
       },
     });
 
-    return redis.smove('foo', 'bar', 'two').then(status => expect(status).toBe(1))
+    return redis
+      .smove('foo', 'bar', 'two')
+      .then(status => expect(status).toBe(1))
       .then(() => {
         expect(redis.data.get('foo').has('two')).toBe(false);
         expect(redis.data.get('bar').has('two')).toBe(true);
@@ -25,14 +27,18 @@ describe('smove', () => {
       },
     });
 
-    return redis.smove('foo', 'bar', 'two').then(status => expect(status).toBe(0))
+    return redis
+      .smove('foo', 'bar', 'two')
+      .then(status => expect(status).toBe(0))
       .then(() => expect(redis.data.has('bar')).toBe(false));
   });
 
   it('should return 0 if source does not exist', () => {
     const redis = new MockRedis();
 
-    return redis.smove('foo', 'bar', 'two').then(status => expect(status).toBe(0));
+    return redis
+      .smove('foo', 'bar', 'two')
+      .then(status => expect(status).toBe(0));
   });
 
   it('should throw an exception if the source contains something other than a set', () => {
@@ -42,7 +48,8 @@ describe('smove', () => {
       },
     });
 
-    return redis.smove('foo', 'bar', 'two')
+    return redis
+      .smove('foo', 'bar', 'two')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 
@@ -54,7 +61,8 @@ describe('smove', () => {
       },
     });
 
-    return redis.smove('foo', 'bar', 'two')
+    return redis
+      .smove('foo', 'bar', 'two')
       .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
   });
 });

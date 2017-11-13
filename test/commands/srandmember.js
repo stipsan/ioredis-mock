@@ -10,7 +10,8 @@ describe('srandmember', () => {
       },
     });
 
-    return redis.srandmember('myset')
+    return redis
+      .srandmember('myset')
       .then(result => expect(['one', 'two', 'three']).toInclude(result));
   });
 
@@ -21,12 +22,11 @@ describe('srandmember', () => {
       },
     });
 
-    return redis.srandmember('myset', 2)
-      .then((results) => {
-        expect(['one', 'two', 'three']).toInclude(results[0]);
-        expect(['one', 'two', 'three']).toInclude(results[1]);
-        expect(results[0]).toNotBe(results[1]);
-      });
+    return redis.srandmember('myset', 2).then(results => {
+      expect(['one', 'two', 'three']).toInclude(results[0]);
+      expect(['one', 'two', 'three']).toInclude(results[1]);
+      expect(results[0]).toNotBe(results[1]);
+    });
   });
 
   it('should return set if positive count is bigger than set', () => {
@@ -36,7 +36,8 @@ describe('srandmember', () => {
       },
     });
 
-    return redis.srandmember('myset', 5)
+    return redis
+      .srandmember('myset', 5)
       .then(results => expect(results).toEqual(['one', 'two', 'three']));
   });
 
@@ -47,7 +48,8 @@ describe('srandmember', () => {
       },
     });
 
-    return redis.srandmember('myset', -5)
+    return redis
+      .srandmember('myset', -5)
       .then(results => expect(results.length).toBe(5));
   });
 
@@ -64,7 +66,8 @@ describe('srandmember', () => {
       },
     });
 
-    return redis.srandmember('foo')
+    return redis
+      .srandmember('foo')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 });

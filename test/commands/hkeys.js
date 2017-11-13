@@ -16,6 +16,8 @@ describe('hkeys', () => {
       },
     });
 
-    return redis.hkeys('foo').then(result => expect(result).toEqual(['bar', 'baz']));
+    return redis
+      .hkeys('foo')
+      .then(result => expect(result).toEqual(['bar', 'baz']));
   });
 });

@@ -10,7 +10,8 @@ describe('rpush', () => {
       },
     });
 
-    return redis.rpush('foo', 9, 8, 7)
+    return redis
+      .rpush('foo', 9, 8, 7)
       .then(() => expect(redis.data.get('foo')).toEqual(['1', '9', '8', '7']));
   });
 
@@ -27,7 +28,10 @@ describe('rpush', () => {
       },
     });
 
-    return redis.rpush('foo', 1)
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .rpush('foo', 1)
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });

@@ -10,17 +10,21 @@ describe('lset', () => {
       },
     });
 
-    return redis.lset('mylist', 0, 'four')
+    return redis
+      .lset('mylist', 0, 'four')
       .then(result => expect(result).toBe('OK'))
       .then(() => redis.lset('mylist', -2, 'five'))
       .then(result => expect(result).toBe('OK'))
-      .then(() => expect(redis.data.get('mylist')).toEqual(['four', 'five', 'three']));
+      .then(() =>
+        expect(redis.data.get('mylist')).toEqual(['four', 'five', 'three'])
+      );
   });
 
   it('should throw an exception if the key does not exist', () => {
     const redis = new MockRedis();
 
-    return redis.lset('mylist', 0, 'foo')
+    return redis
+      .lset('mylist', 0, 'foo')
       .catch(err => expect(err.message).toBe('no such key'));
   });
 
@@ -31,8 +35,11 @@ describe('lset', () => {
       },
     });
 
-    return redis.lset('foo', 0, 'bar')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .lset('foo', 0, 'bar')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 
   it('should throw errors when index is out of range', () => {
@@ -42,8 +49,9 @@ describe('lset', () => {
       },
     });
 
-    return redis.lset('mylist', 5, 'four')
-      .catch((err) => {
+    return redis
+      .lset('mylist', 5, 'four')
+      .catch(err => {
         expect(err.message).toBe('index out of range');
 
         return redis.lset('mylist', -5, 'five');

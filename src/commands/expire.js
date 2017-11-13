@@ -3,7 +3,7 @@ export function expire(key, seconds) {
     return 0;
   }
 
-  this.expires.set(key, (seconds * 1000) + Date.now());
+  this.expires.set(key, seconds * 1000 + Date.now());
 
   return 1;
 }

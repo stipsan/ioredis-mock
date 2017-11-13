@@ -1,173 +1,173 @@
 ## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-yellow.svg)
 
-| redis | ioredis | ioredis-mock |
-|-------|:-------:|:------------:|
-|[append](http://redis.io/commands/APPEND)|:white_check_mark:|:white_check_mark:|
-|[auth](http://redis.io/commands/AUTH)|:white_check_mark:|:white_check_mark:|
-|[bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)|:white_check_mark:|:white_check_mark:|
-|[bgsave](http://redis.io/commands/BGSAVE)|:white_check_mark:|:white_check_mark:|
-|[bitcount](http://redis.io/commands/BITCOUNT)|:white_check_mark:|:x:|
-|[bitfield](http://redis.io/commands/BITFIELD)|:white_check_mark:|:x:|
-|[bitop](http://redis.io/commands/BITOP)|:white_check_mark:|:x:|
-|[bitpos](http://redis.io/commands/BITPOS)|:white_check_mark:|:x:|
-|[blpop](http://redis.io/commands/BLPOP)|:white_check_mark:|:x:|
-|[brpop](http://redis.io/commands/BRPOP)|:white_check_mark:|:x:|
-|[brpoplpush](http://redis.io/commands/BRPOPLPUSH)|:white_check_mark:|:white_check_mark:|
-|[client](http://redis.io/commands/CLIENT)|:white_check_mark:|:x:|
-|[cluster](http://redis.io/commands/CLUSTER)|:white_check_mark:|:x:|
-|[command](http://redis.io/commands/COMMAND)|:white_check_mark:|:x:|
-|[config](http://redis.io/commands/CONFIG)|:white_check_mark:|:x:|
-|[dbsize](http://redis.io/commands/DBSIZE)|:white_check_mark:|:white_check_mark:|
-|[decr](http://redis.io/commands/DECR)|:white_check_mark:|:white_check_mark:|
-|[decrby](http://redis.io/commands/DECRBY)|:white_check_mark:|:white_check_mark:|
-|[del](http://redis.io/commands/DEL)|:white_check_mark:|:white_check_mark:|
-|[discard](http://redis.io/commands/DISCARD)|:white_check_mark:|:white_check_mark:|
-|[dump](http://redis.io/commands/DUMP)|:white_check_mark:|:x:|
-|[echo](http://redis.io/commands/ECHO)|:white_check_mark:|:white_check_mark:|
-|[eval](http://redis.io/commands/EVAL)|:white_check_mark:|:x:|
-|[evalsha](http://redis.io/commands/EVALSHA)|:white_check_mark:|:x:|
-|[exec](http://redis.io/commands/EXEC)|:white_check_mark:|:white_check_mark:|
-|[exists](http://redis.io/commands/EXISTS)|:white_check_mark:|:white_check_mark:|
-|[expire](http://redis.io/commands/EXPIRE)|:white_check_mark:|:white_check_mark:|
-|[expireat](http://redis.io/commands/EXPIREAT)|:white_check_mark:|:white_check_mark:|
-|[flushall](http://redis.io/commands/FLUSHALL)|:white_check_mark:|:white_check_mark:|
-|[flushdb](http://redis.io/commands/FLUSHDB)|:white_check_mark:|:white_check_mark:|
-|[geoadd](http://redis.io/commands/GEOADD)|:white_check_mark:|:x:|
-|[geodist](http://redis.io/commands/GEODIST)|:white_check_mark:|:x:|
-|[geohash](http://redis.io/commands/GEOHASH)|:white_check_mark:|:x:|
-|[geopos](http://redis.io/commands/GEOPOS)|:white_check_mark:|:x:|
-|[georadius](http://redis.io/commands/GEORADIUS)|:white_check_mark:|:x:|
-|[georadiusbymember](http://redis.io/commands/GEORADIUSBYMEMBER)|:white_check_mark:|:x:|
-|[get](http://redis.io/commands/GET)|:white_check_mark:|:white_check_mark:|
-|[getbit](http://redis.io/commands/GETBIT)|:white_check_mark:|:x:|
-|[getrange](http://redis.io/commands/GETRANGE)|:white_check_mark:|:white_check_mark:|
-|[getset](http://redis.io/commands/GETSET)|:white_check_mark:|:white_check_mark:|
-|[hdel](http://redis.io/commands/HDEL)|:white_check_mark:|:white_check_mark:|
-|[hexists](http://redis.io/commands/HEXISTS)|:white_check_mark:|:white_check_mark:|
-|[hget](http://redis.io/commands/HGET)|:white_check_mark:|:white_check_mark:|
-|[hgetall](http://redis.io/commands/HGETALL)|:white_check_mark:|:white_check_mark:|
-|[hincrby](http://redis.io/commands/HINCRBY)|:white_check_mark:|:white_check_mark:|
-|[hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)|:white_check_mark:|:white_check_mark:|
-|[hkeys](http://redis.io/commands/HKEYS)|:white_check_mark:|:white_check_mark:|
-|[hlen](http://redis.io/commands/HLEN)|:white_check_mark:|:white_check_mark:|
-|[hmget](http://redis.io/commands/HMGET)|:white_check_mark:|:white_check_mark:|
-|[hmset](http://redis.io/commands/HMSET)|:white_check_mark:|:white_check_mark:|
-|[host:](http://redis.io/commands/HOST:)|:white_check_mark:|:x:|
-|[hscan](http://redis.io/commands/HSCAN)|:white_check_mark:|:x:|
-|[hset](http://redis.io/commands/HSET)|:white_check_mark:|:white_check_mark:|
-|[hsetnx](http://redis.io/commands/HSETNX)|:white_check_mark:|:white_check_mark:|
-|[hstrlen](http://redis.io/commands/HSTRLEN)|:white_check_mark:|:white_check_mark:|
-|[hvals](http://redis.io/commands/HVALS)|:white_check_mark:|:white_check_mark:|
-|[incr](http://redis.io/commands/INCR)|:white_check_mark:|:white_check_mark:|
-|[incrby](http://redis.io/commands/INCRBY)|:white_check_mark:|:white_check_mark:|
-|[incrbyfloat](http://redis.io/commands/INCRBYFLOAT)|:white_check_mark:|:white_check_mark:|
-|[info](http://redis.io/commands/INFO)|:white_check_mark:|:x:|
-|[keys](http://redis.io/commands/KEYS)|:white_check_mark:|:white_check_mark:|
-|[lastsave](http://redis.io/commands/LASTSAVE)|:white_check_mark:|:white_check_mark:|
-|[lindex](http://redis.io/commands/LINDEX)|:white_check_mark:|:white_check_mark:|
-|[linsert](http://redis.io/commands/LINSERT)|:white_check_mark:|:x:|
-|[llen](http://redis.io/commands/LLEN)|:white_check_mark:|:white_check_mark:|
-|[lpop](http://redis.io/commands/LPOP)|:white_check_mark:|:white_check_mark:|
-|[lpush](http://redis.io/commands/LPUSH)|:white_check_mark:|:white_check_mark:|
-|[lpushx](http://redis.io/commands/LPUSHX)|:white_check_mark:|:white_check_mark:|
-|[lrange](http://redis.io/commands/LRANGE)|:white_check_mark:|:x:|
-|[lrem](http://redis.io/commands/LREM)|:white_check_mark:|:white_check_mark:|
-|[lset](http://redis.io/commands/LSET)|:white_check_mark:|:white_check_mark:|
-|[ltrim](http://redis.io/commands/LTRIM)|:white_check_mark:|:x:|
-|[memory](http://redis.io/commands/MEMORY)|:white_check_mark:|:x:|
-|[mget](http://redis.io/commands/MGET)|:white_check_mark:|:white_check_mark:|
-|[migrate](http://redis.io/commands/MIGRATE)|:white_check_mark:|:x:|
-|[module](http://redis.io/commands/MODULE)|:white_check_mark:|:x:|
-|[monitor](http://redis.io/commands/MONITOR)|:white_check_mark:|:x:|
-|[move](http://redis.io/commands/MOVE)|:white_check_mark:|:x:|
-|[mset](http://redis.io/commands/MSET)|:white_check_mark:|:white_check_mark:|
-|[msetnx](http://redis.io/commands/MSETNX)|:white_check_mark:|:white_check_mark:|
-|[multi](http://redis.io/commands/MULTI)|:white_check_mark:|:white_check_mark:|
-|[object](http://redis.io/commands/OBJECT)|:white_check_mark:|:x:|
-|[persist](http://redis.io/commands/PERSIST)|:white_check_mark:|:white_check_mark:|
-|[pexpire](http://redis.io/commands/PEXPIRE)|:white_check_mark:|:white_check_mark:|
-|[pexpireat](http://redis.io/commands/PEXPIREAT)|:white_check_mark:|:white_check_mark:|
-|[pfadd](http://redis.io/commands/PFADD)|:white_check_mark:|:x:|
-|[pfcount](http://redis.io/commands/PFCOUNT)|:white_check_mark:|:x:|
-|[pfmerge](http://redis.io/commands/PFMERGE)|:white_check_mark:|:x:|
-|[ping](http://redis.io/commands/PING)|:white_check_mark:|:white_check_mark:|
-|[post](http://redis.io/commands/POST)|:white_check_mark:|:x:|
-|[psetex](http://redis.io/commands/PSETEX)|:white_check_mark:|:white_check_mark:|
-|[psubscribe](http://redis.io/commands/PSUBSCRIBE)|:white_check_mark:|:x:|
-|[pttl](http://redis.io/commands/PTTL)|:white_check_mark:|:white_check_mark:|
-|[publish](http://redis.io/commands/PUBLISH)|:white_check_mark:|:white_check_mark:|
-|[pubsub](http://redis.io/commands/PUBSUB)|:white_check_mark:|:x:|
-|[punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)|:white_check_mark:|:x:|
-|[quit](http://redis.io/commands/QUIT)|:white_check_mark:|:x:|
-|[randomkey](http://redis.io/commands/RANDOMKEY)|:white_check_mark:|:white_check_mark:|
-|[readonly](http://redis.io/commands/READONLY)|:white_check_mark:|:x:|
-|[readwrite](http://redis.io/commands/READWRITE)|:white_check_mark:|:x:|
-|[rename](http://redis.io/commands/RENAME)|:white_check_mark:|:white_check_mark:|
-|[renamenx](http://redis.io/commands/RENAMENX)|:white_check_mark:|:white_check_mark:|
-|[restore](http://redis.io/commands/RESTORE)|:white_check_mark:|:x:|
-|[role](http://redis.io/commands/ROLE)|:white_check_mark:|:white_check_mark:|
-|[rpop](http://redis.io/commands/RPOP)|:white_check_mark:|:white_check_mark:|
-|[rpoplpush](http://redis.io/commands/RPOPLPUSH)|:white_check_mark:|:white_check_mark:|
-|[rpush](http://redis.io/commands/RPUSH)|:white_check_mark:|:white_check_mark:|
-|[rpushx](http://redis.io/commands/RPUSHX)|:white_check_mark:|:white_check_mark:|
-|[sadd](http://redis.io/commands/SADD)|:white_check_mark:|:white_check_mark:|
-|[save](http://redis.io/commands/SAVE)|:white_check_mark:|:white_check_mark:|
-|[scan](http://redis.io/commands/SCAN)|:white_check_mark:|:x:|
-|[scard](http://redis.io/commands/SCARD)|:white_check_mark:|:white_check_mark:|
-|[script](http://redis.io/commands/SCRIPT)|:white_check_mark:|:x:|
-|[sdiff](http://redis.io/commands/SDIFF)|:white_check_mark:|:white_check_mark:|
-|[sdiffstore](http://redis.io/commands/SDIFFSTORE)|:white_check_mark:|:x:|
-|[select](http://redis.io/commands/SELECT)|:white_check_mark:|:x:|
-|[set](http://redis.io/commands/SET)|:white_check_mark:|:white_check_mark:|
-|[setbit](http://redis.io/commands/SETBIT)|:white_check_mark:|:x:|
-|[setex](http://redis.io/commands/SETEX)|:white_check_mark:|:white_check_mark:|
-|[setnx](http://redis.io/commands/SETNX)|:white_check_mark:|:white_check_mark:|
-|[setrange](http://redis.io/commands/SETRANGE)|:white_check_mark:|:x:|
-|[shutdown](http://redis.io/commands/SHUTDOWN)|:white_check_mark:|:x:|
-|[sinter](http://redis.io/commands/SINTER)|:white_check_mark:|:white_check_mark:|
-|[sinterstore](http://redis.io/commands/SINTERSTORE)|:white_check_mark:|:x:|
-|[sismember](http://redis.io/commands/SISMEMBER)|:white_check_mark:|:white_check_mark:|
-|[slaveof](http://redis.io/commands/SLAVEOF)|:white_check_mark:|:x:|
-|[slowlog](http://redis.io/commands/SLOWLOG)|:white_check_mark:|:x:|
-|[smembers](http://redis.io/commands/SMEMBERS)|:white_check_mark:|:white_check_mark:|
-|[smove](http://redis.io/commands/SMOVE)|:white_check_mark:|:white_check_mark:|
-|[sort](http://redis.io/commands/SORT)|:white_check_mark:|:x:|
-|[spop](http://redis.io/commands/SPOP)|:white_check_mark:|:white_check_mark:|
-|[srandmember](http://redis.io/commands/SRANDMEMBER)|:white_check_mark:|:white_check_mark:|
-|[srem](http://redis.io/commands/SREM)|:white_check_mark:|:white_check_mark:|
-|[sscan](http://redis.io/commands/SSCAN)|:white_check_mark:|:x:|
-|[strlen](http://redis.io/commands/STRLEN)|:white_check_mark:|:white_check_mark:|
-|[subscribe](http://redis.io/commands/SUBSCRIBE)|:white_check_mark:|:x:|
-|[sunion](http://redis.io/commands/SUNION)|:white_check_mark:|:white_check_mark:|
-|[sunionstore](http://redis.io/commands/SUNIONSTORE)|:white_check_mark:|:x:|
-|[swapdb](http://redis.io/commands/SWAPDB)|:white_check_mark:|:x:|
-|[sync](http://redis.io/commands/SYNC)|:white_check_mark:|:x:|
-|[time](http://redis.io/commands/TIME)|:white_check_mark:|:white_check_mark:|
-|[touch](http://redis.io/commands/TOUCH)|:white_check_mark:|:x:|
-|[ttl](http://redis.io/commands/TTL)|:white_check_mark:|:white_check_mark:|
-|[type](http://redis.io/commands/TYPE)|:white_check_mark:|:white_check_mark:|
-|[unsubscribe](http://redis.io/commands/UNSUBSCRIBE)|:white_check_mark:|:x:|
-|[unwatch](http://redis.io/commands/UNWATCH)|:white_check_mark:|:x:|
-|[wait](http://redis.io/commands/WAIT)|:white_check_mark:|:x:|
-|[watch](http://redis.io/commands/WATCH)|:white_check_mark:|:x:|
-|[zadd](http://redis.io/commands/ZADD)|:white_check_mark:|:x:|
-|[zcard](http://redis.io/commands/ZCARD)|:white_check_mark:|:x:|
-|[zcount](http://redis.io/commands/ZCOUNT)|:white_check_mark:|:x:|
-|[zincrby](http://redis.io/commands/ZINCRBY)|:white_check_mark:|:x:|
-|[zinterstore](http://redis.io/commands/ZINTERSTORE)|:white_check_mark:|:x:|
-|[zlexcount](http://redis.io/commands/ZLEXCOUNT)|:white_check_mark:|:x:|
-|[zrange](http://redis.io/commands/ZRANGE)|:white_check_mark:|:x:|
-|[zrangebylex](http://redis.io/commands/ZRANGEBYLEX)|:white_check_mark:|:x:|
-|[zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)|:white_check_mark:|:x:|
-|[zrank](http://redis.io/commands/ZRANK)|:white_check_mark:|:x:|
-|[zrem](http://redis.io/commands/ZREM)|:white_check_mark:|:x:|
-|[zremrangebylex](http://redis.io/commands/ZREMRANGEBYLEX)|:white_check_mark:|:x:|
-|[zremrangebyrank](http://redis.io/commands/ZREMRANGEBYRANK)|:white_check_mark:|:x:|
-|[zremrangebyscore](http://redis.io/commands/ZREMRANGEBYSCORE)|:white_check_mark:|:x:|
-|[zrevrange](http://redis.io/commands/ZREVRANGE)|:white_check_mark:|:x:|
-|[zrevrangebylex](http://redis.io/commands/ZREVRANGEBYLEX)|:white_check_mark:|:x:|
-|[zrevrangebyscore](http://redis.io/commands/ZREVRANGEBYSCORE)|:white_check_mark:|:x:|
-|[zrevrank](http://redis.io/commands/ZREVRANK)|:white_check_mark:|:x:|
-|[zscan](http://redis.io/commands/ZSCAN)|:white_check_mark:|:x:|
-|[zscore](http://redis.io/commands/ZSCORE)|:white_check_mark:|:x:|
-|[zunionstore](http://redis.io/commands/ZUNIONSTORE)|:white_check_mark:|:x:|
+| redis                                                           |      ioredis       |    ioredis-mock    |
+| --------------------------------------------------------------- | :----------------: | :----------------: |
+| [append](http://redis.io/commands/APPEND)                       | :white_check_mark: | :white_check_mark: |
+| [auth](http://redis.io/commands/AUTH)                           | :white_check_mark: | :white_check_mark: |
+| [bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)           | :white_check_mark: | :white_check_mark: |
+| [bgsave](http://redis.io/commands/BGSAVE)                       | :white_check_mark: | :white_check_mark: |
+| [bitcount](http://redis.io/commands/BITCOUNT)                   | :white_check_mark: |        :x:         |
+| [bitfield](http://redis.io/commands/BITFIELD)                   | :white_check_mark: |        :x:         |
+| [bitop](http://redis.io/commands/BITOP)                         | :white_check_mark: |        :x:         |
+| [bitpos](http://redis.io/commands/BITPOS)                       | :white_check_mark: |        :x:         |
+| [blpop](http://redis.io/commands/BLPOP)                         | :white_check_mark: |        :x:         |
+| [brpop](http://redis.io/commands/BRPOP)                         | :white_check_mark: |        :x:         |
+| [brpoplpush](http://redis.io/commands/BRPOPLPUSH)               | :white_check_mark: | :white_check_mark: |
+| [client](http://redis.io/commands/CLIENT)                       | :white_check_mark: |        :x:         |
+| [cluster](http://redis.io/commands/CLUSTER)                     | :white_check_mark: |        :x:         |
+| [command](http://redis.io/commands/COMMAND)                     | :white_check_mark: |        :x:         |
+| [config](http://redis.io/commands/CONFIG)                       | :white_check_mark: |        :x:         |
+| [dbsize](http://redis.io/commands/DBSIZE)                       | :white_check_mark: | :white_check_mark: |
+| [decr](http://redis.io/commands/DECR)                           | :white_check_mark: | :white_check_mark: |
+| [decrby](http://redis.io/commands/DECRBY)                       | :white_check_mark: | :white_check_mark: |
+| [del](http://redis.io/commands/DEL)                             | :white_check_mark: | :white_check_mark: |
+| [discard](http://redis.io/commands/DISCARD)                     | :white_check_mark: | :white_check_mark: |
+| [dump](http://redis.io/commands/DUMP)                           | :white_check_mark: |        :x:         |
+| [echo](http://redis.io/commands/ECHO)                           | :white_check_mark: | :white_check_mark: |
+| [eval](http://redis.io/commands/EVAL)                           | :white_check_mark: |        :x:         |
+| [evalsha](http://redis.io/commands/EVALSHA)                     | :white_check_mark: |        :x:         |
+| [exec](http://redis.io/commands/EXEC)                           | :white_check_mark: | :white_check_mark: |
+| [exists](http://redis.io/commands/EXISTS)                       | :white_check_mark: | :white_check_mark: |
+| [expire](http://redis.io/commands/EXPIRE)                       | :white_check_mark: | :white_check_mark: |
+| [expireat](http://redis.io/commands/EXPIREAT)                   | :white_check_mark: | :white_check_mark: |
+| [flushall](http://redis.io/commands/FLUSHALL)                   | :white_check_mark: | :white_check_mark: |
+| [flushdb](http://redis.io/commands/FLUSHDB)                     | :white_check_mark: | :white_check_mark: |
+| [geoadd](http://redis.io/commands/GEOADD)                       | :white_check_mark: |        :x:         |
+| [geodist](http://redis.io/commands/GEODIST)                     | :white_check_mark: |        :x:         |
+| [geohash](http://redis.io/commands/GEOHASH)                     | :white_check_mark: |        :x:         |
+| [geopos](http://redis.io/commands/GEOPOS)                       | :white_check_mark: |        :x:         |
+| [georadius](http://redis.io/commands/GEORADIUS)                 | :white_check_mark: |        :x:         |
+| [georadiusbymember](http://redis.io/commands/GEORADIUSBYMEMBER) | :white_check_mark: |        :x:         |
+| [get](http://redis.io/commands/GET)                             | :white_check_mark: | :white_check_mark: |
+| [getbit](http://redis.io/commands/GETBIT)                       | :white_check_mark: |        :x:         |
+| [getrange](http://redis.io/commands/GETRANGE)                   | :white_check_mark: | :white_check_mark: |
+| [getset](http://redis.io/commands/GETSET)                       | :white_check_mark: | :white_check_mark: |
+| [hdel](http://redis.io/commands/HDEL)                           | :white_check_mark: | :white_check_mark: |
+| [hexists](http://redis.io/commands/HEXISTS)                     | :white_check_mark: | :white_check_mark: |
+| [hget](http://redis.io/commands/HGET)                           | :white_check_mark: | :white_check_mark: |
+| [hgetall](http://redis.io/commands/HGETALL)                     | :white_check_mark: | :white_check_mark: |
+| [hincrby](http://redis.io/commands/HINCRBY)                     | :white_check_mark: | :white_check_mark: |
+| [hincrbyfloat](http://redis.io/commands/HINCRBYFLOAT)           | :white_check_mark: | :white_check_mark: |
+| [hkeys](http://redis.io/commands/HKEYS)                         | :white_check_mark: | :white_check_mark: |
+| [hlen](http://redis.io/commands/HLEN)                           | :white_check_mark: | :white_check_mark: |
+| [hmget](http://redis.io/commands/HMGET)                         | :white_check_mark: | :white_check_mark: |
+| [hmset](http://redis.io/commands/HMSET)                         | :white_check_mark: | :white_check_mark: |
+| [host:](http://redis.io/commands/HOST:)                         | :white_check_mark: |        :x:         |
+| [hscan](http://redis.io/commands/HSCAN)                         | :white_check_mark: |        :x:         |
+| [hset](http://redis.io/commands/HSET)                           | :white_check_mark: | :white_check_mark: |
+| [hsetnx](http://redis.io/commands/HSETNX)                       | :white_check_mark: | :white_check_mark: |
+| [hstrlen](http://redis.io/commands/HSTRLEN)                     | :white_check_mark: | :white_check_mark: |
+| [hvals](http://redis.io/commands/HVALS)                         | :white_check_mark: | :white_check_mark: |
+| [incr](http://redis.io/commands/INCR)                           | :white_check_mark: | :white_check_mark: |
+| [incrby](http://redis.io/commands/INCRBY)                       | :white_check_mark: | :white_check_mark: |
+| [incrbyfloat](http://redis.io/commands/INCRBYFLOAT)             | :white_check_mark: | :white_check_mark: |
+| [info](http://redis.io/commands/INFO)                           | :white_check_mark: |        :x:         |
+| [keys](http://redis.io/commands/KEYS)                           | :white_check_mark: | :white_check_mark: |
+| [lastsave](http://redis.io/commands/LASTSAVE)                   | :white_check_mark: | :white_check_mark: |
+| [lindex](http://redis.io/commands/LINDEX)                       | :white_check_mark: | :white_check_mark: |
+| [linsert](http://redis.io/commands/LINSERT)                     | :white_check_mark: |        :x:         |
+| [llen](http://redis.io/commands/LLEN)                           | :white_check_mark: | :white_check_mark: |
+| [lpop](http://redis.io/commands/LPOP)                           | :white_check_mark: | :white_check_mark: |
+| [lpush](http://redis.io/commands/LPUSH)                         | :white_check_mark: | :white_check_mark: |
+| [lpushx](http://redis.io/commands/LPUSHX)                       | :white_check_mark: | :white_check_mark: |
+| [lrange](http://redis.io/commands/LRANGE)                       | :white_check_mark: |        :x:         |
+| [lrem](http://redis.io/commands/LREM)                           | :white_check_mark: | :white_check_mark: |
+| [lset](http://redis.io/commands/LSET)                           | :white_check_mark: | :white_check_mark: |
+| [ltrim](http://redis.io/commands/LTRIM)                         | :white_check_mark: |        :x:         |
+| [memory](http://redis.io/commands/MEMORY)                       | :white_check_mark: |        :x:         |
+| [mget](http://redis.io/commands/MGET)                           | :white_check_mark: | :white_check_mark: |
+| [migrate](http://redis.io/commands/MIGRATE)                     | :white_check_mark: |        :x:         |
+| [module](http://redis.io/commands/MODULE)                       | :white_check_mark: |        :x:         |
+| [monitor](http://redis.io/commands/MONITOR)                     | :white_check_mark: |        :x:         |
+| [move](http://redis.io/commands/MOVE)                           | :white_check_mark: |        :x:         |
+| [mset](http://redis.io/commands/MSET)                           | :white_check_mark: | :white_check_mark: |
+| [msetnx](http://redis.io/commands/MSETNX)                       | :white_check_mark: | :white_check_mark: |
+| [multi](http://redis.io/commands/MULTI)                         | :white_check_mark: | :white_check_mark: |
+| [object](http://redis.io/commands/OBJECT)                       | :white_check_mark: |        :x:         |
+| [persist](http://redis.io/commands/PERSIST)                     | :white_check_mark: | :white_check_mark: |
+| [pexpire](http://redis.io/commands/PEXPIRE)                     | :white_check_mark: | :white_check_mark: |
+| [pexpireat](http://redis.io/commands/PEXPIREAT)                 | :white_check_mark: | :white_check_mark: |
+| [pfadd](http://redis.io/commands/PFADD)                         | :white_check_mark: |        :x:         |
+| [pfcount](http://redis.io/commands/PFCOUNT)                     | :white_check_mark: |        :x:         |
+| [pfmerge](http://redis.io/commands/PFMERGE)                     | :white_check_mark: |        :x:         |
+| [ping](http://redis.io/commands/PING)                           | :white_check_mark: | :white_check_mark: |
+| [post](http://redis.io/commands/POST)                           | :white_check_mark: |        :x:         |
+| [psetex](http://redis.io/commands/PSETEX)                       | :white_check_mark: | :white_check_mark: |
+| [psubscribe](http://redis.io/commands/PSUBSCRIBE)               | :white_check_mark: |        :x:         |
+| [pttl](http://redis.io/commands/PTTL)                           | :white_check_mark: | :white_check_mark: |
+| [publish](http://redis.io/commands/PUBLISH)                     | :white_check_mark: | :white_check_mark: |
+| [pubsub](http://redis.io/commands/PUBSUB)                       | :white_check_mark: |        :x:         |
+| [punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)           | :white_check_mark: |        :x:         |
+| [quit](http://redis.io/commands/QUIT)                           | :white_check_mark: |        :x:         |
+| [randomkey](http://redis.io/commands/RANDOMKEY)                 | :white_check_mark: | :white_check_mark: |
+| [readonly](http://redis.io/commands/READONLY)                   | :white_check_mark: |        :x:         |
+| [readwrite](http://redis.io/commands/READWRITE)                 | :white_check_mark: |        :x:         |
+| [rename](http://redis.io/commands/RENAME)                       | :white_check_mark: | :white_check_mark: |
+| [renamenx](http://redis.io/commands/RENAMENX)                   | :white_check_mark: | :white_check_mark: |
+| [restore](http://redis.io/commands/RESTORE)                     | :white_check_mark: |        :x:         |
+| [role](http://redis.io/commands/ROLE)                           | :white_check_mark: | :white_check_mark: |
+| [rpop](http://redis.io/commands/RPOP)                           | :white_check_mark: | :white_check_mark: |
+| [rpoplpush](http://redis.io/commands/RPOPLPUSH)                 | :white_check_mark: | :white_check_mark: |
+| [rpush](http://redis.io/commands/RPUSH)                         | :white_check_mark: | :white_check_mark: |
+| [rpushx](http://redis.io/commands/RPUSHX)                       | :white_check_mark: | :white_check_mark: |
+| [sadd](http://redis.io/commands/SADD)                           | :white_check_mark: | :white_check_mark: |
+| [save](http://redis.io/commands/SAVE)                           | :white_check_mark: | :white_check_mark: |
+| [scan](http://redis.io/commands/SCAN)                           | :white_check_mark: |        :x:         |
+| [scard](http://redis.io/commands/SCARD)                         | :white_check_mark: | :white_check_mark: |
+| [script](http://redis.io/commands/SCRIPT)                       | :white_check_mark: |        :x:         |
+| [sdiff](http://redis.io/commands/SDIFF)                         | :white_check_mark: | :white_check_mark: |
+| [sdiffstore](http://redis.io/commands/SDIFFSTORE)               | :white_check_mark: |        :x:         |
+| [select](http://redis.io/commands/SELECT)                       | :white_check_mark: |        :x:         |
+| [set](http://redis.io/commands/SET)                             | :white_check_mark: | :white_check_mark: |
+| [setbit](http://redis.io/commands/SETBIT)                       | :white_check_mark: |        :x:         |
+| [setex](http://redis.io/commands/SETEX)                         | :white_check_mark: | :white_check_mark: |
+| [setnx](http://redis.io/commands/SETNX)                         | :white_check_mark: | :white_check_mark: |
+| [setrange](http://redis.io/commands/SETRANGE)                   | :white_check_mark: |        :x:         |
+| [shutdown](http://redis.io/commands/SHUTDOWN)                   | :white_check_mark: |        :x:         |
+| [sinter](http://redis.io/commands/SINTER)                       | :white_check_mark: | :white_check_mark: |
+| [sinterstore](http://redis.io/commands/SINTERSTORE)             | :white_check_mark: |        :x:         |
+| [sismember](http://redis.io/commands/SISMEMBER)                 | :white_check_mark: | :white_check_mark: |
+| [slaveof](http://redis.io/commands/SLAVEOF)                     | :white_check_mark: |        :x:         |
+| [slowlog](http://redis.io/commands/SLOWLOG)                     | :white_check_mark: |        :x:         |
+| [smembers](http://redis.io/commands/SMEMBERS)                   | :white_check_mark: | :white_check_mark: |
+| [smove](http://redis.io/commands/SMOVE)                         | :white_check_mark: | :white_check_mark: |
+| [sort](http://redis.io/commands/SORT)                           | :white_check_mark: |        :x:         |
+| [spop](http://redis.io/commands/SPOP)                           | :white_check_mark: | :white_check_mark: |
+| [srandmember](http://redis.io/commands/SRANDMEMBER)             | :white_check_mark: | :white_check_mark: |
+| [srem](http://redis.io/commands/SREM)                           | :white_check_mark: | :white_check_mark: |
+| [sscan](http://redis.io/commands/SSCAN)                         | :white_check_mark: |        :x:         |
+| [strlen](http://redis.io/commands/STRLEN)                       | :white_check_mark: | :white_check_mark: |
+| [subscribe](http://redis.io/commands/SUBSCRIBE)                 | :white_check_mark: |        :x:         |
+| [sunion](http://redis.io/commands/SUNION)                       | :white_check_mark: | :white_check_mark: |
+| [sunionstore](http://redis.io/commands/SUNIONSTORE)             | :white_check_mark: |        :x:         |
+| [swapdb](http://redis.io/commands/SWAPDB)                       | :white_check_mark: |        :x:         |
+| [sync](http://redis.io/commands/SYNC)                           | :white_check_mark: |        :x:         |
+| [time](http://redis.io/commands/TIME)                           | :white_check_mark: | :white_check_mark: |
+| [touch](http://redis.io/commands/TOUCH)                         | :white_check_mark: |        :x:         |
+| [ttl](http://redis.io/commands/TTL)                             | :white_check_mark: | :white_check_mark: |
+| [type](http://redis.io/commands/TYPE)                           | :white_check_mark: | :white_check_mark: |
+| [unsubscribe](http://redis.io/commands/UNSUBSCRIBE)             | :white_check_mark: |        :x:         |
+| [unwatch](http://redis.io/commands/UNWATCH)                     | :white_check_mark: |        :x:         |
+| [wait](http://redis.io/commands/WAIT)                           | :white_check_mark: |        :x:         |
+| [watch](http://redis.io/commands/WATCH)                         | :white_check_mark: |        :x:         |
+| [zadd](http://redis.io/commands/ZADD)                           | :white_check_mark: |        :x:         |
+| [zcard](http://redis.io/commands/ZCARD)                         | :white_check_mark: |        :x:         |
+| [zcount](http://redis.io/commands/ZCOUNT)                       | :white_check_mark: |        :x:         |
+| [zincrby](http://redis.io/commands/ZINCRBY)                     | :white_check_mark: |        :x:         |
+| [zinterstore](http://redis.io/commands/ZINTERSTORE)             | :white_check_mark: |        :x:         |
+| [zlexcount](http://redis.io/commands/ZLEXCOUNT)                 | :white_check_mark: |        :x:         |
+| [zrange](http://redis.io/commands/ZRANGE)                       | :white_check_mark: |        :x:         |
+| [zrangebylex](http://redis.io/commands/ZRANGEBYLEX)             | :white_check_mark: |        :x:         |
+| [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)         | :white_check_mark: |        :x:         |
+| [zrank](http://redis.io/commands/ZRANK)                         | :white_check_mark: |        :x:         |
+| [zrem](http://redis.io/commands/ZREM)                           | :white_check_mark: |        :x:         |
+| [zremrangebylex](http://redis.io/commands/ZREMRANGEBYLEX)       | :white_check_mark: |        :x:         |
+| [zremrangebyrank](http://redis.io/commands/ZREMRANGEBYRANK)     | :white_check_mark: |        :x:         |
+| [zremrangebyscore](http://redis.io/commands/ZREMRANGEBYSCORE)   | :white_check_mark: |        :x:         |
+| [zrevrange](http://redis.io/commands/ZREVRANGE)                 | :white_check_mark: |        :x:         |
+| [zrevrangebylex](http://redis.io/commands/ZREVRANGEBYLEX)       | :white_check_mark: |        :x:         |
+| [zrevrangebyscore](http://redis.io/commands/ZREVRANGEBYSCORE)   | :white_check_mark: |        :x:         |
+| [zrevrank](http://redis.io/commands/ZREVRANK)                   | :white_check_mark: |        :x:         |
+| [zscan](http://redis.io/commands/ZSCAN)                         | :white_check_mark: |        :x:         |
+| [zscore](http://redis.io/commands/ZSCORE)                       | :white_check_mark: |        :x:         |
+| [zunionstore](http://redis.io/commands/ZUNIONSTORE)             | :white_check_mark: |        :x:         |

@@ -12,7 +12,9 @@ function createGroupedArray(arr, groupSize) {
 export function set(key, value, ...options) {
   const nx = options.indexOf('NX') !== -1;
   const xx = options.indexOf('XX') !== -1;
-  const filteredOptions = options.filter(option => option !== 'NX' && option !== 'XX');
+  const filteredOptions = options.filter(
+    option => option !== 'NX' && option !== 'XX'
+  );
 
   if (nx && xx) throw new Error('ERR syntax error');
   if (nx && this.data.has(key)) return null;
@@ -21,7 +23,8 @@ export function set(key, value, ...options) {
   this.data.set(key, value);
 
   const expireOptions = new Map(createGroupedArray(filteredOptions, 2));
-  const ttlSeconds = expireOptions.get('EX') || expireOptions.get('PX') / 1000.0;
+  const ttlSeconds =
+    expireOptions.get('EX') || expireOptions.get('PX') / 1000.0;
 
   if (ttlSeconds) {
     expire.call(this, key, ttlSeconds);

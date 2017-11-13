@@ -1,5 +1,5 @@
 {
-    "files.exclude": {
-      "lib": true
-    }
+  "files.exclude": {
+    "lib": true
   }
+}

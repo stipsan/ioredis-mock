@@ -8,7 +8,7 @@ var redis = new RedisMock({
     },
     'user:1': { id: '1', username: 'superman', email: 'clark@daily.planet' },
     'user:2': { id: '2', username: 'batman', email: 'bruce@wayne.enterprises' },
-  }
+  },
 });
 
 await redis.incr('user_next');

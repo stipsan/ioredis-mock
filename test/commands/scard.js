@@ -27,7 +27,8 @@ describe('scard', () => {
       },
     });
 
-    return redis.scard('foo')
+    return redis
+      .scard('foo')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
   });
 });

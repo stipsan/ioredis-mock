@@ -10,7 +10,8 @@ describe('decr', () => {
       },
     });
 
-    return redis.decr('user_next')
+    return redis
+      .decr('user_next')
       .then(userNext => expect(userNext).toBe(1))
       .then(() => expect(redis.data.get('user_next')).toBe('1'));
   });

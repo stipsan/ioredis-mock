@@ -10,7 +10,8 @@ describe('rpop', () => {
       },
     });
 
-    return redis.rpop('foo')
+    return redis
+      .rpop('foo')
       .then(result => expect(result).toBe('3'))
       .then(() => expect(redis.data.get('foo')).toEqual(['1', '2']));
   });
@@ -32,7 +33,10 @@ describe('rpop', () => {
       },
     });
 
-    return redis.rpop('foo')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a list'));
+    return redis
+      .rpop('foo')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      );
   });
 });
