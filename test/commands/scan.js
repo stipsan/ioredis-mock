@@ -23,6 +23,36 @@ describe('scan', () => {
       expect(result[1]).toEqual(['foo', 'test']);
     });
   });
+  it('should return fail if incorrect count', () => {
+    const redis = new MockRedis();
+    return redis.scan('asdf').catch(result => {
+      expect(result).toBeA(Error);
+    });
+  });
+  it('should return fail if incorrect command', () => {
+    const redis = new MockRedis();
+    return redis.scan(0, 'ZU').catch(result => {
+      expect(result).toBeA(Error);
+    });
+  });
+  it('should return fail if incorrect MATCH usage', () => {
+    const redis = new MockRedis();
+    return redis.scan(0, 'MATCH', 'sadf', 'ZU').catch(result => {
+      expect(result).toBeA(Error);
+    });
+  });
+  it('should return fail if incorrect COUNT usage', () => {
+    const redis = new MockRedis();
+    return redis.scan(0, 'COUNT', 10, 'ZU').catch(result => {
+      expect(result).toBeA(Error);
+    });
+  });
+  it('should return fail if incorrect COUNT usage 2', () => {
+    const redis = new MockRedis();
+    return redis.scan(0, 'COUNT', 'adsf').catch(result => {
+      expect(result).toBeA(Error);
+    });
+  });
   it('should return only mathced keys', () => {
     const redis = new MockRedis({
       data: {
