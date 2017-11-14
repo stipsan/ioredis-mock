@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-yellow.svg)
+## Supported commands ![Commands Coverage: 50%](https://img.shields.io/badge/coverage-50%25-yellow.svg)
 
 | redis                                                           |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------- | :----------------: | :----------------: |
@@ -112,7 +112,7 @@
 | [rpushx](http://redis.io/commands/RPUSHX)                       | :white_check_mark: | :white_check_mark: |
 | [sadd](http://redis.io/commands/SADD)                           | :white_check_mark: | :white_check_mark: |
 | [save](http://redis.io/commands/SAVE)                           | :white_check_mark: | :white_check_mark: |
-| [scan](http://redis.io/commands/SCAN)                           | :white_check_mark: |        :x:         |
+| [scan](http://redis.io/commands/SCAN)                           | :white_check_mark: | :white_check_mark: |
 | [scard](http://redis.io/commands/SCARD)                         | :white_check_mark: | :white_check_mark: |
 | [script](http://redis.io/commands/SCRIPT)                       | :white_check_mark: |        :x:         |
 | [sdiff](http://redis.io/commands/SDIFF)                         | :white_check_mark: | :white_check_mark: |
