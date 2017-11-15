@@ -1,3 +1,4 @@
+import Map from 'es6-map';
 import { orderBy } from 'lodash';
 import { slice } from './zrange-command.common';
 
@@ -5,6 +6,11 @@ export function zrange(key, s, e) {
   const map = this.data.get(key);
   if (!map) {
     return [];
+  }
+
+  // @TODO investigate a more stable way to detect sorted lists
+  if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
+    throw new Error(`Key ${key} does not contain a sorted list`);
   }
 
   const start = parseInt(s, 10);
