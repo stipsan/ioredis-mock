@@ -115,5 +115,5 @@
     "generateNotes": "semantic-release-tamia/generateNotes",
     "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
-  "tonicExampleFilename": "example.js"
+  "runkitExampleFilename": "example.js"
 }
