@@ -12,5 +12,4 @@ scripts
 .prettierrc
 appveyor.yml
 compat.md
-example.js
 yarn.lock
