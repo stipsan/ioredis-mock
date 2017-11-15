@@ -8,14 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
-## [3.3.0]
+## [3.3.0] - 2017-11-15
 
 ### Added
 
 * `zadd`, `zrange`, `zremrevbyrank` and `zrevrange` commands. (#321 @ddunkin)
 * Added support for passing objects and maps to `hmset` (#337)
 
-## [3.2.0] - 2017-11-16
+## [3.2.0] - 2017-11-15
 
 ### Added
 
