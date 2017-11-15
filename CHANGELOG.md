@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.2.0] - 2017-11-16
+
+### Features
+
+* Add LRANGE support (#335 @sseidametov)
+* Scan command implementation (#334 @DrMegavolt)
+
 ## [3.1.3] - 2017-11-12
 
 ### Fixes
