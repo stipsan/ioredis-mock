@@ -70,7 +70,7 @@
 | [lpop](http://redis.io/commands/LPOP)                           | :white_check_mark: | :white_check_mark: |
 | [lpush](http://redis.io/commands/LPUSH)                         | :white_check_mark: | :white_check_mark: |
 | [lpushx](http://redis.io/commands/LPUSHX)                       | :white_check_mark: | :white_check_mark: |
-| [lrange](http://redis.io/commands/LRANGE)                       | :white_check_mark: |        :x:         |
+| [lrange](http://redis.io/commands/LRANGE)                       | :white_check_mark: | :white_check_mark: |
 | [lrem](http://redis.io/commands/LREM)                           | :white_check_mark: | :white_check_mark: |
 | [lset](http://redis.io/commands/LSET)                           | :white_check_mark: | :white_check_mark: |
 | [ltrim](http://redis.io/commands/LTRIM)                         | :white_check_mark: |        :x:         |
