@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-export default function command(emulate) {
+export default function command(emulate, commandName) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -11,10 +11,14 @@ export default function command(emulate) {
       args.length = lastArgIndex;
     }
 
-    // transform non-buffer arguments to strings to simulate real ioredis behavior
-    const stringArgs = args.map(
-      arg => (arg instanceof Buffer ? arg : arg.toString())
-    );
+    // Stopgap until we got proper argument transformers implemented
+    const stringArgs =
+      commandName === 'hmset'
+        ? args
+        : args.map(
+            // transform non-buffer arguments to strings to simulate real ioredis behavior
+            arg => (arg instanceof Buffer ? arg : arg.toString())
+          );
 
     return new Promise(resolve => resolve(emulate(...stringArgs))).asCallback(
       callback

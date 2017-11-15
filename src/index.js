@@ -19,7 +19,7 @@ class RedisMock extends EventEmitter {
     this.data = createData(this.expires, data);
 
     Object.keys(commands).forEach(command => {
-      this[command] = createCommand(commands[command].bind(this));
+      this[command] = createCommand(commands[command].bind(this), command);
     });
 
     process.nextTick(() => {
