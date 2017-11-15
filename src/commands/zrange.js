@@ -10,7 +10,7 @@ export function zrange(key, s, e) {
 
   // @TODO investigate a more stable way to detect sorted lists
   if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
-    throw new Error(`Key ${key} does not contain a sorted list`);
+    return [];
   }
 
   const start = parseInt(s, 10);

@@ -45,17 +45,13 @@ describe('zrevrange', () => {
     return redis.zrevrange('foo', 10, 100).then(res => expect(res).toEqual([]));
   });
 
-  it('should throw an exception if the key contains something other than a list', () => {
+  it('should return empty array if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
         foo: 'not a list',
       },
     });
 
-    return redis
-      .zrevrange('foo', 0, 2)
-      .catch(err =>
-        expect(err.message).toBe('Key foo does not contain a sorted list')
-      );
+    return redis.zrevrange('foo', 0, 2).then(res => expect(res).toEqual([]));
   });
 });
