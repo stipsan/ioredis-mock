@@ -8,16 +8,19 @@ and this project adheres to
 
 ## [Unreleased]
 
-### Features
+## [3.3.0]
 
-* Add support for passing objects and maps to hmset
+### Added
+
+* `zadd`, `zrange`, `zremrevbyrank` and `zrevrange` commands. (#321 @ddunkin)
+* Added support for passing objects and maps to `hmset` (#337)
 
 ## [3.2.0] - 2017-11-16
 
-### Features
+### Added
 
-* Add LRANGE support (#335 @sseidametov)
-* Scan command implementation (#334 @DrMegavolt)
+* `lrange` command. (#335 @sseidametov)
+* `scan` command. (#334 @DrMegavolt)
 
 ## [3.1.3] - 2017-11-12
 
@@ -29,7 +32,7 @@ and this project adheres to
 
 ### Fixes
 
-* Fixed hexists edge cases (#331 @wraytw)
+* Fixed hexists edge cases. (#331 @wraytw)
 
 ## [3.1.1] - 2017-10-19
 
@@ -41,35 +44,35 @@ and this project adheres to
 
 ### Features
 
-* Add `pipeline` with method chaining (#312 @funnisimo)
+* Added `pipeline` with method chaining (#312 @funnisimo)
 
 ## [3.0.2] - 2017-10-02
 
 ### Fixes
 
-* Add back support for node v0.10.x like ioredis
+* Added back support for node v0.10.x like ioredis.
 
 ## [3.0.1] - 2017-10-02
 
 ### Fixes
 
-* Remove README and RunKit references to old import style
+* Removed README and RunKit references to old import style.
 
 ## [3.0.0] - 2017-10-02
 
 ### Changed
 
-* Use module.exports to be in line with ioredis (#311 @rexxars)
+* Use module.exports to be in line with ioredis. (#311 @rexxars)
 
 ### Fixes
 
-* Error thrown in sismember() if key does not exist (#318 @theogravity)
+* Error thrown in sismember() if key does not exist. (#318 @theogravity)
 
 ## [2.4.1] - 2017-10-02
 
 ### Fixes
 
-* Allow ioredis 3 as peer dependency (#317 @aruberto)
+* Allow ioredis 3 as peer dependency. (#317 @aruberto)
 
 ## [2.4.0] - 2017-03-05
 
@@ -442,7 +445,8 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.2.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.3.0...HEAD
+[3.3.0]: https://github.com/stipsan/ioredis-mock/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...v3.2.0
 [3.1.3]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/stipsan/ioredis-mock/compare/v3.1.1...v3.1.2
