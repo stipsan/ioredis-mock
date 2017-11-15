@@ -48,7 +48,7 @@ describe('lrange', () => {
 
     return redis
       .lrange('foo', 10, 100)
-      .then(res => expect(res).toEqual(['1', '2', '3', '4', '5']));
+      .then(res => expect(res).toEqual([]));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
