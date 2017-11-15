@@ -4,6 +4,7 @@ export function zadd(key, ...vals) {
   if (!this.data.has(key)) {
     this.data.set(key, new Map());
   }
+
   let added = 0;
   const map = this.data.get(key);
   for (let i = 0; i < vals.length; i += 2) {
@@ -14,5 +15,7 @@ export function zadd(key, ...vals) {
     }
     map.set(value, { score, value });
   }
+
+  this.data.set(key, map);
   return added;
 }
