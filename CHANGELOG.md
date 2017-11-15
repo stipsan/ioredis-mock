@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Features
+
+* Add support for passing objects and maps to hmset
+
 ## [3.2.0] - 2017-11-16
 
 ### Features
@@ -438,7 +442,8 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...v3.2.0
 [3.1.3]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/stipsan/ioredis-mock/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/stipsan/ioredis-mock/compare/v3.1.0...v3.1.1
