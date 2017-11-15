@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 50%](https://img.shields.io/badge/coverage-50%25-yellow.svg)
+## Supported commands ![Commands Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)
 
 | redis                                                           |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------- | :----------------: | :----------------: |
@@ -150,21 +150,21 @@
 | [unwatch](http://redis.io/commands/UNWATCH)                     | :white_check_mark: |        :x:         |
 | [wait](http://redis.io/commands/WAIT)                           | :white_check_mark: |        :x:         |
 | [watch](http://redis.io/commands/WATCH)                         | :white_check_mark: |        :x:         |
-| [zadd](http://redis.io/commands/ZADD)                           | :white_check_mark: |        :x:         |
+| [zadd](http://redis.io/commands/ZADD)                           | :white_check_mark: | :white_check_mark: |
 | [zcard](http://redis.io/commands/ZCARD)                         | :white_check_mark: |        :x:         |
 | [zcount](http://redis.io/commands/ZCOUNT)                       | :white_check_mark: |        :x:         |
 | [zincrby](http://redis.io/commands/ZINCRBY)                     | :white_check_mark: |        :x:         |
 | [zinterstore](http://redis.io/commands/ZINTERSTORE)             | :white_check_mark: |        :x:         |
 | [zlexcount](http://redis.io/commands/ZLEXCOUNT)                 | :white_check_mark: |        :x:         |
-| [zrange](http://redis.io/commands/ZRANGE)                       | :white_check_mark: |        :x:         |
+| [zrange](http://redis.io/commands/ZRANGE)                       | :white_check_mark: | :white_check_mark: |
 | [zrangebylex](http://redis.io/commands/ZRANGEBYLEX)             | :white_check_mark: |        :x:         |
 | [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)         | :white_check_mark: |        :x:         |
 | [zrank](http://redis.io/commands/ZRANK)                         | :white_check_mark: |        :x:         |
 | [zrem](http://redis.io/commands/ZREM)                           | :white_check_mark: |        :x:         |
 | [zremrangebylex](http://redis.io/commands/ZREMRANGEBYLEX)       | :white_check_mark: |        :x:         |
-| [zremrangebyrank](http://redis.io/commands/ZREMRANGEBYRANK)     | :white_check_mark: |        :x:         |
+| [zremrangebyrank](http://redis.io/commands/ZREMRANGEBYRANK)     | :white_check_mark: | :white_check_mark: |
 | [zremrangebyscore](http://redis.io/commands/ZREMRANGEBYSCORE)   | :white_check_mark: |        :x:         |
-| [zrevrange](http://redis.io/commands/ZREVRANGE)                 | :white_check_mark: |        :x:         |
+| [zrevrange](http://redis.io/commands/ZREVRANGE)                 | :white_check_mark: | :white_check_mark: |
 | [zrevrangebylex](http://redis.io/commands/ZREVRANGEBYLEX)       | :white_check_mark: |        :x:         |
 | [zrevrangebyscore](http://redis.io/commands/ZREVRANGEBYSCORE)   | :white_check_mark: |        :x:         |
 | [zrevrank](http://redis.io/commands/ZREVRANK)                   | :white_check_mark: |        :x:         |
