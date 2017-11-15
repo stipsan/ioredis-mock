@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash';
-import { slice } from './slice';
+import { slice } from './zrange-command.common';
 
 export function zrange(key, s, e) {
   const map = this.data.get(key);

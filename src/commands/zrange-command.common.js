@@ -11,7 +11,9 @@ export function slice(arr, s, e) {
   if (end === -1) {
     return [];
   } else if (end - start < 0) {
-    return Array.from(arr).reverse().slice(start, end + 1);
+    return Array.from(arr)
+      .reverse()
+      .slice(start, end + 1);
   }
   return arr.slice(start, end + 1);
 }
