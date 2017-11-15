@@ -44,6 +44,7 @@ export * from './lpop';
 export * from './lpopBuffer';
 export * from './lpush';
 export * from './lpushx';
+export * from './lrange';
 export * from './lrem';
 export * from './lset';
 export * from './mget';
