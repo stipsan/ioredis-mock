@@ -8,6 +8,8 @@ scripts
 .codeclimate.yml
 .eslintignore
 .eslintrc
+.prettierignore
+.prettierrc
 appveyor.yml
 compat.md
 example.js
