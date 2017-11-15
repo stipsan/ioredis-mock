@@ -87,3 +87,7 @@ export * from './sunion';
 export * from './time';
 export * from './ttl';
 export * from './type';
+export * from './zadd';
+export * from './zrange';
+export * from './zremrangebyrank';
+export * from './zrevrange';
