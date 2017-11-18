@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import * as utils from 'ioredis/lib/utils';
+import * as originalCommands from 'ioredis/lib/command';
 import Promise from 'bluebird';
 import * as commands from './commands';
 import createCommand from './command';
@@ -51,10 +51,8 @@ class RedisMock extends EventEmitter {
   }
 }
 RedisMock.prototype.Command = {
-  transformers: {
-    argument: {},
-    reply: {},
-  },
+  // eslint-disable-next-line no-underscore-dangle
+  transformers: originalCommands._transformer,
   setArgumentTransformer: (name, func) => {
     RedisMock.prototype.Command.transformers.argument[name] = func;
   },
@@ -63,44 +61,5 @@ RedisMock.prototype.Command = {
     RedisMock.prototype.Command.transformers.reply[name] = func;
   },
 };
-
-const Command = RedisMock.prototype.Command;
-Command.setArgumentTransformer('hmset', args => {
-  if (args.length === 2) {
-    if (typeof Map !== 'undefined' && args[1] instanceof Map) {
-      return [args[0]].concat(utils.convertMapToArray(args[1]));
-    }
-    if (typeof args[1] === 'object' && args[1] !== null) {
-      return [args[0]].concat(utils.convertObjectToArray(args[1]));
-    }
-  }
-  return args;
-});
-
-Command.setReplyTransformer('hgetall', result => {
-  if (Array.isArray(result)) {
-    const obj = {};
-    for (let i = 0; i < result.length; i += 2) {
-      obj[result[i]] = result[i + 1];
-    }
-    return obj;
-  }
-  return result;
-});
-
-const msetArgumentTransformer = args => {
-  if (args.length === 1) {
-    if (typeof Map !== 'undefined' && args[0] instanceof Map) {
-      return utils.convertMapToArray(args[0]);
-    }
-    if (typeof args[0] === 'object' && args[0] !== null) {
-      return utils.convertObjectToArray(args[0]);
-    }
-  }
-  return args;
-};
-
-Command.setArgumentTransformer('mset', msetArgumentTransformer);
-Command.setArgumentTransformer('msetnx', msetArgumentTransformer);
 
 module.exports = RedisMock;
