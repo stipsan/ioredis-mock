@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-export default function command(emulate, commandName) {
+export default function command(emulate, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -11,16 +11,16 @@ export default function command(emulate, commandName) {
       args.length = lastArgIndex;
     }
 
-    // Stopgap until we got proper argument transformers implemented
-    const stringArgs =
-      commandName === 'hmset'
-        ? args
-        : args.map(
-            // transform non-buffer arguments to strings to simulate real ioredis behavior
-            arg => (arg instanceof Buffer ? arg : arg.toString())
-          );
+    let commandArgs = args;
+    if (RedisMock.Command.transformers.argument[commandName]) {
+      commandArgs = RedisMock.Command.transformers.argument[commandName](args);
+    }
+    commandArgs = commandArgs.map(
+      // transform non-buffer arguments to strings to simulate real ioredis behavior
+      arg => (arg instanceof Buffer ? arg : arg.toString())
+    );
 
-    return new Promise(resolve => resolve(emulate(...stringArgs))).asCallback(
+    return new Promise(resolve => resolve(emulate(...commandArgs))).asCallback(
       callback
     );
   };
