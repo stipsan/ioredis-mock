@@ -3,10 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/node:carbon
-        # To support coverage reports from forks
-        environment:
-          CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
-          COVERALLS_REPO_TOKEN: uXjaiJ9eS9qZ22QdYHeiqwrsQi9aOWJbz
+    # To support coverage reports from forks
+    environment:
+      CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
+      COVERALLS_REPO_TOKEN: uXjaiJ9eS9qZ22QdYHeiqwrsQi9aOWJbz
 
     steps:
       - checkout
