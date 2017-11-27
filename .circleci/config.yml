@@ -37,7 +37,13 @@ jobs:
 
       - run: npx -p node-bin@5 -- yarn test
 
-      - run: npx -p node-bin@lts -- yarn test
+      - run: npx -p node-bin@6 -- yarn test
+
+      - run: npx -p node-bin@7 -- yarn test
+
+      - run: npx -p node-bin@8 -- yarn test
+
+      - run: yarn test
 
       # Running the testing suite with coverage enabled doubles as
       # npx -p node-bin@latest -- yarn test
