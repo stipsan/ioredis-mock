@@ -42,6 +42,14 @@ jobs:
 
       - run: npx -p node-bin@8 -- yarn test
 
+      # Let the CI know we got test results it can parse
+      - store_test_results:
+          path: ./junit
+
+      # Easy debug junit xml files by storing them in the build
+      - store_artifacts:
+          path: ./junit
+
       # Running the testing suite with coverage enabled doubles as
       # npx -p node-bin@latest -- yarn test
       - run: 

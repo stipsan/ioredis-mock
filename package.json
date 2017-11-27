@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run clean && npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "printf \"node \" && node --version",
-    "test": "mocha --require babel-core/register --recursive",
+    "test": "mocha --require babel-core/register --recursive --reporter mocha-circleci-reporter --reporter-options testsuitesTitle=node@$(node --version),mochaFile=junit/$(node --version).xml",
     "test:watch": "yarn test --watch --growl",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"Chore: Update feature compat table\" &> /dev/null || true"
   },
@@ -55,6 +55,7 @@
     "growl": "^1.10.3",
     "husky": "^0.14.3",
     "ioredis": "^3.2.1",
+    "junit-merge": "^1.1.0",
     "lint-staged": "^5.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.5.3",
@@ -68,6 +69,7 @@
     "semver": "^5.4.1"
   },
   "keywords": [
+    "fakeredis",
     "in-memory",
     "ioredis",
     "ioredis-mock",

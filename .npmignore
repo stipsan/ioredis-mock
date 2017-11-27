@@ -2,9 +2,10 @@
 .vscode
 .nyc_output
 coverage
+junit
+scripts
 src
 test
-scripts
 .babelrc
 .codeclimate.yml
 .eslintignore
