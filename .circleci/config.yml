@@ -18,8 +18,6 @@ jobs:
 
       - run: yarn install
 
-
-      - run: sudo npm install -g npx
       - run: yarn lint
 
       # ioredis supports version 0.10.16 and later
