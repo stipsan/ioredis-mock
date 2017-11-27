@@ -21,7 +21,7 @@
     "coverage": "npm run coveralls && npm run codeclimate",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "./node_modules/.bin/eslint .",
-    "prepublish": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean && npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "printf \"node \" && node --version",
     "test": "mocha --require babel-core/register --recursive",
