@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-export default function command(emulate, commandName, RedisMock) {
+export default function command(commandEmulator, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -20,8 +20,8 @@ export default function command(emulate, commandName, RedisMock) {
       arg => (arg instanceof Buffer ? arg : arg.toString())
     );
 
-    return new Promise(resolve => resolve(emulate(...commandArgs))).asCallback(
-      callback
-    );
+    return new Promise(resolve =>
+      resolve(commandEmulator(...commandArgs))
+    ).asCallback(callback);
   };
 }
