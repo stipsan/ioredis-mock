@@ -1,5 +1,6 @@
 .circleci
 .vscode
+.nyc_output
 coverage
 src
 test
