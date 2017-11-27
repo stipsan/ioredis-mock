@@ -51,12 +51,13 @@ it's feature complete:
 * [x] Refactor to bluebird promises like ioredis, support node style callback
       too.
 * [x] Implement remaining basic features that read/write data.
-* [ ] Implement ioredis
+* [x] Implement ioredis
       [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
 * [ ] Connection Events
 * [ ] Offline Queue
 * [ ] Pub/Sub
 * [ ] Error Handling
+* [ ] Implement [remaining](compat.md) commands
 
 ## I need a feature not listed here
 
