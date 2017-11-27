@@ -1,6 +1,24 @@
 import Promise from 'bluebird';
 
-export default function command(emulate, commandName) {
+export function processArguments(args, commandName, RedisMock) {
+  let commandArgs = args;
+  if (RedisMock.Command.transformers.argument[commandName]) {
+    commandArgs = RedisMock.Command.transformers.argument[commandName](args);
+  }
+  commandArgs = commandArgs.map(
+    // transform non-buffer arguments to strings to simulate real ioredis behavior
+    arg => (arg instanceof Buffer ? arg : arg.toString())
+  );
+  return commandArgs;
+}
+
+export function processReply(result, commandName, RedisMock) {
+  if (RedisMock.Command.transformers.reply[commandName]) {
+    return RedisMock.Command.transformers.reply[commandName](result);
+  }
+  return result;
+}
+export default function command(commandEmulator, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
     let callback = args[lastArgIndex];
@@ -11,17 +29,12 @@ export default function command(emulate, commandName) {
       args.length = lastArgIndex;
     }
 
-    // Stopgap until we got proper argument transformers implemented
-    const stringArgs =
-      commandName === 'hmset'
-        ? args
-        : args.map(
-            // transform non-buffer arguments to strings to simulate real ioredis behavior
-            arg => (arg instanceof Buffer ? arg : arg.toString())
-          );
+    const commandArgs = processArguments(args, commandName, RedisMock);
 
-    return new Promise(resolve => resolve(emulate(...stringArgs))).asCallback(
-      callback
-    );
+    return new Promise(resolve =>
+      resolve(
+        processReply(commandEmulator(...commandArgs), commandName, RedisMock)
+      )
+    ).asCallback(callback);
   };
 }

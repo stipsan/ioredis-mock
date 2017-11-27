@@ -1,3 +1,3 @@
 export function hgetall(key) {
-  return this.data.get(key) || {};
+  return this.data.get(key) || [];
 }

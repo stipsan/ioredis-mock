@@ -1,5 +1,4 @@
 import expect from 'expect';
-import Map from 'es6-map';
 
 import MockRedis from '../../src';
 
@@ -20,21 +19,5 @@ describe('hmset', () => {
       .hmset('user:1', hash)
       .then(status => expect(status).toBe('OK'))
       .then(() => expect(redis.data.get('user:1')).toEqual(hash));
-  });
-
-  it('should let you set multiple hash map keys and values with a Map', () => {
-    const redis = new MockRedis();
-    return redis
-      .hmset(
-        'user:1',
-        new Map([['id', '1'], ['email', 'bruce@wayne.enterprises']])
-      )
-      .then(status => expect(status).toBe('OK'))
-      .then(() =>
-        expect(redis.data.get('user:1')).toEqual({
-          id: '1',
-          email: 'bruce@wayne.enterprises',
-        })
-      );
   });
 });

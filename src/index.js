@@ -1,8 +1,7 @@
 import { EventEmitter } from 'events';
+import * as originalCommands from 'ioredis/lib/command';
 import Promise from 'bluebird';
-
 import * as commands from './commands';
-
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
@@ -19,7 +18,11 @@ class RedisMock extends EventEmitter {
     this.data = createData(this.expires, data);
 
     Object.keys(commands).forEach(command => {
-      this[command] = createCommand(commands[command].bind(this), command);
+      this[command] = createCommand(
+        commands[command].bind(this),
+        command,
+        this
+      );
     });
 
     process.nextTick(() => {
@@ -47,5 +50,16 @@ class RedisMock extends EventEmitter {
     return pipeline.exec(callback);
   }
 }
+RedisMock.prototype.Command = {
+  // eslint-disable-next-line no-underscore-dangle
+  transformers: originalCommands._transformer,
+  setArgumentTransformer: (name, func) => {
+    RedisMock.prototype.Command.transformers.argument[name] = func;
+  },
+
+  setReplyTransformer: (name, func) => {
+    RedisMock.prototype.Command.transformers.reply[name] = func;
+  },
+};
 
 module.exports = RedisMock;
