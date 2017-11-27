@@ -22,25 +22,43 @@ jobs:
       - run: yarn lint
 
       # ioredis supports version 0.10.16 and later
-      - run: npx -p node-bin@0.10.16 -p npm@1 -- npm run test
+      - run:
+          command: npx -p node-bin@0.10.16 -p npm@1 -- npm run test
+          when: always
 
       # yarn itself only supports v4 and later
-      - run: npx -p node-bin@0.11 -p npm@2 -- npm test
+      - run:
+          command: npx -p node-bin@0.11 -p npm@2 -- npm test
+          when: always
 
-      - run: npx -p node-bin@0.12 -p npm@3 -- npm test
+      - run:
+          command: npx -p node-bin@0.12 -p npm@3 -- npm test
+          when: always
 
       # @TODO submit fix to iojs-bin to make this command possible
-      # - run: npx -p iojs-bin  -p npm@3 -- npm test
+      #- run:
+      #    command: npx -p iojs-bin  -p npm@3 -- npm test
+      #    when: always
 
-      - run: npx -p node-bin@4 -- yarn test
+      - run:
+          command: npx -p node-bin@4 -- yarn test
+          when: always
 
-      - run: npx -p node-bin@5 -- yarn test
+      - run:
+          command: npx -p node-bin@5 -- yarn test
+          when: always
 
-      - run: npx -p node-bin@6 -- yarn test
+      - run:
+          command: npx -p node-bin@6 -- yarn test
+          when: always
 
-      - run: npx -p node-bin@7 -- yarn test
+      - run:
+          command: npx -p node-bin@7 -- yarn test
+          when: always
 
-      - run: npx -p node-bin@8 -- yarn test
+      - run:
+          command: npx -p node-bin@8 -- yarn test
+          when: always
 
       # Running the testing suite with coverage enabled doubles as
       # npx -p node-bin@latest -- yarn test
