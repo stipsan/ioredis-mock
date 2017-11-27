@@ -18,9 +18,9 @@ jobs:
 
       - run: yarn install
 
-      - run: yarn lint && false
 
       - run: sudo npm install -g npx
+      - run: yarn lint
 
       # ioredis supports version 0.10.16 and later
       - run: npx -p node-bin@0.10.16 -p npm@1 -- npm run test
