@@ -8,6 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.4.0] - 2017-11-27
+
+### Added
+
+* Argument and Reply Transformers (#342 @DrMegavolt)
+
+## [3.3.1] - 2017-11-17
+
+### Fixed
+
+* [RunKit example](https://npm.runkit.com/ioredis-mock) (#340)
+
 ## [3.3.0] - 2017-11-16
 
 ### Added
@@ -445,7 +457,9 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.3.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/stipsan/ioredis-mock/compare/v3.3.0...v3.4.0
+[3.3.1]: https://github.com/stipsan/ioredis-mock/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/stipsan/ioredis-mock/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/stipsan/ioredis-mock/compare/v3.1.3...v3.2.0
 [3.1.3]: https://github.com/stipsan/ioredis-mock/compare/v3.1.2...v3.1.3
