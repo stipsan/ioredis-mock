@@ -1,3 +1,6 @@
+// peer dependency
+require('ioredis/package.json')
+
 var RedisMock = require('ioredis-mock');
 var redis = new RedisMock({
   data: {
