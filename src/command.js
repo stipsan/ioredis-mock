@@ -11,6 +11,13 @@ export function processArguments(args, commandName, RedisMock) {
   );
   return commandArgs;
 }
+
+export function processReply(result, commandName, RedisMock) {
+  if (RedisMock.Command.transformers.reply[commandName]) {
+    return RedisMock.Command.transformers.reply[commandName](result);
+  }
+  return result;
+}
 export default function command(commandEmulator, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
@@ -25,7 +32,9 @@ export default function command(commandEmulator, commandName, RedisMock) {
     const commandArgs = processArguments(args, commandName, RedisMock);
 
     return new Promise(resolve =>
-      resolve(commandEmulator(...commandArgs))
+      resolve(
+        processReply(commandEmulator(...commandArgs), commandName, RedisMock)
+      )
     ).asCallback(callback);
   };
 }

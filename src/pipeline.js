@@ -1,13 +1,14 @@
 import Promise from 'bluebird';
 
 import * as commands from './commands';
-import { processArguments } from './command';
+import { processArguments, processReply } from './command';
 
 function createCommand(pipeline, commandEmulator, commandName, RedisMock) {
   return (...args) => {
-    // transform non-buffer arguments to strings to simulate real ioredis behavior
     const commandArgs = processArguments(args, commandName, RedisMock);
-    pipeline.batch.push(() => commandEmulator(...commandArgs));
+    pipeline.batch.push(() =>
+      processReply(commandEmulator(...commandArgs), commandName, RedisMock)
+    );
     return pipeline;
   };
 }
