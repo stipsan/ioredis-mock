@@ -1,5 +1,16 @@
 import Promise from 'bluebird';
 
+export function processArguments(args, commandName, RedisMock) {
+  let commandArgs = args;
+  if (RedisMock.Command.transformers.argument[commandName]) {
+    commandArgs = RedisMock.Command.transformers.argument[commandName](args);
+  }
+  commandArgs = commandArgs.map(
+    // transform non-buffer arguments to strings to simulate real ioredis behavior
+    arg => (arg instanceof Buffer ? arg : arg.toString())
+  );
+  return commandArgs;
+}
 export default function command(commandEmulator, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
@@ -11,14 +22,7 @@ export default function command(commandEmulator, commandName, RedisMock) {
       args.length = lastArgIndex;
     }
 
-    let commandArgs = args;
-    if (RedisMock.Command.transformers.argument[commandName]) {
-      commandArgs = RedisMock.Command.transformers.argument[commandName](args);
-    }
-    commandArgs = commandArgs.map(
-      // transform non-buffer arguments to strings to simulate real ioredis behavior
-      arg => (arg instanceof Buffer ? arg : arg.toString())
-    );
+    const commandArgs = processArguments(args, commandName, RedisMock);
 
     return new Promise(resolve =>
       resolve(commandEmulator(...commandArgs))
