@@ -22,7 +22,7 @@
     "prepublishOnly": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "printf \"node \" && node --version",
-    "test": "NODE_ENV=test mocha --require babel-core/register --recursive --reporter mocha-circleci-reporter --reporter-options testsuitesTitle=node@$(node --version),mochaFile=junit/$(node --version).xml",
+    "test": "mocha --require babel-core/register --recursive --reporter mocha-circleci-reporter --reporter-options testsuitesTitle=node@$(node --version),mochaFile=junit/$(node --version).xml",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"Chore: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {

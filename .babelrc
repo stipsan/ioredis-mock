@@ -5,14 +5,5 @@
         "node": "0.10.16"
       }
     }]
-  ],
-  "env": {
-    "presets": [
-      ["env", {
-        "targets": {
-          "node": "current"
-        }
-      }]
-    ]
-  }
+  ]
 }
