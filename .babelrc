@@ -3,9 +3,7 @@
     ["env", {
       "targets": {
         "node": "0.10.16"
-      },
-      "loose": true,
-      "shippedProposals": true
+      }
     }]
   ],
   "env": {
@@ -13,9 +11,7 @@
       ["env", {
         "targets": {
           "node": "current"
-        },
-        "loose": true,
-        "shippedProposals": true
+        }
       }]
     ]
   }
