@@ -13,7 +13,9 @@
       ["env", {
         "targets": {
           "node": "current"
-        }
+        },
+        "loose": true,
+        "shippedProposals": true
       }]
     ]
   }
