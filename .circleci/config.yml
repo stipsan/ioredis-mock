@@ -17,7 +17,7 @@ jobs:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           - v1-dependencies-
 
-      - run: yarn install --no-progress --pure-lockfile
+      - run: yarn install --no-progress --frozen-lockfile
 
       - run: yarn lint
 
