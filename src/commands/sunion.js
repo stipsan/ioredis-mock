@@ -1,5 +1,4 @@
 import arrayFrom from 'array-from';
-import Set from 'es6-set';
 
 export function sunion(...keys) {
   keys.forEach(key => {
