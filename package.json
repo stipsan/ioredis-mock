@@ -14,9 +14,6 @@
   "main": "./lib",
   "scripts": {
     "build": "mkdirp lib && babel src --out-dir lib",
-    "build:watch": "npm run build -- --watch",
-    "changelog:commit": "sr-changelog commit",
-    "changelog:preview": "sr-changelog",
     "clean": "rimraf lib",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precommit": "lint-staged",
