@@ -18,7 +18,7 @@ install:
   - npm install --global npx
   - yarn install
 
-test_script: npx mocha --require babel-core/register --recursive
+test_script: NODE_ENV=test npx mocha --require babel-core/register --recursive
 
 build: off
 
