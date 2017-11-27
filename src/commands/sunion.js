@@ -8,7 +8,7 @@ export function sunion(...keys) {
   });
 
   const sets = keys.map(
-    key => (this.data.has(key) ? this.data.get(key) : new Set())
+    key => (!this.data.has(key) ? this.data.get(key) : new Set())
   );
   const union = new Set(
     sets.reduce((combined, set) => [...combined, ...arrayFrom(set)], [])
