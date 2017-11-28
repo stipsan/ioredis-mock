@@ -15,9 +15,10 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm install --global npx
   - yarn install
 
-test_script: yarn test
+test_script: npx mocha --require babel-core/register --recursive
 
 build: off
 

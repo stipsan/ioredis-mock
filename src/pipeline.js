@@ -1,24 +1,14 @@
 import Promise from 'bluebird';
 
 import * as commands from './commands';
+import { processArguments, processReply } from './command';
 
-function createCommand(pipeline, emulate) {
+function createCommand(pipeline, commandEmulator, commandName, RedisMock) {
   return (...args) => {
-    const lastArgIndex = args.length - 1;
-    let callback = args[lastArgIndex];
-    if (typeof callback !== 'function') {
-      callback = undefined;
-    } else {
-      // eslint-disable-next-line no-param-reassign
-      args.length = lastArgIndex;
-    }
-
-    // transform non-buffer arguments to strings to simulate real ioredis behavior
-    const stringArgs = args.map(
-      arg => (arg instanceof Buffer ? arg : arg.toString())
+    const commandArgs = processArguments(args, commandName, RedisMock);
+    pipeline.batch.push(() =>
+      processReply(commandEmulator(...commandArgs), commandName, RedisMock)
     );
-
-    pipeline.batch.push(() => emulate(...stringArgs));
     return pipeline;
   };
 }
@@ -28,7 +18,12 @@ class Pipeline {
     this.batch = [];
 
     Object.keys(commands).forEach(command => {
-      this[command] = createCommand(this, commands[command].bind(redis));
+      this[command] = createCommand(
+        this,
+        commands[command].bind(redis),
+        command,
+        redis
+      );
     });
   }
   exec(callback) {
