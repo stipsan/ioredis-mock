@@ -14,12 +14,13 @@ var redis = new RedisMock({
   }
 });
 
+const userNext = await redis.incr('user_next');
 await redis.hmset(
-  'user:3',
+  `user:${userNext}`,
   new Map([
-    ['id', await redis.incr('user_next')],
+    ['id', userNext],
     ['username', 'wonderwoman'],
     ['email', 'diana@amazon.gr']
   ])
 );
-await redis.hgetall('user:3');
+await redis.hgetall(`user:${userNext}`);
