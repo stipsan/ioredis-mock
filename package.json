@@ -12,6 +12,10 @@
     "url": "https://github.com/stipsan/ioredis-mock/issues"
   },
   "main": "./lib",
+  "files": [
+    "example.js",
+    "lib/"
+  ],
   "scripts": {
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precommit": "lint-staged",
