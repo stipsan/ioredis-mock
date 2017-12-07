@@ -8,6 +8,24 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.5.0] - 2017-12-07
+
+### Added
+
+* Subscribe Stub (#348 @yitongding)
+
+## [3.4.2] - 2017-11-28
+
+### Fixed
+
+* Remove .eslintcache file from package (#347)
+
+## [3.4.1] - 2017-11-28
+
+### Fixed
+
+* More detailed RunKit example (#346)
+
 ## [3.4.0] - 2017-11-27
 
 ### Added
@@ -457,7 +475,10 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.4.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/stipsan/ioredis-mock/compare/v3.4.2...v3.5.0
+[3.4.2]: https://github.com/stipsan/ioredis-mock/compare/v3.4.1...v3.4.2
+[3.4.1]: https://github.com/stipsan/ioredis-mock/compare/v3.4.0...v3.4.1
 [3.4.0]: https://github.com/stipsan/ioredis-mock/compare/v3.3.1...v3.4.0
 [3.3.1]: https://github.com/stipsan/ioredis-mock/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/stipsan/ioredis-mock/compare/v3.2.0...v3.3.0
