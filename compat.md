@@ -137,7 +137,7 @@
 | [srem](http://redis.io/commands/SREM)                           | :white_check_mark: | :white_check_mark: |
 | [sscan](http://redis.io/commands/SSCAN)                         | :white_check_mark: |        :x:         |
 | [strlen](http://redis.io/commands/STRLEN)                       | :white_check_mark: | :white_check_mark: |
-| [subscribe](http://redis.io/commands/SUBSCRIBE)                 | :white_check_mark: |        :x:         |
+| [subscribe](http://redis.io/commands/SUBSCRIBE)                 | :white_check_mark: | :white_check_mark: |
 | [sunion](http://redis.io/commands/SUNION)                       | :white_check_mark: | :white_check_mark: |
 | [sunionstore](http://redis.io/commands/SUNIONSTORE)             | :white_check_mark: |        :x:         |
 | [swapdb](http://redis.io/commands/SWAPDB)                       | :white_check_mark: |        :x:         |
