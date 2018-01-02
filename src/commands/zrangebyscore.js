@@ -20,21 +20,8 @@ function parseLimit(input) {
   };
 }
 
-export function zrangebyscore(key, inputMin, inputMax) {
-  const map = this.data.get(key);
-  if (!map) {
-    return [];
-  }
-
-  // @TODO investigate a more stable way to detect sorted lists
-  if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
-    return [];
-  }
-
-  const min = parseLimit(inputMin);
-  const max = parseLimit(inputMax);
-
-  const filteredArray = filter(arrayFrom(map.values()), it => {
+function filterPredicate(min, max) {
+  return it => {
     if (it.score < min.value || (min.isStrict && it.score === min.value)) {
       return false;
     }
@@ -44,7 +31,25 @@ export function zrangebyscore(key, inputMin, inputMax) {
     }
 
     return true;
-  });
+  };
+}
+
+export function zrangebyscore(key, inputMin, inputMax) {
+  const map = this.data.get(key);
+  if (!map) {
+    return [];
+  }
+
+  if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
+    return [];
+  }
+
+  const min = parseLimit(inputMin);
+  const max = parseLimit(inputMax);
+  const filteredArray = filter(
+    arrayFrom(map.values()),
+    filterPredicate(min, max)
+  );
 
   return orderBy(filteredArray, 'score').map(it => it.value);
 }
