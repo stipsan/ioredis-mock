@@ -47,6 +47,14 @@ describe('zrangebyscore', () => {
       .then(res => expect(res).toEqual([]));
   });
 
+  it('should return empty array if key not found', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zrangebyscore('boo', 10, 100)
+      .then(res => expect(res).toEqual([]));
+  });
+
   it('should return empty array if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
