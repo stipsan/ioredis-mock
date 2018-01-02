@@ -1,7 +1,6 @@
 import Map from 'es6-map';
 import arrayFrom from 'array-from';
 import { orderBy, filter } from 'lodash';
-// import { slice } from './zrange-command.common';
 
 function parseLimit(input) {
   let str = `${input}`;
