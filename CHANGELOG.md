@@ -8,11 +8,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.6.0] - 2018-01-03
+
+### Added
+
+* `zrangebyscore` command in addition to `unsubscribe` and `quit` stubs (#350 @usebaz)
+
 ## [3.5.0] - 2017-12-07
 
 ### Added
 
-* Subscribe Stub (#348 @yitongding)
+* `subscribe` command stub (#348 @yitongding)
 
 ## [3.4.2] - 2017-11-28
 
@@ -475,7 +481,8 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.5.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.6.0...HEAD
+[3.6.0]: https://github.com/stipsan/ioredis-mock/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/stipsan/ioredis-mock/compare/v3.4.2...v3.5.0
 [3.4.2]: https://github.com/stipsan/ioredis-mock/compare/v3.4.1...v3.4.2
 [3.4.1]: https://github.com/stipsan/ioredis-mock/compare/v3.4.0...v3.4.1

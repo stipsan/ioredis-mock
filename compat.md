@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)
+## Supported commands ![Commands Coverage: 55%](https://img.shields.io/badge/coverage-55%25-yellow.svg)
 
 | redis                                                           |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------- | :----------------: | :----------------: |
@@ -98,7 +98,7 @@
 | [publish](http://redis.io/commands/PUBLISH)                     | :white_check_mark: | :white_check_mark: |
 | [pubsub](http://redis.io/commands/PUBSUB)                       | :white_check_mark: |        :x:         |
 | [punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)           | :white_check_mark: |        :x:         |
-| [quit](http://redis.io/commands/QUIT)                           | :white_check_mark: |        :x:         |
+| [quit](http://redis.io/commands/QUIT)                           | :white_check_mark: | :white_check_mark: |
 | [randomkey](http://redis.io/commands/RANDOMKEY)                 | :white_check_mark: | :white_check_mark: |
 | [readonly](http://redis.io/commands/READONLY)                   | :white_check_mark: |        :x:         |
 | [readwrite](http://redis.io/commands/READWRITE)                 | :white_check_mark: |        :x:         |
@@ -146,7 +146,7 @@
 | [touch](http://redis.io/commands/TOUCH)                         | :white_check_mark: |        :x:         |
 | [ttl](http://redis.io/commands/TTL)                             | :white_check_mark: | :white_check_mark: |
 | [type](http://redis.io/commands/TYPE)                           | :white_check_mark: | :white_check_mark: |
-| [unsubscribe](http://redis.io/commands/UNSUBSCRIBE)             | :white_check_mark: |        :x:         |
+| [unsubscribe](http://redis.io/commands/UNSUBSCRIBE)             | :white_check_mark: | :white_check_mark: |
 | [unwatch](http://redis.io/commands/UNWATCH)                     | :white_check_mark: |        :x:         |
 | [wait](http://redis.io/commands/WAIT)                           | :white_check_mark: |        :x:         |
 | [watch](http://redis.io/commands/WATCH)                         | :white_check_mark: |        :x:         |
@@ -158,7 +158,7 @@
 | [zlexcount](http://redis.io/commands/ZLEXCOUNT)                 | :white_check_mark: |        :x:         |
 | [zrange](http://redis.io/commands/ZRANGE)                       | :white_check_mark: | :white_check_mark: |
 | [zrangebylex](http://redis.io/commands/ZRANGEBYLEX)             | :white_check_mark: |        :x:         |
-| [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)         | :white_check_mark: |        :x:         |
+| [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)         | :white_check_mark: | :white_check_mark: |
 | [zrank](http://redis.io/commands/ZRANK)                         | :white_check_mark: |        :x:         |
 | [zrem](http://redis.io/commands/ZREM)                           | :white_check_mark: |        :x:         |
 | [zremrangebylex](http://redis.io/commands/ZREMRANGEBYLEX)       | :white_check_mark: |        :x:         |
