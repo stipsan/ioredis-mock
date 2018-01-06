@@ -7,7 +7,7 @@ export function processArguments(args, commandName, RedisMock) {
   }
   commandArgs = commandArgs.map(
     // transform non-buffer arguments to strings to simulate real ioredis behavior
-    arg => (arg instanceof Buffer ? arg : arg.toString())
+    arg => (arg instanceof Buffer || arg === null ? arg : arg.toString())
   );
   return commandArgs;
 }

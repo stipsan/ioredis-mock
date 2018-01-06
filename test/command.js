@@ -17,13 +17,13 @@ describe('basic command', () => {
     return stub(spy).then(() => expect(spy).toHaveBeenCalled());
   });
 
-  it('should convert non-buffer arguments to strings', function() {
+  it('should convert non-buffer, non-null arguments to strings', function() {
     if (shouldSkip) {
       this.skip();
     }
-    const args = [new Buffer('foo'), 'bar', 1];
+    const args = [new Buffer('foo'), 'bar', 1, null];
     return stub(...args).then(reply =>
-      expect(reply).toEqual([new Buffer('foo'), 'bar', '1'])
+      expect(reply).toEqual([new Buffer('foo'), 'bar', '1', null])
     );
   });
 
