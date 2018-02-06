@@ -1,4 +1,5 @@
 import expect from 'expect';
+import Set from 'es6-set';
 
 import MockRedis from '../../src';
 
@@ -6,7 +7,7 @@ describe('srandmember', () => {
   it('should return a random item', () => {
     const redis = new MockRedis({
       data: {
-        myset: ['one', 'two', 'three'],
+        myset: new Set(['one', 'two', 'three']),
       },
     });
 
@@ -18,7 +19,7 @@ describe('srandmember', () => {
   it('should return random unique items', () => {
     const redis = new MockRedis({
       data: {
-        myset: ['one', 'two', 'three'],
+        myset: new Set(['one', 'two', 'three']),
       },
     });
 
@@ -32,19 +33,21 @@ describe('srandmember', () => {
   it('should return set if positive count is bigger than set', () => {
     const redis = new MockRedis({
       data: {
-        myset: ['one', 'two', 'three'],
+        myset: new Set(['one', 'two', 'three']),
       },
     });
 
-    return redis
-      .srandmember('myset', 5)
-      .then(results => expect(results).toEqual(['one', 'two', 'three']));
+    return redis.srandmember('myset', 5).then(results => {
+      expect(['one', 'two', 'three']).toInclude(results[0]);
+      expect(['one', 'two', 'three']).toInclude(results[1]);
+      expect(['one', 'two', 'three']).toInclude(results[2]);
+    });
   });
 
   it('should return random items with specified length', () => {
     const redis = new MockRedis({
       data: {
-        myset: ['one', 'two', 'three'],
+        myset: new Set(['one', 'two', 'three']),
       },
     });
 
