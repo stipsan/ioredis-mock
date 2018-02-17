@@ -11,6 +11,12 @@ export function srem(key, ...vals) {
     }
     set.delete(val);
   });
-  this.data.set(key, set);
+
+  if (set.size === 0) {
+    this.data.delete(key);
+  } else {
+    this.data.set(key, set);
+  }
+
   return removed;
 }
