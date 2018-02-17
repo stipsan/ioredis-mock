@@ -6,7 +6,7 @@ import MockRedis from '../../src';
 describe('srem', () => {
   const redis = new MockRedis({
     data: {
-      foos: new Set(['bar', 'foo', 'baz']),
+      foos: new Set(['bar', 'foo', 'baz', 'bazooka']),
     },
   });
   it('should remove 1 item from set', () =>

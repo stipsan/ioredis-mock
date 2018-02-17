@@ -8,6 +8,30 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.6.4] - 2018-02-17
+
+## Fixed
+
+* `keys` no longer returns empty sets, just like real redis (#358)
+
+## [3.6.3] - 2018-02-06
+
+## Fixed
+
+* `srandom` not using `Set`. (#356 @ianmuninio)
+
+## [3.6.2] - 2018-02-01
+
+## Fixed
+
+* `del` should return number of keys deleted from the data, not the number of arguments (#355 @donaldjarmstrong)
+
+## [3.6.1] - 2018-01-06
+
+### Fixed
+
+* Passing null values should not throw exceptions (#353 @kkragenbrink)
+
 ## [3.6.0] - 2018-01-03
 
 ### Added
@@ -481,7 +505,11 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.6.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.6.4...HEAD
+[3.6.4]: https://github.com/stipsan/ioredis-mock/compare/v3.6.3...v3.6.4
+[3.6.3]: https://github.com/stipsan/ioredis-mock/compare/v3.6.2...v3.6.3
+[3.6.2]: https://github.com/stipsan/ioredis-mock/compare/v3.6.1...v3.6.2
+[3.6.1]: https://github.com/stipsan/ioredis-mock/compare/v3.6.0...v3.6.1
 [3.6.0]: https://github.com/stipsan/ioredis-mock/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/stipsan/ioredis-mock/compare/v3.4.2...v3.5.0
 [3.4.2]: https://github.com/stipsan/ioredis-mock/compare/v3.4.1...v3.4.2

@@ -35,4 +35,14 @@ describe('keys', () => {
       .keys('f*')
       .then(result => expect(result).toEqual(['foo', 'flambé']));
   });
+
+  it('should not return empty sets', () => {
+    const redis = new MockRedis();
+
+    return redis
+      .sadd('a', 'b')
+      .then(() => redis.srem('a', 'b'))
+      .then(() => redis.keys('*'))
+      .then(result => expect(result).toEqual([]));
+  });
 });
