@@ -12,7 +12,7 @@ and this project adheres to
 
 ## Fixed
 
-* `keys` no longer returns empty sets, just like real redis
+* `keys` no longer returns empty sets, just like real redis (#358)
 
 ## [3.6.3] - 2018-02-06
 
