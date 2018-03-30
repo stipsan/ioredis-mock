@@ -5,7 +5,7 @@
     ":automergeMinor",
     ":prHourlyLimit4",
     ":semanticCommitScopeDisabled",
-    ":semanticCommitType(Chore)",
+    ":semanticCommitTypeAll(Chore)",
     ":semanticCommits"
   ],
   "dependencies": {
