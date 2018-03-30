@@ -1,14 +1,17 @@
 {
   "extends": [
     "config:js-lib",
-    ":semanticCommitScopeDisabled",
-    ":prHourlyLimit4",
+   ":automergeDigest",
     ":automergeMinor",
-    ":semanticCommits",
-    ":automergeDigest",
-    ":semanticCommitType(Chore)"
+    ":prHourlyLimit4",
+    ":semanticCommitScopeDisabled",
+    ":semanticCommitType(Chore)",
+    ":semanticCommits"
   ],
   "dependencies": {
+    "extends": ":semanticCommitType(Fix)"
+  },
+  "peerDependencies": {
     "extends": ":semanticCommitType(Fix)"
   },
   "packageRules": [
