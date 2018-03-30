@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:js-lib",
-   ":automergeDigest",
+    ":automergeDigest",
     ":automergeMinor",
     ":prHourlyLimit4",
     ":semanticCommitScopeDisabled",
