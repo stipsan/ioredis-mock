@@ -2,7 +2,7 @@
   "extends": [
     "config:js-lib",
     ":semanticCommitScopeDisabled",
-    "prHourlyLimit4",
+    ":prHourlyLimit4",
     ":automergeMinor",
     ":semanticCommits",
     ":lockFileMaintenance",
