@@ -7,6 +7,12 @@
     ":semanticCommits",
     ":automergeDigest"
   ],
+  "dependencies": {
+    "extends": ":semanticCommitType(Fix)"
+  },
+  "devDependencies": {
+    "extends": ":semanticCommitType(Chore)"
+  },
   "packageRules": [
     {
       "extends": ["monorepo:babel6", "monorepo:babel"],
