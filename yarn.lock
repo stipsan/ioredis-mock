@@ -4265,9 +4265,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier-package-json@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/prettier-package-json/-/prettier-package-json-1.4.0.tgz#ecf2ed04c5bf9cb6926900be6260f0f9a485e2f3"
+prettier-package-json@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/prettier-package-json/-/prettier-package-json-1.5.1.tgz#b99b63f784ffca77de58598607481b52d3bd3884"
   dependencies:
     commander "^2.9.0"
     fs-extra "^3.0.1"
