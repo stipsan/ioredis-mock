@@ -5,13 +5,11 @@
     ":prHourlyLimit4",
     ":automergeMinor",
     ":semanticCommits",
-    ":automergeDigest"
+    ":automergeDigest",
+    ":semanticCommitType(Chore)"
   ],
   "dependencies": {
     "extends": ":semanticCommitType(Fix)"
-  },
-  "devDependencies": {
-    "extends": ":semanticCommitType(Chore)"
   },
   "packageRules": [
     {
