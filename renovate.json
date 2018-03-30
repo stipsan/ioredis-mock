@@ -9,5 +9,5 @@
       "extends": "packages:linters",
       "groupName": "linters"
     }
-  ],
+  ]
 }
