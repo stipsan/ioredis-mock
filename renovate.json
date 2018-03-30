@@ -1,3 +1,13 @@
 {
-  "extends": ["config:js-lib"]
+  "extends": ["config:js-lib"],
+  "packageRules": [
+    {
+      "extends": ["monorepo:babel6", "monorepo:babel"],
+      "groupName": "babel"
+    },
+    {
+      "extends": "packages:linters",
+      "groupName": "linters"
+    }
+  ],
 }
