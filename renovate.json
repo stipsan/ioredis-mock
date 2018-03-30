@@ -5,7 +5,6 @@
     ":prHourlyLimit4",
     ":automergeMinor",
     ":semanticCommits",
-    ":lockFileMaintenance",
     ":automergeDigest"
   ],
   "packageRules": [
