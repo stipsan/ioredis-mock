@@ -1,5 +1,13 @@
 {
-  "extends": ["config:js-lib", ":semanticCommitScopeDisabled", "prHourlyLimit4", ":automergeMinor", ":semanticCommits", ":lockFileMaintenance", ":automergeDigest"],
+  "extends": [
+    "config:js-lib",
+    ":semanticCommitScopeDisabled",
+    "prHourlyLimit4",
+    ":automergeMinor",
+    ":semanticCommits",
+    ":lockFileMaintenance",
+    ":automergeDigest"
+  ],
   "packageRules": [
     {
       "extends": ["monorepo:babel6", "monorepo:babel"],
