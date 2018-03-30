@@ -14,6 +14,7 @@ var redis = new RedisMock({
   }
 });
 
+async function main() {
 const userNext = await redis.incr('user_next');
 await redis.hmset(
   `user:${userNext}`,
@@ -23,4 +24,7 @@ await redis.hmset(
     ['email', 'diana@amazon.gr']
   ])
 );
-await redis.hgetall(`user:${userNext}`);
+console.log(await redis.hgetall(`user:${userNext}`));
+}
+
+main()
