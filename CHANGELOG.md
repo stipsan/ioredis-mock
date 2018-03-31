@@ -512,7 +512,7 @@ changes.
 * exec
 
 [unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.7.0...HEAD
-[3.6.5]: https://github.com/stipsan/ioredis-mock/compare/v3.6.4...v3.7.0
+[3.7.0]: https://github.com/stipsan/ioredis-mock/compare/v3.6.4...v3.7.0
 [3.6.4]: https://github.com/stipsan/ioredis-mock/compare/v3.6.3...v3.6.4
 [3.6.3]: https://github.com/stipsan/ioredis-mock/compare/v3.6.2...v3.6.3
 [3.6.2]: https://github.com/stipsan/ioredis-mock/compare/v3.6.1...v3.6.2
