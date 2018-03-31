@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 55%](https://img.shields.io/badge/coverage-55%25-yellow.svg)
+## Supported commands ![Commands Coverage: 54%](https://img.shields.io/badge/coverage-54%25-yellow.svg)
 
 | redis                                                                 |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------------- | :----------------: | :----------------: |
@@ -37,7 +37,9 @@
 | [geohash](http://redis.io/commands/GEOHASH)                           | :white_check_mark: |        :x:         |
 | [geopos](http://redis.io/commands/GEOPOS)                             | :white_check_mark: |        :x:         |
 | [georadius](http://redis.io/commands/GEORADIUS)                       | :white_check_mark: |        :x:         |
+| [georadius_ro](http://redis.io/commands/GEORADIUS_RO)                 |        :x:         |        :x:         |
 | [georadiusbymember](http://redis.io/commands/GEORADIUSBYMEMBER)       | :white_check_mark: |        :x:         |
+| [georadiusbymember_ro](http://redis.io/commands/GEORADIUSBYMEMBER_RO) |        :x:         |        :x:         |
 | [get](http://redis.io/commands/GET)                                   | :white_check_mark: | :white_check_mark: |
 | [getbit](http://redis.io/commands/GETBIT)                             | :white_check_mark: |        :x:         |
 | [getrange](http://redis.io/commands/GETRANGE)                         | :white_check_mark: | :white_check_mark: |
@@ -170,4 +172,4 @@
 | [zrevrank](http://redis.io/commands/ZREVRANK)                         | :white_check_mark: |        :x:         |
 | [zscan](http://redis.io/commands/ZSCAN)                               | :white_check_mark: |        :x:         |
 | [zscore](http://redis.io/commands/ZSCORE)                             | :white_check_mark: |        :x:         |
-| [zunionstore](http://redis.io/commands/ZUNIONSTOREEEEEEEEEEEEEEEEEEE) | :white_check_mark: |        :x:         |
+| [zunionstore](http://redis.io/commands/ZUNIONSTORE)                   | :white_check_mark: |        :x:         |
