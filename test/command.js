@@ -3,7 +3,7 @@ import expect, { createSpy } from 'expect';
 
 import command from '../src/command';
 
-const shouldSkip = semver.lt(process.versions.node, '0.11.0');
+const shouldSkip = semver.lt(process.versions.node, '5.10.0');
 
 describe('basic command', () => {
   const stub = command((...args) => args, 'testCommandName', {
@@ -21,9 +21,9 @@ describe('basic command', () => {
     if (shouldSkip) {
       this.skip();
     }
-    const args = [new Buffer('foo'), 'bar', 1, null];
+    const args = [Buffer.from('foo'), 'bar', 1, null];
     return stub(...args).then(reply =>
-      expect(reply).toEqual([new Buffer('foo'), 'bar', '1', null])
+      expect(reply).toEqual([Buffer.from('foo'), 'bar', '1', null])
     );
   });
 

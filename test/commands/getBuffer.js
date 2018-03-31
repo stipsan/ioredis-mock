@@ -3,7 +3,7 @@ import expect from 'expect';
 
 import MockRedis from '../../src';
 
-const shouldSkip = semver.lt(process.versions.node, '0.11.0');
+const shouldSkip = semver.lt(process.versions.node, '5.10.0');
 
 describe('getBuffer', () => {
   it('should return null on keys that do not exist', () => {
@@ -27,7 +27,7 @@ describe('getBuffer', () => {
       this.skip();
     }
 
-    const bufferVal = new Buffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: bufferVal,

@@ -63,7 +63,7 @@ describe('brpoplpushBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = new Buffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: ['foo', bufferVal],

@@ -17,7 +17,7 @@ describe('rpopBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = new Buffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: ['1', '2', bufferVal],
