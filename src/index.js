@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import * as originalCommands from 'ioredis/lib/command';
 import Promise from 'bluebird';
 import * as commands from './commands';
+import * as commandsStream from './commands-stream';
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
@@ -23,6 +24,10 @@ class RedisMock extends EventEmitter {
         command,
         this
       );
+    });
+
+    Object.keys(commandsStream).forEach(command => {
+      this[command] = commandsStream[command].bind(this);
     });
 
     process.nextTick(() => {
