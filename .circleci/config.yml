@@ -47,9 +47,6 @@ jobs:
       # yarn itself only supports v4 and later
       - run: npx -p node-bin@0.11 -p npm@2 -- npm test
 
-      # ioredis supports version 0.10.16 and later
-      - run: npx -p node-bin@0.10.16 -p npm@1 -- npm run test
-
       # Let the CI know we got test results it can parse
       - store_test_results:
           path: ./junit
