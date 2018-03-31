@@ -27,6 +27,7 @@ class Pipeline {
     });
   }
   exec(callback) {
+    // eslint-disable-next-line prefer-destructuring
     const batch = this.batch;
     this.batch = [];
     return Promise.resolve(batch.map(cmd => [null, cmd()])).asCallback(

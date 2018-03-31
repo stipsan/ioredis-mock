@@ -13,7 +13,7 @@ export function sinter(...keys) {
     values.filter(value =>
       sets.reduce(
         (isShared, set) => (set.has(value) ? isShared : false),
-        /* isShared*/ true
+        /* isShared */ true
       )
     )
   );

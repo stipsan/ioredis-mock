@@ -19,7 +19,7 @@ export function sdiff(ours, ...theirs) {
     arrayFrom(ourSet).filter(ourValue =>
       theirSets.reduce(
         (isUnique, set) => (set.has(ourValue) ? false : isUnique),
-        /* isUnique*/ true
+        /* isUnique */ true
       )
     )
   );
