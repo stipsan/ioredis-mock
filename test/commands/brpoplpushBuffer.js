@@ -1,5 +1,6 @@
 import expect from 'expect';
 
+import createBuffer from '../../src/buffer';
 import MockRedis from '../../src';
 
 describe('brpoplpushBuffer', () => {
@@ -63,7 +64,7 @@ describe('brpoplpushBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = Buffer.from('bar');
+    const bufferVal = createBuffer('bar');
     const redis = new MockRedis({
       data: {
         foo: ['foo', bufferVal],
