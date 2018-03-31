@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:carbon
+      - image: circleci/node:carbon@sha256:257fdc7e2949a9576e1a96364e0428d461d0505167c70dcc3e6c3825ce8a6557
     # To support coverage reports from forks
     environment:
       CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45

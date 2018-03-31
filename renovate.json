@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "config:js-lib",
+    ":automergeDigest",
+    ":automergeMinor",
+    ":prHourlyLimit4",
+    ":semanticCommitScopeDisabled",
+    ":semanticCommitTypeAll(Chore)",
+    ":semanticCommits"
+  ],
+  "dependencies": {
+    "extends": ":semanticCommitType(Fix)"
+  },
+  "peerDependencies": {
+    "extends": ":semanticCommitType(Fix)"
+  },
+  "packageRules": [
+    {
+      "extends": ["monorepo:babel6", "monorepo:babel"],
+      "groupName": "babel"
+    },
+    {
+      "extends": "packages:linters",
+      "groupName": "linters"
+    }
+  ]
+}
