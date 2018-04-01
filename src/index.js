@@ -67,4 +67,11 @@ RedisMock.prototype.Command = {
   },
 };
 
+RedisMock.prototype.Cluster = class extends RedisMock {
+  constructor(nodes, options) {
+    // ignore nodes for now
+    super(options);
+  }
+};
+
 module.exports = RedisMock;
