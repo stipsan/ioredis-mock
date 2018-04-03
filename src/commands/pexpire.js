@@ -3,7 +3,7 @@ export function pexpire(key, milliseconds) {
     return 0;
   }
 
-  this.expires.set(key, milliseconds + Date.now());
+  this.expires.set(key, +milliseconds + Date.now());
 
   return 1;
 }
