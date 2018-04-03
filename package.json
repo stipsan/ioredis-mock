@@ -56,7 +56,7 @@
     "expect": "1.20.2",
     "husky": "0.14.3",
     "ioredis": "3.2.2",
-    "lint-staged": "7.0.2",
+    "lint-staged": "7.0.3",
     "mocha": "3.5.3",
     "mocha-circleci-reporter": "0.0.2",
     "nyc": "11.6.0",
