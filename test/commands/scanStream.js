@@ -20,7 +20,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual([]);
+      expect(writable.data).toEqual([]);
       done();
     });
   });
