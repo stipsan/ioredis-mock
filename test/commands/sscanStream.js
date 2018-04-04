@@ -92,4 +92,22 @@ describe('sscanStream', () => {
       done();
     });
   });
+
+  it('should fail if incorrect count usage', done => {
+    // Given
+    const redis = new MockRedis({
+      data: {
+        set: new Set(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
+      },
+    });
+    const stream = redis.sscanStream('set', { count: 'ZU' });
+    // When
+    stream.pipe(writable);
+    stream.on('error', err => {
+      // Then
+      expect(err).toBeA(Error);
+      done();
+    });
+    writable.on('finish', () => done(new Error('should not finish')));
+  });
 });

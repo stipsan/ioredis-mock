@@ -107,4 +107,23 @@ describe('sscan', () => {
       expect(result).toBeA(Error);
     });
   });
+  it('should fail if too many arguments', () => {
+    const redis = new MockRedis();
+    return redis
+      .sscan('key', 0, 'MATCH', 'foo*', 'COUNT', 1, 'ZU')
+      .catch(result => {
+        expect(result).toBeA(Error);
+        expect(result.message).toEqual('Too many arguments');
+      });
+  });
+
+  it('should fail if arguments length not odd', () => {
+    const redis = new MockRedis();
+    return redis.sscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch(result => {
+      expect(result).toBeA(Error);
+      expect(result.message).toEqual(
+        'Args should be provided by pair (name & value)'
+      );
+    });
+  });
 });
