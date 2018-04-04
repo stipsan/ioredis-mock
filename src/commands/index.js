@@ -83,6 +83,7 @@ export * from './smove';
 export * from './spop';
 export * from './srandmember';
 export * from './srem';
+export * from './sscan';
 export * from './strlen';
 export * from './subscribe';
 export * from './sunion';
