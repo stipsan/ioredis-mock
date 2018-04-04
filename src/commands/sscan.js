@@ -4,6 +4,6 @@ export function sscan(key, cursor, ...args) {
   if (!this.data.has(key)) {
     return [0, []];
   }
-  const setKeys = Array.from(this.data.get(key));
+  const setKeys = [...this.data.get(key).values()];
   return scanHelper(setKeys, 1, cursor, ...args);
 }
