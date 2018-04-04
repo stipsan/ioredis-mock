@@ -1,9 +1,7 @@
-import semver from 'semver';
 import expect, { createSpy } from 'expect';
 
+import createBuffer from '../src/buffer';
 import command from '../src/command';
-
-const shouldSkip = semver.lt(process.versions.node, '0.11.0');
 
 describe('basic command', () => {
   const stub = command((...args) => args, 'testCommandName', {
@@ -17,13 +15,10 @@ describe('basic command', () => {
     return stub(spy).then(() => expect(spy).toHaveBeenCalled());
   });
 
-  it('should convert non-buffer, non-null arguments to strings', function() {
-    if (shouldSkip) {
-      this.skip();
-    }
-    const args = [new Buffer('foo'), 'bar', 1, null];
+  it('should convert non-buffer, non-null arguments to strings', () => {
+    const args = [createBuffer('foo'), 'bar', 1, null];
     return stub(...args).then(reply =>
-      expect(reply).toEqual([new Buffer('foo'), 'bar', '1', null])
+      expect(reply).toEqual([createBuffer('foo'), 'bar', '1', null])
     );
   });
 

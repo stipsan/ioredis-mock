@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:carbon@sha256:257fdc7e2949a9576e1a96364e0428d461d0505167c70dcc3e6c3825ce8a6557
+      - image: circleci/node:carbon@sha256:68ebfb44759ede8df2b5c7985b196d1c26974a5bbe4546c51eeab62c5d17c819
     # To support coverage reports from forks
     environment:
       CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
@@ -46,9 +46,6 @@ jobs:
 
       # yarn itself only supports v4 and later
       - run: npx -p node-bin@0.11 -p npm@2 -- npm test
-
-      # ioredis supports version 0.10.16 and later
-      - run: npx -p node-bin@0.10.16 -p npm@1 -- npm run test
 
       # Let the CI know we got test results it can parse
       - store_test_results:

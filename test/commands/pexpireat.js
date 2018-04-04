@@ -1,4 +1,5 @@
 import expect from 'expect';
+import Promise from 'bluebird';
 
 import MockRedis from '../../src';
 
@@ -9,7 +10,7 @@ describe('pexpireat', () => {
         foo: 'bar',
       },
     });
-    const at = Date.now() + 2000;
+    const at = Date.now() + 100;
     return redis
       .pexpireat('foo', at)
       .then(status => {
@@ -18,7 +19,10 @@ describe('pexpireat', () => {
 
         return redis.ttl('foo');
       })
-      .then(result => expect(result).toBeGreaterThanOrEqualTo(1));
+      .then(result => expect(result).toBeGreaterThanOrEqualTo(1))
+      .then(() => Promise.delay(200))
+      .then(() => redis.get('foo'))
+      .then(result => expect(result).toBe(null));
   });
 
   it('should return 0 if key does not exist', () => {
