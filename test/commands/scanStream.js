@@ -46,7 +46,6 @@ describe('scanStream', () => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
-    chance.unique(chance.state, 5);
     const data = keys.reduce((acc, curr) => {
       acc[curr] = 'bar';
       return acc;
