@@ -37,7 +37,7 @@ describe('sscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual(['foo', 'bar']);
+      expect(writable.flatData).toEqual(['foo', 'bar']);
       done();
     });
   });
@@ -53,7 +53,7 @@ describe('sscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect([].concat(...writable.data)).toEqual(keys);
+      expect(writable.flatData).toEqual(keys);
       done();
     });
   });
@@ -70,7 +70,7 @@ describe('sscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(writable.flatData).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });
@@ -88,7 +88,7 @@ describe('sscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3));
-      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(writable.flatData).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });
