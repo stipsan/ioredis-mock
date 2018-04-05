@@ -1566,8 +1566,8 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
 core-js@^2.4.0:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.4.tgz#f2c8bf181f2a80b92f360121429ce63a2f0aeae0"
 
 core-js@^2.5.0:
   version "2.5.1"
@@ -4889,8 +4889,8 @@ regenerator-runtime@^0.10.5:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
 regenerator-runtime@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 
 regenerator-transform@0.9.8:
   version "0.9.8"
@@ -5544,9 +5544,9 @@ stream-consume@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/stream-consume/-/stream-consume-0.1.0.tgz#a41ead1a6d6081ceb79f65b061901b6d8f3d1d0f"
 
-stream-mock@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/stream-mock/-/stream-mock-1.0.2.tgz#b280dce5fed638e77fb29ecf22f30d5de0a80bcb"
+stream-mock@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stream-mock/-/stream-mock-1.1.0.tgz#85f58b4211a4374d18bf21258383d9e0b8f69919"
   dependencies:
     babel-runtime "^6.26.0"
 

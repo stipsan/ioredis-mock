@@ -1,8 +1,8 @@
 {
   "name": "ioredis-mock",
   "description": "This library emulates ioredis by performing all operations in-memory.",
-  "author": "Stian Didriksen <stipsan@gmail.com>",
   "license": "MIT",
+  "author": "Stian Didriksen <stipsan@gmail.com>",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "repository": {
     "type": "git",
@@ -64,7 +64,7 @@
     "prettier-package-json": "1.5.1",
     "redis-commands": "1.3.5",
     "release-relief": "1.0.1",
-    "stream-mock": "1.0.2"
+    "stream-mock": "1.1.0"
   },
   "keywords": [
     "fakeredis",
