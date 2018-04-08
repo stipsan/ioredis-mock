@@ -6,11 +6,11 @@ const chance = new Chance();
 
 describe('hscan', () => {
   function createHashSet(keys) {
-    return keys.reduce(
-      (obj, key) =>
-        Object.assign(obj, { [key]: chance.cc_type({ raw: true }) }),
-      {}
-    );
+    return keys.reduce((obj, key) => {
+      const res = obj;
+      res[key] = chance.cc_type({ raw: true });
+      return res;
+    }, {});
   }
 
   it('should return null array if hset does not exist', () => {

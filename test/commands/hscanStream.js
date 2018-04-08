@@ -8,11 +8,11 @@ const chance = new Chance();
 describe('hscanStream', () => {
   let writable;
   function createHashSet(keys) {
-    return keys.reduce(
-      (obj, key) =>
-        Object.assign(obj, { [key]: chance.cc_type({ raw: true }) }),
-      {}
-    );
+    return keys.reduce((obj, key) => {
+      const res = obj;
+      res[key] = chance.cc_type({ raw: true });
+      return res;
+    }, {});
   }
 
   beforeEach(() => {
