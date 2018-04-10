@@ -8,6 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.8.0] - 2018-04-10
+
+## Added
+
+* `zscanStream` and `hscanStream` commands (#393 @BastienAr)
+
+## [3.7.1] - 2018-04-03
+
+## Fixed
+
+* `pexpire, pexpireat, psetex` to set correct expire time (#389 @vaskevich)
+
 ## [3.7.0] - 2018-04-01
 
 ## Added
@@ -511,7 +523,9 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.7.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.8.0...HEAD
+[3.8.0]: https://github.com/stipsan/ioredis-mock/compare/v3.7.1...v3.8.0
+[3.7.1]: https://github.com/stipsan/ioredis-mock/compare/v3.7.0...v3.7.1
 [3.7.0]: https://github.com/stipsan/ioredis-mock/compare/v3.6.4...v3.7.0
 [3.6.4]: https://github.com/stipsan/ioredis-mock/compare/v3.6.3...v3.6.4
 [3.6.3]: https://github.com/stipsan/ioredis-mock/compare/v3.6.2...v3.6.3
