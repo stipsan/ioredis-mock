@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:carbon@sha256:3fb018db8a18ac6df1114370a2faa45715f6e01575aa98321f433dd9b73c16f7
+      - image: circleci/node:8.11.1
     # To support coverage reports from forks
     environment:
       CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
@@ -32,8 +32,6 @@ jobs:
           path: ./coverage/lcov-report
 
       # test matrix, start with most recent versions of node and walk backwards
-      - run: npx -p node-bin@8 -- yarn test
-
       - run: npx -p node-bin@7 -- yarn test
 
       - run: npx -p node-bin@6 -- yarn test
