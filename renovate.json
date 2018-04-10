@@ -6,7 +6,8 @@
     ":prHourlyLimit4",
     ":semanticCommitScopeDisabled",
     ":semanticCommitTypeAll(Chore)",
-    ":semanticCommits"
+    ":semanticCommits",
+    ":pinDigestsDisabled"
   ],
   "dependencies": {
     "extends": ":semanticCommitType(Fix)"
