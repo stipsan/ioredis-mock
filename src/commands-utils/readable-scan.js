@@ -36,7 +36,8 @@ export default class ReadableScan extends Readable {
         } else {
           this._cursor = nextCursor;
         }
-        this.push(keys);
+        if (keys.length > 0) this.push(keys);
+        else this._read();
       })
       .catch(err => process.nextTick(() => this.emit('error', err)));
   }
