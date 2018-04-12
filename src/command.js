@@ -1,7 +1,8 @@
 import Promise from 'bluebird';
+import _ from 'lodash';
 
 export function processArguments(args, commandName, RedisMock) {
-  let commandArgs = args;
+  let commandArgs = args ? _.flatten(args) : [];
   if (RedisMock.Command.transformers.argument[commandName]) {
     commandArgs = RedisMock.Command.transformers.argument[commandName](args);
   }
