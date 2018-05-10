@@ -4357,9 +4357,9 @@ nwmatcher@^1.4.3:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/nwmatcher/-/nwmatcher-1.4.4.tgz#2285631f34a95f0d0395cd900c96ed39b58f346e"
 
-nyc@11.7.2:
-  version "11.7.2"
-  resolved "https://registry.yarnpkg.com/nyc/-/nyc-11.7.2.tgz#15e554f937c216cc91aa08f9a260256ed6fe44b8"
+nyc@11.7.3:
+  version "11.7.3"
+  resolved "https://registry.yarnpkg.com/nyc/-/nyc-11.7.3.tgz#164f4cfad84dee6d8f353824231d9dd683aa14ea"
   dependencies:
     archy "^1.0.0"
     arrify "^1.0.1"
