@@ -58,7 +58,7 @@
     "ioredis": "3.2.2",
     "lint-staged": "7.1.0",
     "mocha": "3.5.3",
-    "mocha-circleci-reporter": "0.0.2",
+    "mocha-circleci-reporter": "0.0.3",
     "nyc": "11.7.3",
     "prettier": "1.12.1",
     "prettier-package-json": "1.6.0",
