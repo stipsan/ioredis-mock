@@ -18,6 +18,20 @@ describe('spop', () => {
     });
   });
 
+  it('should not return an array when count == set.size == 1', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: new Set(['one']),
+      },
+    });
+
+    return redis.spop('myset').then(result => {
+      expect(result.constructor).toBe(String);
+      expect(result).toBe('one');
+      expect(redis.data.get('myset').size).toBe(0);
+    });
+  });
+
   it('should return random unique items', () => {
     const redis = new MockRedis({
       data: {
