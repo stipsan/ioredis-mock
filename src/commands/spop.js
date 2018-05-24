@@ -30,10 +30,8 @@ export function spop(key, count) {
     result = values.sample().value();
     set.delete(result);
   } else {
-    result = values
-      .shuffle()
-      .take(want)
-      .value();
+    values.shuffle(); // Randomize take
+    result = values.take(want).value();
     result.map(item => set.delete(item));
   }
 
