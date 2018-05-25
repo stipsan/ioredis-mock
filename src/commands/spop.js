@@ -20,15 +20,13 @@ export function spop(key, count) {
   if (want === 0) return undefined;
   if (total === 0) return null;
   const values = _.chain(set).toArray();
-  if (total <= want) {
-    this.data.set(key, new Set());
-    return values.value();
-  }
-
   let result;
   if (want === 1) {
     result = values.sample().value();
     set.delete(result);
+  } else if (total <= want) {
+    result = values.value();
+    set.clear();
   } else {
     values.shuffle(); // Randomize take
     result = values.take(want).value();
