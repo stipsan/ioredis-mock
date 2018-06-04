@@ -40,7 +40,7 @@ filteredCommands.forEach(command => {
 });
 
 const percentage = Math.floor(
-  supportedCommands / filteredCommands.length * 100
+  (supportedCommands / filteredCommands.length) * 100
 );
 
 let color = 'red';
