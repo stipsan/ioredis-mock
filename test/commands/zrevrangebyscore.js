@@ -3,7 +3,7 @@ import expect from 'expect';
 
 import MockRedis from '../../src';
 
-describe('zrangebyscore', () => {
+describe('zrevrangebyscore', () => {
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -17,25 +17,25 @@ describe('zrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zrangebyscore('foo', 1, 3)
-      .then(res => expect(res).toEqual(['first', 'second', 'third']));
+      .zrevrangebyscore('foo', 3, 1)
+      .then(res => expect(res).toEqual(['third', 'second', 'first']));
   });
 
   it('should return using strict compare', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zrangebyscore('foo', '(3', 5)
-      .then(res => expect(res).toEqual(['fourth', 'fifth']));
+      .zrevrangebyscore('foo', 5, '(3')
+      .then(res => expect(res).toEqual(['fifth', 'fourth']));
   });
 
   it('should accept infinity string', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zrangebyscore('foo', '-inf', '+inf')
+      .zrevrangebyscore('foo', '+inf', '-inf')
       .then(res =>
-        expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
+        expect(res).toEqual(['fifth', 'fourth', 'third', 'second', 'first'])
       );
   });
 
@@ -43,7 +43,7 @@ describe('zrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zrangebyscore('foo', 10, 100)
+      .zrevrangebyscore('foo', 100, 10)
       .then(res => expect(res).toEqual([]));
   });
 
@@ -51,7 +51,7 @@ describe('zrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zrangebyscore('boo', 10, 100)
+      .zrevrangebyscore('boo', 100, 10)
       .then(res => expect(res).toEqual([]));
   });
 
@@ -63,14 +63,14 @@ describe('zrangebyscore', () => {
     });
 
     return redis
-      .zrangebyscore('foo', 1, 2)
+      .zrevrangebyscore('foo', 2, 1)
       .then(res => expect(res).toEqual([]));
   });
 
   it('should include scores if WITHSCORES is specified', () => {
     const redis = new MockRedis({ data });
     return redis
-      .zrangebyscore('foo', 1, 3, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['first', 1, 'second', 2, 'third', 3]));
+      .zrevrangebyscore('foo', 3, 1, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['third', 3, 'second', 2, 'first', 1]));
   });
 });

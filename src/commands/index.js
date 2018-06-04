@@ -99,4 +99,5 @@ export * from './zrangebyscore';
 export * from './zrem';
 export * from './zremrangebyrank';
 export * from './zrevrange';
+export * from './zrevrangebyscore';
 export * from './zscan';
