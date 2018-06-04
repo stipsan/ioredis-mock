@@ -12,26 +12,26 @@ and this project adheres to
 
 ## Added
 
-* `zrevrangebyscore` commands (#442 @kylewm)
-* `zrem` and `zincrby` commands (#443 @kylewm)
+- `zrevrangebyscore` commands (#442 @kylewm)
+- `zrem` and `zincrby` commands (#443 @kylewm)
 
 ## [3.8.3] - 2018-05-25
 
 ## Fixed
 
-* missing case in `spop` (#433 @BastienAr)
+- missing case in `spop` (#433 @BastienAr)
 
 ## [3.8.2] - 2018-05-24
 
 ## Fixed
 
-* `spop` behaviour (#432 @BastienAr)
+- `spop` behaviour (#432 @BastienAr)
 
 ## [3.8.1] - 2018-04-12
 
 ## Fixed
 
-* flatten (smoosh) args correctly (#405 @BastienAr)
+- flatten (smoosh) args correctly (#405 @BastienAr)
 
 ## [3.8.0] - 2018-04-10
 
