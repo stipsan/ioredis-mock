@@ -7,14 +7,14 @@ mocking the redis-server is a better option.
 
 Cases like:
 
-* Your workflow already use a local redis-server instance for the dev server.
-* You're on a platform
+- Your workflow already use a local redis-server instance for the dev server.
+- You're on a platform
   [without an official redis release](https://github.com/MSOpenTech/redis),
   that's even worse than using an emulator.
-* You're running tests on a CI, setting it up is complicated. If you combine it
+- You're running tests on a CI, setting it up is complicated. If you combine it
   with CI that also run selenium acceptance testing it's even more complicated,
   as two redis-server instances on the same CI build is hard.
-* The GitHub repo have bots that run the testing suite and is limited through
+- The GitHub repo have bots that run the testing suite and is limited through
   npm package.json install scripts and can't fire up servers. (Having
   [Greenkeeper](https://greenkeeper.io/) notifying you when a new release of
   ioredis is out and wether your code breaks or not is awesome).
@@ -47,17 +47,17 @@ This project started off as just an utility in
 benefit the rest of the ioredis community. This means there's work to do before
 it's feature complete:
 
-* [x] Setup testing suite for the library itself.
-* [x] Refactor to bluebird promises like ioredis, support node style callback
+- [x] Setup testing suite for the library itself.
+- [x] Refactor to bluebird promises like ioredis, support node style callback
       too.
-* [x] Implement remaining basic features that read/write data.
-* [x] Implement ioredis
+- [x] Implement remaining basic features that read/write data.
+- [x] Implement ioredis
       [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
-* [ ] Connection Events
-* [ ] Offline Queue
-* [ ] Pub/Sub
-* [ ] Error Handling
-* [ ] Implement [remaining](compat.md) commands
+- [ ] Connection Events
+- [ ] Offline Queue
+- [ ] Pub/Sub
+- [ ] Error Handling
+- [ ] Implement [remaining](compat.md) commands
 
 ## I need a feature not listed here
 
