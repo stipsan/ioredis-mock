@@ -8,6 +8,31 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.9.0] - 2018-06-04
+
+## Added
+
+* `zrevrangebyscore` commands (#442 @kylewm)
+* `zrem` and `zincrby` commands (#443 @kylewm)
+
+## [3.8.3] - 2018-05-25
+
+## Fixed
+
+* missing case in `spop` (#433 @BastienAr)
+
+## [3.8.2] - 2018-05-24
+
+## Fixed
+
+* `spop` behaviour (#432 @BastienAr)
+
+## [3.8.1] - 2018-04-12
+
+## Fixed
+
+* flatten (smoosh) args correctly (#405 @BastienAr)
+
 ## [3.8.0] - 2018-04-10
 
 ## Added
@@ -523,7 +548,11 @@ changes.
 * multi
 * exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.8.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.9.0...HEAD
+[3.9.0]: https://github.com/stipsan/ioredis-mock/compare/v3.8.3...v3.9.0
+[3.8.3]: https://github.com/stipsan/ioredis-mock/compare/v3.8.2...v3.8.3
+[3.8.2]: https://github.com/stipsan/ioredis-mock/compare/v3.8.1...v3.8.2
+[3.8.1]: https://github.com/stipsan/ioredis-mock/compare/v3.8.0...v3.8.1
 [3.8.0]: https://github.com/stipsan/ioredis-mock/compare/v3.7.1...v3.8.0
 [3.7.1]: https://github.com/stipsan/ioredis-mock/compare/v3.7.0...v3.7.1
 [3.7.0]: https://github.com/stipsan/ioredis-mock/compare/v3.6.4...v3.7.0
