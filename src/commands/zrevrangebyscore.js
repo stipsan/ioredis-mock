@@ -20,7 +20,7 @@ export function zrevrangebyscore(key, inputMax, inputMin, withScores) {
     filterPredicate(min, max)
   );
 
-  const ordered = orderBy(filteredArray, 'score', 'desc');
+  const ordered = orderBy(filteredArray, ['score', 'value'], ['desc', 'desc']);
   if (withScores === 'WITHSCORES') {
     return flatMap(ordered, it => [it.value, it.score]);
   }

@@ -54,4 +54,21 @@ describe('zrange', () => {
 
     return redis.zrange('foo', 0, 2).then(res => expect(res).toEqual([]));
   });
+
+  it('should sort items with the same score lexicographically', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: new Map([
+          ['aaa', { score: 5, value: 'aaa' }],
+          ['ccc', { score: 4, value: 'ccc' }],
+          ['ddd', { score: 4, value: 'ddd' }],
+          ['bbb', { score: 4, value: 'bbb' }],
+        ]),
+      },
+    });
+
+    return redis
+      .zrange('foo', 0, 100)
+      .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']));
+  });
 });
