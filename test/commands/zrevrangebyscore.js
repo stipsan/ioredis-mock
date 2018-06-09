@@ -73,4 +73,23 @@ describe('zrevrangebyscore', () => {
       .zrevrangebyscore('foo', 3, 1, 'WITHSCORES')
       .then(res => expect(res).toEqual(['third', 3, 'second', 2, 'first', 1]));
   });
+
+  it('should sort items with the same score in reverse lexicographical order', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: new Map([
+          ['aaa', { score: 5, value: 'aaa' }],
+          ['ccc', { score: 4, value: 'ccc' }],
+          ['ddd', { score: 4, value: 'ddd' }],
+          ['bbb', { score: 4, value: 'bbb' }],
+        ]),
+      },
+    });
+
+    return redis
+      .zrevrangebyscore('foo', '+inf', '-inf', 'WITHSCORES')
+      .then(res =>
+        expect(res).toEqual(['aaa', 5, 'ddd', 4, 'ccc', 4, 'bbb', 4])
+      );
+  });
 });
