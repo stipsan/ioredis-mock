@@ -21,7 +21,7 @@ export function xread(option, ...args) {
           rest: args.slice(2),
         };
 
-  if (!['COUNT', 'BLOCK'].includes(op)) {
+  if (['COUNT', 'BLOCK'].indexOf(op) < 0) {
     throw new Error('ERR syntax error');
   }
 
