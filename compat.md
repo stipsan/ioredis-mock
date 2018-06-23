@@ -152,6 +152,13 @@
 | [unwatch](http://redis.io/commands/UNWATCH)                           | :white_check_mark: |        :x:         |
 | [wait](http://redis.io/commands/WAIT)                                 | :white_check_mark: |        :x:         |
 | [watch](http://redis.io/commands/WATCH)                               | :white_check_mark: |        :x:         |
+| [xadd](http://redis.io/commands/XADD)                                 |        :x:         | :white_check_mark: |
+| [xlen](http://redis.io/commands/XLEN)                                 |        :x:         | :white_check_mark: |
+| [xpending](http://redis.io/commands/XPENDING)                         |        :x:         |        :x:         |
+| [xrange](http://redis.io/commands/XRANGE)                             |        :x:         | :white_check_mark: |
+| [xread](http://redis.io/commands/XREAD)                               |        :x:         | :white_check_mark: |
+| [xreadgroup](http://redis.io/commands/XREADGROUP)                     |        :x:         |        :x:         |
+| [xrevrange](http://redis.io/commands/XREVRANGE)                       |        :x:         |        :x:         |
 | [zadd](http://redis.io/commands/ZADD)                                 | :white_check_mark: | :white_check_mark: |
 | [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: |        :x:         |
 | [zcount](http://redis.io/commands/ZCOUNT)                             | :white_check_mark: |        :x:         |
