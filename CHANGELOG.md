@@ -8,6 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.10.0] - 2018-06-24
+
+## Added
+
+- `xadd`, `xlen`, `xrange`, `xrevrange` and `xread` for stream support (#449 @critocrito)
+
+## [3.9.1] - 2018-06-09
+
+## Fixed
+
+- `zrange` functions sort items with the same score in lexicographical order (#446 @kylewm)
+
 ## [3.9.0] - 2018-06-04
 
 ## Added
@@ -548,7 +560,9 @@ changes.
 - multi
 - exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.9.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.10.0...HEAD
+[3.10.0]: https://github.com/stipsan/ioredis-mock/compare/v3.9.1...v3.10.0
+[3.9.1]: https://github.com/stipsan/ioredis-mock/compare/v3.9.0...v3.9.1
 [3.9.0]: https://github.com/stipsan/ioredis-mock/compare/v3.8.3...v3.9.0
 [3.8.3]: https://github.com/stipsan/ioredis-mock/compare/v3.8.2...v3.8.3
 [3.8.2]: https://github.com/stipsan/ioredis-mock/compare/v3.8.1...v3.8.2
