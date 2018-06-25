@@ -22,8 +22,7 @@ describe('xread', () => {
       .xread('COUNT', '2', 'STREAMS', 'stream', '2-0')
       .then(events =>
         expect(events).toEqual([
-          ['stream', ['2-0', ['key', 'val']]],
-          ['stream', ['3-0', ['key', 'val']]],
+          ['stream', [['2-0', ['key', 'val']], ['3-0', ['key', 'val']]]],
         ])
       );
   });
@@ -47,9 +46,8 @@ describe('xread', () => {
       .xread('COUNT', '2', 'STREAMS', 'stream', '1-0', 'other-stream', '1-0')
       .then(events =>
         expect(events).toEqual([
-          ['stream', ['1-0', ['key', 'val']]],
-          ['stream', ['2-0', ['key', 'val']]],
-          ['other-stream', ['1-0', ['key', 'val']]],
+          ['stream', [['1-0', ['key', 'val']], ['2-0', ['key', 'val']]]],
+          ['other-stream', [['1-0', ['key', 'val']]]],
         ])
       );
   });
@@ -73,9 +71,8 @@ describe('xread', () => {
       .xread('COUNT', '2', 'STREAMS', 'stream', '1', 'other-stream', '1')
       .then(events =>
         expect(events).toEqual([
-          ['stream', ['1-0', ['key', 'val']]],
-          ['stream', ['2-0', ['key', 'val']]],
-          ['other-stream', ['1-0', ['key', 'val']]],
+          ['stream', [['1-0', ['key', 'val']], ['2-0', ['key', 'val']]]],
+          ['other-stream', [['1-0', ['key', 'val']]]],
         ])
       );
   });
@@ -83,7 +80,7 @@ describe('xread', () => {
   it('should block reads till data becomes available', () => {
     const redis = new MockRedis();
     const op = redis.xread('BLOCK', '0', 'STREAMS', 'stream', '$').then(row => {
-      const [[stream, [id, values]]] = row;
+      const [[stream, [[id, values]]]] = row;
       expect(stream).toBe('stream');
       expect(id).toBe('1-0');
       expect(values).toEqual(['key', 'val']);
@@ -96,7 +93,7 @@ describe('xread', () => {
     const op = redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', '2-0')
       .then(row => {
-        const [[stream, [id, values]]] = row;
+        const [[stream, [[id, values]]]] = row;
         expect(stream).toBe('stream');
         expect(id).toBe('2-0');
         expect(values).toEqual(['key', 'val']);
@@ -131,8 +128,7 @@ describe('xread', () => {
       .xread('STREAMS', 'stream', '2-0')
       .then(events =>
         expect(events).toEqual([
-          ['stream', ['2-0', ['key', 'val']]],
-          ['stream', ['3-0', ['key', 'val']]],
+          ['stream', [['2-0', ['key', 'val']], ['3-0', ['key', 'val']]]],
         ])
       );
   });

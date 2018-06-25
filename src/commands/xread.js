@@ -1,17 +1,4 @@
 export function xread(option, ...args) {
-  const pollStream = (stream, id, count = 1) => {
-    const data = this.data.get(stream);
-    if (!data) return [];
-    return data.reduce((memo, [eventId, ...row]) => {
-      const { polled } = this.data.get(`stream:${stream}:${eventId}`);
-      if (!polled && (id === '$' || eventId >= id) && memo.length < count) {
-        this.data.set(`stream:${stream}:${eventId}`, { polled: true });
-        return [[stream, [eventId, ...row]]].concat(memo);
-      }
-      return memo;
-    }, []);
-  };
-
   const { op, opVal, rest } =
     option === 'STREAMS'
       ? { op: 'COUNT', opVal: Infinity, rest: args }
@@ -41,9 +28,23 @@ export function xread(option, ...args) {
     return memo;
   }, []);
 
+  const pollStream = (stream, id, count = 1) => {
+    const data = this.data.get(stream);
+    if (!data) return [];
+    return data.reduce((memo, [eventId, ...row]) => {
+      const { polled } = this.data.get(`stream:${stream}:${eventId}`);
+      if (!polled && (id === '$' || eventId >= id) && memo.length < count) {
+        this.data.set(`stream:${stream}:${eventId}`, { polled: true });
+        return memo.concat([[eventId, ...row]]);
+      }
+      return memo;
+    }, []);
+  };
+
   const pollEvents = (streams, countVal) =>
     streams.reduce(
-      (memo, [stream, id]) => pollStream(stream, id, countVal).concat(memo),
+      (memo, [stream, id]) =>
+        [[stream, pollStream(stream, id, countVal)]].concat(memo),
       []
     );
 
