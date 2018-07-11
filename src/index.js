@@ -37,6 +37,8 @@ class RedisMock extends EventEmitter {
   }
   multi(batch = []) {
     this.batch = new Pipeline(this);
+    // eslint-disable-next-line no-underscore-dangle
+    this.batch._transactions += 1;
 
     batch.forEach(([command, ...options]) => this.batch[command](...options));
 

@@ -30,6 +30,14 @@ describe('multi', () => {
       });
   });
 
+  it('should increment _transactions', () => {
+    const redis = new MockRedis();
+    const commands = [['incr', 'user_next'], ['incr', 'post_next']];
+    redis.multi(commands);
+    // eslint-disable-next-line no-underscore-dangle
+    expect(redis.batch._transactions).toEqual(commands.length + 1);
+  });
+
   it('errors if you exec without starting a pipeline', () => {
     const redis = new MockRedis();
 
