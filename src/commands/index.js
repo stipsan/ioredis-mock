@@ -98,6 +98,7 @@ export * from './xrange';
 export * from './xread';
 export * from './xrevrange';
 export * from './zadd';
+export * from './zcount';
 export * from './zincrby';
 export * from './zrange';
 export * from './zrangebyscore';
