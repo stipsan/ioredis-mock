@@ -8,6 +8,24 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.11.0] - 2018-07-18
+
+## Added
+
+- `zcount` command (#460 @jmelion)
+
+## [3.10.2] - 2018-07-11
+
+## Fixed
+
+- Closer mock of pipeline/multi feature (#458 @BastienAr)
+
+## [3.10.1] - 2018-06-25
+
+## Fixed
+
+- redis format for xread for multiple streams. (#455 @critocrito)
+
 ## [3.10.0] - 2018-06-24
 
 ## Added
@@ -560,7 +578,10 @@ changes.
 - multi
 - exec
 
-[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.10.0...HEAD
+[unreleased]: https://github.com/stipsan/ioredis-mock/compare/v3.11.0...HEAD
+[3.11.0]: https://github.com/stipsan/ioredis-mock/compare/v3.10.2...v3.11.0
+[3.10.2]: https://github.com/stipsan/ioredis-mock/compare/v3.10.1...v3.10.2
+[3.10.1]: https://github.com/stipsan/ioredis-mock/compare/v3.10.0...v3.10.1
 [3.10.0]: https://github.com/stipsan/ioredis-mock/compare/v3.9.1...v3.10.0
 [3.9.1]: https://github.com/stipsan/ioredis-mock/compare/v3.9.0...v3.9.1
 [3.9.0]: https://github.com/stipsan/ioredis-mock/compare/v3.8.3...v3.9.0
