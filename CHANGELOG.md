@@ -8,7 +8,6 @@ and this project adheres to
 
 ## [Unreleased]
 
-
 ## [3.11.0] - 2018-07-18
 
 ## Added
