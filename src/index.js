@@ -44,8 +44,11 @@ class RedisMock extends EventEmitter {
 
     return this.batch;
   }
-  pipeline() {
+  pipeline(batch = []) {
     this.batch = new Pipeline(this);
+
+    batch.forEach(([command, ...options]) => this.batch[command](...options));
+
     return this.batch;
   }
   exec(callback) {

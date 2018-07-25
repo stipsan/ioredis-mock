@@ -30,6 +30,27 @@ describe('multi', () => {
       });
   });
 
+  it('allows pipeline to accept an array of String commands', () => {
+    const redis = new MockRedis();
+    const commands = [
+      ['set', 'firstkey', 'firstvalue'],
+      ['set', 'secondkey', 'secondvalue'],
+    ];
+
+    return redis
+      .pipeline(commands)
+      .exec()
+      .then(results => {
+        expect(results).toBeA('array');
+        expect(results.length).toBe(2);
+        expect(results[0]).toEqual([null, 'OK']);
+        expect(results[1]).toEqual([null, 'OK']);
+
+        expect(redis.data.get('firstkey')).toEqual('firstvalue');
+        expect(redis.data.get('secondkey')).toEqual('secondvalue');
+      });
+  });
+
   it('should increment _transactions', () => {
     const redis = new MockRedis();
     const commands = [['incr', 'user_next'], ['incr', 'post_next']];
