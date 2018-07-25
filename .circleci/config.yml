@@ -63,4 +63,4 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Semantic release is setup to check on its own when to publish a new release or not
-      - run: yarn semantic-release || true
+      - run: npx semantic-release
