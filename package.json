@@ -63,7 +63,7 @@
     "prettier": "1.13.7",
     "prettier-package-json": "1.6.0",
     "redis-commands": "1.3.5",
-    "release-relief": "1.0.1",
+    "semantic-release": "15.8.0",
     "stream-mock": "1.2.0"
   },
   "keywords": [
@@ -109,10 +109,9 @@
     ]
   },
   "release": {
-    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
-    "verifyConditions": "condition-circle",
-    "generateNotes": "semantic-release-tamia/generateNotes",
-    "verifyRelease": "semantic-release-tamia/verifyRelease"
+    "prepare": [
+      "@semantic-release/npm"
+    ]
   },
   "runkitExampleFilename": "example.js"
 }

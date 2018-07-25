@@ -3,17 +3,13 @@
     "config:js-lib",
     ":automergeDigest",
     ":automergeMinor",
-    ":prHourlyLimit4",
-    ":semanticCommitScopeDisabled",
-    ":semanticCommitTypeAll(Chore)",
+    ":automergeRequireAllStatusChecks",
     ":semanticCommits",
-    ":pinDigestsDisabled"
+    ":pinDigestsDisabled",
+    ":maintainLockFilesWeekly"
   ],
-  "dependencies": {
-    "extends": ":semanticCommitType(Fix)"
-  },
-  "peerDependencies": {
-    "extends": ":semanticCommitType(Fix)"
+  "devDependencies": {
+    "extends": ":automergeMajor"
   },
   "packageRules": [
     {
