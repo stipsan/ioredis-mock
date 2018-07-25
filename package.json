@@ -109,10 +109,9 @@
     ]
   },
   "release": {
-    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
-    "verifyConditions": "condition-circle",
-    "generateNotes": "semantic-release-tamia/generateNotes",
-    "verifyRelease": "semantic-release-tamia/verifyRelease"
+    "prepare": [
+      "@semantic-release/npm"
+    ]
   },
   "runkitExampleFilename": "example.js"
 }
