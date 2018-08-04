@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import * as originalCommands from 'ioredis/lib/command';
+import {Command} from 'ioredis';
 import Promise from 'bluebird';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
@@ -62,7 +62,7 @@ class RedisMock extends EventEmitter {
 }
 RedisMock.prototype.Command = {
   // eslint-disable-next-line no-underscore-dangle
-  transformers: originalCommands._transformer,
+  transformers: Command._transformer,
   setArgumentTransformer: (name, func) => {
     RedisMock.prototype.Command.transformers.argument[name] = func;
   },
