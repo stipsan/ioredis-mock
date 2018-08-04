@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import {Command} from 'ioredis';
+import { Command } from 'ioredis';
 import Promise from 'bluebird';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
