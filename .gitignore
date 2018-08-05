@@ -1,7 +1,6 @@
 .nyc_output
 coverage
 junit
-lib
 node_modules
 npm-debug.log
 
