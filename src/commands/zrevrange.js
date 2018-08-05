@@ -1,9 +1,9 @@
 import Map from 'es6-map';
 import arrayFrom from 'array-from';
-import { orderBy } from 'lodash';
+import { orderBy, flatten } from 'lodash';
 import { slice } from './zrange-command.common';
 
-export function zrevrange(key, s, e) {
+export function zrevrange(key, s, e, w) {
   const map = this.data.get(key);
   if (!map) {
     return [];
@@ -17,11 +17,19 @@ export function zrevrange(key, s, e) {
   const start = parseInt(s, 10);
   const end = parseInt(e, 10);
 
-  const val = orderBy(
+  let val = orderBy(
     arrayFrom(map.values()),
     ['score', 'value'],
     ['desc', 'desc']
-  ).map(it => it.value);
+  ).map(it => {
+    if (w) {
+      return [it.value, it.score];
+    }
 
-  return slice(val, start, end);
+    return [it.value];
+  });
+
+  val = slice(val, start, end);
+
+  return flatten(val);
 }
