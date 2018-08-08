@@ -6326,9 +6326,9 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
-semantic-release@15.9.5:
-  version "15.9.5"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.9.5.tgz#8cb409e1dfbe37a4478ef2de2e3aa1d2b3cd0811"
+semantic-release@15.9.6:
+  version "15.9.6"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.9.6.tgz#86f06dbad121dad360a0e60041bdbd12e36cd4b0"
   dependencies:
     "@semantic-release/commit-analyzer" "^6.0.0"
     "@semantic-release/error" "^2.2.0"
