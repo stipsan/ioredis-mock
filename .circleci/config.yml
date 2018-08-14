@@ -36,14 +36,14 @@ jobs:
 
       - run: npx -p node-bin@6 -- yarn test
 
-      - run: npx -p node-bin@5 -- yarn test
+      #- run: npx -p node-bin@5 -- yarn test
 
-      - run: npx -p node-bin@4 -- yarn test
+      #- run: npx -p node-bin@4 -- yarn test
 
-      - run: npx -p node-bin@0.12 -p npm@3 -- npm test
+      #- run: npx -p node-bin@0.12 -p npm@3 -- npm test
 
       # yarn itself only supports v4 and later
-      - run: npx -p node-bin@0.11 -p npm@2 -- npm test
+      #- run: npx -p node-bin@0.11 -p npm@2 -- npm test
 
       # Let the CI know we got test results it can parse
       - store_test_results:
