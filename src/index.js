@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import * as originalCommands from 'ioredis/lib/command';
+import { Command } from 'ioredis';
 import Promise from 'bluebird';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
@@ -37,13 +37,18 @@ class RedisMock extends EventEmitter {
   }
   multi(batch = []) {
     this.batch = new Pipeline(this);
+    // eslint-disable-next-line no-underscore-dangle
+    this.batch._transactions += 1;
 
     batch.forEach(([command, ...options]) => this.batch[command](...options));
 
     return this.batch;
   }
-  pipeline() {
+  pipeline(batch = []) {
     this.batch = new Pipeline(this);
+
+    batch.forEach(([command, ...options]) => this.batch[command](...options));
+
     return this.batch;
   }
   exec(callback) {
@@ -57,7 +62,7 @@ class RedisMock extends EventEmitter {
 }
 RedisMock.prototype.Command = {
   // eslint-disable-next-line no-underscore-dangle
-  transformers: originalCommands._transformer,
+  transformers: Command._transformer,
   setArgumentTransformer: (name, func) => {
     RedisMock.prototype.Command.transformers.argument[name] = func;
   },

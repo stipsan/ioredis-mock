@@ -21,7 +21,7 @@ describe('zrangebyscore', () => {
       .then(res => expect(res).toEqual(['first', 'second', 'third']));
   });
 
-  it('should can using strict compare', () => {
+  it('should return using strict compare', () => {
     const redis = new MockRedis({ data });
 
     return redis
@@ -65,5 +65,31 @@ describe('zrangebyscore', () => {
     return redis
       .zrangebyscore('foo', 1, 2)
       .then(res => expect(res).toEqual([]));
+  });
+
+  it('should include scores if WITHSCORES is specified', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrangebyscore('foo', 1, 3, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['first', 1, 'second', 2, 'third', 3]));
+  });
+
+  it('should sort items with the same score lexicographically', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: new Map([
+          ['aaa', { score: 5, value: 'aaa' }],
+          ['ccc', { score: 4, value: 'ccc' }],
+          ['ddd', { score: 4, value: 'ddd' }],
+          ['bbb', { score: 4, value: 'bbb' }],
+        ]),
+      },
+    });
+
+    return redis
+      .zrangebyscore('foo', '-inf', '+inf', 'WITHSCORES')
+      .then(res =>
+        expect(res).toEqual(['bbb', 4, 'ccc', 4, 'ddd', 4, 'aaa', 5])
+      );
   });
 });

@@ -12,8 +12,23 @@ describe('spop', () => {
     });
 
     return redis.spop('myset').then(result => {
+      expect(result.constructor).toBe(String);
       expect(['one', 'two', 'three']).toInclude(result);
       expect(redis.data.get('myset').size).toBe(2);
+    });
+  });
+
+  it('should not return an array when count == set.size == 1', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: new Set(['one']),
+      },
+    });
+
+    return redis.spop('myset').then(result => {
+      expect(result.constructor).toBe(String);
+      expect(result).toBe('one');
+      expect(redis.data.get('myset').size).toBe(0);
     });
   });
 
@@ -50,6 +65,18 @@ describe('spop', () => {
     return redis.spop('myset').then(result => expect(result).toBe(null));
   });
 
+  it('should return undefined if count is 0', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: new Set(['one', 'two', 'three']),
+      },
+    });
+
+    return redis
+      .spop('myset', 0)
+      .then(result => expect(result).toBe(undefined));
+  });
+
   it('should throw an exception if the key contains something other than a set', () => {
     const redis = new MockRedis({
       data: {
@@ -60,5 +87,33 @@ describe('spop', () => {
     return redis
       .spop('foo')
       .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
+  });
+
+  it('should throw an exception if count is not an integer', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: new Set(['one', 'two', 'three']),
+      },
+    });
+
+    return redis
+      .spop('myset', 'not an integer')
+      .catch(err =>
+        expect(err.message).toBe('ERR value is not an integer or out of range')
+      );
+  });
+
+  it('should throw an exception if count is out of range', () => {
+    const redis = new MockRedis({
+      data: {
+        myset: new Set(['one', 'two', 'three']),
+      },
+    });
+
+    return redis
+      .spop('myset', -10)
+      .catch(err =>
+        expect(err.message).toBe('ERR value is not an integer or out of range')
+      );
   });
 });

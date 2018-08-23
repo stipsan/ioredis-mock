@@ -9,7 +9,9 @@ describe('scanStream', () => {
   let writable;
 
   beforeEach(() => {
-    writable = new WritableMock({ objectMode: true });
+    writable = new WritableMock({
+      objectMode: true,
+    });
   });
 
   it('should return null array if nothing in db', done => {
@@ -20,7 +22,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual([]);
+      expect(writable.data).toEqual([]);
       done();
     });
   });
@@ -37,7 +39,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual(['foo', 'test']);
+      expect(writable.flatData).toEqual(['foo', 'test']);
       done();
     });
   });
@@ -46,7 +48,6 @@ describe('scanStream', () => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
-    chance.unique(chance.state, 5);
     const data = keys.reduce((acc, curr) => {
       acc[curr] = 'bar';
       return acc;
@@ -58,7 +59,7 @@ describe('scanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect([].concat(...writable.data)).toEqual(keys);
+      expect(writable.flatData).toEqual(keys);
       done();
     });
   });
@@ -79,7 +80,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.data[0]).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(writable.flatData).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });

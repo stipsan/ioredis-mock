@@ -1,37 +1,38 @@
-import { random } from 'lodash';
+import _ from 'lodash';
 import Set from 'es6-set';
-import arrayFrom from 'array-from';
+
+const safeCount = count => {
+  const result = count !== undefined ? parseInt(count, 10) : 1;
+  if (Number.isNaN(result) || result < 0) {
+    throw new Error('ERR value is not an integer or out of range');
+  }
+  return result;
+};
 
 export function spop(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
     throw new Error(`Key ${key} does not contain a set`);
   }
-
+  const want = safeCount(count);
   const set = this.data.get(key) || new Set();
-  const list = arrayFrom(set);
   const total = set.size;
 
-  if (total === 0) {
-    return null;
+  if (want === 0) return undefined;
+  if (total === 0) return null;
+  const values = _.chain(set).toArray();
+  let result;
+  if (want === 1) {
+    result = values.sample().value();
+    set.delete(result);
+  } else if (total <= want) {
+    result = values.value();
+    set.clear();
+  } else {
+    values.shuffle(); // Randomize take
+    result = values.take(want).value();
+    result.map(item => set.delete(item));
   }
 
-  const shouldReturnArray = count !== undefined;
-  const max = shouldReturnArray ? count : 1;
-
-  if (total <= max) {
-    this.data.set(key, new Set());
-    return list;
-  }
-
-  const items = [];
-  let results = 0;
-  while (results < max) {
-    const item = list.splice(random(0, list.length - 1), 1);
-
-    results += 1;
-    items.push(item);
-  }
-  this.data.set(key, new Set(list));
-
-  return shouldReturnArray ? items : items[0];
+  this.data.set(key, set);
+  return result;
 }

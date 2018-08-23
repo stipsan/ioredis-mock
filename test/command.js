@@ -22,6 +22,13 @@ describe('basic command', () => {
     );
   });
 
+  it('should flatten args', () => {
+    const args = [['foo', 'bar', 'baz']];
+    return stub(...args).then(reply =>
+      expect(reply).toEqual(['foo', 'bar', 'baz'])
+    );
+  });
+
   it(
     'should reject the promise if the first argument is bool false to allow simulating failures'
   );

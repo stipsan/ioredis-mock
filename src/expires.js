@@ -6,7 +6,7 @@ export default function createExpires() {
       return expires[key];
     },
     set(key, timestamp) {
-      expires[key] = timestamp;
+      expires[key] = +timestamp;
     },
     has(key) {
       return {}.hasOwnProperty.call(expires, key);

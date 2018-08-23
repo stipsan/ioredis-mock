@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:carbon@sha256:cf63f9a9a1eed0a978072293a4a4e35a53f0a77655c64a0ad51ca332e138c82a
+      - image: circleci/node:8.11.4
     # To support coverage reports from forks
     environment:
       CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
@@ -32,20 +32,18 @@ jobs:
           path: ./coverage/lcov-report
 
       # test matrix, start with most recent versions of node and walk backwards
-      - run: npx -p node-bin@8 -- yarn test
-
       - run: npx -p node-bin@7 -- yarn test
 
       - run: npx -p node-bin@6 -- yarn test
 
-      - run: npx -p node-bin@5 -- yarn test
+      #- run: npx -p node-bin@5 -- yarn test
 
-      - run: npx -p node-bin@4 -- yarn test
+      #- run: npx -p node-bin@4 -- yarn test
 
-      - run: npx -p node-bin@0.12 -p npm@3 -- npm test
+      #- run: npx -p node-bin@0.12 -p npm@3 -- npm test
 
       # yarn itself only supports v4 and later
-      - run: npx -p node-bin@0.11 -p npm@2 -- npm test
+      #- run: npx -p node-bin@0.11 -p npm@2 -- npm test
 
       # Let the CI know we got test results it can parse
       - store_test_results:
@@ -65,4 +63,4 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Semantic release is setup to check on its own when to publish a new release or not
-      - run: yarn semantic-release || true
+      - run: npx semantic-release
