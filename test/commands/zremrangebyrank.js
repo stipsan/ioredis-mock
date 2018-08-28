@@ -13,6 +13,16 @@ describe('zremrangebyrank', () => {
       ['fifth', { score: 5, value: 'fifth' }],
     ]),
   };
+
+  it('should do nothing if key does not exist', () => {
+    const redis = new MockRedis({ data: {} });
+
+    return redis
+      .zremrangebyrank('foo', 0, 2)
+      .then(status => expect(status).toBe(0))
+      .then(() => expect(redis.data.has('foo')).toBe(false));
+  });
+
   it('should remove first 3 items ordered by score', () => {
     const redis = new MockRedis({ data });
 

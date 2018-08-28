@@ -14,6 +14,15 @@ describe('zremrangebyscore', () => {
     ]),
   };
 
+  it('should do nothing if key does not exist', () => {
+    const redis = new MockRedis({ data: {} });
+
+    return redis
+      .zremrangebyscore('foo', 0, 2)
+      .then(status => expect(status).toBe(0))
+      .then(() => expect(redis.data.has('foo')).toBe(false));
+  });
+
   it('should remove using not strict compare', () => {
     const redis = new MockRedis({ data });
 
