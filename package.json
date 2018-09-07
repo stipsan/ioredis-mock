@@ -63,7 +63,7 @@
     "prettier": "1.14.2",
     "prettier-package-json": "2.0.0",
     "redis-commands": "1.3.5",
-    "semantic-release": "15.9.12",
+    "semantic-release": "15.9.13",
     "stream-mock": "1.2.0"
   },
   "keywords": [
