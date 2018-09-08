@@ -3,6 +3,16 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('incrby', () => {
+  it('should initialize the key with 0 if there is no key', () => {
+    const redis = new MockRedis({
+      data: {},
+    });
+
+    return redis
+      .incrby('user_next', 10)
+      .then(userNext => expect(userNext).toBe(10))
+      .then(() => expect(redis.data.get('user_next')).toBe('10'));
+  });
   it('should increment an integer with passed increment', () => {
     const redis = new MockRedis({
       data: {
