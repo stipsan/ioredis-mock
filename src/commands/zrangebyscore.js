@@ -21,7 +21,10 @@ export function zrangebyscore(key, inputMin, inputMax, withScores) {
   );
 
   const ordered = orderBy(filteredArray, ['score', 'value']);
-  if (withScores === 'WITHSCORES') {
+  if (
+    typeof withScores === 'string' &&
+    withScores.toUpperCase() === 'WITHSCORES'
+  ) {
     return flatMap(ordered, it => [it.value, it.score]);
   }
   return ordered.map(it => it.value);
