@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import asCallback from 'standard-as-callback';
+import promiseContainer from './promise-container';
 
 export function processArguments(args, commandName, RedisMock) {
   let commandArgs = args ? _.flatten(args) : [];
@@ -31,6 +32,7 @@ export default function command(commandEmulator, commandName, RedisMock) {
     }
 
     const commandArgs = processArguments(args, commandName, RedisMock);
+    const Promise = promiseContainer.get();
 
     return asCallback(
       new Promise(resolve =>

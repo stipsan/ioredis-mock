@@ -1,6 +1,7 @@
 import asCallback from 'standard-as-callback';
 import * as commands from './commands';
 import { processArguments, processReply } from './command';
+import promiseContainer from './promise-container';
 
 class Pipeline {
   constructor(redis) {
@@ -26,6 +27,8 @@ class Pipeline {
   exec(callback) {
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch;
+    const Promise = promiseContainer.get();
+
     this.batch = [];
     return asCallback(
       Promise.resolve(batch.map(cmd => [null, cmd()])),
