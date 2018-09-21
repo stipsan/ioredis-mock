@@ -1,5 +1,4 @@
-import Promise from 'bluebird';
-
+import asCallback from 'standard-as-callback';
 import * as commands from './commands';
 import { processArguments, processReply } from './command';
 
@@ -28,7 +27,8 @@ class Pipeline {
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch;
     this.batch = [];
-    return Promise.resolve(batch.map(cmd => [null, cmd()])).asCallback(
+    return asCallback(
+      Promise.resolve(batch.map(cmd => [null, cmd()])),
       callback
     );
   }
