@@ -31,21 +31,22 @@
   },
   "dependencies": {
     "array-from": "^2.1.1",
-    "bluebird": "^3.5.1",
     "es6-map": "^0.1.5",
     "es6-set": "^0.1.5",
     "lodash": "^4.17.4",
     "minimatch": "^3.0.4",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "standard-as-callback": "^1.0.1"
   },
   "peerDependencies": {
-    "ioredis": "2.x || 3.x || 4.x"
+    "ioredis": "4.x"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-eslint": "10.0.1",
     "babel-preset-env": "1.7.0",
     "babel-register": "6.26.0",
+    "bluebird": "^3.5.1",
     "chance": "1.0.16",
     "codeclimate-test-reporter": "0.5.0",
     "coveralls": "3.0.2",
