@@ -39,7 +39,7 @@
     "standard-as-callback": "^1.0.1"
   },
   "peerDependencies": {
-    "ioredis": "2.x || 3.x || 4.x"
+    "ioredis": "4.x"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
