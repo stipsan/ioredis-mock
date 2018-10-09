@@ -3011,17 +3011,14 @@ invert-kv@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
 
-ioredis@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.0.1.tgz#266f18534fb7d8a28ca752cd5ade8150684e46e7"
+ioredis@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.0.2.tgz#4de98677615f182d38071414f8b2bbad2740f583"
   dependencies:
     cluster-key-slot "^1.0.6"
     debug "^3.1.0"
     denque "^1.1.0"
     flexbuffer "0.0.6"
-    lodash.bind "^4.2.1"
-    lodash.clone "^4.5.0"
-    lodash.clonedeep "^4.5.0"
     lodash.defaults "^4.2.0"
     lodash.difference "^4.5.0"
     lodash.flatten "^4.4.0"
@@ -3782,19 +3779,11 @@ lodash.assign@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
-lodash.bind@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/lodash.bind/-/lodash.bind-4.2.1.tgz#7ae3017e939622ac31b7d7d7dcb1b34db1690d35"
-
 lodash.capitalize@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/lodash.capitalize/-/lodash.capitalize-4.2.1.tgz#f826c9b4e2a8511d84e3aca29db05e1a4f3b72a9"
 
-lodash.clone@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.clone/-/lodash.clone-4.5.0.tgz#195870450f5a13192478df4bc3d23d2dea1907b6"
-
-lodash.clonedeep@^4.5.0, lodash.clonedeep@~4.5.0:
+lodash.clonedeep@~4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
