@@ -178,5 +178,5 @@
 | [zrevrangebyscore](http://redis.io/commands/ZREVRANGEBYSCORE)         | :white_check_mark: | :white_check_mark: |
 | [zrevrank](http://redis.io/commands/ZREVRANK)                         | :white_check_mark: |        :x:         |
 | [zscan](http://redis.io/commands/ZSCAN)                               | :white_check_mark: | :white_check_mark: |
-| [zscore](http://redis.io/commands/ZSCORE)                             | :white_check_mark: |        :x:         |
+| [zscore](http://redis.io/commands/ZSCORE)                             | :white_check_mark: | :white_check_mark: |
 | [zunionstore](http://redis.io/commands/ZUNIONSTORE)                   | :white_check_mark: |        :x:         |
