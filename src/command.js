@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import asCallback from 'standard-as-callback';
-import promiseContainer from './promise-container';
+import promiseContainer from './promise-container'
 
 export function processArguments(args, commandName, RedisMock) {
   let commandArgs = args ? _.flatten(args) : [];
