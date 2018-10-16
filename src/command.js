@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import asCallback from 'standard-as-callback';
-import promiseContainer from './promise-container'
+import promiseContainer from './promise-container';
 
 export function processArguments(args, commandName, RedisMock) {
   let commandArgs = args ? _.flatten(args) : [];
@@ -9,7 +9,10 @@ export function processArguments(args, commandName, RedisMock) {
   }
   commandArgs = commandArgs.map(
     // transform non-buffer arguments to strings to simulate real ioredis behavior
-    arg => (arg instanceof Buffer || arg === null || arg === undefined ? arg : arg.toString())
+    arg =>
+      arg instanceof Buffer || arg === null || arg === undefined
+        ? arg
+        : arg.toString()
   );
   return commandArgs;
 }
