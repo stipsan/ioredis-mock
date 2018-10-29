@@ -14,8 +14,8 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
 
       # --frozen-lockfile ensures yarn.lockfile isn't accidentally outdated compared to package.json
       - run: yarn install --no-progress --frozen-lockfile
