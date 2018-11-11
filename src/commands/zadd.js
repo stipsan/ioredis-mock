@@ -20,7 +20,7 @@ export function zadd(key, ...vals) {
   // validate options
   if (nx && xx)
     throw new Error('XX and NX options at the same time are not compatible');
-  if (incr && elems > 1)
+  if (incr && elems > 2)
     throw new Error('INCR option supports a single increment-element pair');
 
   if (!this.data.has(key)) {
