@@ -27,7 +27,7 @@ describe('zremrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zremrangebyscore('foo', 3, 1)
+      .zremrangebyscore('foo', 1, 3)
       .then(res => expect(res).toBe(3))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
@@ -42,7 +42,7 @@ describe('zremrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zremrangebyscore('foo', 5, '(3')
+      .zremrangebyscore('foo', '(3', 5)
       .then(res => expect(res).toEqual(2))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(true);
@@ -57,7 +57,7 @@ describe('zremrangebyscore', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zremrangebyscore('foo', '+inf', '-inf')
+      .zremrangebyscore('foo', '-inf', '+inf')
       .then(res => expect(res).toEqual(5))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
