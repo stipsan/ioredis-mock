@@ -1,6 +1,6 @@
 import { zrevrangebyscore } from './index';
 
-export function zremrangebyscore(key, inputMax, inputMin) {
+export function zremrangebyscore(key, inputMin, inputMax) {
   const vals = zrevrangebyscore.call(this, key, inputMax, inputMin);
 
   if (!this.data.has(key)) {
