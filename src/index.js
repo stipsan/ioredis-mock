@@ -9,14 +9,14 @@ import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
 
 class RedisMock extends EventEmitter {
-  constructor({ data = {} } = {}) {
+  constructor(options = { data: {}, keyPrefix: '' }) {
     super();
     this.channels = {};
     this.batch = undefined;
 
-    this.expires = createExpires();
+    this.expires = createExpires(options.keyPrefix);
 
-    this.data = createData(this.expires, data);
+    this.data = createData(this.expires, options.data, options.keyPrefix);
 
     Object.keys(commands).forEach(command => {
       this[command] = createCommand(

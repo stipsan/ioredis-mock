@@ -1,21 +1,22 @@
-export default function createExpires() {
+export default function createExpires(keyPrefix = '') {
   const expires = {};
+  const prefix = keyPrefix;
 
   return {
     get(key) {
-      return expires[key];
+      return expires[`${prefix}${key}`];
     },
     set(key, timestamp) {
-      expires[key] = +timestamp;
+      expires[`${prefix}${key}`] = +timestamp;
     },
     has(key) {
-      return {}.hasOwnProperty.call(expires, key);
+      return {}.hasOwnProperty.call(expires, `${prefix}${key}`);
     },
     isExpired(key) {
-      return expires[key] <= Date.now();
+      return expires[`${prefix}${key}`] <= Date.now();
     },
     delete(key) {
-      delete expires[key];
+      delete expires[`${prefix}${key}`];
     },
   };
 }
