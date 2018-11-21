@@ -57,14 +57,14 @@
     "expect": "1.20.2",
     "husky": "1.1.4",
     "ioredis": "4.2.0",
-    "lint-staged": "8.0.4",
+    "lint-staged": "8.0.5",
     "mocha": "5.2.0",
     "mocha-circleci-reporter": "0.0.3",
     "nyc": "13.1.0",
     "prettier": "1.15.2",
     "prettier-package-json": "2.0.1",
     "redis-commands": "1.4.0",
-    "semantic-release": "15.11.0",
+    "semantic-release": "15.12.0",
     "stream-mock": "1.2.0"
   },
   "keywords": [
