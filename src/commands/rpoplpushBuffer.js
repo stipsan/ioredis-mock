@@ -1,3 +1,5 @@
+import { rpoplpush } from './rpoplpush';
+
 export function rpoplpushBuffer(source, destination) {
-  return this.rpoplpush(source, destination);
+  return rpoplpush.apply(this, [source, destination]);
 }

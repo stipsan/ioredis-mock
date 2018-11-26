@@ -2,7 +2,7 @@ init: git config --global core.autocrlf input
 skip_tags: true
 
 environment:
-  nodejs_version: "8"
+  nodejs_version: '8'
 
 install:
   - ps: 'Install-Product node $env:node_version'

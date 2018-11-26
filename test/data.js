@@ -14,6 +14,20 @@ describe('createData', () => {
   });
 });
 
+describe('createData with keyprefix', () => {
+  const expires = createExpires('test:');
+  const data = createData(expires, { foo: 'bar' }, 'test:');
+
+  it('should return array  keys of data that with keyprefix', () => {
+    expect(data.keys()).toEqual(['test:foo']);
+  });
+
+  it('should check expiry on get with', () => {
+    expires.set('foo', Date.now());
+    expect(data.get('foo')).toNotExist();
+  });
+});
+
 describe('get', () => {
   let data;
 

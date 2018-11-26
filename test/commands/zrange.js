@@ -13,6 +13,7 @@ describe('zrange', () => {
       ['fifth', { score: 5, value: 'fifth' }],
     ]),
   };
+
   it('should return first 3 items ordered by score', () => {
     const redis = new MockRedis({ data });
 
@@ -53,6 +54,13 @@ describe('zrange', () => {
     });
 
     return redis.zrange('foo', 0, 2).then(res => expect(res).toEqual([]));
+  });
+
+  it('should include scores if WITHSCORES is specified', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrange('foo', 0, 2, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['first', 1, 'second', 2, 'third', 3]));
   });
 
   it('should sort items with the same score lexicographically', () => {

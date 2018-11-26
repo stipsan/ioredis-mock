@@ -3,7 +3,7 @@ import expect from 'expect';
 
 import MockRedis from '../../src';
 
-describe('zremrangebyrank', () => {
+describe('zremrangebyscore', () => {
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -18,17 +18,17 @@ describe('zremrangebyrank', () => {
     const redis = new MockRedis({ data: {} });
 
     return redis
-      .zremrangebyrank('foo', 0, 2)
+      .zremrangebyscore('foo', 0, 2)
       .then(status => expect(status).toBe(0))
       .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
-  it('should remove first 3 items ordered by score', () => {
+  it('should remove using not strict compare', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zremrangebyrank('foo', 0, 2)
-      .then(status => expect(status).toBe(3))
+      .zremrangebyscore('foo', 1, 3)
+      .then(res => expect(res).toBe(3))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
         expect(redis.data.get('foo').has('second')).toBe(false);
@@ -38,58 +38,61 @@ describe('zremrangebyrank', () => {
       });
   });
 
-  it('should remove last 3 items', () => {
+  it('should return using strict compare', () => {
     const redis = new MockRedis({ data });
 
     return redis
-      .zremrangebyrank('foo', -3, -1)
-      .then(status => expect(status).toBe(3))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(true);
-        expect(redis.data.get('foo').has('second')).toBe(true);
-        expect(redis.data.get('foo').has('third')).toBe(false);
-        expect(redis.data.get('foo').has('fourth')).toBe(false);
-        expect(redis.data.get('foo').has('fifth')).toBe(false);
-      });
-  });
-
-  it('should remove all items on larger rangers', () => {
-    const redis = new MockRedis({ data });
-
-    return redis
-      .zremrangebyrank('foo', 0, 100)
-      .then(status => expect(status).toBe(5))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(false);
-        expect(redis.data.get('foo').has('second')).toBe(false);
-        expect(redis.data.get('foo').has('third')).toBe(false);
-        expect(redis.data.get('foo').has('fourth')).toBe(false);
-        expect(redis.data.get('foo').has('fifth')).toBe(false);
-      });
-  });
-
-  it('should return 0 and delete nothing if out-of-range', () => {
-    const redis = new MockRedis({ data });
-
-    return redis
-      .zremrangebyrank('foo', 10, 100)
-      .then(status => expect(status).toBe(0))
+      .zremrangebyscore('foo', '(3', 5)
+      .then(res => expect(res).toEqual(2))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(true);
         expect(redis.data.get('foo').has('second')).toBe(true);
         expect(redis.data.get('foo').has('third')).toBe(true);
-        expect(redis.data.get('foo').has('fourth')).toBe(true);
-        expect(redis.data.get('foo').has('fifth')).toBe(true);
+        expect(redis.data.get('foo').has('fourth')).toBe(false);
+        expect(redis.data.get('foo').has('fifth')).toBe(false);
       });
   });
 
-  it('should return 0 the key contains something other than a list', () => {
+  it('should accept infinity string', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zremrangebyscore('foo', '-inf', '+inf')
+      .then(res => expect(res).toEqual(5))
+      .then(() => {
+        expect(redis.data.get('foo').has('first')).toBe(false);
+        expect(redis.data.get('foo').has('second')).toBe(false);
+        expect(redis.data.get('foo').has('third')).toBe(false);
+        expect(redis.data.get('foo').has('fourth')).toBe(false);
+        expect(redis.data.get('foo').has('fifth')).toBe(false);
+      });
+  });
+
+  it('should return zero if out-of-range', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zremrangebyscore('foo', 100, 10)
+      .then(res => expect(res).toEqual(0));
+  });
+
+  it('should return zero if key not found', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zremrangebyscore('boo', 100, 10)
+      .then(res => expect(res).toEqual(0));
+  });
+
+  it('should return zero if the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
         foo: 'not a list',
       },
     });
 
-    return redis.zremrangebyrank('foo', 0, 2).then(res => expect(res).toBe(0));
+    return redis
+      .zremrangebyscore('foo', 2, 1)
+      .then(res => expect(res).toEqual(0));
   });
 });

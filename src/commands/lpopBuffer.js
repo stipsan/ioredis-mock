@@ -1,3 +1,5 @@
+import { lpop } from './lpop';
+
 export function lpopBuffer(key) {
-  return this.lpop(key);
+  return lpop.apply(this, [key]);
 }

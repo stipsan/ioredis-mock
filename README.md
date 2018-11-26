@@ -40,6 +40,17 @@ var redis = new Redis({
 // Basically use it just like ioredis
 ```
 
+### Promises
+
+By default, ioredis-mock uses the native Promise library. If you need (or prefer) [bluebird](http://bluebirdjs.com/) promises, set `Redis.Promise`:
+
+```js
+var Promise = require('bluebird');
+var Redis = require('ioredis-mock');
+
+Redis.Promise = Promise;
+```
+
 ## Roadmap
 
 This project started off as just an utility in

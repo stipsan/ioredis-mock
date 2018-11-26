@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.3
+      - image: circleci/node:8.12.0
     # To support coverage reports from forks
     environment:
       CODECLIMATE_REPO_TOKEN: 688d3234f9bb133fe6efa4dfe74f7a7510f2d9c1dca419875de8257a5f02da45
@@ -14,8 +14,8 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
 
       # --frozen-lockfile ensures yarn.lockfile isn't accidentally outdated compared to package.json
       - run: yarn install --no-progress --frozen-lockfile
@@ -36,14 +36,14 @@ jobs:
 
       - run: npx -p node-bin@6 -- yarn test
 
-      - run: npx -p node-bin@5 -- yarn test
+      #- run: npx -p node-bin@5 -- yarn test
 
-      - run: npx -p node-bin@4 -- yarn test
+      #- run: npx -p node-bin@4 -- yarn test
 
-      - run: npx -p node-bin@0.12 -p npm@3 -- npm test
+      #- run: npx -p node-bin@0.12 -p npm@3 -- npm test
 
       # yarn itself only supports v4 and later
-      - run: npx -p node-bin@0.11 -p npm@2 -- npm test
+      #- run: npx -p node-bin@0.11 -p npm@2 -- npm test
 
       # Let the CI know we got test results it can parse
       - store_test_results:

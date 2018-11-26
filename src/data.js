@@ -4,8 +4,10 @@ import { assign } from 'lodash';
 
 import createBuffer from './buffer';
 
-export default function createData(expires, initial = {}) {
+export default function createData(expires, initial = {}, keyPrefix = '') {
+  const prefix = keyPrefix;
   let raw = {};
+
   const data = Object.freeze({
     clear() {
       raw = {};
@@ -14,15 +16,14 @@ export default function createData(expires, initial = {}) {
       if (expires.has(key)) {
         expires.delete(key);
       }
-
-      delete raw[key];
+      delete raw[`${prefix}${key}`];
     },
     get(key) {
       if (expires.has(key) && expires.isExpired(key)) {
         this.delete(key);
       }
 
-      const value = raw[key];
+      const value = raw[`${prefix}${key}`];
 
       if (Array.isArray(value)) {
         return value.slice();
@@ -51,7 +52,7 @@ export default function createData(expires, initial = {}) {
         this.delete(key);
       }
 
-      return {}.hasOwnProperty.call(raw, key);
+      return {}.hasOwnProperty.call(raw, `${prefix}${key}`);
     },
     keys() {
       return Object.keys(raw);
@@ -71,7 +72,7 @@ export default function createData(expires, initial = {}) {
         item = assign({}, val);
       }
 
-      raw[key] = item;
+      raw[`${prefix}${key}`] = item;
     },
   });
 

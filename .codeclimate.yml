@@ -2,15 +2,15 @@ engines:
   duplication:
     enabled: true
     exclude_paths:
-    - "test/"
-    - "src/commands/"
+      - 'test/'
+      - 'src/commands/'
     config:
       languages:
-      - javascript
+        - javascript
   eslint:
     enabled: false
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.js"
+    - '**.js'
