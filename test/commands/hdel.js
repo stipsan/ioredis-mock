@@ -19,4 +19,12 @@ describe('hdel', () => {
       .then(() =>
         expect(redis.data.get('user:1')).toEqual({ name: 'Bruce Wayne' })
       ));
+
+  it('should return 0 for key that does not exist', done => {
+    redis
+      .hdel('nonExistingUser', 'someField')
+      .then(status => expect(status).toBe(0))
+      .then(() => done())
+      .catch(err => done(err));
+  });
 });

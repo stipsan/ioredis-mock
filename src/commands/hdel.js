@@ -1,7 +1,7 @@
 export function hdel(key, ...fields) {
   const value = this.data.get(key);
   if (!value) {
-   return 0; 
+    return 0;
   }
   const numDeleted = fields.filter(field => {
     if ({}.hasOwnProperty.call(value, field)) {
