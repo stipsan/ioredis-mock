@@ -13,7 +13,7 @@ class Pipeline {
       this[command] = this._createCommand(command);
     });
   }
-  
+
   _createCommand(commandName) {
     return (...args) => {
       const commandEmulator = commands[commandName].bind(this.redis);
@@ -25,7 +25,7 @@ class Pipeline {
       return this;
     };
   }
-  
+
   exec(callback) {
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch;
