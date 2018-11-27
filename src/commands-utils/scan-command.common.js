@@ -21,7 +21,8 @@ function getCountAndMatch(args) {
 
   if (test === 'UNDEFINEDUNDEFINED') {
     return [count, matchPattern];
-  } else if (test === 'MATCHUNDEFINED') {
+  } 
+  if (test === 'MATCHUNDEFINED') {
     matchPattern = pattern(args[1]);
   } else if (test === 'COUNTUNDEFINED') {
     count = parseInt(args[1], 10);
