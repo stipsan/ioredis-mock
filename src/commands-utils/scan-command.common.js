@@ -19,23 +19,34 @@ function getCountAndMatch(args) {
   let matchPattern = null;
   const test = `${args[0]}${args[2]}`.toUpperCase();
 
-  if (test === 'UNDEFINEDUNDEFINED') return [count, matchPattern];
-  else if (test === 'MATCHUNDEFINED') matchPattern = pattern(args[1]);
-  else if (test === 'COUNTUNDEFINED') count = parseInt(args[1], 10);
-  else if (test === 'MATCHCOUNT') {
+  if (test === 'UNDEFINEDUNDEFINED') {
+    return [count, matchPattern];
+  }
+  if (test === 'MATCHUNDEFINED') {
+    matchPattern = pattern(args[1]);
+  } else if (test === 'COUNTUNDEFINED') {
+    count = parseInt(args[1], 10);
+  } else if (test === 'MATCHCOUNT') {
     matchPattern = pattern(args[1]);
     count = parseInt(args[3], 10);
-  } else if (test.startsWith('MATCH') || test.startsWith('COUNT'))
+  } else if (test.startsWith('MATCH') || test.startsWith('COUNT')) {
     throw new Error('BAD Syntax');
-  else throw new Error(`Uknown option ${args[0]}`);
+  } else {
+    throw new Error(`Uknown option ${args[0]}`);
+  }
 
-  if (Number.isNaN(count)) throw new Error('count must be integer');
+  if (Number.isNaN(count)) {
+    throw new Error('count must be integer');
+  }
+
   return [count, matchPattern];
 }
 
 export function scanHelper(allKeys, size, cursorStart, ...args) {
   const cursor = parseInt(cursorStart, 10);
-  if (Number.isNaN(cursor)) throw new Error('Cursor must be integer');
+  if (Number.isNaN(cursor)) {
+    throw new Error('Cursor must be integer');
+  }
   const [count, matchPattern] = getCountAndMatch(args);
   let nextCursor = cursor + count;
   const keys = allKeys.slice(cursor, nextCursor);
@@ -44,12 +55,17 @@ export function scanHelper(allKeys, size, cursorStart, ...args) {
   if (matchPattern) {
     let i = 0;
     while (i < keys.length)
-      if (!matchPattern(keys[i])) keys.splice(i, size);
-      else i += size;
+      if (!matchPattern(keys[i])) {
+        keys.splice(i, size);
+      } else {
+        i += size;
+      }
   }
 
   // Return 0 when iteration is complete.
-  if (nextCursor >= allKeys.length) nextCursor = 0;
+  if (nextCursor >= allKeys.length) {
+    nextCursor = 0;
+  }
 
   return [nextCursor, keys];
 }

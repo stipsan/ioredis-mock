@@ -35,6 +35,7 @@ class RedisMock extends EventEmitter {
       this.emit('ready');
     });
   }
+
   multi(batch = []) {
     this.batch = new Pipeline(this);
     // eslint-disable-next-line no-underscore-dangle
@@ -44,6 +45,7 @@ class RedisMock extends EventEmitter {
 
     return this.batch;
   }
+
   pipeline(batch = []) {
     this.batch = new Pipeline(this);
 
@@ -51,6 +53,7 @@ class RedisMock extends EventEmitter {
 
     return this.batch;
   }
+
   exec(callback) {
     const Promise = promiseContainer.get();
 

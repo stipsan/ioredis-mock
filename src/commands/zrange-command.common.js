@@ -10,7 +10,8 @@ export function slice(arr, s, e) {
   const end = normalizeIndex(e, arr);
   if (end === -1) {
     return [];
-  } else if (end - start < 0) {
+  }
+  if (end - start < 0) {
     return Array.from(arr)
       .reverse()
       .slice(start, end + 1);
