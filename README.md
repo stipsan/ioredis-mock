@@ -72,4 +72,4 @@ it's feature complete:
 
 ## I need a feature not listed here
 
-Just create an issue and tell us all about it or submit a PR with it! :-)
+Just create an issue and tell us all about it or submit a PR with it! 😄
