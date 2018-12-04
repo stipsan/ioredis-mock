@@ -47,7 +47,7 @@
     "babel-preset-env": "1.7.0",
     "babel-register": "6.26.0",
     "bluebird": "3.5.3",
-    "chance": "1.0.17",
+    "chance": "1.0.18",
     "codeclimate-test-reporter": "0.5.1",
     "coveralls": "3.0.2",
     "eslint": "5.9.0",
