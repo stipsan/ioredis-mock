@@ -55,7 +55,7 @@
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-import": "2.14.0",
     "expect": "1.20.2",
-    "husky": "1.2.0",
+    "husky": "1.2.1",
     "ioredis": "4.3.0",
     "lint-staged": "8.1.0",
     "mocha": "5.2.0",
