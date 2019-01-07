@@ -8,15 +8,24 @@ import createExpires from './expires';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
 
+const defaultOptions = { data: {}, keyPrefix: '', lazyConnect: false };
+
 class RedisMock extends EventEmitter {
-  constructor(options = { data: {}, keyPrefix: '' }) {
+  constructor(options = {}) {
     super();
     this.channels = {};
     this.batch = undefined;
+    this.connected = false;
 
-    this.expires = createExpires(options.keyPrefix);
+    const optionsWithDefault = Object.assign({}, defaultOptions, options);
 
-    this.data = createData(this.expires, options.data, options.keyPrefix);
+    this.expires = createExpires(optionsWithDefault.keyPrefix);
+
+    this.data = createData(
+      this.expires,
+      optionsWithDefault.data,
+      optionsWithDefault.keyPrefix
+    );
 
     Object.keys(commands).forEach(command => {
       this[command] = createCommand(
@@ -30,10 +39,13 @@ class RedisMock extends EventEmitter {
       this[command] = commandsStream[command].bind(this);
     });
 
-    process.nextTick(() => {
-      this.emit('connect');
-      this.emit('ready');
-    });
+    if (optionsWithDefault.lazyConnect === false) {
+      process.nextTick(() => {
+        this.emit('connect');
+        this.emit('ready');
+        this.connected = true;
+      });
+    }
   }
 
   multi(batch = []) {
