@@ -5,6 +5,7 @@ import * as commandsStream from './commands-stream';
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
+import emitConnectEvent from './commands-utils/emitConnectEvent';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
 
@@ -40,11 +41,8 @@ class RedisMock extends EventEmitter {
     });
 
     if (optionsWithDefault.lazyConnect === false) {
-      process.nextTick(() => {
-        this.emit('connect');
-        this.emit('ready');
-        this.connected = true;
-      });
+      this.connected = true;
+      emitConnectEvent(this);
     }
   }
 
