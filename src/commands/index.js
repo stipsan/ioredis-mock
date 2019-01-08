@@ -4,6 +4,7 @@ export * from './bgrewriteaof';
 export * from './bgsave';
 export * from './brpoplpush';
 export * from './brpoplpushBuffer';
+export * from './connect';
 export * from './dbsize';
 export * from './decr';
 export * from './decrby';
