@@ -17,6 +17,7 @@ class RedisMock extends EventEmitter {
     this.channels = new EventEmitter();
     this.batch = undefined;
     this.connected = false;
+    this.subscriberMode = false;
 
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
 

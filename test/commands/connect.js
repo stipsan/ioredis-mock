@@ -3,7 +3,7 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('connect', () => {
-  it('should throw if redis has alrady connected in ctor', done => {
+  it('should throw if redis has already connected in ctor', done => {
     // no option specified means {lazyConnect: false}
     const redis = new MockRedis();
 
@@ -48,6 +48,21 @@ describe('connect', () => {
               .catch(reason => expect(reason).toBeA(Error))
               .then(() => resolve());
           })
+      );
+  });
+
+  it('should throw if executing any command when not connected', () => {
+    const redis = new MockRedis({ lazyConnect: true });
+
+    return redis
+      .get('key')
+      .then(() => {
+        throw new Error('get shall not succeed when redis is not connected');
+      })
+      .catch(reason =>
+        expect(reason.message).toBe(
+          "Stream isn't writeable and enableOfflineQueue options is false"
+        )
       );
   });
 });

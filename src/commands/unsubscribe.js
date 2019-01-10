@@ -7,8 +7,7 @@ export function unsubscribe(...args) {
   });
   const numberOfSubscribedChannels = this.channels.eventNames().length;
   if (numberOfSubscribedChannels === 0) {
-    // now: client shall exit the subscribed state
-    // if we have no more open subscriptions
+    this.subscriberMode = false;
   }
   return numberOfSubscribedChannels;
 }

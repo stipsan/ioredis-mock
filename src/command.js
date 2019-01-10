@@ -2,6 +2,46 @@ import _ from 'lodash';
 import asCallback from 'standard-as-callback';
 import promiseContainer from './promise-container';
 
+export function isInSubscriberMode(RedisMock) {
+  if (RedisMock.channels === undefined) {
+    return false;
+  }
+  return RedisMock.subscriberMode;
+}
+
+export function isNotConnected(RedisMock) {
+  if (RedisMock.connected === undefined) {
+    return false;
+  }
+  return !RedisMock.connected;
+}
+
+export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
+  if (isNotConnected(RedisMock) && commandName !== 'connect') {
+    throw new Error(
+      "Stream isn't writeable and enableOfflineQueue options is false"
+    );
+  }
+  if (isInSubscriberMode(RedisMock)) {
+    const allowedCommands = [
+      'subscribe',
+      'psubscribe',
+      'unsubscribe',
+      'punsubscribe',
+      'ping',
+      'quit',
+      'disconnect',
+    ];
+    if (allowedCommands.indexOf(commandName) > -1) {
+      // command is allowed -> do not throw
+    } else {
+      throw new Error(
+        'Connection in subscriber mode, only subscriber commands may be used'
+      );
+    }
+  }
+}
+
 export function processArguments(args, commandName, RedisMock) {
   let commandArgs = args ? _.flatten(args) : [];
   if (RedisMock.Command.transformers.argument[commandName]) {
@@ -23,6 +63,18 @@ export function processReply(result, commandName, RedisMock) {
   }
   return result;
 }
+
+export function safelyExecuteCommand(
+  commandEmulator,
+  commandName,
+  RedisMock,
+  ...commandArgs
+) {
+  throwIfCommandIsNotAllowed(commandName, RedisMock);
+  const result = commandEmulator(...commandArgs);
+  return processReply(result, commandName, RedisMock);
+}
+
 export default function command(commandEmulator, commandName, RedisMock) {
   return (...args) => {
     const lastArgIndex = args.length - 1;
@@ -40,7 +92,12 @@ export default function command(commandEmulator, commandName, RedisMock) {
     return asCallback(
       new Promise(resolve =>
         resolve(
-          processReply(commandEmulator(...commandArgs), commandName, RedisMock)
+          safelyExecuteCommand(
+            commandEmulator,
+            commandName,
+            RedisMock,
+            ...commandArgs
+          )
         )
       ),
       callback

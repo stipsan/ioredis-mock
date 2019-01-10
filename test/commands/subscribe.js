@@ -30,7 +30,19 @@ describe('subscribe', () => {
       );
   });
 
-  it(
-    'should reject all non-subscribe commands when having at least one open subscription'
-  );
+  it('should reject non-subscribe commands when having at least one open subscription', () => {
+    const redis = new MockRedis();
+    return redis.subscribe('channel').then(() =>
+      redis
+        .get('key')
+        .then(() => {
+          throw new Error('get should fail when in subscriber mode');
+        })
+        .catch(error =>
+          expect(error.message).toBe(
+            'Connection in subscriber mode, only subscriber commands may be used'
+          )
+        )
+    );
+  });
 });
