@@ -16,12 +16,7 @@ export function isNotConnected(RedisMock) {
   return !RedisMock.connected;
 }
 
-export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
-  if (isNotConnected(RedisMock) && commandName !== 'connect') {
-    throw new Error(
-      "Stream isn't writeable and enableOfflineQueue options is false"
-    );
-  }
+export function throwIfInSubscriberMode(commandName, RedisMock) {
   if (isInSubscriberMode(RedisMock)) {
     const allowedCommands = [
       'subscribe',
@@ -40,6 +35,21 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
       );
     }
   }
+}
+
+export function throwIfNotConnected(commandName, RedisMock) {
+  if (isNotConnected(RedisMock)) {
+    if (commandName !== 'connect') {
+      throw new Error(
+        "Stream isn't writeable and enableOfflineQueue options is false"
+      );
+    }
+  }
+}
+
+export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
+  throwIfInSubscriberMode(commandName, RedisMock);
+  throwIfNotConnected(commandName, RedisMock);
 }
 
 export function processArguments(args, commandName, RedisMock) {
