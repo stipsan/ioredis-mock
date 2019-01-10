@@ -14,7 +14,7 @@ const defaultOptions = { data: {}, keyPrefix: '', lazyConnect: false };
 class RedisMock extends EventEmitter {
   constructor(options = {}) {
     super();
-    this.channels = {};
+    this.channels = new EventEmitter();
     this.batch = undefined;
     this.connected = false;
 
