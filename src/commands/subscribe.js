@@ -6,7 +6,7 @@ export function subscribe(...args) {
       this.channels.on(chan, message => {
         emitMessage(this, chan, message);
       });
-      // TODO: client shall enter the subscribed state
+      // now: client shall enter the subscribed state
       // and not issue any other commands, except
       // SUBSCRIBE, PSUBSCRIBE, UNSUBSCRIBE, PUNSUBSCRIBE, PING, QUIT
     } else {
