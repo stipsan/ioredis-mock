@@ -74,6 +74,13 @@ class RedisMock extends EventEmitter {
     this.batch = undefined;
     return pipeline.exec(callback);
   }
+
+  createConnectedClient(options = {}) {
+    const mock = new RedisMock(options);
+    mock.data = this.data;
+    mock.channels = this.channels;
+    return mock;
+  }
 }
 RedisMock.prototype.Command = {
   // eslint-disable-next-line no-underscore-dangle
