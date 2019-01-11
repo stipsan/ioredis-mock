@@ -17,6 +17,7 @@ class RedisMock extends EventEmitter {
     this.channels = new EventEmitter();
     this.batch = undefined;
     this.connected = false;
+    this.subscriberMode = false;
 
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
 
@@ -28,17 +29,7 @@ class RedisMock extends EventEmitter {
       optionsWithDefault.keyPrefix
     );
 
-    Object.keys(commands).forEach(command => {
-      this[command] = createCommand(
-        commands[command].bind(this),
-        command,
-        this
-      );
-    });
-
-    Object.keys(commandsStream).forEach(command => {
-      this[command] = commandsStream[command].bind(this);
-    });
+    this._initCommands();
 
     if (optionsWithDefault.lazyConnect === false) {
       this.connected = true;
@@ -80,6 +71,20 @@ class RedisMock extends EventEmitter {
     mock.data = this.data;
     mock.channels = this.channels;
     return mock;
+  }
+
+  _initCommands() {
+    Object.keys(commands).forEach(command => {
+      this[command] = createCommand(
+        commands[command].bind(this),
+        command,
+        this
+      );
+    });
+
+    Object.keys(commandsStream).forEach(command => {
+      this[command] = commandsStream[command].bind(this);
+    });
   }
 }
 RedisMock.prototype.Command = {
