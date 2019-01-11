@@ -7,11 +7,11 @@ export function rename(key, newKey) {
     const expire = this.expires.get(key);
     this.expires.delete(key);
     this.expires.set(newKey, expire);
-    emitNotification(this, 'g', key, 'rename_from');
   }
 
   this.data.set(newKey, value);
   this.data.delete(key);
+  emitNotification(this, 'g', key, 'rename_from');
   emitNotification(this, 'g', newKey, 'rename_to');
   return 'OK';
 }
