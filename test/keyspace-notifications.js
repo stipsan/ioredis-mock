@@ -102,3 +102,18 @@ describe('keyspaceNotifications', () => {
       .then(() => redis.set('key', 'value').then(() => redis.del('key')));
   });
 });
+
+describe('keyeventNotifications', () => {
+  it('should appear when configured and the triggering event occurs', done => {
+    const redis = new MockRedis({ notifyKeyspaceEvents: 'gE' }); // gK: generic keyevent
+    const redisPubSub = redis.createConnectedClient();
+    redisPubSub.on('message', (channel, message) => {
+      expect(channel).toBe('__keyevent@0__:del');
+      expect(message).toBe('key');
+      done();
+    });
+    redisPubSub
+      .subscribe('__keyevent@0__:del')
+      .then(() => redis.set('key', 'value').then(() => redis.del('key')));
+  });
+});
