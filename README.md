@@ -40,6 +40,28 @@ var redis = new Redis({
 // Basically use it just like ioredis
 ```
 
+### Pub/Sub channels
+
+We also support redis publish/subscribe channels (just like ioredis).
+Like ioredis, you need two clients:
+
+- the pubSub client for subcriptions and events, [which can only be used for subscriptions](https://redis.io/topics/pubsub)
+- the usual client for issuing 'synchronous' commands like get, publish, etc
+
+```js
+var Redis = require('ioredis-mock');
+var redisPubSub = new Redis();
+// create a second Redis Mock (connected to redisPubSub)
+var redisSync = redisPubSub.createConnectedClient();
+redisPubSub.on('message', (channel, message) => {
+  expect(channel).toBe('emails');
+  expect(message).toBe('clark@daily.planet');
+  done();
+});
+redisPubSub.subscribe('emails');
+redisSync.publish('emails', 'clark@daily.planet');
+```
+
 ### Promises
 
 By default, ioredis-mock uses the native Promise library. If you need (or prefer) [bluebird](http://bluebirdjs.com/) promises, set `Redis.Promise`:
@@ -66,7 +88,7 @@ it's feature complete:
       [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
 - [ ] Connection Events
 - [ ] Offline Queue
-- [ ] Pub/Sub
+- [x] Pub/Sub
 - [ ] Error Handling
 - [ ] Implement [remaining](compat.md) commands
 
