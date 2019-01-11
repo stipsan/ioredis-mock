@@ -40,14 +40,24 @@ export default function parseKeyspaceEvents(keyspaceEventsConfigString) {
   return keyspaceConfig;
 }
 
-export function emitKeyspaceNotification(redisMock, key, event, database = 0) {
-  const channel = `__keyspace@${database}__:${key}`;
-  const message = event;
-  redisMock.publish(channel, message);
-}
-
-export function emitKeyeventNotification(redisMock, key, event, database = 0) {
-  const channel = `__keyevent@${database}__:${event}`;
-  const message = key;
-  redisMock.publish(channel, message);
+export function emitNotification(
+  redisMock,
+  notifType,
+  key,
+  event,
+  database = 0
+) {
+  let channel = null;
+  let message = null;
+  if (redisMock.keyspaceEvents.K[notifType] === true) {
+    channel = `__keyspace@${database}__:${key}`;
+    message = event;
+  }
+  if (redisMock.keyspaceEvents.E[notifType] === true) {
+    channel = `__keyevent@${database}__:${event}`;
+    message = key;
+  }
+  if (channel !== null && message !== null) {
+    redisMock.publish(channel, message);
+  }
 }
