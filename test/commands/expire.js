@@ -73,4 +73,17 @@ describe('expire', () => {
       .then(() => redis.rename('foo', 'baz'))
       .then(() => expect(redis.expires.has('baz')).toBe(true));
   });
+
+  it('should emit keyspace notification if configured', done => {
+    const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
+    const redisPubSub = redis.createConnectedClient();
+    redisPubSub.on('message', (channel, message) => {
+      expect(channel).toBe('__keyspace@0__:foo');
+      expect(message).toBe('expire');
+      done();
+    });
+    redisPubSub
+      .subscribe('__keyspace@0__:foo')
+      .then(() => redis.set('foo', 'value').then(() => redis.expire('foo', 1)));
+  });
 });
