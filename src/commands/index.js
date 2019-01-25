@@ -8,6 +8,7 @@ export * from './connect';
 export * from './dbsize';
 export * from './decr';
 export * from './decrby';
+export * from './defineCommand';
 export * from './del';
 export * from './discard';
 export * from './echo';

@@ -96,7 +96,10 @@ export default function command(commandEmulator, commandName, RedisMock) {
       args.length = lastArgIndex;
     }
 
-    const commandArgs = processArguments(args, commandName, RedisMock);
+    const commandArgs =
+      commandName !== 'defineCommand'
+        ? processArguments(args, commandName, RedisMock)
+        : args;
     const Promise = promiseContainer.get();
 
     return asCallback(
