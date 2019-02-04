@@ -12,7 +12,7 @@ import {
 
 const { lua } = fengari;
 
-describe.only('defineCommand', () => {
+describe('defineCommand', () => {
   let vm;
 
   beforeEach(() => {
