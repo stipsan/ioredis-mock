@@ -45,7 +45,7 @@ describe.only('defineCommand', () => {
 
           interop.push(vm.L, 15);
 
-          return 0;
+          return 1;
         };
 
         defineRedisObject(vm)(call);

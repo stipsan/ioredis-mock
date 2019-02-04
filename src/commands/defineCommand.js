@@ -48,8 +48,7 @@ const callToRedisCommand = vm =>
     if (result) {
       // console.log('>>> callToRedisCommand 6', result)
       interop.push(vm.L, result);
-      vm.printStack('STACK 2');
-      return 0;
+      return 1;
     }
     return 0;
   };
@@ -79,7 +78,7 @@ export const customCommand = (numberOfKeys, luaCode) =>
     vm.luaExecString(luaCode);
     const retVal = vm.popReturnValue(topBeforeExecute);
 
-    dispose();
+    dispose(vm);
     return retVal;
   };
 
