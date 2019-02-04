@@ -32,7 +32,6 @@ describe.only('defineCommand', () => {
         // the call function
         const call = () => {
           const top = lua.lua_gettop(vm.L);
-          // console.log('top', top)
           const args = [];
           let a = -top;
           while (a < 0) {
@@ -55,9 +54,7 @@ describe.only('defineCommand', () => {
           local rcall = redis.call
           local exists = rcall("EXISTS", "PEPE", "THIRD")
           print("exists es de", type(exists))
-          if (exists ~= nil) then
-            print("exists", exists)
-          else
+          if (exists == nil) then
             error("todo mal")
           end
 
@@ -117,37 +114,26 @@ describe.only('defineCommand', () => {
   });
 
   describe('setting up a custom command', () => {
-    it.only('should call a custom commmand', () => {
+    it('should call a custom commmand', () => {
       const luaCode = `
-        print("el lua 1")
         local rcall = redis.call
-        print("el lua 2")
         local value1 = rcall("GET", KEYS[1])
-        print("el lua 3", value1)
         local value2 = value1 + ARGS[1]
-        print("el lua 4")
         rcall("SET", KEYS[1], value2)
-        print("el lua 5")
         return value2
       `;
       const redis = new MockRedis();
       const someKey = 'k';
       const initialValue = 1;
       const definition = { numberOfKeys: 1, lua: luaCode };
-      return (
-        redis
-          .set(someKey, initialValue)
-          .then(status => expect(status).toBe('OK'))
-          .then(() => {
-            // console.log('hasta aca 1')
-            redis.defineCommand('inc2', definition);
-            // console.log('hasta aca 2')
-          })
-          // .then(() => console.log('hasta aca 3'))
-          .then(() => redis.inc2(someKey, 5))
-          // .then(() => console.log('hasta aca 4'))
-          .then(val => expect(val).toBe(6))
-      );
+      return redis
+        .set(someKey, initialValue)
+        .then(status => expect(status).toBe('OK'))
+        .then(() => {
+          redis.defineCommand('inc2', definition);
+        })
+        .then(() => redis.inc2(someKey, 5))
+        .then(val => expect(val).toBe(6));
     });
   });
 });

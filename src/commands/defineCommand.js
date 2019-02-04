@@ -21,9 +21,7 @@ export const defineRedisObject = vm => fn => {
   vm.luaExecString(`
     local redis = {}
     redis.call = function(...)
-        local ret = call(select('#', ...), ...)
-        print("=======>", type(ret))
-        return ret
+        return call(select('#', ...), ...)
     end
     return redis
   `);
@@ -35,18 +33,13 @@ export const defineRedisObject = vm => fn => {
 const callToRedisCommand = vm =>
   function callToRedisCommand2() {
     const rawArgs = vm.extractArgs();
-    // lua.lua_settop(vm.L, 0) ?
+
     const args = Number.isInteger(rawArgs[0]) ? rawArgs.slice(1) : rawArgs;
     const name = args[0].toLowerCase();
     const redisCmd = commands[name].bind(this);
-    // console.log('>>> callToRedisCommand 4')
     const result = redisCmd(...args.slice(1));
-    // console.log('>>> callToRedisCommand 5')
-
-    vm.printStack('STACK 1');
 
     if (result) {
-      // console.log('>>> callToRedisCommand 6', result)
       interop.push(vm.L, result);
       return 1;
     }

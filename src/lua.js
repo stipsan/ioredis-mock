@@ -62,18 +62,18 @@ const extractArgs = L => () => {
   return args.map(i => interop.tojs(L, i));
 };
 
-const printStack = L => () => {
-  // console.log('===== PRINTING STACK:', msg, '=====')
-  const newTop = lua.lua_gettop(L);
-  // console.log('newTop', newTop)
-  let i = newTop * -1;
-  // console.log('STACK', i)
-  while (i < 0) {
-    // console.log(interop.tojs(L, i))
-    i++;
-  }
-  // console.log('===== FINISHED STACK:', msg, '=====')
-};
+// const printStack = L => msg => {
+//   console.log('===== PRINTING STACK:', msg, '=====')
+//   const newTop = lua.lua_gettop(L);
+//   console.log('newTop', newTop)
+//   let i = newTop * -1;
+//   console.log('STACK', i)
+//   while (i < 0) {
+//     console.log(interop.tojs(L, i))
+//     i++;
+//   }
+//   console.log('===== FINISHED STACK:', msg, '=====')
+// };
 
 export const init = () => {
   // init fengari
@@ -87,7 +87,6 @@ export const init = () => {
     luaExecString: luaExecString(L),
     extractArgs: extractArgs(L),
     popReturnValue: popReturnValue(L),
-    printStack: printStack(L),
   };
 };
 
