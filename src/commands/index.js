@@ -12,6 +12,7 @@ export * from './defineCommand';
 export * from './del';
 export * from './discard';
 export * from './echo';
+export * from './eval';
 export * from './exists';
 export * from './expire';
 export * from './expireat';
