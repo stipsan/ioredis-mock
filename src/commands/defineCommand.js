@@ -53,9 +53,9 @@ export function defineKeys(vm, numberOfKeys, commandArgs) {
 }
 
 // exported to test
-export function defineArgs(vm, numberOfKeys, commandArgs) {
+export function defineArgv(vm, numberOfKeys, commandArgs) {
   const args = commandArgs.slice(numberOfKeys);
-  vm.defineGlobalArray(args, 'ARGS');
+  vm.defineGlobalArray(args, 'ARGV');
 }
 
 // exported to test
@@ -65,12 +65,11 @@ export const customCommand = (numberOfKeys, luaCode) =>
     defineRedisObject(vm)(callToRedisCommand(vm).bind(this));
 
     defineKeys.bind(this)(vm, numberOfKeys, luaScriptArgs);
-    defineArgs.bind(this)(vm, numberOfKeys, luaScriptArgs);
+    defineArgv.bind(this)(vm, numberOfKeys, luaScriptArgs);
 
     const topBeforeExecute = lua.lua_gettop(vm.L);
     vm.luaExecString(luaCode);
     const retVal = vm.popReturnValue(topBeforeExecute);
-
     dispose(vm);
     return retVal;
   };

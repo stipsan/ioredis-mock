@@ -7,7 +7,7 @@ import { init, dispose } from '../../src/lua';
 import {
   defineRedisObject,
   defineKeys,
-  defineArgs,
+  defineArgv,
 } from '../../src/commands/defineCommand';
 
 const { lua } = fengari;
@@ -67,7 +67,7 @@ describe('defineCommand', () => {
       });
     });
 
-    describe('the KEYS and ARGS global tables', () => {
+    describe('the KEYS and ARGV global tables', () => {
       it('should be able to get key and arguments', () => {
         const args = [
           'key1',
@@ -79,7 +79,7 @@ describe('defineCommand', () => {
         ];
 
         defineKeys(vm, 3, args);
-        defineArgs(vm, 3, args);
+        defineArgv(vm, 3, args);
 
         vm.luaExecString(`
           local check = function(tname, t, i, v)
@@ -98,7 +98,7 @@ describe('defineCommand', () => {
             return check("KEYS", KEYS, i, v)
           end
           local argCheck = function(i, v)
-            return check("ARGS", ARGS, i, v)
+            return check("ARGV", ARGV, i, v)
           end
 
           keyCheck(1, "${args[0]}")
@@ -118,7 +118,7 @@ describe('defineCommand', () => {
       const luaCode = `
         local rcall = redis.call
         local value1 = rcall("GET", KEYS[1])
-        local value2 = value1 + ARGS[1]
+        local value2 = value1 + ARGV[1]
         rcall("SET", KEYS[1], value2)
         return value2
       `;
