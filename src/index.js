@@ -85,9 +85,10 @@ class RedisMock extends EventEmitter {
 
   _initCommands() {
     Object.keys(commands).forEach(command => {
-      this[command] = createCommand(
+      const commandName = command === 'evaluate' ? 'eval' : command;
+      this[commandName] = createCommand(
         commands[command].bind(this),
-        command,
+        commandName,
         this
       );
     });

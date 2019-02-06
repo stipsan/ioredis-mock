@@ -24,6 +24,28 @@ describe('defineCommand', () => {
   });
 
   describe('setting up the LUA server context', () => {
+    describe('isTopArray', () => {
+      it('should be an array', () => {
+        vm.luaExecString('return {1, 2}');
+        expect(vm.utils.isTopArray(vm.L)).toEqual(true);
+      });
+      it('should NOT be an array when it is a string', () => {
+        interop.push(vm.L, 'hi');
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
+      });
+      it('should NOT be an array when it is a number', () => {
+        interop.push(vm.L, 1000);
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
+      });
+      it('should NOT be an array when it is a userdata', () => {
+        interop.push(vm.L, { hi: 'hello', bye: 'goodbye' });
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
+      });
+      it('should NOT be an array when it is a table', () => {
+        vm.utils.push({ hi: 'hello', bye: 'goodbye' });
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
+      });
+    });
     describe('the redis global object', () => {
       it('should execute a lua script that calls the call fn of the global redis object', () => {
         // a flag to expect on
@@ -135,5 +157,25 @@ describe('defineCommand', () => {
         .then(() => redis.inc2(someKey, 5))
         .then(val => expect(val).toBe(6));
     });
+  });
+
+  it('should support custom commmands returning a table/array', () => {
+    const luaCode = 'return {10, 100, 200}';
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    return redis
+      .defineCommand('someCmd', definition)
+      .then(() => redis.someCmd())
+      .then(val => expect(val).toEqual([10, 100, 200]));
+  });
+
+  it('should support custom commmands returning a table/array of table/array elements', () => {
+    const luaCode = 'return {{10}, {100, 200}, {}}';
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    return redis
+      .defineCommand('someCmd', definition)
+      .then(() => redis.someCmd())
+      .then(val => expect(val).toEqual([[10], [100, 200], []]));
   });
 });
