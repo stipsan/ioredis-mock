@@ -67,7 +67,7 @@ const getTopKeys = L => {
 const isTopArray = L => () => {
   try {
     const keys = getTopKeys(L);
-    // TODO: fix this, its assuming that the traversing is always backwards while its not guaranteed.
+    // reversing as putting and getting things from the stack ends with everything upside down.
     return keys.reverse().every((v, i) => v === i + 1);
   } catch (e) {
     return false;
