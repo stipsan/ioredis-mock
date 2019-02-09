@@ -139,7 +139,7 @@ const push = L => value => {
 };
 
 const defineGlobalArray = L => (array, name) => {
-  pushArray(L)(array);
+  push(L)(array);
   lua.lua_setglobal(L, toLuaString(name));
 };
 
