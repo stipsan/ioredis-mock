@@ -9,17 +9,13 @@ const {
   to_jsstring: toJsString,
 } = fengari;
 
-const handleError = L => {
-  const errorMsg = lua.lua_tojsstring(L, -1);
-  const message = `Error trying to load lua in VM: ${errorMsg}`;
-  const e = new Error(message);
-  // console.log('STACK:', e.stack)
-  throw e;
-};
-
 const luaExecString = L => str => {
   const retCode = lauxlib.luaL_dostring(L, toLuaString(str));
-  if (retCode !== 0) handleError(L);
+  if (retCode !== 0) {
+    const errorMsg = lua.lua_tojsstring(L, -1);
+    const message = `Error trying to loading or executing lua code string in VM: ${errorMsg}`;
+    throw new Error(message);
+  }
 };
 
 // DEBUGGING PRINT TOOL

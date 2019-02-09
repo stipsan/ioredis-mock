@@ -45,6 +45,22 @@ describe('lua', () => {
         expect(vm.utils.isTopArray(vm.L)).toEqual(false);
       });
     });
+    describe('luaExecString', () => {
+      it('should execute returning some value', () => {
+        const topBeforeCall = lua.lua_gettop(vm.L);
+        vm.luaExecString('return 1 + 1');
+        expect(vm.popReturnValue(topBeforeCall)).toBe(2);
+      });
+
+      it('should report an error in the lua code', () => {
+        try {
+          vm.luaExecString('error("kaboom!")');
+          expect(true).toBe(false);
+        } catch (e) {
+          expect(e).toMatch(/kaboom!/);
+        }
+      });
+    });
   });
 
   describe('setting up the LUA server context', () => {
