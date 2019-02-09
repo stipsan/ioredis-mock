@@ -21,7 +21,6 @@ describe('defineCommand', () => {
         local value1 = rcall("GET", KEYS[1])
         local value2 = value1 + ARGV[1]
         rcall("SET", KEYS[1], value2)
-        return value2
       `;
       const redis = new MockRedis();
       const someKey = 'k';
@@ -34,7 +33,8 @@ describe('defineCommand', () => {
           redis.defineCommand('inc2', definition);
         })
         .then(() => redis.inc2(someKey, 5))
-        .then(val => expect(val).toBe(6));
+        .then(() => redis.get('k'))
+        .then(newValue => expect(newValue).toBe(6));
     });
   });
 
