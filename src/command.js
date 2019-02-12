@@ -53,6 +53,9 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
 }
 
 export function processArguments(args, commandName, RedisMock) {
+  // fast return, the defineCommand command requires NO transformation of args
+  if (commandName === 'defineCommand') return args;
+
   let commandArgs = args ? _.flatten(args) : [];
   if (RedisMock.Command.transformers.argument[commandName]) {
     commandArgs = RedisMock.Command.transformers.argument[commandName](args);
@@ -97,6 +100,7 @@ export default function command(commandEmulator, commandName, RedisMock) {
     }
 
     const commandArgs = processArguments(args, commandName, RedisMock);
+
     const Promise = promiseContainer.get();
 
     return asCallback(
