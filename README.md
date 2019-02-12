@@ -75,7 +75,7 @@ Redis.Promise = Promise;
 
 ### Lua scripting
 
-You can use `defineCommand` to define custom commands using lua or `eval` to directly execute lua code.
+You can use the `defineCommand` to define custom commands using lua or `eval` to directly execute lua code.
 
 In order to create custom commands, using [lua](http://lua.org) scripting, [ioredis exposes the defineCommand method](https://github.com/luin/ioredis#lua-scripting).
 
@@ -94,7 +94,7 @@ redis.defineCommand('MULTIPLY', commandDefinition) // defineCommand(name, defini
   })
 ```
 
-You can also achieve same effect by using the `eval` command:
+You can also achieve the same effect by using the `eval` command:
 
 ```js
 var Redis = require('ioredis-mock');
@@ -103,7 +103,7 @@ const result = redis.eval(`return redis.call("GET", "k1") * 10`);
 expect(result).toBe(5 * 10);
 ```
 
-note we are calling the ordinary redis `GET` command by using the global `redis` object's `call` method
+note we are calling the ordinary redis `GET` command by using the global `redis` object's `call` method.
 
 As a difference from ioredis we currently don't support:
 
