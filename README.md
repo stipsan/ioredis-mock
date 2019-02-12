@@ -73,6 +73,45 @@ var Redis = require('ioredis-mock');
 Redis.Promise = Promise;
 ```
 
+### Lua scripting
+
+You can use `defineCommand` to define custom commands using lua or `eval` to directly execute lua code.
+
+In order to create custom commands, using [lua](http://lua.org) scripting, [ioredis exposes the defineCommand method](https://github.com/luin/ioredis#lua-scripting).
+
+You could define a custom command `MULTIPLY` which accepts one
+key and one argument. A redis key, where you can get the multiplicand, and an argument which will be the multiplicator:
+
+```js
+var Redis = require('ioredis-mock');
+const redis = new Redis({ data: { 'k1': 5 } });
+const commandDefinition: { numberOfKeys: 1, lua: 'return KEYS[1] * ARGV[1]' };
+redis.defineCommand('MULTIPLY', commandDefinition) // defineCommand(name, definition)
+  // now we can call our brand new multiply command as an ordinary command
+  .then(() => redis.multiply('k1', 10));
+  .then(result => {
+    expect(result).toBe(5 * 10);
+  })
+```
+
+You can also achieve same effect by using the `eval` command:
+
+```js
+var Redis = require('ioredis-mock');
+const redis = new Redis({ data: { k1: 5 } });
+const result = redis.eval(`return redis.call("GET", "k1") * 10`);
+expect(result).toBe(5 * 10);
+```
+
+note we are calling the ordinary redis `GET` command by using the global `redis` object's `call` method
+
+As a difference from ioredis we currently don't support:
+
+- dynamic key number by passing the number of keys as the first argument of the command.
+- automatic definition of the custom command buffer companion (i.e. for the custom command `multiply` the `multiplyBuffer` which returns values using `Buffer.from(...)`)
+- the `evalsha` command
+- the `script` command
+
 ## Roadmap
 
 This project started off as just an utility in
