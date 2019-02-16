@@ -10,7 +10,7 @@ describe('zscan', () => {
   it('should return null array if zset does not exist', () => {
     const redis = new MockRedis();
     return redis.zscan('key', 0).then(result => {
-      expect(result[0]).toBe(0);
+      expect(result[0]).toBe('0');
       expect(result[1]).toEqual([]);
     });
   });
@@ -23,7 +23,7 @@ describe('zscan', () => {
     });
 
     return redis.zscan('zset', 0).then(result => {
-      expect(result[0]).toBe(0);
+      expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo', 'bar', 'baz']);
     });
   });
@@ -36,7 +36,7 @@ describe('zscan', () => {
     });
 
     return redis.zscan('zset', 0, 'MATCH', 'foo*').then(result => {
-      expect(result[0]).toBe(0);
+      expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo0', 'foo1', 'foo2']);
     });
   });
@@ -51,12 +51,12 @@ describe('zscan', () => {
     return redis
       .zscan('zset', 0, 'MATCH', 'foo*', 'COUNT', 1)
       .then(result => {
-        expect(result[0]).toBe(1); // more elements left, this is why cursor is not 0
+        expect(result[0]).toBe('1'); // more elements left, this is why cursor is not 0
         expect(result[1]).toEqual(['foo0']);
         return redis.zscan('zset', result[0], 'MATCH', 'foo*', 'COUNT', 10);
       })
       .then(result2 => {
-        expect(result2[0]).toBe(0);
+        expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['foo1', 'foo2']);
       });
   });
@@ -71,12 +71,12 @@ describe('zscan', () => {
     return redis
       .zscan('zset', 0, 'COUNT', 3)
       .then(result => {
-        expect(result[0]).toBe(3);
+        expect(result[0]).toBe('3');
         expect(result[1]).toEqual(['foo0', 'foo1', 'bar0']);
         return redis.zscan('zset', result[0], 'COUNT', 3);
       })
       .then(result2 => {
-        expect(result2[0]).toBe(0);
+        expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['bar1']);
       });
   });

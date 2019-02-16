@@ -31,7 +31,7 @@ export default class ReadableScan extends Readable {
     this._callScan()
       .then(res => {
         const [nextCursor, keys] = res;
-        if (nextCursor === 0) {
+        if (nextCursor === '0') {
           this._drained = true;
         } else {
           this._cursor = nextCursor;
