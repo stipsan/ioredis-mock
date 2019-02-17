@@ -67,5 +67,5 @@ export function scanHelper(allKeys, size, cursorStart, ...args) {
     nextCursor = 0;
   }
 
-  return [nextCursor, keys];
+  return [String(nextCursor), keys];
 }
