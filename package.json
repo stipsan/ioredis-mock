@@ -64,7 +64,7 @@
     "mocha-circleci-reporter": "0.0.3",
     "nyc": "13.3.0",
     "prettier": "1.16.4",
-    "prettier-package-json": "2.0.1",
+    "prettier-package-json": "2.1.0",
     "redis-commands": "1.4.0",
     "stream-mock": "1.2.0"
   },
