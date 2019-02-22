@@ -51,7 +51,7 @@
     "bluebird": "3.5.3",
     "chance": "1.0.18",
     "codeclimate-test-reporter": "0.5.1",
-    "coveralls": "3.0.2",
+    "coveralls": "3.0.3",
     "eslint": "5.14.1",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.0.0",
