@@ -51,6 +51,7 @@ export * from './lpushx';
 export * from './lrange';
 export * from './lrem';
 export * from './lset';
+export * from './ltrim';
 export * from './mget';
 export * from './mset';
 export * from './msetnx';
