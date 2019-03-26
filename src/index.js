@@ -8,8 +8,14 @@ import createExpires from './expires';
 import emitConnectEvent from './commands-utils/emitConnectEvent';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
+import parseKeyspaceEvents from './keyspace-notifications';
 
-const defaultOptions = { data: {}, keyPrefix: '', lazyConnect: false };
+const defaultOptions = {
+  data: {},
+  keyPrefix: '',
+  lazyConnect: false,
+  notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
+};
 
 class RedisMock extends EventEmitter {
   constructor(options = {}) {
@@ -30,6 +36,10 @@ class RedisMock extends EventEmitter {
     );
 
     this._initCommands();
+
+    this.keyspaceEvents = parseKeyspaceEvents(
+      optionsWithDefault.notifyKeyspaceEvents
+    );
 
     if (optionsWithDefault.lazyConnect === false) {
       this.connected = true;
@@ -75,9 +85,10 @@ class RedisMock extends EventEmitter {
 
   _initCommands() {
     Object.keys(commands).forEach(command => {
-      this[command] = createCommand(
+      const commandName = command === 'evaluate' ? 'eval' : command;
+      this[commandName] = createCommand(
         commands[command].bind(this),
-        command,
+        commandName,
         this
       );
     });
