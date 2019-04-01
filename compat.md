@@ -75,7 +75,7 @@
 | [lrange](http://redis.io/commands/LRANGE)                             | :white_check_mark: | :white_check_mark: |
 | [lrem](http://redis.io/commands/LREM)                                 | :white_check_mark: | :white_check_mark: |
 | [lset](http://redis.io/commands/LSET)                                 | :white_check_mark: | :white_check_mark: |
-| [ltrim](http://redis.io/commands/LTRIM)                               | :white_check_mark: |        :x:         |
+| [ltrim](http://redis.io/commands/LTRIM)                               | :white_check_mark: | :white_check_mark: |
 | [memory](http://redis.io/commands/MEMORY)                             | :white_check_mark: |        :x:         |
 | [mget](http://redis.io/commands/MGET)                                 | :white_check_mark: | :white_check_mark: |
 | [migrate](http://redis.io/commands/MIGRATE)                           | :white_check_mark: |        :x:         |
