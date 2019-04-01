@@ -1,6 +1,6 @@
 function normalizeIndex(index, array) {
   if (index < 0) {
-    return -index > array.length ? -1 : array.length + index;
+    return -index > array.length ? 0 : array.length + index;
   }
   return index;
 }
