@@ -160,7 +160,7 @@
 | [xreadgroup](http://redis.io/commands/XREADGROUP)                     |        :x:         |        :x:         |
 | [xrevrange](http://redis.io/commands/XREVRANGE)                       |        :x:         |        :x:         |
 | [zadd](http://redis.io/commands/ZADD)                                 | :white_check_mark: | :white_check_mark: |
-| [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: |        :x:         |
+| [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: | :white_check_mark: |
 | [zcount](http://redis.io/commands/ZCOUNT)                             | :white_check_mark: |        :x:         |
 | [zincrby](http://redis.io/commands/ZINCRBY)                           | :white_check_mark: | :white_check_mark: |
 | [zinterstore](http://redis.io/commands/ZINTERSTORE)                   | :white_check_mark: |        :x:         |
