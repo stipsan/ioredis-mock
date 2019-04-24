@@ -30,6 +30,32 @@ describe('multi', () => {
       });
   });
 
+  it('allows callbacks on any sequence of the pipeline', () => {
+    const redis = new MockRedis();
+    let internalCallsCounter = 0;
+
+    return redis
+      .pipeline()
+      .incr('user_next', (err, reply) => {
+        expect(err).toEqual(null);
+        expect(reply).toEqual(1);
+        internalCallsCounter += 1;
+      })
+      .incr('bar_next')
+      .incr('post_next', (err, reply) => {
+        expect(err).toEqual(null);
+        expect(reply).toEqual(1);
+        internalCallsCounter += 1;
+      })
+      .incr('foo_next')
+      .exec()
+      .then(results => {
+        expect(results).toBeA('array');
+        expect(results.length).toBe(4);
+        expect(internalCallsCounter).toEqual(2);
+      });
+  });
+
   it('allows pipeline to accept an array of String commands', () => {
     const redis = new MockRedis();
     const commands = [
