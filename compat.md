@@ -148,6 +148,7 @@
 | [touch](http://redis.io/commands/TOUCH)                               | :white_check_mark: |        :x:         |
 | [ttl](http://redis.io/commands/TTL)                                   | :white_check_mark: | :white_check_mark: |
 | [type](http://redis.io/commands/TYPE)                                 | :white_check_mark: | :white_check_mark: |
+| [unlink](http://redis.io/commands/UNLINK)                             | :white_check_mark: | :white_check_mark: |
 | [unsubscribe](http://redis.io/commands/UNSUBSCRIBE)                   | :white_check_mark: | :white_check_mark: |
 | [unwatch](http://redis.io/commands/UNWATCH)                           | :white_check_mark: |        :x:         |
 | [wait](http://redis.io/commands/WAIT)                                 | :white_check_mark: |        :x:         |
