@@ -96,6 +96,7 @@ export * from './time';
 export * from './ttl';
 export * from './type';
 export * from './unsubscribe';
+export * from './unlink';
 export * from './xadd';
 export * from './xlen';
 export * from './xrange';
