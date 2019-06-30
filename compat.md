@@ -75,7 +75,7 @@
 | [lrange](http://redis.io/commands/LRANGE)                             | :white_check_mark: | :white_check_mark: |
 | [lrem](http://redis.io/commands/LREM)                                 | :white_check_mark: | :white_check_mark: |
 | [lset](http://redis.io/commands/LSET)                                 | :white_check_mark: | :white_check_mark: |
-| [ltrim](http://redis.io/commands/LTRIM)                               | :white_check_mark: |        :x:         |
+| [ltrim](http://redis.io/commands/LTRIM)                               | :white_check_mark: | :white_check_mark: |
 | [memory](http://redis.io/commands/MEMORY)                             | :white_check_mark: |        :x:         |
 | [mget](http://redis.io/commands/MGET)                                 | :white_check_mark: | :white_check_mark: |
 | [migrate](http://redis.io/commands/MIGRATE)                           | :white_check_mark: |        :x:         |
@@ -148,6 +148,7 @@
 | [touch](http://redis.io/commands/TOUCH)                               | :white_check_mark: |        :x:         |
 | [ttl](http://redis.io/commands/TTL)                                   | :white_check_mark: | :white_check_mark: |
 | [type](http://redis.io/commands/TYPE)                                 | :white_check_mark: | :white_check_mark: |
+| [unlink](http://redis.io/commands/UNLINK)                             | :white_check_mark: | :white_check_mark: |
 | [unsubscribe](http://redis.io/commands/UNSUBSCRIBE)                   | :white_check_mark: | :white_check_mark: |
 | [unwatch](http://redis.io/commands/UNWATCH)                           | :white_check_mark: |        :x:         |
 | [wait](http://redis.io/commands/WAIT)                                 | :white_check_mark: |        :x:         |
@@ -160,7 +161,7 @@
 | [xreadgroup](http://redis.io/commands/XREADGROUP)                     |        :x:         |        :x:         |
 | [xrevrange](http://redis.io/commands/XREVRANGE)                       |        :x:         |        :x:         |
 | [zadd](http://redis.io/commands/ZADD)                                 | :white_check_mark: | :white_check_mark: |
-| [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: |        :x:         |
+| [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: | :white_check_mark: |
 | [zcount](http://redis.io/commands/ZCOUNT)                             | :white_check_mark: |        :x:         |
 | [zincrby](http://redis.io/commands/ZINCRBY)                           | :white_check_mark: | :white_check_mark: |
 | [zinterstore](http://redis.io/commands/ZINTERSTORE)                   | :white_check_mark: |        :x:         |

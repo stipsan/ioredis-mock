@@ -5,36 +5,48 @@ import * as commandsStream from './commands-stream';
 import createCommand from './command';
 import createData from './data';
 import createExpires from './expires';
+import emitConnectEvent from './commands-utils/emitConnectEvent';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
+import parseKeyspaceEvents from './keyspace-notifications';
+
+const defaultOptions = {
+  data: {},
+  keyPrefix: '',
+  lazyConnect: false,
+  notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
+};
 
 class RedisMock extends EventEmitter {
-  constructor(options = { data: {}, keyPrefix: '' }) {
+  constructor(options = {}) {
     super();
-    this.channels = {};
+    this.channels = new EventEmitter();
     this.batch = undefined;
+    this.connected = false;
+    this.subscriberMode = false;
 
-    this.expires = createExpires(options.keyPrefix);
+    const optionsWithDefault = Object.assign({}, defaultOptions, options);
 
-    this.data = createData(this.expires, options.data, options.keyPrefix);
+    this.expires = createExpires(optionsWithDefault.keyPrefix);
 
-    Object.keys(commands).forEach(command => {
-      this[command] = createCommand(
-        commands[command].bind(this),
-        command,
-        this
-      );
-    });
+    this.data = createData(
+      this.expires,
+      optionsWithDefault.data,
+      optionsWithDefault.keyPrefix
+    );
 
-    Object.keys(commandsStream).forEach(command => {
-      this[command] = commandsStream[command].bind(this);
-    });
+    this._initCommands();
 
-    process.nextTick(() => {
-      this.emit('connect');
-      this.emit('ready');
-    });
+    this.keyspaceEvents = parseKeyspaceEvents(
+      optionsWithDefault.notifyKeyspaceEvents
+    );
+
+    if (optionsWithDefault.lazyConnect === false) {
+      this.connected = true;
+      emitConnectEvent(this);
+    }
   }
+
   multi(batch = []) {
     this.batch = new Pipeline(this);
     // eslint-disable-next-line no-underscore-dangle
@@ -44,6 +56,7 @@ class RedisMock extends EventEmitter {
 
     return this.batch;
   }
+
   pipeline(batch = []) {
     this.batch = new Pipeline(this);
 
@@ -51,6 +64,7 @@ class RedisMock extends EventEmitter {
 
     return this.batch;
   }
+
   exec(callback) {
     const Promise = promiseContainer.get();
 
@@ -60,6 +74,28 @@ class RedisMock extends EventEmitter {
     const pipeline = this.batch;
     this.batch = undefined;
     return pipeline.exec(callback);
+  }
+
+  createConnectedClient(options = {}) {
+    const mock = new RedisMock(options);
+    mock.data = this.data;
+    mock.channels = this.channels;
+    return mock;
+  }
+
+  _initCommands() {
+    Object.keys(commands).forEach(command => {
+      const commandName = command === 'evaluate' ? 'eval' : command;
+      this[commandName] = createCommand(
+        commands[command].bind(this),
+        commandName,
+        this
+      );
+    });
+
+    Object.keys(commandsStream).forEach(command => {
+      this[command] = commandsStream[command].bind(this);
+    });
   }
 }
 RedisMock.prototype.Command = {
