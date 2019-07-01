@@ -20,9 +20,9 @@ describe('hgetallBuffer', () => {
     });
 
     return redis.hgetallBuffer('emails').then(result => {
-      Object.values(result).forEach(val =>
-        expect(Buffer.isBuffer(val)).toBeTruthy()
-      );
+      Object.keys(result).forEach(key => {
+        expect(Buffer.isBuffer(result[key])).toBeTruthy();
+      });
       expect(result).toEqual(expected);
     });
   });
