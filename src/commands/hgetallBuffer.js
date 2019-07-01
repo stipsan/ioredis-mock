@@ -3,8 +3,9 @@ import createBuffer from '../buffer';
 
 export function hgetallBuffer(key) {
   const val = hgetall.apply(this, [key]);
-  Object.entries(val).forEach(([keyInObject, payload]) => {
-    val[keyInObject] = createBuffer(payload);
+  Object.keys(val).forEach(keyInObject => {
+    val[keyInObject] = createBuffer(val[keyInObject]);
   });
+
   return val;
 }
