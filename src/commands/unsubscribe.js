@@ -6,7 +6,10 @@ export function unsubscribe(...args) {
     this.channels.removeAllListeners(chan);
   });
   const numberOfSubscribedChannels = this.channels.eventNames().length;
-  if (numberOfSubscribedChannels === 0) {
+  if (
+    numberOfSubscribedChannels + this.patternChannels.eventNames().length ===
+    0
+  ) {
     this.subscriberMode = false;
   }
   return numberOfSubscribedChannels;
