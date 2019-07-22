@@ -38,6 +38,11 @@ const callToRedisCommand = vm =>
     const name = args[0].toLowerCase();
     const redisCmd = commands[name].bind(this);
     const result = redisCmd(...args.slice(1));
+    
+    // zero-based js array -> one-based lua array
+    if(Array.isArray(result)) {
+      result.unshift(null);
+    }
 
     if (result) {
       interop.push(vm.L, result);
