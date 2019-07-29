@@ -59,9 +59,7 @@ describe('getbit', () => {
       },
       err => {
         expect(err).toBeA(Error);
-        expect(err.message).toBe(
-          'ERR bit offset is not an integer or out of range'
-        );
+        expect(err.message).toBe('ERR bit is not an integer or out of range');
       }
     );
   });
