@@ -80,6 +80,7 @@ export * from './scan';
 export * from './scard';
 export * from './sdiff';
 export * from './set';
+export * from './setbit';
 export * from './setex';
 export * from './setnx';
 export * from './sinter';
