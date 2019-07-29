@@ -12,6 +12,15 @@ describe('getbit', () => {
     return redis.setbit('foo', 1, 0).then(result => expect(result).toBe(1));
   });
 
+  it('should padd if offset out of range', () => {
+    const redis = new MockRedis({});
+
+    return redis
+      .setbit('foo', 9, 1)
+      .then(result => expect(result).toBe(0))
+      .then(() => expect(redis.data.get('foo')).toBe('\x00@'));
+  });
+
   it('should ovveride bit value of key', () => {
     const redis = new MockRedis({
       data: {
@@ -21,7 +30,7 @@ describe('getbit', () => {
 
     return redis
       .setbit('foo', 3, 1)
-      .then(result => expect(result).toBe(1))
+      .then(result => expect(result).toBe(0))
       .then(() => expect(redis.data.get('foo')).toBe('rar'));
   });
 
