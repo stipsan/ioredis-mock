@@ -2,7 +2,7 @@
   "name": "ioredis-mock",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "license": "MIT",
-  "author": "Stian Didriksen <stipsan@gmail.com>",
+  "author": "Cody Olsen <stipsan@gmail.com>",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "repository": {
     "type": "git",
