@@ -51,16 +51,17 @@ describe('brpoplpushBuffer', () => {
       .then(item => expect(item).toEqual(null));
   });
 
-  it('should return the item', () => {
+  it('should return the item as buffer', () => {
     const redis = new MockRedis({
       data: {
         foo: ['foo', 'bar'],
       },
     });
 
-    return redis
-      .brpoplpushBuffer('foo', 'bar')
-      .then(item => expect(item).toBe('bar'));
+    return redis.brpoplpushBuffer('foo', 'bar').then(item => {
+      expect(Buffer.isBuffer(item)).toBeTruthy();
+      expect(item).toEqual(Buffer.from('bar'));
+    });
   });
 
   it('should return buffer values correctly', () => {
@@ -73,7 +74,7 @@ describe('brpoplpushBuffer', () => {
 
     return redis
       .brpoplpushBuffer('foo', bufferVal)
-      .then(item => expect(item).toBe(bufferVal));
+      .then(item => expect(item).toEqual(bufferVal));
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
