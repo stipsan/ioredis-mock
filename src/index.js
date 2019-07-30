@@ -21,6 +21,7 @@ class RedisMock extends EventEmitter {
   constructor(options = {}) {
     super();
     this.channels = new EventEmitter();
+    this.patternChannels = new EventEmitter();
     this.batch = undefined;
     this.connected = false;
     this.subscriberMode = false;
@@ -80,6 +81,7 @@ class RedisMock extends EventEmitter {
     const mock = new RedisMock(options);
     mock.data = this.data;
     mock.channels = this.channels;
+    mock.patternChannels = this.patternChannels;
     return mock;
   }
 
