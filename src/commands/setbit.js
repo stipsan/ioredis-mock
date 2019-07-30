@@ -1,5 +1,24 @@
-/* eslint-disable no-bitwise */
 const MAX_OFFSET = 2 ** 32 - 1;
+const STR_BIT_0 = String.fromCharCode(0);
+
+const constantLengthOf = len => str =>
+  str +
+  Array(Math.max(0, len - str.length))
+    .fill(STR_BIT_0)
+    .join('');
+
+/* eslint-disable no-bitwise */
+const getBitAt = position => byte => (byte >> position) & 1;
+const setBitAt = position => byte => byte | (1 << position);
+const resetBitAt = position => byte => byte & ~(1 << position);
+/* eslint-enable no-bitwise */
+const setOrResetBitAt = bit => (bit === 1 ? setBitAt : resetBitAt);
+
+const getByteAt = position => str => str.charCodeAt(position);
+const setByteAt = byte => position => str =>
+  str.substr(0, position) +
+  String.fromCharCode(byte) +
+  str.substr(position + 1);
 
 export function setbit(key, offset, value) {
   if (offset > MAX_OFFSET)
@@ -9,31 +28,15 @@ export function setbit(key, offset, value) {
     throw new Error('ERR bit is not an integer or out of range');
 
   const byteOffset = parseInt(offset / 8, 10);
-  const shift = 7 - (offset % 8); // redis store bit in reverse order (left to right)
+  const bitOffset = 7 - (offset % 8); // redis store bit in reverse order (left to right)
 
-  let result = 0;
-  let current = '';
-  if (this.data.has(key)) {
-    current = this.data.get(key);
-    result =
-      current.length > byteOffset
-        ? (current.charCodeAt(byteOffset) >> shift) & 1
-        : 0;
-  }
-
-  const byteValue = current.charCodeAt(byteOffset) | 0;
-  const newCharCode =
-    bit === 1 ? byteValue | (1 << shift) : byteValue & ~(1 << shift);
-  const padded =
-    byteOffset > current.length
-      ? current.padEnd(byteOffset - current.length, String.fromCharCode(0))
-      : current;
-  const newValue =
-    padded.substr(0, byteOffset) +
-    String.fromCharCode(newCharCode) +
-    padded.substr(byteOffset + 1);
+  const prev = this.data.has(key) ? this.data.get(key) : '';
+  const prevByte = getByteAt(byteOffset)(prev);
+  const padded = constantLengthOf(byteOffset + 1)(prev);
+  const newByte = setOrResetBitAt(bit)(bitOffset)(prevByte);
+  const newValue = setByteAt(newByte)(byteOffset)(padded);
 
   this.data.set(key, newValue);
 
-  return result;
+  return getBitAt(bitOffset)(prevByte);
 }
