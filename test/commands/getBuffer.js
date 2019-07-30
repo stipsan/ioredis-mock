@@ -10,14 +10,17 @@ describe('getBuffer', () => {
     return redis.getBuffer('foo').then(result => expect(result).toBe(null));
   });
 
-  it('should return value of key', () => {
+  it('should return value of key as buffer', () => {
     const redis = new MockRedis({
       data: {
         foo: 'bar',
       },
     });
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe('bar'));
+    return redis.getBuffer('foo').then(result => {
+      expect(Buffer.isBuffer(result)).toBeTruthy();
+      expect(result).toEqual(Buffer.from('bar'));
+    });
   });
 
   it('should return buffer values correctly', () => {
