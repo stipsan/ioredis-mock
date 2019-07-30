@@ -83,6 +83,11 @@ class RedisMock extends EventEmitter {
     return mock;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  disconnect() {
+    // no-op
+  }
+
   _initCommands() {
     Object.keys(commands).forEach(command => {
       const commandName = command === 'evaluate' ? 'eval' : command;
