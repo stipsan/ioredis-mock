@@ -40,6 +40,9 @@ const callToRedisCommand = vm =>
     const result = redisCmd(...args.slice(1));
 
     if (result) {
+      if (Array.isArray(result)) {
+        result.unshift(null);
+      }
       interop.push(vm.L, result);
       return 1;
     }
