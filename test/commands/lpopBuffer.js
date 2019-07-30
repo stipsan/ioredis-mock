@@ -13,11 +13,11 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .then(result => expect(result).toBe('3'))
+      .then(result => expect(result).toEqual(createBuffer('3')))
       .then(() => expect(redis.data.get('foo')).toEqual(['2', '1']));
   });
 
-  it('should return buffer values correctly', () => {
+  it('should return buffer values correctly as buffer', () => {
     const bufferVal = createBuffer('bar');
     const redis = new MockRedis({
       data: {
@@ -27,7 +27,15 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .then(result => expect(result).toBe(bufferVal));
+      .then(result => {
+        expect(Buffer.isBuffer(result)).toBeTruthy();
+        expect(result).toEqual(bufferVal);
+        return redis.lpopBuffer('foo');
+      })
+      .then(result => {
+        expect(Buffer.isBuffer(result)).toBeTruthy();
+        expect(result).toEqual(createBuffer('2'));
+      });
   });
 
   it('should return null on empty list', () => {
