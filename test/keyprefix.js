@@ -1,14 +1,16 @@
 import expect from 'expect';
 import Set from 'es6-set';
-import { WritableMock } from 'stream-mock';
+import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
+import _ from 'lodash';
 import MockRedis from '../src';
 
 describe('keyprefix', () => {
   let writable;
+  const flatten = wrt => _.flatten(wrt.data);
 
   beforeEach(() => {
-    writable = new WritableMock({ objectMode: true });
+    writable = new ObjectWritableMock({ objectMode: true });
   });
 
   describe('get', () => {
@@ -88,7 +90,7 @@ describe('keyprefix', () => {
       writable.on('finish', () => {
         // Then
         expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-        expect(writable.flatData).toEqual(keys);
+        expect(flatten(writable)).toEqual(keys);
         done();
       });
     });
@@ -108,7 +110,7 @@ describe('keyprefix', () => {
       stream.pipe(writable);
       writable.on('finish', () => {
         // Then
-        expect(writable.flatData).toEqual(['test:foo', 'test:zu']);
+        expect(flatten(writable)).toEqual(['test:foo', 'test:zu']);
         done();
       });
     });
@@ -127,7 +129,7 @@ describe('keyprefix', () => {
       stream.pipe(writable);
       writable.on('finish', () => {
         // Then
-        expect(writable.flatData).toEqual(['foo0', 'foo1', 'foo2']);
+        expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
         done();
       });
     });

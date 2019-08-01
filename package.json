@@ -2,7 +2,7 @@
   "name": "ioredis-mock",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "license": "MIT",
-  "author": "Stian Didriksen <stipsan@gmail.com>",
+  "author": "Cody Olsen <stipsan@gmail.com>",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "repository": {
     "type": "git",
@@ -57,16 +57,16 @@
     "eslint-config-prettier": "5.0.0",
     "eslint-plugin-import": "2.16.0",
     "expect": "1.20.2",
-    "husky": "3.0.0",
-    "ioredis": "4.11.2",
-    "lint-staged": "9.2.0",
-    "mocha": "6.1.4",
+    "husky": "3.0.2",
+    "ioredis": "4.14.0",
+    "lint-staged": "9.2.1",
+    "mocha": "6.2.0",
     "mocha-circleci-reporter": "0.0.3",
     "nyc": "14.1.1",
     "prettier": "1.18.2",
     "prettier-package-json": "2.1.0",
     "redis-commands": "1.5.0",
-    "stream-mock": "1.2.0"
+    "stream-mock": "2.0.5"
   },
   "keywords": [
     "fakeredis",

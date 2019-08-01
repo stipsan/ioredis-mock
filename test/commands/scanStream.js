@@ -1,17 +1,17 @@
 import expect from 'expect';
-import { WritableMock } from 'stream-mock';
+import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
+import _ from 'lodash';
 import MockRedis from '../../src';
 
 const chance = new Chance();
 
 describe('scanStream', () => {
   let writable;
+  const flatten = wrt => _.flatten(wrt.data);
 
   beforeEach(() => {
-    writable = new WritableMock({
-      objectMode: true,
-    });
+    writable = new ObjectWritableMock();
   });
 
   it('should return null array if nothing in db', done => {
@@ -39,7 +39,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.flatData).toEqual(['foo', 'test']);
+      expect(flatten(writable)).toEqual(['foo', 'test']);
       done();
     });
   });
@@ -48,10 +48,7 @@ describe('scanStream', () => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
-    const data = keys.reduce((acc, curr) => {
-      acc[curr] = 'bar';
-      return acc;
-    }, {});
+    const data = _.zipObject(keys, Array(keys).fill('bar'));
     const redis = new MockRedis({ data });
     const stream = redis.scanStream({ count });
     // When
@@ -59,7 +56,7 @@ describe('scanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(writable.flatData).toEqual(keys);
+      expect(flatten(writable)).toEqual(keys);
       done();
     });
   });
@@ -80,7 +77,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(writable.flatData).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });

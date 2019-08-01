@@ -21,6 +21,7 @@ class RedisMock extends EventEmitter {
   constructor(options = {}) {
     super();
     this.channels = new EventEmitter();
+    this.patternChannels = new EventEmitter();
     this.batch = undefined;
     this.connected = false;
     this.subscriberMode = false;
@@ -87,7 +88,13 @@ class RedisMock extends EventEmitter {
         ? this.data.withKeyPrefix(options.keyPrefix)
         : this.data;
     mock.channels = this.channels;
+    mock.patternChannels = this.patternChannels;
     return mock;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  disconnect() {
+    // no-op
   }
 
   _initCommands() {
