@@ -133,26 +133,35 @@ describe('keyprefix', () => {
     });
   });
 
-  describe('multiple intance use same key with diffence keyPrefix', () => {
-    const redis1 = new MockRedis({
+  describe('multiple instance use same key with different keyPrefix', () => {
+    const redisBase = new MockRedis({
       data: {
-        foo: 'bar',
-        hello: 'world',
+        'test:foo': 'bar',
+        'test:hello': 'world',
       },
+    });
+    const redis1 = redisBase.createConnectedClient({
       keyPrefix: 'test:',
     });
 
-    const redis2 = new MockRedis({
+    const redis2 = redis1.createConnectedClient({
       keyPrefix: 'test2:',
     });
 
-    it('should return value of key', () =>
+    it('should return value of key using prefix', () =>
       redis1.get('foo').then(result => expect(result).toEqual('bar')));
 
-    it('should return null on keys that do not exist', () =>
+    it('should return null on keys that do not exist for that prefix', () =>
       redis2.get('foo').then(result => expect(result).toBe(null)));
 
-    it('should return value of key', () =>
+    it('setting with one prefix should not affect same key with another prefix', () =>
+      redis2
+        .set('hello', 'ioredis')
+        .then(status => expect(status).toBe('OK'))
+        .then(() => redis1.get('hello'))
+        .then(result => expect(result).toBe('world')));
+
+    it('should return value of key if the prefix is the same', () =>
       redis2
         .set('hello', 'ioredis')
         .then(status => expect(status).toBe('OK'))

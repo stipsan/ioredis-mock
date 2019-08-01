@@ -78,7 +78,14 @@ class RedisMock extends EventEmitter {
 
   createConnectedClient(options = {}) {
     const mock = new RedisMock(options);
-    mock.data = this.data;
+    mock.expires =
+      typeof options.keyPrefix === 'string'
+        ? this.expires.withKeyPrefix(options.keyPrefix)
+        : this.expires;
+    mock.data =
+      typeof options.keyPrefix === 'string'
+        ? this.data.withKeyPrefix(options.keyPrefix)
+        : this.data;
     mock.channels = this.channels;
     return mock;
   }
