@@ -18,10 +18,16 @@
       "IDEA",
       "NOTE",
       "REVIEW",
-      "MARK"
+      "MARK",
+      "HELP"
     ]
   },
-  "lists": [],
+  "lists": [
+    {
+      "name": "HELP",
+      "hidden": false
+    }
+  ],
   "marked": {
     "gfm": true,
     "tables": true,
@@ -34,5 +40,6 @@
     "id": "5ae71421ba4783532e6e8252",
     "name": "stipsan/ioredis-mock",
     "useImdoneioForPriority": true
-  }
+  },
+  "noHelp": true
 }
