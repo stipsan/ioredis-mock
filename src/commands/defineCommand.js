@@ -18,10 +18,15 @@ export const defineRedisObject = vm => fn => {
   vm.defineGlobalFunction(fn, 'call');
 
   // define redis object with call method
+  // convert nil to false base on https://redis.io/commands/eval#conversion-between-lua-and-redis-data-types
   vm.luaExecString(`
     local redis = {}
     redis.call = function(...)
-        return call(select('#', ...), ...)
+        local returnValue = call(select('#', ...), ...)
+        if returnValue == nil then
+          returnValue = false
+        end
+        return returnValue
     end
     return redis
   `);
@@ -39,7 +44,7 @@ const callToRedisCommand = vm =>
     const redisCmd = commands[name].bind(this);
     const result = redisCmd(...args.slice(1));
 
-    if (result) {
+    if (!!result || result === 0) {
       if (Array.isArray(result)) {
         result.unshift(null);
       }
