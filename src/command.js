@@ -52,6 +52,15 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
   throwIfNotConnected(commandName, RedisMock);
 }
 
+/**
+ * Transform non-buffer arguments to strings to simulate real ioredis behavior
+ * @param {any} arg the argument to transform
+ */
+const argMapper = arg => {
+  if (arg === null || arg === undefined) return '';
+  return arg instanceof Buffer ? arg : arg.toString();
+};
+
 export function processArguments(args, commandName, RedisMock) {
   // fast return, the defineCommand command requires NO transformation of args
   if (commandName === 'defineCommand') return args;
@@ -60,13 +69,7 @@ export function processArguments(args, commandName, RedisMock) {
   if (RedisMock.Command.transformers.argument[commandName]) {
     commandArgs = RedisMock.Command.transformers.argument[commandName](args);
   }
-  commandArgs = commandArgs.map(
-    // transform non-buffer arguments to strings to simulate real ioredis behavior
-    arg =>
-      arg instanceof Buffer || arg === null || arg === undefined
-        ? arg
-        : arg.toString()
-  );
+  commandArgs = commandArgs.map(argMapper);
   return commandArgs;
 }
 

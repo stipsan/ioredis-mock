@@ -19,6 +19,16 @@ describe('set', () => {
       .then(() => expect(redis.data.get('foo')).toBe('1.5'));
   });
 
+  it('should set empty value if null', () => {
+    const redis = new MockRedis();
+    return redis
+      .set('foo', null)
+      .then(status => expect(status).toBe('OK'))
+      .then(() => {
+        expect(redis.data.get('foo')).toBe('');
+      });
+  });
+
   it('should set value and expire', () => {
     const redis = new MockRedis();
     return redis
