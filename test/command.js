@@ -15,10 +15,10 @@ describe('basic command', () => {
     return stub(spy).then(() => expect(spy).toHaveBeenCalled());
   });
 
-  it('should convert non-buffer, non-null arguments to strings', () => {
-    const args = [createBuffer('foo'), 'bar', 1, null];
+  it('should convert non-buffer arguments to strings', () => {
+    const args = [createBuffer('foo'), 'bar', 1, null, undefined];
     return stub(...args).then(reply =>
-      expect(reply).toEqual([createBuffer('foo'), 'bar', '1', null])
+      expect(reply).toEqual([createBuffer('foo'), 'bar', '1', '', ''])
     );
   });
 
