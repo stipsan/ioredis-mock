@@ -1,4 +1,4 @@
-import { mget } from './hmget';
+import { mget } from './mget';
 import createBuffer from '../buffer';
 
 export function mgetBuffer(key, ...fields) {
