@@ -19,6 +19,6 @@ describe('mgetBuffer', () => {
 
     return redis
       .mget('foo', 'hello')
-      .then(result => expect(result).toEqual([createBuffer('test'), null]);
+      .then(result => expect(result).toEqual([createBuffer('test'), null]));
   });
 });
