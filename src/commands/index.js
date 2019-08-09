@@ -57,6 +57,7 @@ export * from './lrem';
 export * from './lset';
 export * from './ltrim';
 export * from './mget';
+export * from './mgetBuffer';
 export * from './mset';
 export * from './msetnx';
 export * from './persist';
