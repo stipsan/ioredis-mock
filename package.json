@@ -20,7 +20,7 @@
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precommit": "lint-staged",
     "precoverage": "nyc --reporter=lcov yarn test",
-    "coverage": "yarn coveralls && yarn codeclimate",
+    "coverage": "yarn codeclimate",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
     "prepublishOnly": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
