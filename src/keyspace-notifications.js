@@ -10,6 +10,7 @@ const allEventsDisabled = {
 };
 
 function parseEvents(keyspaceEventsConfigString) {
+  // eslint-disable-next-line prefer-object-spread
   const result = Object.assign({}, allEventsDisabled);
   const allEvents = 'g$lshzxe';
   const unAliasedString = keyspaceEventsConfigString.replace('A', allEvents);
@@ -26,7 +27,9 @@ function parseEvents(keyspaceEventsConfigString) {
 
 export default function parseKeyspaceEvents(keyspaceEventsConfigString) {
   const keyspaceConfig = {
+    // eslint-disable-next-line prefer-object-spread
     K: Object.assign({}, allEventsDisabled),
+    // eslint-disable-next-line prefer-object-spread
     E: Object.assign({}, allEventsDisabled),
   };
   const isKeyspace = keyspaceEventsConfigString.includes('K');
