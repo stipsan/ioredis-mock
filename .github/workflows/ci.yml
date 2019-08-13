@@ -23,6 +23,7 @@ jobs:
   test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    needs: [build]
     strategy:
       matrix:
         node_version: [8, 10, 12]
