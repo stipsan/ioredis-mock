@@ -26,7 +26,7 @@ class RedisMock extends EventEmitter {
     this.connected = false;
     this.subscriberMode = false;
 
-    const optionsWithDefault = Object.assign({}, defaultOptions, options);
+    const optionsWithDefault = {...defaultOptions, ...options};
 
     this.expires = createExpires(optionsWithDefault.keyPrefix);
 
