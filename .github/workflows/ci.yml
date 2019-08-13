@@ -13,13 +13,13 @@ jobs:
     name: Lint and build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-    - name: npm install, build and lint
-      run: |
-        npm install
-        npm run build --if-present
-        npm run lint
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - name: npm install, build and lint
+        run: |
+          npm install
+          npm run build --if-present
+          npm run lint
   test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
