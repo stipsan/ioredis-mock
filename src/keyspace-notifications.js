@@ -10,7 +10,7 @@ const allEventsDisabled = {
 };
 
 function parseEvents(keyspaceEventsConfigString) {
-  const result = Object.assign({}, allEventsDisabled);
+  const result = {...allEventsDisabled};
   const allEvents = 'g$lshzxe';
   const unAliasedString = keyspaceEventsConfigString.replace('A', allEvents);
   result.g = unAliasedString.includes('g');
@@ -26,8 +26,8 @@ function parseEvents(keyspaceEventsConfigString) {
 
 export default function parseKeyspaceEvents(keyspaceEventsConfigString) {
   const keyspaceConfig = {
-    K: Object.assign({}, allEventsDisabled),
-    E: Object.assign({}, allEventsDisabled),
+    K: {...allEventsDisabled},
+    E: {...allEventsDisabled},
   };
   const isKeyspace = keyspaceEventsConfigString.includes('K');
   const isKeyevent = keyspaceEventsConfigString.includes('E');
