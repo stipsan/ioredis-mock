@@ -26,7 +26,7 @@ class RedisMock extends EventEmitter {
     this.connected = false;
     this.subscriberMode = false;
 
-     // eslint-disable-next-line prefer-object-spread
+    // eslint-disable-next-line prefer-object-spread
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
 
     this.expires = createExpires(optionsWithDefault.keyPrefix);
