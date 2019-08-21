@@ -98,6 +98,10 @@ class RedisMock extends EventEmitter {
     // no-op
   }
 
+  info() {
+    return new Promise((res) => { res("redis_version:999.999.999") })
+  }
+
   _initCommands() {
     Object.keys(commands).forEach(command => {
       const commandName = command === 'evaluate' ? 'eval' : command;
