@@ -6,7 +6,8 @@
     ":automergeRequireAllStatusChecks",
     ":semanticCommits",
     ":pinDigestsDisabled",
-    ":maintainLockFilesWeekly"
+    ":maintainLockFilesMonthly",
+    "schedule:weekly"
   ],
   "devDependencies": {
     "extends": ":automergeMajor"
@@ -18,7 +19,8 @@
     },
     {
       "extends": "packages:linters",
-      "groupName": "linters"
+      "groupName": "linters",
+      "packageNames": ["husky", "lint-staged", "prettier", "babel-eslint", "prettier-package-json"]
     }
   ]
 }
