@@ -20,7 +20,13 @@
     {
       "extends": "packages:linters",
       "groupName": "linters",
-      "packageNames": ["husky", "lint-staged", "prettier", "babel-eslint", "prettier-package-json"]
+      "packageNames": [
+        "husky",
+        "lint-staged",
+        "prettier",
+        "babel-eslint",
+        "prettier-package-json"
+      ]
     }
   ]
 }
