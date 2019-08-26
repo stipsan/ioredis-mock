@@ -115,5 +115,6 @@
       "@semantic-release/npm"
     ]
   },
-  "runkitExampleFilename": "example.js"
+  "runkitExampleFilename": "example.js",
+  "types": "types/index.d.ts"
 }
