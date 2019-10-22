@@ -45,4 +45,19 @@ describe('subscribe', () => {
         )
     );
   });
+
+  it.only('should allow multiple instances to subscribe to the same channel', () => {
+    const redisOne = new MockRedis();
+    const redisTwo = redisOne.createConnectedClient();
+
+    return redisOne
+      .subscribe('test-channel')
+      .then(subscribers => {
+        expect(subscribers).toEqual(1);
+        return redisTwo.subscribe('test-channel');
+      })
+      .then(subscribers => {
+        expect(subscribers).toEqual(2);
+      });
+  });
 });
