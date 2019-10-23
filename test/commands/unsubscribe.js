@@ -30,6 +30,16 @@ describe('unsubscribe', () => {
       );
   });
 
+  it('should ignore a request to unsubscribe from a channel not subscribed to', () => {
+    const redis = new MockRedis();
+    return redis
+      .subscribe('first')
+      .then(() => {
+        return redis.unsubscribe('second');
+      })
+      .then(subNum => expect(subNum).toBe(1));
+  });
+
   it('should unsubscribe only one instance when more than one is subscribed to a channel', () => {
     const redisOne = new MockRedis();
     const redisTwo = redisOne.createConnectedClient();
@@ -54,6 +64,23 @@ describe('unsubscribe', () => {
         redisOne.createConnectedClient().publish('first', 'TEST');
 
         return promise;
+      });
+  });
+
+  it('should not alter parent instance when connected client unsubscribes', () => {
+    const redisOne = new MockRedis();
+    const redisTwo = redisOne.createConnectedClient();
+    return redisOne
+      .subscribe('first')
+      .then(() => {
+        return redisTwo.unsubscribe('first');
+      })
+      .then(subNum => {
+        expect(subNum).toBe(0);
+        return redisTwo.publish('first', '');
+      })
+      .then(subNum => {
+        expect(subNum).toBe(1);
       });
   });
 });
