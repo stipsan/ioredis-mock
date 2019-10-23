@@ -1,12 +1,26 @@
+import {
+  getSubscribedChannels,
+  unsubscribeFromChannel,
+} from '../commands-utils/channel-subscription';
+
 export function punsubscribe(...args) {
   if (args.length === 0) {
-    this.patternChannels.removeAllListeners();
+    getSubscribedChannels(this, this.patternChannels).forEach(channel => {
+      unsubscribeFromChannel(this, channel, this.patternChannels);
+    });
   }
   args.forEach(pattern => {
-    this.patternChannels.removeAllListeners(pattern);
+    unsubscribeFromChannel(this, pattern, this.patternChannels);
   });
-  const numberOfSubscribedChannels = this.patternChannels.eventNames().length;
-  if (numberOfSubscribedChannels + this.channels.eventNames().length === 0) {
+  const numberOfSubscribedChannels = getSubscribedChannels(
+    this,
+    this.patternChannels
+  ).length;
+  if (
+    numberOfSubscribedChannels +
+      getSubscribedChannels(this, this.channels).length ===
+    0
+  ) {
     this.subscriberMode = false;
   }
   return numberOfSubscribedChannels;

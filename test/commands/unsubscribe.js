@@ -29,4 +29,31 @@ describe('unsubscribe', () => {
           .then(subNum => expect(subNum).toBe(1))
       );
   });
+
+  it('should unsubscribe only one instance when more than one is subscribed to a channel', () => {
+    const redisOne = new MockRedis();
+    const redisTwo = redisOne.createConnectedClient();
+
+    return Promise.all([
+      redisOne.subscribe('first'),
+      redisTwo.subscribe('first', 'second'),
+    ])
+      .then(() => {
+        return redisTwo.unsubscribe('first');
+      })
+      .then(result => {
+        expect(result).toEqual(1);
+
+        let promiseFulfill;
+        const promise = new Promise(f => {
+          promiseFulfill = f;
+        });
+
+        redisOne.on('message', promiseFulfill);
+
+        redisOne.createConnectedClient().publish('first', 'TEST');
+
+        return promise;
+      });
+  });
 });

@@ -45,4 +45,32 @@ describe('psubscribe', () => {
         )
     );
   });
+
+  it('should allow multiple instances to subscribe to the same channel', () => {
+    const redisOne = new MockRedis();
+    const redisTwo = redisOne.createConnectedClient();
+
+    return Promise.all([
+      redisOne.psubscribe('first.*', 'second.*'),
+      redisTwo.psubscribe('first.*'),
+    ]).then(([oneResult, twoResult]) => {
+      expect(oneResult).toEqual(2);
+      expect(twoResult).toEqual(1);
+      let promiseOneFulfill;
+      let PromiseTwoFulfill;
+      const promiseOne = new Promise(f => {
+        promiseOneFulfill = f;
+      });
+      const promiseTwo = new Promise(f => {
+        PromiseTwoFulfill = f;
+      });
+
+      redisOne.on('message', promiseOneFulfill);
+      redisTwo.on('message', PromiseTwoFulfill);
+
+      redisOne.createConnectedClient().publish('first.test', 'blah');
+
+      return Promise.all([promiseOne, promiseTwo]);
+    });
+  });
 });

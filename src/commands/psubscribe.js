@@ -1,16 +1,20 @@
-import emitMessage from '../commands-utils/emitMessage';
+import {
+  getSubscribedChannels,
+  subscribeToChannel,
+} from '../commands-utils/channel-subscription';
 
 export function psubscribe(...args) {
   args.forEach(pattern => {
-    if (this.patternChannels.listenerCount(pattern) === 0) {
-      this.patternChannels.on(pattern, (message, channel) => {
-        emitMessage(this, channel, message);
-      });
-    } else {
-      // do not register another listener for existing channel pattern
+    if (!this.patternChannels.instanceListeners) {
+      this.patternChannels.instanceListeners = new Map();
     }
+    subscribeToChannel(this, pattern, this.patternChannels, true);
   });
-  const numberOfSubscribedChannels = this.patternChannels.eventNames().length;
+
+  const numberOfSubscribedChannels = getSubscribedChannels(
+    this,
+    this.patternChannels
+  ).length;
   if (numberOfSubscribedChannels > 0) {
     this.subscriberMode = true;
   }
