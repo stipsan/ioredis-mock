@@ -3,6 +3,11 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('subscribe', () => {
+  it('should ignore an empty subscribe call', () => {
+    const redis = new MockRedis();
+    return redis.subscribe().then(subNum => expect(subNum).toBe(0));
+  });
+
   it('should return number of subscribed channels', () => {
     const redis = new MockRedis();
     return redis
@@ -72,5 +77,21 @@ describe('subscribe', () => {
 
       return Promise.all([promiseOne, promiseTwo]);
     });
+  });
+
+  it('should toggle subscriberMode correctly', () => {
+    const redis = new MockRedis();
+    return redis
+      .subscribe('test')
+      .then(() => {
+        expect(redis.subscriberMode).toBe(true);
+        return redis.unsubscribe('test');
+      })
+      .then(() => {
+        expect(redis.subscriberMode).toBe(false);
+        // this next part is just to make sure our tests go through the code path
+        // where we have had subscriptions but currently have none
+        return redis.subscribe();
+      });
   });
 });

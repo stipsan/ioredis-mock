@@ -73,4 +73,20 @@ describe('psubscribe', () => {
       return Promise.all([promiseOne, promiseTwo]);
     });
   });
+
+  it('should toggle subscriberMode correctly', () => {
+    const redis = new MockRedis();
+    return redis
+      .psubscribe('test.*')
+      .then(() => {
+        expect(redis.subscriberMode).toBe(true);
+        return redis.punsubscribe('test.*');
+      })
+      .then(() => {
+        expect(redis.subscriberMode).toBe(false);
+        // this next part is just to make sure our tests go through the code path
+        // where we have had subscriptions but currently have none
+        return redis.psubscribe();
+      });
+  });
 });
