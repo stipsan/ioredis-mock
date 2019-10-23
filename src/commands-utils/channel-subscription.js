@@ -44,7 +44,7 @@ export function unsubscribeFromChannel(instance, chan, channels) {
 
   const listener = channelMap.get(instance);
 
-  channels.off(chan, listener);
+  channels.removeEventListener(chan, listener);
   channelMap.delete(instance);
   if (channelMap.size === 0) {
     // tidy up: remove the map if it's empty
