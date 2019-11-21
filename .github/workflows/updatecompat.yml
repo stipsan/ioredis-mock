@@ -23,6 +23,7 @@ jobs:
     - run: node scripts/update-compat
     - run: echo ${{github.repository}}
     - run: echo ${{github.head_ref}}
+    - run: echo ${{github.base_ref}}
     - name: commit changes
       run: |
         git config --local user.email "action@github.com"
