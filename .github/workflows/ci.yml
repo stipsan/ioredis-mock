@@ -25,7 +25,7 @@ jobs:
     needs: [build]
     strategy:
       matrix:
-        node_version: [13, 12, 10, 8]
+        node_version: [8, 10, 12, 13]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -37,5 +37,5 @@ jobs:
 
       - name: npm install, build and test
         run: |
-          yarn --frozen-lockfile
-          yarn test
+          yarn --frozen-lockfile --ignore-engines
+          npx mocha --require @babel/register --recursive
