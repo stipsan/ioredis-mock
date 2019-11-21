@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
-    "precoverage": "yarn test",
+    "precoverage": "npx rimraf coverage && npx mkdirp coverage && yarn test",
     "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
