@@ -39,4 +39,3 @@ jobs:
         run: |
           yarn --frozen-lockfile --ignore-engines
           npx mocha --require @babel/register --recursive
-          #npx -p mocha -p @babel/register -c 'mocha --require @babel/register --recursive'
