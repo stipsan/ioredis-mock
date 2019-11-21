@@ -22,6 +22,7 @@ jobs:
     - run: yarn install
     - run: node scripts/update-compat
     - run: echo ${{github.repository}}
+    - run: echo ${{github.head_ref}}
     - name: commit changes
       run: |
         git config --local user.email "action@github.com"
