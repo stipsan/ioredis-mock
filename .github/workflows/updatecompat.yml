@@ -1,0 +1,41 @@
+name: Update compat.md
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  format:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{github.head_ref}}
+    - name: use node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - run: yarn install
+    - run: node scripts/update-compat
+    - run: echo repository ${{github.repository}}
+    - run: echo head_ref ${{github.head_ref}}
+    - run: echo base_ref ${{github.base_ref}}
+    - run: echo ref ${{github.ref}}
+    - run: echo full name ${{github.event.pull_request.head.repo.full_name}}
+    - run: echo event repo name ${{github.event.head.repo.full_name}}
+    - name: commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "docs: update feature compat table"
+      continue-on-error: true
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: ${{github.head_ref}}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
