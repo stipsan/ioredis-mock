@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   format:
@@ -18,6 +21,7 @@ jobs:
         node-version: 12
     - run: yarn install
     - run: node scripts/update-compat
+    - run: echo ${{github.repository}}
     - name: commit changes
       run: |
         git config --local user.email "action@github.com"
