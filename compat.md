@@ -104,13 +104,11 @@
 | [pubsub](http://redis.io/commands/PUBSUB)                             | :white_check_mark: |        :x:         |
 | [punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)                 | :white_check_mark: | :white_check_mark: |
 | [quit](http://redis.io/commands/QUIT)                                 | :white_check_mark: | :white_check_mark: |
-| [randomkey](http://redis.io/commands/RANDOMKEY)                       | :white_check_mark: | :white_check_mark: |
 | [readonly](http://redis.io/commands/READONLY)                         | :white_check_mark: |        :x:         |
 | [readwrite](http://redis.io/commands/READWRITE)                       | :white_check_mark: |        :x:         |
 | [rename](http://redis.io/commands/RENAME)                             | :white_check_mark: | :white_check_mark: |
 | [renamenx](http://redis.io/commands/RENAMENX)                         | :white_check_mark: | :white_check_mark: |
 | [replicaof](http://redis.io/commands/REPLICAOF)                       | :white_check_mark: |        :x:         |
-| [restore](http://redis.io/commands/RESTORE)                           | :white_check_mark: |        :x:         |
 | [role](http://redis.io/commands/ROLE)                                 | :white_check_mark: | :white_check_mark: |
 | [rpop](http://redis.io/commands/RPOP)                                 | :white_check_mark: | :white_check_mark: |
 | [rpoplpush](http://redis.io/commands/RPOPLPUSH)                       | :white_check_mark: | :white_check_mark: |
