@@ -104,7 +104,6 @@
 | [pubsub](http://redis.io/commands/PUBSUB)                             | :white_check_mark: |        :x:         |
 | [punsubscribe](http://redis.io/commands/PUNSUBSCRIBE)                 | :white_check_mark: | :white_check_mark: |
 | [quit](http://redis.io/commands/QUIT)                                 | :white_check_mark: | :white_check_mark: |
-| [randomkey](http://redis.io/commands/RANDOMKEY)                       | :white_check_mark: | :white_check_mark: |
 | [readonly](http://redis.io/commands/READONLY)                         | :white_check_mark: |        :x:         |
 | [readwrite](http://redis.io/commands/READWRITE)                       | :white_check_mark: |        :x:         |
 | [rename](http://redis.io/commands/RENAME)                             | :white_check_mark: | :white_check_mark: |
