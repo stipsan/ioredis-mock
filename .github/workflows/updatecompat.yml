@@ -21,12 +21,6 @@ jobs:
         node-version: 12
     - run: yarn install
     - run: node scripts/update-compat
-    - run: echo repository ${{github.repository}}
-    - run: echo head_ref ${{github.head_ref}}
-    - run: echo base_ref ${{github.base_ref}}
-    - run: echo ref ${{github.ref}}
-    - run: echo full name ${{github.event.pull_request.head.repo.full_name}}
-    - run: echo event repo name ${{github.event.head.repo.full_name}}
     - name: commit changes
       run: |
         git config --local user.email "action@github.com"
