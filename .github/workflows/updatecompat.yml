@@ -23,7 +23,7 @@ jobs:
     - run: echo base_ref ${{github.base_ref}}
     - run: echo ref ${{github.ref}}
     - run: echo ${{github.event}}
-    - run: echo ${{github.event.pull_request.head.repo.full_name}}
+    - run: echo full name ${{github.event.pull_request.head.repo.full_name}}
     - run: echo event repo name ${{github.event.head.repo.full_name}}
     - name: commit changes
       run: |
@@ -35,4 +35,5 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         branch: ${{ github.ref }}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
