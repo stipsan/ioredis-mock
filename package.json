@@ -19,12 +19,12 @@
   "scripts": {
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage && yarn test",
-    "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
+    "coverage": "npx nyc report --reporter=text-lcov > ./coverage/lcov.info",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
     "prepublishOnly": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "nyc mocha --require babel-core/register --recursive",
+    "test": "npx nyc mocha --require babel-core/register --recursive",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
