@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "prepublishOnly": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "npx nyc mocha --require babel-core/register --recursive",
+    "test": "npx nyc npx mocha --require babel-core/register --recursive",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
