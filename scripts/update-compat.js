@@ -1,4 +1,4 @@
-require('babel-register');
+require('@babel/register');
 const path = require('path');
 const fs = require('fs');
 const commands = require('redis-commands');
