@@ -37,5 +37,6 @@ jobs:
 
       - name: npm install, build and test
         run: |
-          yarn --frozen-lockfile
-          npx -p @babel/register -c 'mocha --require @babel/register --recursive'
+          yarn --frozen-lockfile --ignore-engines
+          npx mocha --require @babel/register --recursive
+          #npx -p mocha -p @babel/register -c 'mocha --require @babel/register --recursive'
