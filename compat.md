@@ -110,7 +110,6 @@
 | [rename](http://redis.io/commands/RENAME)                             | :white_check_mark: | :white_check_mark: |
 | [renamenx](http://redis.io/commands/RENAMENX)                         | :white_check_mark: | :white_check_mark: |
 | [replicaof](http://redis.io/commands/REPLICAOF)                       | :white_check_mark: |        :x:         |
-| [restore](http://redis.io/commands/RESTORE)                           | :white_check_mark: |        :x:         |
 | [role](http://redis.io/commands/ROLE)                                 | :white_check_mark: | :white_check_mark: |
 | [rpop](http://redis.io/commands/RPOP)                                 | :white_check_mark: | :white_check_mark: |
 | [rpoplpush](http://redis.io/commands/RPOPLPUSH)                       | :white_check_mark: | :white_check_mark: |
