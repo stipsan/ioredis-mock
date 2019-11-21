@@ -1,4 +1,4 @@
-name: update compat
+name: Update compat.md
 
 on:
   pull_request:
@@ -23,7 +23,7 @@ jobs:
     - run: echo base_ref ${{github.base_ref}}
     - run: echo ref ${{github.ref}}
     - run: echo ${{github.event}}
-    - run: echo ${{githun.event.pull_request.head.repo.full_name}}
+    - run: echo ${{github.event.pull_request.head.repo.full_name}}
     - run: echo event repo name ${{github.event.head.repo.full_name}}
     - name: commit changes
       run: |
