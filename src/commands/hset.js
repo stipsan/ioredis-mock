@@ -1,16 +1,14 @@
-export function hset(key, hashKey, hashVal) {
+export function hset(key, ...args) {
   if (!this.data.has(key)) {
     this.data.set(key, {});
   }
 
-  let reply = 1;
+  let reply = 0;
   const hash = this.data.get(key);
-
-  if ({}.hasOwnProperty.call(hash, hashKey)) {
-    reply = 0;
+  for (let i = 0; i < args.length; i += 2) {
+    if (!{}.hasOwnProperty.call(hash, args[i])) reply++;
+    hash[args[i]] = args[i + 1];
   }
-
-  hash[hashKey] = hashVal;
 
   this.data.set(key, hash);
 
