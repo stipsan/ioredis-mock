@@ -51,7 +51,7 @@
     "chance": "1.1.4",
     "codeclimate-test-reporter": "0.5.1",
     "coveralls": "3.0.9",
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-import": "2.19.1",
