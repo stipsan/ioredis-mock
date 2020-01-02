@@ -30,6 +30,13 @@ describe('punsubscribe', () => {
       );
   });
 
+  it('should not return an error if unsubscribing from a channel with no subscriptions', () => {
+    const redis = new MockRedis();
+    return redis
+      .punsubscribe('fourth.*')
+      .then(subNum => expect(subNum).toBe(0));
+  });
+
   it('should unsubscribe only one instance when more than one is subscribed to a channel', () => {
     const redisOne = new MockRedis();
     const redisTwo = redisOne.createConnectedClient();
