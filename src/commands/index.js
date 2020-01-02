@@ -44,6 +44,7 @@ export * from './hvals';
 export * from './incr';
 export * from './incrby';
 export * from './incrbyfloat';
+export * from './info';
 export * from './keys';
 export * from './lastsave';
 export * from './lindex';
