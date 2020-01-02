@@ -30,7 +30,10 @@ export function subscribeToChannel(instance, chan, channels, isPattern) {
 }
 
 export function unsubscribeFromChannel(instance, chan, channels) {
-  if (channels.instanceListeners.has(chan) === false) {
+  if (
+    !channels.instanceListeners ||
+    channels.instanceListeners.has(chan) === false
+  ) {
     // there are no subscriptions to this channel
     return;
   }
