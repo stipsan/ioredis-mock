@@ -45,4 +45,48 @@ describe('psubscribe', () => {
         )
     );
   });
+
+  it('should allow multiple instances to subscribe to the same channel', () => {
+    const redisOne = new MockRedis();
+    const redisTwo = redisOne.createConnectedClient();
+
+    return Promise.all([
+      redisOne.psubscribe('first.*', 'second.*'),
+      redisTwo.psubscribe('first.*'),
+    ]).then(([oneResult, twoResult]) => {
+      expect(oneResult).toEqual(2);
+      expect(twoResult).toEqual(1);
+      let promiseOneFulfill;
+      let PromiseTwoFulfill;
+      const promiseOne = new Promise(f => {
+        promiseOneFulfill = f;
+      });
+      const promiseTwo = new Promise(f => {
+        PromiseTwoFulfill = f;
+      });
+
+      redisOne.on('message', promiseOneFulfill);
+      redisTwo.on('message', PromiseTwoFulfill);
+
+      redisOne.createConnectedClient().publish('first.test', 'blah');
+
+      return Promise.all([promiseOne, promiseTwo]);
+    });
+  });
+
+  it('should toggle subscriberMode correctly', () => {
+    const redis = new MockRedis();
+    return redis
+      .psubscribe('test.*')
+      .then(() => {
+        expect(redis.subscriberMode).toBe(true);
+        return redis.punsubscribe('test.*');
+      })
+      .then(() => {
+        expect(redis.subscriberMode).toBe(false);
+        // this next part is just to make sure our tests go through the code path
+        // where we have had subscriptions but currently have none
+        return redis.psubscribe();
+      });
+  });
 });

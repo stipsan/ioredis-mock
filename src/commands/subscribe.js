@@ -1,16 +1,22 @@
-import emitMessage from '../commands-utils/emitMessage';
+import {
+  getSubscribedChannels,
+  subscribeToChannel,
+} from '../commands-utils/channel-subscription';
 
 export function subscribe(...args) {
   args.forEach(chan => {
-    if (this.channels.listenerCount(chan) === 0) {
-      this.channels.on(chan, message => {
-        emitMessage(this, chan, message);
-      });
-    } else {
-      // do not register another listener for existing channel
+    if (!this.channels.instanceListeners) {
+      this.channels.instanceListeners = new Map();
     }
+
+    subscribeToChannel(this, chan, this.channels);
   });
-  const numberOfSubscribedChannels = this.channels.eventNames().length;
+
+  if (!this.channels.instanceListeners) {
+    return 0;
+  }
+  const numberOfSubscribedChannels = getSubscribedChannels(this, this.channels)
+    .length;
   if (numberOfSubscribedChannels > 0) {
     this.subscriberMode = true;
   }
