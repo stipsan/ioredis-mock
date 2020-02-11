@@ -92,4 +92,28 @@ describe('zrangebyscore', () => {
         expect(res).toEqual(['bbb', 4, 'ccc', 4, 'ddd', 4, 'aaa', 5])
       );
   });
+  it('should handle offset and limit (0,1)', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrangebyscore('foo', 1, 3, 'LIMIT', 0, 1)
+      .then(res => expect(res).toEqual(['first']));
+  });
+  it('should handle offset and limit (1,2)', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrangebyscore('foo', 1, 3, 'LIMIT', 1, 2)
+      .then(res => expect(res).toEqual(['second', 'third']));
+  });
+  it('should handle offset, limit, and WITHSCORES', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrangebyscore('foo', 1, 3, 'WITHSCORES', 'LIMIT', 1, 1)
+      .then(res => expect(res).toEqual(['second', 2]));
+  });
+  it('should handle LIMIT specified before WITHSCORES', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrangebyscore('foo', 1, 3, 'LIMIT', 1, 1, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['second', 2]));
+  });
 });

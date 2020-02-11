@@ -92,4 +92,29 @@ describe('zrevrangebyscore', () => {
         expect(res).toEqual(['aaa', 5, 'ddd', 4, 'ccc', 4, 'bbb', 4])
       );
   });
+
+  it('should handle offset and limit (0,1)', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', 3, 1, 'LIMIT', 0, 1)
+      .then(res => expect(res).toEqual(['third']));
+  });
+  it('should handle offset and limit (1,2)', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 2)
+      .then(res => expect(res).toEqual(['second', 'first']));
+  });
+  it('should handle offset, limit, and WITHSCORES', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', 3, 1, 'WITHSCORES', 'LIMIT', 1, 1)
+      .then(res => expect(res).toEqual(['second', 2]));
+  });
+  it('should handle LIMIT specified before WITHSCORES', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 1, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['second', 2]));
+  });
 });
