@@ -11,9 +11,10 @@ export function zinterstore(destKey, numKeys, ...keys) {
 
   for (let i = 0; i < keys.length; i += 1) {
     // @TODO investigate a more stable way to detect sorted lists
-    if (!this.data.has(keys[i]) || this.data.get(keys[i]) instanceof Map) {
-      srcMaps.push(this.data.get(keys[i]));
+    if (!this.data.has(keys[i]) || !(this.data.get(keys[i]) instanceof Map)) {
+      return 0;
     }
+    srcMaps.push(this.data.get(keys[i]));
   }
 
   // deep copy inputs

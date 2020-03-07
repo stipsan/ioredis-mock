@@ -22,6 +22,7 @@ describe('zinterstore', () => {
       ['twentieth', { score: 20, value: 'twentieth' }],
       ['thirtieth', { score: 30, value: 'thirtiest' }],
     ]),
+    key: 'value',
   };
 
   it('should intersect two sorted sets and return the number of resulting elements', () => {
@@ -76,5 +77,21 @@ describe('zinterstore', () => {
     return redis
       .zinterstore('dest', 3, 'foo', 'bar')
       .catch(err => expect(err.message).toBe('ERR syntax error'));
+  });
+
+  it('should return 0 if one of the keys does not exist', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zinterstore('dest', 2, 'foo', 'doesnotexist')
+      .then(res => expect(res).toEqual(0));
+  });
+
+  it('should return 0 if one of the keys is not a sorted set', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zinterstore('dest', 2, 'foo', 'key')
+      .then(res => expect(res).toEqual(0));
   });
 });
