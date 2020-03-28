@@ -10,6 +10,12 @@ export function hdel(key, ...fields) {
     }
     return false;
   }).length;
-  this.data.set(key, value);
+
+  const numLeft = Object.getOwnPropertyNames(value).length;
+  if (numLeft > 0) {
+    this.data.set(key, value);
+  } else {
+    this.data.delete(key);
+  }
   return numDeleted;
 }
