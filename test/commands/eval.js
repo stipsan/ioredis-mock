@@ -26,4 +26,22 @@ describe('eval', () => {
           .then(result => expect(result).toEqual(3005));
       });
   });
+
+  it('should be able to ignore errors from pcall', () => {
+    const redis = new MockRedis();
+    const NUMBER_OF_KEYS = 1;
+    const KEY1 = 'KEY1';
+
+    return redis.set(KEY1, 10).then(() => {
+      const luaScript = `
+          local before = redis.pcall('GET', KEYS[1])
+          redis.pcall('invalid command')
+          return before
+        `;
+
+      return redis
+        .eval(luaScript, NUMBER_OF_KEYS, KEY1)
+        .then(result => expect(result).toEqual(10));
+    });
+  });
 });
