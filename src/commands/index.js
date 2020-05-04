@@ -115,6 +115,8 @@ export * from './zcard';
 export * from './zcount';
 export * from './zincrby';
 export * from './zinterstore';
+export * from './zpopmax';
+export * from './zpopmin';
 export * from './zrange';
 export * from './zrangebyscore';
 export * from './zrank';
