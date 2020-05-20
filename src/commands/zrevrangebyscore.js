@@ -1,9 +1,13 @@
 import Map from 'es6-map';
 import arrayFrom from 'array-from';
 import { orderBy, filter, flatMap } from 'lodash';
-import { parseLimit, filterPredicate } from './zrange-command.common';
+import {
+  parseLimit,
+  filterPredicate,
+  getWithScoresAndLimit,
+} from './zrange-command.common';
 
-export function zrevrangebyscore(key, inputMax, inputMin, withScores) {
+export function zrevrangebyscore(key, inputMax, inputMin, ...args) {
   const map = this.data.get(key);
   if (!map) {
     return [];
@@ -13,6 +17,8 @@ export function zrevrangebyscore(key, inputMax, inputMin, withScores) {
     return [];
   }
 
+  const { withScores, limit, offset } = getWithScoresAndLimit(args);
+
   const min = parseLimit(inputMin);
   const max = parseLimit(inputMax);
   const filteredArray = filter(
@@ -21,11 +27,19 @@ export function zrevrangebyscore(key, inputMax, inputMin, withScores) {
   );
 
   const ordered = orderBy(filteredArray, ['score', 'value'], ['desc', 'desc']);
-  if (
-    typeof withScores === 'string' &&
-    withScores.toUpperCase() === 'WITHSCORES'
-  ) {
-    return flatMap(ordered, it => [it.value, it.score]);
+  if (withScores) {
+    const results = flatMap(ordered, it => [it.value, it.score]);
+
+    if (limit) {
+      return results.slice(offset * 2, (offset + limit) * 2);
+    }
+
+    return results;
   }
-  return ordered.map(it => it.value);
+
+  const results = ordered.map(it => it.value);
+  if (limit) {
+    return results.slice(offset, offset + limit);
+  }
+  return results;
 }

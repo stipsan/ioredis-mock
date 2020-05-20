@@ -50,3 +50,30 @@ export function filterPredicate(min, max) {
     return true;
   };
 }
+
+// this emulates the way Redis handles parsing these arguments
+// see https://github.com/antirez/redis/blob/06d490342f51cff316588a7a45124cc410b7d050/src/t_zset.c#L2556
+export function getWithScoresAndLimit(args) {
+  let remaining = args.length;
+  let pos = 0;
+  let withScores = false;
+  let limit = null;
+  let offset = null;
+
+  while (remaining > 0) {
+    if (remaining >= 1 && args[pos].toUpperCase() === 'WITHSCORES') {
+      withScores = true;
+      pos += 1;
+      remaining -= 1;
+    } else if (remaining >= 3 && args[pos].toUpperCase() === 'LIMIT') {
+      offset = parseInt(args[pos + 1], 10);
+      limit = parseInt(args[pos + 2], 10);
+      pos += 3;
+      remaining -= 3;
+    } else {
+      throw new Error('ERR syntax error');
+    }
+  }
+
+  return { withScores, limit, offset };
+}
