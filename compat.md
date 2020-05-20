@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 62%](https://img.shields.io/badge/coverage-62%25-yellow.svg)
+## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-yellow.svg)
 
 | redis                                                                 |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------------- | :----------------: | :----------------: |
@@ -176,8 +176,8 @@
 | [zincrby](http://redis.io/commands/ZINCRBY)                           | :white_check_mark: | :white_check_mark: |
 | [zinterstore](http://redis.io/commands/ZINTERSTORE)                   | :white_check_mark: | :white_check_mark: |
 | [zlexcount](http://redis.io/commands/ZLEXCOUNT)                       | :white_check_mark: |        :x:         |
-| [zpopmax](http://redis.io/commands/ZPOPMAX)                           | :white_check_mark: |        :x:         |
-| [zpopmin](http://redis.io/commands/ZPOPMIN)                           | :white_check_mark: |        :x:         |
+| [zpopmax](http://redis.io/commands/ZPOPMAX)                           | :white_check_mark: | :white_check_mark: |
+| [zpopmin](http://redis.io/commands/ZPOPMIN)                           | :white_check_mark: | :white_check_mark: |
 | [zrange](http://redis.io/commands/ZRANGE)                             | :white_check_mark: | :white_check_mark: |
 | [zrangebylex](http://redis.io/commands/ZRANGEBYLEX)                   | :white_check_mark: |        :x:         |
 | [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)               | :white_check_mark: | :white_check_mark: |
