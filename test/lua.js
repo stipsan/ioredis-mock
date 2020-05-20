@@ -102,7 +102,7 @@ describe('lua', () => {
         `);
 
         // expect it was called and we can get the right arguments
-        expect(wasCalledWith).toEqual([3, 'EXISTS', 'PEPE', 'THIRD']);
+        expect(wasCalledWith).toEqual([false, 'EXISTS', 'PEPE', 'THIRD']);
       });
     });
 

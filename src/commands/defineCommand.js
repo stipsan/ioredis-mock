@@ -21,12 +21,17 @@ export const defineRedisObject = vm => fn => {
   // convert nil to false base on https://redis.io/commands/eval#conversion-between-lua-and-redis-data-types
   vm.luaExecString(`
     local redis = {}
+    function repair(val)
+      if val == nil then
+        return false
+      end
+      return val
+    end
     redis.call = function(...)
-        local returnValue = call(select('#', ...), ...)
-        if returnValue == nil then
-          returnValue = false
-        end
-        return returnValue
+        return repair(call(false, ...))
+    end
+    redis.pcall = function(...)
+        return repair(call(true, ...))
     end
     return redis
   `);
@@ -38,12 +43,20 @@ export const defineRedisObject = vm => fn => {
 const callToRedisCommand = vm =>
   function callToRedisCommand2() {
     const rawArgs = vm.extractArgs();
-
-    const args = Number.isInteger(rawArgs[0]) ? rawArgs.slice(1) : rawArgs;
-    const name = args[0].toLowerCase();
-    const redisCmd = commands[name].bind(this);
-    const result = redisCmd(...args.slice(1));
-
+    const returnError = rawArgs[0];
+    let result;
+    try {
+      const args = rawArgs.slice(1);
+      const name = args[0].toLowerCase();
+      const redisCmd = commands[name].bind(this);
+      result = redisCmd(...args.slice(1));
+    } catch (err) {
+      if (!returnError) {
+        throw err;
+      }
+      interop.push(vm.L, ['error', err.toString()]);
+      return 1;
+    }
     if (!!result || result === 0) {
       if (Array.isArray(result)) {
         result.unshift(null);
