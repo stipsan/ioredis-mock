@@ -117,4 +117,28 @@ describe('zrevrangebyscore', () => {
       .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 1, 'WITHSCORES')
       .then(res => expect(res).toEqual(['second', 2]));
   });
+  it('should handle LIMIT of -1', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1)
+      .then(res => expect(res).toEqual(['fourth', 'third', 'second']));
+  });
+  it('should handle LIMIT of -1 and WITHSCORES', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['fourth', 4, 'third', 3, 'second', 2]));
+  });
+  it('should handle LIMIT of -2', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -2)
+      .then(res => expect(res).toEqual(['fourth', 'third']));
+  });
+  it('should handle LIMIT of 0', () => {
+    const redis = new MockRedis({ data });
+    return redis
+      .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, 0)
+      .then(res => expect(res).toEqual([]));
+  });
 });

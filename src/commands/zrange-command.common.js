@@ -19,6 +19,21 @@ export function slice(arr, s, e) {
   return arr.slice(start, end + 1);
 }
 
+function normalizeCountToIndex(offset, count, array) {
+  if (count < 0) {
+    return -count > array.length ? 0 : array.length + count;
+  }
+  return offset + count;
+}
+
+export function offsetAndLimit(arr, offset, count) {
+  if (count === 0) {
+    return [];
+  }
+  const end = normalizeCountToIndex(offset, count, arr);
+  return arr.slice(offset, end);
+}
+
 export function parseLimit(input) {
   let str = `${input}`;
   let strict = false;
