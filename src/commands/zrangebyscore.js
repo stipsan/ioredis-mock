@@ -5,6 +5,7 @@ import {
   parseLimit,
   filterPredicate,
   getWithScoresAndLimit,
+  offsetAndLimit,
 } from './zrange-command.common';
 
 export function zrangebyscore(key, inputMin, inputMax, ...args) {
@@ -26,19 +27,18 @@ export function zrangebyscore(key, inputMin, inputMax, ...args) {
     filterPredicate(min, max)
   );
 
-  const ordered = orderBy(filteredArray, ['score', 'value']);
+  let ordered = orderBy(filteredArray, ['score', 'value']);
   if (withScores) {
-    const results = flatMap(ordered, it => [it.value, it.score]);
-
-    if (limit) {
-      return results.slice(offset * 2, (offset + limit) * 2);
+    if (limit !== null) {
+      ordered = offsetAndLimit(ordered, offset, limit);
     }
-    return results;
+
+    return flatMap(ordered, it => [it.value, it.score]);
   }
 
   const results = ordered.map(it => it.value);
-  if (limit) {
-    return results.slice(offset, offset + limit);
+  if (limit !== null) {
+    return offsetAndLimit(results, offset, limit);
   }
   return results;
 }
