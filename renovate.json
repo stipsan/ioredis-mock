@@ -10,6 +10,7 @@
     ":maintainLockFilesMonthly",
     "schedule:weekly"
   ],
+  "masterIssue": true,
   "devDependencies": {
     "extends": ":automergeMajor"
   },
