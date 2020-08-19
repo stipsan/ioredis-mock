@@ -11,7 +11,16 @@ describe('getset', () => {
     });
     return redis
       .getset('foo', 'World')
-      .then(result => expect(result).toBe('Hello'))
+      .then((result) => expect(result).toBe('Hello'))
+      .then(() => expect(redis.data.get('foo')).toBe('World'));
+  });
+  it('should set the new value and return null when does not have an old value', () => {
+    const redis = new MockRedis({
+      data: {},
+    });
+    return redis
+      .getset('foo', 'World')
+      .then((result) => expect(result).toBe(null))
       .then(() => expect(redis.data.get('foo')).toBe('World'));
   });
 });
