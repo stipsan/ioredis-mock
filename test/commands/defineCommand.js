@@ -42,19 +42,17 @@ describe('defineCommand', () => {
     const luaCode = 'return {10, 100, 200}';
     const redis = new MockRedis();
     const definition = { numberOfKeys: 0, lua: luaCode };
-    return redis
-      .defineCommand('someCmd', definition)
-      .then(() => redis.someCmd())
-      .then(val => expect(val).toEqual([10, 100, 200]));
+    redis.defineCommand('someCmd', definition);
+    return redis.someCmd().then(val => expect(val).toEqual([10, 100, 200]));
   });
 
   it('should support custom commmands returning a table/array of table/array elements', () => {
     const luaCode = 'return {{10}, {100, 200}, {}}';
     const redis = new MockRedis();
     const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
     return redis
-      .defineCommand('someCmd', definition)
-      .then(() => redis.someCmd())
+      .someCmd()
       .then(val => expect(val).toEqual([[10], [100, 200], []]));
   });
 });
