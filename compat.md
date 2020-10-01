@@ -1,13 +1,15 @@
-## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-yellow.svg)
+## Supported commands ![Commands Coverage: 61%](https://img.shields.io/badge/coverage-61%25-yellow.svg)
 
 | redis                                                                 |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------------- | :----------------: | :----------------: |
+| [acl](http://redis.io/commands/ACL)                                   |        :x:         |        :x:         |
 | [append](http://redis.io/commands/APPEND)                             | :white_check_mark: | :white_check_mark: |
 | [auth](http://redis.io/commands/AUTH)                                 | :white_check_mark: | :white_check_mark: |
 | [bgrewriteaof](http://redis.io/commands/BGREWRITEAOF)                 | :white_check_mark: | :white_check_mark: |
 | [bgsave](http://redis.io/commands/BGSAVE)                             | :white_check_mark: | :white_check_mark: |
 | [bitcount](http://redis.io/commands/BITCOUNT)                         | :white_check_mark: |        :x:         |
 | [bitfield](http://redis.io/commands/BITFIELD)                         | :white_check_mark: |        :x:         |
+| [bitfield_ro](http://redis.io/commands/BITFIELD_RO)                   |        :x:         |        :x:         |
 | [bitop](http://redis.io/commands/BITOP)                               | :white_check_mark: |        :x:         |
 | [bitpos](http://redis.io/commands/BITPOS)                             | :white_check_mark: |        :x:         |
 | [blpop](http://redis.io/commands/BLPOP)                               | :white_check_mark: |        :x:         |
@@ -47,6 +49,7 @@
 | [getrange](http://redis.io/commands/GETRANGE)                         | :white_check_mark: | :white_check_mark: |
 | [getset](http://redis.io/commands/GETSET)                             | :white_check_mark: | :white_check_mark: |
 | [hdel](http://redis.io/commands/HDEL)                                 | :white_check_mark: | :white_check_mark: |
+| [hello](http://redis.io/commands/HELLO)                               |        :x:         |        :x:         |
 | [hexists](http://redis.io/commands/HEXISTS)                           | :white_check_mark: | :white_check_mark: |
 | [hget](http://redis.io/commands/HGET)                                 | :white_check_mark: | :white_check_mark: |
 | [hgetall](http://redis.io/commands/HGETALL)                           | :white_check_mark: | :white_check_mark: |
@@ -73,6 +76,7 @@
 | [llen](http://redis.io/commands/LLEN)                                 | :white_check_mark: | :white_check_mark: |
 | [lolwut](http://redis.io/commands/LOLWUT)                             | :white_check_mark: |        :x:         |
 | [lpop](http://redis.io/commands/LPOP)                                 | :white_check_mark: | :white_check_mark: |
+| [lpos](http://redis.io/commands/LPOS)                                 |        :x:         |        :x:         |
 | [lpush](http://redis.io/commands/LPUSH)                               | :white_check_mark: | :white_check_mark: |
 | [lpushx](http://redis.io/commands/LPUSHX)                             | :white_check_mark: | :white_check_mark: |
 | [lrange](http://redis.io/commands/LRANGE)                             | :white_check_mark: | :white_check_mark: |
@@ -142,6 +146,7 @@
 | [srandmember](http://redis.io/commands/SRANDMEMBER)                   | :white_check_mark: | :white_check_mark: |
 | [srem](http://redis.io/commands/SREM)                                 | :white_check_mark: | :white_check_mark: |
 | [sscan](http://redis.io/commands/SSCAN)                               | :white_check_mark: | :white_check_mark: |
+| [stralgo](http://redis.io/commands/STRALGO)                           |        :x:         |        :x:         |
 | [strlen](http://redis.io/commands/STRLEN)                             | :white_check_mark: | :white_check_mark: |
 | [subscribe](http://redis.io/commands/SUBSCRIBE)                       | :white_check_mark: | :white_check_mark: |
 | [sunion](http://redis.io/commands/SUNION)                             | :white_check_mark: | :white_check_mark: |
