@@ -11,10 +11,10 @@ describe('ltrim', () => {
     });
 
     return Promise.all([
-      redis.ltrim('foo', 0, 2).then(res => expect(res).toEqual('OK')),
+      redis.ltrim('foo', 0, 2).then((res) => expect(res).toEqual('OK')),
       redis
         .lrange('foo', 0, -1)
-        .then(res => expect(res).toEqual(['1', '2', '3'])),
+        .then((res) => expect(res).toEqual(['1', '2', '3'])),
     ]);
   });
 
@@ -26,10 +26,38 @@ describe('ltrim', () => {
     });
 
     return Promise.all([
-      redis.ltrim('foo', -3, -1).then(res => expect(res).toEqual('OK')),
+      redis.ltrim('foo', -3, -1).then((res) => expect(res).toEqual('OK')),
       redis
         .lrange('foo', 0, -1)
-        .then(res => expect(res).toEqual(['3', '4', '5'])),
+        .then((res) => expect(res).toEqual(['3', '4', '5'])),
+    ]);
+  });
+
+  it('should return all items if start less than 0', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: ['1', '2', '3', '4', '5'],
+      },
+    });
+
+    return Promise.all([
+      redis.ltrim('foo', -6, -1).then((res) => expect(res).toEqual('OK')),
+      redis
+        .lrange('foo', 0, -1)
+        .then((res) => expect(res).toEqual(['1', '2', '3', '4', '5'])),
+    ]);
+  });
+
+  it('should return empty if end - length before start', () => {
+    const redis = new MockRedis({
+      data: {
+        foo: ['1', '2', '3', '4', '5'],
+      },
+    });
+
+    return Promise.all([
+      redis.ltrim('foo', 0, -6).then((res) => expect(res).toEqual('OK')),
+      redis.lrange('foo', 0, -1).then((res) => expect(res).toEqual([])),
     ]);
   });
 
@@ -41,10 +69,10 @@ describe('ltrim', () => {
     });
 
     return Promise.all([
-      redis.ltrim('foo', 0, 100).then(res => expect(res).toEqual('OK')),
+      redis.ltrim('foo', 0, 100).then((res) => expect(res).toEqual('OK')),
       redis
         .lrange('foo', 0, -1)
-        .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
+        .then((res) => expect(res).toEqual(['1', '2', '3', '4', '5'])),
     ]);
   });
 
@@ -56,8 +84,8 @@ describe('ltrim', () => {
     });
 
     return Promise.all([
-      redis.ltrim('foo', 10, 100).then(res => expect(res).toEqual('OK')),
-      redis.lrange('foo', 0, -1).then(res => expect(res).toEqual([])),
+      redis.ltrim('foo', 10, 100).then((res) => expect(res).toEqual('OK')),
+      redis.lrange('foo', 0, -1).then((res) => expect(res).toEqual([])),
     ]);
   });
 
@@ -70,7 +98,7 @@ describe('ltrim', () => {
 
     return redis
       .ltrim('foo', 0, 2)
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });
