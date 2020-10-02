@@ -39,7 +39,7 @@ export function throwIfInSubscriberMode(commandName, RedisMock) {
 
 export function throwIfNotConnected(commandName, RedisMock) {
   if (isNotConnected(RedisMock)) {
-    if (commandName !== 'connect') {
+    if (commandName !== 'connect' && commandName !== 'defineCommand') {
       throw new Error(
         "Stream isn't writeable and enableOfflineQueue options is false"
       );
@@ -103,6 +103,15 @@ export default function command(commandEmulator, commandName, RedisMock) {
     }
 
     const commandArgs = processArguments(args, commandName, RedisMock);
+
+    if (commandName === 'defineCommand') {
+      return safelyExecuteCommand(
+        commandEmulator,
+        commandName,
+        RedisMock,
+        ...commandArgs
+      );
+    }
 
     const Promise = promiseContainer.get();
 
