@@ -1,3 +1,4 @@
+import { flatten } from 'lodash';
 import { scanHelper } from '../commands-utils/scan-command.common';
 
 export function zscan(key, cursor, ...args) {
@@ -5,6 +6,11 @@ export function zscan(key, cursor, ...args) {
     return ['0', []];
   }
   const zKeys = [];
-  this.data.get(key).forEach((_, mkey) => zKeys.push(mkey));
-  return scanHelper(zKeys, 1, cursor, ...args);
+
+  this.data.get(key).forEach(({ score, value }) => {
+    zKeys.push([value, score.toString()]);
+  });
+
+  const [offset, keys] = scanHelper(zKeys, 1, cursor, ...args);
+  return [offset, flatten(keys)];
 }
