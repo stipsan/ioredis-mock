@@ -17,11 +17,18 @@ const defaultOptions = {
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
 };
 
+const getKeyFromRedisConfig = (options = {}) => {
+  const { host = 'localhost', port = '6379' } = options;
+
+  return `${host}:${port}`;
+};
+
+const RedisContextMap = new Map();
+
 class RedisMock extends EventEmitter {
   constructor(options = {}) {
     super();
-    this.channels = new EventEmitter();
-    this.patternChannels = new EventEmitter();
+
     this.batch = undefined;
     this.connected = false;
     this.subscriberMode = false;
@@ -37,6 +44,25 @@ class RedisMock extends EventEmitter {
       optionsWithDefault.keyPrefix
     );
 
+    this.keyData = getKeyFromRedisConfig(options);
+
+    if (!RedisContextMap.get(this.keyData)) {
+      const expires = createExpires(optionsWithDefault.keyPrefix);
+
+      const context = {
+        channels: new EventEmitter(),
+        expires,
+        data: createData(
+          expires,
+          optionsWithDefault.data,
+          optionsWithDefault.keyPrefix
+        ),
+        patternChannels: new EventEmitter(),
+      };
+
+      RedisContextMap.set(this.keyData, context);
+    }
+
     this._initCommands();
 
     this.keyspaceEvents = parseKeyspaceEvents(
@@ -47,6 +73,66 @@ class RedisMock extends EventEmitter {
       this.connected = true;
       emitConnectEvent(this);
     }
+  }
+
+  get channels() {
+    return RedisContextMap.get(this.keyData).channels;
+  }
+
+  set channels(channels) {
+    const oldContext = RedisContextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      channels,
+    };
+
+    RedisContextMap.set(this.keyData, newContext);
+  }
+
+  get expires() {
+    return RedisContextMap.get(this.keyData).expires;
+  }
+
+  set expires(expires) {
+    const oldContext = RedisContextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      expires,
+    };
+
+    RedisContextMap.set(this.keyData, newContext);
+  }
+
+  get data() {
+    return RedisContextMap.get(this.keyData).data;
+  }
+
+  set data(data) {
+    const oldContext = RedisContextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      data,
+    };
+
+    RedisContextMap.set(this.keyData, newContext);
+  }
+
+  get patternChannels() {
+    return RedisContextMap.get(this.keyData).patternChannels;
+  }
+
+  set patternChannels(patternChannels) {
+    const oldContext = RedisContextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      patternChannels,
+    };
+
+    RedisContextMap.set(this.keyData, newContext);
   }
 
   multi(batch = []) {
@@ -99,7 +185,7 @@ class RedisMock extends EventEmitter {
   }
 
   _initCommands() {
-    Object.keys(commands).forEach(command => {
+    Object.keys(commands).forEach((command) => {
       const commandName = command === 'evaluate' ? 'eval' : command;
       this[commandName] = createCommand(
         commands[command].bind(this),
@@ -108,7 +194,7 @@ class RedisMock extends EventEmitter {
       );
     });
 
-    Object.keys(commandsStream).forEach(command => {
+    Object.keys(commandsStream).forEach((command) => {
       this[command] = commandsStream[command].bind(this);
     });
   }
@@ -127,7 +213,7 @@ RedisMock.prototype.Command = {
 
 Object.defineProperty(RedisMock, 'Promise', {
   get: () => promiseContainer.get(),
-  set: lib => promiseContainer.set(lib),
+  set: (lib) => promiseContainer.set(lib),
 });
 
 module.exports = RedisMock;
