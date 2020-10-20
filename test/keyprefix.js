@@ -14,12 +14,7 @@ describe('keyprefix', () => {
   describe('get', () => {
     it('should return null on keys that do not exist', () => {
       const redis = new Redis({ keyPrefix: 'test:' });
-      return redis.get('foo').then((result) => expect(result).toBe(null));
-    });
-
-    it('should return null on keys that do not exist', () => {
-      const redis = new Redis({ keyPrefix: 'test:' });
-      return redis.get('foo').then((result) => expect(result).toBe(null));
+      return redis.get('bar').then((result) => expect(result).toBe(null));
     });
 
     it('should return value of key', () => {
