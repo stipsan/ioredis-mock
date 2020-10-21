@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('eval', () => {
@@ -14,12 +12,12 @@ describe('eval', () => {
       .then(() => redis.set(KEY2, 20))
       .then(() => {
         const luaScript = `
-          local rcall = redis.call
-          local val1 = rcall("GET", KEYS[1])
-          local val2 = rcall("GET", KEYS[2])
-          local sum = val1 + val2
-          return ((val1 + val2) * ARGV[1]) + ARGV[2]
-        `;
+            local rcall = redis.call
+            local val1 = rcall("GET", KEYS[1])
+            local val2 = rcall("GET", KEYS[2])
+            local sum = val1 + val2
+            return ((val1 + val2) * ARGV[1]) + ARGV[2]
+          `;
 
         return redis
           .eval(luaScript, NUMBER_OF_KEYS, KEY1, KEY2, 100, 5)
@@ -41,7 +39,7 @@ describe('eval', () => {
 
       return redis
         .eval(luaScript, NUMBER_OF_KEYS, KEY1)
-        .then((result) => expect(result).toEqual(10));
+        .then((result) => expect(result).toEqual('10'));
     });
   });
 });

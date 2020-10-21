@@ -38,4 +38,4 @@ jobs:
       - name: npm install, build and test
         run: |
           yarn --frozen-lockfile --ignore-engines
-          npx mocha --require @babel/register --recursive
+          yarn test

@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import createExpires from '../src/expires';
 
 describe('createExpires', () => {

@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import createBuffer from '../src/buffer';
 
 describe('createBuffer', () => {

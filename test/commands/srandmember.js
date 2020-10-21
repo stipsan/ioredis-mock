@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Set from 'es6-set';
 
 import MockRedis from '../../src';
@@ -13,7 +12,7 @@ describe('srandmember', () => {
 
     return redis
       .srandmember('myset')
-      .then((result) => expect(['one', 'two', 'three']).toInclude(result));
+      .then((result) => expect(['one', 'two', 'three']).toContain(result));
   });
 
   it('should return random unique items', () => {
@@ -24,9 +23,9 @@ describe('srandmember', () => {
     });
 
     return redis.srandmember('myset', 2).then((results) => {
-      expect(['one', 'two', 'three']).toInclude(results[0]);
-      expect(['one', 'two', 'three']).toInclude(results[1]);
-      expect(results[0]).toNotBe(results[1]);
+      expect(['one', 'two', 'three']).toContain(results[0]);
+      expect(['one', 'two', 'three']).toContain(results[1]);
+      expect(results[0]).not.toBe(results[1]);
     });
   });
 
@@ -38,9 +37,9 @@ describe('srandmember', () => {
     });
 
     return redis.srandmember('myset', 5).then((results) => {
-      expect(['one', 'two', 'three']).toInclude(results[0]);
-      expect(['one', 'two', 'three']).toInclude(results[1]);
-      expect(['one', 'two', 'three']).toInclude(results[2]);
+      expect(['one', 'two', 'three']).toContain(results[0]);
+      expect(['one', 'two', 'three']).toContain(results[1]);
+      expect(['one', 'two', 'three']).toContain(results[2]);
     });
   });
 

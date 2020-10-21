@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../src';
 
 describe('multi', () => {
@@ -10,11 +8,11 @@ describe('multi', () => {
       ['incr', 'user_next'],
       ['incr', 'post_next'],
     ]);
-    expect(redis.batch).toBeA('object');
-    expect(redis.batch.batch).toBeA('array');
+    expect(typeof redis.batch).toBe('object');
+    expect(redis.batch.batch).toEqual(expect.any(Array));
     expect(redis.batch.batch.length).toBe(2);
-    expect(redis.batch.batch[0]).toBeA('function');
-    expect(redis.batch.batch[1]).toBeA('function');
+    expect(redis.batch.batch[0]).toEqual(expect.any(Function));
+    expect(redis.batch.batch[1]).toEqual(expect.any(Function));
   });
 
   it('allows for pipelining methods', () => {
@@ -26,7 +24,7 @@ describe('multi', () => {
       .incr('post_next')
       .exec()
       .then((results) => {
-        expect(results).toBeA('array');
+        expect(results).toEqual(expect.any(Array));
         expect(results.length).toBe(2);
         expect(results[0]).toEqual([null, 1]);
         expect(results[1]).toEqual([null, 1]);
@@ -53,7 +51,7 @@ describe('multi', () => {
       .incr('foo_next')
       .exec()
       .then((results) => {
-        expect(results).toBeA('array');
+        expect(results).toEqual(expect.any(Array));
         expect(results.length).toBe(4);
         expect(internalCallsCounter).toEqual(2);
       });
@@ -70,7 +68,7 @@ describe('multi', () => {
       .pipeline(commands)
       .exec()
       .then((results) => {
-        expect(results).toBeA('array');
+        expect(results).toEqual(expect.any(Array));
         expect(results.length).toBe(2);
         expect(results[0]).toEqual([null, 'OK']);
         expect(results[1]).toEqual([null, 'OK']);
@@ -95,7 +93,7 @@ describe('multi', () => {
     const redis = new MockRedis();
 
     return redis.exec().catch((err) => {
-      expect(err).toBeA(Error);
+      expect(err).toBeInstanceOf(Error);
     });
   });
 });

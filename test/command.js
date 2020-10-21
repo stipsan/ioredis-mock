@@ -1,5 +1,3 @@
-import expect, { createSpy } from 'expect';
-
 import createBuffer from '../src/buffer';
 import command from '../src/command';
 
@@ -11,7 +9,7 @@ describe('basic command', () => {
     stub('OK').then((reply) => expect(reply).toEqual(['OK'])));
 
   it('should support node style callbacks', () => {
-    const spy = createSpy();
+    const spy = jest.fn();
     return stub(spy).then(() => expect(spy).toHaveBeenCalled());
   });
 
@@ -29,7 +27,5 @@ describe('basic command', () => {
     );
   });
 
-  it(
-    'should reject the promise if the first argument is bool false to allow simulating failures'
-  );
+  it.skip('should reject the promise if the first argument is bool false to allow simulating failures', () => {});
 });

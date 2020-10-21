@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('connect', () => {
@@ -26,7 +24,7 @@ describe('connect', () => {
     setTimeout(() => {
       redis
         .connect()
-        .catch((reason) => expect(reason).toNotExist())
+        .catch((reason) => expect(reason).toBeFalsy())
         .then((result) => {
           expect(result).toBe(undefined);
           done();
@@ -45,7 +43,7 @@ describe('connect', () => {
           new Promise((resolve) => {
             redis
               .connect()
-              .catch((reason) => expect(reason).toBeA(Error))
+              .catch((reason) => expect(reason).toBeInstanceOf(Error))
               .then(() => resolve());
           })
       );

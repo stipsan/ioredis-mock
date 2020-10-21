@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('flushdb', () => {
@@ -14,5 +12,5 @@ describe('flushdb', () => {
       .flushdb()
       .then((status) => expect(status).toBe('OK'))
       .then(() => expect(redis.data.keys().length).toBe(0)));
-  it('should empty other db after SELECT');
+  it.skip('should empty other db after SELECT', () => {});
 });

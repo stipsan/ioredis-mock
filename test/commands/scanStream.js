@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';

@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Map from 'es6-map';
 import { WritableMock } from 'stream-mock';
 import Chance from 'chance';
@@ -127,7 +126,7 @@ describe('zscanStream', () => {
     stream.pipe(writable);
     stream.on('error', (err) => {
       // Then
-      expect(err).toBeA(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
     writable.on('finish', () => done(new Error('should not finish')));

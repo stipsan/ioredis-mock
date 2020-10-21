@@ -1,4 +1,3 @@
-import expect from 'expect';
 import parseKeyspaceEvents from '../src/keyspace-notifications';
 import MockRedis from '../src';
 

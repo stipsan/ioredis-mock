@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Promise from 'bluebird';
 
 import MockRedis from '../../src';
@@ -18,7 +17,7 @@ describe('pexpire', () => {
 
         return redis.pttl('foo');
       })
-      .then((result) => expect(result).toBeGreaterThanOrEqualTo(1))
+      .then((result) => expect(result).toBeGreaterThanOrEqual(1))
       .then(() => Promise.delay(200))
       .then(() => redis.get('foo'))
       .then((result) => expect(result).toBe(null));

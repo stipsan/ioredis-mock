@@ -1,5 +1,4 @@
 import Set from 'es6-set';
-import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('sscan', () => {
@@ -80,31 +79,31 @@ describe('sscan', () => {
   it('should fail if incorrect cursor', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 'ZU').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
     });
   });
   it('should fail if incorrect command', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 0, 'ZU').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
     });
   });
   it('should fail if incorrect MATCH usage', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 0, 'MATCH', 'pattern', 'ZU').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
     });
   });
   it('should fail if incorrect COUNT usage', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 0, 'COUNT', 10, 'ZU').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
     });
   });
   it('should fail if incorrect COUNT usage 2', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 0, 'COUNT', 'ZU').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
     });
   });
   it('should fail if too many arguments', () => {
@@ -112,7 +111,7 @@ describe('sscan', () => {
     return redis
       .sscan('key', 0, 'MATCH', 'foo*', 'COUNT', 1, 'ZU')
       .catch((result) => {
-        expect(result).toBeA(Error);
+        expect(result).toBeInstanceOf(Error);
         expect(result.message).toEqual('Too many arguments');
       });
   });
@@ -120,7 +119,7 @@ describe('sscan', () => {
   it('should fail if arguments length not odd', () => {
     const redis = new MockRedis();
     return redis.sscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch((result) => {
-      expect(result).toBeA(Error);
+      expect(result).toBeInstanceOf(Error);
       expect(result.message).toEqual(
         'Args should be provided by pair (name & value)'
       );

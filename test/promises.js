@@ -1,4 +1,3 @@
-import expect from 'expect';
 import bluebird from 'bluebird';
 
 import MockRedis from '../src';

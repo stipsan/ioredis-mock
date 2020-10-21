@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Map from 'es6-map';
 
 import MockRedis from '../../src';
