@@ -6,7 +6,7 @@ describe('keys', () => {
   it('should return an empty array if there are no keys', () => {
     const redis = new MockRedis();
 
-    return redis.keys('*').then(result => expect(result).toEqual([]));
+    return redis.keys('*').then((result) => expect(result).toEqual([]));
   });
 
   it('should return all data keys', () => {
@@ -19,7 +19,7 @@ describe('keys', () => {
 
     return redis
       .keys('*')
-      .then(result => expect(result).toEqual(['foo', 'baz']));
+      .then((result) => expect(result).toEqual(['foo', 'baz']));
   });
 
   it('should only return keys matching the given pattern', () => {
@@ -33,7 +33,7 @@ describe('keys', () => {
 
     return redis
       .keys('f*')
-      .then(result => expect(result).toEqual(['foo', 'flambé']));
+      .then((result) => expect(result).toEqual(['foo', 'flambé']));
   });
 
   it('should not return empty sets', () => {
@@ -43,6 +43,6 @@ describe('keys', () => {
       .sadd('a', 'b')
       .then(() => redis.srem('a', 'b'))
       .then(() => redis.keys('*'))
-      .then(result => expect(result).toEqual([]));
+      .then((result) => expect(result).toEqual([]));
   });
 });

@@ -3,7 +3,7 @@ export function hdel(key, ...fields) {
   if (!value) {
     return 0;
   }
-  const numDeleted = fields.filter(field => {
+  const numDeleted = fields.filter((field) => {
     if ({}.hasOwnProperty.call(value, field)) {
       delete value[field];
       return true;

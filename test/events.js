@@ -3,7 +3,7 @@ import expect, { createSpy } from 'expect';
 import MockRedis from '../src';
 
 describe('events', () => {
-  it('should trigger ready and connect events on instantiation', done => {
+  it('should trigger ready and connect events on instantiation', (done) => {
     const redis = new MockRedis({});
     const readySpy = createSpy();
     const connectSpy = createSpy();

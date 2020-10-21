@@ -99,7 +99,7 @@ class RedisMock extends EventEmitter {
   }
 
   _initCommands() {
-    Object.keys(commands).forEach(command => {
+    Object.keys(commands).forEach((command) => {
       const commandName = command === 'evaluate' ? 'eval' : command;
       this[commandName] = createCommand(
         commands[command].bind(this),
@@ -108,7 +108,7 @@ class RedisMock extends EventEmitter {
       );
     });
 
-    Object.keys(commandsStream).forEach(command => {
+    Object.keys(commandsStream).forEach((command) => {
       this[command] = commandsStream[command].bind(this);
     });
   }
@@ -127,7 +127,7 @@ RedisMock.prototype.Command = {
 
 Object.defineProperty(RedisMock, 'Promise', {
   get: () => promiseContainer.get(),
-  set: lib => promiseContainer.set(lib),
+  set: (lib) => promiseContainer.set(lib),
 });
 
 module.exports = RedisMock;

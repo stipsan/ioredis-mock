@@ -4,7 +4,7 @@ import {
 } from '../commands-utils/channel-subscription';
 
 export function subscribe(...args) {
-  args.forEach(chan => {
+  args.forEach((chan) => {
     if (!this.channels.instanceListeners) {
       this.channels.instanceListeners = new Map();
     }

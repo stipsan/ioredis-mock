@@ -10,7 +10,7 @@ describe('llen', () => {
       },
     });
 
-    return redis.llen('foo').then(length => expect(length).toBe(3));
+    return redis.llen('foo').then((length) => expect(length).toBe(3));
   });
 
   it('should return 0 if the list does not exist', () => {
@@ -18,7 +18,7 @@ describe('llen', () => {
       data: {},
     });
 
-    return redis.llen('foo').then(length => expect(length).toBe(0));
+    return redis.llen('foo').then((length) => expect(length).toBe(0));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -30,7 +30,7 @@ describe('llen', () => {
 
     return redis
       .llen('foo')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });

@@ -19,7 +19,7 @@ describe('zremrangebyrank', () => {
 
     return redis
       .zremrangebyrank('foo', 0, 2)
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
@@ -28,7 +28,7 @@ describe('zremrangebyrank', () => {
 
     return redis
       .zremrangebyrank('foo', 0, 2)
-      .then(status => expect(status).toBe(3))
+      .then((status) => expect(status).toBe(3))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
         expect(redis.data.get('foo').has('second')).toBe(false);
@@ -43,7 +43,7 @@ describe('zremrangebyrank', () => {
 
     return redis
       .zremrangebyrank('foo', -3, -1)
-      .then(status => expect(status).toBe(3))
+      .then((status) => expect(status).toBe(3))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(true);
         expect(redis.data.get('foo').has('second')).toBe(true);
@@ -58,7 +58,7 @@ describe('zremrangebyrank', () => {
 
     return redis
       .zremrangebyrank('foo', 0, 100)
-      .then(status => expect(status).toBe(5))
+      .then((status) => expect(status).toBe(5))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
         expect(redis.data.get('foo').has('second')).toBe(false);
@@ -73,7 +73,7 @@ describe('zremrangebyrank', () => {
 
     return redis
       .zremrangebyrank('foo', 10, 100)
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(true);
         expect(redis.data.get('foo').has('second')).toBe(true);
@@ -90,6 +90,8 @@ describe('zremrangebyrank', () => {
       },
     });
 
-    return redis.zremrangebyrank('foo', 0, 2).then(res => expect(res).toBe(0));
+    return redis
+      .zremrangebyrank('foo', 0, 2)
+      .then((res) => expect(res).toBe(0));
   });
 });

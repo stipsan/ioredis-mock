@@ -6,7 +6,10 @@ describe('multi', () => {
   it('should setup a batch queue that can be passed to exec', () => {
     const redis = new MockRedis();
 
-    redis.multi([['incr', 'user_next'], ['incr', 'post_next']]);
+    redis.multi([
+      ['incr', 'user_next'],
+      ['incr', 'post_next'],
+    ]);
     expect(redis.batch).toBeA('object');
     expect(redis.batch.batch).toBeA('array');
     expect(redis.batch.batch.length).toBe(2);
@@ -22,7 +25,7 @@ describe('multi', () => {
       .incr('user_next')
       .incr('post_next')
       .exec()
-      .then(results => {
+      .then((results) => {
         expect(results).toBeA('array');
         expect(results.length).toBe(2);
         expect(results[0]).toEqual([null, 1]);
@@ -49,7 +52,7 @@ describe('multi', () => {
       })
       .incr('foo_next')
       .exec()
-      .then(results => {
+      .then((results) => {
         expect(results).toBeA('array');
         expect(results.length).toBe(4);
         expect(internalCallsCounter).toEqual(2);
@@ -66,7 +69,7 @@ describe('multi', () => {
     return redis
       .pipeline(commands)
       .exec()
-      .then(results => {
+      .then((results) => {
         expect(results).toBeA('array');
         expect(results.length).toBe(2);
         expect(results[0]).toEqual([null, 'OK']);
@@ -79,7 +82,10 @@ describe('multi', () => {
 
   it('should increment _transactions', () => {
     const redis = new MockRedis();
-    const commands = [['incr', 'user_next'], ['incr', 'post_next']];
+    const commands = [
+      ['incr', 'user_next'],
+      ['incr', 'post_next'],
+    ];
     redis.multi(commands);
     // eslint-disable-next-line no-underscore-dangle
     expect(redis.batch._transactions).toEqual(commands.length + 1);
@@ -88,7 +94,7 @@ describe('multi', () => {
   it('errors if you exec without starting a pipeline', () => {
     const redis = new MockRedis();
 
-    return redis.exec().catch(err => {
+    return redis.exec().catch((err) => {
       expect(err).toBeA(Error);
     });
   });

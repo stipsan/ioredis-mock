@@ -10,5 +10,5 @@ describe('exists', () => {
     },
   });
   it('should return how many keys exists', () =>
-    redis.exists('foo', 'bar', 'baz').then(status => expect(status).toBe(2)));
+    redis.exists('foo', 'bar', 'baz').then((status) => expect(status).toBe(2)));
 });

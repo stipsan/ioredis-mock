@@ -18,7 +18,7 @@ describe('rpush', () => {
   it('should return the new length of the list', () => {
     const redis = new MockRedis();
 
-    return redis.rpush('foo', 9, 8, 7).then(length => expect(length).toBe(3));
+    return redis.rpush('foo', 9, 8, 7).then((length) => expect(length).toBe(3));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -30,7 +30,7 @@ describe('rpush', () => {
 
     return redis
       .rpush('foo', 1)
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });

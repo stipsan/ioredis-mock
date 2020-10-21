@@ -5,7 +5,7 @@ export function srem(key, ...vals) {
 
   let removed = 0;
   const set = this.data.get(key);
-  vals.forEach(val => {
+  vals.forEach((val) => {
     if (set.has(val)) {
       removed++;
     }

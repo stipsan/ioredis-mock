@@ -10,7 +10,7 @@ describe('incrbyfloat', () => {
 
     return redis
       .incrbyfloat('user_next', 10.1)
-      .then(userNext => expect(userNext).toBe('10.1'))
+      .then((userNext) => expect(userNext).toBe('10.1'))
       .then(() => expect(redis.data.get('user_next')).toBe('10.1'));
   });
   it('should increment an float with passed increment', () => {
@@ -22,9 +22,9 @@ describe('incrbyfloat', () => {
 
     return redis
       .incrbyfloat('mykey', 0.1)
-      .then(result => expect(result).toBe('10.6'))
+      .then((result) => expect(result).toBe('10.6'))
       .then(() => redis.incrbyfloat('mykey', -5))
-      .then(result => expect(result).toBe('5.6'))
+      .then((result) => expect(result).toBe('5.6'))
       .then(() => expect(redis.data.get('mykey')).toBe('5.6'));
   });
 
@@ -37,7 +37,7 @@ describe('incrbyfloat', () => {
 
     return redis
       .incrbyfloat('mykey', '2.0e2')
-      .then(result => expect(result).toBe('5200'))
+      .then((result) => expect(result).toBe('5200'))
       .then(() => expect(redis.data.get('mykey')).toBe('5200'));
   });
 });

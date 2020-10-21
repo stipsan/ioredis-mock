@@ -23,7 +23,7 @@ describe('eval', () => {
 
         return redis
           .eval(luaScript, NUMBER_OF_KEYS, KEY1, KEY2, 100, 5)
-          .then(result => expect(result).toEqual(3005));
+          .then((result) => expect(result).toEqual(3005));
       });
   });
 
@@ -41,7 +41,7 @@ describe('eval', () => {
 
       return redis
         .eval(luaScript, NUMBER_OF_KEYS, KEY1)
-        .then(result => expect(result).toEqual(10));
+        .then((result) => expect(result).toEqual(10));
     });
   });
 });

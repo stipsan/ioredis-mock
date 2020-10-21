@@ -4,7 +4,7 @@ import {
 } from '../commands-utils/channel-subscription';
 
 export function psubscribe(...args) {
-  args.forEach(pattern => {
+  args.forEach((pattern) => {
     if (!this.patternChannels.instanceListeners) {
       this.patternChannels.instanceListeners = new Map();
     }

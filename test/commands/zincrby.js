@@ -14,7 +14,7 @@ describe('zincrby', () => {
     const redis = new MockRedis({ data });
     return redis
       .zincrby('foos', 10, 'foo')
-      .then(status => expect(status).toBe('11'))
+      .then((status) => expect(status).toBe('11'))
       .then(() =>
         expect(redis.data.get('foos').get('foo')).toEqual({
           value: 'foo',
@@ -26,7 +26,7 @@ describe('zincrby', () => {
     const redis = new MockRedis({ data });
     return redis
       .zincrby('foos', 4, 'qux')
-      .then(status => expect(status).toBe('4'))
+      .then((status) => expect(status).toBe('4'))
       .then(() => {
         expect(redis.data.get('foos').get('qux')).toEqual({
           value: 'qux',

@@ -7,7 +7,7 @@ describe('getBuffer', () => {
   it('should return null on keys that do not exist', () => {
     const redis = new MockRedis();
 
-    return redis.getBuffer('foo').then(result => expect(result).toBe(null));
+    return redis.getBuffer('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should return value of key as buffer', () => {
@@ -17,7 +17,7 @@ describe('getBuffer', () => {
       },
     });
 
-    return redis.getBuffer('foo').then(result => {
+    return redis.getBuffer('foo').then((result) => {
       expect(Buffer.isBuffer(result)).toBeTruthy();
       expect(result).toEqual(Buffer.from('bar'));
     });
@@ -33,6 +33,6 @@ describe('getBuffer', () => {
 
     return redis
       .getBuffer('foo')
-      .then(result => expect(result.equals(bufferVal)).toBe(true));
+      .then((result) => expect(result.equals(bufferVal)).toBe(true));
   });
 });

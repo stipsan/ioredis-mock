@@ -14,7 +14,7 @@ const { lua, to_luastring: toLuaString } = fengari;
  * ->
  * @param fn - a function returning 0 for non-error and != 0 for error
  */
-export const defineRedisObject = vm => fn => {
+export const defineRedisObject = (vm) => (fn) => {
   vm.defineGlobalFunction(fn, 'call');
 
   // define redis object with call method
@@ -40,7 +40,7 @@ export const defineRedisObject = vm => fn => {
   lua.lua_setglobal(vm.L, toLuaString('redis'));
 };
 
-const callToRedisCommand = vm =>
+const callToRedisCommand = (vm) =>
   function callToRedisCommand2() {
     const rawArgs = vm.extractArgs();
     const returnError = rawArgs[0];

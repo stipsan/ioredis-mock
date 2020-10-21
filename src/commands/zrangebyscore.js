@@ -33,10 +33,10 @@ export function zrangebyscore(key, inputMin, inputMax, ...args) {
       ordered = offsetAndLimit(ordered, offset, limit);
     }
 
-    return flatMap(ordered, it => [it.value, it.score]);
+    return flatMap(ordered, (it) => [it.value, it.score]);
   }
 
-  const results = ordered.map(it => it.value);
+  const results = ordered.map((it) => it.value);
   if (limit !== null) {
     return offsetAndLimit(results, offset, limit);
   }

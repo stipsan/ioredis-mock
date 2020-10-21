@@ -15,7 +15,7 @@ describe('sinter', () => {
 
     return redis
       .sinter('key1', 'key2', 'key3')
-      .then(result => expect(result).toEqual(['c']));
+      .then((result) => expect(result).toEqual(['c']));
   });
 
   it('should throw an exception if one of the keys is not a set', () => {
@@ -28,7 +28,9 @@ describe('sinter', () => {
 
     return redis
       .sinter('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
+      .catch((err) =>
+        expect(err.message).toBe('Key bar does not contain a set')
+      );
   });
 
   it("should return empty array if sources don't exists", () => {
@@ -36,6 +38,6 @@ describe('sinter', () => {
 
     return redis
       .sinter('foo', 'bar')
-      .then(result => expect(result).toEqual([]));
+      .then((result) => expect(result).toEqual([]));
   });
 });

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Set from 'es6-set';
 
-const safeCount = count => {
+const safeCount = (count) => {
   const result = count !== undefined ? parseInt(count, 10) : 1;
   if (Number.isNaN(result) || result < 0) {
     throw new Error('ERR value is not an integer or out of range');
@@ -30,7 +30,7 @@ export function spop(key, count) {
   } else {
     values.shuffle(); // Randomize take
     result = values.take(want).value();
-    result.map(item => set.delete(item));
+    result.map((item) => set.delete(item));
   }
 
   this.data.set(key, set);

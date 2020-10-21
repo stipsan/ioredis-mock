@@ -11,14 +11,14 @@ describe('rename', () => {
     });
     return redis
       .rename('foo', 'bar')
-      .then(status => expect(status).toBe('OK'))
+      .then((status) => expect(status).toBe('OK'))
       .then(() => {
         expect(redis.data.has('foo')).toBe(false);
         expect(redis.data.get('bar')).toBe('baz');
       });
   });
 
-  it('should emit keyspace notifications if configured', done => {
+  it('should emit keyspace notifications if configured', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
     const redisPubSub = redis.createConnectedClient();
     let messagesReceived = 0;

@@ -6,7 +6,7 @@ describe('get', () => {
   it('should return null on keys that do not exist', () => {
     const redis = new MockRedis();
 
-    return redis.get('foo').then(result => expect(result).toBe(null));
+    return redis.get('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should return value of key', () => {
@@ -16,6 +16,6 @@ describe('get', () => {
       },
     });
 
-    return redis.get('foo').then(result => expect(result).toBe('bar'));
+    return redis.get('foo').then((result) => expect(result).toBe('bar'));
   });
 });

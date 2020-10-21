@@ -8,15 +8,15 @@ const chance = new Chance();
 
 describe('hscanStream', () => {
   let writable;
-  const flatten = wrt => _.flatten(wrt.data);
+  const flatten = (wrt) => _.flatten(wrt.data);
   const randomCCType = () => chance.cc_type({ raw: true });
-  const createHashSet = keys => _.zipObject(keys, keys.map(randomCCType));
+  const createHashSet = (keys) => _.zipObject(keys, keys.map(randomCCType));
 
   beforeEach(() => {
     writable = new ObjectWritableMock();
   });
 
-  it('should return null array if nothing in db', done => {
+  it('should return null array if nothing in db', (done) => {
     // Given
     const redis = new MockRedis();
     const stream = redis.hscanStream('key');
@@ -29,7 +29,7 @@ describe('hscanStream', () => {
     });
   });
 
-  it('should return keys in db', done => {
+  it('should return keys in db', (done) => {
     const redis = new MockRedis({
       data: {
         hset: createHashSet(['foo', 'bar']),
@@ -45,7 +45,7 @@ describe('hscanStream', () => {
     });
   });
 
-  it('should batch by count', done => {
+  it('should batch by count', (done) => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
@@ -61,7 +61,7 @@ describe('hscanStream', () => {
     });
   });
 
-  it('should return only mathced keys', done => {
+  it('should return only mathced keys', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -78,7 +78,7 @@ describe('hscanStream', () => {
     });
   });
 
-  it('should return only mathced keys by count', done => {
+  it('should return only mathced keys by count', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -96,7 +96,7 @@ describe('hscanStream', () => {
     });
   });
 
-  it('should fail if incorrect count usage', done => {
+  it('should fail if incorrect count usage', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -106,7 +106,7 @@ describe('hscanStream', () => {
     const stream = redis.hscanStream('hset', { count: 'ZU' });
     // When
     stream.pipe(writable);
-    stream.on('error', err => {
+    stream.on('error', (err) => {
       // Then
       expect(err).toBeA(Error);
       done();

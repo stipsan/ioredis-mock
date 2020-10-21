@@ -34,7 +34,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', 'bar')
-      .then(item => expect(item).toEqual(null));
+      .then((item) => expect(item).toEqual(null));
   });
 
   it('should return null if the source list is empty', () => {
@@ -46,7 +46,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', 'bar')
-      .then(item => expect(item).toEqual(null));
+      .then((item) => expect(item).toEqual(null));
   });
 
   it('should return the item', () => {
@@ -58,7 +58,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', 'bar')
-      .then(item => expect(item).toBe('bar'));
+      .then((item) => expect(item).toBe('bar'));
   });
 
   it('should return buffer values correctly', () => {
@@ -71,7 +71,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', bufferVal)
-      .then(item => expect(item).toBe(bufferVal));
+      .then((item) => expect(item).toBe(bufferVal));
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
@@ -84,7 +84,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', 'bar')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });
@@ -99,7 +99,7 @@ describe('rpoplpushBuffer', () => {
 
     return redis
       .rpoplpushBuffer('foo', 'bar')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key bar does not contain a list')
       );
   });

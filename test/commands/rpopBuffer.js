@@ -13,7 +13,7 @@ describe('rpopBuffer', () => {
 
     return redis
       .rpopBuffer('foo')
-      .then(result => expect(result).toBe('3'))
+      .then((result) => expect(result).toBe('3'))
       .then(() => expect(redis.data.get('foo')).toEqual(['1', '2']));
   });
 
@@ -27,7 +27,7 @@ describe('rpopBuffer', () => {
 
     return redis
       .rpopBuffer('foo')
-      .then(result => expect(result).toBe(bufferVal));
+      .then((result) => expect(result).toBe(bufferVal));
   });
 
   it('should return null on empty list', () => {
@@ -37,7 +37,7 @@ describe('rpopBuffer', () => {
       },
     });
 
-    return redis.rpopBuffer('foo').then(result => expect(result).toBe(null));
+    return redis.rpopBuffer('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -49,7 +49,7 @@ describe('rpopBuffer', () => {
 
     return redis
       .rpopBuffer('foo')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });

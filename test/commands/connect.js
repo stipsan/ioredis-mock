@@ -3,7 +3,7 @@ import expect from 'expect';
 import MockRedis from '../../src';
 
 describe('connect', () => {
-  it('should throw if redis has already connected in ctor', done => {
+  it('should throw if redis has already connected in ctor', (done) => {
     // no option specified means {lazyConnect: false}
     const redis = new MockRedis();
 
@@ -13,21 +13,21 @@ describe('connect', () => {
         .then(() => {
           throw new Error('connect should not have succeeded');
         })
-        .catch(reason => {
+        .catch((reason) => {
           expect(reason.message).toBe('Redis is already connecting/connected');
           done();
         });
     }, 20);
   });
 
-  it('should signal successful connection', done => {
+  it('should signal successful connection', (done) => {
     const redis = new MockRedis({ lazyConnect: true });
 
     setTimeout(() => {
       redis
         .connect()
-        .catch(reason => expect(reason).toNotExist())
-        .then(result => {
+        .catch((reason) => expect(reason).toNotExist())
+        .then((result) => {
           expect(result).toBe(undefined);
           done();
         });
@@ -39,13 +39,13 @@ describe('connect', () => {
 
     return redis
       .connect()
-      .then(result => expect(result).toBe(undefined))
+      .then((result) => expect(result).toBe(undefined))
       .then(
         () =>
-          new Promise(resolve => {
+          new Promise((resolve) => {
             redis
               .connect()
-              .catch(reason => expect(reason).toBeA(Error))
+              .catch((reason) => expect(reason).toBeA(Error))
               .then(() => resolve());
           })
       );
@@ -59,7 +59,7 @@ describe('connect', () => {
       .then(() => {
         throw new Error('get shall not succeed when redis is not connected');
       })
-      .catch(reason =>
+      .catch((reason) =>
         expect(reason.message).toBe(
           "Stream isn't writeable and enableOfflineQueue options is false"
         )

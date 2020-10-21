@@ -7,7 +7,7 @@ import MockRedis from '../src';
 
 describe('keyprefix', () => {
   let writable;
-  const flatten = wrt => _.flatten(wrt.data);
+  const flatten = (wrt) => _.flatten(wrt.data);
 
   beforeEach(() => {
     writable = new ObjectWritableMock({ objectMode: true });
@@ -16,12 +16,12 @@ describe('keyprefix', () => {
   describe('get', () => {
     it('should return null on keys that do not exist', () => {
       const redis = new MockRedis({ keyPrefix: 'test:' });
-      return redis.get('foo').then(result => expect(result).toBe(null));
+      return redis.get('foo').then((result) => expect(result).toBe(null));
     });
 
     it('should return null on keys that do not exist', () => {
       const redis = new MockRedis({ keyPrefix: 'test:' });
-      return redis.get('foo').then(result => expect(result).toBe(null));
+      return redis.get('foo').then((result) => expect(result).toBe(null));
     });
 
     it('should return value of key', () => {
@@ -32,7 +32,7 @@ describe('keyprefix', () => {
         keyPrefix: 'test:',
       });
 
-      return redis.get('foo').then(result => expect(result).toBe('bar'));
+      return redis.get('foo').then((result) => expect(result).toBe('bar'));
     });
   });
 
@@ -41,7 +41,7 @@ describe('keyprefix', () => {
       const redis = new MockRedis({ keyPrefix: 'test:' });
       return redis
         .set('foo', 'bar')
-        .then(status => expect(status).toBe('OK'))
+        .then((status) => expect(status).toBe('OK'))
         .then(() => expect(redis.data.get('foo')).toBe('bar'));
     });
 
@@ -49,7 +49,7 @@ describe('keyprefix', () => {
       const redis = new MockRedis({ keyPrefix: 'test:' });
       return redis
         .set('foo', 1.5)
-        .then(status => expect(status).toBe('OK'))
+        .then((status) => expect(status).toBe('OK'))
         .then(() => expect(redis.data.get('foo')).toBe('1.5'));
     });
   });
@@ -66,16 +66,16 @@ describe('keyprefix', () => {
     it('should delete passed in keys', () =>
       redis
         .del('deleteme', 'metoo')
-        .then(status => expect(status).toBe(2))
+        .then((status) => expect(status).toBe(2))
         .then(() => expect(redis.data.has('deleteme')).toBe(false))
         .then(() => expect(redis.data.has('metoo')).toBe(false)));
 
     it('return the number of keys removed', () =>
-      redis.del('deleteme', 'metoo').then(status => expect(status).toBe(0)));
+      redis.del('deleteme', 'metoo').then((status) => expect(status).toBe(0)));
   });
 
   describe('scanSream', () => {
-    it('should batch by count', done => {
+    it('should batch by count', (done) => {
       // Given
       const chance = new Chance();
       const keys = chance.unique(chance.word, 100);
@@ -95,7 +95,7 @@ describe('keyprefix', () => {
       });
     });
 
-    it('should return  keys', done => {
+    it('should return  keys', (done) => {
       // Given
       const redis = new MockRedis({
         data: {
@@ -115,7 +115,7 @@ describe('keyprefix', () => {
       });
     });
 
-    it('should return only mathced keys', done => {
+    it('should return only mathced keys', (done) => {
       // Given
       const redis = new MockRedis({
         data: {
@@ -151,22 +151,22 @@ describe('keyprefix', () => {
     });
 
     it('should return value of key using prefix', () =>
-      redis1.get('foo').then(result => expect(result).toEqual('bar')));
+      redis1.get('foo').then((result) => expect(result).toEqual('bar')));
 
     it('should return null on keys that do not exist for that prefix', () =>
-      redis2.get('foo').then(result => expect(result).toBe(null)));
+      redis2.get('foo').then((result) => expect(result).toBe(null)));
 
     it('setting with one prefix should not affect same key with another prefix', () =>
       redis2
         .set('hello', 'ioredis')
-        .then(status => expect(status).toBe('OK'))
+        .then((status) => expect(status).toBe('OK'))
         .then(() => redis1.get('hello'))
-        .then(result => expect(result).toBe('world')));
+        .then((result) => expect(result).toBe('world')));
 
     it('should return value of key if the prefix is the same', () =>
       redis2
         .set('hello', 'ioredis')
-        .then(status => expect(status).toBe('OK'))
+        .then((status) => expect(status).toBe('OK'))
         .then(() => expect(redis2.data.get('hello')).toBe('ioredis')));
   });
 });

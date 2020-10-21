@@ -8,7 +8,7 @@ export function zremrangebyscore(key, inputMin, inputMax) {
   }
 
   const map = this.data.get(key);
-  vals.forEach(val => {
+  vals.forEach((val) => {
     map.delete(val);
   });
   this.data.set(key, map);

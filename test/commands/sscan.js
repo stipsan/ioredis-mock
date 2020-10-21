@@ -5,7 +5,7 @@ import MockRedis from '../../src';
 describe('sscan', () => {
   it('should return null array if set does not exist', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0).then(result => {
+    return redis.sscan('key', 0).then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual([]);
     });
@@ -18,7 +18,7 @@ describe('sscan', () => {
       },
     });
 
-    return redis.sscan('set', 0).then(result => {
+    return redis.sscan('set', 0).then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo', 'bar', 'baz']);
     });
@@ -31,7 +31,7 @@ describe('sscan', () => {
       },
     });
 
-    return redis.sscan('set', 0, 'MATCH', 'foo*').then(result => {
+    return redis.sscan('set', 0, 'MATCH', 'foo*').then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo0', 'foo1', 'foo2']);
     });
@@ -46,12 +46,12 @@ describe('sscan', () => {
 
     return redis
       .sscan('set', 0, 'MATCH', 'foo*', 'COUNT', 1)
-      .then(result => {
+      .then((result) => {
         expect(result[0]).toBe('1'); // more elements left, this is why cursor is not 0
         expect(result[1]).toEqual(['foo0']);
         return redis.sscan('set', result[0], 'MATCH', 'foo*', 'COUNT', 10);
       })
-      .then(result2 => {
+      .then((result2) => {
         expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['foo1', 'foo2']);
       });
@@ -66,12 +66,12 @@ describe('sscan', () => {
 
     return redis
       .sscan('set', 0, 'COUNT', 3)
-      .then(result => {
+      .then((result) => {
         expect(result[0]).toBe('3');
         expect(result[1]).toEqual(['foo0', 'foo1', 'bar0']);
         return redis.sscan('set', result[0], 'COUNT', 3);
       })
-      .then(result2 => {
+      .then((result2) => {
         expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['bar1']);
       });
@@ -79,31 +79,31 @@ describe('sscan', () => {
 
   it('should fail if incorrect cursor', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 'ZU').catch(result => {
+    return redis.sscan('key', 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should fail if incorrect command', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0, 'ZU').catch(result => {
+    return redis.sscan('key', 0, 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should fail if incorrect MATCH usage', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0, 'MATCH', 'pattern', 'ZU').catch(result => {
+    return redis.sscan('key', 0, 'MATCH', 'pattern', 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should fail if incorrect COUNT usage', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0, 'COUNT', 10, 'ZU').catch(result => {
+    return redis.sscan('key', 0, 'COUNT', 10, 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should fail if incorrect COUNT usage 2', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0, 'COUNT', 'ZU').catch(result => {
+    return redis.sscan('key', 0, 'COUNT', 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
@@ -111,7 +111,7 @@ describe('sscan', () => {
     const redis = new MockRedis();
     return redis
       .sscan('key', 0, 'MATCH', 'foo*', 'COUNT', 1, 'ZU')
-      .catch(result => {
+      .catch((result) => {
         expect(result).toBeA(Error);
         expect(result.message).toEqual('Too many arguments');
       });
@@ -119,7 +119,7 @@ describe('sscan', () => {
 
   it('should fail if arguments length not odd', () => {
     const redis = new MockRedis();
-    return redis.sscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch(result => {
+    return redis.sscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch((result) => {
       expect(result).toBeA(Error);
       expect(result.message).toEqual(
         'Args should be provided by pair (name & value)'

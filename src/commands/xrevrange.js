@@ -13,10 +13,7 @@ export function xrevrange(stream, end, start, ...args) {
     return [];
   }
 
-  const list = this.data
-    .get(stream)
-    .slice()
-    .reverse();
+  const list = this.data.get(stream).slice().reverse();
   const min = start === '-' ? -Infinity : start;
   const max = end === '+' ? Infinity : end;
 

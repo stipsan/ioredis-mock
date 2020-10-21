@@ -78,7 +78,7 @@ describe('lua', () => {
             args.push(a);
             a += 1;
           }
-          const argu = args.map(i => interop.tojs(vm.L, i));
+          const argu = args.map((i) => interop.tojs(vm.L, i));
 
           wasCalledWith = argu;
 

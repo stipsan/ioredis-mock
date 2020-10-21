@@ -1,21 +1,21 @@
 const MAX_OFFSET = 2 ** 32 - 1;
 const STR_BIT_0 = String.fromCharCode(0);
 
-const constantLengthOf = len => str =>
+const constantLengthOf = (len) => (str) =>
   str +
   Array(Math.max(0, len - str.length))
     .fill(STR_BIT_0)
     .join('');
 
 /* eslint-disable no-bitwise */
-const getBitAt = position => byte => (byte >> position) & 1;
-const setBitAt = position => byte => byte | (1 << position);
-const resetBitAt = position => byte => byte & ~(1 << position);
+const getBitAt = (position) => (byte) => (byte >> position) & 1;
+const setBitAt = (position) => (byte) => byte | (1 << position);
+const resetBitAt = (position) => (byte) => byte & ~(1 << position);
 /* eslint-enable no-bitwise */
-const setOrResetBitAt = bit => (bit === 1 ? setBitAt : resetBitAt);
+const setOrResetBitAt = (bit) => (bit === 1 ? setBitAt : resetBitAt);
 
-const getByteAt = position => str => str.charCodeAt(position);
-const setByteAt = byte => position => str =>
+const getByteAt = (position) => (str) => str.charCodeAt(position);
+const setByteAt = (byte) => (position) => (str) =>
   str.substr(0, position) +
   String.fromCharCode(byte) +
   str.substr(position + 1);

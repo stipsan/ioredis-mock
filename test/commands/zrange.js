@@ -19,7 +19,7 @@ describe('zrange', () => {
 
     return redis
       .zrange('foo', 0, 2)
-      .then(res => expect(res).toEqual(['first', 'second', 'third']));
+      .then((res) => expect(res).toEqual(['first', 'second', 'third']));
   });
 
   it('should return last 3 items', () => {
@@ -27,7 +27,7 @@ describe('zrange', () => {
 
     return redis
       .zrange('foo', -3, -1)
-      .then(res => expect(res).toEqual(['third', 'fourth', 'fifth']));
+      .then((res) => expect(res).toEqual(['third', 'fourth', 'fifth']));
   });
 
   it('should return all items on larger ranges', () => {
@@ -35,7 +35,7 @@ describe('zrange', () => {
 
     return redis
       .zrange('foo', 0, 100)
-      .then(res =>
+      .then((res) =>
         expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
       );
   });
@@ -43,7 +43,7 @@ describe('zrange', () => {
   it('should return empty array if out-of-range', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zrange('foo', 10, 100).then(res => expect(res).toEqual([]));
+    return redis.zrange('foo', 10, 100).then((res) => expect(res).toEqual([]));
   });
 
   it('should return empty array if the key contains something other than a list', () => {
@@ -53,14 +53,16 @@ describe('zrange', () => {
       },
     });
 
-    return redis.zrange('foo', 0, 2).then(res => expect(res).toEqual([]));
+    return redis.zrange('foo', 0, 2).then((res) => expect(res).toEqual([]));
   });
 
   it('should include scores if WITHSCORES is specified', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrange('foo', 0, 2, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['first', 1, 'second', 2, 'third', 3]));
+      .then((res) =>
+        expect(res).toEqual(['first', 1, 'second', 2, 'third', 3])
+      );
   });
 
   it('should sort items with the same score lexicographically', () => {
@@ -77,6 +79,6 @@ describe('zrange', () => {
 
     return redis
       .zrange('foo', 0, 100)
-      .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']));
+      .then((res) => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']));
   });
 });

@@ -28,13 +28,13 @@ describe('defineCommand', () => {
       const definition = { numberOfKeys: 1, lua: luaCode };
       return redis
         .set(someKey, initialValue)
-        .then(status => expect(status).toBe('OK'))
+        .then((status) => expect(status).toBe('OK'))
         .then(() => {
           redis.defineCommand('inc2', definition);
         })
         .then(() => redis.inc2(someKey, 5))
         .then(() => redis.get('k'))
-        .then(newValue => expect(newValue).toBe(6));
+        .then((newValue) => expect(newValue).toBe(6));
     });
   });
 
@@ -43,7 +43,7 @@ describe('defineCommand', () => {
     const redis = new MockRedis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
-    return redis.someCmd().then(val => expect(val).toEqual([10, 100, 200]));
+    return redis.someCmd().then((val) => expect(val).toEqual([10, 100, 200]));
   });
 
   it('should support custom commmands returning a table/array of table/array elements', () => {
@@ -53,6 +53,6 @@ describe('defineCommand', () => {
     redis.defineCommand('someCmd', definition);
     return redis
       .someCmd()
-      .then(val => expect(val).toEqual([[10], [100, 200], []]));
+      .then((val) => expect(val).toEqual([[10], [100, 200], []]));
   });
 });

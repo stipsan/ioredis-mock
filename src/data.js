@@ -90,7 +90,7 @@ export default function createData(
 
   const data = createInstance(keyPrefix, expiresInstance);
 
-  Object.keys(initial).forEach(key => data.set(key, initial[key]));
+  Object.keys(initial).forEach((key) => data.set(key, initial[key]));
 
   return data;
 }
