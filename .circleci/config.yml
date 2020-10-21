@@ -19,7 +19,7 @@ jobs:
       # --frozen-lockfile ensures yarn.lockfile isn't accidentally outdated compared to package.json
       - run: yarn install --no-progress --frozen-lockfile
 
-      - run: yarn coverage
+      - run: yarn coverage --runInBand
 
       - run: yarn codeclimate
 
