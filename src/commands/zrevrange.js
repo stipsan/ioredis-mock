@@ -21,7 +21,7 @@ export function zrevrange(key, s, e, w) {
     arrayFrom(map.values()),
     ['score', 'value'],
     ['desc', 'desc']
-  ).map(it => {
+  ).map((it) => {
     if (w) {
       return [it.value, it.score];
     }

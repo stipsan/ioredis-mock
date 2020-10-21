@@ -6,7 +6,9 @@ describe('hstrlen', () => {
   it('should return 0 on keys that do not exist', () => {
     const redis = new MockRedis();
 
-    return redis.hstrlen('nonexisting').then(result => expect(result).toBe(0));
+    return redis
+      .hstrlen('nonexisting')
+      .then((result) => expect(result).toBe(0));
   });
 
   it('should return 0 on fields that do not exist', () => {
@@ -14,7 +16,7 @@ describe('hstrlen', () => {
 
     return redis
       .hstrlen('nonexisting', 'foo')
-      .then(result => expect(result).toBe(0));
+      .then((result) => expect(result).toBe(0));
   });
 
   it('should return length on existing fields', () => {
@@ -28,6 +30,6 @@ describe('hstrlen', () => {
 
     return redis
       .hstrlen('mykey', 'foo')
-      .then(result => expect(result).toBe(11));
+      .then((result) => expect(result).toBe(11));
   });
 });

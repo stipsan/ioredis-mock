@@ -8,7 +8,7 @@ describe('basic command', () => {
     Command: { transformers: { argument: {}, reply: {} } },
   });
   it('should return a Promise that resolves the returned value', () =>
-    stub('OK').then(reply => expect(reply).toEqual(['OK'])));
+    stub('OK').then((reply) => expect(reply).toEqual(['OK'])));
 
   it('should support node style callbacks', () => {
     const spy = createSpy();
@@ -17,14 +17,14 @@ describe('basic command', () => {
 
   it('should convert non-buffer arguments to strings', () => {
     const args = [createBuffer('foo'), 'bar', 1, null, undefined];
-    return stub(...args).then(reply =>
+    return stub(...args).then((reply) =>
       expect(reply).toEqual([createBuffer('foo'), 'bar', '1', '', ''])
     );
   });
 
   it('should flatten args', () => {
     const args = [['foo', 'bar', 'baz']];
-    return stub(...args).then(reply =>
+    return stub(...args).then((reply) =>
       expect(reply).toEqual(['foo', 'bar', 'baz'])
     );
   });

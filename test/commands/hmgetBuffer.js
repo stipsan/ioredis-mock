@@ -12,7 +12,7 @@ describe('hmgetBuffer', () => {
     });
     return redis
       .hmgetBuffer('user:1', 'id', 'email', 'location')
-      .then(values => {
+      .then((values) => {
         expect(Buffer.isBuffer(values[0])).toBeTruthy();
         expect(Buffer.isBuffer(values[1])).toBeTruthy();
         expect(Buffer.isBuffer(values[2])).toBeFalsy();
@@ -28,6 +28,6 @@ describe('hmgetBuffer', () => {
     const redis = new MockRedis();
     return redis
       .hmgetBuffer('user:1', 'id', 'email', 'location')
-      .then(values => expect(values).toEqual([null, null, null]));
+      .then((values) => expect(values).toEqual([null, null, null]));
   });
 });

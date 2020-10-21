@@ -12,20 +12,20 @@ describe('pexpire', () => {
     });
     return redis
       .pexpire('foo', 100)
-      .then(status => {
+      .then((status) => {
         expect(status).toBe(1);
         expect(redis.expires.has('foo')).toBe(true);
 
         return redis.pttl('foo');
       })
-      .then(result => expect(result).toBeGreaterThanOrEqualTo(1))
+      .then((result) => expect(result).toBeGreaterThanOrEqualTo(1))
       .then(() => Promise.delay(200))
       .then(() => redis.get('foo'))
-      .then(result => expect(result).toBe(null));
+      .then((result) => expect(result).toBe(null));
   });
 
   it('should return 0 if key does not exist', () => {
     const redis = new MockRedis();
-    return redis.pexpire('foo', 100).then(status => expect(status).toBe(0));
+    return redis.pexpire('foo', 100).then((status) => expect(status).toBe(0));
   });
 });

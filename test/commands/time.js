@@ -7,7 +7,7 @@ describe('time', () => {
     const redis = new MockRedis();
     const time = Math.round(new Date().getTime() / 1000);
 
-    return redis.time().then(result => {
+    return redis.time().then((result) => {
       expect(result[0]).toBeGreaterThanOrEqualTo(time);
       expect(result[0]).toBeLessThan(time + 10);
       expect(result[1]).toBeA('number');

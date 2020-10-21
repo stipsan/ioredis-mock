@@ -48,7 +48,7 @@ describe('lrem', () => {
 
     return redis
       .lrem('foo', -2, 'baz')
-      .then(removed => expect(removed).toBe(1));
+      .then((removed) => expect(removed).toBe(1));
   });
 
   it('should return 0 if the key contains something other than a list', () => {
@@ -58,6 +58,6 @@ describe('lrem', () => {
       },
     });
 
-    return redis.lrem('foo', 1).then(removed => expect(removed).toBe(0));
+    return redis.lrem('foo', 1).then((removed) => expect(removed).toBe(0));
   });
 });

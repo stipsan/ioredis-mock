@@ -53,7 +53,7 @@ export function xread(option, ...args) {
     );
 
   return op === 'BLOCK'
-    ? new Promise(resolve => {
+    ? new Promise((resolve) => {
         let timeElapsed = 0;
         const f = () =>
           setTimeout(() => {
@@ -65,7 +65,7 @@ export function xread(option, ...args) {
           }, 100);
         f();
       })
-    : new Promise(resolve => {
+    : new Promise((resolve) => {
         const events = pollEvents(toPoll, opVal);
         if (events.length === 0) return resolve(null);
         return resolve(events.slice().reverse());

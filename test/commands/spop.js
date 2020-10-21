@@ -11,7 +11,7 @@ describe('spop', () => {
       },
     });
 
-    return redis.spop('myset').then(result => {
+    return redis.spop('myset').then((result) => {
       expect(result.constructor).toBe(String);
       expect(['one', 'two', 'three']).toInclude(result);
       expect(redis.data.get('myset').size).toBe(2);
@@ -25,7 +25,7 @@ describe('spop', () => {
       },
     });
 
-    return redis.spop('myset').then(result => {
+    return redis.spop('myset').then((result) => {
       expect(result.constructor).toBe(String);
       expect(result).toBe('one');
       expect(redis.data.get('myset').size).toBe(0);
@@ -39,7 +39,7 @@ describe('spop', () => {
       },
     });
 
-    return redis.spop('myset', 2).then(results => {
+    return redis.spop('myset', 2).then((results) => {
       expect(['one', 'two', 'three']).toInclude(results[0]);
       expect(['one', 'two', 'three']).toInclude(results[1]);
       expect(redis.data.get('myset').size).toBe(1);
@@ -53,7 +53,7 @@ describe('spop', () => {
       },
     });
 
-    return redis.spop('myset', 5).then(results => {
+    return redis.spop('myset', 5).then((results) => {
       expect(results).toEqual(['one', 'two', 'three']);
       expect(redis.data.get('myset').size).toBe(0);
     });
@@ -62,7 +62,7 @@ describe('spop', () => {
   it('should return null if set is empty', () => {
     const redis = new MockRedis();
 
-    return redis.spop('myset').then(result => expect(result).toBe(null));
+    return redis.spop('myset').then((result) => expect(result).toBe(null));
   });
 
   it('should return undefined if count is 0', () => {
@@ -74,7 +74,7 @@ describe('spop', () => {
 
     return redis
       .spop('myset', 0)
-      .then(result => expect(result).toBe(undefined));
+      .then((result) => expect(result).toBe(undefined));
   });
 
   it('should throw an exception if the key contains something other than a set', () => {
@@ -86,7 +86,9 @@ describe('spop', () => {
 
     return redis
       .spop('foo')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
+      .catch((err) =>
+        expect(err.message).toBe('Key foo does not contain a set')
+      );
   });
 
   it('should throw an exception if count is not an integer', () => {
@@ -98,7 +100,7 @@ describe('spop', () => {
 
     return redis
       .spop('myset', 'not an integer')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('ERR value is not an integer or out of range')
       );
   });
@@ -112,7 +114,7 @@ describe('spop', () => {
 
     return redis
       .spop('myset', -10)
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('ERR value is not an integer or out of range')
       );
   });

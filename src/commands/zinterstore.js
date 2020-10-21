@@ -18,7 +18,7 @@ export function zinterstore(destKey, numKeys, ...keys) {
   }
 
   // deep copy inputs
-  const inputs = srcMaps.map(x =>
+  const inputs = srcMaps.map((x) =>
     JSON.parse(JSON.stringify(arrayFrom(x.values())))
   );
 

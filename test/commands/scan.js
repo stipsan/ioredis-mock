@@ -4,7 +4,7 @@ import MockRedis from '../../src';
 describe('scan', () => {
   it('should return null array if nothing in db', () => {
     const redis = new MockRedis();
-    return redis.scan(0).then(result => {
+    return redis.scan(0).then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual([]);
     });
@@ -18,38 +18,38 @@ describe('scan', () => {
       },
     });
 
-    return redis.scan(0).then(result => {
+    return redis.scan(0).then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo', 'test']);
     });
   });
   it('should return fail if incorrect count', () => {
     const redis = new MockRedis();
-    return redis.scan('asdf').catch(result => {
+    return redis.scan('asdf').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should return fail if incorrect command', () => {
     const redis = new MockRedis();
-    return redis.scan(0, 'ZU').catch(result => {
+    return redis.scan(0, 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should return fail if incorrect MATCH usage', () => {
     const redis = new MockRedis();
-    return redis.scan(0, 'MATCH', 'sadf', 'ZU').catch(result => {
+    return redis.scan(0, 'MATCH', 'sadf', 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should return fail if incorrect COUNT usage', () => {
     const redis = new MockRedis();
-    return redis.scan(0, 'COUNT', 10, 'ZU').catch(result => {
+    return redis.scan(0, 'COUNT', 10, 'ZU').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
   it('should return fail if incorrect COUNT usage 2', () => {
     const redis = new MockRedis();
-    return redis.scan(0, 'COUNT', 'adsf').catch(result => {
+    return redis.scan(0, 'COUNT', 'adsf').catch((result) => {
       expect(result).toBeA(Error);
     });
   });
@@ -64,7 +64,7 @@ describe('scan', () => {
       },
     });
 
-    return redis.scan(0, 'MATCH', 'foo*').then(result => {
+    return redis.scan(0, 'MATCH', 'foo*').then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual(['foo0', 'foo1', 'foo2']);
     });
@@ -82,12 +82,12 @@ describe('scan', () => {
 
     return redis
       .scan(0, 'MATCH', 'foo*', 'COUNT', 1)
-      .then(result => {
+      .then((result) => {
         expect(result[0]).toBe('1'); // more elements left, this is why cursor is not 0
         expect(result[1]).toEqual(['foo0']);
         return redis.scan(result[0], 'MATCH', 'foo*', 'COUNT', 10);
       })
-      .then(result2 => {
+      .then((result2) => {
         expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['foo1', 'foo2']);
       });
@@ -104,12 +104,12 @@ describe('scan', () => {
 
     return redis
       .scan(0, 'COUNT', 3)
-      .then(result => {
+      .then((result) => {
         expect(result[0]).toBe('3');
         expect(result[1]).toEqual(['foo0', 'foo1', 'test0']);
         return redis.scan(result[0], 'COUNT', 3);
       })
-      .then(result2 => {
+      .then((result2) => {
         expect(result2[0]).toBe('0');
         expect(result2[1]).toEqual(['test1']);
       });

@@ -13,7 +13,7 @@ describe('hgetBuffer', () => {
       },
     });
 
-    return redis.hgetBuffer('emails', 'clark@daily.planet').then(userId => {
+    return redis.hgetBuffer('emails', 'clark@daily.planet').then((userId) => {
       expect(Buffer.isBuffer(userId)).toBeTruthy();
       expect(userId).toEqual(createBuffer('1'));
     });
@@ -23,7 +23,7 @@ describe('hgetBuffer', () => {
     const redis = new MockRedis();
     return redis
       .hgetBuffer('emails', 'clark@daily.planet')
-      .then(userId => expect(userId).toBe(null));
+      .then((userId) => expect(userId).toBe(null));
   });
 
   it('should return null if the item does not exist in the hash', () => {
@@ -37,6 +37,6 @@ describe('hgetBuffer', () => {
 
     return redis
       .hgetBuffer('emails', 'lois@daily.planet')
-      .then(userId => expect(userId).toBe(null));
+      .then((userId) => expect(userId).toBe(null));
   });
 });

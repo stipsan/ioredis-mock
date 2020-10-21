@@ -12,9 +12,9 @@ describe('hincrbyfloat', () => {
 
     return redis
       .hincrbyfloat('mykey', 'field', 0.1)
-      .then(result => expect(result).toBe('10.6'))
+      .then((result) => expect(result).toBe('10.6'))
       .then(() => redis.hincrbyfloat('mykey', 'field', -5))
-      .then(result => expect(result).toBe('5.6'))
+      .then((result) => expect(result).toBe('5.6'))
       .then(() => expect(redis.data.get('mykey').field).toBe('5.6'));
   });
 
@@ -27,7 +27,7 @@ describe('hincrbyfloat', () => {
 
     return redis
       .hincrbyfloat('mykey', 'field', '2.0e2')
-      .then(result => expect(result).toBe('5200'))
+      .then((result) => expect(result).toBe('5200'))
       .then(() => expect(redis.data.get('mykey').field).toBe('5200'));
   });
 
@@ -36,7 +36,7 @@ describe('hincrbyfloat', () => {
 
     return redis
       .hincrbyfloat('stats', 'health', 0.5)
-      .then(result => expect(result).toBe('0.5'))
+      .then((result) => expect(result).toBe('0.5'))
       .then(() => expect(redis.data.get('stats').health).toBe('0.5'));
   });
 
@@ -49,7 +49,7 @@ describe('hincrbyfloat', () => {
 
     return redis
       .hincrbyfloat('stats', 'health', 0.5)
-      .then(result => expect(result).toBe('0.5'))
+      .then((result) => expect(result).toBe('0.5'))
       .then(() => expect(redis.data.get('stats').health).toBe('0.5'));
   });
 });

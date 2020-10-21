@@ -22,12 +22,12 @@ describe('lpushx', () => {
       },
     });
 
-    return redis.lpushx('foo', 1).then(result => expect(result).toBe(2));
+    return redis.lpushx('foo', 1).then((result) => expect(result).toBe(2));
   });
 
   it('should return 0 if list does not exist', () => {
     const redis = new MockRedis();
 
-    return redis.lpushx('foo', 1).then(result => expect(result).toBe(0));
+    return redis.lpushx('foo', 1).then((result) => expect(result).toBe(0));
   });
 });

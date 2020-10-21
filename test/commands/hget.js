@@ -14,14 +14,14 @@ describe('hget', () => {
 
     return redis
       .hget('emails', 'clark@daily.planet')
-      .then(userId => expect(userId).toBe('1'));
+      .then((userId) => expect(userId).toBe('1'));
   });
 
   it('should return null if the hash does not exist', () => {
     const redis = new MockRedis();
     return redis
       .hget('emails', 'clark@daily.planet')
-      .then(userId => expect(userId).toBe(null));
+      .then((userId) => expect(userId).toBe(null));
   });
 
   it('should return null if the item does not exist in the hash', () => {
@@ -35,6 +35,6 @@ describe('hget', () => {
 
     return redis
       .hget('emails', 'lois@daily.planet')
-      .then(userId => expect(userId).toBe(null));
+      .then((userId) => expect(userId).toBe(null));
   });
 });

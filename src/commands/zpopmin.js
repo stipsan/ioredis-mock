@@ -16,10 +16,10 @@ export function zpopmin(key, count = 1) {
     count - 1
   );
 
-  forEach(ordered, it => {
+  forEach(ordered, (it) => {
     map.delete(it.value);
   });
   this.data.set(key, map);
 
-  return flatMap(ordered, it => [it.value, it.score]);
+  return flatMap(ordered, (it) => [it.value, it.score]);
 }

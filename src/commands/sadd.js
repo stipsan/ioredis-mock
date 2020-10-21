@@ -6,7 +6,7 @@ export function sadd(key, ...vals) {
   }
   let added = 0;
   const set = this.data.get(key);
-  vals.forEach(value => {
+  vals.forEach((value) => {
     if (!set.has(value)) {
       added++;
     }

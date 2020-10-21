@@ -9,13 +9,13 @@ const chance = new Chance();
 
 describe('sscanStream', () => {
   let writable;
-  const flatten = wrt => _.flatten(wrt.data);
+  const flatten = (wrt) => _.flatten(wrt.data);
 
   beforeEach(() => {
     writable = new ObjectWritableMock();
   });
 
-  it('should return null array if nothing in db', done => {
+  it('should return null array if nothing in db', (done) => {
     // Given
     const redis = new MockRedis();
     const stream = redis.sscanStream('key');
@@ -28,7 +28,7 @@ describe('sscanStream', () => {
     });
   });
 
-  it('should return keys in db', done => {
+  it('should return keys in db', (done) => {
     const redis = new MockRedis({
       data: {
         set: new Set(['foo', 'bar']),
@@ -44,7 +44,7 @@ describe('sscanStream', () => {
     });
   });
 
-  it('should batch by count', done => {
+  it('should batch by count', (done) => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
@@ -60,7 +60,7 @@ describe('sscanStream', () => {
     });
   });
 
-  it('should return only mathced keys', done => {
+  it('should return only mathced keys', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -77,7 +77,7 @@ describe('sscanStream', () => {
     });
   });
 
-  it('should return only mathced keys by count', done => {
+  it('should return only mathced keys by count', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -95,7 +95,7 @@ describe('sscanStream', () => {
     });
   });
 
-  it('should fail if incorrect count usage', done => {
+  it('should fail if incorrect count usage', (done) => {
     // Given
     const redis = new MockRedis({
       data: {
@@ -105,7 +105,7 @@ describe('sscanStream', () => {
     const stream = redis.sscanStream('set', { count: 'ZU' });
     // When
     stream.pipe(writable);
-    stream.on('error', err => {
+    stream.on('error', (err) => {
       // Then
       expect(err).toBeA(Error);
       done();

@@ -13,12 +13,12 @@ describe('randomkey', () => {
 
     return redis
       .randomkey()
-      .then(result => expect(['foo', 'bar']).toInclude(result));
+      .then((result) => expect(['foo', 'bar']).toInclude(result));
   });
 
   it('should return null if db is empty', () => {
     const redis = new MockRedis();
 
-    return redis.randomkey().then(result => expect(result).toBe(null));
+    return redis.randomkey().then((result) => expect(result).toBe(null));
   });
 });

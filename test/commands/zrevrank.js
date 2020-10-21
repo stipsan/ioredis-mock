@@ -17,7 +17,7 @@ describe('zrevrank', () => {
 
     return redis
       .zrevrank('foo', 'not-exist')
-      .then(status => expect(status).toBe(null))
+      .then((status) => expect(status).toBe(null))
       .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
@@ -26,7 +26,7 @@ describe('zrevrank', () => {
 
     return redis
       .zrevrank('foo', 'not-found')
-      .then(status => expect(status).toBe(null));
+      .then((status) => expect(status).toBe(null));
   });
 
   it('should return found index', () => {
@@ -34,6 +34,6 @@ describe('zrevrank', () => {
 
     return redis
       .zrevrank('foo', 'first')
-      .then(status => expect(status).toBe(2));
+      .then((status) => expect(status).toBe(2));
   });
 });

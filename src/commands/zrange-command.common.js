@@ -53,7 +53,7 @@ export function parseLimit(input) {
 }
 
 export function filterPredicate(min, max) {
-  return it => {
+  return (it) => {
     if (it.score < min.value || (min.isStrict && it.score === min.value)) {
       return false;
     }

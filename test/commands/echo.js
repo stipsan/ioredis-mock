@@ -8,6 +8,6 @@ describe('echo', () => {
 
     return redis
       .echo('Hello World!')
-      .then(result => expect(result).toBe('Hello World!'));
+      .then((result) => expect(result).toBe('Hello World!'));
   });
 });

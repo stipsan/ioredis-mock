@@ -8,13 +8,13 @@ describe('psetex', () => {
     const redis = new MockRedis();
     return redis
       .psetex('foo', 100, 'bar')
-      .then(status => expect(status).toBe('OK'))
+      .then((status) => expect(status).toBe('OK'))
       .then(() => {
         expect(redis.data.get('foo')).toBe('bar');
         expect(redis.expires.has('foo')).toBe(true);
       })
       .then(() => Promise.delay(200))
       .then(() => redis.get('foo'))
-      .then(result => expect(result).toBe(null));
+      .then((result) => expect(result).toBe(null));
   });
 });

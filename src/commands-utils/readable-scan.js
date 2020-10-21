@@ -29,7 +29,7 @@ export default class ReadableScan extends Readable {
       return;
     }
     this._callScan()
-      .then(res => {
+      .then((res) => {
         const [nextCursor, keys] = res;
         if (nextCursor === '0') {
           this._drained = true;
@@ -39,6 +39,6 @@ export default class ReadableScan extends Readable {
         if (keys.length > 0) this.push(keys);
         else this._read();
       })
-      .catch(err => process.nextTick(() => this.emit('error', err)));
+      .catch((err) => process.nextTick(() => this.emit('error', err)));
   }
 }

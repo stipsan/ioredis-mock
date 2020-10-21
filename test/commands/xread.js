@@ -20,9 +20,15 @@ describe('xread', () => {
     });
     return redis
       .xread('COUNT', '2', 'STREAMS', 'stream', '2-0')
-      .then(events =>
+      .then((events) =>
         expect(events).toEqual([
-          ['stream', [['2-0', ['key', 'val']], ['3-0', ['key', 'val']]]],
+          [
+            'stream',
+            [
+              ['2-0', ['key', 'val']],
+              ['3-0', ['key', 'val']],
+            ],
+          ],
         ])
       );
   });
@@ -44,9 +50,15 @@ describe('xread', () => {
     });
     return redis
       .xread('COUNT', '2', 'STREAMS', 'stream', '1-0', 'other-stream', '1-0')
-      .then(events =>
+      .then((events) =>
         expect(events).toEqual([
-          ['stream', [['1-0', ['key', 'val']], ['2-0', ['key', 'val']]]],
+          [
+            'stream',
+            [
+              ['1-0', ['key', 'val']],
+              ['2-0', ['key', 'val']],
+            ],
+          ],
           ['other-stream', [['1-0', ['key', 'val']]]],
         ])
       );
@@ -69,9 +81,15 @@ describe('xread', () => {
     });
     return redis
       .xread('COUNT', '2', 'STREAMS', 'stream', '1', 'other-stream', '1')
-      .then(events =>
+      .then((events) =>
         expect(events).toEqual([
-          ['stream', [['1-0', ['key', 'val']], ['2-0', ['key', 'val']]]],
+          [
+            'stream',
+            [
+              ['1-0', ['key', 'val']],
+              ['2-0', ['key', 'val']],
+            ],
+          ],
           ['other-stream', [['1-0', ['key', 'val']]]],
         ])
       );
@@ -79,12 +97,14 @@ describe('xread', () => {
 
   it('should block reads till data becomes available', () => {
     const redis = new MockRedis();
-    const op = redis.xread('BLOCK', '0', 'STREAMS', 'stream', '$').then(row => {
-      const [[stream, [[id, values]]]] = row;
-      expect(stream).toBe('stream');
-      expect(id).toBe('1-0');
-      expect(values).toEqual(['key', 'val']);
-    });
+    const op = redis
+      .xread('BLOCK', '0', 'STREAMS', 'stream', '$')
+      .then((row) => {
+        const [[stream, [[id, values]]]] = row;
+        expect(stream).toBe('stream');
+        expect(id).toBe('1-0');
+        expect(values).toEqual(['key', 'val']);
+      });
     return redis.xadd('stream', '*', 'key', 'val').then(() => op);
   });
 
@@ -92,7 +112,7 @@ describe('xread', () => {
     const redis = new MockRedis();
     const op = redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', '2-0')
-      .then(row => {
+      .then((row) => {
         const [[stream, [[id, values]]]] = row;
         expect(stream).toBe('stream');
         expect(id).toBe('2-0');
@@ -106,7 +126,7 @@ describe('xread', () => {
 
   it('should block reads with a time out', () => {
     const redis = new MockRedis();
-    return redis.xread('BLOCK', '500', 'STREAMS', 'stream', '$').then(row => {
+    return redis.xread('BLOCK', '500', 'STREAMS', 'stream', '$').then((row) => {
       expect(row).toBe(null);
     });
   });
@@ -124,27 +144,31 @@ describe('xread', () => {
         'stream:stream:3-0': { polled: false },
       },
     });
-    return redis
-      .xread('STREAMS', 'stream', '2-0')
-      .then(events =>
-        expect(events).toEqual([
-          ['stream', [['2-0', ['key', 'val']], ['3-0', ['key', 'val']]]],
-        ])
-      );
+    return redis.xread('STREAMS', 'stream', '2-0').then((events) =>
+      expect(events).toEqual([
+        [
+          'stream',
+          [
+            ['2-0', ['key', 'val']],
+            ['3-0', ['key', 'val']],
+          ],
+        ],
+      ])
+    );
   });
 
   it('throws if the operation is neither BLOCK or COUNT', () => {
     const redis = new MockRedis();
     return redis
       .xread('INVALID', '2', 'STREAMS', 'stream', '$')
-      .catch(err => expect(err.message).toBe('ERR syntax error'));
+      .catch((err) => expect(err.message).toBe('ERR syntax error'));
   });
 
   it('throws and error on unabalanced stream/id list', () => {
     const redis = new MockRedis();
     return redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', 'other-stream', '$')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe(
           "ERR Unbalanced XREAD list of streams: for each stream key an ID or '$' must be specified."
         )

@@ -13,7 +13,7 @@ export function set(key, value, ...options) {
   const nx = options.indexOf('NX') !== -1;
   const xx = options.indexOf('XX') !== -1;
   const filteredOptions = options.filter(
-    option => option !== 'NX' && option !== 'XX'
+    (option) => option !== 'NX' && option !== 'XX'
   );
 
   if (nx && xx) throw new Error('ERR syntax error');

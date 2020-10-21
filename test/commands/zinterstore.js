@@ -30,7 +30,7 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 2, 'foo', 'bar')
-      .then(res => expect(res).toEqual(3));
+      .then((res) => expect(res).toEqual(3));
   });
 
   it('should return 0 if the intersection is an empty set', () => {
@@ -38,7 +38,7 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 2, 'foo', 'baz')
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 
   it('should not create a sorted set if the intersection is an empty set', () => {
@@ -68,7 +68,7 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 2, 'foo', 'bar', 'baz')
-      .catch(err => expect(err.message).toBe('ERR syntax error'));
+      .catch((err) => expect(err.message).toBe('ERR syntax error'));
   });
 
   it('should throw a syntax error if fewer keys specified than numKeys', () => {
@@ -76,7 +76,7 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 3, 'foo', 'bar')
-      .catch(err => expect(err.message).toBe('ERR syntax error'));
+      .catch((err) => expect(err.message).toBe('ERR syntax error'));
   });
 
   it('should return 0 if one of the keys does not exist', () => {
@@ -84,7 +84,7 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 2, 'foo', 'doesnotexist')
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 
   it('should return 0 if one of the keys is not a sorted set', () => {
@@ -92,6 +92,6 @@ describe('zinterstore', () => {
 
     return redis
       .zinterstore('dest', 2, 'foo', 'key')
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 });

@@ -16,13 +16,13 @@ describe('zcount', () => {
   it('should return using not strict compare', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zcount('foo', 1, 3).then(res => expect(res).toEqual(3));
+    return redis.zcount('foo', 1, 3).then((res) => expect(res).toEqual(3));
   });
 
   it('should return using strict compare', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zcount('foo', '(3', 5).then(res => expect(res).toEqual(2));
+    return redis.zcount('foo', '(3', 5).then((res) => expect(res).toEqual(2));
   });
 
   it('should accept infinity string', () => {
@@ -30,19 +30,19 @@ describe('zcount', () => {
 
     return redis
       .zcount('foo', '-inf', '+inf')
-      .then(res => expect(res).toEqual(5));
+      .then((res) => expect(res).toEqual(5));
   });
 
   it('should return 0 if out-of-range', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zcount('foo', 10, 100).then(res => expect(res).toEqual(0));
+    return redis.zcount('foo', 10, 100).then((res) => expect(res).toEqual(0));
   });
 
   it('should return 0 if key not found', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zcount('boo', 10, 100).then(res => expect(res).toEqual(0));
+    return redis.zcount('boo', 10, 100).then((res) => expect(res).toEqual(0));
   });
 
   it('should return 0 if the key contains something other than a list', () => {
@@ -52,6 +52,6 @@ describe('zcount', () => {
       },
     });
 
-    return redis.zcount('foo', 1, 2).then(res => expect(res).toEqual(0));
+    return redis.zcount('foo', 1, 2).then((res) => expect(res).toEqual(0));
   });
 });
