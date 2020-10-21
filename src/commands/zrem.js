@@ -3,7 +3,7 @@ export function zrem(key, ...vals) {
   if (!map) return 0;
 
   let removed = 0;
-  vals.forEach(val => {
+  vals.forEach((val) => {
     if (map.delete(val)) {
       removed++;
     }

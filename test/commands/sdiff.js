@@ -16,7 +16,7 @@ describe('sdiff', () => {
 
     return redis
       .sdiff('key1', 'key2', 'key3', 'key4')
-      .then(result => expect(result).toEqual(['b', 'd']));
+      .then((result) => expect(result).toEqual(['b', 'd']));
   });
 
   it('should throw an exception if the first key is not of a set', () => {
@@ -28,7 +28,9 @@ describe('sdiff', () => {
 
     return redis
       .sdiff('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key foo does not contain a set'));
+      .catch((err) =>
+        expect(err.message).toBe('Key foo does not contain a set')
+      );
   });
 
   it('should throw an exception if the destination contains something other than a set', () => {
@@ -41,12 +43,16 @@ describe('sdiff', () => {
 
     return redis
       .sdiff('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key bar does not contain a set'));
+      .catch((err) =>
+        expect(err.message).toBe('Key bar does not contain a set')
+      );
   });
 
   it("should return empty array if sources don't exists", () => {
     const redis = new MockRedis();
 
-    return redis.sdiff('foo', 'bar').then(result => expect(result).toEqual([]));
+    return redis
+      .sdiff('foo', 'bar')
+      .then((result) => expect(result).toEqual([]));
   });
 });

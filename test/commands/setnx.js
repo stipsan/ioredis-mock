@@ -7,12 +7,12 @@ describe('setnx', () => {
     const redis = new MockRedis();
     return redis
       .setnx('foo', 'bar')
-      .then(status => expect(status).toBe(1))
+      .then((status) => expect(status).toBe(1))
       .then(() => {
         expect(redis.data.get('foo')).toBe('bar', 'value failed to persist');
         return redis.setnx('foo', 'baz');
       })
-      .then(status =>
+      .then((status) =>
         expect(status).toBe(0, 'setnx no-op failed on existing key')
       )
       .then(() => {

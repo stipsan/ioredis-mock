@@ -7,7 +7,7 @@ describe('publish', () => {
     const redis = new MockRedis();
     return redis
       .publish('emails', 'clark@daily.planet')
-      .then(subscribers => expect(subscribers).toBe(0));
+      .then((subscribers) => expect(subscribers).toBe(0));
   });
 
   it('should return 1 when publishing with a single subscriber', () => {
@@ -16,10 +16,10 @@ describe('publish', () => {
     redisPubSub.subscribe('emails');
     return redis2
       .publish('emails', 'clark@daily.planet')
-      .then(subscribers => expect(subscribers).toBe(1));
+      .then((subscribers) => expect(subscribers).toBe(1));
   });
 
-  it('should publish a message, which can be received by a previous subscribe', done => {
+  it('should publish a message, which can be received by a previous subscribe', (done) => {
     const redisPubSub = new MockRedis();
     const redis2 = redisPubSub.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {
@@ -37,10 +37,10 @@ describe('publish', () => {
     redisPubSub.psubscribe('emails.*');
     return redis2
       .publish('emails.urgent', 'clark@daily.planet')
-      .then(subscribers => expect(subscribers).toBe(1));
+      .then((subscribers) => expect(subscribers).toBe(1));
   });
 
-  it('should publish a message, which can be received by a previous psubscribe', done => {
+  it('should publish a message, which can be received by a previous psubscribe', (done) => {
     const redisPubSub = new MockRedis();
     const redis2 = redisPubSub.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {

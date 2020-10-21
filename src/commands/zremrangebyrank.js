@@ -8,7 +8,7 @@ export function zremrangebyrank(key, s, e) {
   }
 
   const map = this.data.get(key);
-  vals.forEach(val => {
+  vals.forEach((val) => {
     map.delete(val);
   });
 

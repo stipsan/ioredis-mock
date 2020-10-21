@@ -18,7 +18,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', 3, 1)
-      .then(res => expect(res).toEqual(['third', 'second', 'first']));
+      .then((res) => expect(res).toEqual(['third', 'second', 'first']));
   });
 
   it('should return using strict compare', () => {
@@ -26,7 +26,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', 5, '(3')
-      .then(res => expect(res).toEqual(['fifth', 'fourth']));
+      .then((res) => expect(res).toEqual(['fifth', 'fourth']));
   });
 
   it('should accept infinity string', () => {
@@ -34,7 +34,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf')
-      .then(res =>
+      .then((res) =>
         expect(res).toEqual(['fifth', 'fourth', 'third', 'second', 'first'])
       );
   });
@@ -44,7 +44,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', 100, 10)
-      .then(res => expect(res).toEqual([]));
+      .then((res) => expect(res).toEqual([]));
   });
 
   it('should return empty array if key not found', () => {
@@ -52,7 +52,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('boo', 100, 10)
-      .then(res => expect(res).toEqual([]));
+      .then((res) => expect(res).toEqual([]));
   });
 
   it('should return empty array if the key contains something other than a list', () => {
@@ -64,14 +64,16 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', 2, 1)
-      .then(res => expect(res).toEqual([]));
+      .then((res) => expect(res).toEqual([]));
   });
 
   it('should include scores if WITHSCORES is specified', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', 3, 1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['third', 3, 'second', 2, 'first', 1]));
+      .then((res) =>
+        expect(res).toEqual(['third', 3, 'second', 2, 'first', 1])
+      );
   });
 
   it('should sort items with the same score in reverse lexicographical order', () => {
@@ -88,7 +90,7 @@ describe('zrevrangebyscore', () => {
 
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'WITHSCORES')
-      .then(res =>
+      .then((res) =>
         expect(res).toEqual(['aaa', 5, 'ddd', 4, 'ccc', 4, 'bbb', 4])
       );
   });
@@ -97,48 +99,50 @@ describe('zrevrangebyscore', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', 3, 1, 'LIMIT', 0, 1)
-      .then(res => expect(res).toEqual(['third']));
+      .then((res) => expect(res).toEqual(['third']));
   });
   it('should handle offset and limit (1,2)', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 2)
-      .then(res => expect(res).toEqual(['second', 'first']));
+      .then((res) => expect(res).toEqual(['second', 'first']));
   });
   it('should handle offset, limit, and WITHSCORES', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', 3, 1, 'WITHSCORES', 'LIMIT', 1, 1)
-      .then(res => expect(res).toEqual(['second', 2]));
+      .then((res) => expect(res).toEqual(['second', 2]));
   });
   it('should handle LIMIT specified before WITHSCORES', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['second', 2]));
+      .then((res) => expect(res).toEqual(['second', 2]));
   });
   it('should handle LIMIT of -1', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1)
-      .then(res => expect(res).toEqual(['fourth', 'third', 'second']));
+      .then((res) => expect(res).toEqual(['fourth', 'third', 'second']));
   });
   it('should handle LIMIT of -1 and WITHSCORES', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['fourth', 4, 'third', 3, 'second', 2]));
+      .then((res) =>
+        expect(res).toEqual(['fourth', 4, 'third', 3, 'second', 2])
+      );
   });
   it('should handle LIMIT of -2', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -2)
-      .then(res => expect(res).toEqual(['fourth', 'third']));
+      .then((res) => expect(res).toEqual(['fourth', 'third']));
   });
   it('should handle LIMIT of 0', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, 0)
-      .then(res => expect(res).toEqual([]));
+      .then((res) => expect(res).toEqual([]));
   });
 });

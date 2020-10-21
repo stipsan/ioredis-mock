@@ -13,7 +13,7 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .then(result => expect(result).toEqual(createBuffer('3')))
+      .then((result) => expect(result).toEqual(createBuffer('3')))
       .then(() => expect(redis.data.get('foo')).toEqual(['2', '1']));
   });
 
@@ -27,12 +27,12 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .then(result => {
+      .then((result) => {
         expect(Buffer.isBuffer(result)).toBeTruthy();
         expect(result).toEqual(bufferVal);
         return redis.lpopBuffer('foo');
       })
-      .then(result => {
+      .then((result) => {
         expect(Buffer.isBuffer(result)).toBeTruthy();
         expect(result).toEqual(createBuffer('2'));
       });
@@ -45,7 +45,7 @@ describe('lpopBuffer', () => {
       },
     });
 
-    return redis.lpopBuffer('foo').then(result => expect(result).toBe(null));
+    return redis.lpopBuffer('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -57,7 +57,7 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });

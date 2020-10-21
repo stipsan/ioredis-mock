@@ -9,7 +9,7 @@ const {
   to_jsstring: toJsString,
 } = fengari;
 
-const luaExecString = L => str => {
+const luaExecString = (L) => (str) => {
   const retCode = lauxlib.luaL_dostring(L, toLuaString(str));
   if (retCode !== 0) {
     const errorMsg = lua.lua_tojsstring(L, -1);
@@ -35,7 +35,7 @@ const luaExecString = L => str => {
 //   console.log(output.join('\n'))
 // };
 
-const getTopLength = L => {
+const getTopLength = (L) => {
   // get length of array in top of the stack
   lua.lua_len(L, -1);
   const length = lua.lua_tointeger(L, -1);
@@ -44,10 +44,10 @@ const getTopLength = L => {
   // ~get length of array in top of the stack
 };
 
-const typeOf = L => pos =>
+const typeOf = (L) => (pos) =>
   toJsString(lua.lua_typename(L, lua.lua_type(L, pos)));
 
-const getTopKeys = L => {
+const getTopKeys = (L) => {
   if (lua.lua_isnil(L, -1)) throw new Error('cannot get keys on nil');
   if (!lua.lua_istable(L, -1))
     throw new Error(`non-tables don't have keys! type is "${typeOf(L)(-1)}"`);
@@ -60,7 +60,7 @@ const getTopKeys = L => {
   return keys;
 };
 
-const isTopArray = L => () => {
+const isTopArray = (L) => () => {
   try {
     const keys = getTopKeys(L);
     // reversing as putting and getting things from the stack ends with everything upside down.
@@ -70,7 +70,7 @@ const isTopArray = L => () => {
   }
 };
 
-const makeReturnValue = L => {
+const makeReturnValue = (L) => {
   const isArray = isTopArray(L)();
   if (!isArray) {
     return interop.tojs(L, -1);
@@ -95,7 +95,7 @@ const makeReturnValue = L => {
   return retVal;
 };
 
-const popReturnValue = L => topBeforeCall => {
+const popReturnValue = (L) => (topBeforeCall) => {
   const numReturn = lua.lua_gettop(L) - topBeforeCall + 1;
   let ret;
   if (numReturn > 0) {
@@ -105,11 +105,11 @@ const popReturnValue = L => topBeforeCall => {
   return ret;
 };
 
-const pushTable = L => obj => {
+const pushTable = (L) => (obj) => {
   lua.lua_newtable(L);
   const index = lua.lua_gettop(L);
 
-  Object.keys(obj).forEach(fieldName => {
+  Object.keys(obj).forEach((fieldName) => {
     interop.push(L, fieldName);
     // eslint-disable-next-line no-use-before-define
     push(L)(obj[fieldName]);
@@ -117,7 +117,7 @@ const pushTable = L => obj => {
   });
 };
 
-const pushArray = L => array => {
+const pushArray = (L) => (array) => {
   lua.lua_newtable(L);
   const subTableIndex = lua.lua_gettop(L);
 
@@ -128,7 +128,7 @@ const pushArray = L => array => {
   });
 };
 
-const push = L => value => {
+const push = (L) => (value) => {
   if (Array.isArray(value)) {
     pushArray(L)(value);
   } else if (value && typeof value === 'object' && !Array.isArray(value)) {
@@ -138,18 +138,18 @@ const push = L => value => {
   }
 };
 
-const defineGlobalArray = L => (array, name) => {
+const defineGlobalArray = (L) => (array, name) => {
   push(L)(array);
   lua.lua_setglobal(L, toLuaString(name));
 };
 
-const defineGlobalFunction = L => (fn, name) => {
+const defineGlobalFunction = (L) => (fn, name) => {
   // define global fn call
   lua.lua_pushjsfunction(L, fn);
   lua.lua_setglobal(L, toLuaString(name));
 };
 
-const extractArgs = L => () => {
+const extractArgs = (L) => () => {
   const top = lua.lua_gettop(L);
   const args = [];
   let a = -top;
@@ -157,7 +157,7 @@ const extractArgs = L => () => {
     args.push(a);
     a += 1;
   }
-  return args.map(i => interop.tojs(L, i));
+  return args.map((i) => interop.tojs(L, i));
 };
 
 export const init = () => {
@@ -179,7 +179,7 @@ export const init = () => {
   };
 };
 
-export const dispose = vm => {
+export const dispose = (vm) => {
   const L = vm.L || vm;
   lua.lua_close(L);
 };

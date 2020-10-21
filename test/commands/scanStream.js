@@ -8,13 +8,13 @@ const chance = new Chance();
 
 describe('scanStream', () => {
   let writable;
-  const flatten = wrt => _.flatten(wrt.data);
+  const flatten = (wrt) => _.flatten(wrt.data);
 
   beforeEach(() => {
     writable = new ObjectWritableMock();
   });
 
-  it('should return null array if nothing in db', done => {
+  it('should return null array if nothing in db', (done) => {
     // Given
     const redis = new MockRedis();
     const stream = redis.scanStream();
@@ -27,7 +27,7 @@ describe('scanStream', () => {
     });
   });
 
-  it('should return keys in db', done => {
+  it('should return keys in db', (done) => {
     const redis = new MockRedis({
       data: {
         foo: 'bar',
@@ -44,7 +44,7 @@ describe('scanStream', () => {
     });
   });
 
-  it('should batch by count', done => {
+  it('should batch by count', (done) => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
@@ -61,7 +61,7 @@ describe('scanStream', () => {
     });
   });
 
-  it('should return only mathced keys', done => {
+  it('should return only mathced keys', (done) => {
     // Given
     const redis = new MockRedis({
       data: {

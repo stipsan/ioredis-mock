@@ -9,7 +9,7 @@ class Pipeline {
     this.redis = redis;
     this._transactions = 0;
 
-    Object.keys(commands).forEach(command => {
+    Object.keys(commands).forEach((command) => {
       this[command] = this._createCommand(command);
     });
   }
@@ -36,7 +36,7 @@ class Pipeline {
     const Promise = promiseContainer.get();
     this.batch.push(() =>
       asCallback(
-        new Promise(resolve =>
+        new Promise((resolve) =>
           resolve(
             safelyExecuteCommand(
               commandEmulator,
@@ -59,8 +59,8 @@ class Pipeline {
 
     this.batch = [];
     return asCallback(
-      Promise.all(batch.map(cmd => cmd())).then(replies =>
-        replies.map(reply => [null, reply])
+      Promise.all(batch.map((cmd) => cmd())).then((replies) =>
+        replies.map((reply) => [null, reply])
       ),
       callback
     );

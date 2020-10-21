@@ -13,11 +13,11 @@ describe('smembers', () => {
 
     return redis
       .smembers('foos')
-      .then(result => expect(result.sort()).toEqual(['bar', 'foo']));
+      .then((result) => expect(result.sort()).toEqual(['bar', 'foo']));
   });
   it("should return empty array if source don't exists", () => {
     const redis = new MockRedis();
 
-    return redis.smembers('bars').then(result => expect(result).toEqual([]));
+    return redis.smembers('bars').then((result) => expect(result).toEqual([]));
   });
 });

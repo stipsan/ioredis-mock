@@ -12,7 +12,7 @@ describe('flushdb', () => {
   it('should empty current db', () =>
     redis
       .flushdb()
-      .then(status => expect(status).toBe('OK'))
+      .then((status) => expect(status).toBe('OK'))
       .then(() => expect(redis.data.keys().length).toBe(0)));
   it('should empty other db after SELECT');
 });

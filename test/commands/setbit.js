@@ -9,7 +9,7 @@ describe('getbit', () => {
         foo: '@',
       },
     });
-    return redis.setbit('foo', 1, 0).then(result => expect(result).toBe(1));
+    return redis.setbit('foo', 1, 0).then((result) => expect(result).toBe(1));
   });
 
   it('should padd if offset out of range', () => {
@@ -17,7 +17,7 @@ describe('getbit', () => {
 
     return redis
       .setbit('foo', 9, 1)
-      .then(result => expect(result).toBe(0))
+      .then((result) => expect(result).toBe(0))
       .then(() => expect(redis.data.get('foo')).toBe('\x00@'));
   });
 
@@ -30,7 +30,7 @@ describe('getbit', () => {
 
     return redis
       .setbit('foo', 3, 1)
-      .then(result => expect(result).toBe(0))
+      .then((result) => expect(result).toBe(0))
       .then(() => expect(redis.data.get('foo')).toBe('rar'));
   });
 
@@ -39,7 +39,7 @@ describe('getbit', () => {
 
     return redis
       .setbit('foo', 1, 1)
-      .then(result => expect(result).toBe(0))
+      .then((result) => expect(result).toBe(0))
       .then(() => expect(redis.data.get('foo')).toBe('@'));
   });
 
@@ -50,7 +50,7 @@ describe('getbit', () => {
       () => {
         throw new Error('Expected setbit to fail');
       },
-      err => {
+      (err) => {
         expect(err).toBeA(Error);
         expect(err.message).toBe(
           'ERR bit offset is not an integer or out of range'
@@ -66,7 +66,7 @@ describe('getbit', () => {
       () => {
         throw new Error('Expected setbit to fail');
       },
-      err => {
+      (err) => {
         expect(err).toBeA(Error);
         expect(err.message).toBe('ERR bit is not an integer or out of range');
       }

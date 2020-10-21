@@ -6,7 +6,7 @@ describe('hkeys', () => {
   it('should return an empty array if there are no keys', () => {
     const redis = new MockRedis();
 
-    return redis.hkeys('foo').then(result => expect(result).toEqual([]));
+    return redis.hkeys('foo').then((result) => expect(result).toEqual([]));
   });
 
   it('should return all data keys', () => {
@@ -18,6 +18,6 @@ describe('hkeys', () => {
 
     return redis
       .hkeys('foo')
-      .then(result => expect(result).toEqual(['bar', 'baz']));
+      .then((result) => expect(result).toEqual(['bar', 'baz']));
   });
 });

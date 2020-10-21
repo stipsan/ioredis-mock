@@ -12,9 +12,9 @@ describe('lset', () => {
 
     return redis
       .lset('mylist', 0, 'four')
-      .then(result => expect(result).toBe('OK'))
+      .then((result) => expect(result).toBe('OK'))
       .then(() => redis.lset('mylist', -2, 'five'))
-      .then(result => expect(result).toBe('OK'))
+      .then((result) => expect(result).toBe('OK'))
       .then(() =>
         expect(redis.data.get('mylist')).toEqual(['four', 'five', 'three'])
       );
@@ -25,7 +25,7 @@ describe('lset', () => {
 
     return redis
       .lset('mylist', 0, 'foo')
-      .catch(err => expect(err.message).toBe('no such key'));
+      .catch((err) => expect(err.message).toBe('no such key'));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -37,7 +37,7 @@ describe('lset', () => {
 
     return redis
       .lset('foo', 0, 'bar')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });
@@ -51,11 +51,11 @@ describe('lset', () => {
 
     return redis
       .lset('mylist', 5, 'four')
-      .catch(err => {
+      .catch((err) => {
         expect(err.message).toBe('index out of range');
 
         return redis.lset('mylist', -5, 'five');
       })
-      .catch(err => expect(err.message).toBe('index out of range'));
+      .catch((err) => expect(err.message).toBe('index out of range'));
   });
 });

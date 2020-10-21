@@ -12,7 +12,7 @@ describe('lrange', () => {
 
     return redis
       .lrange('foo', 0, 2)
-      .then(res => expect(res).toEqual(['1', '2', '3']));
+      .then((res) => expect(res).toEqual(['1', '2', '3']));
   });
 
   it('should return last 3 items', () => {
@@ -24,7 +24,7 @@ describe('lrange', () => {
 
     return redis
       .lrange('foo', -3, -1)
-      .then(res => expect(res).toEqual(['3', '4', '5']));
+      .then((res) => expect(res).toEqual(['3', '4', '5']));
   });
 
   it('should return last all items on larger numbers', () => {
@@ -36,7 +36,7 @@ describe('lrange', () => {
 
     return redis
       .lrange('foo', 0, 100)
-      .then(res => expect(res).toEqual(['1', '2', '3', '4', '5']));
+      .then((res) => expect(res).toEqual(['1', '2', '3', '4', '5']));
   });
 
   it('should return empty array if out-of-range', () => {
@@ -46,7 +46,7 @@ describe('lrange', () => {
       },
     });
 
-    return redis.lrange('foo', 10, 100).then(res => expect(res).toEqual([]));
+    return redis.lrange('foo', 10, 100).then((res) => expect(res).toEqual([]));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
@@ -58,7 +58,7 @@ describe('lrange', () => {
 
     return redis
       .lrange('foo', 0, 2)
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });

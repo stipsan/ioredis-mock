@@ -7,7 +7,7 @@ describe('xrange', () => {
     const redis = new MockRedis();
     return redis
       .xrange('non-existing', '-', '+')
-      .then(events => expect(events).toEqual([]));
+      .then((events) => expect(events).toEqual([]));
   });
 
   it('returns the contents of the stream', () => {
@@ -68,7 +68,7 @@ describe('xrange', () => {
         'stream:stream:3-0': { polled: false },
       },
     });
-    return redis.xrange('stream', '-', '+', 'COUNT', '2').then(events => {
+    return redis.xrange('stream', '-', '+', 'COUNT', '2').then((events) => {
       expect(events).toEqual([
         ['1-0', ['key', 'val']],
         ['2-0', ['key', 'val']],
@@ -79,11 +79,11 @@ describe('xrange', () => {
   it('should throw with a wrong number of arguments', () => {
     const redis = new MockRedis();
     Promise.all([
-      redis.xrange('stream', '-').catch(err => err.message),
-      redis.xrange('stream').catch(err => err.message),
-      redis.xrange().catch(err => err.message),
-    ]).then(errors =>
-      errors.forEach(err =>
+      redis.xrange('stream', '-').catch((err) => err.message),
+      redis.xrange('stream').catch((err) => err.message),
+      redis.xrange().catch((err) => err.message),
+    ]).then((errors) =>
+      errors.forEach((err) =>
         expect(err).toBe("ERR wrong number of arguments for 'xrange' command")
       )
     );
@@ -93,6 +93,6 @@ describe('xrange', () => {
     const redis = new MockRedis();
     redis
       .xrange('stream', '-', '+', 'COUNT')
-      .catch(err => expect(err.message).toBe('ERR syntax error'));
+      .catch((err) => expect(err.message).toBe('ERR syntax error'));
   });
 });

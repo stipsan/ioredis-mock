@@ -5,23 +5,23 @@ import MockRedis from '../../src';
 describe('subscribe', () => {
   it('should ignore an empty subscribe call', () => {
     const redis = new MockRedis();
-    return redis.subscribe().then(subNum => expect(subNum).toBe(0));
+    return redis.subscribe().then((subNum) => expect(subNum).toBe(0));
   });
 
   it('should return number of subscribed channels', () => {
     const redis = new MockRedis();
     return redis
       .subscribe('news', 'music')
-      .then(subNum => expect(subNum).toBe(2));
+      .then((subNum) => expect(subNum).toBe(2));
   });
 
   it('should return number of subscribed channels when calling subscribe twice', () => {
     const redis = new MockRedis();
     return redis
       .subscribe('first')
-      .then(subNum => expect(subNum).toBe(1))
+      .then((subNum) => expect(subNum).toBe(1))
       .then(() =>
-        redis.subscribe('second').then(subNum => expect(subNum).toBe(2))
+        redis.subscribe('second').then((subNum) => expect(subNum).toBe(2))
       );
   });
 
@@ -29,9 +29,9 @@ describe('subscribe', () => {
     const redis = new MockRedis();
     return redis
       .subscribe('channel')
-      .then(subNum => expect(subNum).toBe(1))
+      .then((subNum) => expect(subNum).toBe(1))
       .then(() =>
-        redis.subscribe('channel').then(subNum => expect(subNum).toBe(1))
+        redis.subscribe('channel').then((subNum) => expect(subNum).toBe(1))
       );
   });
 
@@ -43,7 +43,7 @@ describe('subscribe', () => {
         .then(() => {
           throw new Error('get should fail when in subscriber mode');
         })
-        .catch(error =>
+        .catch((error) =>
           expect(error.message).toBe(
             'Connection in subscriber mode, only subscriber commands may be used'
           )
@@ -63,10 +63,10 @@ describe('subscribe', () => {
       expect(twoResult).toEqual(1);
       let promiseOneFulfill;
       let PromiseTwoFulfill;
-      const promiseOne = new Promise(f => {
+      const promiseOne = new Promise((f) => {
         promiseOneFulfill = f;
       });
-      const promiseTwo = new Promise(f => {
+      const promiseTwo = new Promise((f) => {
         PromiseTwoFulfill = f;
       });
 

@@ -7,16 +7,16 @@ describe('psubscribe', () => {
     const redis = new MockRedis();
     return redis
       .psubscribe('news.*', 'music.*')
-      .then(subNum => expect(subNum).toBe(2));
+      .then((subNum) => expect(subNum).toBe(2));
   });
 
   it('should return number of subscribed channels when calling subscribe twice', () => {
     const redis = new MockRedis();
     return redis
       .psubscribe('first.*')
-      .then(subNum => expect(subNum).toBe(1))
+      .then((subNum) => expect(subNum).toBe(1))
       .then(() =>
-        redis.psubscribe('second.*').then(subNum => expect(subNum).toBe(2))
+        redis.psubscribe('second.*').then((subNum) => expect(subNum).toBe(2))
       );
   });
 
@@ -24,9 +24,9 @@ describe('psubscribe', () => {
     const redis = new MockRedis();
     return redis
       .psubscribe('channel.*')
-      .then(subNum => expect(subNum).toBe(1))
+      .then((subNum) => expect(subNum).toBe(1))
       .then(() =>
-        redis.psubscribe('channel.*').then(subNum => expect(subNum).toBe(1))
+        redis.psubscribe('channel.*').then((subNum) => expect(subNum).toBe(1))
       );
   });
 
@@ -38,7 +38,7 @@ describe('psubscribe', () => {
         .then(() => {
           throw new Error('get should fail when in subscriber mode');
         })
-        .catch(error =>
+        .catch((error) =>
           expect(error.message).toBe(
             'Connection in subscriber mode, only subscriber commands may be used'
           )
@@ -58,10 +58,10 @@ describe('psubscribe', () => {
       expect(twoResult).toEqual(1);
       let promiseOneFulfill;
       let PromiseTwoFulfill;
-      const promiseOne = new Promise(f => {
+      const promiseOne = new Promise((f) => {
         promiseOneFulfill = f;
       });
-      const promiseTwo = new Promise(f => {
+      const promiseTwo = new Promise((f) => {
         PromiseTwoFulfill = f;
       });
 

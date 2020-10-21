@@ -19,7 +19,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', 0, 2)
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
@@ -28,7 +28,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', 1, 3)
-      .then(res => expect(res).toBe(3))
+      .then((res) => expect(res).toBe(3))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
         expect(redis.data.get('foo').has('second')).toBe(false);
@@ -43,7 +43,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', '(3', 5)
-      .then(res => expect(res).toEqual(2))
+      .then((res) => expect(res).toEqual(2))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(true);
         expect(redis.data.get('foo').has('second')).toBe(true);
@@ -58,7 +58,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', '-inf', '+inf')
-      .then(res => expect(res).toEqual(5))
+      .then((res) => expect(res).toEqual(5))
       .then(() => {
         expect(redis.data.get('foo').has('first')).toBe(false);
         expect(redis.data.get('foo').has('second')).toBe(false);
@@ -73,7 +73,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', 100, 10)
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 
   it('should return zero if key not found', () => {
@@ -81,7 +81,7 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('boo', 100, 10)
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 
   it('should return zero if the key contains something other than a list', () => {
@@ -93,6 +93,6 @@ describe('zremrangebyscore', () => {
 
     return redis
       .zremrangebyscore('foo', 2, 1)
-      .then(res => expect(res).toEqual(0));
+      .then((res) => expect(res).toEqual(0));
   });
 });

@@ -13,8 +13,8 @@ describe('sismember', () => {
 
     return redis
       .sismember('foos', 'foo')
-      .then(result => expect(result).toBe(1))
+      .then((result) => expect(result).toBe(1))
       .then(() => redis.sismember('foos', 'foobar'))
-      .then(result => expect(result).toBe(0));
+      .then((result) => expect(result).toBe(0));
   });
 });

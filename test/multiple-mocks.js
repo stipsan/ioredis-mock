@@ -7,11 +7,11 @@ describe('multipleMocks', () => {
     const client1 = new MockRedis();
     const client2 = client1.createConnectedClient();
     client1.hset('testing', 'test', '2').then(() => {
-      client2.hget('testing', 'test').then(val => expect(val).toBe('2'));
+      client2.hget('testing', 'test').then((val) => expect(val).toBe('2'));
     });
   });
 
-  it('should be possible to create a second IORedis client, which is working on shared channels with the first client', done => {
+  it('should be possible to create a second IORedis client, which is working on shared channels with the first client', (done) => {
     const client1 = new MockRedis();
     const client2 = client1.createConnectedClient();
     client1.on('message', (channel, message) => {

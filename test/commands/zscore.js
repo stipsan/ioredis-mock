@@ -18,24 +18,24 @@ describe('zscore', () => {
   it('should return the score of an existing member as a string', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('foo', 'third').then(res => expect(res).toBe('3'));
+    return redis.zscore('foo', 'third').then((res) => expect(res).toBe('3'));
   });
 
   it('should return null when the member does not exist', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('foo', 'sixth').then(res => expect(res).toNotExist());
+    return redis.zscore('foo', 'sixth').then((res) => expect(res).toNotExist());
   });
 
   it('should return null when the key is not a sorted set', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('bar', 'first').then(res => expect(res).toNotExist());
+    return redis.zscore('bar', 'first').then((res) => expect(res).toNotExist());
   });
 
   it('should return null when the key does not exist', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('baz', 'first').then(res => expect(res).toNotExist());
+    return redis.zscore('baz', 'first').then((res) => expect(res).toNotExist());
   });
 });

@@ -5,11 +5,11 @@ import {
 
 export function punsubscribe(...args) {
   if (args.length === 0) {
-    getSubscribedChannels(this, this.patternChannels).forEach(channel => {
+    getSubscribedChannels(this, this.patternChannels).forEach((channel) => {
       unsubscribeFromChannel(this, channel, this.patternChannels);
     });
   }
-  args.forEach(pattern => {
+  args.forEach((pattern) => {
     unsubscribeFromChannel(this, pattern, this.patternChannels);
   });
   const numberOfSubscribedChannels = getSubscribedChannels(

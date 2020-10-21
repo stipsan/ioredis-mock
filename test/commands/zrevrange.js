@@ -18,7 +18,7 @@ describe('zrevrange', () => {
 
     return redis
       .zrevrange('foo', 0, 2)
-      .then(res => expect(res).toEqual(['fifth', 'fourth', 'third']));
+      .then((res) => expect(res).toEqual(['fifth', 'fourth', 'third']));
   });
 
   it('should return last 3 items in reverse', () => {
@@ -26,7 +26,7 @@ describe('zrevrange', () => {
 
     return redis
       .zrevrange('foo', -3, -1)
-      .then(res => expect(res).toEqual(['third', 'second', 'first']));
+      .then((res) => expect(res).toEqual(['third', 'second', 'first']));
   });
 
   it('should return last all items on larger numbers in reverse', () => {
@@ -34,7 +34,7 @@ describe('zrevrange', () => {
 
     return redis
       .zrevrange('foo', 0, 100)
-      .then(res =>
+      .then((res) =>
         expect(res).toEqual(['fifth', 'fourth', 'third', 'second', 'first'])
       );
   });
@@ -42,7 +42,9 @@ describe('zrevrange', () => {
   it('should return empty array if out-of-range', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zrevrange('foo', 10, 100).then(res => expect(res).toEqual([]));
+    return redis
+      .zrevrange('foo', 10, 100)
+      .then((res) => expect(res).toEqual([]));
   });
 
   it('should return empty array if the key contains something other than a list', () => {
@@ -52,7 +54,7 @@ describe('zrevrange', () => {
       },
     });
 
-    return redis.zrevrange('foo', 0, 2).then(res => expect(res).toEqual([]));
+    return redis.zrevrange('foo', 0, 2).then((res) => expect(res).toEqual([]));
   });
 
   it('should sort items with the same score in reverse lexicographical order', () => {
@@ -69,6 +71,6 @@ describe('zrevrange', () => {
 
     return redis
       .zrevrange('foo', 0, 100)
-      .then(res => expect(res).toEqual(['aaa', 'ddd', 'ccc', 'bbb']));
+      .then((res) => expect(res).toEqual(['aaa', 'ddd', 'ccc', 'bbb']));
   });
 });

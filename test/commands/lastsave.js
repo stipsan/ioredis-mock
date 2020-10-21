@@ -8,7 +8,7 @@ describe('lastsave', () => {
 
     return redis
       .lastsave()
-      .then(result =>
+      .then((result) =>
         expect(result).toBeLessThanOrEqualTo(
           Math.floor(new Date().getTime() / 1000)
         )

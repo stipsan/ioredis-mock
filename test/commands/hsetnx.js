@@ -7,7 +7,7 @@ describe('hsetnx', () => {
     const redis = new MockRedis();
     return redis
       .hsetnx('emails', 'bruce@wayne.enterprises', '1')
-      .then(status => expect(status).toBe(1))
+      .then((status) => expect(status).toBe(1))
       .then(() => {
         expect(redis.data.get('emails')['bruce@wayne.enterprises']).toBe(
           '1',
@@ -15,7 +15,7 @@ describe('hsetnx', () => {
         );
         return redis.hsetnx('emails', 'bruce@wayne.enterprises', '2');
       })
-      .then(status =>
+      .then((status) =>
         expect(status).toBe(0, 'hsetnx no-op failed on existing key')
       )
       .then(() => {

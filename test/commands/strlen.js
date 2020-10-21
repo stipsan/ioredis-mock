@@ -6,7 +6,7 @@ describe('strlen', () => {
   it('should return 0 on keys that do not exist', () => {
     const redis = new MockRedis();
 
-    return redis.strlen('nonexisting').then(result => expect(result).toBe(0));
+    return redis.strlen('nonexisting').then((result) => expect(result).toBe(0));
   });
 
   it('should return string length of keys that do exist', () => {
@@ -16,6 +16,6 @@ describe('strlen', () => {
       },
     });
 
-    return redis.strlen('mykey').then(result => expect(result).toBe(11));
+    return redis.strlen('mykey').then((result) => expect(result).toBe(11));
   });
 });

@@ -11,13 +11,13 @@ describe('info', () => {
         info,
       },
     });
-    return redis.info().then(value => {
+    return redis.info().then((value) => {
       expect(value).toEqual(info);
     });
   });
   it('should return default info', () => {
     const redis = new MockRedis();
-    return redis.info().then(value => {
+    return redis.info().then((value) => {
       expect(value).toMatch(/redis_version/g);
     });
   });

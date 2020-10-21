@@ -11,7 +11,7 @@ describe('renamenx', () => {
     });
     return redis
       .renamenx('foo', 'bar')
-      .then(status => expect(status).toBe(1))
+      .then((status) => expect(status).toBe(1))
       .then(() => {
         expect(redis.data.has('foo')).toBe(false);
         expect(redis.data.get('bar')).toBe('baz');
@@ -27,7 +27,7 @@ describe('renamenx', () => {
     });
     return redis
       .renamenx('foo', 'bar')
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => {
         expect(redis.data.get('foo')).toBe('baz');
         expect(redis.data.get('bar')).toBe('foobar');

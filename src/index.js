@@ -26,6 +26,14 @@ const getKeyFromRedisConfig = (options = {}) => {
 const RedisContextMap = new Map();
 
 class RedisMock extends EventEmitter {
+  static get Promise() {
+    return promiseContainer.get();
+  }
+
+  static set Promise(lib) {
+    return promiseContainer.set(lib);
+  }
+
   constructor(options = {}) {
     super();
 
@@ -210,10 +218,4 @@ RedisMock.prototype.Command = {
     RedisMock.prototype.Command.transformers.reply[name] = func;
   },
 };
-
-Object.defineProperty(RedisMock, 'Promise', {
-  get: () => promiseContainer.get(),
-  set: (lib) => promiseContainer.set(lib),
-});
-
 module.exports = RedisMock;

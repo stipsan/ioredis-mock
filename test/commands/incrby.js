@@ -10,7 +10,7 @@ describe('incrby', () => {
 
     return redis
       .incrby('user_next', 10)
-      .then(userNext => expect(userNext).toBe(10))
+      .then((userNext) => expect(userNext).toBe(10))
       .then(() => expect(redis.data.get('user_next')).toBe('10'));
   });
   it('should increment an integer with passed increment', () => {
@@ -22,7 +22,7 @@ describe('incrby', () => {
 
     return redis
       .incrby('user_next', 10)
-      .then(userNext => expect(userNext).toBe(11))
+      .then((userNext) => expect(userNext).toBe(11))
       .then(() => expect(redis.data.get('user_next')).toBe('11'));
   });
   it('should not increment if no increment is passed', () => {
@@ -34,7 +34,7 @@ describe('incrby', () => {
 
     return redis
       .incrby('user_next')
-      .then(userNext => expect(userNext).toBe(1))
+      .then((userNext) => expect(userNext).toBe(1))
       .then(() => expect(redis.data.get('user_next')).toBe('1'));
   });
 });

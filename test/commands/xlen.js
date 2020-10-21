@@ -13,11 +13,11 @@ describe('xlen', () => {
         ],
       },
     });
-    return redis.xlen('stream').then(len => expect(len).toBe(3));
+    return redis.xlen('stream').then((len) => expect(len).toBe(3));
   });
 
   it('should return 0 for a non existing stream', () => {
     const redis = new MockRedis();
-    return redis.xlen('non-existing').then(len => expect(len).toBe(0));
+    return redis.xlen('non-existing').then((len) => expect(len).toBe(0));
   });
 });

@@ -5,6 +5,6 @@ export function sscan(key, cursor, ...args) {
     return ['0', []];
   }
   const setKeys = [];
-  this.data.get(key).forEach(value => setKeys.push(value));
+  this.data.get(key).forEach((value) => setKeys.push(value));
   return scanHelper(setKeys, 1, cursor, ...args);
 }

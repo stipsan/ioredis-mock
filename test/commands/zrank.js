@@ -17,7 +17,7 @@ describe('zrank', () => {
 
     return redis
       .zrank('foo', 'not-exist')
-      .then(status => expect(status).toBe(null))
+      .then((status) => expect(status).toBe(null))
       .then(() => expect(redis.data.has('foo')).toBe(false));
   });
 
@@ -26,12 +26,12 @@ describe('zrank', () => {
 
     return redis
       .zrank('foo', 'not-found')
-      .then(status => expect(status).toBe(null));
+      .then((status) => expect(status).toBe(null));
   });
 
   it('should return found index', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zrank('foo', 'third').then(status => expect(status).toBe(2));
+    return redis.zrank('foo', 'third').then((status) => expect(status).toBe(2));
   });
 });

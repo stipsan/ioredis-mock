@@ -35,7 +35,7 @@ describe('expire', () => {
 
   it('should return 0 if key does not exist', () => {
     const redis = new MockRedis();
-    return redis.expire('foo', 1).then(status => expect(status).toBe(0));
+    return redis.expire('foo', 1).then((status) => expect(status).toBe(0));
   });
 
   it('should remove expire on SET', () => {
@@ -74,7 +74,7 @@ describe('expire', () => {
       .then(() => expect(redis.expires.has('baz')).toBe(true));
   });
 
-  it('should emit keyspace notification if configured', done => {
+  it('should emit keyspace notification if configured', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {

@@ -66,7 +66,7 @@ describe('parseKeyspaceEvents', () => {
 });
 
 describe('keyspaceNotifications', () => {
-  it('should appear when configured and the triggering event occurs', done => {
+  it('should appear when configured and the triggering event occurs', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {
@@ -79,7 +79,7 @@ describe('keyspaceNotifications', () => {
       .then(() => redis.set('key', 'value').then(() => redis.del('key')));
   });
 
-  it('should not appear when not configured and the triggering event occurs', done => {
+  it('should not appear when not configured and the triggering event occurs', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: '' }); // empty string: not configured
     redis.on('message', (channel, message) => {
       throw new Error(`should not receive ${message} on ${channel}`);
@@ -89,7 +89,7 @@ describe('keyspaceNotifications', () => {
     setTimeout(() => done(), 40);
   });
 
-  it('should appear on a connected second mock instance when configured and the triggering event occurs', done => {
+  it('should appear on a connected second mock instance when configured and the triggering event occurs', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
     const redis2 = redis.createConnectedClient({ notifyKeyspaceEvents: 'gK' });
     redis2.on('message', (channel, message) => {
@@ -104,7 +104,7 @@ describe('keyspaceNotifications', () => {
 });
 
 describe('keyeventNotifications', () => {
-  it('should appear when configured and the triggering event occurs', done => {
+  it('should appear when configured and the triggering event occurs', (done) => {
     const redis = new MockRedis({ notifyKeyspaceEvents: 'gE' }); // gK: generic keyevent
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {

@@ -12,7 +12,7 @@ describe('incr', () => {
 
     return redis
       .incr('user_next')
-      .then(userNext => expect(userNext).toBe(2))
+      .then((userNext) => expect(userNext).toBe(2))
       .then(() => expect(redis.data.get('user_next')).toBe('2'));
   });
 
@@ -21,7 +21,7 @@ describe('incr', () => {
 
     return redis
       .incr('user_next')
-      .then(userNext => expect(userNext).toBe(1))
+      .then((userNext) => expect(userNext).toBe(1))
       .then(() => expect(redis.data.get('user_next')).toBe('1'));
   });
 });

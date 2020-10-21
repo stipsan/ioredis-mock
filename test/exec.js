@@ -12,12 +12,20 @@ describe('exec', () => {
     });
 
     return redis
-      .multi([['incr', 'user_next'], ['incr', 'post_next']])
+      .multi([
+        ['incr', 'user_next'],
+        ['incr', 'post_next'],
+      ])
       .exec()
-      .then(results => expect(results).toEqual([[null, 2], [null, 2]]));
+      .then((results) =>
+        expect(results).toEqual([
+          [null, 2],
+          [null, 2],
+        ])
+      );
   });
 
-  it('should support a callback function', done => {
+  it('should support a callback function', (done) => {
     const redis = new MockRedis({
       data: {
         user_next: '1',
@@ -26,9 +34,15 @@ describe('exec', () => {
     });
 
     redis
-      .multi([['incr', 'user_next'], ['incr', 'post_next']])
+      .multi([
+        ['incr', 'user_next'],
+        ['incr', 'post_next'],
+      ])
       .exec((err, results) => {
-        expect(results).toEqual([[null, 2], [null, 2]]);
+        expect(results).toEqual([
+          [null, 2],
+          [null, 2],
+        ]);
         done();
       });
   });

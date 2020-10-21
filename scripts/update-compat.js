@@ -21,14 +21,14 @@ const blacklist = [
   'unlink',
 ];
 const filteredCommands = commands.list.filter(
-  command => blacklist.indexOf(command) === -1
+  (command) => blacklist.indexOf(command) === -1
 );
 
 let supportedCommands = 0;
 let tableRows = `
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|`;
-filteredCommands.forEach(command => {
+filteredCommands.forEach((command) => {
   const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
   const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
   const supportedCommand = command in mockedRedis;
@@ -68,7 +68,7 @@ fs.writeFile(
   path.resolve(__dirname, '..', 'compat.md'),
   prettier.format(tableMd, { parser: 'markdown' }),
   'utf8',
-  err => {
+  (err) => {
     if (err) throw err;
   }
 );
@@ -86,7 +86,7 @@ fs.readFile(readme, 'utf8', (err, readmeMd) => {
         `[![Redis Compatibility: ${percentage}%](https://img.shields.io/badge/redis-${percentage}%25-${color}.svg?style=flat-square)](compat.md)`
       ),
     'utf8',
-    err2 => {
+    (err2) => {
       if (err2) throw err2;
     }
   );

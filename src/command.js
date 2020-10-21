@@ -56,7 +56,7 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
  * Transform non-buffer arguments to strings to simulate real ioredis behavior
  * @param {any} arg the argument to transform
  */
-const argMapper = arg => {
+const argMapper = (arg) => {
   if (arg === null || arg === undefined) return '';
   return arg instanceof Buffer ? arg : arg.toString();
 };
@@ -116,7 +116,7 @@ export default function command(commandEmulator, commandName, RedisMock) {
     const Promise = promiseContainer.get();
 
     return asCallback(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve(
           safelyExecuteCommand(
             commandEmulator,

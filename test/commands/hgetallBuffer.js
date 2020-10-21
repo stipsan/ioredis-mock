@@ -19,8 +19,8 @@ describe('hgetallBuffer', () => {
       },
     });
 
-    return redis.hgetallBuffer('emails').then(result => {
-      Object.keys(result).forEach(key => {
+    return redis.hgetallBuffer('emails').then((result) => {
+      Object.keys(result).forEach((key) => {
         expect(Buffer.isBuffer(result[key])).toBeTruthy();
       });
       expect(result).toEqual(expected);
@@ -31,6 +31,6 @@ describe('hgetallBuffer', () => {
     const redis = new MockRedis();
     return redis
       .hgetallBuffer('emails')
-      .then(result => expect(result).toEqual({}));
+      .then((result) => expect(result).toEqual({}));
   });
 });

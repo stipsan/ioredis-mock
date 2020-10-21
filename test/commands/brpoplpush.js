@@ -35,7 +35,7 @@ describe('brpoplpush', () => {
 
     return redis
       .brpoplpush('foo', 'bar')
-      .then(item => expect(item).toEqual(null));
+      .then((item) => expect(item).toEqual(null));
   });
 
   it('should return null if the source list is empty', () => {
@@ -47,7 +47,7 @@ describe('brpoplpush', () => {
 
     return redis
       .brpoplpush('foo', 'bar')
-      .then(item => expect(item).toEqual(null));
+      .then((item) => expect(item).toEqual(null));
   });
 
   it('should return the item', () => {
@@ -59,7 +59,7 @@ describe('brpoplpush', () => {
 
     return redis
       .brpoplpush('foo', 'bar')
-      .then(item => expect(item).toBe('bar'));
+      .then((item) => expect(item).toBe('bar'));
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
@@ -72,7 +72,7 @@ describe('brpoplpush', () => {
 
     return redis
       .brpoplpush('foo', 'bar')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key foo does not contain a list')
       );
   });
@@ -87,7 +87,7 @@ describe('brpoplpush', () => {
 
     return redis
       .brpoplpush('foo', 'bar')
-      .catch(err =>
+      .catch((err) =>
         expect(err.message).toBe('Key bar does not contain a list')
       );
   });

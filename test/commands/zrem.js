@@ -14,14 +14,14 @@ describe('zrem', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrem('foos', 'foo')
-      .then(status => expect(status).toBe(1))
+      .then((status) => expect(status).toBe(1))
       .then(() => expect(redis.data.get('foos').has('foo')).toBe(false));
   });
   it('should remove 2 items from sorted set', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrem('foos', 'foo', 'baz')
-      .then(status => expect(status).toBe(2))
+      .then((status) => expect(status).toBe(2))
       .then(() => {
         expect(redis.data.get('foos').has('foo')).toBe(false);
         expect(redis.data.get('foos').has('bar')).toBe(true);
@@ -32,14 +32,14 @@ describe('zrem', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrem('foos', 'qux')
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => expect(redis.data.get('foos').has('qux')).toBe(false));
   });
   it('should ignore non-existent keys', () => {
     const redis = new MockRedis({ data });
     return redis
       .zrem('bars', 'bar')
-      .then(status => expect(status).toBe(0))
+      .then((status) => expect(status).toBe(0))
       .then(() => expect(redis.data.get('bars')).toNotExist());
   });
 });
