@@ -1,9 +1,11 @@
 {
   "env": {
-    "node": "true"
+    "node": "true",
+    "jest/globals": true
   },
   "extends": ["airbnb-base", "prettier"],
   "parser": "babel-eslint",
+  "plugins": ["jest"],
   "rules": {
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
