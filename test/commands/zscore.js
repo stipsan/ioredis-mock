@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import expect from 'expect';
 
 import MockRedis from '../../src';
 
@@ -24,18 +23,18 @@ describe('zscore', () => {
   it('should return null when the member does not exist', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('foo', 'sixth').then((res) => expect(res).toNotExist());
+    return redis.zscore('foo', 'sixth').then((res) => expect(res).toBeFalsy());
   });
 
   it('should return null when the key is not a sorted set', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('bar', 'first').then((res) => expect(res).toNotExist());
+    return redis.zscore('bar', 'first').then((res) => expect(res).toBeFalsy());
   });
 
   it('should return null when the key does not exist', () => {
     const redis = new MockRedis({ data });
 
-    return redis.zscore('baz', 'first').then((res) => expect(res).toNotExist());
+    return redis.zscore('baz', 'first').then((res) => expect(res).toBeFalsy());
   });
 });

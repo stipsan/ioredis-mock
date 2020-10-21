@@ -1,4 +1,3 @@
-import expect from 'expect';
 import fengari from 'fengari';
 import interop from 'fengari-interop';
 
@@ -53,12 +52,9 @@ describe('lua', () => {
       });
 
       it('should report an error in the lua code', () => {
-        try {
+        expect(() => {
           vm.luaExecString('error("kaboom!")');
-          expect(true).toBe(false);
-        } catch (e) {
-          expect(e).toMatch(/kaboom!/);
-        }
+        }).toThrowError(/kaboom!/);
       });
     });
   });
@@ -91,15 +87,15 @@ describe('lua', () => {
 
         // execute fn
         vm.luaExecString(`
-          local rcall = redis.call
-          local exists = rcall("EXISTS", "PEPE", "THIRD")
-          if (exists == nil) then
-            error("todo mal")
-          end
+            local rcall = redis.call
+            local exists = rcall("EXISTS", "PEPE", "THIRD")
+            if (exists == nil) then
+              error("todo mal")
+            end
 
-          local testingReturningAnyNumber = 15200
-          return testingReturningAnyNumber
-        `);
+            local testingReturningAnyNumber = 15200
+            return testingReturningAnyNumber
+          `);
 
         // expect it was called and we can get the right arguments
         expect(wasCalledWith).toEqual([false, 'EXISTS', 'PEPE', 'THIRD']);

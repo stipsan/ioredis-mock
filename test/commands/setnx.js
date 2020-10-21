@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('setnx', () => {
@@ -9,17 +7,12 @@ describe('setnx', () => {
       .setnx('foo', 'bar')
       .then((status) => expect(status).toBe(1))
       .then(() => {
-        expect(redis.data.get('foo')).toBe('bar', 'value failed to persist');
+        expect(redis.data.get('foo')).toBe('bar');
         return redis.setnx('foo', 'baz');
       })
-      .then((status) =>
-        expect(status).toBe(0, 'setnx no-op failed on existing key')
-      )
+      .then((status) => expect(status).toBe(0))
       .then(() => {
-        expect(redis.data.get('foo')).toBe(
-          'bar',
-          'existing value was overwritten'
-        );
+        expect(redis.data.get('foo')).toBe('bar');
       });
   });
 });

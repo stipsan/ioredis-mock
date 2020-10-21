@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('lastsave', () => {
@@ -9,7 +7,7 @@ describe('lastsave', () => {
     return redis
       .lastsave()
       .then((result) =>
-        expect(result).toBeLessThanOrEqualTo(
+        expect(result).toBeLessThanOrEqual(
           Math.floor(new Date().getTime() / 1000)
         )
       );

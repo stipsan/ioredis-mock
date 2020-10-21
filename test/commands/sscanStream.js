@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Set from 'es6-set';
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
@@ -107,7 +106,7 @@ describe('sscanStream', () => {
     stream.pipe(writable);
     stream.on('error', (err) => {
       // Then
-      expect(err).toBeA(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
     writable.on('finish', () => done(new Error('should not finish')));

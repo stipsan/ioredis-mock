@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('zrem', () => {
@@ -40,6 +38,6 @@ describe('zrem', () => {
     return redis
       .zrem('bars', 'bar')
       .then((status) => expect(status).toBe(0))
-      .then(() => expect(redis.data.get('bars')).toNotExist());
+      .then(() => expect(redis.data.get('bars')).toBeFalsy());
   });
 });

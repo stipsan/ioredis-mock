@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 import { init, dispose } from '../../src/lua';
 

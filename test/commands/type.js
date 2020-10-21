@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('type', () => {
@@ -32,5 +30,5 @@ describe('type', () => {
       .then(() => redis.type('myhash'))
       .then((type) => expect(type).toBe('hash')));
 
-  it('should return zset');
+  it.skip('should return zset', () => {});
 });

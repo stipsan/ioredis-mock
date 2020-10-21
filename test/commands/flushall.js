@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('flushall', () => {
@@ -14,5 +12,5 @@ describe('flushall', () => {
       .flushall()
       .then((status) => expect(status).toBe('OK'))
       .then(() => expect(redis.data.keys().length).toBe(0)));
-  it('should empty every db');
+  it.skip('should empty every db', () => {});
 });

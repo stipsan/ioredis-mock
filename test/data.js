@@ -1,5 +1,4 @@
 import Set from 'es6-set';
-import expect from 'expect';
 
 import createBuffer from '../src/buffer';
 import createData from '../src/data';
@@ -10,7 +9,7 @@ describe('createData', () => {
   const data = createData(expires, { foo: 'bar' });
   it('should check expiry on get', () => {
     expires.set('foo', Date.now());
-    expect(data.get('foo')).toNotExist();
+    expect(data.get('foo')).toBeFalsy();
   });
 });
 
@@ -24,7 +23,7 @@ describe('createData with keyprefix', () => {
 
   it('should check expiry on get with', () => {
     expires.set('foo', Date.now());
-    expect(data.get('foo')).toNotExist();
+    expect(data.get('foo')).toBeFalsy();
   });
 });
 

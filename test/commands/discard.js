@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('discard', () => {
@@ -20,7 +18,7 @@ describe('discard', () => {
     const redis = new MockRedis();
 
     return redis.discard().catch((err) => {
-      expect(err).toBeA(Error);
+      expect(err).toBeInstanceOf(Error);
     });
   });
 });

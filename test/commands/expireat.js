@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('expireat', () => {
@@ -18,7 +16,7 @@ describe('expireat', () => {
 
         return redis.ttl('foo');
       })
-      .then((result) => expect(result).toBeGreaterThanOrEqualTo(1));
+      .then((result) => expect(result).toBeGreaterThanOrEqual(1));
   });
 
   it('should return 0 if key does not exist', () => {

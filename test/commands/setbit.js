@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('getbit', () => {
@@ -51,7 +49,7 @@ describe('getbit', () => {
         throw new Error('Expected setbit to fail');
       },
       (err) => {
-        expect(err).toBeA(Error);
+        expect(err).toBeInstanceOf(Error);
         expect(err.message).toBe(
           'ERR bit offset is not an integer or out of range'
         );
@@ -67,7 +65,7 @@ describe('getbit', () => {
         throw new Error('Expected setbit to fail');
       },
       (err) => {
-        expect(err).toBeA(Error);
+        expect(err).toBeInstanceOf(Error);
         expect(err.message).toBe('ERR bit is not an integer or out of range');
       }
     );

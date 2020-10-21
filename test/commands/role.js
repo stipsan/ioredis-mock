@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('role', () => {
@@ -9,5 +7,5 @@ describe('role', () => {
     return redis.role().then((result) => expect(result).toEqual(['master', 0]));
   });
 
-  it('should return slave info');
+  it.skip('should return slave info', () => {});
 });

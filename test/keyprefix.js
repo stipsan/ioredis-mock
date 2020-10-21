@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Set from 'es6-set';
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';

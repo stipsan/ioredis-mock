@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import MockRedis from '../../src';
 
 describe('randomkey', () => {
@@ -13,7 +11,7 @@ describe('randomkey', () => {
 
     return redis
       .randomkey()
-      .then((result) => expect(['foo', 'bar']).toInclude(result));
+      .then((result) => expect(['foo', 'bar']).toContain(result));
   });
 
   it('should return null if db is empty', () => {

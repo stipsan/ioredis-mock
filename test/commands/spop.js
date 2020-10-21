@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Set from 'es6-set';
 
 import MockRedis from '../../src';
@@ -13,7 +12,7 @@ describe('spop', () => {
 
     return redis.spop('myset').then((result) => {
       expect(result.constructor).toBe(String);
-      expect(['one', 'two', 'three']).toInclude(result);
+      expect(['one', 'two', 'three']).toContain(result);
       expect(redis.data.get('myset').size).toBe(2);
     });
   });
@@ -40,8 +39,8 @@ describe('spop', () => {
     });
 
     return redis.spop('myset', 2).then((results) => {
-      expect(['one', 'two', 'three']).toInclude(results[0]);
-      expect(['one', 'two', 'three']).toInclude(results[1]);
+      expect(['one', 'two', 'three']).toContain(results[0]);
+      expect(['one', 'two', 'three']).toContain(results[1]);
       expect(redis.data.get('myset').size).toBe(1);
     });
   });
