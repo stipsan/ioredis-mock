@@ -22,4 +22,15 @@ describe('hset', () => {
           email: 'bruce@wayne.enterprises',
         })
       ));
+
+  it('should allo setting multiple fields', () =>
+    redis
+      .hset('user:1', 'email', 'bruce@wayne.enterprises', 'age', '24')
+      .then((status) => expect(status).toBe(1))
+      .then(() =>
+        expect(redis.data.get('user:1')).toEqual({
+          email: 'bruce@wayne.enterprises',
+          age: '24',
+        })
+      ));
 });
