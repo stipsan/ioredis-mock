@@ -1,7 +1,16 @@
+import createBuffer from '../buffer';
+
 export function append(key, value) {
   if (!this.data.has(key)) {
     this.data.set(key, '');
   }
-  this.data.set(key, this.data.get(key) + value);
+  if (value instanceof Buffer) {
+    this.data.set(
+      key,
+      Buffer.concat([createBuffer(this.data.get(key)), value])
+    );
+  } else {
+    this.data.set(key, this.data.get(key) + value);
+  }
   return this.data.get(key).length;
 }
