@@ -45,9 +45,7 @@ describe('punsubscribe', () => {
       redisOne.psubscribe('first.*'),
       redisTwo.psubscribe('first.*', 'second.*'),
     ])
-      .then(() => {
-        return redisTwo.punsubscribe('first.*');
-      })
+      .then(() => redisTwo.punsubscribe('first.*'))
       .then((result) => {
         expect(result).toEqual(1);
 

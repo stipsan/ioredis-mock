@@ -32,9 +32,7 @@ describe('unsubscribe', () => {
     const redis = new MockRedis();
     return redis
       .subscribe('first')
-      .then(() => {
-        return redis.unsubscribe('second');
-      })
+      .then(() => redis.unsubscribe('second'))
       .then((subNum) => expect(subNum).toBe(1));
   });
 
@@ -46,9 +44,7 @@ describe('unsubscribe', () => {
       redisOne.subscribe('first'),
       redisTwo.subscribe('first', 'second'),
     ])
-      .then(() => {
-        return redisTwo.unsubscribe('first');
-      })
+      .then(() => redisTwo.unsubscribe('first'))
       .then((result) => {
         expect(result).toEqual(1);
 
@@ -70,9 +66,7 @@ describe('unsubscribe', () => {
     const redisTwo = redisOne.createConnectedClient();
     return redisOne
       .subscribe('first')
-      .then(() => {
-        return redisTwo.unsubscribe('first');
-      })
+      .then(() => redisTwo.unsubscribe('first'))
       .then((subNum) => {
         expect(subNum).toBe(0);
         return redisTwo.publish('first', '');
