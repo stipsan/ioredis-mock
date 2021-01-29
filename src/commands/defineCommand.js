@@ -96,9 +96,12 @@ export const customCommand = (numberOfKeys, luaCode) =>
   };
 
 export function defineCommand(command, { numberOfKeys, lua: luaCode }) {
-  this[command] = createCommand(
+  const cmd = createCommand(
     customCommand(numberOfKeys, luaCode).bind(this),
     command,
     this
   );
+  this[command] = cmd;
+  // for multi/pipeline
+  this.customCommands[command] = cmd;
 }

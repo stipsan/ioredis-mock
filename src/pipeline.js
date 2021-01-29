@@ -9,12 +9,23 @@ class Pipeline {
     this.redis = redis;
     this._transactions = 0;
 
-    Object.keys(commands).forEach((command) => {
-      this[command] = this._createCommand(command);
+    this.copyCommands();
+  }
+
+  copyCommands() {
+    Object.keys(commands).forEach((commandName) => {
+      const command = commands[commandName];
+      this[commandName] = this._createCommand(commandName, command);
+    });
+
+    // make sure we support custom commands, too
+    Object.keys(this.redis.customCommands).forEach((commandName) => {
+      const command = this.redis.customCommands[commandName];
+      this[commandName] = this._createCommand(commandName, command);
     });
   }
 
-  _createCommand(commandName) {
+  _createCommand(commandName, command) {
     return (...args) => {
       const lastArgIndex = args.length - 1;
       let callback = args[lastArgIndex];
@@ -24,7 +35,7 @@ class Pipeline {
         // eslint-disable-next-line no-param-reassign
         args.length = lastArgIndex;
       }
-      const commandEmulator = commands[commandName].bind(this.redis);
+      const commandEmulator = command.bind(this.redis);
       const commandArgs = processArguments(args, commandName, this.redis);
 
       this._addTransaction(commandEmulator, commandName, commandArgs, callback);

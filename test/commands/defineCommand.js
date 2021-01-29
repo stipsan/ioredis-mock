@@ -53,4 +53,26 @@ describe('defineCommand', () => {
       .someCmd()
       .then((val) => expect(val).toEqual([[10], [100, 200], []]));
   });
+
+  it('should support calling custom commmands via multi', () => {
+    const luaCode = 'return 1';
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis
+      .multi([['someCmd']])
+      .exec()
+      .then((val) => expect(val).toEqual([[null, 1]]));
+  });
+
+  it('should support calling custom commmands via pipeline', () => {
+    const luaCode = 'return 1';
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis
+      .pipeline([['someCmd']])
+      .exec()
+      .then((val) => expect(val).toEqual([[null, 1]]));
+  });
 });
