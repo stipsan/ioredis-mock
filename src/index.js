@@ -33,6 +33,7 @@ class RedisMock extends EventEmitter {
     this.batch = undefined;
     this.connected = false;
     this.subscriberMode = false;
+    this.customCommands = {};
 
     // eslint-disable-next-line prefer-object-spread
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
