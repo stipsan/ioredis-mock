@@ -1,22 +1,5 @@
-function normalizeIndex(index, array) {
-  if (index < 0) {
-    return -index > array.length ? 0 : array.length + index;
-  }
-  return index;
-}
-
-export function slice(arr, s, e) {
-  const start = normalizeIndex(s, arr);
-  const end = normalizeIndex(e, arr);
-  if (end === -1) {
-    return [];
-  }
-  if (end - start < 0) {
-    return Array.from(arr)
-      .reverse()
-      .slice(start, end + 1);
-  }
-  return arr.slice(start, end + 1);
+export function slice(arr, start, end) {
+  return arr.slice(start, end === -1 ? undefined : end + 1);
 }
 
 function normalizeCountToIndex(offset, count, array) {

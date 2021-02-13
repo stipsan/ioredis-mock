@@ -21,6 +21,18 @@ describe('zrange', () => {
       .then((res) => expect(res).toEqual(['first', 'second', 'third']));
   });
 
+  it('should return nothing when min > max', () => {
+    const redis = new MockRedis({ data });
+
+    return redis.zrange('foo', 2, 0).then((res) => expect(res).toEqual([]));
+  });
+
+  it('should return nothing if the min is greater than the max, and max is negative', () => {
+    const redis = new MockRedis({ data });
+
+    return redis.zrange('foo', 0, -8).then((res) => expect(res).toEqual([]));
+  });
+
   it('should return last 3 items', () => {
     const redis = new MockRedis({ data });
 
@@ -37,6 +49,14 @@ describe('zrange', () => {
       .then((res) =>
         expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
       );
+  });
+
+  it('should work even if the min is negative and larger than set size', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zrange('foo', -200, -3)
+      .then((res) => expect(res).toEqual(['first', 'second', 'third']));
   });
 
   it('should return empty array if out-of-range', () => {
