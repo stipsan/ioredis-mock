@@ -82,6 +82,21 @@ describe('zremrangebyrank', () => {
       });
   });
 
+  it('should remove nothing if max is before min', () => {
+    const redis = new MockRedis({ data });
+
+    return redis
+      .zremrangebyrank('foo', 0, -6)
+      .then((status) => expect(status).toBe(0))
+      .then(() => {
+        expect(redis.data.get('foo').has('first')).toBe(true);
+        expect(redis.data.get('foo').has('second')).toBe(true);
+        expect(redis.data.get('foo').has('third')).toBe(true);
+        expect(redis.data.get('foo').has('fourth')).toBe(true);
+        expect(redis.data.get('foo').has('fifth')).toBe(true);
+      });
+  });
+
   it('should return 0 the key contains something other than a list', () => {
     const redis = new MockRedis({
       data: {
