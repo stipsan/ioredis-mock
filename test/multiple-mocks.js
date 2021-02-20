@@ -22,7 +22,7 @@ describe('multipleMocks', () => {
   });
 
   describe('when closing a second, shared IORedis client', () => {
-    it('should clean up opened subscriptions', async () => {
+    it('should clean up opened subscriptions', () => {
       const client = new MockRedis();
 
       const testChannel = 'hello';
@@ -38,9 +38,11 @@ describe('multipleMocks', () => {
 
       expect(numberOfListeners()).toBe(12);
 
-      await Promise.all(connectedClients.map((c) => c.quit()));
+      for (let i = 0; i < 6; i++) {
+        connectedClients[i].quit();
+      }
 
-      expect(numberOfListeners()).toBe(0);
+      expect(numberOfListeners()).toBe(6);
     });
   });
 });
