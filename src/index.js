@@ -104,6 +104,22 @@ class RedisMock extends EventEmitter {
 
   // eslint-disable-next-line class-methods-use-this
   disconnect() {
+    const removeFrom = ({ instanceListeners }) => {
+      if (!instanceListeners) {
+        return;
+      }
+
+      instanceListeners.forEach((mapOfInstanceToListener) => {
+        mapOfInstanceToListener.forEach((listener, instance) => {
+          if (instance === this) {
+            mapOfInstanceToListener.delete(instance);
+          }
+        });
+      });
+    };
+
+    removeFrom(this.channels);
+    removeFrom(this.patternChannels);
     // no-op
   }
 

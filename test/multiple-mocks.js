@@ -20,4 +20,29 @@ describe('multipleMocks', () => {
     client1.subscribe('channel');
     client2.publish('channel', 'hello');
   });
+
+  describe('when closing a second, shared IORedis client', () => {
+    it('should clean up opened subscriptions', () => {
+      const client = new MockRedis();
+
+      const testChannel = 'hello';
+      const numberOfListeners = () =>
+        client.channels.instanceListeners.get(testChannel).size;
+
+      const connectedClients = [];
+      for (let i = 0; i < 12; i++) {
+        const connectedClient = client.createConnectedClient();
+        connectedClients.push(connectedClient);
+        connectedClient.subscribe(testChannel);
+      }
+
+      expect(numberOfListeners()).toBe(12);
+
+      for (let i = 0; i < 6; i++) {
+        connectedClients[i].quit();
+      }
+
+      expect(numberOfListeners()).toBe(6);
+    });
+  });
 });
