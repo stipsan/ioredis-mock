@@ -52,6 +52,7 @@ export * from './llen';
 export * from './lpop';
 export * from './lpopBuffer';
 export * from './lpush';
+export * from './linsert';
 export * from './lpushx';
 export * from './lrange';
 export * from './lrem';
