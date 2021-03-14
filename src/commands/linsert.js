@@ -19,7 +19,7 @@ export function linsert(key, position, pivot, element) {
       );
   }
   list.splice(elementIndex, 0, element);
-  const length = list.length;
+  const {length} = list;
   this.data.set(key, list);
   return length;
 }
