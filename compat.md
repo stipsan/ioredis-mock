@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 61%](https://img.shields.io/badge/coverage-61%25-yellow.svg)
+## Supported commands ![Commands Coverage: 56%](https://img.shields.io/badge/coverage-56%25-yellow.svg)
 
 | redis                                                                 |      ioredis       |    ioredis-mock    |
 | --------------------------------------------------------------------- | :----------------: | :----------------: |
@@ -12,6 +12,7 @@
 | [bitfield_ro](http://redis.io/commands/BITFIELD_RO)                   | :white_check_mark: |        :x:         |
 | [bitop](http://redis.io/commands/BITOP)                               | :white_check_mark: |        :x:         |
 | [bitpos](http://redis.io/commands/BITPOS)                             | :white_check_mark: |        :x:         |
+| [blmove](http://redis.io/commands/BLMOVE)                             | :white_check_mark: |        :x:         |
 | [blpop](http://redis.io/commands/BLPOP)                               | :white_check_mark: |        :x:         |
 | [brpop](http://redis.io/commands/BRPOP)                               | :white_check_mark: |        :x:         |
 | [brpoplpush](http://redis.io/commands/BRPOPLPUSH)                     | :white_check_mark: | :white_check_mark: |
@@ -21,6 +22,7 @@
 | [cluster](http://redis.io/commands/CLUSTER)                           | :white_check_mark: |        :x:         |
 | [command](http://redis.io/commands/COMMAND)                           | :white_check_mark: |        :x:         |
 | [config](http://redis.io/commands/CONFIG)                             | :white_check_mark: |        :x:         |
+| [copy](http://redis.io/commands/COPY)                                 | :white_check_mark: |        :x:         |
 | [dbsize](http://redis.io/commands/DBSIZE)                             | :white_check_mark: | :white_check_mark: |
 | [decr](http://redis.io/commands/DECR)                                 | :white_check_mark: | :white_check_mark: |
 | [decrby](http://redis.io/commands/DECRBY)                             | :white_check_mark: | :white_check_mark: |
@@ -34,6 +36,7 @@
 | [exists](http://redis.io/commands/EXISTS)                             | :white_check_mark: | :white_check_mark: |
 | [expire](http://redis.io/commands/EXPIRE)                             | :white_check_mark: | :white_check_mark: |
 | [expireat](http://redis.io/commands/EXPIREAT)                         | :white_check_mark: | :white_check_mark: |
+| [failover](http://redis.io/commands/FAILOVER)                         | :white_check_mark: |        :x:         |
 | [flushall](http://redis.io/commands/FLUSHALL)                         | :white_check_mark: | :white_check_mark: |
 | [flushdb](http://redis.io/commands/FLUSHDB)                           | :white_check_mark: | :white_check_mark: |
 | [geoadd](http://redis.io/commands/GEOADD)                             | :white_check_mark: |        :x:         |
@@ -44,8 +47,12 @@
 | [georadius_ro](http://redis.io/commands/GEORADIUS_RO)                 | :white_check_mark: |        :x:         |
 | [georadiusbymember](http://redis.io/commands/GEORADIUSBYMEMBER)       | :white_check_mark: |        :x:         |
 | [georadiusbymember_ro](http://redis.io/commands/GEORADIUSBYMEMBER_RO) | :white_check_mark: |        :x:         |
+| [geosearch](http://redis.io/commands/GEOSEARCH)                       | :white_check_mark: |        :x:         |
+| [geosearchstore](http://redis.io/commands/GEOSEARCHSTORE)             | :white_check_mark: |        :x:         |
 | [get](http://redis.io/commands/GET)                                   | :white_check_mark: | :white_check_mark: |
 | [getbit](http://redis.io/commands/GETBIT)                             | :white_check_mark: | :white_check_mark: |
+| [getdel](http://redis.io/commands/GETDEL)                             | :white_check_mark: |        :x:         |
+| [getex](http://redis.io/commands/GETEX)                               | :white_check_mark: |        :x:         |
 | [getrange](http://redis.io/commands/GETRANGE)                         | :white_check_mark: | :white_check_mark: |
 | [getset](http://redis.io/commands/GETSET)                             | :white_check_mark: | :white_check_mark: |
 | [hdel](http://redis.io/commands/HDEL)                                 | :white_check_mark: | :white_check_mark: |
@@ -60,6 +67,7 @@
 | [hmget](http://redis.io/commands/HMGET)                               | :white_check_mark: | :white_check_mark: |
 | [hmset](http://redis.io/commands/HMSET)                               | :white_check_mark: | :white_check_mark: |
 | [host:](http://redis.io/commands/HOST:)                               | :white_check_mark: |        :x:         |
+| [hrandfield](http://redis.io/commands/HRANDFIELD)                     | :white_check_mark: |        :x:         |
 | [hscan](http://redis.io/commands/HSCAN)                               | :white_check_mark: | :white_check_mark: |
 | [hset](http://redis.io/commands/HSET)                                 | :white_check_mark: | :white_check_mark: |
 | [hsetnx](http://redis.io/commands/HSETNX)                             | :white_check_mark: | :white_check_mark: |
@@ -72,8 +80,9 @@
 | [keys](http://redis.io/commands/KEYS)                                 | :white_check_mark: | :white_check_mark: |
 | [lastsave](http://redis.io/commands/LASTSAVE)                         | :white_check_mark: | :white_check_mark: |
 | [lindex](http://redis.io/commands/LINDEX)                             | :white_check_mark: | :white_check_mark: |
-| [linsert](http://redis.io/commands/LINSERT)                           | :white_check_mark: |        :x:         |
+| [linsert](http://redis.io/commands/LINSERT)                           | :white_check_mark: | :white_check_mark: |
 | [llen](http://redis.io/commands/LLEN)                                 | :white_check_mark: | :white_check_mark: |
+| [lmove](http://redis.io/commands/LMOVE)                               | :white_check_mark: |        :x:         |
 | [lolwut](http://redis.io/commands/LOLWUT)                             | :white_check_mark: |        :x:         |
 | [lpop](http://redis.io/commands/LPOP)                                 | :white_check_mark: | :white_check_mark: |
 | [lpos](http://redis.io/commands/LPOS)                                 | :white_check_mark: |        :x:         |
@@ -114,6 +123,7 @@
 | [rename](http://redis.io/commands/RENAME)                             | :white_check_mark: | :white_check_mark: |
 | [renamenx](http://redis.io/commands/RENAMENX)                         | :white_check_mark: | :white_check_mark: |
 | [replicaof](http://redis.io/commands/REPLICAOF)                       | :white_check_mark: |        :x:         |
+| [reset](http://redis.io/commands/RESET)                               | :white_check_mark: |        :x:         |
 | [restore](http://redis.io/commands/RESTORE)                           | :white_check_mark: |        :x:         |
 | [role](http://redis.io/commands/ROLE)                                 | :white_check_mark: | :white_check_mark: |
 | [rpop](http://redis.io/commands/RPOP)                                 | :white_check_mark: | :white_check_mark: |
@@ -140,6 +150,7 @@
 | [slaveof](http://redis.io/commands/SLAVEOF)                           | :white_check_mark: |        :x:         |
 | [slowlog](http://redis.io/commands/SLOWLOG)                           | :white_check_mark: |        :x:         |
 | [smembers](http://redis.io/commands/SMEMBERS)                         | :white_check_mark: | :white_check_mark: |
+| [smismember](http://redis.io/commands/SMISMEMBER)                     | :white_check_mark: |        :x:         |
 | [smove](http://redis.io/commands/SMOVE)                               | :white_check_mark: | :white_check_mark: |
 | [sort](http://redis.io/commands/SORT)                                 | :white_check_mark: |        :x:         |
 | [spop](http://redis.io/commands/SPOP)                                 | :white_check_mark: | :white_check_mark: |
@@ -163,6 +174,7 @@
 | [watch](http://redis.io/commands/WATCH)                               | :white_check_mark: |        :x:         |
 | [xack](http://redis.io/commands/XACK)                                 | :white_check_mark: |        :x:         |
 | [xadd](http://redis.io/commands/XADD)                                 | :white_check_mark: | :white_check_mark: |
+| [xautoclaim](http://redis.io/commands/XAUTOCLAIM)                     | :white_check_mark: |        :x:         |
 | [xclaim](http://redis.io/commands/XCLAIM)                             | :white_check_mark: |        :x:         |
 | [xdel](http://redis.io/commands/XDEL)                                 | :white_check_mark: |        :x:         |
 | [xgroup](http://redis.io/commands/XGROUP)                             | :white_check_mark: |        :x:         |
@@ -178,14 +190,20 @@
 | [zadd](http://redis.io/commands/ZADD)                                 | :white_check_mark: | :white_check_mark: |
 | [zcard](http://redis.io/commands/ZCARD)                               | :white_check_mark: | :white_check_mark: |
 | [zcount](http://redis.io/commands/ZCOUNT)                             | :white_check_mark: | :white_check_mark: |
+| [zdiff](http://redis.io/commands/ZDIFF)                               | :white_check_mark: |        :x:         |
+| [zdiffstore](http://redis.io/commands/ZDIFFSTORE)                     | :white_check_mark: |        :x:         |
 | [zincrby](http://redis.io/commands/ZINCRBY)                           | :white_check_mark: | :white_check_mark: |
+| [zinter](http://redis.io/commands/ZINTER)                             | :white_check_mark: |        :x:         |
 | [zinterstore](http://redis.io/commands/ZINTERSTORE)                   | :white_check_mark: | :white_check_mark: |
 | [zlexcount](http://redis.io/commands/ZLEXCOUNT)                       | :white_check_mark: |        :x:         |
+| [zmscore](http://redis.io/commands/ZMSCORE)                           | :white_check_mark: |        :x:         |
 | [zpopmax](http://redis.io/commands/ZPOPMAX)                           | :white_check_mark: | :white_check_mark: |
 | [zpopmin](http://redis.io/commands/ZPOPMIN)                           | :white_check_mark: | :white_check_mark: |
+| [zrandmember](http://redis.io/commands/ZRANDMEMBER)                   | :white_check_mark: |        :x:         |
 | [zrange](http://redis.io/commands/ZRANGE)                             | :white_check_mark: | :white_check_mark: |
 | [zrangebylex](http://redis.io/commands/ZRANGEBYLEX)                   | :white_check_mark: |        :x:         |
 | [zrangebyscore](http://redis.io/commands/ZRANGEBYSCORE)               | :white_check_mark: | :white_check_mark: |
+| [zrangestore](http://redis.io/commands/ZRANGESTORE)                   | :white_check_mark: |        :x:         |
 | [zrank](http://redis.io/commands/ZRANK)                               | :white_check_mark: | :white_check_mark: |
 | [zrem](http://redis.io/commands/ZREM)                                 | :white_check_mark: | :white_check_mark: |
 | [zremrangebylex](http://redis.io/commands/ZREMRANGEBYLEX)             | :white_check_mark: |        :x:         |
@@ -197,4 +215,5 @@
 | [zrevrank](http://redis.io/commands/ZREVRANK)                         | :white_check_mark: | :white_check_mark: |
 | [zscan](http://redis.io/commands/ZSCAN)                               | :white_check_mark: | :white_check_mark: |
 | [zscore](http://redis.io/commands/ZSCORE)                             | :white_check_mark: | :white_check_mark: |
+| [zunion](http://redis.io/commands/ZUNION)                             | :white_check_mark: |        :x:         |
 | [zunionstore](http://redis.io/commands/ZUNIONSTORE)                   | :white_check_mark: |        :x:         |
