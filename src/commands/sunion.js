@@ -1,4 +1,3 @@
-import arrayFrom from 'array-from';
 import Set from 'es6-set';
 
 export function sunion(...keys) {
@@ -12,8 +11,8 @@ export function sunion(...keys) {
     this.data.has(key) ? this.data.get(key) : new Set()
   );
   const union = new Set(
-    sets.reduce((combined, set) => [...combined, ...arrayFrom(set)], [])
+    sets.reduce((combined, set) => [...combined, ...Array.from(set)], [])
   );
 
-  return arrayFrom(union);
+  return Array.from(union);
 }

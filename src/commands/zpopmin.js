@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { flatMap, orderBy, forEach } from 'lodash';
 import { slice } from './zrange-command.common';
 
@@ -11,7 +10,7 @@ export function zpopmin(key, count = 1) {
   }
 
   const ordered = slice(
-    orderBy(arrayFrom(map.values()), ['score', 'value']),
+    orderBy(Array.from(map.values()), ['score', 'value']),
     0,
     count - 1
   );

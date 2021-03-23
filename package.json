@@ -24,7 +24,7 @@
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
     "build:babel": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
-    "build:jest.js": "esbuild src/index.js --bundle --external:cluster-key-slot --external:debug --external:denque --external:lodash.defaults --external:lodash.flatten --external:p-map --external:redis-commands --external:redis-errors --external:redis-parser --external:array-from --external:es6-map --external:es6-set --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
+    "build:jest.js": "esbuild src/index.js --bundle --external:cluster-key-slot --external:debug --external:denque --external:lodash.defaults --external:lodash.flatten --external:p-map --external:redis-commands --external:redis-errors --external:redis-parser --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
     "prepublishOnly": "yarn build:babel && yarn build:jest.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
@@ -32,7 +32,6 @@
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
-    "array-from": "^2.1.1",
     "es6-map": "^0.1.5",
     "es6-set": "^0.1.5",
     "fengari": "^0.1.4",
