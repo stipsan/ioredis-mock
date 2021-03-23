@@ -41,6 +41,7 @@ jobs:
           yarn test
 
       - name: E2E test generated jest.js mock
+        if: matrix.os != 'windows-latest'
         run: |
           yarn build:jest.js
           yarn test:jest.js
