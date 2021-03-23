@@ -1,5 +1,5 @@
 import Map from 'es6-map';
-import { WritableMock } from 'stream-mock';
+import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
 import MockRedis from '../../src';
@@ -13,7 +13,7 @@ describe('zscanStream', () => {
     new Map(keys.map((k) => [k, { score: 0, value: k }]));
 
   beforeEach(() => {
-    writable = new WritableMock({ objectMode: true });
+    writable = new ObjectWritableMock();
   });
 
   it('should return null array if nothing in db', (done) => {
