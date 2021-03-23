@@ -30,19 +30,19 @@ describe('multipleMocks', () => {
         client.channels.instanceListeners.get(testChannel).size;
 
       const connectedClients = [];
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 10; i++) {
         const connectedClient = client.createConnectedClient();
         connectedClients.push(connectedClient);
         connectedClient.subscribe(testChannel);
       }
 
-      expect(numberOfListeners()).toBe(12);
+      expect(numberOfListeners()).toBe(10);
 
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 5; i++) {
         connectedClients[i].quit();
       }
 
-      expect(numberOfListeners()).toBe(6);
+      expect(numberOfListeners()).toBe(5);
     });
   });
 });
