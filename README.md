@@ -40,6 +40,16 @@ var redis = new Redis({
 // Basically use it just like ioredis
 ```
 
+### Configuring Jest
+
+Use the jest specific bundle when setting up mocks:
+
+```js
+jest.mock('ioredis', () => require('ioredis-mock/jest'));
+```
+
+The `ioredis-mock/jest` bundle inlines imports from `ioredis` that `ioredis-mock` rely on. Thus you can map `ioredis` import identifiers to `ioredis-mock/jest` [without dealing with circular issues](https://github.com/stipsan/ioredis-mock/issues/568).
+
 ### Pub/Sub channels
 
 We also support redis publish/subscribe channels (just like ioredis).
