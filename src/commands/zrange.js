@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { flatMap, orderBy } from 'lodash';
 import { slice } from './zrange-command.common';
 
@@ -18,7 +17,7 @@ export function zrange(key, s, e, withScores) {
   const end = parseInt(e, 10);
 
   const ordered = slice(
-    orderBy(arrayFrom(map.values()), ['score', 'value']),
+    orderBy(Array.from(map.values()), ['score', 'value']),
     start,
     end
   );

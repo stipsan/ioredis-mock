@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { orderBy, filter, flatMap } from 'lodash';
 import {
   parseLimit,
@@ -23,7 +22,7 @@ export function zrevrangebyscore(key, inputMax, inputMin, ...args) {
   const min = parseLimit(inputMin);
   const max = parseLimit(inputMax);
   const filteredArray = filter(
-    arrayFrom(map.values()),
+    Array.from(map.values()),
     filterPredicate(min, max)
   );
 

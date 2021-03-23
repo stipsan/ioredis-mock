@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { filter } from 'lodash';
 import { parseLimit, filterPredicate } from './zrange-command.common';
 
@@ -16,7 +15,7 @@ export function zcount(key, inputMin, inputMax) {
   const min = parseLimit(inputMin);
   const max = parseLimit(inputMax);
   const filteredArray = filter(
-    arrayFrom(map.values()),
+    Array.from(map.values()),
     filterPredicate(min, max)
   );
 

@@ -1,6 +1,5 @@
 import { shuffle, random } from 'lodash';
 import Set from 'es6-set';
-import arrayFrom from 'array-from';
 
 export function srandmember(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
@@ -8,7 +7,7 @@ export function srandmember(key, count) {
   }
 
   const set = this.data.get(key) || new Set();
-  const list = arrayFrom(set);
+  const list = Array.from(set);
   const total = list.length;
 
   if (total === 0) {

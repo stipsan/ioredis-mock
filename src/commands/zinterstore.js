@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { intersectionBy } from 'lodash';
 
 export function zinterstore(destKey, numKeys, ...keys) {
@@ -19,7 +18,7 @@ export function zinterstore(destKey, numKeys, ...keys) {
 
   // deep copy inputs
   const inputs = srcMaps.map((x) =>
-    JSON.parse(JSON.stringify(arrayFrom(x.values())))
+    JSON.parse(JSON.stringify(Array.from(x.values())))
   );
 
   const intersected = intersectionBy(...inputs, 'value');

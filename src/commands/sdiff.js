@@ -1,4 +1,3 @@
-import arrayFrom from 'array-from';
 import Set from 'es6-set';
 
 export function sdiff(ours, ...theirs) {
@@ -16,7 +15,7 @@ export function sdiff(ours, ...theirs) {
     this.data.has(key) ? this.data.get(key) : new Set()
   );
   const difference = new Set(
-    arrayFrom(ourSet).filter((ourValue) =>
+    Array.from(ourSet).filter((ourValue) =>
       theirSets.reduce(
         (isUnique, set) => (set.has(ourValue) ? false : isUnique),
         /* isUnique */ true
@@ -24,5 +23,5 @@ export function sdiff(ours, ...theirs) {
     )
   );
 
-  return arrayFrom(difference);
+  return Array.from(difference);
 }

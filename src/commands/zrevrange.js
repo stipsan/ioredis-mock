@@ -1,5 +1,4 @@
 import Map from 'es6-map';
-import arrayFrom from 'array-from';
 import { orderBy, flatten } from 'lodash';
 import { slice } from './zrange-command.common';
 
@@ -18,7 +17,7 @@ export function zrevrange(key, s, e, w) {
   const end = parseInt(e, 10);
 
   let val = orderBy(
-    arrayFrom(map.values()),
+    Array.from(map.values()),
     ['score', 'value'],
     ['desc', 'desc']
   ).map((it) => {
