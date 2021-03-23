@@ -1,5 +1,3 @@
-import Map from 'es6-map';
-
 import MockRedis from 'ioredis';
 
 describe('zremrangebyscore', () => {

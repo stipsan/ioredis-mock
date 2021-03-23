@@ -1,5 +1,3 @@
-import Map from 'es6-map';
-
 export function zscore(key, member) {
   const map = this.data.get(key);
 

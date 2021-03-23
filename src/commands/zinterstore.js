@@ -1,4 +1,3 @@
-import Map from 'es6-map';
 import { intersectionBy } from 'lodash';
 
 export function zinterstore(destKey, numKeys, ...keys) {

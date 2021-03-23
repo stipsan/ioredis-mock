@@ -1,4 +1,3 @@
-import Map from 'es6-map';
 import { filter } from 'lodash';
 import { parseLimit, filterPredicate } from './zrange-command.common';
 

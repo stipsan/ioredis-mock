@@ -1,5 +1,3 @@
-import Map from 'es6-map';
-
 export function zincrby(key, increment, value) {
   if (!this.data.has(key)) {
     this.data.set(key, new Map());

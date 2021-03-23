@@ -1,5 +1,3 @@
-import Map from 'es6-map';
-
 export function zadd(key, ...vals) {
   // consume options
   const options = [];
