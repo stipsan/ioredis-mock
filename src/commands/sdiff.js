@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 export function sdiff(ours, ...theirs) {
   if (this.data.has(ours) && !(this.data.get(ours) instanceof Set)) {
     throw new Error(`Key ${ours} does not contain a set`);

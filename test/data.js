@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 import createData from '../src/data';
 import createExpires from '../src/expires';
 

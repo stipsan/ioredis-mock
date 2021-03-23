@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Set from 'es6-set';
 
 const safeCount = (count) => {
   const result = count !== undefined ? parseInt(count, 10) : 1;

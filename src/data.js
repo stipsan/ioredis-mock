@@ -1,4 +1,3 @@
-import Set from 'es6-set';
 import { assign } from 'lodash';
 
 export default function createData(

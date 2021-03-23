@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 export function sadd(key, ...vals) {
   if (!this.data.has(key)) {
     this.data.set(key, new Set());

@@ -32,7 +32,6 @@
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
-    "es6-set": "^0.1.5",
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.2",
     "lodash": "^4.17.20",

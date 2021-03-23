@@ -1,4 +1,3 @@
-import Set from 'es6-set';
 import MockRedis from 'ioredis';
 
 describe('sscan', () => {

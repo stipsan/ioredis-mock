@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 export function smove(source, destination, member) {
   if (this.data.has(source) && !(this.data.get(source) instanceof Set)) {
     throw new Error(`Key ${source} does not contain a set`);
