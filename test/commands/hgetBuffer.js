@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('hgetBuffer', () => {
   it('should fetch a property in a hash', () => {
@@ -13,7 +12,7 @@ describe('hgetBuffer', () => {
 
     return redis.hgetBuffer('emails', 'clark@daily.planet').then((userId) => {
       expect(Buffer.isBuffer(userId)).toBeTruthy();
-      expect(userId).toEqual(createBuffer('1'));
+      expect(userId).toEqual(Buffer.from('1'));
     });
   });
 

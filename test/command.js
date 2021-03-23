@@ -1,4 +1,3 @@
-import createBuffer from '../src/buffer';
 import command from '../src/command';
 
 describe('basic command', () => {
@@ -14,9 +13,9 @@ describe('basic command', () => {
   });
 
   it('should convert non-buffer arguments to strings', () => {
-    const args = [createBuffer('foo'), 'bar', 1, null, undefined];
+    const args = [Buffer.from('foo'), 'bar', 1, null, undefined];
     return stub(...args).then((reply) =>
-      expect(reply).toEqual([createBuffer('foo'), 'bar', '1', '', ''])
+      expect(reply).toEqual([Buffer.from('foo'), 'bar', '1', '', ''])
     );
   });
 

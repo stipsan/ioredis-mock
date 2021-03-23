@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('getBuffer', () => {
   it('should return null on keys that do not exist', () => {
@@ -22,7 +21,7 @@ describe('getBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = createBuffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: bufferVal,
