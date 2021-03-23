@@ -1,5 +1,3 @@
-
-
 module.exports = {
   testRunner: 'jest-circus/runner',
   testMatch: ['**/test/**/*.js'],
