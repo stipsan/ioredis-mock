@@ -18,13 +18,13 @@
     "lib/"
   ],
   "scripts": {
+    "build:babel": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
+    "build:jest.js": "esbuild src/index.js --bundle --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "yarn test --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "build:babel": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
-    "build:jest.js": "esbuild src/index.js --bundle --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
     "prepublishOnly": "yarn build:babel && yarn build:jest.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
@@ -113,6 +113,10 @@
       "prettier-package-json --write",
       "git add"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "release": {
     "prepare": [

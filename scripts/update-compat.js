@@ -24,12 +24,16 @@ const filteredCommands = commands.list.filter(
   (command) => blacklist.indexOf(command) === -1
 );
 
+let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data';
+let bufferSupportedCommands = 0;
 let supportedCommands = 0;
 let tableRows = `
-| redis | ioredis | ioredis-mock |
-|-------|:-------:|:------------:|`;
+| redis | ioredis | ioredis-mock | buffer | ioredis | ioredis-mock |
+|-------|:-------:|:------------:|--------|:-------:|:------------:|`;
 filteredCommands.forEach((command) => {
-  const redisCol = `[${command}](http://redis.io/commands/${command.toUpperCase()})`;
+  footerLinks += `
+  [${command}]: http://redis.io/commands/${command.toUpperCase()}`;
+  const redisCol = `[${command}]`;
   const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
   const supportedCommand = command in mockedRedis;
   const ioredisMockCol = supportedCommand ? ':white_check_mark:' : ':x:';
@@ -38,10 +42,26 @@ filteredCommands.forEach((command) => {
   }
   tableRows += `
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`;
+
+  const commandBuffer = `${command}Buffer`;
+  const ioredisSupportsBuffer = commandBuffer in redis.prototype;
+  const ioredisColBuffer = ioredisSupportsBuffer ? ':white_check_mark:' : ':x:';
+  const supportedCommandBuffer = commandBuffer in mockedRedis;
+  const ioredisMockColBuffer = supportedCommandBuffer
+    ? ':white_check_mark:'
+    : ':x:';
+  if (ioredisSupportsBuffer) {
+    bufferSupportedCommands += 1;
+  }
+  if (supportedCommandBuffer) {
+    supportedCommands += 1;
+  }
+  tableRows += `[${commandBuffer}][1]|${ioredisColBuffer}|${ioredisMockColBuffer}|`;
 });
 
 const percentage = Math.floor(
-  (supportedCommands / filteredCommands.length) * 100
+  (supportedCommands / (filteredCommands.length + bufferSupportedCommands)) *
+    100
 );
 
 let color = 'red';
@@ -62,7 +82,9 @@ if (percentage === 100) {
 }
 
 const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
-${tableRows}`;
+${tableRows}
+
+${footerLinks}`;
 
 fs.writeFile(
   path.resolve(__dirname, '..', 'compat.md'),
