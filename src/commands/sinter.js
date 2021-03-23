@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 import { sunion } from './index';
 
 export function sinter(...keys) {

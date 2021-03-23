@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 export function sunion(...keys) {
   keys.forEach((key) => {
     if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {

@@ -1,4 +1,3 @@
-import Set from 'es6-set';
 import { isArray, isPlainObject, isString } from 'lodash';
 
 // eslint-disable-next-line consistent-return

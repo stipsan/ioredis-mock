@@ -1,5 +1,3 @@
-import Set from 'es6-set';
-
 export function scard(key) {
   const set = this.data.get(key);
   if (!set) {
