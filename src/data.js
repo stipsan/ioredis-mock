@@ -2,8 +2,6 @@ import Set from 'es6-set';
 import Map from 'es6-map';
 import { assign } from 'lodash';
 
-import createBuffer from './buffer';
-
 export default function createData(
   expiresInstance,
   initial = {},
@@ -34,7 +32,7 @@ export default function createData(
         }
 
         if (Buffer.isBuffer(value)) {
-          return createBuffer(value);
+          return Buffer.from(value);
         }
 
         if (value instanceof Set) {
@@ -67,7 +65,7 @@ export default function createData(
         if (Array.isArray(val)) {
           item = val.slice();
         } else if (Buffer.isBuffer(val)) {
-          item = createBuffer(val);
+          item = Buffer.from(val);
         } else if (val instanceof Set) {
           item = new Set(val);
         } else if (val instanceof Map) {

@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('hmgetBuffer', () => {
   it('should return the values as buffers of specified keys in a hash map', () => {
@@ -15,8 +14,8 @@ describe('hmgetBuffer', () => {
         expect(Buffer.isBuffer(values[1])).toBeTruthy();
         expect(Buffer.isBuffer(values[2])).toBeFalsy();
         expect(values).toEqual([
-          createBuffer('1'),
-          createBuffer('bruce@wayne.enterprises'),
+          Buffer.from('1'),
+          Buffer.from('bruce@wayne.enterprises'),
           null,
         ]);
       });

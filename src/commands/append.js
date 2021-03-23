@@ -1,4 +1,4 @@
-import createBuffer from '../buffer';
+
 
 export function append(key, value) {
   if (!this.data.has(key)) {
@@ -7,7 +7,7 @@ export function append(key, value) {
   if (value instanceof Buffer) {
     this.data.set(
       key,
-      Buffer.concat([createBuffer(this.data.get(key)), value])
+      Buffer.concat([Buffer.from(this.data.get(key)), value])
     );
   } else {
     this.data.set(key, this.data.get(key) + value);

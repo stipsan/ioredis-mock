@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('rpopBuffer', () => {
   it('should remove and return last element of list', () => {
@@ -16,7 +15,7 @@ describe('rpopBuffer', () => {
   });
 
   it('should return buffer values correctly', () => {
-    const bufferVal = createBuffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: ['1', '2', bufferVal],

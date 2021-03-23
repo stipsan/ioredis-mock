@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('lpopBuffer', () => {
   it('should remove and return first element of list', () => {
@@ -11,12 +10,12 @@ describe('lpopBuffer', () => {
 
     return redis
       .lpopBuffer('foo')
-      .then((result) => expect(result).toEqual(createBuffer('3')))
+      .then((result) => expect(result).toEqual(Buffer.from('3')))
       .then(() => expect(redis.data.get('foo')).toEqual(['2', '1']));
   });
 
   it('should return buffer values correctly as buffer', () => {
-    const bufferVal = createBuffer('bar');
+    const bufferVal = Buffer.from('bar');
     const redis = new MockRedis({
       data: {
         foo: [bufferVal, '2', '1'],
@@ -32,7 +31,7 @@ describe('lpopBuffer', () => {
       })
       .then((result) => {
         expect(Buffer.isBuffer(result)).toBeTruthy();
-        expect(result).toEqual(createBuffer('2'));
+        expect(result).toEqual(Buffer.from('2'));
       });
   });
 

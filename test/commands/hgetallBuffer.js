@@ -1,5 +1,4 @@
 import MockRedis from 'ioredis';
-import createBuffer from '../../src/buffer';
 
 describe('hgetallBuffer', () => {
   it('should return all the keys and values in a hash map as buffer', () => {
@@ -8,8 +7,8 @@ describe('hgetallBuffer', () => {
       'bruce@wayne.enterprises': '2',
     };
     const expected = {
-      'clark@daily.planet': createBuffer('1'),
-      'bruce@wayne.enterprises': createBuffer('2'),
+      'clark@daily.planet': Buffer.from('1'),
+      'bruce@wayne.enterprises': Buffer.from('2'),
     };
     const redis = new MockRedis({
       data: {

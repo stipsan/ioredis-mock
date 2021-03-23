@@ -1,6 +1,5 @@
 import Set from 'es6-set';
 
-import createBuffer from '../src/buffer';
 import createData from '../src/data';
 import createExpires from '../src/expires';
 
@@ -34,7 +33,7 @@ describe('get', () => {
     data = createData(createExpires(), {
       myString: 'qwerty',
       mySet: new Set([1, 2, 3]),
-      myBuffer: createBuffer([0x31, 0x32, 0x33]),
+      myBuffer: Buffer.from([0x31, 0x32, 0x33]),
       myArray: [1, 2, 3],
       myObject: { a: 1, b: 2, c: 3 },
     });
@@ -65,7 +64,7 @@ describe('get', () => {
   it('should return buffer copies from the cache', () => {
     const myBuffer = data.get('myBuffer');
     myBuffer[0] = 0x32;
-    expect(data.get('myBuffer')).toEqual(createBuffer([0x31, 0x32, 0x33]));
+    expect(data.get('myBuffer')).toEqual(Buffer.from([0x31, 0x32, 0x33]));
   });
 });
 
@@ -103,9 +102,9 @@ describe('set', () => {
   });
 
   it('should set copies of buffers in the cache', () => {
-    const myBuffer = createBuffer([0x31, 0x32, 0x33]);
+    const myBuffer = Buffer.from([0x31, 0x32, 0x33]);
     data.set('myBuffer', myBuffer);
     myBuffer[0] = 0x32;
-    expect(data.get('myBuffer')).toEqual(createBuffer([0x31, 0x32, 0x33]));
+    expect(data.get('myBuffer')).toEqual(Buffer.from([0x31, 0x32, 0x33]));
   });
 });
