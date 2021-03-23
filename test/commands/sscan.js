@@ -1,5 +1,5 @@
 import Set from 'es6-set';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('sscan', () => {
   it('should return null array if set does not exist', () => {

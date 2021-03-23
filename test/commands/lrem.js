@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('lrem', () => {
   it('should remove the items from the end of the list when count is negative', () => {

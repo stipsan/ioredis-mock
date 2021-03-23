@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('linsert', () => {
   it('should add the value to the list at the correct position', () => {

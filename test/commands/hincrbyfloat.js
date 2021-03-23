@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hincrbyfloat', () => {
   it('should increment an float with passed increment', () => {

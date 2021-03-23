@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('xlen', () => {
   it('should return the number of events in the stream', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('psubscribe', () => {
   it('should return number of subscribed channels', () => {

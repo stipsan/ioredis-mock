@@ -1,5 +1,5 @@
 import createBuffer from '../../src/buffer';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('brpoplpushBuffer', () => {
   it('should remove one item from the tail of the source list', () => {

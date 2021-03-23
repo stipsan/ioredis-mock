@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('connect', () => {
   it('should throw if redis has already connected in ctor', (done) => {

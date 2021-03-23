@@ -1,5 +1,5 @@
 import Chance from 'chance';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 const chance = new Chance();
 

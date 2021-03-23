@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('persist', () => {
   it('should remove expire status on key', () => {

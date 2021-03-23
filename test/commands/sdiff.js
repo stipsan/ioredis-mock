@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('sdiff', () => {
   it('should return the difference between the first set and all the successive sets', () => {

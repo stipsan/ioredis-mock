@@ -1,4 +1,4 @@
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('multipleMocks', () => {
   it('should be possible to create a second IORedis client, which is working on shared data with the first client', () => {

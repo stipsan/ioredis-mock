@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('brpoplpush', () => {
   it('should remove one item from the tail of the source list', () => {

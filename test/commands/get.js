@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('get', () => {
   it('should return null on keys that do not exist', () => {

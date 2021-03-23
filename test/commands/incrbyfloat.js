@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('incrbyfloat', () => {
   it('should initialize the key with 0 if there is no key', () => {

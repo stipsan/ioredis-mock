@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('lpop', () => {
   it('should remove and return first element of list', () => {

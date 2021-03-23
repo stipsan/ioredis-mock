@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('publish', () => {
   it('should return 0 when publishing without subscribers', () => {

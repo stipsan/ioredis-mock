@@ -1,4 +1,4 @@
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('exec', () => {
   it('should resolve Promise.all after all operations is done', () => {

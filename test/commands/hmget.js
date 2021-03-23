@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hmget', () => {
   it('should return the values of specified keys in a hash map', () => {

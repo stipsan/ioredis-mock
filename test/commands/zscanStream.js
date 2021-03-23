@@ -2,7 +2,7 @@ import Map from 'es6-map';
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 const chance = new Chance();
 

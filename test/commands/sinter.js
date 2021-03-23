@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('sinter', () => {
   it('should return the members from the intersection of all the given sets', () => {

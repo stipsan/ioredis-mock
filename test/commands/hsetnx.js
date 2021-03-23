@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hsetnx', () => {
   it('should set a key in a hash map if it does not exist already', () => {

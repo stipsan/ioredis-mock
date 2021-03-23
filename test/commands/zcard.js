@@ -1,6 +1,6 @@
 import Map from 'es6-map';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('zcard', () => {
   it('should return the number of items in the sorted set', () => {

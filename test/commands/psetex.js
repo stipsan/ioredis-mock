@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('psetex', () => {
   it('should set value and expire', () => {

@@ -1,6 +1,6 @@
 import Map from 'es6-map';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('zinterstore', () => {
   const data = {

@@ -7,8 +7,8 @@ export function hset(key, ...keyValuePairs) {
   let reply = 0;
 
   for (let i = 0; i < keyValuePairs.length; i += 2) {
-    const field = keyValuePairs[i]
-    const value = keyValuePairs[i + 1]
+    const field = keyValuePairs[i];
+    const value = keyValuePairs[i + 1];
 
     if (!{}.hasOwnProperty.call(hash, field)) {
       reply++;

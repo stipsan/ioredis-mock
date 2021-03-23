@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hget', () => {
   it('should fetch a property in a hash', () => {

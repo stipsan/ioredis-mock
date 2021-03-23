@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('expireat', () => {
   it('should set expire status on key', () => {

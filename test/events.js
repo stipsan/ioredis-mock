@@ -1,4 +1,4 @@
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('events', () => {
   it('should trigger ready and connect events on instantiation', (done) => {

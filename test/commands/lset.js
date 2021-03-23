@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('lset', () => {
   it('should set the list element at index to value', () => {

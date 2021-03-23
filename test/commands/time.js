@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('time', () => {
   it('should return an array with current time in seconds and microseconds', () => {

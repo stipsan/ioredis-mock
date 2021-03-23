@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('rpush', () => {
   it('should add the values to the list in the correct order', () => {
