@@ -1,5 +1,5 @@
-import createBuffer from '../../src/buffer';
 import MockRedis from 'ioredis';
+import createBuffer from '../../src/buffer';
 
 describe('hmgetBuffer', () => {
   it('should return the values as buffers of specified keys in a hash map', () => {

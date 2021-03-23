@@ -1,6 +1,6 @@
+import MockRedis from 'ioredis';
 import createBuffer from '../../src/buffer';
 
-import MockRedis from 'ioredis';
 
 describe('hgetallBuffer', () => {
   it('should return all the keys and values in a hash map as buffer', () => {
