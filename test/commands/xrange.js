@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('xrange', () => {
   it('returns an empty list on a non existing stream', () => {

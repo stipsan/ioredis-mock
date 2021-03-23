@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('smove', () => {
   it('should move value from source to destination', () => {

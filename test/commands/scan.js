@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('scan', () => {
   it('should return null array if nothing in db', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('rename', () => {
   it('should rename a key to newkey', () => {

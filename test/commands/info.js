@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('info', () => {
   it('should return the specific info', () => {

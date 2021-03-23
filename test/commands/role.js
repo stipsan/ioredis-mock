@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('role', () => {
   it('should return role info on the current redis instance', () => {

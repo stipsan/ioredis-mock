@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('xread', () => {
   it('reads a number of events since an id', () => {

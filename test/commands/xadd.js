@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('xadd', () => {
   it('should add events to a stream', () => {

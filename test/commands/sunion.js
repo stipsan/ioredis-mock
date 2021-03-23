@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('sunion', () => {
   it('should return the union between the first set and all the successive sets', () => {

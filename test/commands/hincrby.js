@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hincrby', () => {
   it('should increment an integer with passed increment in hash', () => {

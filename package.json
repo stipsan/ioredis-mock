@@ -14,6 +14,7 @@
   "main": "./lib",
   "files": [
     "example.js",
+    "jest.js",
     "lib/"
   ],
   "scripts": {
@@ -22,9 +23,13 @@
     "coverage": "yarn test --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "prepublishOnly": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
+    "build:babel": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
+    "build:jest": "esbuild src/index.js --bundle --external:cluster-key-slot --external:debug --external:denque --external:lodash.defaults --external:lodash.flatten --external:p-map --external:redis-commands --external:redis-errors --external:redis-parser --external:array-from --external:es6-map --external:es6-set --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
+    "prepublishOnly": "yarn build:babel && yarn build:jest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
+    "pretest:jest.js": "yarn build:jest",
+    "test:jest.js": "jest --config jest.config.jest.js",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
@@ -50,6 +55,7 @@
     "chance": "^1.1.7",
     "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.1.0",
+    "esbuild": "^0.9.6",
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.0.0",
@@ -92,13 +98,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "jest": {
-    "testRunner": "jest-circus/runner",
-    "testMatch": [
-      "**/test/**/*.js"
-    ],
-    "coverageDirectory": "coverage"
   },
   "lint-staged": {
     "*.js": [

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('lastsave', () => {
   it('should return unix time since last save', () => {

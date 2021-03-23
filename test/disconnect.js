@@ -1,4 +1,4 @@
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('disconnect', () => {
   it('should be available, but do nothing', () => {

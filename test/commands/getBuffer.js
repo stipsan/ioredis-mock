@@ -1,5 +1,5 @@
 import createBuffer from '../../src/buffer';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('getBuffer', () => {
   it('should return null on keys that do not exist', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('sadd', () => {
   it('should add 1 item to set', () => {

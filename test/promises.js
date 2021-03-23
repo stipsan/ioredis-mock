@@ -1,6 +1,6 @@
 import bluebird from 'bluebird';
 
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 const nativePromise = global.Promise;
 

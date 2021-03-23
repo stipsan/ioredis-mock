@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('pttl', () => {
   it('should return -2 if key does not exist', () => {

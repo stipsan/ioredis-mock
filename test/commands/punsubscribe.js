@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('punsubscribe', () => {
   it('should return 0 when no arguments are given', () => {

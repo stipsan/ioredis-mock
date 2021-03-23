@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 import createBuffer from '../../src/buffer';
 
 describe('hgetBuffer', () => {

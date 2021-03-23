@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 import { init, dispose } from '../../src/lua';
 
 describe('defineCommand', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('decrby', () => {
   it('should decrement an integer with passed decrement', () => {

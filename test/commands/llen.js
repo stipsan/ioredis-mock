@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('llen', () => {
   it('should return the number of items in the list', () => {

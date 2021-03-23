@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hstrlen', () => {
   it('should return 0 on keys that do not exist', () => {

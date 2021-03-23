@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('hkeys', () => {
   it('should return an empty array if there are no keys', () => {

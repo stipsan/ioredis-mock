@@ -2,7 +2,7 @@ import Set from 'es6-set';
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('keyprefix', () => {
   let writable;

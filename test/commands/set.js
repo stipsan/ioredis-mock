@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('set', () => {
   it('should return OK when setting a hash key', () => {

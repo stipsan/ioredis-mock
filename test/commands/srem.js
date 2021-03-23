@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('srem', () => {
   const redis = new MockRedis({

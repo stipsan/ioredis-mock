@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('append', () => {
   it('should append to exiting string and return new length', () => {

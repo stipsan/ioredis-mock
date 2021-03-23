@@ -1,5 +1,5 @@
 import parseKeyspaceEvents from '../src/keyspace-notifications';
-import MockRedis from '../src';
+import MockRedis from 'ioredis';
 
 describe('parseKeyspaceEvents', () => {
   it('should interpret an empty string as all notifications disabled', () => {

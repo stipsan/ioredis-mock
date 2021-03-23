@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('ltrim', () => {
   it('should return first 3 items', () => {

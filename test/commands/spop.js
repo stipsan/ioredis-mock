@@ -1,6 +1,6 @@
 import Set from 'es6-set';
 
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('spop', () => {
   it('should return a random item', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('subscribe', () => {
   it('should ignore an empty subscribe call', () => {

@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('eval', () => {
   it('should execute a lua script through eval and get the return value', () => {

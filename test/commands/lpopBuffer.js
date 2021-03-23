@@ -1,5 +1,5 @@
 import createBuffer from '../../src/buffer';
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('lpopBuffer', () => {
   it('should remove and return first element of list', () => {

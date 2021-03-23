@@ -1,4 +1,4 @@
-import MockRedis from '../../src';
+import MockRedis from 'ioredis';
 
 describe('getset', () => {
   it('should set the new value and return the old value', () => {
