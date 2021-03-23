@@ -1,4 +1,3 @@
-import Map from 'es6-map';
 import { expire } from './index';
 
 function createGroupedArray(arr, groupSize) {

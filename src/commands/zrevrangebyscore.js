@@ -1,4 +1,3 @@
-import Map from 'es6-map';
 import { orderBy, filter, flatMap } from 'lodash';
 import {
   parseLimit,

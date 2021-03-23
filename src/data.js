@@ -1,5 +1,4 @@
 import Set from 'es6-set';
-import Map from 'es6-map';
 import { assign } from 'lodash';
 
 export default function createData(

@@ -1,4 +1,3 @@
-import Map from 'es6-map';
 import { flatMap, orderBy, forEach, reverse } from 'lodash';
 import { slice } from './zrange-command.common';
 

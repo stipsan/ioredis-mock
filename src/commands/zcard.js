@@ -1,5 +1,3 @@
-import Map from 'es6-map';
-
 export function zcard(key) {
   const map = this.data.get(key);
   if (!map) {
