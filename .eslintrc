@@ -21,6 +21,7 @@
         "exports": "always-multiline",
         "functions": "never"
       }
-    ]
+    ],
+    "quotes": ["error", "single", { "avoidEscape": true }]
   }
 }
