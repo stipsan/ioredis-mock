@@ -122,6 +122,16 @@ As a difference from ioredis we currently don't support:
 - the `evalsha` command
 - the `script` command
 
+### Cluster(Experimental)
+
+```js
+var Redis = require(`ioredis-mock`)
+
+const cluster=new Redis.Cluster([`redis://localhost:7001`])
+const nodes=cluster.nodes
+expect(nodes.length).toEqual(1)
+```
+
 ## Roadmap
 
 This project started off as just an utility in
