@@ -150,8 +150,7 @@ RedisMock.prototype.Command = {
     RedisMock.prototype.Command.transformers.reply[name] = func;
   },
 };
-
-class RedisClusterMock extends RedisMock {
+RedisMock.prototype.Cluster = class RedisClusterMock extends RedisMock {
   constructor(nodesOptions) {
     super();
     this.nodes = [];
@@ -160,4 +159,3 @@ class RedisClusterMock extends RedisMock {
 }
 
 module.exports = RedisMock;
-module.exports.Cluster = RedisClusterMock;
