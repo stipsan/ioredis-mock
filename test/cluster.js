@@ -1,4 +1,4 @@
-import RedisMock from '../src';
+import MockRedis from 'ioredis';
 
 describe('cluster', () => {
   it('can create instance', () => {
