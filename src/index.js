@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events';
 import { Command } from 'ioredis';
 import * as commands from './commands';
