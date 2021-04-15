@@ -27,6 +27,14 @@ class RedisMock extends EventEmitter {
     return promiseContainer.set(lib);
   }
 
+  static Cluster = class RedisClusterMock extends RedisMock {
+    constructor(nodesOptions) {
+      super();
+      this.nodes = [];
+      nodesOptions.forEach((options) => this.nodes.push(new RedisMock(options)));
+    }
+  }
+  
   constructor(options = {}) {
     super();
     this.channels = new EventEmitter();
@@ -150,12 +158,5 @@ RedisMock.prototype.Command = {
     RedisMock.prototype.Command.transformers.reply[name] = func;
   },
 };
-RedisMock.prototype.Cluster = class RedisClusterMock extends RedisMock {
-  constructor(nodesOptions) {
-    super();
-    this.nodes = [];
-    nodesOptions.forEach((options) => this.nodes.push(new RedisMock(options)));
-  }
-}
 
 module.exports = RedisMock;
