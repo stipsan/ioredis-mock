@@ -101,7 +101,7 @@ describe('defineCommand', () => {
       .then((val) => expect(val).toEqual(['value1', 'value2']));
   });
 
-  it('should maintain one-based indexes in lua', () => {
+  it('should maintain one-based indices in lua', () => {
     const luaCode = `
       local contents = redis.call('zrange', 'set', 0, -1);
       return contents[1];
