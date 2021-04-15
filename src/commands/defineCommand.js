@@ -59,6 +59,7 @@ const callToRedisCommand = (vm) =>
     }
     if (!!result || result === 0) {
       if (Array.isArray(result)) {
+        // fix for one-based indices
         result.unshift(null);
       }
       interop.push(vm.L, result);

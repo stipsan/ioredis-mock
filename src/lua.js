@@ -72,8 +72,16 @@ const isTopArray = (L) => () => {
 
 const makeReturnValue = (L) => {
   const isArray = isTopArray(L)();
+
   if (!isArray) {
-    return interop.tojs(L, -1);
+    const retVal = interop.tojs(L, -1);
+    if (Array.isArray(retVal)) {
+      // we push 'null' into position 0 in Arrays because in lua Arrays are one-based
+      // see src/commands/defineCommand:callToRedisCommand
+      // this removes the null element before returning
+      return retVal.slice(1);
+    }
+    return retVal;
   }
 
   const arrayLength = getTopLength(L);
