@@ -151,7 +151,7 @@ RedisMock.prototype.Command = {
   },
 };
 
-class RedisClusterMock extends RedisMock {
+RedisMock.Cluster = class RedisClusterMock extends RedisMock {
   constructor(nodesOptions) {
     super();
     this.nodes = [];
@@ -160,4 +160,3 @@ class RedisClusterMock extends RedisMock {
 }
 
 module.exports = RedisMock;
-module.exports.Cluster = RedisClusterMock;
