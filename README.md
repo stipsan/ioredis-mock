@@ -124,6 +124,8 @@ As a difference from ioredis we currently don't support:
 
 ### Cluster(Experimental)
 
+Work on Cluster support has started, the current implementation is minimal and PRs welcome #359
+
 ```js
 var Redis = require(`ioredis-mock`)
 
