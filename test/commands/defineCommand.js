@@ -86,6 +86,34 @@ describe('defineCommand', () => {
     return redis.someCmd().then((val) => expect(val).toEqual([[2], 1]));
   });
 
+  it('should support custom commands returning ranges', () => {
+    const luaCode = `
+      local contents = redis.call('zrange', 'set', 0, -1);
+      return contents;
+  `;
+    const redis = new MockRedis();
+    redis.zadd('set', 1, 'value1');
+    redis.zadd('set', 2, 'value2');
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis
+      .someCmd()
+      .then((val) => expect(val).toEqual(['value1', 'value2']));
+  });
+
+  it('should maintain one-based indexes in redis.call(zrange)', () => {
+    const luaCode = `
+      local contents = redis.call('zrange', 'set', 0, -1);
+      return contents[1];
+  `;
+    const redis = new MockRedis();
+    redis.zadd('set', 1, 'value1');
+    redis.zadd('set', 2, 'value2');
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis.someCmd().then((val) => expect(val).toEqual('value1'));
+  });
+
   it('should support calling custom commmands via multi', () => {
     const luaCode = 'return 1';
     const redis = new MockRedis();
