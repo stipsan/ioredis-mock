@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events';
 import { Command } from 'ioredis';
 import * as commands from './commands';
@@ -150,4 +151,13 @@ RedisMock.prototype.Command = {
   },
 };
 
+class RedisClusterMock extends RedisMock {
+  constructor(nodesOptions) {
+    super();
+    this.nodes = [];
+    nodesOptions.forEach((options) => this.nodes.push(new RedisMock(options)));
+  }
+}
+
 module.exports = RedisMock;
+module.exports.Cluster = RedisClusterMock;
