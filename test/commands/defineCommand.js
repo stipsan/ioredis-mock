@@ -54,6 +54,38 @@ describe('defineCommand', () => {
       .then((val) => expect(val).toEqual([[10], [100, 200], []]));
   });
 
+  it('should support custom commands returning a list', () => {
+    const redis = new MockRedis();
+    const luaCode = `
+      redis.call('lpush', 'key', 3);
+      return redis.call('lrange', 'key', 0, -1)
+    `;
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis.someCmd().then((val) => expect(val).toEqual([3]));
+  });
+
+  it('should support custom commands returning an empty list', () => {
+    const luaCode = "return redis.call('lrange', 'nonexistent', 0, -1)";
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis.someCmd().then((val) => expect(val).toEqual([]));
+  });
+
+  it('should support custom commands returning a table containing a list', () => {
+    const luaCode = `
+      redis.call('rpush', 'key', 2);
+      local contents = redis.call('lrange', 'key', 0, -1);
+      local size = redis.call('llen', 'key');
+      return { contents, size }
+  `;
+    const redis = new MockRedis();
+    const definition = { numberOfKeys: 0, lua: luaCode };
+    redis.defineCommand('someCmd', definition);
+    return redis.someCmd().then((val) => expect(val).toEqual([[2], 1]));
+  });
+
   it('should support calling custom commmands via multi', () => {
     const luaCode = 'return 1';
     const redis = new MockRedis();
