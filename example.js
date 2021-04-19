@@ -1,5 +1,6 @@
-// ioredis is a peer dependency so we must include it for the RunKit example to work
+// declare peer dependencies so RunKit don't throw errors
 require('ioredis/package.json');
+require('redis-commands/package.json');
 
 var RedisMock = require('ioredis-mock');
 var redis = new RedisMock({
