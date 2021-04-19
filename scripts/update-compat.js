@@ -8,29 +8,13 @@ const RedisMock = require('../src');
 
 const mockedRedis = new RedisMock();
 
-const blacklist = [
-  'asking',
-  'debug',
-  'latency',
-  'pfdebug',
-  'pfselftest',
-  'psync',
-  'replconf',
-  'restore-asking',
-  'substr',
-  'unlink',
-];
-const filteredCommands = commands.list.filter(
-  (command) => blacklist.indexOf(command) === -1
-);
-
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data';
 let bufferSupportedCommands = 0;
 let supportedCommands = 0;
 let tableRows = `
 | redis | ioredis | ioredis-mock | buffer | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|--------|:-------:|:------------:|`;
-filteredCommands.forEach((command) => {
+commands.list.forEach((command) => {
   footerLinks += `
   [${command}]: http://redis.io/commands/${command.toUpperCase()}`;
   const redisCol = `[${command}]`;
@@ -60,8 +44,7 @@ filteredCommands.forEach((command) => {
 });
 
 const percentage = Math.floor(
-  (supportedCommands / (filteredCommands.length + bufferSupportedCommands)) *
-    100
+  (supportedCommands / (commands.list.length + bufferSupportedCommands)) * 100
 );
 
 let color = 'red';

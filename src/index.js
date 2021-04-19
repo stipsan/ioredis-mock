@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events';
 import { Command } from 'ioredis';
+import redisCommands from 'redis-commands';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
 import createCommand from './command';
@@ -137,6 +138,27 @@ class RedisMock extends EventEmitter {
     Object.keys(commandsStream).forEach((command) => {
       this[command] = commandsStream[command].bind(this);
     });
+
+    const supportedCommands = [
+      ...redisCommands.list,
+      ...redisCommands.list.map((command) => `${command}Buffer`),
+    ];
+    const docsLink =
+      'https://github.com/stipsan/ioredis-mock/blob/master/compat.md#supported-commands-';
+    supportedCommands.forEach((command) => {
+      if (!(command in this)) {
+        Object.defineProperty(this, command, {
+          value: () => {
+            throw new TypeError(
+              `Unsupported command: ${JSON.stringify(
+                command
+              )}, please check the full list over mocked commands: ${docsLink}`
+            );
+          },
+          writable: false,
+        });
+      }
+    });
   }
 }
 RedisMock.prototype.Command = {
@@ -157,6 +179,6 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
     this.nodes = [];
     nodesOptions.forEach((options) => this.nodes.push(new RedisMock(options)));
   }
-}
+};
 
 module.exports = RedisMock;
