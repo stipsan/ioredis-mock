@@ -8,34 +8,19 @@ const RedisMock = require('../src');
 
 const mockedRedis = new RedisMock();
 
-const blacklist = [
-  'asking',
-  'debug',
-  'latency',
-  'pfdebug',
-  'pfselftest',
-  'psync',
-  'replconf',
-  'restore-asking',
-  'substr',
-  'unlink',
-];
-const filteredCommands = commands.list.filter(
-  (command) => blacklist.indexOf(command) === -1
-);
-
+const mockCommands = Object.keys(mockedRedis);
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data';
 let bufferSupportedCommands = 0;
 let supportedCommands = 0;
 let tableRows = `
 | redis | ioredis | ioredis-mock | buffer | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|--------|:-------:|:------------:|`;
-filteredCommands.forEach((command) => {
+commands.list.forEach((command) => {
   footerLinks += `
   [${command}]: http://redis.io/commands/${command.toUpperCase()}`;
   const redisCol = `[${command}]`;
   const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:';
-  const supportedCommand = command in mockedRedis;
+  const supportedCommand = mockCommands.includes(command);
   const ioredisMockCol = supportedCommand ? ':white_check_mark:' : ':x:';
   if (supportedCommand) {
     supportedCommands += 1;
@@ -46,7 +31,7 @@ filteredCommands.forEach((command) => {
   const commandBuffer = `${command}Buffer`;
   const ioredisSupportsBuffer = commandBuffer in redis.prototype;
   const ioredisColBuffer = ioredisSupportsBuffer ? ':white_check_mark:' : ':x:';
-  const supportedCommandBuffer = commandBuffer in mockedRedis;
+  const supportedCommandBuffer = mockCommands.includes(commandBuffer);
   const ioredisMockColBuffer = supportedCommandBuffer
     ? ':white_check_mark:'
     : ':x:';
@@ -60,8 +45,7 @@ filteredCommands.forEach((command) => {
 });
 
 const percentage = Math.floor(
-  (supportedCommands / (filteredCommands.length + bufferSupportedCommands)) *
-    100
+  (supportedCommands / (commands.list.length + bufferSupportedCommands)) * 100
 );
 
 let color = 'red';
