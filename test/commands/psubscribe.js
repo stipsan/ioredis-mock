@@ -63,8 +63,8 @@ describe('psubscribe', () => {
         PromiseTwoFulfill = f;
       });
 
-      redisOne.on('message', promiseOneFulfill);
-      redisTwo.on('message', PromiseTwoFulfill);
+      redisOne.on('pmessage', promiseOneFulfill);
+      redisTwo.on('pmessage', PromiseTwoFulfill);
 
       redisOne.createConnectedClient().publish('first.test', 'blah');
 
