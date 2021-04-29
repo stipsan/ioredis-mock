@@ -54,7 +54,7 @@ describe('punsubscribe', () => {
           promiseFulfill = f;
         });
 
-        redisOne.on('message', promiseFulfill);
+        redisOne.on('pmessage', promiseFulfill);
 
         redisOne.createConnectedClient().publish('first.test', 'TEST');
 

@@ -24,7 +24,12 @@ export function subscribeToChannel(instance, chan, channels, isPattern) {
   }
   // Pattern events include the channel, regular events do not, so we pass chan in directly
   const listener = (message, channel) =>
-    emitMessage(instance, isPattern ? channel : chan, message);
+    emitMessage(
+      instance,
+      isPattern ? channel : chan,
+      message,
+      isPattern ? chan : undefined
+    );
   channels.on(chan, listener);
   channels.instanceListeners.get(chan).set(instance, listener);
 }
