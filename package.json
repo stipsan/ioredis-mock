@@ -35,7 +35,6 @@
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.2",
     "lodash": "^4.17.21",
-    "minimatch": "^3.0.4",
     "standard-as-callback": "^2.1.0"
   },
   "peerDependencies": {

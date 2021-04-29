@@ -1,5 +1,7 @@
-import minimatch from 'minimatch';
+import patternMatchesString from '../commands-utils/patternMatchesString';
 
 export function keys(globString) {
-  return this.data.keys().filter((key) => minimatch(key, globString));
+  return this.data
+    .keys()
+    .filter((key) => patternMatchesString(globString, key));
 }
