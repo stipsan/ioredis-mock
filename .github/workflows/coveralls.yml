@@ -22,8 +22,8 @@ jobs:
 
       - name: npm install, make test-coverage
         run: |
-          yarn --frozen-lockfile
-          yarn coverage
+          npm ci
+          npm run coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master

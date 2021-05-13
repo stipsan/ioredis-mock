@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@master
       - name: npm install, build and lint
         run: |
-          yarn --frozen-lockfile
-          yarn lint
+          npm ci
+          npm run lint
   test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -37,11 +37,11 @@ jobs:
 
       - name: npm install, build and test
         run: |
-          yarn --frozen-lockfile --ignore-engines
-          yarn test
+          npm ci
+          npm test
 
       - name: E2E test generated jest.js mock
         if: matrix.os != 'windows-latest'
         run: |
-          yarn build:jest.js
-          yarn test:jest.js
+          npm run build:jest.js
+          npm run test:jest.js

@@ -13,24 +13,23 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
+            - v2-dependencies-{{ checksum "package-lock.json" }}
+            - v2-dependencies-
 
-      # --frozen-lockfile ensures yarn.lockfile isn't accidentally outdated compared to package.json
-      - run: yarn install --no-progress --frozen-lockfile
+      - run: npm ci
 
-      - run: yarn coverage --runInBand
+      - run: npm run coverage -- --runInBand
 
-      - run: yarn codeclimate
+      - run: npm run codeclimate
 
       # Make sure we don't get any surprises later when we try to publish a release
-      - run: yarn prepublishOnly
+      - run: npm run prepublishOnly
 
       # Wait with saving deps cache until all tests pass
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
 
       # Semantic release is setup to check on its own when to publish a new release or not
       - run: npx semantic-release
