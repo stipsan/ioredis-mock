@@ -1,10 +1,10 @@
-import minimatch from 'minimatch';
+import patternMatchesString from '../commands-utils/patternMatchesString';
 
 export function publish(channel, message) {
   this.channels.emit(channel, message);
   const matchingPatterns = this.patternChannels
     .eventNames()
-    .filter((pattern) => minimatch(channel, pattern));
+    .filter((pattern) => patternMatchesString(pattern, channel));
   matchingPatterns.forEach((matchingChannel) =>
     this.patternChannels.emit(matchingChannel, message, channel)
   );
