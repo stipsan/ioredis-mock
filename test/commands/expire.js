@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
 
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('expire', () => {
   it('should delete key on get', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -22,7 +22,7 @@ describe('expire', () => {
   });
 
   it('should delete key on garbage collect', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -33,12 +33,12 @@ describe('expire', () => {
   });
 
   it('should return 0 if key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.expire('foo', 1).then((status) => expect(status).toBe(0));
   });
 
   it('should remove expire on SET', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -50,7 +50,7 @@ describe('expire', () => {
   });
 
   it('should remove expire on GETSET', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -62,7 +62,7 @@ describe('expire', () => {
   });
 
   it('should move expire on RENAME', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -74,7 +74,7 @@ describe('expire', () => {
   });
 
   it('should emit keyspace notification if configured', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
+    const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:foo');

@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zpopmax', () => {
   const data = {
@@ -12,7 +12,7 @@ describe('zpopmax', () => {
   };
 
   it('should return first item with score', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zpopmax('foo')
@@ -20,7 +20,7 @@ describe('zpopmax', () => {
   });
 
   it('should return first N item with score if count=N', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zpopmax('foo', 3)
@@ -30,13 +30,13 @@ describe('zpopmax', () => {
   });
 
   it('should return empty list if no data', () => {
-    const redis = new MockRedis({ data: {} });
+    const redis = new Redis({ data: {} });
 
     return redis.zpopmax('foo').then((res) => expect(res).toEqual([]));
   });
 
   it('should remove the items', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zpopmax('foo', 2).then(() => {
       expect(redis.data.get('foo').has('fifth')).toBe(false);

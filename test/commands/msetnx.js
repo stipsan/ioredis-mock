@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('msetnx', () => {
   it('should batch set values', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .msetnx('key1', 'Hello', 'key2', 'World')
       .then((status) => expect(status).toBe(1))
@@ -13,7 +13,7 @@ describe('msetnx', () => {
   });
 
   it('should bail on batch set values if just one key exists', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         key1: 'Nope',
       },

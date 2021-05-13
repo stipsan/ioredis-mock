@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('echo', () => {
   it('should return message', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .echo('Hello World!')

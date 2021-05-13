@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('lindex', () => {
   it('should return item list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mylist: ['Hello', 'World'],
       },
@@ -18,7 +18,7 @@ describe('lindex', () => {
   });
 
   it('should return null if the list does not exist', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {},
     });
 
@@ -26,7 +26,7 @@ describe('lindex', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

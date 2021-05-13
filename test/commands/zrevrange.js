@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zrevrange', () => {
   const data = {
@@ -11,7 +11,7 @@ describe('zrevrange', () => {
     ]),
   };
   it('should return first 3 items ordered by score in reverse', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrange('foo', 0, 2)
@@ -19,7 +19,7 @@ describe('zrevrange', () => {
   });
 
   it('should return last 3 items in reverse', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrange('foo', -3, -1)
@@ -27,7 +27,7 @@ describe('zrevrange', () => {
   });
 
   it('should return last all items on larger numbers in reverse', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrange('foo', 0, 100)
@@ -37,7 +37,7 @@ describe('zrevrange', () => {
   });
 
   it('should return empty array if out-of-range', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrange('foo', 10, 100)
@@ -45,7 +45,7 @@ describe('zrevrange', () => {
   });
 
   it('should return empty array if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },
@@ -55,7 +55,7 @@ describe('zrevrange', () => {
   });
 
   it('should sort items with the same score in reverse lexicographical order', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Map([
           ['aaa', { score: 5, value: 'aaa' }],

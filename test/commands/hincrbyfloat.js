@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hincrbyfloat', () => {
   it('should increment an float with passed increment', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mykey: { field: '10.50' },
       },
@@ -17,7 +17,7 @@ describe('hincrbyfloat', () => {
   });
 
   it('should support exponents', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mykey: { field: '5.0e3' },
       },
@@ -30,7 +30,7 @@ describe('hincrbyfloat', () => {
   });
 
   it('should create hash if not exists', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .hincrbyfloat('stats', 'health', 0.5)
@@ -39,7 +39,7 @@ describe('hincrbyfloat', () => {
   });
 
   it('should create field in hash if not exists', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stats: {},
       },

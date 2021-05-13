@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('setnx', () => {
   it('should set a key with value if it does not exist already', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .setnx('foo', 'bar')
       .then((status) => expect(status).toBe(1))

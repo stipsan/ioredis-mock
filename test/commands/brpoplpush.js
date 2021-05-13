@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('brpoplpush', () => {
   it('should remove one item from the tail of the source list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar'],
       },
@@ -14,7 +14,7 @@ describe('brpoplpush', () => {
   });
 
   it('should add one item to the head of the destination list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar'],
         bar: ['baz'],
@@ -27,7 +27,7 @@ describe('brpoplpush', () => {
   });
 
   it('should return null if the source list does not exist', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {},
     });
 
@@ -37,7 +37,7 @@ describe('brpoplpush', () => {
   });
 
   it('should return null if the source list is empty', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: [],
       },
@@ -49,7 +49,7 @@ describe('brpoplpush', () => {
   });
 
   it('should return the item', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar'],
       },
@@ -61,7 +61,7 @@ describe('brpoplpush', () => {
   });
 
   it('should throw an exception if the source key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
         bar: [],
@@ -76,7 +76,7 @@ describe('brpoplpush', () => {
   });
 
   it('should throw an exception if the destination key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: [],
         bar: 'not a list',

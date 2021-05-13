@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('lrem', () => {
   it('should remove the items from the end of the list when count is negative', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar', 'foo', 'baz', 'foo'],
       },
@@ -14,7 +14,7 @@ describe('lrem', () => {
   });
 
   it('should remove the items from the beginning of the list when count is positive', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar', 'foo', 'baz', 'foo'],
       },
@@ -26,7 +26,7 @@ describe('lrem', () => {
   });
 
   it('should remove all the items when count is 0', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar', 'foo', 'baz', 'foo'],
       },
@@ -38,7 +38,7 @@ describe('lrem', () => {
   });
 
   it('should return the number of items removed ', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['foo', 'bar', 'foo', 'baz', 'foo'],
       },
@@ -50,7 +50,7 @@ describe('lrem', () => {
   });
 
   it('should return 0 if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

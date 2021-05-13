@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('srem', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       foos: new Set(['bar', 'foo', 'baz', 'bazooka']),
     },

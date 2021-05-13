@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('mset', () => {
   it('should batch set values', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .mset('key1', 'Hello', 'key2', 'World')
       .then((status) => expect(status).toBe('OK'))

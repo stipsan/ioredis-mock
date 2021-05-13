@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zrange', () => {
   const data = {
@@ -12,7 +12,7 @@ describe('zrange', () => {
   };
 
   it('should return first 3 items ordered by score', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrange('foo', 0, 2)
@@ -20,19 +20,19 @@ describe('zrange', () => {
   });
 
   it('should return nothing when min > max', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zrange('foo', 2, 0).then((res) => expect(res).toEqual([]));
   });
 
   it('should return nothing if the min is greater than the max, and max is negative', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zrange('foo', 0, -8).then((res) => expect(res).toEqual([]));
   });
 
   it('should return last 3 items', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrange('foo', -3, -1)
@@ -40,7 +40,7 @@ describe('zrange', () => {
   });
 
   it('should return all items on larger ranges', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrange('foo', 0, 100)
@@ -50,7 +50,7 @@ describe('zrange', () => {
   });
 
   it('should work even if the min is negative and larger than set size', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrange('foo', -200, -3)
@@ -58,13 +58,13 @@ describe('zrange', () => {
   });
 
   it('should return empty array if out-of-range', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zrange('foo', 10, 100).then((res) => expect(res).toEqual([]));
   });
 
   it('should return empty array if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },
@@ -74,7 +74,7 @@ describe('zrange', () => {
   });
 
   it('should include scores if WITHSCORES is specified', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrange('foo', 0, 2, 'WITHSCORES')
       .then((res) =>
@@ -83,7 +83,7 @@ describe('zrange', () => {
   });
 
   it('should sort items with the same score lexicographically', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Map([
           ['aaa', { score: 5, value: 'aaa' }],

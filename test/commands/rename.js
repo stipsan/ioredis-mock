@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('rename', () => {
   it('should rename a key to newkey', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'baz',
       },
@@ -17,7 +17,7 @@ describe('rename', () => {
   });
 
   it('should emit keyspace notifications if configured', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
+    const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
     const redisPubSub = redis.createConnectedClient();
     let messagesReceived = 0;
     redisPubSub.on('message', (channel, message) => {

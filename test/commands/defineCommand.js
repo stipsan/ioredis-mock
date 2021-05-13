@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 import { init, dispose } from '../../src/lua';
 
 describe('defineCommand', () => {
@@ -20,7 +20,7 @@ describe('defineCommand', () => {
         local value2 = value1 + ARGV[1]
         rcall("SET", KEYS[1], value2)
       `;
-      const redis = new MockRedis();
+      const redis = new Redis();
       const someKey = 'k';
       const initialValue = 1;
       const definition = { numberOfKeys: 1, lua: luaCode };
@@ -38,7 +38,7 @@ describe('defineCommand', () => {
 
   it('should support custom commmands returning a table/array', () => {
     const luaCode = 'return {10, 100, 200}';
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis.someCmd().then((val) => expect(val).toEqual([10, 100, 200]));
@@ -46,7 +46,7 @@ describe('defineCommand', () => {
 
   it('should support custom commmands returning a table/array of table/array elements', () => {
     const luaCode = 'return {{10}, {100, 200}, {}}';
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis
@@ -55,7 +55,7 @@ describe('defineCommand', () => {
   });
 
   it('should support custom commands returning a list', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const luaCode = `
       redis.call('lpush', 'key', 3);
       return redis.call('lrange', 'key', 0, -1)
@@ -67,7 +67,7 @@ describe('defineCommand', () => {
 
   it('should support custom commands returning an empty list', () => {
     const luaCode = "return redis.call('lrange', 'nonexistent', 0, -1)";
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis.someCmd().then((val) => expect(val).toEqual([]));
@@ -80,7 +80,7 @@ describe('defineCommand', () => {
       local size = redis.call('llen', 'key');
       return { contents, size }
   `;
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis.someCmd().then((val) => expect(val).toEqual([[2], 1]));
@@ -91,7 +91,7 @@ describe('defineCommand', () => {
       local contents = redis.call('zrange', 'set', 0, -1);
       return contents;
   `;
-    const redis = new MockRedis();
+    const redis = new Redis();
     redis.zadd('set', 1, 'value1');
     redis.zadd('set', 2, 'value2');
     const definition = { numberOfKeys: 0, lua: luaCode };
@@ -106,7 +106,7 @@ describe('defineCommand', () => {
       local contents = redis.call('zrange', 'set', 0, -1);
       return contents[1];
   `;
-    const redis = new MockRedis();
+    const redis = new Redis();
     redis.zadd('set', 1, 'value1');
     redis.zadd('set', 2, 'value2');
     const definition = { numberOfKeys: 0, lua: luaCode };
@@ -116,7 +116,7 @@ describe('defineCommand', () => {
 
   it('should support calling custom commmands via multi', () => {
     const luaCode = 'return 1';
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis
@@ -127,7 +127,7 @@ describe('defineCommand', () => {
 
   it('should support calling custom commmands via pipeline', () => {
     const luaCode = 'return 1';
-    const redis = new MockRedis();
+    const redis = new Redis();
     const definition = { numberOfKeys: 0, lua: luaCode };
     redis.defineCommand('someCmd', definition);
     return redis

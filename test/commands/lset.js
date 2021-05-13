@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('lset', () => {
   it('should set the list element at index to value', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mylist: ['one', 'two', 'three'],
       },
@@ -19,7 +19,7 @@ describe('lset', () => {
   });
 
   it('should throw an exception if the key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .lset('mylist', 0, 'foo')
@@ -27,7 +27,7 @@ describe('lset', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },
@@ -41,7 +41,7 @@ describe('lset', () => {
   });
 
   it('should throw errors when index is out of range', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mylist: ['one', 'two', 'three'],
       },

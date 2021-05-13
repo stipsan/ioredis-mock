@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hset', () => {
-  const redis = new MockRedis();
+  const redis = new Redis();
 
   it('should return 1 when setting a new field', () =>
     redis

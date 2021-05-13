@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('sunion', () => {
   it('should return the union between the first set and all the successive sets', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
@@ -17,7 +17,7 @@ describe('sunion', () => {
   });
 
   it('should throw an exception if one of the keys is not a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(),
         bar: 'not a set',

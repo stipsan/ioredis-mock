@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('persist', () => {
   it('should remove expire status on key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -17,7 +17,7 @@ describe('persist', () => {
   });
 
   it('should return 0 if key does not have expire status', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -26,7 +26,7 @@ describe('persist', () => {
   });
 
   it('should return 0 if key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.persist('foo').then((status) => expect(status).toBe(0));
   });

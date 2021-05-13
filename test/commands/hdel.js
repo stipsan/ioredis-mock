@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hdel', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       'user:1': {
         id: '1',

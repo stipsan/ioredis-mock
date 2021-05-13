@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hmget', () => {
   it('should return the values of specified keys in a hash map', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         'user:1': { id: '1', email: 'bruce@wayne.enterprises' },
       },
@@ -15,7 +15,7 @@ describe('hmget', () => {
   });
 
   it('should return an array of nulls if the hash does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .hmget('user:1', 'id', 'email', 'location')
       .then((values) => expect(values).toEqual([null, null, null]));

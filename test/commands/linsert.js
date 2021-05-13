@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('linsert', () => {
   it('should add the value to the list at the correct position', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1'],
       },
@@ -16,7 +16,7 @@ describe('linsert', () => {
   });
 
   it('should return the new length of the list', () => {
-    let redis = new MockRedis({
+    let redis = new Redis({
       data: {},
     });
 
@@ -24,7 +24,7 @@ describe('linsert', () => {
       .linsert('foo', 'BEFORE', 1, 0)
       .then((length) => expect(length).toBe(-1))
       .then(() => {
-        redis = new MockRedis({
+        redis = new Redis({
           data: { foo: ['1'] },
         });
       })
@@ -33,7 +33,7 @@ describe('linsert', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },
@@ -47,7 +47,7 @@ describe('linsert', () => {
   });
 
   it('should throw an exception if the position is not allowed', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {},
     });
 

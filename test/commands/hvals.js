@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hvals', () => {
   it('should return an array over all the values in a hash map', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         emails: {
           'clark@daily.planet': '1',
@@ -17,7 +17,7 @@ describe('hvals', () => {
   });
 
   it("should return empty array if sources don't exists", () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.hvals('emails').then((result) => expect(result).toEqual([]));
   });

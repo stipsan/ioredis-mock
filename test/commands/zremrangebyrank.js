@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zremrangebyrank', () => {
   const data = {
@@ -12,7 +12,7 @@ describe('zremrangebyrank', () => {
   };
 
   it('should do nothing if key does not exist', () => {
-    const redis = new MockRedis({ data: {} });
+    const redis = new Redis({ data: {} });
 
     return redis
       .zremrangebyrank('foo', 0, 2)
@@ -21,7 +21,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should remove first 3 items ordered by score', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyrank('foo', 0, 2)
@@ -36,7 +36,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should remove last 3 items', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyrank('foo', -3, -1)
@@ -51,7 +51,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should remove all items on larger rangers', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyrank('foo', 0, 100)
@@ -66,7 +66,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should return 0 and delete nothing if out-of-range', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyrank('foo', 10, 100)
@@ -81,7 +81,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should remove nothing if max is before min', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyrank('foo', 0, -6)
@@ -96,7 +96,7 @@ describe('zremrangebyrank', () => {
   });
 
   it('should return 0 the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

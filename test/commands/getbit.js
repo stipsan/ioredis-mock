@@ -1,14 +1,14 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('getbit', () => {
   it('should return 0 on keys that do not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.getbit('foo', 0).then((result) => expect(result).toBe(0));
   });
 
   it('should throw if offset > 2^32', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.getbit('foo', 2 ** 32).then(
       () => {
@@ -24,7 +24,7 @@ describe('getbit', () => {
   });
 
   it('should return bit value of key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -34,7 +34,7 @@ describe('getbit', () => {
   });
 
   it('should return 0 if offset is out of range', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },

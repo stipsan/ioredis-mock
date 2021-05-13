@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('rpush', () => {
   it('should add the values to the list in the correct order', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1'],
       },
@@ -14,13 +14,13 @@ describe('rpush', () => {
   });
 
   it('should return the new length of the list', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.rpush('foo', 9, 8, 7).then((length) => expect(length).toBe(3));
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

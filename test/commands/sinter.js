@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('sinter', () => {
   it('should return the members from the intersection of all the given sets', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
@@ -16,7 +16,7 @@ describe('sinter', () => {
   });
 
   it('should throw an exception if one of the keys is not a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(),
         bar: 'not a set',
@@ -31,7 +31,7 @@ describe('sinter', () => {
   });
 
   it("should return empty array if sources don't exists", () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sinter('foo', 'bar')

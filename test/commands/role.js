@@ -1,11 +1,11 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('role', () => {
-  it('should return role info on the current redis instance', () => {
-    const redis = new MockRedis();
+  test('should return role info on the current redis instance', () => {
+    const redis = new Redis();
 
     return redis.role().then((result) => expect(result).toEqual(['master', 0]));
   });
 
-  it.skip('should return slave info', () => {});
+  test.todo('should return slave info');
 });

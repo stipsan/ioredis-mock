@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('unlink', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       unlinkme: 'please',
       metoo: 'pretty please',

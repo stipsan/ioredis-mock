@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('rpopBuffer', () => {
   it('should remove and return last element of list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3'],
       },
@@ -16,7 +16,7 @@ describe('rpopBuffer', () => {
 
   it('should return buffer values correctly', () => {
     const bufferVal = Buffer.from('bar');
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', bufferVal],
       },
@@ -28,7 +28,7 @@ describe('rpopBuffer', () => {
   });
 
   it('should return null on empty list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: [],
       },
@@ -38,7 +38,7 @@ describe('rpopBuffer', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

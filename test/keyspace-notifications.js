@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 import parseKeyspaceEvents from '../src/keyspace-notifications';
 
 describe('parseKeyspaceEvents', () => {
@@ -66,7 +66,7 @@ describe('parseKeyspaceEvents', () => {
 
 describe('keyspaceNotifications', () => {
   it('should appear when configured and the triggering event occurs', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
+    const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:key');
@@ -79,7 +79,7 @@ describe('keyspaceNotifications', () => {
   });
 
   it('should not appear when not configured and the triggering event occurs', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: '' }); // empty string: not configured
+    const redis = new Redis({ notifyKeyspaceEvents: '' }); // empty string: not configured
     redis.on('message', (channel, message) => {
       throw new Error(`should not receive ${message} on ${channel}`);
     });
@@ -89,7 +89,7 @@ describe('keyspaceNotifications', () => {
   });
 
   it('should appear on a connected second mock instance when configured and the triggering event occurs', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
+    const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
     const redis2 = redis.createConnectedClient({ notifyKeyspaceEvents: 'gK' });
     redis2.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:key');
@@ -104,7 +104,7 @@ describe('keyspaceNotifications', () => {
 
 describe('keyeventNotifications', () => {
   it('should appear when configured and the triggering event occurs', (done) => {
-    const redis = new MockRedis({ notifyKeyspaceEvents: 'gE' }); // gK: generic keyevent
+    const redis = new Redis({ notifyKeyspaceEvents: 'gE' }); // gK: generic keyevent
     const redisPubSub = redis.createConnectedClient();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyevent@0__:del');

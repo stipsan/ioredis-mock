@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('discard', () => {
   it('should discard any batch queue ', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.multi([
       ['incr', 'user_next'],
@@ -15,7 +15,7 @@ describe('discard', () => {
   });
 
   it('errors if you discard without starting a pipeline', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.discard().catch((err) => {
       expect(err).toBeInstanceOf(Error);

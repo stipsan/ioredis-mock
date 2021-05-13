@@ -1,14 +1,14 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('pttl', () => {
   it('should return -2 if key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.pttl('foo').then((result) => expect(result).toBe(-2));
   });
 
   it('should return -1 if key exist but have no expire', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -18,7 +18,7 @@ describe('pttl', () => {
   });
 
   it('should return seconds left until expire', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },

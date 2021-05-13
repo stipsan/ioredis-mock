@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hstrlen', () => {
   it('should return 0 on keys that do not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .hstrlen('nonexisting')
@@ -10,7 +10,7 @@ describe('hstrlen', () => {
   });
 
   it('should return 0 on fields that do not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .hstrlen('nonexisting', 'foo')
@@ -18,7 +18,7 @@ describe('hstrlen', () => {
   });
 
   it('should return length on existing fields', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mykey: {
           foo: 'Hello world',

@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('renamenx', () => {
   it('should return integer 1 on key rename', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'baz',
       },
@@ -17,7 +17,7 @@ describe('renamenx', () => {
   });
 
   it('should return integer 0 if new key already exist', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'baz',
         bar: 'foobar',

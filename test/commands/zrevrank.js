@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zrevrank', () => {
   const data = {
@@ -10,7 +10,7 @@ describe('zrevrank', () => {
   };
 
   it('should do nothing if key does not exist', () => {
-    const redis = new MockRedis({ data: {} });
+    const redis = new Redis({ data: {} });
 
     return redis
       .zrevrank('foo', 'not-exist')
@@ -19,7 +19,7 @@ describe('zrevrank', () => {
   });
 
   it('should return null if not found', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrank('foo', 'not-found')
@@ -27,7 +27,7 @@ describe('zrevrank', () => {
   });
 
   it('should return found index', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrevrank('foo', 'first')

@@ -2,11 +2,11 @@
 
 jest.mock('ioredis', () => {
   const { Command } = jest.requireActual('ioredis');
-  const RedisMock = jest.requireActual('./src/index');
+  const Redis = jest.requireActual('./src/index');
 
   return {
     __esModule: true,
     Command,
-    default: RedisMock,
+    default: Redis,
   };
 });

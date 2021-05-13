@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('getrange', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       foo: 'This is a string',
     },

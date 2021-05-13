@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('lastsave', () => {
   it('should return unix time since last save', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .lastsave()

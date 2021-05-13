@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('del', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       deleteme: 'please',
       metoo: 'pretty please',

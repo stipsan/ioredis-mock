@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('incr', () => {
   it('should increment an integer', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '1',
       },
@@ -15,7 +15,7 @@ describe('incr', () => {
   });
 
   it('should set default value if not exists', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .incr('user_next')

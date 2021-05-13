@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('sadd', () => {
   it('should add 1 item to set', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sadd('foos', 'bar')
@@ -10,7 +10,7 @@ describe('sadd', () => {
       .then(() => expect(redis.data.get('foos').has('bar')).toBe(true));
   });
   it('should add 2 items to set', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sadd('foos', 'foo', 'baz')
@@ -22,7 +22,7 @@ describe('sadd', () => {
       });
   });
   it('should not increase length when adding duplicates', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sadd('key', 'value', 'value')

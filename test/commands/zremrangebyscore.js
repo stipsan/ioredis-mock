@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zremrangebyscore', () => {
   const data = {
@@ -12,7 +12,7 @@ describe('zremrangebyscore', () => {
   };
 
   it('should do nothing if key does not exist', () => {
-    const redis = new MockRedis({ data: {} });
+    const redis = new Redis({ data: {} });
 
     return redis
       .zremrangebyscore('foo', 0, 2)
@@ -21,7 +21,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should remove using not strict compare', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyscore('foo', 1, 3)
@@ -36,7 +36,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should return using strict compare', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyscore('foo', '(3', 5)
@@ -51,7 +51,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should accept infinity string', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyscore('foo', '-inf', '+inf')
@@ -66,7 +66,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should return zero if out-of-range', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyscore('foo', 100, 10)
@@ -74,7 +74,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should return zero if key not found', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zremrangebyscore('boo', 100, 10)
@@ -82,7 +82,7 @@ describe('zremrangebyscore', () => {
   });
 
   it('should return zero if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

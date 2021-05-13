@@ -2,8 +2,8 @@
 require('ioredis/package.json');
 require('redis-commands/package.json');
 
-var RedisMock = require('ioredis-mock');
-var redis = new RedisMock({
+const Redis = require('ioredis-mock');
+const redis = new Redis({
   data: {
     user_next: '3',
     emails: {

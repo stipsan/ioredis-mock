@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zadd', () => {
   it('should add 1 item to sorted set', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .zadd('foos', '1', 'foo')
@@ -10,7 +10,7 @@ describe('zadd', () => {
       .then(() => expect(redis.data.get('foos').has('foo')).toBe(true));
   });
   it('should add 2 items to sorted set', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .zadd('foos', '1', 'foo', '2', 'baz')
@@ -22,7 +22,7 @@ describe('zadd', () => {
       });
   });
   it('should not increase length when adding duplicates', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .zadd('key', 'value', 'value')
@@ -30,7 +30,7 @@ describe('zadd', () => {
       .then(() => expect(redis.data.get('key').has('value')).toBe(true));
   });
   it('should not allow nx and xx options in the same call', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .zadd('key', ['NX', 'XX'], 1, 'value')
@@ -41,14 +41,14 @@ describe('zadd', () => {
       );
   });
   it('should not update a value that exists with NX option', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.zadd('key', 'NX', 1, 'value').then(() => {
       redis.zadd('key', 'NX', 2, 'value').then((r) => expect(r).toBe(0));
     });
   });
   it('should return updated + added with CH option', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.zadd('key', 1, 'value').then(() => {
       redis
@@ -57,7 +57,7 @@ describe('zadd', () => {
     });
   });
   it('should only update elements that already exist with XX option', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.zadd('key', 1, 'value').then(() => {
       redis
@@ -66,7 +66,7 @@ describe('zadd', () => {
     });
   });
   it('should handle INCR option', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.zadd('key', 1, 'value').then(() => {
       redis

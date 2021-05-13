@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('decr', () => {
   it('should decrement an integer', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '2',
       },

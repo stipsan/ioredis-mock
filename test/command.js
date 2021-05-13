@@ -26,5 +26,7 @@ describe('basic command', () => {
     );
   });
 
-  it.skip('should reject the promise if the first argument is bool false to allow simulating failures', () => {});
+  it.todo(
+    'should reject the promise if the first argument is bool false to allow simulating failures'
+  );
 });

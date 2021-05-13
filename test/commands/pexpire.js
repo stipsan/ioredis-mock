@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
 
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('pexpire', () => {
   it('should set expire status on key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -24,7 +24,7 @@ describe('pexpire', () => {
   });
 
   it('should return 0 if key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.pexpire('foo', 100).then((status) => expect(status).toBe(0));
   });
 });

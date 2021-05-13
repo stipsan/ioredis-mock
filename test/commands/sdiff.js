@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('sdiff', () => {
   it('should return the difference between the first set and all the successive sets', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         key1: new Set(['a', 'b', 'c', 'd']),
         key2: new Set(['c']),
@@ -17,7 +17,7 @@ describe('sdiff', () => {
   });
 
   it('should throw an exception if the first key is not of a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a set',
       },
@@ -31,7 +31,7 @@ describe('sdiff', () => {
   });
 
   it('should throw an exception if the destination contains something other than a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(),
         bar: 'not a set',
@@ -46,7 +46,7 @@ describe('sdiff', () => {
   });
 
   it("should return empty array if sources don't exists", () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sdiff('foo', 'bar')

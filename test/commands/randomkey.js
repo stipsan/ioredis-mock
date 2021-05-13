@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('randomkey', () => {
   it('should return a random key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
         bar: 'foo',
@@ -15,7 +15,7 @@ describe('randomkey', () => {
   });
 
   it('should return null if db is empty', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.randomkey().then((result) => expect(result).toBe(null));
   });

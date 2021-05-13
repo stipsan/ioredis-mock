@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('lpop', () => {
   it('should remove and return first element of list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['3', '2', '1'],
       },
@@ -15,7 +15,7 @@ describe('lpop', () => {
   });
 
   it('should return null on empty list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: [],
       },
@@ -25,7 +25,7 @@ describe('lpop', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

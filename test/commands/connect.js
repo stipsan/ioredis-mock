@@ -1,9 +1,9 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('connect', () => {
   it('should throw if redis has already connected in ctor', (done) => {
     // no option specified means {lazyConnect: false}
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     setTimeout(() => {
       redis
@@ -19,7 +19,7 @@ describe('connect', () => {
   });
 
   it('should signal successful connection', (done) => {
-    const redis = new MockRedis({ lazyConnect: true });
+    const redis = new Redis({ lazyConnect: true });
 
     setTimeout(() => {
       redis
@@ -33,7 +33,7 @@ describe('connect', () => {
   });
 
   it('should throw if manually connected before', () => {
-    const redis = new MockRedis({ lazyConnect: true });
+    const redis = new Redis({ lazyConnect: true });
 
     return redis
       .connect()
@@ -50,7 +50,7 @@ describe('connect', () => {
   });
 
   it('should throw if executing any command when not connected', () => {
-    const redis = new MockRedis({ lazyConnect: true });
+    const redis = new Redis({ lazyConnect: true });
 
     return redis
       .get('key')

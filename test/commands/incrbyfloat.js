@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('incrbyfloat', () => {
   it('should initialize the key with 0 if there is no key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {},
     });
 
@@ -12,7 +12,7 @@ describe('incrbyfloat', () => {
       .then(() => expect(redis.data.get('user_next')).toBe('10.1'));
   });
   it('should increment an float with passed increment', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mykey: '10.50',
       },
@@ -27,7 +27,7 @@ describe('incrbyfloat', () => {
   });
 
   it('should support exponents', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         mykey: '5.0e3',
       },

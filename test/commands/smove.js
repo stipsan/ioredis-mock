@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('smove', () => {
   it('should move value from source to destination', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(['one', 'two', 'three']),
       },
@@ -18,7 +18,7 @@ describe('smove', () => {
   });
 
   it('should return 0 if member does not exist in source', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(['one', 'three']),
       },
@@ -31,7 +31,7 @@ describe('smove', () => {
   });
 
   it('should return 0 if source does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .smove('foo', 'bar', 'two')
@@ -39,7 +39,7 @@ describe('smove', () => {
   });
 
   it('should throw an exception if the source contains something other than a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a set',
       },
@@ -53,7 +53,7 @@ describe('smove', () => {
   });
 
   it('should throw an exception if the destination contains something other than a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Set(),
         bar: 'not a set',

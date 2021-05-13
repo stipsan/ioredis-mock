@@ -1,16 +1,16 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('flushall', () => {
-  const redis = new MockRedis({
+  const redis = new Redis({
     data: {
       deleteme: 'please',
       metoo: 'pretty please',
     },
   });
-  it('should empty current db', () =>
+  test('should empty current db', () =>
     redis
       .flushall()
       .then((status) => expect(status).toBe('OK'))
       .then(() => expect(redis.data.keys().length).toBe(0)));
-  it.skip('should empty every db', () => {});
+  test.todo('should empty every db');
 });

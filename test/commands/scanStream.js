@@ -1,7 +1,7 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 const chance = new Chance();
 
@@ -15,7 +15,7 @@ describe('scanStream', () => {
 
   it('should return null array if nothing in db', (done) => {
     // Given
-    const redis = new MockRedis();
+    const redis = new Redis();
     const stream = redis.scanStream();
     // When
     stream.pipe(writable);
@@ -27,7 +27,7 @@ describe('scanStream', () => {
   });
 
   it('should return keys in db', (done) => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
         test: 'bar',
@@ -48,7 +48,7 @@ describe('scanStream', () => {
     const keys = chance.unique(chance.word, 100);
     const count = 11;
     const data = _.zipObject(keys, Array(keys).fill('bar'));
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     const stream = redis.scanStream({ count });
     // When
     stream.pipe(writable);
@@ -62,7 +62,7 @@ describe('scanStream', () => {
 
   it('should return only mathced keys', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo0: 'x',
         foo1: 'x',

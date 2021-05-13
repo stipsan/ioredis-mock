@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('time', () => {
   it('should return an array with current time in seconds and microseconds', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const time = Math.round(new Date().getTime() / 1000);
 
     return redis.time().then((result) => {

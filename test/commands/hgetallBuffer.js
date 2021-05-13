@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hgetallBuffer', () => {
   it('should return all the keys and values in a hash map as buffer', () => {
@@ -10,7 +10,7 @@ describe('hgetallBuffer', () => {
       'clark@daily.planet': Buffer.from('1'),
       'bruce@wayne.enterprises': Buffer.from('2'),
     };
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         emails,
       },
@@ -25,7 +25,7 @@ describe('hgetallBuffer', () => {
   });
 
   it('should return an empty object if the hash does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .hgetallBuffer('emails')
       .then((result) => expect(result).toEqual({}));

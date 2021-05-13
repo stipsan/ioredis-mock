@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('multi', () => {
   it('should setup a batch queue that can be passed to exec', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     redis.multi([
       ['incr', 'user_next'],
@@ -16,7 +16,7 @@ describe('multi', () => {
   });
 
   it('allows for pipelining methods', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .pipeline()
@@ -32,7 +32,7 @@ describe('multi', () => {
   });
 
   it('allows callbacks on any sequence of the pipeline', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     let internalCallsCounter = 0;
 
     return redis
@@ -58,7 +58,7 @@ describe('multi', () => {
   });
 
   it('allows pipeline to accept an array of String commands', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const commands = [
       ['set', 'firstkey', 'firstvalue'],
       ['set', 'secondkey', 'secondvalue'],
@@ -79,7 +79,7 @@ describe('multi', () => {
   });
 
   it('should increment _transactions', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const commands = [
       ['incr', 'user_next'],
       ['incr', 'post_next'],
@@ -90,7 +90,7 @@ describe('multi', () => {
   });
 
   it('errors if you exec without starting a pipeline', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.exec().catch((err) => {
       expect(err).toBeInstanceOf(Error);

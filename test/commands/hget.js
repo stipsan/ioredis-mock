@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hget', () => {
   it('should fetch a property in a hash', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         emails: {
           'clark@daily.planet': '1',
@@ -16,14 +16,14 @@ describe('hget', () => {
   });
 
   it('should return null if the hash does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .hget('emails', 'clark@daily.planet')
       .then((userId) => expect(userId).toBe(null));
   });
 
   it('should return null if the item does not exist in the hash', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         emails: {
           'clark@daily.planet': '1',

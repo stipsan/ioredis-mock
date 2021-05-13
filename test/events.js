@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('events', () => {
   it('should trigger ready and connect events on instantiation', (done) => {
-    const redis = new MockRedis({});
+    const redis = new Redis({});
     const readySpy = jest.fn();
     const connectSpy = jest.fn();
     redis.on('ready', readySpy);

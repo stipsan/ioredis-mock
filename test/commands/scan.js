@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('scan', () => {
   it('should return null array if nothing in db', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan(0).then((result) => {
       expect(result[0]).toBe('0');
       expect(result[1]).toEqual([]);
@@ -10,7 +10,7 @@ describe('scan', () => {
   });
 
   it('should return keys in db', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
         test: 'bar',
@@ -23,37 +23,37 @@ describe('scan', () => {
     });
   });
   it('should return fail if incorrect count', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan('asdf').catch((result) => {
       expect(result).toBeInstanceOf(Error);
     });
   });
   it('should return fail if incorrect command', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan(0, 'ZU').catch((result) => {
       expect(result).toBeInstanceOf(Error);
     });
   });
   it('should return fail if incorrect MATCH usage', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan(0, 'MATCH', 'sadf', 'ZU').catch((result) => {
       expect(result).toBeInstanceOf(Error);
     });
   });
   it('should return fail if incorrect COUNT usage', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan(0, 'COUNT', 10, 'ZU').catch((result) => {
       expect(result).toBeInstanceOf(Error);
     });
   });
   it('should return fail if incorrect COUNT usage 2', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.scan(0, 'COUNT', 'adsf').catch((result) => {
       expect(result).toBeInstanceOf(Error);
     });
   });
   it('should return only mathced keys', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo0: 'x',
         foo1: 'x',
@@ -69,7 +69,7 @@ describe('scan', () => {
     });
   });
   it('should return only mathced keys and limit by COUNT', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo0: 'x',
         foo1: 'x',
@@ -92,7 +92,7 @@ describe('scan', () => {
       });
   });
   it('should return number of keys set by COUNT and continue by cursor', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo0: 'x',
         foo1: 'x',

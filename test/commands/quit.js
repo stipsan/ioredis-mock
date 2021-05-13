@@ -1,7 +1,7 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('quit', () => {
-  const redis = new MockRedis();
+  const redis = new Redis();
   it('should return OK', () =>
     redis.quit().then((res) => expect(res).toBe('OK')));
 });

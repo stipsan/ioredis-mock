@@ -1,7 +1,7 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('keyprefix', () => {
   let writable;
@@ -13,17 +13,17 @@ describe('keyprefix', () => {
 
   describe('get', () => {
     it('should return null on keys that do not exist', () => {
-      const redis = new MockRedis({ keyPrefix: 'test:' });
+      const redis = new Redis({ keyPrefix: 'test:' });
       return redis.get('foo').then((result) => expect(result).toBe(null));
     });
 
     it('should return null on keys that do not exist', () => {
-      const redis = new MockRedis({ keyPrefix: 'test:' });
+      const redis = new Redis({ keyPrefix: 'test:' });
       return redis.get('foo').then((result) => expect(result).toBe(null));
     });
 
     it('should return value of key', () => {
-      const redis = new MockRedis({
+      const redis = new Redis({
         data: {
           foo: 'bar',
         },
@@ -36,7 +36,7 @@ describe('keyprefix', () => {
 
   describe('set', () => {
     it('should return OK when setting a hash key', () => {
-      const redis = new MockRedis({ keyPrefix: 'test:' });
+      const redis = new Redis({ keyPrefix: 'test:' });
       return redis
         .set('foo', 'bar')
         .then((status) => expect(status).toBe('OK'))
@@ -44,7 +44,7 @@ describe('keyprefix', () => {
     });
 
     it('should turn number to string', () => {
-      const redis = new MockRedis({ keyPrefix: 'test:' });
+      const redis = new Redis({ keyPrefix: 'test:' });
       return redis
         .set('foo', 1.5)
         .then((status) => expect(status).toBe('OK'))
@@ -53,7 +53,7 @@ describe('keyprefix', () => {
   });
 
   describe('del', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         deleteme: 'please',
         metoo: 'pretty please',
@@ -78,7 +78,7 @@ describe('keyprefix', () => {
       const chance = new Chance();
       const keys = chance.unique(chance.word, 100);
       const count = 11;
-      const redis = new MockRedis({
+      const redis = new Redis({
         data: { set: new Set(keys) },
         keyPrefix: 'test:',
       });
@@ -95,7 +95,7 @@ describe('keyprefix', () => {
 
     it('should return  keys', (done) => {
       // Given
-      const redis = new MockRedis({
+      const redis = new Redis({
         data: {
           foo: new Set(['foo0', 'foo1', 'foo2']),
           zu: new Set(['ZU0', 'ZU1']),
@@ -115,7 +115,7 @@ describe('keyprefix', () => {
 
     it('should return only mathced keys', (done) => {
       // Given
-      const redis = new MockRedis({
+      const redis = new Redis({
         data: {
           set: new Set(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
         },
@@ -134,7 +134,7 @@ describe('keyprefix', () => {
   });
 
   describe('multiple instance use same key with different keyPrefix', () => {
-    const redisBase = new MockRedis({
+    const redisBase = new Redis({
       data: {
         'test:foo': 'bar',
         'test:hello': 'world',

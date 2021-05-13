@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('expireat', () => {
   it('should set expire status on key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -20,7 +20,7 @@ describe('expireat', () => {
   });
 
   it('should return 0 if key does not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const at = Math.ceil(Date.now() / 1000);
     return redis.expireat('foo', at).then((status) => expect(status).toBe(0));
   });

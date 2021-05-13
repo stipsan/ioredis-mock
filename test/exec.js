@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('exec', () => {
   it('should resolve Promise.all after all operations is done', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '1',
         post_next: '1',
@@ -24,7 +24,7 @@ describe('exec', () => {
   });
 
   it('should support a callback function', (done) => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '1',
         post_next: '1',

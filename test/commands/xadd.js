@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('xadd', () => {
   it('should add events to a stream', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .xadd('stream', '*', 'key', 'val')
       .then((id) => {
@@ -26,7 +26,7 @@ describe('xadd', () => {
   });
 
   it('should throw with an illegal amount of arguments', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return Promise.all([
       redis.xadd().catch((err) => err.message),
       redis.xadd('stream').catch((err) => err.message),
@@ -40,7 +40,7 @@ describe('xadd', () => {
   });
 
   it('should throw with a duplicate id', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     redis
       .xadd('stream', '*', 'key', 'value')
       .then((id) => redis.xadd('stream', id, 'key', 'value'))

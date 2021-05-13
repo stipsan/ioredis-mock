@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zinterstore', () => {
   const data = {
@@ -23,7 +23,7 @@ describe('zinterstore', () => {
   };
 
   it('should intersect two sorted sets and return the number of resulting elements', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 2, 'foo', 'bar')
@@ -31,7 +31,7 @@ describe('zinterstore', () => {
   });
 
   it('should return 0 if the intersection is an empty set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 2, 'foo', 'baz')
@@ -39,7 +39,7 @@ describe('zinterstore', () => {
   });
 
   it('should not create a sorted set if the intersection is an empty set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zinterstore('dest', 2, 'foo', 'baz').then(() => {
       expect(redis.data.get('dest')).toBe(undefined);
@@ -47,7 +47,7 @@ describe('zinterstore', () => {
   });
 
   it('should intersect two sorted sets with the correct data in the specified key', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis.zinterstore('dest', 2, 'foo', 'bar').then(() => {
       expect(redis.data.get('dest')).toEqual(
@@ -61,7 +61,7 @@ describe('zinterstore', () => {
   });
 
   it('should throw a syntax error if more keys specified than numKeys', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 2, 'foo', 'bar', 'baz')
@@ -69,7 +69,7 @@ describe('zinterstore', () => {
   });
 
   it('should throw a syntax error if fewer keys specified than numKeys', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 3, 'foo', 'bar')
@@ -77,7 +77,7 @@ describe('zinterstore', () => {
   });
 
   it('should return 0 if one of the keys does not exist', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 2, 'foo', 'doesnotexist')
@@ -85,7 +85,7 @@ describe('zinterstore', () => {
   });
 
   it('should return 0 if one of the keys is not a sorted set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zinterstore('dest', 2, 'foo', 'key')

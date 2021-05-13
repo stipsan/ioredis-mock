@@ -1,15 +1,15 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('psubscribe', () => {
   it('should return number of subscribed channels', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .psubscribe('news.*', 'music.*')
       .then((subNum) => expect(subNum).toBe(2));
   });
 
   it('should return number of subscribed channels when calling subscribe twice', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .psubscribe('first.*')
       .then((subNum) => expect(subNum).toBe(1))
@@ -19,7 +19,7 @@ describe('psubscribe', () => {
   });
 
   it('should not incremented number of subscribed channels when subscribing to same channel multiple times', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .psubscribe('channel.*')
       .then((subNum) => expect(subNum).toBe(1))
@@ -29,7 +29,7 @@ describe('psubscribe', () => {
   });
 
   it('should reject non-subscribe commands when having at least one open subscription', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.psubscribe('channel').then(() =>
       redis
         .get('key')
@@ -45,7 +45,7 @@ describe('psubscribe', () => {
   });
 
   it('should allow multiple instances to subscribe to the same channel', () => {
-    const redisOne = new MockRedis();
+    const redisOne = new Redis();
     const redisTwo = redisOne.createConnectedClient();
 
     return Promise.all([
@@ -73,7 +73,7 @@ describe('psubscribe', () => {
   });
 
   it('should toggle subscriberMode correctly', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .psubscribe('test.*')
       .then(() => {

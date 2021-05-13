@@ -1,14 +1,14 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('keys', () => {
   it('should return an empty array if there are no keys', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.keys('*').then((result) => expect(result).toEqual([]));
   });
 
   it('should return all data keys', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
         baz: 'quux',
@@ -21,7 +21,7 @@ describe('keys', () => {
   });
 
   it('should only return keys matching the given pattern', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
         baz: 'quux',
@@ -35,7 +35,7 @@ describe('keys', () => {
   });
 
   it('should not return empty sets', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .sadd('a', 'b')

@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('getbit', () => {
   it('should return old bit value of key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: '@',
       },
@@ -11,7 +11,7 @@ describe('getbit', () => {
   });
 
   it('should padd if offset out of range', () => {
-    const redis = new MockRedis({});
+    const redis = new Redis({});
 
     return redis
       .setbit('foo', 9, 1)
@@ -20,7 +20,7 @@ describe('getbit', () => {
   });
 
   it('should ovveride bit value of key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -33,7 +33,7 @@ describe('getbit', () => {
   });
 
   it('should create key if not exist', () => {
-    const redis = new MockRedis({});
+    const redis = new Redis({});
 
     return redis
       .setbit('foo', 1, 1)
@@ -42,7 +42,7 @@ describe('getbit', () => {
   });
 
   it('should throw if offset > 2^32', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.setbit('foo', 2 ** 32, 1).then(
       () => {
@@ -58,7 +58,7 @@ describe('getbit', () => {
   });
 
   it('should throw if value is not 1 or 0', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.setbit('foo', 1, 10).then(
       () => {

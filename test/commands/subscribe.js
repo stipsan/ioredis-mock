@@ -1,20 +1,20 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('subscribe', () => {
   it('should ignore an empty subscribe call', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.subscribe().then((subNum) => expect(subNum).toBe(0));
   });
 
   it('should return number of subscribed channels', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .subscribe('news', 'music')
       .then((subNum) => expect(subNum).toBe(2));
   });
 
   it('should return number of subscribed channels when calling subscribe twice', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .subscribe('first')
       .then((subNum) => expect(subNum).toBe(1))
@@ -24,7 +24,7 @@ describe('subscribe', () => {
   });
 
   it('should not incremented number of subscribed channels when subscribing to same channel multiple times', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .subscribe('channel')
       .then((subNum) => expect(subNum).toBe(1))
@@ -34,7 +34,7 @@ describe('subscribe', () => {
   });
 
   it('should reject non-subscribe commands when having at least one open subscription', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.subscribe('channel').then(() =>
       redis
         .get('key')
@@ -50,7 +50,7 @@ describe('subscribe', () => {
   });
 
   it('should allow multiple instances to subscribe to the same channel', () => {
-    const redisOne = new MockRedis();
+    const redisOne = new Redis();
     const redisTwo = redisOne.createConnectedClient();
 
     return Promise.all([
@@ -78,7 +78,7 @@ describe('subscribe', () => {
   });
 
   it('should toggle subscriberMode correctly', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .subscribe('test')
       .then(() => {

@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zrangebyscore', () => {
   const data = {
@@ -11,7 +11,7 @@ describe('zrangebyscore', () => {
     ]),
   };
   it('should return using not strict compare', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrangebyscore('foo', 1, 3)
@@ -19,7 +19,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should return using strict compare', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrangebyscore('foo', '(3', 5)
@@ -27,7 +27,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should accept infinity string', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrangebyscore('foo', '-inf', '+inf')
@@ -37,7 +37,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should return empty array if out-of-range', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrangebyscore('foo', 10, 100)
@@ -45,7 +45,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should return empty array if key not found', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
 
     return redis
       .zrangebyscore('boo', 10, 100)
@@ -53,7 +53,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should return empty array if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },
@@ -65,7 +65,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should include scores if WITHSCORES is specified', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', 1, 3, 'WITHSCORES')
       .then((res) =>
@@ -74,7 +74,7 @@ describe('zrangebyscore', () => {
   });
 
   it('should sort items with the same score lexicographically', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: new Map([
           ['aaa', { score: 5, value: 'aaa' }],
@@ -92,37 +92,37 @@ describe('zrangebyscore', () => {
       );
   });
   it('should handle offset and limit (0,1)', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', 1, 3, 'LIMIT', 0, 1)
       .then((res) => expect(res).toEqual(['first']));
   });
   it('should handle offset and limit (1,2)', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', 1, 3, 'LIMIT', 1, 2)
       .then((res) => expect(res).toEqual(['second', 'third']));
   });
   it('should handle offset, limit, and WITHSCORES', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', 1, 3, 'WITHSCORES', 'LIMIT', 1, 1)
       .then((res) => expect(res).toEqual(['second', 2]));
   });
   it('should handle LIMIT specified before WITHSCORES', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', 1, 3, 'LIMIT', 1, 1, 'WITHSCORES')
       .then((res) => expect(res).toEqual(['second', 2]));
   });
   it('should handle LIMIT of -1', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, -1)
       .then((res) => expect(res).toEqual(['second', 'third', 'fourth']));
   });
   it('should handle LIMIT of -1 and WITHSCORES', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, -1, 'WITHSCORES')
       .then((res) =>
@@ -130,13 +130,13 @@ describe('zrangebyscore', () => {
       );
   });
   it('should handle LIMIT of -2', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, -2)
       .then((res) => expect(res).toEqual(['second', 'third']));
   });
   it('should handle LIMIT of 0', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, 0)
       .then((res) => expect(res).toEqual([]));

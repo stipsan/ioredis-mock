@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('sismember', () => {
   it('should check if item exists in set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foos: new Set(['foo', 'bar']),
       },

@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('decrby', () => {
   it('should decrement an integer with passed decrement', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '11',
       },
@@ -14,7 +14,7 @@ describe('decrby', () => {
       .then(() => expect(redis.data.get('user_next')).toBe('1'));
   });
   it('should not increment if no increment is passed', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         user_next: '1',
       },

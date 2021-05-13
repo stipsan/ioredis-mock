@@ -1,15 +1,15 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('xrange', () => {
   it('returns an empty list on a non existing stream', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .xrange('non-existing', '-', '+')
       .then((events) => expect(events).toEqual([]));
   });
 
   it('returns the contents of the stream', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -54,7 +54,7 @@ describe('xrange', () => {
   });
 
   it('should limit the count of events', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -75,7 +75,7 @@ describe('xrange', () => {
   });
 
   it('should throw with a wrong number of arguments', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     Promise.all([
       redis.xrange('stream', '-').catch((err) => err.message),
       redis.xrange('stream').catch((err) => err.message),
@@ -88,7 +88,7 @@ describe('xrange', () => {
   });
 
   it('should throw with a missing count', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     redis
       .xrange('stream', '-', '+', 'COUNT')
       .catch((err) => expect(err.message).toBe('ERR syntax error'));

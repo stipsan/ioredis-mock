@@ -1,14 +1,14 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('get', () => {
   it('should return null on keys that do not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.get('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should return value of key', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },

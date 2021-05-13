@@ -1,7 +1,7 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 const chance = new Chance();
 
@@ -17,7 +17,7 @@ describe('zscanStream', () => {
 
   it('should return null array if nothing in db', (done) => {
     // Given
-    const redis = new MockRedis();
+    const redis = new Redis();
     const stream = redis.zscanStream('key');
     // When
     stream.pipe(writable);
@@ -29,7 +29,7 @@ describe('zscanStream', () => {
   });
 
   it('should return keys in db', (done) => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         zset: createMap(['foo', 'bar']),
       },
@@ -52,7 +52,7 @@ describe('zscanStream', () => {
       return a;
     }, []);
     const count = 11;
-    const redis = new MockRedis({ data: { zset: createMap(keys) } });
+    const redis = new Redis({ data: { zset: createMap(keys) } });
     const stream = redis.zscanStream('zset', { count });
     // When
     stream.pipe(writable);
@@ -66,7 +66,7 @@ describe('zscanStream', () => {
 
   it('should return only matched keys', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         zset: createMap(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },
@@ -90,7 +90,7 @@ describe('zscanStream', () => {
 
   it('should return only matched keys by count', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         zset: createMap(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },
@@ -115,7 +115,7 @@ describe('zscanStream', () => {
 
   it('should fail if incorrect count usage', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         zset: createMap(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },
@@ -132,7 +132,7 @@ describe('zscanStream', () => {
   });
 
   it('zscanStream behavior should match ioredis', (done) => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     redis.zadd('test', 1, 'a', 2, 'b', 3, 'c').then(() => {
       const stream = redis.zscanStream('test');
       stream.on('data', (replies) => {

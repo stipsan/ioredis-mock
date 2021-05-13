@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('xread', () => {
   it('reads a number of events since an id', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -32,7 +32,7 @@ describe('xread', () => {
   });
 
   it('should read from multiple streams', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -63,7 +63,7 @@ describe('xread', () => {
   });
 
   it('should read from multiple streams with incomplete ids', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -94,7 +94,7 @@ describe('xread', () => {
   });
 
   it('should block reads till data becomes available', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const op = redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', '$')
       .then((row) => {
@@ -107,7 +107,7 @@ describe('xread', () => {
   });
 
   it('should block reads till data becomes available since an id', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const op = redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', '2-0')
       .then((row) => {
@@ -123,14 +123,14 @@ describe('xread', () => {
   });
 
   it('should block reads with a time out', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis.xread('BLOCK', '500', 'STREAMS', 'stream', '$').then((row) => {
       expect(row).toBe(null);
     });
   });
 
   it('should poll all events since ID if no COUNT is given', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         stream: [
           ['1-0', ['key', 'val']],
@@ -156,14 +156,14 @@ describe('xread', () => {
   });
 
   it('throws if the operation is neither BLOCK or COUNT', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .xread('INVALID', '2', 'STREAMS', 'stream', '$')
       .catch((err) => expect(err.message).toBe('ERR syntax error'));
   });
 
   it('throws and error on unabalanced stream/id list', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', 'other-stream', '$')
       .catch((err) =>

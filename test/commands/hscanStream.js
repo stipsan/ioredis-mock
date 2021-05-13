@@ -1,7 +1,7 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 const chance = new Chance();
 
@@ -17,7 +17,7 @@ describe('hscanStream', () => {
 
   it('should return null array if nothing in db', (done) => {
     // Given
-    const redis = new MockRedis();
+    const redis = new Redis();
     const stream = redis.hscanStream('key');
     // When
     stream.pipe(writable);
@@ -29,7 +29,7 @@ describe('hscanStream', () => {
   });
 
   it('should return keys in db', (done) => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         hset: createHashSet(['foo', 'bar']),
       },
@@ -48,7 +48,7 @@ describe('hscanStream', () => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
-    const redis = new MockRedis({ data: { hset: createHashSet(keys) } });
+    const redis = new Redis({ data: { hset: createHashSet(keys) } });
     const stream = redis.hscanStream('hset', { count });
     // When
     stream.pipe(writable);
@@ -62,7 +62,7 @@ describe('hscanStream', () => {
 
   it('should return only mathced keys', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         hset: createHashSet(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },
@@ -79,7 +79,7 @@ describe('hscanStream', () => {
 
   it('should return only mathced keys by count', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         hset: createHashSet(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },
@@ -97,7 +97,7 @@ describe('hscanStream', () => {
 
   it('should fail if incorrect count usage', (done) => {
     // Given
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         hset: createHashSet(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
       },

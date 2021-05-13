@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('srandmember', () => {
   it('should return a random item', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -14,7 +14,7 @@ describe('srandmember', () => {
   });
 
   it('should return random unique items', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -28,7 +28,7 @@ describe('srandmember', () => {
   });
 
   it('should return set if positive count is bigger than set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -42,7 +42,7 @@ describe('srandmember', () => {
   });
 
   it('should return random items with specified length', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -54,7 +54,7 @@ describe('srandmember', () => {
   });
 
   it('should return null if set is empty', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis
       .srandmember('myset')
@@ -62,7 +62,7 @@ describe('srandmember', () => {
   });
 
   it('should throw an exception if the key contains something other than a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a set',
       },

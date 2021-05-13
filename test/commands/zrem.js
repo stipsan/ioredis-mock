@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zrem', () => {
   const data = {
@@ -9,14 +9,14 @@ describe('zrem', () => {
     ]),
   };
   it('should remove 1 item from sorted set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrem('foos', 'foo')
       .then((status) => expect(status).toBe(1))
       .then(() => expect(redis.data.get('foos').has('foo')).toBe(false));
   });
   it('should remove 2 items from sorted set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrem('foos', 'foo', 'baz')
       .then((status) => expect(status).toBe(2))
@@ -27,14 +27,14 @@ describe('zrem', () => {
       });
   });
   it('should not remove an item that does not exist', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrem('foos', 'qux')
       .then((status) => expect(status).toBe(0))
       .then(() => expect(redis.data.get('foos').has('qux')).toBe(false));
   });
   it('should ignore non-existent keys', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zrem('bars', 'bar')
       .then((status) => expect(status).toBe(0))

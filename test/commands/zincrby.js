@@ -1,4 +1,4 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('zincrby', () => {
   const data = {
@@ -9,7 +9,7 @@ describe('zincrby', () => {
     ]),
   };
   it('should increment the score of an item in a sorted set', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zincrby('foos', 10, 'foo')
       .then((status) => expect(status).toBe('11'))
@@ -21,7 +21,7 @@ describe('zincrby', () => {
       );
   });
   it('should initialize a non-existent key', () => {
-    const redis = new MockRedis({ data });
+    const redis = new Redis({ data });
     return redis
       .zincrby('foos', 4, 'qux')
       .then((status) => expect(status).toBe('4'))

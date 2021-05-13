@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
 
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('psetex', () => {
   it('should set value and expire', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     return redis
       .psetex('foo', 100, 'bar')
       .then((status) => expect(status).toBe('OK'))

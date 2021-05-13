@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('spop', () => {
   it('should return a random item', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -16,7 +16,7 @@ describe('spop', () => {
   });
 
   it('should not return an array when count == set.size == 1', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one']),
       },
@@ -30,7 +30,7 @@ describe('spop', () => {
   });
 
   it('should return random unique items', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -44,7 +44,7 @@ describe('spop', () => {
   });
 
   it('should return all items if positive count is bigger than set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -57,13 +57,13 @@ describe('spop', () => {
   });
 
   it('should return null if set is empty', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.spop('myset').then((result) => expect(result).toBe(null));
   });
 
   it('should return undefined if count is 0', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -75,7 +75,7 @@ describe('spop', () => {
   });
 
   it('should throw an exception if the key contains something other than a set', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a set',
       },
@@ -89,7 +89,7 @@ describe('spop', () => {
   });
 
   it('should throw an exception if count is not an integer', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },
@@ -103,7 +103,7 @@ describe('spop', () => {
   });
 
   it('should throw an exception if count is out of range', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         myset: new Set(['one', 'two', 'three']),
       },

@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('hmset', () => {
   it('should let you set multiple hash map keys and values in a single command', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const hash = { id: '1', email: 'bruce@wayne.enterprises' };
     return redis
       .hmset('user:1', 'id', '1', 'email', 'bruce@wayne.enterprises')
@@ -11,7 +11,7 @@ describe('hmset', () => {
   });
 
   it('should let you set multiple hash map keys and values with an object', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const hash = { id: '1', email: 'bruce@wayne.enterprises' };
     return redis
       .hmset('user:1', hash)

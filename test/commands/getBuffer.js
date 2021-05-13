@@ -1,14 +1,14 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('getBuffer', () => {
   it('should return null on keys that do not exist', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
 
     return redis.getBuffer('foo').then((result) => expect(result).toBe(null));
   });
 
   it('should return value of key as buffer', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'bar',
       },
@@ -22,7 +22,7 @@ describe('getBuffer', () => {
 
   it('should return buffer values correctly', () => {
     const bufferVal = Buffer.from('bar');
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: bufferVal,
       },

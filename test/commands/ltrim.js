@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('ltrim', () => {
   it('should return first 3 items', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -17,7 +17,7 @@ describe('ltrim', () => {
   });
 
   it('should return last 3 items', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -32,7 +32,7 @@ describe('ltrim', () => {
   });
 
   it('should return all items if start less than 0', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -47,7 +47,7 @@ describe('ltrim', () => {
   });
 
   it('should return empty if end - length before start', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -60,7 +60,7 @@ describe('ltrim', () => {
   });
 
   it('should return last all items on larger numbers', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -75,7 +75,7 @@ describe('ltrim', () => {
   });
 
   it('should return empty array if out-of-range', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '2', '3', '4', '5'],
       },
@@ -88,7 +88,7 @@ describe('ltrim', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

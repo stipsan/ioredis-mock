@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('llen', () => {
   it('should return the number of items in the list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: ['1', '3', '4'],
       },
@@ -12,7 +12,7 @@ describe('llen', () => {
   });
 
   it('should return 0 if the list does not exist', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {},
     });
 
@@ -20,7 +20,7 @@ describe('llen', () => {
   });
 
   it('should throw an exception if the key contains something other than a list', () => {
-    const redis = new MockRedis({
+    const redis = new Redis({
       data: {
         foo: 'not a list',
       },

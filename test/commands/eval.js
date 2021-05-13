@@ -1,8 +1,8 @@
-import MockRedis from 'ioredis';
+import Redis from 'ioredis';
 
 describe('eval', () => {
   it('should execute a lua script through eval and get the return value', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const NUMBER_OF_KEYS = 2;
     const KEY1 = 'KEY1';
     const KEY2 = 'KEY2';
@@ -26,7 +26,7 @@ describe('eval', () => {
   });
 
   it('should be able to ignore errors from pcall', () => {
-    const redis = new MockRedis();
+    const redis = new Redis();
     const NUMBER_OF_KEYS = 1;
     const KEY1 = 'KEY1';
 
