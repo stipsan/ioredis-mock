@@ -12,7 +12,7 @@ describe('expire', () => {
     return Promise.all([
       redis.expire('foo', 1),
       redis.get('foo'),
-      Promise.delay(1000).then(() => redis.get('foo')),
+      Promise.delay(1500).then(() => redis.get('foo')),
     ]).then(([status, beforeExpire, afterExpire]) => {
       expect(status).toBe(1);
       expect(beforeExpire).toBe('bar');
