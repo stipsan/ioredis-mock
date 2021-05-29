@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 28%](https://img.shields.io/badge/coverage-28%25-orange.svg)
+## Supported commands ![Commands Coverage: 29%](https://img.shields.io/badge/coverage-29%25-orange.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    | buffer                          |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: | ------------------------------- | :----------------: | :----------------: |
@@ -144,7 +144,7 @@
 | [scard]                | :white_check_mark: | :white_check_mark: | [scardBuffer][1]                | :white_check_mark: |        :x:         |
 | [script]               | :white_check_mark: |        :x:         | [scriptBuffer][1]               | :white_check_mark: |        :x:         |
 | [sdiff]                | :white_check_mark: | :white_check_mark: | [sdiffBuffer][1]                | :white_check_mark: |        :x:         |
-| [sdiffstore]           | :white_check_mark: |        :x:         | [sdiffstoreBuffer][1]           | :white_check_mark: |        :x:         |
+| [sdiffstore]           | :white_check_mark: | :white_check_mark: | [sdiffstoreBuffer][1]           | :white_check_mark: |        :x:         |
 | [select]               | :white_check_mark: |        :x:         | [selectBuffer][1]               | :white_check_mark: |        :x:         |
 | [set]                  | :white_check_mark: | :white_check_mark: | [setBuffer][1]                  | :white_check_mark: |        :x:         |
 | [setbit]               | :white_check_mark: | :white_check_mark: | [setbitBuffer][1]               | :white_check_mark: |        :x:         |
@@ -153,7 +153,7 @@
 | [setrange]             | :white_check_mark: |        :x:         | [setrangeBuffer][1]             | :white_check_mark: |        :x:         |
 | [shutdown]             | :white_check_mark: |        :x:         | [shutdownBuffer][1]             | :white_check_mark: |        :x:         |
 | [sinter]               | :white_check_mark: | :white_check_mark: | [sinterBuffer][1]               | :white_check_mark: |        :x:         |
-| [sinterstore]          | :white_check_mark: |        :x:         | [sinterstoreBuffer][1]          | :white_check_mark: |        :x:         |
+| [sinterstore]          | :white_check_mark: | :white_check_mark: | [sinterstoreBuffer][1]          | :white_check_mark: |        :x:         |
 | [sismember]            | :white_check_mark: | :white_check_mark: | [sismemberBuffer][1]            | :white_check_mark: |        :x:         |
 | [slaveof]              | :white_check_mark: |        :x:         | [slaveofBuffer][1]              | :white_check_mark: |        :x:         |
 | [slowlog]              | :white_check_mark: |        :x:         | [slowlogBuffer][1]              | :white_check_mark: |        :x:         |
@@ -170,7 +170,7 @@
 | [subscribe]            | :white_check_mark: | :white_check_mark: | [subscribeBuffer][1]            | :white_check_mark: |        :x:         |
 | [substr]               | :white_check_mark: |        :x:         | [substrBuffer][1]               | :white_check_mark: |        :x:         |
 | [sunion]               | :white_check_mark: | :white_check_mark: | [sunionBuffer][1]               | :white_check_mark: |        :x:         |
-| [sunionstore]          | :white_check_mark: |        :x:         | [sunionstoreBuffer][1]          | :white_check_mark: |        :x:         |
+| [sunionstore]          | :white_check_mark: | :white_check_mark: | [sunionstoreBuffer][1]          | :white_check_mark: |        :x:         |
 | [swapdb]               | :white_check_mark: |        :x:         | [swapdbBuffer][1]               | :white_check_mark: |        :x:         |
 | [sync]                 | :white_check_mark: |        :x:         | [syncBuffer][1]                 | :white_check_mark: |        :x:         |
 | [time]                 | :white_check_mark: | :white_check_mark: | [timeBuffer][1]                 | :white_check_mark: |        :x:         |
