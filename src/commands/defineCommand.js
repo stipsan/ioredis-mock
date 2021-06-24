@@ -61,6 +61,11 @@ const callToRedisCommand = (vm) =>
       if (Array.isArray(result)) {
         // fix for one-based indices
         result.unshift(null);
+        // https://github.com/fengari-lua/fengari-interop/blob/1626687fb15452cdd82ee522955dd1f144ea7a68/src/js.js#L845
+        result[Symbol.for("__len")] = function() {
+          const arr = this
+          return arr.length - 1
+        }
       }
       interop.push(vm.L, result);
       return 1;
