@@ -42,4 +42,13 @@ describe('eval', () => {
         .then((result) => expect(result).toEqual('10'));
     });
   });
+
+  it("repro: # is off-by-one because arrays are 1-based", async () => {
+    const redis = new Redis();
+    const retVal = await redis.eval(`
+      local members = redis.call("SMEMBERS", "nonexistant")
+      return #members
+    `);
+    expect(retVal).toEqual(0)
+  })
 });
