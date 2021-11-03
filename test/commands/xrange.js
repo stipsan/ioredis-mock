@@ -74,6 +74,27 @@ describe('xrange', () => {
     });
   });
 
+  it('should handle full id', () => {
+    const redis = new Redis({
+      data: {
+        stream: [
+          ['1-0', ['key', 'val']],
+          ['2-0', ['key', 'val']],
+          ['3-0', ['key', 'val']],
+        ],
+        'stream:stream:1-0': { polled: false },
+        'stream:stream:2-0': { polled: false },
+        'stream:stream:3-0': { polled: false },
+      },
+    });
+    return redis.xrange('stream', '2-0', '+').then((events) => {
+      expect(events).toEqual([
+        ['2-0', ['key', 'val']],
+        ['3-0', ['key', 'val']],
+      ]);
+    });
+  });
+
   it('should throw with a wrong number of arguments', () => {
     const redis = new Redis();
     Promise.all([
