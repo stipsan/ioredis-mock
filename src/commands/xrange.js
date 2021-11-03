@@ -15,8 +15,8 @@ export function xrange(stream, start, end, ...args) {
 
   const list = this.data.get(stream);
 
-  const min = start === '-' ? -Infinity : parseInt(start.split('-')[0], 10);
-  const max = end === '+' ? Infinity : parseInt(end.split('-')[0], 10);
+  const min = start === '-' ? -Infinity : start;
+  const max = end === '+' ? Infinity : end;
 
   const result = list.filter(
     ([eventId]) => min <= parseInt(eventId, 10) && max >= parseInt(eventId, 10)
