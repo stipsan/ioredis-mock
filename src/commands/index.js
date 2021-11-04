@@ -94,6 +94,7 @@ export * from './setnx';
 export * from './sinter';
 export * from './sinterstore';
 export * from './sismember';
+export * from './smismember';
 export * from './smembers';
 export * from './smove';
 export * from './spop';
