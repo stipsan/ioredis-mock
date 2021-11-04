@@ -158,7 +158,7 @@
 | [slaveof]              | :white_check_mark: |        :x:         | [slaveofBuffer][1]              | :white_check_mark: |        :x:         |
 | [slowlog]              | :white_check_mark: |        :x:         | [slowlogBuffer][1]              | :white_check_mark: |        :x:         |
 | [smembers]             | :white_check_mark: | :white_check_mark: | [smembersBuffer][1]             | :white_check_mark: |        :x:         |
-| [smismember]           | :white_check_mark: |        :x:         | [smismemberBuffer][1]           | :white_check_mark: |        :x:         |
+| [smismember]           | :white_check_mark: | :white_check_mark: | [smismemberBuffer][1]           | :white_check_mark: |        :x:         |
 | [smove]                | :white_check_mark: | :white_check_mark: | [smoveBuffer][1]                | :white_check_mark: |        :x:         |
 | [sort]                 | :white_check_mark: |        :x:         | [sortBuffer][1]                 | :white_check_mark: |        :x:         |
 | [spop]                 | :white_check_mark: | :white_check_mark: | [spopBuffer][1]                 | :white_check_mark: |        :x:         |
