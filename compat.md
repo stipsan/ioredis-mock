@@ -33,7 +33,7 @@
 | [dump]                 | :white_check_mark: |        :x:         | [dumpBuffer][1]                 | :white_check_mark: |        :x:         |
 | [echo]                 | :white_check_mark: | :white_check_mark: | [echoBuffer][1]                 | :white_check_mark: |        :x:         |
 | [eval]                 | :white_check_mark: | :white_check_mark: | [evalBuffer][1]                 | :white_check_mark: |        :x:         |
-| [evalsha]              | :white_check_mark: |        :x:         | [evalshaBuffer][1]              | :white_check_mark: |        :x:         |
+| [evalsha]              | :white_check_mark: | :white_check_mark: | [evalshaBuffer][1]              | :white_check_mark: |        :x:         |
 | [exec]                 | :white_check_mark: |        :x:         | [execBuffer][1]                 | :white_check_mark: |        :x:         |
 | [exists]               | :white_check_mark: | :white_check_mark: | [existsBuffer][1]               | :white_check_mark: |        :x:         |
 | [expire]               | :white_check_mark: | :white_check_mark: | [expireBuffer][1]               | :white_check_mark: |        :x:         |
