@@ -36,6 +36,8 @@ class RedisMock extends EventEmitter {
     this.connected = false;
     this.subscriberMode = false;
     this.customCommands = {};
+    // a mapping of sha1<string>:script<string>, used by evalsha command
+    this.shaScripts = {};
 
     // eslint-disable-next-line prefer-object-spread
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
