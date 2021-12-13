@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import asCallback from 'standard-as-callback';
+import { Command as IoredisCommand } from 'ioredis';
 import promiseContainer from './promise-container';
 
 export function isInSubscriberMode(RedisMock) {
@@ -52,6 +53,18 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
   throwIfNotConnected(commandName, RedisMock);
 }
 
+export const Command = {
+  // eslint-disable-next-line no-underscore-dangle
+  transformers: IoredisCommand._transformer,
+  setArgumentTransformer: (name, func) => {
+    Command.transformers.argument[name] = func;
+  },
+
+  setReplyTransformer: (name, func) => {
+    Command.transformers.reply[name] = func;
+  },
+};
+
 /**
  * Transform non-buffer arguments to strings to simulate real ioredis behavior
  * @param {any} arg the argument to transform
@@ -61,21 +74,28 @@ const argMapper = (arg) => {
   return arg instanceof Buffer ? arg : arg.toString();
 };
 
-export function processArguments(args, commandName, RedisMock) {
+export function processArguments(args, commandName) {
   // fast return, the defineCommand command requires NO transformation of args
   if (commandName === 'defineCommand') return args;
 
   let commandArgs = args ? _.flatten(args) : [];
-  if (RedisMock.Command.transformers.argument[commandName]) {
-    commandArgs = RedisMock.Command.transformers.argument[commandName](args);
+  if (Command.transformers.argument[commandName]) {
+    commandArgs = Command.transformers.argument[commandName](args);
   }
   commandArgs = commandArgs.map(argMapper);
   return commandArgs;
 }
 
-export function processReply(result, commandName, RedisMock) {
-  if (RedisMock.Command.transformers.reply[commandName]) {
-    return RedisMock.Command.transformers.reply[commandName](result);
+export function processReply(result, commandName) {
+  if (Command.transformers.reply[commandName]) {
+    // ioredis' reply transformer seems to receive a flat array of key/value
+    // pairs for the hgetall command, emulate this
+    let newResult = result;
+    if (commandName === 'hgetall') {
+      newResult = _.flatten(Object.entries(result));
+    }
+
+    return Command.transformers.reply[commandName](newResult);
   }
   return result;
 }
@@ -88,7 +108,7 @@ export function safelyExecuteCommand(
 ) {
   throwIfCommandIsNotAllowed(commandName, RedisMock);
   const result = commandEmulator(...commandArgs);
-  return processReply(result, commandName, RedisMock);
+  return processReply(result, commandName);
 }
 
 export default function command(commandEmulator, commandName, RedisMock) {
