@@ -106,6 +106,10 @@ class RedisMock extends EventEmitter {
     return mock;
   }
 
+  duplicate() {
+    return this.createConnectedClient()
+  }
+
   // eslint-disable-next-line class-methods-use-this
   disconnect() {
     const removeFrom = ({ instanceListeners }) => {
