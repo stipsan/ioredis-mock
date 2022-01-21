@@ -1,5 +1,10 @@
 export function xadd(stream, id, ...args) {
-  if (!stream || !id || args.length === 0 || args.length % 2 !== 0) {
+  if (
+    !stream ||
+    !id ||
+    args.length === 0 ||
+    (args.includes('~') ? args.length < 4 : args.length % 2 !== 0)
+  ) {
     throw new Error("ERR wrong number of arguments for 'xadd' command");
   }
   if (!this.data.has(stream)) {
