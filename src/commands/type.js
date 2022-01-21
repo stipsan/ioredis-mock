@@ -12,6 +12,10 @@ export function type(key) {
     return 'set';
   }
 
+  if (val instanceof Map) {
+    return 'zset';
+  }
+
   if (isArray(val)) {
     return 'list';
   }
