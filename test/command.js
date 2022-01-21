@@ -2,6 +2,18 @@ import _ from 'lodash';
 import Redis from 'ioredis';
 import command from '../src/command';
 
+// Ensure that we're getting the correct instance of Command when running in test:jest.js, as jest.js isn't designed to test code directly imported private functions like src/command
+jest.mock('ioredis', () => {
+  const { Command } = jest.requireActual('ioredis');
+  const RedisMock = jest.requireActual('../src/index');
+
+  return {
+    __esModule: true,
+    Command,
+    default: RedisMock,
+  };
+});
+
 describe('basic command', () => {
   const stub = command((...args) => args, 'testCommandName', {
     Command: { transformers: { argument: {}, reply: {} } },
