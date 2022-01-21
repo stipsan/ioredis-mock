@@ -36,7 +36,7 @@ class Pipeline {
         args.length = lastArgIndex;
       }
       const commandEmulator = command.bind(this.redis);
-      const commandArgs = processArguments(args, commandName, this.redis);
+      const commandArgs = processArguments(args, commandName);
 
       this._addTransaction(commandEmulator, commandName, commandArgs, callback);
       return this;

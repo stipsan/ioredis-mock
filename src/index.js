@@ -1,10 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events';
-import { Command } from 'ioredis';
 import redisCommands from 'redis-commands';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
-import createCommand from './command';
+import createCommand, { Command } from './command';
 import createData from './data';
 import createExpires from './expires';
 import emitConnectEvent from './commands-utils/emitConnectEvent';
@@ -167,17 +166,8 @@ class RedisMock extends EventEmitter {
     });
   }
 }
-RedisMock.prototype.Command = {
-  // eslint-disable-next-line no-underscore-dangle
-  transformers: Command._transformer,
-  setArgumentTransformer: (name, func) => {
-    RedisMock.prototype.Command.transformers.argument[name] = func;
-  },
 
-  setReplyTransformer: (name, func) => {
-    RedisMock.prototype.Command.transformers.reply[name] = func;
-  },
-};
+RedisMock.Command = Command;
 
 RedisMock.Cluster = class RedisClusterMock extends RedisMock {
   constructor(nodesOptions) {
