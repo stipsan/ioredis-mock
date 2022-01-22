@@ -4,18 +4,21 @@ import redisCommands from 'redis-commands';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
 import createCommand, { Command } from './command';
-import createData from './data';
-import createExpires from './expires';
 import emitConnectEvent from './commands-utils/emitConnectEvent';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
 import parseKeyspaceEvents from './keyspace-notifications';
+import contextMap, { createContext } from './context';
+import { createExpires } from './expires';
+import { createData } from './data';
 
 const defaultOptions = {
   data: {},
   keyPrefix: '',
   lazyConnect: false,
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
+  host: 'localhost',
+  port: '6379',
 };
 
 class RedisMock extends EventEmitter {
@@ -29,8 +32,7 @@ class RedisMock extends EventEmitter {
 
   constructor(options = {}) {
     super();
-    this.channels = new EventEmitter();
-    this.patternChannels = new EventEmitter();
+
     this.batch = undefined;
     this.connected = false;
     this.subscriberMode = false;
@@ -41,9 +43,19 @@ class RedisMock extends EventEmitter {
     // eslint-disable-next-line prefer-object-spread
     const optionsWithDefault = Object.assign({}, defaultOptions, options);
 
-    this.expires = createExpires(optionsWithDefault.keyPrefix);
+    this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}`;
 
+    if (!contextMap.get(this.keyData)) {
+      const context = createContext(optionsWithDefault.keyPrefix);
+
+      contextMap.set(this.keyData, context);
+    }
+
+    const context = contextMap.get(this.keyData);
+
+    this.expires = createExpires(context.expires, optionsWithDefault.keyPrefix);
     this.data = createData(
+      context.data,
       this.expires,
       optionsWithDefault.data,
       optionsWithDefault.keyPrefix
@@ -59,6 +71,36 @@ class RedisMock extends EventEmitter {
       this.connected = true;
       emitConnectEvent(this);
     }
+  }
+
+  get channels() {
+    return contextMap.get(this.keyData).channels;
+  }
+
+  set channels(channels) {
+    const oldContext = contextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      channels,
+    };
+
+    contextMap.set(this.keyData, newContext);
+  }
+
+  get patternChannels() {
+    return contextMap.get(this.keyData).patternChannels;
+  }
+
+  set patternChannels(patternChannels) {
+    const oldContext = contextMap.get(this.keyData);
+
+    const newContext = {
+      ...oldContext,
+      patternChannels,
+    };
+
+    contextMap.set(this.keyData, newContext);
   }
 
   multi(batch = []) {
@@ -106,7 +148,7 @@ class RedisMock extends EventEmitter {
   }
 
   duplicate() {
-    return this.createConnectedClient()
+    return this.createConnectedClient();
   }
 
   // eslint-disable-next-line class-methods-use-this
