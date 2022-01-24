@@ -24,8 +24,8 @@ Check the [compatibility table](compat.md) for supported redis commands.
 ## Usage ([try it in your browser](https://runkit.com/npm/ioredis-mock))
 
 ```js
-var Redis = require('ioredis-mock');
-var redis = new Redis({
+const Redis = require('ioredis-mock');
+const redis = new Redis({
   // `options.data` does not exist in `ioredis`, only `ioredis-mock`
   data: {
     user_next: '3',
@@ -40,6 +40,49 @@ var redis = new Redis({
 // Basically use it just like ioredis
 ```
 
+### Breaking API changes from v5
+
+Before v6, each instance of `ioredis-mock` lived in isolation:
+
+```js
+const Redis = require('ioredis-mock');
+const redis1 = new Redis();
+const redis2 = new Redis();
+
+await redis1.set('foo', 'bar');
+console.log(await redis1.get('foo'), await redis2.get('foo')); // 'bar', null
+```
+
+In v6 the [internals were rewritten](https://github.com/stipsan/ioredis-mock/pull/1110) to behave more like real life redis, if the host and port is the same, the context is now shared:
+
+```js
+const Redis = require('ioredis-mock');
+const redis1 = new Redis();
+const redis2 = new Redis();
+const redis3 = new Redis({ port: 6380 }); // 6379 is the default port
+
+await redis1.set('foo', 'bar');
+console.log(
+  await redis1.get('foo'), // 'bar'
+  await redis2.get('foo'), // 'bar'
+  await redis3.get('foo') // null
+);
+```
+
+And since `ioredis-mock` now persist data between instances, you'll [likely](https://github.com/luin/ioredis/blob/8278ec0a435756c54ba4f98587aec1a913e8b7d3/test/helpers/global.ts#L8) need to run `flushall` between testing suites:
+
+```js
+const Redis = require('ioredis-mock');
+
+afterEach((done) => {
+  new Redis().flushall().then(() => done());
+});
+```
+
+#### `createConnectedClient` is deprecated
+
+Replace it with `.duplicate()` or use another `new Redis` instance.
+
 ### Configuring Jest
 
 Use the jest specific bundle when setting up mocks:
@@ -52,24 +95,19 @@ The `ioredis-mock/jest` bundle inlines imports from `ioredis` that `ioredis-mock
 
 ### Pub/Sub channels
 
-We also support redis publish/subscribe channels (just like ioredis).
+We also support redis publish/subscribe channels (just like [ioredis](<(https://redis.io/topics/pubsub)>)).
 Like ioredis, you need two clients:
 
-- the pubSub client for subcriptions and events, [which can only be used for subscriptions](https://redis.io/topics/pubsub)
-- the usual client for issuing 'synchronous' commands like get, publish, etc
-
 ```js
-var Redis = require('ioredis-mock');
-var redisPubSub = new Redis();
-// create a second Redis Mock (connected to redisPubSub)
-var redisSync = redisPubSub.createConnectedClient();
-redisPubSub.on('message', (channel, message) => {
-  expect(channel).toBe('emails');
-  expect(message).toBe('clark@daily.planet');
-  done();
+const Redis = require('ioredis-mock');
+const redisPub = new Redis();
+const redisSub = new Redis();
+
+redisSub.on('message', (channel, message) => {
+  console.log(`Received ${message} from ${channel}`);
 });
-redisPubSub.subscribe('emails');
-redisSync.publish('emails', 'clark@daily.planet');
+redisSub.subscribe('emails');
+redisPub.publish('emails', 'clark@daily.planet');
 ```
 
 ### Promises
@@ -93,7 +131,7 @@ You could define a custom command `MULTIPLY` which accepts one
 key and one argument. A redis key, where you can get the multiplicand, and an argument which will be the multiplicator:
 
 ```js
-var Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock');
 const redis = new Redis({ data: { 'k1': 5 } });
 const commandDefinition: { numberOfKeys: 1, lua: 'return KEYS[1] * ARGV[1]' };
 redis.defineCommand('MULTIPLY', commandDefinition) // defineCommand(name, definition)
@@ -107,7 +145,7 @@ redis.defineCommand('MULTIPLY', commandDefinition) // defineCommand(name, defini
 You can also achieve the same effect by using the `eval` command:
 
 ```js
-var Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock');
 const redis = new Redis({ data: { k1: 5 } });
 const result = redis.eval(`return redis.call("GET", "k1") * 10`);
 expect(result).toBe(5 * 10);
@@ -127,31 +165,16 @@ As a difference from ioredis we currently don't support:
 Work on Cluster support has started, the current implementation is minimal and PRs welcome #359
 
 ```js
-var Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock');
 
 const cluster = new Redis.Cluster(['redis://localhost:7001']);
 const nodes = cluster.nodes;
 expect(nodes.length).toEqual(1);
 ```
 
-## Roadmap
+## [Roadmap](https://github.com/users/stipsan/projects/1/views/4)
 
-This project started off as just an utility in
-[another project](https://github.com/stipsan/epic) and got open sourced to
-benefit the rest of the ioredis community. This means there's work to do before
-it's feature complete:
-
-- [x] Setup testing suite for the library itself.
-- [x] Refactor to bluebird promises like ioredis, support node style callback
-      too.
-- [x] Implement remaining basic features that read/write data.
-- [x] Implement ioredis
-      [argument and reply transformers](https://github.com/luin/ioredis#transforming-arguments--replies).
-- [ ] Connection Events
-- [ ] Offline Queue
-- [x] Pub/Sub
-- [ ] Error Handling
-- [ ] Implement [remaining](compat.md) commands
+You can check the [roadmap project page](https://github.com/users/stipsan/projects/1/views/4), and [the compat table](compat.md), to see how close we are to feature parity with `ioredis`.
 
 ## I need a feature not listed here
 
