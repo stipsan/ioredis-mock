@@ -7,6 +7,7 @@ on:
 
 jobs:
   format:
+    if: github.repository == 'stipsan/ioredis-mock'
     runs-on: ubuntu-latest
 
     steps:
@@ -14,10 +15,10 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{github.head_ref}}
-      - name: use node.js 12
+      - name: use node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: 16
       - run: npm ci
       - run: node scripts/update-compat
       - name: commit changes
