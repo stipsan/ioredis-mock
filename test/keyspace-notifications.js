@@ -67,7 +67,7 @@ describe('parseKeyspaceEvents', () => {
 describe('keyspaceNotifications', () => {
   it('should appear when configured and the triggering event occurs', (done) => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic keyspace
-    const redisPubSub = redis.createConnectedClient();
+    const redisPubSub = redis.duplicate();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:key');
       expect(message).toBe('del');
@@ -105,7 +105,7 @@ describe('keyspaceNotifications', () => {
 describe('keyeventNotifications', () => {
   it('should appear when configured and the triggering event occurs', (done) => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gE' }); // gK: generic keyevent
-    const redisPubSub = redis.createConnectedClient();
+    const redisPubSub = redis.duplicate();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyevent@0__:del');
       expect(message).toBe('key');

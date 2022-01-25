@@ -3,7 +3,7 @@ import Redis from 'ioredis';
 describe('multipleMocks', () => {
   it('should be possible to create a second IORedis client, which is working on shared data with the first client', () => {
     const client1 = new Redis();
-    const client2 = client1.createConnectedClient();
+    const client2 = new Redis();
     client1.hset('testing', 'test', '2').then(() => {
       client2.hget('testing', 'test').then((val) => expect(val).toBe('2'));
     });
@@ -11,7 +11,7 @@ describe('multipleMocks', () => {
 
   it('should be possible to create a second IORedis client, which is working on shared channels with the first client', (done) => {
     const client1 = new Redis();
-    const client2 = client1.createConnectedClient();
+    const client2 = new Redis();
     client1.on('message', (channel, message) => {
       expect(channel).toBe('channel');
       expect(message).toBe('hello');
@@ -31,7 +31,7 @@ describe('multipleMocks', () => {
 
       const connectedClients = [];
       for (let i = 0; i < 10; i++) {
-        const connectedClient = client.createConnectedClient();
+        const connectedClient = client.duplicate();
         connectedClients.push(connectedClient);
         connectedClient.subscribe(testChannel);
       }

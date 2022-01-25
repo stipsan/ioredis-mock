@@ -18,7 +18,7 @@ describe('rename', () => {
 
   it('should emit keyspace notifications if configured', (done) => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
-    const redisPubSub = redis.createConnectedClient();
+    const redisPubSub = redis.duplicate();
     let messagesReceived = 0;
     redisPubSub.on('message', (channel, message) => {
       messagesReceived++;

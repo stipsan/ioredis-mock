@@ -10,7 +10,7 @@ describe('publish', () => {
 
   it('should return 1 when publishing with a single subscriber', () => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     redisPubSub.subscribe('emails');
     return redis2
       .publish('emails', 'clark@daily.planet')
@@ -19,7 +19,7 @@ describe('publish', () => {
 
   it('should publish a message, which can be received by a previous subscribe', (done) => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('emails');
       expect(message).toBe('clark@daily.planet');
@@ -31,7 +31,7 @@ describe('publish', () => {
 
   it('should emit messageBuffer event when a Buffer message is published on a subscribed channel', (done) => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     const buffer = Buffer.alloc(8);
     redisPubSub.on('messageBuffer', (channel, message) => {
       expect(channel).toBe('emails');
@@ -44,7 +44,7 @@ describe('publish', () => {
 
   it('should return 1 when publishing with a single pattern subscriber', () => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     redisPubSub.psubscribe('emails.*');
     return redis2
       .publish('emails.urgent', 'clark@daily.planet')
@@ -53,7 +53,7 @@ describe('publish', () => {
 
   it('should publish a message, which can be received by a previous psubscribe', (done) => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     redisPubSub.on('pmessage', (pattern, channel, message) => {
       expect(pattern).toBe('emails.*');
       expect(channel).toBe('emails.urgent');
@@ -66,7 +66,7 @@ describe('publish', () => {
 
   it('should emit a pmessageBuffer event when a Buffer message is published matching a psubscribed pattern', (done) => {
     const redisPubSub = new Redis();
-    const redis2 = redisPubSub.createConnectedClient();
+    const redis2 = new Redis();
     const buffer = Buffer.alloc(0);
     redisPubSub.on('pmessageBuffer', (pattern, channel, message) => {
       expect(pattern).toBe('emails.*');

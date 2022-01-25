@@ -46,7 +46,7 @@ describe('psubscribe', () => {
 
   it('should allow multiple instances to subscribe to the same channel', () => {
     const redisOne = new Redis();
-    const redisTwo = redisOne.createConnectedClient();
+    const redisTwo = new Redis();
 
     return Promise.all([
       redisOne.psubscribe('first.*', 'second.*'),
@@ -66,7 +66,7 @@ describe('psubscribe', () => {
       redisOne.on('pmessage', promiseOneFulfill);
       redisTwo.on('pmessage', PromiseTwoFulfill);
 
-      redisOne.createConnectedClient().publish('first.test', 'blah');
+      redisOne.duplicate().publish('first.test', 'blah');
 
       return Promise.all([promiseOne, promiseTwo]);
     });
