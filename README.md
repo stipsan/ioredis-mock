@@ -95,7 +95,7 @@ The `ioredis-mock/jest` bundle inlines imports from `ioredis` that `ioredis-mock
 
 ### Pub/Sub channels
 
-We also support redis publish/subscribe channels (just like [ioredis](<(https://redis.io/topics/pubsub)>)).
+We also support redis publish/subscribe channels (just like [ioredis](https://redis.io/topics/pubsub)).
 Like ioredis, you need two clients:
 
 ```js
