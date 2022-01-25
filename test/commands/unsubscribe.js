@@ -38,7 +38,7 @@ describe('unsubscribe', () => {
 
   it('should unsubscribe only one instance when more than one is subscribed to a channel', () => {
     const redisOne = new Redis();
-    const redisTwo = redisOne.createConnectedClient();
+    const redisTwo = new Redis();
 
     return Promise.all([
       redisOne.subscribe('first'),
@@ -55,7 +55,7 @@ describe('unsubscribe', () => {
 
         redisOne.on('message', promiseFulfill);
 
-        redisOne.createConnectedClient().publish('first', 'TEST');
+        redisOne.duplicate().publish('first', 'TEST');
 
         return promise;
       });
@@ -63,7 +63,7 @@ describe('unsubscribe', () => {
 
   it('should not alter parent instance when connected client unsubscribes', () => {
     const redisOne = new Redis();
-    const redisTwo = redisOne.createConnectedClient();
+    const redisTwo = new Redis();
     return redisOne
       .subscribe('first')
       .then(() => redisTwo.unsubscribe('first'))

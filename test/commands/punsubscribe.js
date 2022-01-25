@@ -39,7 +39,7 @@ describe('punsubscribe', () => {
 
   it('should unsubscribe only one instance when more than one is subscribed to a channel', () => {
     const redisOne = new Redis();
-    const redisTwo = redisOne.createConnectedClient();
+    const redisTwo = new Redis();
 
     return Promise.all([
       redisOne.psubscribe('first.*'),
@@ -56,7 +56,7 @@ describe('punsubscribe', () => {
 
         redisOne.on('pmessage', promiseFulfill);
 
-        redisOne.createConnectedClient().publish('first.test', 'TEST');
+        redisOne.duplicate().publish('first.test', 'TEST');
 
         return promise;
       });

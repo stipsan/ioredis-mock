@@ -75,7 +75,7 @@ describe('expire', () => {
 
   it('should emit keyspace notification if configured', (done) => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gK' }); // gK: generic Keyspace
-    const redisPubSub = redis.createConnectedClient();
+    const redisPubSub = redis.duplicate();
     redisPubSub.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:foo');
       expect(message).toBe('expire');
