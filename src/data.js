@@ -1,4 +1,3 @@
-import assign from 'lodash.assign';
 
 export function createSharedData(sharedExpires) {
   let raw = {};
@@ -37,7 +36,7 @@ export function createSharedData(sharedExpires) {
       }
 
       if (typeof value === 'object' && value) {
-        return assign({}, value);
+        return { ...value};
       }
 
       return value;
@@ -68,7 +67,7 @@ export function createSharedData(sharedExpires) {
       } else if (val instanceof Map) {
         item = new Map(val);
       } else if (typeof val === 'object' && val) {
-        item = assign({}, val);
+        item = { ...val};
       }
 
       raw[key] = item;
