@@ -1,5 +1,4 @@
 import shuffle from 'lodash.shuffle';
-import take from 'lodash.take';
 import toArray from 'lodash.toarray';
 
 import sample from '../commands-utils/sample';
@@ -31,7 +30,7 @@ export function spop(key, count) {
     result = values;
     set.clear();
   } else {
-    result = take(shuffle(values), want);
+    result = shuffle(values).slice(0, want);
     result.map((item) => set.delete(item));
   }
 
