@@ -1,4 +1,4 @@
-import random from 'lodash.random';
+import random from '../commands-utils/random';
 
 export function randomkey() {
   const keys = this.data.keys();
