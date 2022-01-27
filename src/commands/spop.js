@@ -1,6 +1,6 @@
-import sample from 'lodash.sample'
-import shuffle from 'lodash.shuffle'
-import take from 'lodash.take'
+import sample from 'lodash.sample';
+import shuffle from 'lodash.shuffle';
+import take from 'lodash.take';
 import toArray from 'lodash.toarray';
 
 const safeCount = (count) => {
@@ -24,13 +24,13 @@ export function spop(key, count) {
   const values = toArray(set);
   let result;
   if (want === 1) {
-    result = sample(values)
+    result = sample(values);
     set.delete(result);
   } else if (total <= want) {
     result = values;
     set.clear();
   } else {
-    result = take(shuffle(values), want)
+    result = take(shuffle(values), want);
     result.map((item) => set.delete(item));
   }
 

@@ -1,7 +1,7 @@
 import Redis from 'ioredis';
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { dispose,init } from '../../../src/lua';
+import { dispose, init } from '../../../src/lua';
 
 describe('defineCommand', () => {
   let vm;

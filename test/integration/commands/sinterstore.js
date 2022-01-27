@@ -25,8 +25,9 @@ describe('sinterstore', () => {
       },
     });
 
-    return expect(redis.sinterstore('foo', 'bar'))
-      .rejects.toEqual(Error('Key bar does not contain a set'));
+    return expect(redis.sinterstore('foo', 'bar')).rejects.toEqual(
+      Error('Key bar does not contain a set')
+    );
   });
 
   it("should compute empty array if sources don't exists", () => {

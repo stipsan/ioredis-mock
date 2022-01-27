@@ -4,4 +4,4 @@ lib
 .nyc_output
 coverage
 junit
-jest.js
+browser.js

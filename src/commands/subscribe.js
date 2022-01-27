@@ -15,8 +15,10 @@ export function subscribe(...args) {
   if (!this.channels.instanceListeners) {
     return 0;
   }
-  const numberOfSubscribedChannels = getSubscribedChannels(this, this.channels)
-    .length;
+  const numberOfSubscribedChannels = getSubscribedChannels(
+    this,
+    this.channels
+  ).length;
   if (numberOfSubscribedChannels > 0) {
     this.subscriberMode = true;
   }

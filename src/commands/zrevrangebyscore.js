@@ -1,4 +1,4 @@
-import { filter, flatMap,orderBy } from 'lodash';
+import { filter, flatMap, orderBy } from 'lodash';
 
 import {
   filterPredicate,

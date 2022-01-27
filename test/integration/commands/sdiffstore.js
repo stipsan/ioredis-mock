@@ -25,8 +25,9 @@ describe('sdiffstore', () => {
       },
     });
 
-    return expect(redis.sdiffstore('dest', 'foo', 'bar'))
-      .rejects.toEqual(Error('Key foo does not contain a set'));
+    return expect(redis.sdiffstore('dest', 'foo', 'bar')).rejects.toEqual(
+      Error('Key foo does not contain a set')
+    );
   });
 
   it('should throw an exception if a member key contains something other than a set', () => {
@@ -37,8 +38,9 @@ describe('sdiffstore', () => {
       },
     });
 
-    return expect(redis.sdiffstore('dest', 'foo', 'bar'))
-      .rejects.toEqual(Error('Key bar does not contain a set'));
+    return expect(redis.sdiffstore('dest', 'foo', 'bar')).rejects.toEqual(
+      Error('Key bar does not contain a set')
+    );
   });
 
   it("should return 0 if sources don't exists", () => {

@@ -1,4 +1,4 @@
-import { flatMap, forEach,orderBy } from 'lodash';
+import { flatMap, forEach, orderBy } from 'lodash';
 
 import { slice } from './zrange-command.common';
 

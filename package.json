@@ -33,6 +33,8 @@
     "coverage": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix && npx prettier --write . && npx prettier-package-json --write ./package.json",
+    "postlint": "npx prettier . --check",
     "prepublishOnly": "npm run build:lib && npm run build:browser.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",

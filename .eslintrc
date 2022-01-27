@@ -33,7 +33,14 @@
   },
   "overrides": [
     {
-      "files": ["test/**/*.js", "testSetupAfterEnv.js", "testSetupBabel.js", "testSetupIntegration.js", "testSetupJestLegacy.js", "testSetupRedis.js"],
+      "files": [
+        "test/**/*.js",
+        "testSetupAfterEnv.js",
+        "testSetupBabel.js",
+        "testSetupIntegration.js",
+        "testSetupJestLegacy.js",
+        "testSetupRedis.js"
+      ],
       "env": {
         "jest/globals": true
       }

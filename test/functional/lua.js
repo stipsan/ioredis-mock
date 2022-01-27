@@ -6,7 +6,7 @@ import {
   defineKeys,
   defineRedisObject,
 } from '../../src/commands/defineCommand';
-import { dispose,init } from '../../src/lua';
+import { dispose, init } from '../../src/lua';
 
 const { lua } = fengari;
 

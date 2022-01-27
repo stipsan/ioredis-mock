@@ -1,7 +1,9 @@
-import { Buffer } from 'buffer'
+import { Buffer } from 'buffer';
 
-global.Buffer = Buffer
+global.Buffer = Buffer;
 
 export function nextTickShim(fn) {
-  Promise.resolve().then(() => {fn()})
+  Promise.resolve().then(() => {
+    fn();
+  });
 }

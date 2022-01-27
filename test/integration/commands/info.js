@@ -19,6 +19,8 @@ describe('info', () => {
     const lines = value.split('\r\n');
 
     expect(lines).toHaveLength(value.split('\n').length);
-    expect(lines.some(line => line.startsWith('redis_version:'))).toBeTruthy();
+    expect(
+      lines.some((line) => line.startsWith('redis_version:'))
+    ).toBeTruthy();
   });
 });

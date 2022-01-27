@@ -16,8 +16,10 @@ export function unsubscribe(...args) {
     unsubscribeFromChannel(this, chan, this.channels);
   });
 
-  const numberOfSubscribedChannels = getSubscribedChannels(this, this.channels)
-    .length;
+  const numberOfSubscribedChannels = getSubscribedChannels(
+    this,
+    this.channels
+  ).length;
   if (
     numberOfSubscribedChannels +
       getSubscribedChannels(this, this.patternChannels).length ===

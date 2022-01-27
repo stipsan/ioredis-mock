@@ -26,7 +26,8 @@ describe('sunionstore', () => {
       },
     });
 
-    return expect(redis.sunionstore('foo', 'bar'))
-      .rejects.toEqual(Error('Key bar does not contain a set'));
+    return expect(redis.sunionstore('foo', 'bar')).rejects.toEqual(
+      Error('Key bar does not contain a set')
+    );
   });
 });

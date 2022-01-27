@@ -18,7 +18,10 @@ describe('smismember', () => {
     expect(result2).toEqual(expect.arrayContaining([0]));
 
     // should return 0 if a value is not included in the set
-    const result3 = await redis.smismember('setKey', ...['foobar', ...valuesInTheSet]);
+    const result3 = await redis.smismember(
+      'setKey',
+      ...['foobar', ...valuesInTheSet]
+    );
     expect(result3).toEqual(expect.arrayContaining([0, 1, 1]));
   });
 });

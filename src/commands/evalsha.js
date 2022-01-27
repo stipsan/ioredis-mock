@@ -17,7 +17,7 @@ import { customCommand } from './defineCommand';
  * @returns {*|Promise<unknown>}
  */
 export function evalsha(sha1, numberOfKeys, ...args) {
-  if ( (!(sha1 in this.shaScripts)) || !(this.shaScripts[sha1]) ){
+  if (!(sha1 in this.shaScripts) || !this.shaScripts[sha1]) {
     throw new Error(`NOSCRIPT for sha1 ${sha1}`);
   }
   const script = this.shaScripts[sha1];

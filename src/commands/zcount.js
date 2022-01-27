@@ -1,6 +1,6 @@
 import { filter } from 'lodash';
 
-import { filterPredicate,parseLimit } from './zrange-command.common';
+import { filterPredicate, parseLimit } from './zrange-command.common';
 
 export function zcount(key, inputMin, inputMax) {
   const map = this.data.get(key);

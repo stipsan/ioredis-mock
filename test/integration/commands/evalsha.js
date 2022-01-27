@@ -25,7 +25,8 @@ describe('evalsha', () => {
         // first run eval to store the script in cache
         redis.eval(luaScript, NUMBER_OF_KEYS, KEY1, KEY2, 100, 5);
         // run the script by its sha1 hash
-        return redis.evalsha(scriptSha, NUMBER_OF_KEYS, KEY1, KEY2, 100, 5)
+        return redis
+          .evalsha(scriptSha, NUMBER_OF_KEYS, KEY1, KEY2, 100, 5)
           .then((result) => expect(result).toEqual(3005));
       });
   });
@@ -53,7 +54,8 @@ describe('evalsha', () => {
   it('should error with NOSCRIPT if attempted to run a nonexistent sha', () => {
     const redis = new Redis();
     const someSha = '5bf1fd927dfb8679496a2e6cf00cbe50c1c87145';
-    return expect(redis.evalsha(someSha)).rejects.toEqual(Error('NOSCRIPT for sha1 5bf1fd927dfb8679496a2e6cf00cbe50c1c87145'))
+    return expect(redis.evalsha(someSha)).rejects.toEqual(
+      Error('NOSCRIPT for sha1 5bf1fd927dfb8679496a2e6cf00cbe50c1c87145')
+    );
   });
-
 });
