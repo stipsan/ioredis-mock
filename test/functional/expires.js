@@ -1,4 +1,4 @@
-import { createExpires, createSharedExpires } from '../src/expires';
+import { createExpires, createSharedExpires } from '../../src/expires';
 
 describe('createSharedExpires', () => {
   const sharedExpires = createSharedExpires();

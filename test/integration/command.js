@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import Redis from 'ioredis';
-import command from '../src/command';
+import command from '../../src/command';
 
 describe('basic command', () => {
   const stub = command((...args) => args, 'testCommandName', {

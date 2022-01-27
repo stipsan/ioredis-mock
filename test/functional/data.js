@@ -1,5 +1,5 @@
-import { createData, createSharedData } from '../src/data';
-import { createExpires, createSharedExpires } from '../src/expires';
+import { createData, createSharedData } from '../../src/data';
+import { createExpires, createSharedExpires } from '../../src/expires';
 
 describe('createSharedData', () => {
   const sharedExpires = createSharedExpires();

@@ -1,4 +1,4 @@
-import patternMatchesString from '../../src/commands-utils/patternMatchesString';
+import patternMatchesString from '../../../src/commands-utils/patternMatchesString';
 
 describe('patternMatchesString', () => {
   function testCase(pattern, channel, expected) {

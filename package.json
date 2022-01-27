@@ -26,14 +26,14 @@
     "lib/"
   ],
   "scripts": {
-    "build:babel": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:lodash --external:standard-as-callback --external:ioredis --external:redis-commands",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:lodash --external:standard-as-callback --external:ioredis --external:redis-commands",
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:process.env.FENGARICONF=undefined --define:global=window --define:process.nextTick=nextTickShim --inject:./browser-shims.js --minify --sourcemap",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "npm test -- --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build:babel && npm run build:browser.js",
+    "prepublishOnly": "npm run build:lib && npm run build:browser.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
     "test:jest.js": "jest --config jest.config.jest.js",

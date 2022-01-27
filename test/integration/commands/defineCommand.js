@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import { init, dispose } from '../../src/lua';
+import { init, dispose } from '../../../src/lua';
 
 describe('defineCommand', () => {
   let vm;

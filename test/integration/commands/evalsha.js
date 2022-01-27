@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import sha1 from '../../src/commands-utils/sha1';
+import sha1 from '../../../src/commands-utils/sha1';
 
 describe('evalsha', () => {
   it('should execute a lua script through evalsha and get the return value', () => {
