@@ -21,7 +21,7 @@ Cases like:
 
 Check the [compatibility table](compat.md) for supported redis commands.
 
-## Usage ([try it in your browser](https://runkit.com/npm/ioredis-mock))
+## Usage ([try it in your browser with RunKit](https://runkit.com/npm/ioredis-mock))
 
 ```js
 const Redis = require('ioredis-mock');
@@ -38,6 +38,18 @@ const redis = new Redis({
   },
 });
 // Basically use it just like ioredis
+```
+
+## Browser usage (Experimental)
+
+There's a browser build available. You can import it directly (`import Redis from 'ioredis-mock/browser.js'`), or use it on unpkg.com:
+
+```js
+import Redis from 'https://unpkg.com/ioredis-mock';
+
+const redis = new Redis();
+redis.set('foo', 'bar');
+console.log(await redis.get('foo'));
 ```
 
 ### Breaking API changes from v5
@@ -127,19 +139,21 @@ You can use the `defineCommand` to define custom commands using lua or `eval` to
 
 In order to create custom commands, using [lua](http://lua.org) scripting, [ioredis exposes the defineCommand method](https://github.com/luin/ioredis#lua-scripting).
 
-You could define a custom command `MULTIPLY` which accepts one
+You could define a custom command `multiply` which accepts one
 key and one argument. A redis key, where you can get the multiplicand, and an argument which will be the multiplicator:
 
 ```js
 const Redis = require('ioredis-mock');
-const redis = new Redis({ data: { 'k1': 5 } });
-const commandDefinition: { numberOfKeys: 1, lua: 'return KEYS[1] * ARGV[1]' };
-redis.defineCommand('MULTIPLY', commandDefinition) // defineCommand(name, definition)
-  // now we can call our brand new multiply command as an ordinary command
-  .then(() => redis.multiply('k1', 10));
-  .then(result => {
-    expect(result).toBe(5 * 10);
-  })
+const redis = new Redis({ data: { k1: 5 } });
+const commandDefinition = {
+  numberOfKeys: 1,
+  lua: 'return redis.call("GET", KEYS[1]) * ARGV[1]',
+};
+redis.defineCommand('multiply', commandDefinition); // defineCommand(name, definition)
+// now we can call our brand new multiply command as an ordinary command
+redis.multiply('k1', 10).then((result) => {
+  expect(result).toBe(5 * 10);
+});
 ```
 
 You can also achieve the same effect by using the `eval` command:

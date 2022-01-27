@@ -15,8 +15,7 @@
   "browser": {
     "stream": "stream-browserify",
     "crypto": "crypto-browserify",
-    "os": "os-browserify",
-    "path": "path-browserify"
+    "./lib": "./browser.js"
   },
   "unpkg": "./browser.js",
   "files": [
@@ -35,7 +34,7 @@
     "coverage": "npm test -- --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build:babel && npm run build:jest.js",
+    "prepublishOnly": "npm run build:babel && npm run build:browser.js && npm run build:jest.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
     "test:jest.js": "jest --config jest.config.jest.js",
@@ -76,14 +75,11 @@
     "jest": "^27.0.0",
     "jest-circus": "^27.0.0",
     "lint-staged": "^11.0.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
     "prettier": "^2.2.1",
     "prettier-package-json": "^2.1.3",
     "redis-commands": "^1.7.0",
     "stream-browserify": "^3.0.0",
     "stream-mock": "^2.0.5",
-    "tls-browserify": "^0.2.2",
     "url": "^0.11.0"
   },
   "keywords": [
