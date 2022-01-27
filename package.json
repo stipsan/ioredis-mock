@@ -78,7 +78,6 @@
     "jest": "^27.4.7",
     "jest-circus": "^27.4.6",
     "lint-staged": "^11.2.6",
-    "lodash.filter": "^4.6.0",
     "lodash.flatmap": "^4.5.0",
     "lodash.flatten": "^4.4.0",
     "lodash.foreach": "^4.5.0",

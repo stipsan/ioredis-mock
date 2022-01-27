@@ -1,4 +1,3 @@
-import filter from 'lodash.filter';
 import flatMap from 'lodash.flatmap';
 import orderBy from 'lodash.orderby';
 
@@ -23,8 +22,7 @@ export function zrevrangebyscore(key, inputMax, inputMin, ...args) {
 
   const min = parseLimit(inputMin);
   const max = parseLimit(inputMax);
-  const filteredArray = filter(
-    Array.from(map.values()),
+  const filteredArray = Array.from(map.values()).filter(
     filterPredicate(min, max)
   );
 
