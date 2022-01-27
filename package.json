@@ -17,32 +17,31 @@
     "crypto": "crypto-browserify",
     "./lib": "./browser.js"
   },
-  "unpkg": "./browser.js",
   "files": [
+    "lib/",
     "browser.js",
     "browser.js.map",
     "example.js",
-    "jest.js",
-    "lib/"
+    "jest.js"
   ],
   "scripts": {
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap",
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:process.env.FENGARICONF=undefined --define:global=window --define:process.nextTick=nextTickShim --inject:./browser-shims.js --minify --sourcemap",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix && npx prettier --write . && npx prettier-package-json --write ./package.json",
     "postlint": "npx prettier . --check",
+    "lint:fix": "npm run lint -- --fix && npx prettier --write . && npx prettier-package-json --write ./package.json",
     "prepublishOnly": "npm run build:lib && npm run build:browser.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
     "posttest": "npm run build:lib && npm run test:integration && npm run build:browser.js && npm run test:browser.js && npm run test:jestlegacy",
-    "test:integration": "jest --config jest.config.integration.js",
     "test:browser.js": "",
-    "test:jestlegacy": "jest --config jest.config.jestlegacy.js",
     "test:e2e": "jest --config jest.config.redis.js",
+    "test:integration": "jest --config jest.config.integration.js",
+    "test:jestlegacy": "jest --config jest.config.jestlegacy.js",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
@@ -155,5 +154,6 @@
       "@semantic-release/npm"
     ]
   },
-  "runkitExampleFilename": "example.js"
+  "runkitExampleFilename": "example.js",
+  "unpkg": "./browser.js"
 }
