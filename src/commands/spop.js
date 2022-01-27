@@ -1,7 +1,8 @@
-import sample from 'lodash.sample';
 import shuffle from 'lodash.shuffle';
 import take from 'lodash.take';
 import toArray from 'lodash.toarray';
+
+import sample from '../commands-utils/sample';
 
 const safeCount = (count) => {
   const result = count !== undefined ? parseInt(count, 10) : 1;
