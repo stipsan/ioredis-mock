@@ -1,7 +1,7 @@
 import Chance from 'chance';
 import Redis from 'ioredis';
-import _ from 'lodash';
 import flatten from 'lodash.flatten';
+import zipObject from 'lodash.zipobject';
 import { ObjectWritableMock } from 'stream-mock';
 
 const chance = new Chance();
@@ -9,7 +9,7 @@ const chance = new Chance();
 describe('hscanStream', () => {
   let writable;
   const randomCCType = () => chance.cc_type({ raw: true });
-  const createHashSet = (keys) => _.zipObject(keys, keys.map(randomCCType));
+  const createHashSet = (keys) => zipObject(keys, keys.map(randomCCType));
 
   beforeEach(() => {
     writable = new ObjectWritableMock();

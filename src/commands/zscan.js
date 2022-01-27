@@ -1,4 +1,4 @@
-import { flatten } from 'lodash';
+import flatten from 'lodash.flatten';
 
 import { scanHelper } from '../commands-utils/scan-command.common';
 

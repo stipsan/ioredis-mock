@@ -1,4 +1,4 @@
-import { intersectionBy } from 'lodash';
+import intersectionBy from 'lodash.intersectionby';
 
 export function zinterstore(destKey, numKeys, ...keys) {
   const srcMaps = [];

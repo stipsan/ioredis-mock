@@ -1,4 +1,6 @@
-import { filter, flatMap, orderBy } from 'lodash';
+import filter from 'lodash.filter';
+import flatMap from 'lodash.flatmap';
+import orderBy from 'lodash.orderby';
 
 import {
   filterPredicate,
