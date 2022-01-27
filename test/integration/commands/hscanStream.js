@@ -1,6 +1,5 @@
 import Chance from 'chance';
 import Redis from 'ioredis';
-import flatten from 'lodash.flatten';
 import zipObject from 'lodash.zipobject';
 import { ObjectWritableMock } from 'stream-mock';
 
@@ -39,7 +38,7 @@ describe('hscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable.data)).toEqual(['foo', 'bar']);
+      expect([].concat(...writable.data)).toEqual(['foo', 'bar']);
       done();
     });
   });
@@ -55,7 +54,7 @@ describe('hscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(flatten(writable.data)).toEqual(keys);
+      expect([].concat(...writable.data)).toEqual(keys);
       done();
     });
   });
@@ -72,7 +71,7 @@ describe('hscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });
@@ -90,7 +89,7 @@ describe('hscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3));
-      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });

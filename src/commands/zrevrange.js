@@ -1,4 +1,3 @@
-import flatten from 'lodash.flatten';
 import orderBy from 'lodash.orderby';
 
 import { slice } from './zrange-command.common';
@@ -31,5 +30,5 @@ export function zrevrange(key, s, e, w) {
 
   val = slice(val, start, end);
 
-  return flatten(val);
+  return [].concat(...val);
 }

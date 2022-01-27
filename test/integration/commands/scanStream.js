@@ -1,6 +1,5 @@
 import Chance from 'chance';
 import Redis from 'ioredis';
-import flatten from 'lodash.flatten';
 import zipObject from 'lodash.zipobject';
 import { ObjectWritableMock } from 'stream-mock';
 
@@ -38,7 +37,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable.data)).toEqual(['foo', 'test']);
+      expect([].concat(...writable.data)).toEqual(['foo', 'test']);
       done();
     });
   });
@@ -55,7 +54,7 @@ describe('scanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(flatten(writable.data)).toEqual(keys);
+      expect([].concat(...writable.data)).toEqual(keys);
       done();
     });
   });
@@ -76,7 +75,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });
