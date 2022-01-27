@@ -1,13 +1,2 @@
-// Redirects 'ioredis' imports to the compiled jest.js file that inlines the Command API from 'ioredis'
-
-// eslint-disable-next-line global-require, import/no-unresolved
-jest.mock('ioredis', () => {
-  const { Command } = jest.requireActual('ioredis');
-  const Redis = jest.requireActual('./jest');
-
-  return {
-    __esModule: true,
-    Command,
-    default: Redis,
-  };
-});
+// This is just to ensure the legacy bc doesn't accidentally break, as the jest.js won't be removed until v7
+jest.mock('ioredis', () => require('ioredis-mock/jest'));

@@ -4,7 +4,6 @@ junit
 lib
 node_modules
 npm-debug.log
-jest.js
 yarn.lock
 npm-debug.log*
 yarn-debug.log*
