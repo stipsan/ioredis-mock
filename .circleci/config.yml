@@ -13,8 +13,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package-lock.json" }}
-            - v2-dependencies-
+            - v3-dependencies-{{ checksum "package-lock.json" }}
+            - v3-dependencies-
 
       - run: npm ci
 
@@ -29,7 +29,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "package-lock.json" }}
+          key: v3-dependencies-{{ checksum "package-lock.json" }}
 
       # Semantic release is setup to check on its own when to publish a new release or not
       - run: npx semantic-release
