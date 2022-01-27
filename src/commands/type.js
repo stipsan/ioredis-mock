@@ -1,5 +1,4 @@
 import isPlainObject from 'lodash.isplainobject';
-import isString from 'lodash.isstring';
 
 // eslint-disable-next-line consistent-return
 export function type(key) {
@@ -21,7 +20,7 @@ export function type(key) {
     return 'list';
   }
 
-  if (isString(val)) {
+  if (val != null && typeof val.valueOf() === 'string') {
     return 'string';
   }
 
