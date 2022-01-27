@@ -79,7 +79,6 @@
     "jest": "^27.4.7",
     "jest-circus": "^27.4.6",
     "lint-staged": "^11.2.6",
-    "lodash.foreach": "^4.5.0",
     "lodash.intersectionby": "^4.7.0",
     "lodash.isarray": "^4.0.0",
     "lodash.isplainobject": "^4.0.6",

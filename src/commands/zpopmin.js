@@ -1,5 +1,4 @@
 import flatMap from 'array.prototype.flatmap';
-import forEach from 'lodash.foreach';
 import orderBy from 'lodash.orderby';
 
 import { slice } from './zrange-command.common';
@@ -17,7 +16,7 @@ export function zpopmin(key, count = 1) {
     count - 1
   );
 
-  forEach(ordered, (it) => {
+  ordered.forEach((it) => {
     map.delete(it.value);
   });
   this.data.set(key, map);
