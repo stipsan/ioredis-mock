@@ -36,8 +36,8 @@
       "files": [
         "test/**/*.js",
         "testSetupAfterEnv.js",
-        "testSetupBabel.js",
-        "testSetupIntegration.js",
+        "testSetupSrc.js",
+        "testSetupLib.js",
         "testSetupJestLegacy.js",
         "testSetupRedis.js"
       ],
