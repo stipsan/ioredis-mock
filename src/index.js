@@ -41,7 +41,7 @@ class RedisMock extends EventEmitter {
     // a mapping of sha1<string>:script<string>, used by evalsha command
     this.shaScripts = {};
 
-    const optionsWithDefault = { ...defaultOptions, ...options};
+    const optionsWithDefault = { ...defaultOptions, ...options };
 
     this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}`;
 
