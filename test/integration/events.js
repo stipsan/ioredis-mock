@@ -8,7 +8,7 @@ describe('events', () => {
     redis.on('ready', readySpy);
     redis.on('connect', connectSpy);
 
-    setImmediate(() => {
+    process.nextTick(() => {
       expect(connectSpy).toHaveBeenCalled();
       expect(readySpy).toHaveBeenCalled();
       done();

@@ -36,6 +36,7 @@
       "files": [
         "test/**/*.js",
         "testSetupAfterEnv.js",
+        "testSetupBrowser.js",
         "testSetupSrc.js",
         "testSetupLib.js",
         "testSetupJestLegacy.js",
