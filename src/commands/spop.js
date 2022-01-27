@@ -1,5 +1,4 @@
 import shuffle from 'lodash.shuffle';
-import toArray from 'lodash.toarray';
 
 import sample from '../commands-utils/sample';
 
@@ -21,7 +20,7 @@ export function spop(key, count) {
 
   if (want === 0) return undefined;
   if (total === 0) return null;
-  const values = toArray(set);
+  const values = Array.from(set);
   let result;
   if (want === 1) {
     result = sample(values);
