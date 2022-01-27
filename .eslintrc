@@ -21,22 +21,17 @@
         "functions": "never"
       }
     ],
-    "quotes": ["error", "single", { "avoidEscape": true }]
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
   },
   "overrides": [
     {
-      "files": ["scripts/**/*.js", "test/**/*.js"],
-      "rules": {
-        "import/no-extraneous-dependencies": [
-          "error",
-          {
-            "devDependencies": true
-          }
-        ]
-      }
-    },
-    {
-      "files": ["test/**/*.js", "testSetupAfterEnv.js", "testSetupBabel.js", "testSetupJest.js", "testSetupRedis.js"],
+      "files": ["test/**/*.js", "testSetupAfterEnv.js", "testSetupBabel.js", "testSetupIntegration.js", "testSetupJestLegacy.js", "testSetupRedis.js"],
       "env": {
         "jest/globals": true
       }

@@ -40,10 +40,10 @@ jobs:
       - name: npm install, build and test
         run: |
           npm ci
-          npm test
+          npm run build:lib
+          npm run test:integration
 
+      # @TODO remove in ioredis-mock v7
       - name: E2E test generated jest.js mock
         if: matrix.os != 'windows-latest'
-        run: |
-          npm run build:lib
-          npm run test:jest.js
+        run: npm run test:jestlegacy
