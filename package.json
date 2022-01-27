@@ -21,6 +21,7 @@
   },
   "unpkg": "./browser.js",
   "files": [
+    "browser.js",
     "example.js",
     "jest.js",
     "lib/"
@@ -28,7 +29,7 @@
   "scripts": {
     "build:babel": "npx rimraf lib && npx mkdirp lib && babel src --out-dir lib",
     "build:jest.js": "esbuild src/index.js --bundle --external:fengari --external:fengari-interop --external:lodash --external:minimatch --external:standard-as-callback --outfile=jest.js --platform=node --target=node10",
-    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js",
+    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:process.env.FENGARICONF=undefined --define:global=window --define:process.nextTick=nextTickShim --inject:./browser-shims.js",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "npm test -- --coverage",
