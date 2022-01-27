@@ -1,5 +1,7 @@
-import values from 'lodash.values';
-
 export function hvals(key) {
-  return values(this.data.get(key));
+  if (!this.data.has(key)) {
+    return [];
+  }
+
+  return Object.values(this.data.get(key));
 }
