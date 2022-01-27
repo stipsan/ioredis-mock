@@ -1,4 +1,3 @@
-import isArray from 'lodash.isarray';
 import isPlainObject from 'lodash.isplainobject';
 import isString from 'lodash.isstring';
 
@@ -18,7 +17,7 @@ export function type(key) {
     return 'zset';
   }
 
-  if (isArray(val)) {
+  if (Array.isArray(val)) {
     return 'list';
   }
 
