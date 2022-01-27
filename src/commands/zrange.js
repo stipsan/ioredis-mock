@@ -1,4 +1,4 @@
-import flatMap from 'lodash.flatmap';
+import flatMap from 'array.prototype.flatmap';
 import orderBy from 'lodash.orderby';
 
 import { slice } from './zrange-command.common';

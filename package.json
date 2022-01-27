@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:process.env.FENGARICONF=undefined --define:global=window --define:process.nextTick=nextTickShim --inject:./browser-shims.js --minify --sourcemap",
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:array.prototype.flatmap --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
@@ -45,6 +45,7 @@
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
+    "array.prototype.flatmap": "^1.2.5",
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.3",
     "redis-commands": "^1.7.0",
@@ -78,7 +79,6 @@
     "jest": "^27.4.7",
     "jest-circus": "^27.4.6",
     "lint-staged": "^11.2.6",
-    "lodash.flatmap": "^4.5.0",
     "lodash.flatten": "^4.4.0",
     "lodash.foreach": "^4.5.0",
     "lodash.intersectionby": "^4.7.0",

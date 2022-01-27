@@ -1,4 +1,4 @@
-import flatMap from 'lodash.flatmap';
+import flatMap from 'array.prototype.flatmap';
 import forEach from 'lodash.foreach';
 import orderBy from 'lodash.orderby';
 import reverse from 'lodash.reverse';
