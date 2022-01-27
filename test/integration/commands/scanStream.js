@@ -1,13 +1,13 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
-import _ from 'lodash';
+import flatten from 'lodash.flatten';
+import zipObject from 'lodash.zipobject';
 import Redis from 'ioredis';
 
 const chance = new Chance();
 
 describe('scanStream', () => {
   let writable;
-  const flatten = (wrt) => _.flatten(wrt.data);
 
   beforeEach(() => {
     writable = new ObjectWritableMock();
@@ -38,7 +38,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual(['foo', 'test']);
+      expect(flatten(writable.data)).toEqual(['foo', 'test']);
       done();
     });
   });
@@ -47,7 +47,7 @@ describe('scanStream', () => {
     // Given
     const keys = chance.unique(chance.word, 100);
     const count = 11;
-    const data = _.zipObject(keys, Array(keys).fill('bar'));
+    const data = zipObject(keys, Array(keys).fill('bar'));
     const redis = new Redis({ data });
     const stream = redis.scanStream({ count });
     // When
@@ -55,7 +55,7 @@ describe('scanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(flatten(writable)).toEqual(keys);
+      expect(flatten(writable.data)).toEqual(keys);
       done();
     });
   });
@@ -76,7 +76,7 @@ describe('scanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });

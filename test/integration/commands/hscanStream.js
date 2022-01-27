@@ -1,13 +1,13 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
 import _ from 'lodash';
+import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
 
 const chance = new Chance();
 
 describe('hscanStream', () => {
   let writable;
-  const flatten = (wrt) => _.flatten(wrt.data);
   const randomCCType = () => chance.cc_type({ raw: true });
   const createHashSet = (keys) => _.zipObject(keys, keys.map(randomCCType));
 
@@ -39,7 +39,7 @@ describe('hscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual(['foo', 'bar']);
+      expect(flatten(writable.data)).toEqual(['foo', 'bar']);
       done();
     });
   });
@@ -55,7 +55,7 @@ describe('hscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(flatten(writable)).toEqual(keys);
+      expect(flatten(writable.data)).toEqual(keys);
       done();
     });
   });
@@ -72,7 +72,7 @@ describe('hscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });
@@ -90,7 +90,7 @@ describe('hscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3));
-      expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
+      expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
       done();
     });
   });

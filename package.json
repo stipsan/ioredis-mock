@@ -26,7 +26,7 @@
     "lib/"
   ],
   "scripts": {
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:lodash --external:standard-as-callback --external:ioredis --external:redis-commands",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis",
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:process.env.FENGARICONF=undefined --define:global=window --define:process.nextTick=nextTickShim --inject:./browser-shims.js --minify --sourcemap",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
@@ -43,12 +43,11 @@
   "dependencies": {
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.3",
-    "lodash": "^4.17.21",
+    "redis-commands": "^1.7.0",
     "standard-as-callback": "^2.1.0"
   },
   "peerDependencies": {
-    "ioredis": "4.x",
-    "redis-commands": "1.x"
+    "ioredis": "4.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
@@ -74,10 +73,12 @@
     "jest": "^27.4.7",
     "jest-circus": "^27.4.6",
     "lint-staged": "^11.2.6",
+    "lodash": "^4.17.21",
+    "lodash.flatten": "^4.4.0",
+    "lodash.zipobject": "^4.1.3",
     "mkdirp": "^1.0.4",
     "prettier": "^2.5.1",
     "prettier-package-json": "^2.6.0",
-    "redis-commands": "^1.7.0",
     "stream-browserify": "^3.0.0",
     "stream-mock": "^2.0.5",
     "url": "^0.11.0"

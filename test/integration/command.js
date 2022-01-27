@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
 import command from '../../src/command';
 
@@ -60,10 +61,10 @@ describe('transformers', () => {
     Redis.Command.setArgumentTransformer('hmset', args => {
       if (args.length === 2) {
         if (typeof Map !== 'undefined' && args[1] instanceof Map) {
-          return [args[0]].concat(_.flatten(Object.entries(args[1])));
+          return [args[0]].concat(flatten(Object.entries(args[1])));
         }
         if (typeof args[1] === 'object' && args[1] !== null) {
-          return [args[0]].concat(_.flatten(Object.entries(args[1])));
+          return [args[0]].concat(flatten(Object.entries(args[1])));
         }
       }
       return args;

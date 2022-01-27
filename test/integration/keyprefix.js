@@ -1,11 +1,10 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
-import _ from 'lodash';
+import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
 
 describe('keyprefix', () => {
   let writable;
-  const flatten = (wrt) => _.flatten(wrt.data);
 
   beforeEach(() => {
     writable = new ObjectWritableMock({ objectMode: true });
@@ -83,7 +82,7 @@ describe('keyprefix', () => {
       writable.on('finish', () => {
         // Then
         expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-        expect(flatten(writable)).toEqual(keys);
+        expect(flatten(writable.data)).toEqual(keys);
         done();
       });
     });
@@ -103,7 +102,7 @@ describe('keyprefix', () => {
       stream.pipe(writable);
       writable.on('finish', () => {
         // Then
-        expect(flatten(writable)).toEqual(['test:foo', 'test:zu']);
+        expect(flatten(writable.data)).toEqual(['test:foo', 'test:zu']);
         done();
       });
     });
@@ -122,7 +121,7 @@ describe('keyprefix', () => {
       stream.pipe(writable);
       writable.on('finish', () => {
         // Then
-        expect(flatten(writable)).toEqual(['foo0', 'foo1', 'foo2']);
+        expect(flatten(writable.data)).toEqual(['foo0', 'foo1', 'foo2']);
         done();
       });
     });

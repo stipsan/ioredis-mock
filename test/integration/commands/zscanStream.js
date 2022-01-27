@@ -1,13 +1,12 @@
 import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
-import _ from 'lodash';
+import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
 
 const chance = new Chance();
 
 describe('zscanStream', () => {
   let writable;
-  const flatten = (wrt) => _.flatten(wrt.data);
   const createMap = (keys) =>
     new Map(keys.map((k) => [k, { score: 0, value: k }]));
 
@@ -39,7 +38,7 @@ describe('zscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual(['foo', '0', 'bar', '0']);
+      expect(flatten(writable.data)).toEqual(['foo', '0', 'bar', '0']);
       done();
     });
   });
@@ -59,7 +58,7 @@ describe('zscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count));
-      expect(flatten(writable)).toEqual(keysWithScore);
+      expect(flatten(writable.data)).toEqual(keysWithScore);
       done();
     });
   });
@@ -76,7 +75,7 @@ describe('zscanStream', () => {
     stream.pipe(writable);
     writable.on('finish', () => {
       // Then
-      expect(flatten(writable)).toEqual([
+      expect(flatten(writable.data)).toEqual([
         'foo0',
         '0',
         'foo1',
@@ -101,7 +100,7 @@ describe('zscanStream', () => {
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3));
-      expect(flatten(writable)).toEqual([
+      expect(flatten(writable.data)).toEqual([
         'foo0',
         '0',
         'foo1',
