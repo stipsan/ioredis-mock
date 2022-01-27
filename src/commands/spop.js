@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import sample from 'lodash.sample'
+import shuffle from 'lodash.shuffle'
+import take from 'lodash.take'
+import toArray from 'lodash.toarray';
 
 const safeCount = (count) => {
   const result = count !== undefined ? parseInt(count, 10) : 1;
@@ -18,17 +21,16 @@ export function spop(key, count) {
 
   if (want === 0) return undefined;
   if (total === 0) return null;
-  const values = _.chain(set).toArray();
+  const values = toArray(set);
   let result;
   if (want === 1) {
-    result = values.sample().value();
+    result = sample(values)
     set.delete(result);
   } else if (total <= want) {
-    result = values.value();
+    result = values;
     set.clear();
   } else {
-    values.shuffle(); // Randomize take
-    result = values.take(want).value();
+    result = take(shuffle(values), want)
     result.map((item) => set.delete(item));
   }
 

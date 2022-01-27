@@ -4,7 +4,7 @@
   },
   "extends": ["airbnb-base", "prettier"],
   "parser": "babel-eslint",
-  "plugins": ["jest"],
+  "plugins": ["jest", "simple-import-sort"],
   "rules": {
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
@@ -27,7 +27,9 @@
       {
         "devDependencies": true
       }
-    ]
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   },
   "overrides": [
     {
