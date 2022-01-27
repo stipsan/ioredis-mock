@@ -1,6 +1,6 @@
-import isArray from 'lodash.isarray'
-import isPlainObject from 'lodash.isplainobject'
-import isString from 'lodash.isstring'
+import isArray from 'lodash.isarray';
+import isPlainObject from 'lodash.isplainobject';
+import isString from 'lodash.isstring';
 
 // eslint-disable-next-line consistent-return
 export function type(key) {
