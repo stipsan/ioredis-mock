@@ -1,4 +1,5 @@
-import { flatMap, orderBy, forEach, reverse } from 'lodash';
+import { flatMap, forEach, orderBy, reverse } from 'lodash';
+
 import { slice } from './zrange-command.common';
 
 export function zpopmax(key, count = 1) {

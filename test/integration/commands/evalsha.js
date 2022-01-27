@@ -1,4 +1,5 @@
 import Redis from 'ioredis';
+
 // eslint-disable-next-line import/no-relative-parent-imports
 import sha1 from '../../../src/commands-utils/sha1';
 

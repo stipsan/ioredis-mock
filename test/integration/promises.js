@@ -1,5 +1,4 @@
 import bluebird from 'bluebird';
-
 import Redis from 'ioredis';
 
 const nativePromise = global.Promise;

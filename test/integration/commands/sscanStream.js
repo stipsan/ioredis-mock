@@ -1,7 +1,7 @@
-import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
-import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
+import flatten from 'lodash.flatten';
+import { ObjectWritableMock } from 'stream-mock';
 
 const chance = new Chance();
 

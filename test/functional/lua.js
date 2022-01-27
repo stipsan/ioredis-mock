@@ -1,12 +1,12 @@
 import fengari from 'fengari';
 import interop from 'fengari-interop';
 
-import { init, dispose } from '../../src/lua';
 import {
-  defineRedisObject,
-  defineKeys,
   defineArgv,
+  defineKeys,
+  defineRedisObject,
 } from '../../src/commands/defineCommand';
+import { dispose,init } from '../../src/lua';
 
 const { lua } = fengari;
 

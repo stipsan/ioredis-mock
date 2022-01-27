@@ -1,4 +1,4 @@
-import { shuffle, random } from 'lodash';
+import { random,shuffle } from 'lodash';
 
 export function srandmember(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {

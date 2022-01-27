@@ -1,5 +1,5 @@
-import flatten from 'lodash.flatten';
 import Redis from 'ioredis';
+import flatten from 'lodash.flatten';
 
 describe('transformers', () => {
   it('should support setReplyTransformer', async () => {

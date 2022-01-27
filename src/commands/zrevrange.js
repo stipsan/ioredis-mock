@@ -1,5 +1,6 @@
-import flatten from 'lodash.flatten';
 import { orderBy } from 'lodash';
+import flatten from 'lodash.flatten';
+
 import { slice } from './zrange-command.common';
 
 export function zrevrange(key, s, e, w) {

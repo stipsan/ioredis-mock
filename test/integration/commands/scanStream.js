@@ -1,8 +1,8 @@
-import { ObjectWritableMock } from 'stream-mock';
 import Chance from 'chance';
+import Redis from 'ioredis';
 import flatten from 'lodash.flatten';
 import zipObject from 'lodash.zipobject';
-import Redis from 'ioredis';
+import { ObjectWritableMock } from 'stream-mock';
 
 const chance = new Chance();
 

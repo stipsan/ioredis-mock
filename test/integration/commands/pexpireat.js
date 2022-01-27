@@ -1,5 +1,4 @@
 import Promise from 'bluebird';
-
 import Redis from 'ioredis';
 
 describe('pexpireat', () => {

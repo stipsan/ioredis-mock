@@ -1,6 +1,7 @@
+import IoredisCommand from 'ioredis/built/command';
 import flatten from 'lodash.flatten';
 import asCallback from 'standard-as-callback';
-import IoredisCommand from 'ioredis/built/command';
+
 import promiseContainer from './promise-container';
 
 export function isInSubscriberMode(RedisMock) {

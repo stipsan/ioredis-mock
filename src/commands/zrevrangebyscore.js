@@ -1,9 +1,10 @@
-import { orderBy, filter, flatMap } from 'lodash';
+import { filter, flatMap,orderBy } from 'lodash';
+
 import {
-  parseLimit,
   filterPredicate,
   getWithScoresAndLimit,
   offsetAndLimit,
+  parseLimit,
 } from './zrange-command.common';
 
 export function zrevrangebyscore(key, inputMax, inputMin, ...args) {

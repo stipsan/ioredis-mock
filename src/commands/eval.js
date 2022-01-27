@@ -1,6 +1,6 @@
 import createCommand from '../command';
-import { customCommand } from './defineCommand';
 import sha1 from '../commands-utils/sha1';
+import { customCommand } from './defineCommand';
 
 export function evaluate(script, numberOfKeys, ...args) {
   // store sha1 and the script  itself for `evalsha` function
