@@ -27,5 +27,8 @@ describe('flushdb', () => {
     await redis1.set('foo', 'bloop')
     expect(await redis1.get('foo')).toBe('bloop')
     expect(await redis2.get('foo')).toBe('bloop')
+
+    redis1.disconnect()
+    redis2.disconnect()
   })
 })

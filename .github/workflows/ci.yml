@@ -82,4 +82,4 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: test:e2e
-        run: npm run test:e2e
+        run: npm run test:e2e -- --detectOpenHandles
