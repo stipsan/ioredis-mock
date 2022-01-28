@@ -1,14 +1,14 @@
 import Redis from 'ioredis';
 
 describe('srem', () => {
-  let redis
+  let redis;
   beforeEach(() => {
     redis = new Redis({
       data: {
         foos: new Set(['bar', 'foo', 'baz', 'bazooka']),
       },
     });
-  })
+  });
   it('should remove 1 item from set', () =>
     redis
       .srem('foos', 'bar')
