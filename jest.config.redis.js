@@ -15,7 +15,6 @@ module.exports = {
     'test/integration/commands/evalsha.js',
     'test/integration/commands/expire.js',
     'test/integration/commands/expireat.js',
-    'test/integration/commands/flushall.js',
     'test/integration/commands/get.js',
     'test/integration/commands/getbit.js',
     'test/integration/commands/getBuffer.js',
