@@ -1,203 +1,155 @@
 import Chance from 'chance'
 import Redis from 'ioredis'
-import { ObjectWritableMock } from 'stream-mock'
 
 describe('keyprefix', () => {
-  let writable
+  let redis
 
-  beforeEach(() => {
-    writable = new ObjectWritableMock({ objectMode: true })
+  afterEach(() => {
+    if (redis) {
+      redis.disconnect()
+      redis = null
+    }
   })
 
   describe('get', () => {
-    it('should return null on keys that do not exist', () => {
-      const redis = new Redis({ keyPrefix: 'test:' })
-      return redis.get('bar').then(result => {
-        return expect(result).toBe(null)
-      })
+    it('should return null on keys that do not exist', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+
+      expect(await redis.get('bar')).toBe(null)
     })
 
-    it('should return value of key', () => {
-      const redis = new Redis({
-        data: {
-          foo: 'bar',
-        },
-        keyPrefix: 'test:',
-      })
+    it('should return value of key', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+      await redis.set('foo', 'bar')
 
-      return redis.get('foo').then(result => {
-        return expect(result).toBe('bar')
-      })
+      expect(await redis.get('foo')).toBe('bar')
     })
   })
 
   describe('set', () => {
-    it('should return OK when setting a hash key', () => {
-      const redis = new Redis({ keyPrefix: 'test:' })
-      return redis
-        .set('foo', 'bar')
-        .then(status => {
-          return expect(status).toBe('OK')
-        })
-        .then(() => {
-          return expect(redis.data.get('foo')).toBe('bar')
-        })
+    it('should return OK when setting a hash key', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+
+      expect(await redis.set('foo', 'bar')).toBe('OK')
+      expect(await redis.get('foo')).toBe('bar')
     })
 
-    it('should turn number to string', () => {
-      const redis = new Redis({ keyPrefix: 'test:' })
-      return redis
-        .set('foo', 1.5)
-        .then(status => {
-          return expect(status).toBe('OK')
-        })
-        .then(() => {
-          return expect(redis.data.get('foo')).toBe('1.5')
-        })
+    it('should turn number to string', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+
+      expect(await redis.set('foo', 1.5)).toBe('OK')
+      expect(await redis.get('foo')).toBe('1.5')
     })
   })
 
   describe('del', () => {
-    const redis = new Redis({
-      data: {
-        deleteme: 'please',
-        metoo: 'pretty please',
-      },
-      keyPrefix: 'test:',
+    it('should delete passed in keys', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+      await redis.set('deleteme', 'please')
+      await redis.set('metoo', 'pretty please')
+
+      expect(await redis.del('deleteme', 'metoo')).toBe(2)
+      expect(await redis.get('deleteme')).toBe(null)
+      expect(await redis.get('metoo')).toBe(null)
     })
 
-    it('should delete passed in keys', () => {
-      return redis
-        .del('deleteme', 'metoo')
-        .then(status => {
-          return expect(status).toBe(2)
-        })
-        .then(() => {
-          return expect(redis.data.has('deleteme')).toBe(false)
-        })
-        .then(() => {
-          return expect(redis.data.has('metoo')).toBe(false)
-        })
-    })
+    it('return the number of keys removed', async () => {
+      redis = new Redis({ keyPrefix: 'test:' })
+      await redis.set('deleteme', 'please')
+      await redis.set('metoo', 'pretty please')
 
-    it('return the number of keys removed', () => {
-      return redis.del('deleteme', 'metoo').then(status => {
-        return expect(status).toBe(0)
-      })
+      expect(await redis.del('deleteme', 'metoo')).toBe(2)
     })
   })
 
   describe('scanSream', () => {
     it('should batch by count', done => {
-      // Given
       const chance = new Chance()
-      const keys = chance.unique(chance.word, 100)
+      const keys = chance.unique(chance.word, 100).sort()
       const count = 11
-      const redis = new Redis({
-        data: { set: new Set(keys) },
-        keyPrefix: 'test:',
-      })
+      redis = new Redis({ keyPrefix: 'test:' })
+      redis.sadd('set', ...keys)
+
+      let chunks = []
       const stream = redis.sscanStream('set', { count })
-      // When
-      stream.pipe(writable)
-      writable.on('finish', () => {
-        // Then
-        expect(writable.data.length).toEqual(Math.ceil(keys.length / count))
-        expect([].concat(...writable.data)).toEqual(keys)
+      stream.on('data', data => {
+        chunks = chunks.concat(data)
+      })
+      stream.on('end', () => {
+        expect([].concat(...chunks).sort()).toEqual(keys)
         done()
       })
     })
 
     it('should return  keys', done => {
-      // Given
-      const redis = new Redis({
-        data: {
-          foo: new Set(['foo0', 'foo1', 'foo2']),
-          zu: new Set(['ZU0', 'ZU1']),
-        },
-        keyPrefix: 'test:',
-      })
+      redis = new Redis({ keyPrefix: 'test:' })
+      redis.sadd('foo', 'foo0', 'foo1', 'foo2')
+      redis.sadd('zu', 'ZU0', 'ZU1')
 
+      let chunks = []
       const stream = redis.scanStream()
-      // When
-      stream.pipe(writable)
-      writable.on('finish', () => {
-        // Then
-        expect([].concat(...writable.data)).toEqual(['test:foo', 'test:zu'])
+      stream.on('data', data => {
+        chunks = chunks.concat(data)
+      })
+      stream.on('end', () => {
+        expect([].concat(...chunks).sort()).toEqual(['test:foo', 'test:zu'])
         done()
       })
     })
 
     it('should return only mathced keys', done => {
-      // Given
-      const redis = new Redis({
-        data: {
-          set: new Set(['foo0', 'ZU0', 'foo1', 'foo2', 'ZU1']),
-        },
-        keyPrefix: 'test:',
-      })
+      redis = new Redis({ keyPrefix: 'test:' })
+      redis.sadd('set', 'foo0', 'ZU0', 'foo1', 'foo2', 'ZU1')
 
+      let chunks = []
       const stream = redis.sscanStream('set', { match: 'foo*' })
-      // When
-      stream.pipe(writable)
-      writable.on('finish', () => {
-        // Then
-        expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2'])
+      stream.on('data', data => {
+        chunks = chunks.concat(data)
+      })
+      stream.on('end', () => {
+        expect([].concat(...chunks).sort()).toEqual(['foo0', 'foo1', 'foo2'])
         done()
       })
     })
   })
 
   describe('multiple instance use same key with different keyPrefix', () => {
-    const redisBase = new Redis({
-      data: {
-        'test:foo': 'bar',
-        'test:hello': 'world',
-      },
-    })
-    const redis1 = redisBase.createConnectedClient({
+    const redisBase = new Redis()
+    const redis1 = new Redis({
       keyPrefix: 'test:',
     })
 
-    const redis2 = redis1.createConnectedClient({
+    const redis2 = new Redis({
       keyPrefix: 'test2:',
     })
 
-    it('should return value of key using prefix', () => {
-      return redis1.get('foo').then(result => {
-        return expect(result).toEqual('bar')
-      })
+    beforeEach(async () => {
+      await redisBase.set('test:foo', 'bar')
+      await redisBase.set('test:hello', 'world')
     })
 
-    it('should return null on keys that do not exist for that prefix', () => {
-      return redis2.get('foo').then(result => {
-        return expect(result).toBe(null)
-      })
+    afterAll(() => {
+      redisBase.disconnect()
+      redis1.disconnect()
+      redis2.disconnect()
     })
 
-    it('setting with one prefix should not affect same key with another prefix', () => {
-      return redis2
-        .set('hello', 'ioredis')
-        .then(status => {
-          return expect(status).toBe('OK')
-        })
-        .then(() => {
-          return redis1.get('hello')
-        })
-        .then(result => {
-          return expect(result).toBe('world')
-        })
+    it('should return value of key using prefix', async () => {
+      expect(await redis1.get('foo')).toEqual('bar')
     })
 
-    it('should return value of key if the prefix is the same', () => {
-      return redis2
-        .set('hello', 'ioredis')
-        .then(status => {
-          return expect(status).toBe('OK')
-        })
-        .then(() => {
-          return expect(redis2.data.get('hello')).toBe('ioredis')
-        })
+    it('should return null on keys that do not exist for that prefix', async () => {
+      expect(await redis2.get('foo')).toBe(null)
+    })
+
+    it('setting with one prefix should not affect same key with another prefix', async () => {
+      expect(await redis2.set('hello', 'ioredis')).toBe('OK')
+      expect(await redis1.get('hello')).toBe('world')
+    })
+
+    it('should return value of key if the prefix is the same', async () => {
+      expect(await redis2.set('hello', 'ioredis')).toBe('OK')
+      expect(await redis2.get('hello')).toBe('ioredis')
     })
   })
 })

@@ -27,7 +27,7 @@ export function zrange(key, s, e, withScores) {
     typeof withScores === 'string' &&
     withScores.toUpperCase() === 'WITHSCORES'
   ) {
-    return flatMap(ordered, it => [it.value, it.score])
+    return flatMap(ordered, it => [it.value, `${it.score}`])
   }
 
   return ordered.map(it => it.value)

@@ -88,7 +88,7 @@ describe('zrange', () => {
   it('should include scores if WITHSCORES is specified', () => {
     const redis = new Redis({ data })
     return redis.zrange('foo', 0, 2, 'WITHSCORES').then(res => {
-      return expect(res).toEqual(['first', 1, 'second', 2, 'third', 3])
+      return expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
     })
   })
 

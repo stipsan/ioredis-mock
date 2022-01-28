@@ -12,6 +12,6 @@ module.exports = {
     'test/integration/commands/zscanStream.js',
     'test/integration/commands/sscanStream.js',
     'test/integration/commands/scanStream.js',
-    'test/integration/keyprefix.js',
+    // 'test/integration/keyprefix.js',
   ],
 }

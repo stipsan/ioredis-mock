@@ -2,7 +2,7 @@ import Redis from 'ioredis'
 
 describe('defineCommand', () => {
   describe('setting up a custom command', () => {
-    it('should call a custom commmand', () => {
+    it('should call a custom commmand', async () => {
       const luaCode = `
         local rcall = redis.call
         local value1 = rcall("GET", KEYS[1])
@@ -13,70 +13,59 @@ describe('defineCommand', () => {
       const someKey = 'k'
       const initialValue = 1
       const definition = { numberOfKeys: 1, lua: luaCode }
-      return redis
-        .set(someKey, initialValue)
-        .then(status => {
-          return expect(status).toBe('OK')
-        })
-        .then(() => {
-          redis.defineCommand('inc2', definition)
-        })
-        .then(() => {
-          return redis.inc2(someKey, 5)
-        })
-        .then(() => {
-          return redis.get('k')
-        })
-        .then(newValue => {
-          return expect(newValue).toBe(6)
-        })
+
+      expect(await redis.set(someKey, initialValue)).toBe('OK')
+      await redis.defineCommand('inc2', definition)
+      await redis.inc2(someKey, 5)
+      expect(await redis.get('k')).toBe(6)
+      redis.disconnect()
     })
   })
 
-  it('should support custom commmands returning a table/array', () => {
+  it('should support custom commmands returning a table/array', async () => {
     const luaCode = 'return {10, 100, 200}'
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual([10, 100, 200])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual([10, 100, 200])
+    redis.disconnect()
   })
 
-  it('should support custom commmands returning a table/array of table/array elements', () => {
+  it('should support custom commmands returning a table/array of table/array elements', async () => {
     const luaCode = 'return {{10}, {100, 200}, {}}'
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual([[10], [100, 200], []])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual([[10], [100, 200], []])
+    redis.disconnect()
   })
 
-  it('should support custom commands returning a list', () => {
+  it('should support custom commands returning a list', async () => {
     const redis = new Redis()
     const luaCode = `
       redis.call('lpush', 'key', 3);
       return redis.call('lrange', 'key', 0, -1)
     `
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual([3])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual([3])
+    redis.disconnect()
   })
 
-  it('should support custom commands returning an empty list', () => {
+  it('should support custom commands returning an empty list', async () => {
     const luaCode = "return redis.call('lrange', 'nonexistent', 0, -1)"
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual([])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual([])
+    redis.disconnect()
   })
 
-  it('should support custom commands returning a table containing a list', () => {
+  it('should support custom commands returning a table containing a list', async () => {
     const luaCode = `
       redis.call('rpush', 'key', 2);
       local contents = redis.call('lrange', 'key', 0, -1);
@@ -85,13 +74,13 @@ describe('defineCommand', () => {
   `
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual([[2], 1])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual([[2], 1])
+    redis.disconnect()
   })
 
-  it('should support custom commands returning ranges', () => {
+  it('should support custom commands returning ranges', async () => {
     const luaCode = `
       local contents = redis.call('zrange', 'set', 0, -1);
       return contents;
@@ -100,13 +89,13 @@ describe('defineCommand', () => {
     redis.zadd('set', 1, 'value1')
     redis.zadd('set', 2, 'value2')
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual(['value1', 'value2'])
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual(['value1', 'value2'])
+    redis.disconnect()
   })
 
-  it('should maintain one-based indices in lua', () => {
+  it('should maintain one-based indices in lua', async () => {
     const luaCode = `
       local contents = redis.call('zrange', 'set', 0, -1);
       return contents[1];
@@ -115,35 +104,29 @@ describe('defineCommand', () => {
     redis.zadd('set', 1, 'value1')
     redis.zadd('set', 2, 'value2')
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis.someCmd().then(val => {
-      return expect(val).toEqual('value1')
-    })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.someCmd()).toEqual('value1')
+    redis.disconnect()
   })
 
-  it('should support calling custom commmands via multi', () => {
+  it('should support calling custom commmands via multi', async () => {
     const luaCode = 'return 1'
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis
-      .multi([['someCmd']])
-      .exec()
-      .then(val => {
-        return expect(val).toEqual([[null, 1]])
-      })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.multi([['someCmd']]).exec()).toEqual([[null, 1]])
+    redis.disconnect()
   })
 
-  it('should support calling custom commmands via pipeline', () => {
+  it('should support calling custom commmands via pipeline', async () => {
     const luaCode = 'return 1'
     const redis = new Redis()
     const definition = { numberOfKeys: 0, lua: luaCode }
-    redis.defineCommand('someCmd', definition)
-    return redis
-      .pipeline([['someCmd']])
-      .exec()
-      .then(val => {
-        return expect(val).toEqual([[null, 1]])
-      })
+    await redis.defineCommand('someCmd', definition)
+
+    expect(await redis.pipeline([['someCmd']]).exec()).toEqual([[null, 1]])
+    redis.disconnect()
   })
 })

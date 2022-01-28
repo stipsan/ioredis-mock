@@ -39,7 +39,7 @@
     "test": "jest",
     "posttest": "npm run build:lib && npm run test:integration && npm run build:browser.js && npm run test:browser.js && npm run test:jestlegacy",
     "test:browser.js": "jest --config jest.config.browser.js",
-    "test:e2e": "jest --config jest.config.redis.js --detectOpenHandles --runInBand",
+    "test:e2e": "jest --config jest.config.redis.js --forceExit --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
     "test:jestlegacy": "jest --config jest.config.jestlegacy.js",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
