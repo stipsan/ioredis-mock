@@ -1,11 +1,14 @@
 import Redis from 'ioredis';
 
 describe('srem', () => {
-  const redis = new Redis({
-    data: {
-      foos: new Set(['bar', 'foo', 'baz', 'bazooka']),
-    },
-  });
+  let redis
+  beforeEach(() => {
+    redis = new Redis({
+      data: {
+        foos: new Set(['bar', 'foo', 'baz', 'bazooka']),
+      },
+    });
+  })
   it('should remove 1 item from set', () =>
     redis
       .srem('foos', 'bar')
@@ -16,7 +19,7 @@ describe('srem', () => {
       .srem('foos', 'foo', 'baz', 'none existent')
       .then((status) => expect(status).toBe(2))
       .then(() => {
-        expect(redis.data.get('foos').has('bar')).toBe(false);
+        expect(redis.data.get('foos').has('foo')).toBe(false);
         expect(redis.data.get('foos').has('baz')).toBe(false);
       }));
   it("should return 0 if source don't exists", () =>
