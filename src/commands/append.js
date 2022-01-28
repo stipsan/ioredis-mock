@@ -9,3 +9,5 @@ export function append(key, value) {
   }
   return this.data.get(key).length
 }
+
+export const appendBuffer = append
