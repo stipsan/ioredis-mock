@@ -1,13 +1,12 @@
 import Redis from 'ioredis'
 
 describe('lastsave', () => {
-  it('should return unix time since last save', () => {
+  it('should return unix time since last save', async () => {
     const redis = new Redis()
 
-    return redis.lastsave().then(result => {
-      return expect(result).toBeLessThanOrEqual(
-        Math.floor(new Date().getTime() / 1000)
-      )
-    })
+    expect(await redis.lastsave()).toBeLessThanOrEqual(
+      Math.floor(new Date().getTime() / 1000)
+    )
+    redis.disconnect()
   })
 })

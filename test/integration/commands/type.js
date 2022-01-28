@@ -4,7 +4,7 @@ describe('type', () => {
   const redis = new Redis()
 
   afterAll(() => {
-    return redis.disconnect()
+    redis.disconnect()
   })
 
   test('should return none when key does not exist', async () => {

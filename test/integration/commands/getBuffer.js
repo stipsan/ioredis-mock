@@ -1,37 +1,30 @@
 import Redis from 'ioredis'
 
 describe('getBuffer', () => {
-  it('should return null on keys that do not exist', () => {
+  it('should return null on keys that do not exist', async () => {
     const redis = new Redis()
 
-    return redis.getBuffer('foo').then(result => {
-      return expect(result).toBe(null)
-    })
+    expect(await redis.getBuffer('foo')).toBe(null)
+    redis.disconnect()
   })
 
-  it('should return value of key as buffer', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-      },
-    })
+  it('should return value of key as buffer', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'bar')
 
-    return redis.getBuffer('foo').then(result => {
-      expect(Buffer.isBuffer(result)).toBeTruthy()
-      expect(result).toEqual(Buffer.from('bar'))
-    })
+    const result = await redis.getBuffer('foo')
+    expect(Buffer.isBuffer(result)).toBeTruthy()
+    expect(result).toEqual(Buffer.from('bar'))
+    redis.disconnect()
   })
 
-  it('should return buffer values correctly', () => {
+  it('should return buffer values correctly', async () => {
     const bufferVal = Buffer.from('bar')
-    const redis = new Redis({
-      data: {
-        foo: bufferVal,
-      },
-    })
+    const redis = new Redis()
+    await redis.set('foo', bufferVal)
 
-    return redis.getBuffer('foo').then(result => {
-      return expect(result.equals(bufferVal)).toBe(true)
-    })
+    const result = await redis.getBuffer('foo')
+    expect(result.equals(bufferVal)).toBe(true)
+    redis.disconnect()
   })
 })
