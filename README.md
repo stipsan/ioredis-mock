@@ -71,7 +71,7 @@ In v6 the [internals were rewritten](https://github.com/stipsan/ioredis-mock/pul
 const Redis = require('ioredis-mock')
 const redis1 = new Redis()
 const redis2 = new Redis()
-const redis3 = new Redis({ port: 6380 }) // 6379 is the default port
+const redis3 = new Redis(6380) // 6379 is the default port
 
 await redis1.set('foo', 'bar')
 console.log(
