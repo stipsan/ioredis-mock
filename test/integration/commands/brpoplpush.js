@@ -1,88 +1,64 @@
 import Redis from 'ioredis'
 
 describe('brpoplpush', () => {
-  it('should remove one item from the tail of the source list', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
-    })
+  it('should remove one item from the tail of the source list', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
 
-    return redis.brpoplpush('foo', 'bar').then(() => {
-      return expect(redis.data.get('foo')).toEqual(['foo'])
-    })
+    await redis.brpoplpush('foo', 'bar', 1)
+    expect(await redis.lrange('foo', 0, -1)).toEqual(['foo'])
+    redis.disconnect()
   })
 
-  it('should add one item to the head of the destination list', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-        bar: ['baz'],
-      },
-    })
+  it('should add one item to the head of the destination list', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
+    await redis.rpush('bar', 'baz')
 
-    return redis.brpoplpush('foo', 'bar').then(() => {
-      return expect(redis.data.get('bar')).toEqual(['bar', 'baz'])
-    })
+    await redis.brpoplpush('foo', 'bar', 1)
+    expect(await redis.lrange('bar', 0, -1)).toEqual(['bar', 'baz'])
+    redis.disconnect()
   })
 
-  it('should return null if the source list does not exist', () => {
-    const redis = new Redis({
-      data: {},
-    })
+  it('should return null if the source list does not exist', async () => {
+    const redis = new Redis()
 
-    return redis.brpoplpush('foo', 'bar').then(item => {
-      return expect(item).toEqual(null)
-    })
+    expect(await redis.brpoplpush('foo', 'bar', 1)).toEqual(null)
+    redis.disconnect()
   })
 
-  it('should return null if the source list is empty', () => {
-    const redis = new Redis({
-      data: {
-        foo: [],
-      },
-    })
+  it('should return null if the source list is empty', async () => {
+    const redis = new Redis({ data: { foo: [] } })
 
-    return redis.brpoplpush('foo', 'bar').then(item => {
-      return expect(item).toEqual(null)
-    })
+    expect(await redis.brpoplpush('foo', 'bar', 1)).toEqual(null)
+    redis.disconnect()
   })
 
-  it('should return the item', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
-    })
+  it('should return the item', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
 
-    return redis.brpoplpush('foo', 'bar').then(item => {
-      return expect(item).toBe('bar')
-    })
+    expect(await redis.brpoplpush('foo', 'bar', 1)).toEqual('bar')
+    redis.disconnect()
   })
 
-  it('should throw an exception if the source key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-        bar: [],
-      },
-    })
+  it('should throw an exception if the source key contains something other than a list', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
-    return redis.brpoplpush('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key foo does not contain a list')
-    })
+    await expect(() => {
+      return redis.brpoplpush('foo', 'bar', 1)
+    }).rejects.toThrowErrorMatchingInlineSnapshot(
+      '"WRONGTYPE Operation against a key holding the wrong kind of value"'
+    )
+    redis.disconnect()
   })
 
-  it('should throw an exception if the destination key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: [],
-        bar: 'not a list',
-      },
-    })
+  it('should resolve to null if the destination key contains something other than a list', async () => {
+    const redis = new Redis()
+    await redis.set('bar', 'not a list')
 
-    return redis.brpoplpush('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key bar does not contain a list')
-    })
+    expect(await redis.brpoplpush('foo', 'bar', 1)).toBe(null)
+    redis.disconnect()
   })
 })

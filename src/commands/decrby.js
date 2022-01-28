@@ -1,8 +1,6 @@
-import { ReplyError } from 'redis-errors'
-
 export function decrby(key, decrement) {
   if (decrement === undefined) {
-    throw new ReplyError("ERR wrong number of arguments for 'decrby' command")
+    throw new Error("ERR wrong number of arguments for 'decrby' command")
   }
 
   if (!this.data.has(key)) {

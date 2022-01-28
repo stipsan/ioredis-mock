@@ -8,8 +8,6 @@ module.exports = {
     'test/integration/cluster.js',
     'test/integration/command-transformers.js',
     'test/integration/commands/auth.js',
-    'test/integration/commands/brpoplpush.js',
-    'test/integration/commands/brpoplpushBuffer.js',
     'test/integration/commands/connect.js',
     'test/integration/commands/dbsize.js',
     'test/integration/commands/defineCommand.js',

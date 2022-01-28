@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap",
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:array.prototype.flatmap --external:fengari --external:fengari-interop --external:redis-commands --external:redis-errors --external:standard-as-callback --external:ioredis --sourcemap --minify-syntax",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node10 --bundle --external:array.prototype.flatmap --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap --minify-syntax",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
@@ -49,7 +49,6 @@
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.3",
     "redis-commands": "^1.7.0",
-    "redis-errors": "^1.2.0",
     "standard-as-callback": "^2.1.0"
   },
   "peerDependencies": {
