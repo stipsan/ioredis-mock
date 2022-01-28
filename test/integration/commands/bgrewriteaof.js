@@ -1,11 +1,12 @@
 import Redis from 'ioredis'
 
 describe('bgrewriteaof', () => {
-  it('should return OK', () => {
+  it('should return OK', async () => {
     const redis = new Redis()
 
-    return redis.bgrewriteaof().then(status => {
-      return expect(status).toBe('OK')
-    })
+    expect(await redis.bgrewriteaof()).toMatchInlineSnapshot(
+      '"Background append only file rewriting started"'
+    )
+    redis.disconnect()
   })
 })

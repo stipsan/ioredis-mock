@@ -1,3 +1,3 @@
 export function bgrewriteaof() {
-  return 'OK'
+  return 'Background append only file rewriting started'
 }
