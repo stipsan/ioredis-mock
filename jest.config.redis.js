@@ -7,7 +7,6 @@ module.exports = {
   testPathIgnorePatterns: [
     'test/integration/cluster.js',
     'test/integration/command-transformers.js',
-    'test/integration/commands/append.js',
     'test/integration/commands/auth.js',
     'test/integration/commands/bgsave.js',
     'test/integration/commands/brpoplpush.js',
