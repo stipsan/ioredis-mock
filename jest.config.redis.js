@@ -103,7 +103,6 @@ module.exports = {
     'test/integration/commands/sunionstore.js',
     'test/integration/commands/time.js',
     'test/integration/commands/ttl.js',
-    'test/integration/commands/type.js',
     'test/integration/commands/unlink.js',
     'test/integration/commands/xadd.js',
     'test/integration/commands/xlen.js',
