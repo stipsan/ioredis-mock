@@ -21,3 +21,5 @@ export function hset(key, ...keyValuePairs) {
 
   return reply
 }
+
+export const hsetBuffer = hset

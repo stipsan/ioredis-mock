@@ -35,8 +35,7 @@ runTwinSuite('lpop', (command, equals) => {
           return redis[command]('foo')
         })
         .then(result => {
-          expect(Buffer.isBuffer(result)).toBeTruthy()
-          expect(result).toEqual(Buffer.from('2'))
+          expect(equals(result, '2')).toBe(true)
         })
     })
 

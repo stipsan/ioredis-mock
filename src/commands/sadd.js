@@ -13,3 +13,5 @@ export function sadd(key, ...vals) {
   this.data.set(key, set)
   return added
 }
+
+export const saddBuffer = sadd

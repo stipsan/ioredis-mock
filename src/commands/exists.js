@@ -6,3 +6,5 @@ export function exists(...keys) {
     return totalExists
   }, 0)
 }
+
+export const existsBuffer = exists

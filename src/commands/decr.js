@@ -7,3 +7,5 @@ export function decr(key) {
   this.data.set(key, nextVal.toString())
   return nextVal
 }
+
+export const decrBuffer = decr

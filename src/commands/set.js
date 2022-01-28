@@ -32,3 +32,8 @@ export function set(key, value, ...options) {
 
   return 'OK'
 }
+
+export function setBuffer(...args) {
+  const val = set.apply(this, args)
+  return val ? Buffer.from(val) : val
+}

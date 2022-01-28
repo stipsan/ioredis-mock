@@ -2,7 +2,7 @@ export function brpoplpush(source, destination) {
   return this.rpoplpush(source, destination)
 }
 
-export function brpoplpushBuffer(source, destination) {
-  const valP = brpoplpush.apply(this, [source, destination])
-  return valP.then(val => (val ? Buffer.from(val) : val))
+export async function brpoplpushBuffer(source, destination) {
+  const val = await brpoplpush.call(this, source, destination)
+  return val ? Buffer.from(val) : val
 }

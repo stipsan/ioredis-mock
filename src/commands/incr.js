@@ -7,3 +7,5 @@ export function incr(key) {
   this.data.set(key, nextVal.toString())
   return nextVal
 }
+
+export const incrBuffer = incr

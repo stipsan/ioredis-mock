@@ -29,7 +29,8 @@ runTwinSuite('hmset', (command, equals) => {
       const redis = new Redis()
       const hash = { id: '1', email: 'bruce@wayne.enterprises' }
 
-      expect(equals(await redis[command]('user:1', hash), 'OK')).toBe(true)
+      const result = await redis[command]('user:1', hash)
+      expect(equals(result, 'OK')).toBe(true)
       expect(await redis.hgetall('user:1')).toEqual(hash)
       redis.disconnect()
     })

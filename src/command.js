@@ -108,7 +108,7 @@ export function safelyExecuteCommand(
 ) {
   throwIfCommandIsNotAllowed(commandName, RedisMock)
   const result = commandEmulator(...commandArgs)
-  return processReply(result, commandName)
+  return processReply(result, commandName.replace(/Buffer$/, ''))
 }
 
 export default function command(commandEmulator, commandName, RedisMock) {
@@ -122,7 +122,11 @@ export default function command(commandEmulator, commandName, RedisMock) {
       args.length = lastArgIndex
     }
 
-    const commandArgs = processArguments(args, commandName, RedisMock)
+    const commandArgs = processArguments(
+      args,
+      commandName.replace(/Buffer$/, ''),
+      RedisMock
+    )
 
     if (commandName === 'defineCommand') {
       return safelyExecuteCommand(

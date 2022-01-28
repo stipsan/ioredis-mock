@@ -12,3 +12,8 @@ export function hmset(key, ...args) {
 
   return 'OK'
 }
+
+export function hmsetBuffer(...args) {
+  const val = hmset.apply(this, args)
+  return val ? Buffer.from(val) : val
+}

@@ -148,3 +148,8 @@ export function info() {
 
   return defaultInfo
 }
+
+export function infoBuffer() {
+  const val = info.call(this)
+  return val ? Buffer.from(val) : val
+}

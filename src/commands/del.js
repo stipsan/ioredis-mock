@@ -11,3 +11,5 @@ export function del(...keys) {
   })
   return deleted
 }
+
+export const delBuffer = del
