@@ -14,8 +14,6 @@ module.exports = {
     'test/integration/commands/brpoplpushBuffer.js',
     'test/integration/commands/connect.js',
     'test/integration/commands/dbsize.js',
-    'test/integration/commands/decrby.js',
-    // 'test/integration/commands/bgrewriteaof.js',
     'test/integration/commands/defineCommand.js',
     'test/integration/commands/del.js',
     'test/integration/commands/discard.js',
