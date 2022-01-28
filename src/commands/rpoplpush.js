@@ -1,12 +1,14 @@
 export function rpoplpush(source, destination) {
   if (this.data.has(source) && !(this.data.get(source) instanceof Array)) {
-    throw new Error(`Key ${source} does not contain a list`)
+    throw new Error(
+      'WRONGTYPE Operation against a key holding the wrong kind of value'
+    )
   }
   if (
     this.data.has(destination) &&
     !(this.data.get(destination) instanceof Array)
   ) {
-    throw new Error(`Key ${destination} does not contain a list`)
+    return null
   }
 
   if (!this.data.has(source) || this.data.get(source).length === 0) {

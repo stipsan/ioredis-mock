@@ -1,21 +1,35 @@
 import Redis from 'ioredis'
 
 describe('flushall', () => {
-  const redis = new Redis({
-    data: {
-      deleteme: 'please',
-      metoo: 'pretty please',
-    },
+  test('should empty current db', async () => {
+    const redis = new Redis()
+    await redis.set('deleteme', 'please')
+    await redis.set('metoo', 'pretty please')
+
+    expect(await redis.flushall()).toBe('OK')
+
+    expect(await redis.dbsize()).toBe(0)
+    redis.disconnect()
   })
-  test('should empty current db', () => {
-    return redis
-      .flushall()
-      .then(status => {
-        return expect(status).toBe('OK')
-      })
-      .then(() => {
-        return expect(redis.data.keys().length).toBe(0)
-      })
+  test('should stay in sync cross instances', async () => {
+    const redis1 = new Redis()
+    const redis2 = new Redis()
+
+    await redis1.set('foo', 'bar')
+    expect(await redis1.get('foo')).toBe('bar')
+    expect(await redis2.get('foo')).toBe('bar')
+
+    await redis1.flushall()
+    expect(await redis1.get('foo')).toBe(null)
+    expect(await redis2.get('foo')).toBe(null)
+
+    await redis1.set('foo', 'bloop')
+    expect(await redis1.get('foo')).toBe('bloop')
+    expect(await redis2.get('foo')).toBe('bloop')
+
+    redis1.disconnect()
+    redis2.disconnect()
   })
+  // @TODO needs to implement redis.select() first
   test.todo('should empty every db')
 })

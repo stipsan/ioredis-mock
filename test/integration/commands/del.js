@@ -1,28 +1,20 @@
 import Redis from 'ioredis'
 
 describe('del', () => {
-  const redis = new Redis({
-    data: {
-      deleteme: 'please',
-      metoo: 'pretty please',
-    },
+  it('should delete passed in keys', async () => {
+    const redis = new Redis()
+    await redis.set('deleteme', 'please')
+    await redis.set('metoo', 'pretty please')
+
+    expect(await redis.del('deleteme', 'metoo')).toBe(2)
+    expect(await redis.get('deleteme')).toBe(null)
+    expect(await redis.get('metoo')).toBe(null)
+    redis.disconnect()
   })
-  it('should delete passed in keys', () => {
-    return redis
-      .del('deleteme', 'metoo')
-      .then(status => {
-        return expect(status).toBe(2)
-      })
-      .then(() => {
-        return expect(redis.data.has('deleteme')).toBe(false)
-      })
-      .then(() => {
-        return expect(redis.data.has('metoo')).toBe(false)
-      })
-  })
-  it('return the number of keys removed', () => {
-    return redis.del('deleteme', 'metoo').then(status => {
-      return expect(status).toBe(0)
-    })
+  it('return 0 if nothing is deleted', async () => {
+    const redis = new Redis()
+
+    expect(await redis.del('deleteme', 'metoo')).toBe(0)
+    redis.disconnect()
   })
 })

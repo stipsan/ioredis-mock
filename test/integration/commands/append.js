@@ -1,63 +1,35 @@
 import Redis from 'ioredis'
 
 describe('append', () => {
-  it('should append to exiting string and return new length', () => {
-    const redis = new Redis({
-      data: {
-        mykey: 'Hello',
-      },
-    })
+  it('should append to exiting string and return new length', async () => {
+    const redis = new Redis()
+    await redis.set('mykey', 'Hello')
 
-    return redis
-      .append('mykey', ' World')
-      .then(newLength => {
-        return expect(newLength).toBe(11)
-      })
-      .then(() => {
-        return expect(redis.data.get('mykey')).toBe('Hello World')
-      })
+    expect(await redis.append('mykey', ' World')).toBe(11)
+    expect(await redis.get('mykey')).toBe('Hello World')
+    redis.disconnect()
   })
-  it('should set empty string if key does not exist', () => {
+  it('should set empty string if key does not exist', async () => {
     const redis = new Redis()
 
-    return redis
-      .append('mykey', ' World')
-      .then(newLength => {
-        return expect(newLength).toBe(6)
-      })
-      .then(() => {
-        return expect(redis.data.get('mykey')).toBe(' World')
-      })
+    expect(await redis.append('mykey', ' World')).toBe(6)
+    expect(await redis.get('mykey')).toBe(' World')
+    redis.disconnect()
   })
-  it('should append to exiting buffer and return new length', () => {
-    const redis = new Redis({
-      data: {
-        mykey: Buffer.from('Hello'),
-      },
-    })
+  it('should append to exiting buffer and return new length', async () => {
+    const redis = new Redis()
+    await redis.set('mykey', Buffer.from('Hello'))
 
-    return redis
-      .append('mykey', Buffer.from(' World'))
-      .then(newLength => {
-        return expect(newLength).toBe(11)
-      })
-      .then(() => {
-        return expect(redis.data.get('mykey')).toEqual(
-          Buffer.from('Hello World')
-        )
-      })
+    expect(await redis.append('mykey', Buffer.from(' World'))).toBe(11)
+    expect(await redis.getBuffer('mykey')).toEqual(Buffer.from('Hello World'))
+    redis.disconnect()
   })
-  it('should set empty buffer if key does not exist', () => {
+  it('should set empty buffer if key does not exist', async () => {
     const redis = new Redis()
     const buffer = Buffer.from('Hello World')
 
-    return redis
-      .append('mykey', buffer)
-      .then(newLength => {
-        return expect(newLength).toBe(buffer.length)
-      })
-      .then(() => {
-        return expect(redis.data.get('mykey')).toEqual(buffer)
-      })
+    expect(await redis.append('mykey', buffer)).toBe(buffer.length)
+    expect(await redis.getBuffer('mykey')).toEqual(buffer)
+    redis.disconnect()
   })
 })

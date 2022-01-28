@@ -1,15 +1,11 @@
 import Redis from 'ioredis'
 
 describe('exists', () => {
-  const redis = new Redis({
-    data: {
-      foo: '1',
-      bar: '1',
-    },
-  })
-  it('should return how many keys exists', () => {
-    return redis.exists('foo', 'bar', 'baz').then(status => {
-      return expect(status).toBe(2)
-    })
+  it('should return how many keys exists', async () => {
+    const redis = new Redis()
+    await redis.set('foo', '1')
+    await redis.set('bar', '1')
+    expect(await redis.exists('foo', 'bar', 'baz')).toBe(2)
+    redis.disconnect()
   })
 })

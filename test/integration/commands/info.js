@@ -1,18 +1,6 @@
 import Redis from 'ioredis'
 
 describe('info', () => {
-  it('should return the specific info', async () => {
-    const info = `#Server
-    redis_version:5.0.7`
-    const redis = new Redis({
-      data: {
-        info,
-      },
-    })
-    const value = await redis.info()
-
-    expect(value).toEqual(info)
-  })
   it('should return default info with CRLF', async () => {
     const redis = new Redis()
     const value = await redis.info()
@@ -24,5 +12,6 @@ describe('info', () => {
         return line.startsWith('redis_version:')
       })
     ).toBeTruthy()
+    redis.disconnect()
   })
 })

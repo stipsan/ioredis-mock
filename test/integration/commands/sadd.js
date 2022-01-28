@@ -1,42 +1,26 @@
 import Redis from 'ioredis'
 
 describe('sadd', () => {
-  it('should add 1 item to set', () => {
+  it('should add 1 item to set', async () => {
     const redis = new Redis()
 
-    return redis
-      .sadd('foos', 'bar')
-      .then(status => {
-        return expect(status).toBe(1)
-      })
-      .then(() => {
-        return expect(redis.data.get('foos').has('bar')).toBe(true)
-      })
+    expect(await redis.sadd('foos', 'bar')).toBe(1)
+    expect(await redis.smembers('foos')).toEqual(['bar'])
+    redis.disconnect()
   })
-  it('should add 2 items to set', () => {
+  it('should add 2 items to set', async () => {
     const redis = new Redis()
+    await redis.sadd('foos', 'bar')
 
-    return redis
-      .sadd('foos', 'foo', 'baz')
-      .then(status => {
-        return expect(status).toBe(2)
-      })
-      .then(() => {
-        expect(redis.data.get('foos').has('foo')).toBe(true)
-        expect(redis.data.get('foos').has('baz')).toBe(true)
-        expect(redis.data.get('foos').has('bar')).toBe(false)
-      })
+    expect(await redis.sadd('foos', 'foo', 'baz')).toBe(2)
+    expect((await redis.smembers('foos')).sort()).toEqual(['bar', 'baz', 'foo'])
+    redis.disconnect()
   })
-  it('should not increase length when adding duplicates', () => {
+  it('should not increase length when adding duplicates', async () => {
     const redis = new Redis()
 
-    return redis
-      .sadd('key', 'value', 'value')
-      .then(status => {
-        return expect(status).toBe(1)
-      })
-      .then(() => {
-        return expect(redis.data.get('key').has('value')).toBe(true)
-      })
+    expect(await redis.sadd('key', 'value', 'value')).toBe(1)
+    expect((await redis.smembers('key')).sort()).toEqual(['value'])
+    redis.disconnect()
   })
 })

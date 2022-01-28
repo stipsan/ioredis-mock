@@ -1,4 +1,5 @@
 export function info() {
+  // @TODO should deprecate this dirty trick
   if (this.data.has('info')) {
     return this.data.get('info')
   }

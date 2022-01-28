@@ -1,102 +1,75 @@
 import Redis from 'ioredis'
 
 describe('brpoplpushBuffer', () => {
-  it('should remove one item from the tail of the source list', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
-    })
+  it('should remove one item from the tail of the source list', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
 
-    return redis.brpoplpushBuffer('foo', 'bar').then(() => {
-      return expect(redis.data.get('foo')).toEqual(['foo'])
-    })
+    await redis.brpoplpushBuffer('foo', 'bar', 0)
+    expect(await redis.lrange('foo', 0, -1)).toEqual(['foo'])
+    redis.disconnect()
   })
 
-  it('should add one item to the head of the destination list', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-        bar: ['baz'],
-      },
-    })
+  it('should add one item to the head of the destination list', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
+    await redis.rpush('bar', 'baz')
 
-    return redis.brpoplpushBuffer('foo', 'bar').then(() => {
-      return expect(redis.data.get('bar')).toEqual(['bar', 'baz'])
-    })
+    await redis.brpoplpushBuffer('foo', 'bar', 1)
+    expect(await redis.lrange('bar', 0, -1)).toEqual(['bar', 'baz'])
+    redis.disconnect()
   })
 
-  it('should return null if the source list does not exist', () => {
-    const redis = new Redis({
-      data: {},
-    })
+  it('should return null if the source list does not exist', async () => {
+    const redis = new Redis()
 
-    return redis.brpoplpushBuffer('foo', 'bar').then(item => {
-      return expect(item).toEqual(null)
-    })
+    expect(await redis.brpoplpushBuffer('foo', 'bar', 1)).toEqual(null)
+    redis.disconnect()
   })
 
-  it('should return null if the source list is empty', () => {
-    const redis = new Redis({
-      data: {
-        foo: [],
-      },
-    })
+  it('should return null if the source list is empty', async () => {
+    const redis = new Redis({ data: { foo: [] } })
 
-    return redis.brpoplpushBuffer('foo', 'bar').then(item => {
-      return expect(item).toEqual(null)
-    })
+    expect(await redis.brpoplpushBuffer('foo', 'bar', 1)).toEqual(null)
+    redis.disconnect()
   })
 
-  it('should return the item as buffer', () => {
-    const redis = new Redis({
-      data: {
-        foo: ['foo', 'bar'],
-      },
-    })
+  it('should return the item as buffer', async () => {
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', 'bar')
 
-    return redis.brpoplpushBuffer('foo', 'bar').then(item => {
-      expect(Buffer.isBuffer(item)).toBeTruthy()
-      expect(item).toEqual(Buffer.from('bar'))
-    })
+    const item = await redis.brpoplpushBuffer('foo', 'bar', 1)
+    expect(Buffer.isBuffer(item)).toBeTruthy()
+    expect(item).toEqual(Buffer.from('bar'))
+    redis.disconnect()
   })
 
-  it('should return buffer values correctly', () => {
+  it('should return buffer values correctly', async () => {
     const bufferVal = Buffer.from('bar')
-    const redis = new Redis({
-      data: {
-        foo: ['foo', bufferVal],
-      },
-    })
+    const redis = new Redis()
+    await redis.rpush('foo', 'foo', bufferVal)
 
-    return redis.brpoplpushBuffer('foo', bufferVal).then(item => {
-      return expect(item).toEqual(bufferVal)
-    })
+    expect(await redis.brpoplpushBuffer('foo', bufferVal, 1)).toEqual(bufferVal)
+    redis.disconnect()
   })
 
-  it('should throw an exception if the source key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-        bar: [],
-      },
-    })
+  it('should throw an exception if the source key contains something other than a list', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
-    return redis.brpoplpushBuffer('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key foo does not contain a list')
-    })
+    await expect(() => {
+      return redis.brpoplpushBuffer('foo', 'bar', 1)
+    }).rejects.toThrowErrorMatchingInlineSnapshot(
+      '"WRONGTYPE Operation against a key holding the wrong kind of value"'
+    )
+    redis.disconnect()
   })
 
-  it('should throw an exception if the destination key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: [],
-        bar: 'not a list',
-      },
-    })
+  it('should throw an exception if the destination key contains something other than a list', async () => {
+    const redis = new Redis()
+    await redis.set('bar', 'not a list')
 
-    return redis.brpoplpushBuffer('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key bar does not contain a list')
-    })
+    expect(await redis.brpoplpushBuffer('foo', 'bar', 1)).toBe(null)
+    redis.disconnect()
   })
 })

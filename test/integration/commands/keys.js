@@ -1,54 +1,38 @@
 import Redis from 'ioredis'
 
 describe('keys', () => {
-  it('should return an empty array if there are no keys', () => {
+  it('should return an empty array if there are no keys', async () => {
     const redis = new Redis()
 
-    return redis.keys('*').then(result => {
-      return expect(result).toEqual([])
-    })
+    expect(await redis.keys('*')).toEqual([])
+    redis.disconnect()
   })
 
-  it('should return all data keys', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-        baz: 'quux',
-      },
-    })
-
-    return redis.keys('*').then(result => {
-      return expect(result).toEqual(['foo', 'baz'])
-    })
-  })
-
-  it('should only return keys matching the given pattern', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-        baz: 'quux',
-        flambé: 'baked alaska',
-      },
-    })
-
-    return redis.keys('f*').then(result => {
-      return expect(result).toEqual(['foo', 'flambé'])
-    })
-  })
-
-  it('should not return empty sets', () => {
+  it('should return all data keys', async () => {
     const redis = new Redis()
+    await redis.set('foo', 'bar')
+    await redis.set('baz', 'quux')
 
-    return redis
-      .sadd('a', 'b')
-      .then(() => {
-        return redis.srem('a', 'b')
-      })
-      .then(() => {
-        return redis.keys('*')
-      })
-      .then(result => {
-        return expect(result).toEqual([])
-      })
+    expect((await redis.keys('*')).sort()).toEqual(['baz', 'foo'])
+    redis.disconnect()
+  })
+
+  it('should only return keys matching the given pattern', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'bar')
+    await redis.set('baz', 'quux')
+    await redis.set('flambé', 'baked alaska')
+
+    expect((await redis.keys('f*')).sort()).toEqual(['flambé', 'foo'])
+    redis.disconnect()
+  })
+
+  it('should not return empty sets', async () => {
+    const redis = new Redis()
+    await redis.sadd('a', 'b')
+    await redis.srem('a', 'b')
+
+    expect(await redis.keys('*')).toEqual([])
+    redis.disconnect()
   })
 })

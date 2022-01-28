@@ -1,3 +1,3 @@
 export function bgsave() {
-  return 'OK'
+  return 'Background saving started'
 }

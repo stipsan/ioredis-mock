@@ -1,4 +1,8 @@
-export function decrby(key, decrement = 0) {
+export function decrby(key, decrement) {
+  if (decrement === undefined) {
+    throw new Error("ERR wrong number of arguments for 'decrby' command")
+  }
+
   if (!this.data.has(key)) {
     this.data.set(key, '0')
   }

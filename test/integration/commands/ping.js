@@ -1,19 +1,19 @@
 import Redis from 'ioredis'
 
 describe('ping', () => {
-  it('should return PONG', () => {
+  it('should return PONG', async () => {
     const redis = new Redis()
 
-    return redis.ping().then(result => {
-      return expect(result).toBe('PONG')
-    })
+    expect(await redis.ping()).toBe('PONG')
+    redis.disconnect()
   })
 
-  it('should return message', () => {
+  it('should return message', async () => {
     const redis = new Redis()
 
-    return redis.ping('Hello World!').then(result => {
-      return expect(result).toBe('Hello World!')
-    })
+    expect(await redis.ping('Hello World!')).toMatchInlineSnapshot(
+      '"Hello World!"'
+    )
+    redis.disconnect()
   })
 })

@@ -1,16 +1,12 @@
 import Redis from 'ioredis'
 
 describe('mset', () => {
-  it('should batch set values', () => {
+  it('should batch set values', async () => {
     const redis = new Redis()
-    return redis
-      .mset('key1', 'Hello', 'key2', 'World')
-      .then(status => {
-        return expect(status).toBe('OK')
-      })
-      .then(() => {
-        expect(redis.data.get('key1')).toBe('Hello')
-        expect(redis.data.get('key2')).toBe('World')
-      })
+
+    expect(await redis.mset('key1', 'Hello', 'key2', 'World')).toBe('OK')
+    expect(await redis.get('key1')).toBe('Hello')
+    expect(await redis.get('key2')).toBe('World')
+    redis.disconnect()
   })
 })

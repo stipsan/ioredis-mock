@@ -69,7 +69,9 @@ describe('rpoplpush', () => {
     })
 
     return redis.rpoplpush('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key foo does not contain a list')
+      return expect(err.message).toBe(
+        'WRONGTYPE Operation against a key holding the wrong kind of value'
+      )
     })
   })
 

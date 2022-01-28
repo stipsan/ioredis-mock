@@ -1,33 +1,20 @@
 import Redis from 'ioredis'
 
 describe('incr', () => {
-  it('should increment an integer', () => {
-    const redis = new Redis({
-      data: {
-        user_next: '1',
-      },
-    })
+  it('should increment an integer', async () => {
+    const redis = new Redis()
+    await redis.set('user_next', 1)
 
-    return redis
-      .incr('user_next')
-      .then(userNext => {
-        return expect(userNext).toBe(2)
-      })
-      .then(() => {
-        return expect(redis.data.get('user_next')).toBe('2')
-      })
+    expect(await redis.incr('user_next')).toBe(2)
+    expect(await redis.get('user_next')).toBe('2')
+    redis.disconnect()
   })
 
-  it('should set default value if not exists', () => {
+  it('should set default value if not exists', async () => {
     const redis = new Redis()
 
-    return redis
-      .incr('user_next')
-      .then(userNext => {
-        return expect(userNext).toBe(1)
-      })
-      .then(() => {
-        return expect(redis.data.get('user_next')).toBe('1')
-      })
+    expect(await redis.incr('user_next')).toBe(1)
+    expect(await redis.get('user_next')).toBe('1')
+    redis.disconnect()
   })
 })
