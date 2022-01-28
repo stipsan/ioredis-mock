@@ -1,6 +1,6 @@
-import _ from 'lodash';
+import IoredisCommand from 'ioredis/built/command';
 import asCallback from 'standard-as-callback';
-import { Command as IoredisCommand } from 'ioredis';
+
 import promiseContainer from './promise-container';
 
 export function isInSubscriberMode(RedisMock) {
@@ -78,7 +78,7 @@ export function processArguments(args, commandName) {
   // fast return, the defineCommand command requires NO transformation of args
   if (commandName === 'defineCommand') return args;
 
-  let commandArgs = args ? _.flatten(args) : [];
+  let commandArgs = args ? [].concat(...args) : [];
   if (Command.transformers.argument[commandName]) {
     commandArgs = Command.transformers.argument[commandName](args);
   }
@@ -92,7 +92,7 @@ export function processReply(result, commandName) {
     // pairs for the hgetall command, emulate this
     let newResult = result;
     if (commandName === 'hgetall') {
-      newResult = _.flatten(Object.entries(result));
+      newResult = [].concat(...Object.entries(result));
     }
 
     return Command.transformers.reply[commandName](newResult);

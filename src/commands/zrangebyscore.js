@@ -1,9 +1,11 @@
-import { orderBy, filter, flatMap } from 'lodash';
+import flatMap from 'array.prototype.flatmap';
+import orderBy from 'lodash.orderby';
+
 import {
-  parseLimit,
   filterPredicate,
   getWithScoresAndLimit,
   offsetAndLimit,
+  parseLimit,
 } from './zrange-command.common';
 
 export function zrangebyscore(key, inputMin, inputMax, ...args) {
@@ -20,8 +22,7 @@ export function zrangebyscore(key, inputMin, inputMax, ...args) {
 
   const min = parseLimit(inputMin);
   const max = parseLimit(inputMax);
-  const filteredArray = filter(
-    Array.from(map.values()),
+  const filteredArray = Array.from(map.values()).filter(
     filterPredicate(min, max)
   );
 

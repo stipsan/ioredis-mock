@@ -1,11 +1,10 @@
 {
   "env": {
-    "node": "true",
-    "jest/globals": true
+    "node": true
   },
   "extends": ["airbnb-base", "prettier"],
   "parser": "babel-eslint",
-  "plugins": ["jest"],
+  "plugins": ["jest", "simple-import-sort"],
   "rules": {
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
@@ -22,6 +21,36 @@
         "functions": "never"
       }
     ],
-    "quotes": ["error", "single", { "avoidEscape": true }]
-  }
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.js",
+        "testSetupAfterEnv.js",
+        "testSetupBrowser.js",
+        "testSetupSrc.js",
+        "testSetupLib.js",
+        "testSetupJestLegacy.js",
+        "testSetupRedis.js"
+      ],
+      "env": {
+        "jest/globals": true
+      }
+    },
+    {
+      "files": ["test/integration/**/*.js"],
+      "rules": {
+        "import/no-relative-parent-imports": ["error"]
+      }
+    }
+  ]
 }

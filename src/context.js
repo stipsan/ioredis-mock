@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+
 import { createSharedData } from './data';
 import { createSharedExpires } from './expires';
 

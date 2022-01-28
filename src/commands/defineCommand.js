@@ -2,7 +2,7 @@ import fengari from 'fengari';
 import interop from 'fengari-interop';
 
 import createCommand from '../command';
-import { init, dispose } from '../lua';
+import { dispose, init } from '../lua';
 import * as commands from '.';
 
 const { lua, to_luastring: toLuaString } = fengari;

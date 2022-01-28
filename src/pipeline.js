@@ -1,6 +1,7 @@
 import asCallback from 'standard-as-callback';
-import * as commands from './commands';
+
 import { processArguments, safelyExecuteCommand } from './command';
+import * as commands from './commands';
 import promiseContainer from './promise-container';
 
 class Pipeline {

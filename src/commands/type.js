@@ -1,4 +1,4 @@
-import { isArray, isPlainObject, isString } from 'lodash';
+import isPlainObject from 'lodash.isplainobject';
 
 // eslint-disable-next-line consistent-return
 export function type(key) {
@@ -16,11 +16,11 @@ export function type(key) {
     return 'zset';
   }
 
-  if (isArray(val)) {
+  if (Array.isArray(val)) {
     return 'list';
   }
 
-  if (isString(val)) {
+  if (val != null && typeof val.valueOf() === 'string') {
     return 'string';
   }
 

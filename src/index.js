@@ -1,16 +1,17 @@
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events';
 import redisCommands from 'redis-commands';
+
+import createCommand, { Command } from './command';
 import * as commands from './commands';
 import * as commandsStream from './commands-stream';
-import createCommand, { Command } from './command';
 import emitConnectEvent from './commands-utils/emitConnectEvent';
+import contextMap, { createContext } from './context';
+import { createData } from './data';
+import { createExpires } from './expires';
+import parseKeyspaceEvents from './keyspace-notifications';
 import Pipeline from './pipeline';
 import promiseContainer from './promise-container';
-import parseKeyspaceEvents from './keyspace-notifications';
-import contextMap, { createContext } from './context';
-import { createExpires } from './expires';
-import { createData } from './data';
 
 const defaultOptions = {
   data: {},
@@ -40,8 +41,7 @@ class RedisMock extends EventEmitter {
     // a mapping of sha1<string>:script<string>, used by evalsha command
     this.shaScripts = {};
 
-    // eslint-disable-next-line prefer-object-spread
-    const optionsWithDefault = Object.assign({}, defaultOptions, options);
+    const optionsWithDefault = { ...defaultOptions, ...options };
 
     this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}`;
 

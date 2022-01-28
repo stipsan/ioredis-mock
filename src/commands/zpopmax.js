@@ -1,4 +1,6 @@
-import { flatMap, orderBy, forEach, reverse } from 'lodash';
+import flatMap from 'array.prototype.flatmap';
+import orderBy from 'lodash.orderby';
+
 import { slice } from './zrange-command.common';
 
 export function zpopmax(key, count = 1) {
@@ -8,11 +10,13 @@ export function zpopmax(key, count = 1) {
     return [];
   }
 
-  const ordered = reverse(
-    slice(orderBy(Array.from(map.values()), ['score', 'value']), -count, -1)
-  );
+  const ordered = slice(
+    orderBy(Array.from(map.values()), ['score', 'value']),
+    -count,
+    -1
+  ).reverse();
 
-  forEach(ordered, (it) => {
+  ordered.forEach((it) => {
     map.delete(it.value);
   });
   this.data.set(key, map);

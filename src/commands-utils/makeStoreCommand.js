@@ -3,7 +3,7 @@ export function makeStoreCommand(baseCommand, ResultType) {
     const result = baseCommand.call(this, ...args);
     this.data.set(dest, new ResultType(result));
     return result.length;
-  }
+  };
 }
 
 export function makeStoreSetCommand(baseCommand) {

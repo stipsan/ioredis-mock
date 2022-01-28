@@ -1,4 +1,3 @@
-import { flatten } from 'lodash';
 import { scanHelper } from '../commands-utils/scan-command.common';
 
 export function zscan(key, cursor, ...args) {
@@ -12,5 +11,5 @@ export function zscan(key, cursor, ...args) {
   });
 
   const [offset, keys] = scanHelper(zKeys, 1, cursor, ...args);
-  return [offset, flatten(keys)];
+  return [offset, [].concat(...keys)];
 }
