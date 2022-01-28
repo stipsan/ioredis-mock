@@ -30,3 +30,7 @@ export function rpoplpush(source, destination) {
 
   return item
 }
+
+export function rpoplpushBuffer(source, destination) {
+  return rpoplpush.apply(this, [source, destination])
+}
