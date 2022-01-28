@@ -9,7 +9,6 @@ module.exports = {
     'test/integration/command-transformers.js',
     'test/integration/commands/auth.js',
     'test/integration/commands/connect.js',
-    'test/integration/commands/dbsize.js',
     'test/integration/commands/defineCommand.js',
     'test/integration/commands/del.js',
     'test/integration/commands/discard.js',

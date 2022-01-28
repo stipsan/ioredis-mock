@@ -1,16 +1,12 @@
 import Redis from 'ioredis'
 
 describe('dbsize', () => {
-  it('should return how many keys exists in db', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-        bar: 'foo',
-      },
-    })
+  it('should return how many keys exists in db', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'bar')
+    await redis.set('bar', 'foo')
 
-    return redis.dbsize().then(result => {
-      return expect(result).toBe(2)
-    })
+    expect(await redis.dbsize()).toBe(2)
+    redis.disconnect()
   })
 })
