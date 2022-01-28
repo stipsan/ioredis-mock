@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events'
+import { parseURL } from 'ioredis/built/utils/index'
 import redisCommands from 'redis-commands'
 
 import createCommand, { Command } from './command'
@@ -19,7 +20,57 @@ const defaultOptions = {
   lazyConnect: false,
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
   host: 'localhost',
-  port: '6379',
+  port: 6379,
+}
+
+const pathToHostPort = path => {
+  const { host, port } = parseURL(path)
+  return { host, port }
+}
+
+const routeOptionsArgs = (...args) => {
+  switch (args.length) {
+    case 3:
+      // port: number, host: string, options: IRedisOptions
+      return { ...args[2], port: args[0], host: args[1] }
+
+    case 2:
+      // if args[0] is a string, then it's:
+      // path: string, options: IRedisOptions
+      // if args[0] is a number and args[1] is a string, then it's:
+      // port: number, host: string
+      // if neither we can assume it's:
+      // port: number, options: IRedisOptions
+      // eslint-disable-next-line no-nested-ternary
+      return typeof args[0] === 'string'
+        ? { ...args[1], ...pathToHostPort(args[0]) }
+        : Number.isInteger(args[0]) && typeof args[1] === 'string'
+        ? { port: args[0], host: args[1] }
+        : { ...args[1], port: args[0] }
+    case 1:
+      // if args[0] is a string, then it's:
+      // path: string
+      // if args[0] is a number then it's:
+      // port: number
+      // if neither we can assume it's:
+      //  options: IRedisOptions
+      // eslint-disable-next-line no-nested-ternary
+      return typeof args[0] === 'string'
+        ? { ...pathToHostPort(args[0]) }
+        : Number.isInteger(args[0])
+        ? { port: args[0] }
+        : { ...args[0] }
+    default:
+      return {}
+  }
+}
+
+const getOptions = (...args) => {
+  const parsed = routeOptionsArgs(...args)
+  const port = parsed.port ? parseInt(parsed.port, 10) : defaultOptions.port
+  const { host = defaultOptions.host } = parsed
+
+  return { ...parsed, port, host }
 }
 
 class RedisMock extends EventEmitter {
@@ -31,7 +82,7 @@ class RedisMock extends EventEmitter {
     return promiseContainer.set(lib)
   }
 
-  constructor(options = {}) {
+  constructor(...args) {
     super()
 
     this.batch = undefined
@@ -41,7 +92,7 @@ class RedisMock extends EventEmitter {
     // a mapping of sha1<string>:script<string>, used by evalsha command
     this.shaScripts = {}
 
-    const optionsWithDefault = { ...defaultOptions, ...options }
+    const optionsWithDefault = { ...defaultOptions, ...getOptions(...args) }
 
     this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}`
 
