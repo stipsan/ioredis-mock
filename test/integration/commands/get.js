@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import {runTwinSuite} from '../../../test-utils'
+import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('get', (command, equals, cast) => {
   describe(command, () => {
