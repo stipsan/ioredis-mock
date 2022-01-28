@@ -1,6 +1,5 @@
 // declare peer dependencies so RunKit don't throw errors
 require('ioredis/package.json')
-require('redis-commands/package.json')
 
 const Redis = require('ioredis-mock')
 const redis = new Redis({
