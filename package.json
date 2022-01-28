@@ -146,6 +146,9 @@
     "arrowParens": "avoid"
   },
   "release": {
+    "branches": [
+      "main"
+    ],
     "prepare": [
       "@semantic-release/npm"
     ]

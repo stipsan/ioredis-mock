@@ -3,7 +3,7 @@ name: Update compat.md
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   format:

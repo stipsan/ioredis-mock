@@ -242,7 +242,7 @@ class RedisMock extends EventEmitter {
       ...redisCommands.list.map(command => `${command}Buffer`),
     ]
     const docsLink =
-      'https://github.com/stipsan/ioredis-mock/blob/master/compat.md#supported-commands-'
+      'https://github.com/stipsan/ioredis-mock/blob/main/compat.md#supported-commands-'
     supportedCommands.forEach(command => {
       if (!(command in this)) {
         Object.defineProperty(this, command, {
