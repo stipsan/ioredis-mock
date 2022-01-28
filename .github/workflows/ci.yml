@@ -26,7 +26,9 @@ jobs:
     strategy:
       matrix:
         node_version: [10, 12, 14, 16, 17]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        # @TODO figure out why windows-latest is hanging so mcuh
+        #os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
 
     steps:
       - uses: actions/checkout@master
