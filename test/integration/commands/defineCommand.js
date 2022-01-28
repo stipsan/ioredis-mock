@@ -1,19 +1,6 @@
 import Redis from 'ioredis';
 
-// eslint-disable-next-line import/no-relative-parent-imports
-import { dispose, init } from '../../../src/lua';
-
 describe('defineCommand', () => {
-  let vm;
-
-  beforeEach(() => {
-    vm = init();
-  });
-
-  afterEach(() => {
-    dispose(vm);
-  });
-
   describe('setting up a custom command', () => {
     it('should call a custom commmand', () => {
       const luaCode = `
