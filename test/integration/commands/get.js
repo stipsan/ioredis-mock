@@ -1,18 +1,24 @@
 import Redis from 'ioredis'
 
-describe('get', () => {
-  it('should return null on keys that do not exist', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import {runTwinSuite} from '../../../test-utils'
 
-    expect(await redis.get('foo')).toBe(null)
-    redis.disconnect()
-  })
+runTwinSuite('get', (command, equals, cast) => {
+  describe(command, () => {
+    it('should return null on keys that do not exist', async () => {
+      const redis = new Redis()
 
-  it('should return value of key', async () => {
-    const redis = new Redis()
-    await redis.set('foo', 'bar')
+      expect(await redis[command]('foo')).toBe(null)
+      redis.disconnect()
+    })
 
-    expect(await redis.get('foo')).toBe('bar')
-    redis.disconnect()
+    it('should return value of key', async () => {
+      const redis = new Redis()
+      const value = cast('bar')
+      await redis.set('foo', value)
+
+      expect(equals(await redis[command]('foo'), value)).toBe(true)
+      redis.disconnect()
+    })
   })
 })
