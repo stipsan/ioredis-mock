@@ -43,7 +43,6 @@ module.exports = {
     'test/integration/commands/incr.js',
     'test/integration/commands/incrby.js',
     'test/integration/commands/incrbyfloat.js',
-    'test/integration/commands/info.js',
     'test/integration/commands/keys.js',
     'test/integration/commands/lastsave.js',
     'test/integration/commands/lindex.js',
