@@ -20,6 +20,7 @@ const defaultOptions = {
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
   host: 'localhost',
   port: '6379',
+  dropBufferSupport: false,
 }
 
 class RedisMock extends EventEmitter {
