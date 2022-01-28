@@ -1,12 +1,17 @@
 import Redis from 'ioredis'
 
-describe('dbsize', () => {
-  it('should return how many keys exists in db', async () => {
-    const redis = new Redis()
-    await redis.set('foo', 'bar')
-    await redis.set('bar', 'foo')
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.dbsize()).toBe(2)
-    redis.disconnect()
+runTwinSuite('dbsize', command => {
+  describe(command, () => {
+    it('should return how many keys exists in db', async () => {
+      const redis = new Redis()
+      await redis.set('foo', 'bar')
+      await redis.set('bar', 'foo')
+
+      expect(await redis[command]()).toBe(2)
+      redis.disconnect()
+    })
   })
 })

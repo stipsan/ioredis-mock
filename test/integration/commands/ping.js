@@ -1,19 +1,24 @@
 import Redis from 'ioredis'
 
-describe('ping', () => {
-  it('should return PONG', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.ping()).toBe('PONG')
-    redis.disconnect()
-  })
+runTwinSuite('ping', (command, equals) => {
+  describe(command, () => {
+    it('should return PONG', async () => {
+      const redis = new Redis()
 
-  it('should return message', async () => {
-    const redis = new Redis()
+      expect(equals(await redis[command](), 'PONG')).toBe(true)
+      redis.disconnect()
+    })
 
-    expect(await redis.ping('Hello World!')).toMatchInlineSnapshot(
-      '"Hello World!"'
-    )
-    redis.disconnect()
+    it('should return message', async () => {
+      const redis = new Redis()
+
+      expect(equals(await redis[command]('Hello World!'), 'Hello World!')).toBe(
+        true
+      )
+      redis.disconnect()
+    })
   })
 })

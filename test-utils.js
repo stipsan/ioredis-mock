@@ -4,15 +4,7 @@ export function runTwinSuite(commandName, cb) {
 
   return commands.forEach(command =>
     command === commandName
-      ? cb(
-          command,
-          (a, b) => a === b,
-          c => c
-        )
-      : cb(
-          command,
-          (a, b) => a.equals(b),
-          c => Buffer.from(c)
-        )
+      ? cb(command, (a, b) => a === b)
+      : cb(command, (a, b) => a.equals(Buffer.from(b)))
   )
 }

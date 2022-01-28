@@ -1,10 +1,13 @@
 import Redis from 'ioredis'
 
-describe('quit', () => {
-  const redis = new Redis()
-  it('should return OK', () => {
-    return redis.quit().then(res => {
-      return expect(res).toBe('OK')
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('quit', (command, equals) => {
+  describe(command, () => {
+    it('should return OK', async () => {
+      const redis = new Redis()
+      expect(equals(await redis[command](), 'OK')).toBe(true)
     })
   })
 })

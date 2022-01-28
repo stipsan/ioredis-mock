@@ -1,23 +1,37 @@
 import Redis from 'ioredis'
 
-describe('hmset', () => {
-  it('should let you set multiple hash map keys and values in a single command', async () => {
-    const redis = new Redis()
-    const hash = { id: '1', email: 'bruce@wayne.enterprises' }
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(
-      await redis.hmset('user:1', 'id', '1', 'email', 'bruce@wayne.enterprises')
-    ).toBe('OK')
-    expect(await redis.hgetall('user:1')).toEqual(hash)
-    redis.disconnect()
-  })
+runTwinSuite('hmset', (command, equals) => {
+  describe(command, () => {
+    it('should let you set multiple hash map keys and values in a single command', async () => {
+      const redis = new Redis()
+      const hash = { id: '1', email: 'bruce@wayne.enterprises' }
 
-  it('should let you set multiple hash map keys and values with an object', async () => {
-    const redis = new Redis()
-    const hash = { id: '1', email: 'bruce@wayne.enterprises' }
+      expect(
+        equals(
+          await redis[command](
+            'user:1',
+            'id',
+            '1',
+            'email',
+            'bruce@wayne.enterprises'
+          ),
+          'OK'
+        )
+      ).toBe(true)
+      expect(await redis.hgetall('user:1')).toEqual(hash)
+      redis.disconnect()
+    })
 
-    expect(await redis.hmset('user:1', hash)).toBe('OK')
-    expect(await redis.hgetall('user:1')).toEqual(hash)
-    redis.disconnect()
+    it('should let you set multiple hash map keys and values with an object', async () => {
+      const redis = new Redis()
+      const hash = { id: '1', email: 'bruce@wayne.enterprises' }
+
+      expect(equals(await redis[command]('user:1', hash), 'OK')).toBe(true)
+      expect(await redis.hgetall('user:1')).toEqual(hash)
+      redis.disconnect()
+    })
   })
 })

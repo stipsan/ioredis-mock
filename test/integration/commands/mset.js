@@ -1,12 +1,19 @@
 import Redis from 'ioredis'
 
-describe('mset', () => {
-  it('should batch set values', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.mset('key1', 'Hello', 'key2', 'World')).toBe('OK')
-    expect(await redis.get('key1')).toBe('Hello')
-    expect(await redis.get('key2')).toBe('World')
-    redis.disconnect()
+runTwinSuite('mset', (command, equals) => {
+  describe(command, () => {
+    it('should batch set values', async () => {
+      const redis = new Redis()
+
+      expect(
+        equals(await redis[command]('key1', 'Hello', 'key2', 'World'), 'OK')
+      ).toBe(true)
+      expect(await redis.get('key1')).toBe('Hello')
+      expect(await redis.get('key2')).toBe('World')
+      redis.disconnect()
+    })
   })
 })

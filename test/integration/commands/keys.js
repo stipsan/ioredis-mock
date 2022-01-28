@@ -1,38 +1,47 @@
 import Redis from 'ioredis'
 
-describe('keys', () => {
-  it('should return an empty array if there are no keys', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.keys('*')).toEqual([])
-    redis.disconnect()
-  })
+runTwinSuite('keys', (command, equals) => {
+  describe(command, () => {
+    it('should return an empty array if there are no keys', async () => {
+      const redis = new Redis()
 
-  it('should return all data keys', async () => {
-    const redis = new Redis()
-    await redis.set('foo', 'bar')
-    await redis.set('baz', 'quux')
+      expect(await redis[command]('*')).toEqual([])
+      redis.disconnect()
+    })
 
-    expect((await redis.keys('*')).sort()).toEqual(['baz', 'foo'])
-    redis.disconnect()
-  })
+    it('should return all data keys', async () => {
+      const redis = new Redis()
+      await redis.set('foo', 'bar')
+      await redis.set('baz', 'quux')
 
-  it('should only return keys matching the given pattern', async () => {
-    const redis = new Redis()
-    await redis.set('foo', 'bar')
-    await redis.set('baz', 'quux')
-    await redis.set('flambé', 'baked alaska')
+      const keys = (await redis[command]('*')).sort()
+      expect(equals(keys[0], 'baz')).toBe(true)
+      expect(equals(keys[1], 'foo')).toBe(true)
+      redis.disconnect()
+    })
 
-    expect((await redis.keys('f*')).sort()).toEqual(['flambé', 'foo'])
-    redis.disconnect()
-  })
+    it('should only return keys matching the given pattern', async () => {
+      const redis = new Redis()
+      await redis.set('foo', 'bar')
+      await redis.set('baz', 'quux')
+      await redis.set('flambé', 'baked alaska')
 
-  it('should not return empty sets', async () => {
-    const redis = new Redis()
-    await redis.sadd('a', 'b')
-    await redis.srem('a', 'b')
+      const keys = (await redis[command]('f*')).sort()
+      expect(equals(keys[0], 'flambé')).toBe(true)
+      expect(equals(keys[1], 'foo')).toBe(true)
+      redis.disconnect()
+    })
 
-    expect(await redis.keys('*')).toEqual([])
-    redis.disconnect()
+    it('should not return empty sets', async () => {
+      const redis = new Redis()
+      await redis.sadd('a', 'b')
+      await redis.srem('a', 'b')
+
+      expect(await redis[command]('*')).toEqual([])
+      redis.disconnect()
+    })
   })
 })

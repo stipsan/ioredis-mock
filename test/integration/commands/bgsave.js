@@ -1,12 +1,21 @@
 import Redis from 'ioredis'
 
-describe('bgsave', () => {
-  it('should return OK', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.bgsave()).toMatchInlineSnapshot(
-      '"Background saving started"'
-    )
-    redis.disconnect()
+runTwinSuite('bgsave', (command, equals) => {
+  describe(command, () => {
+    it('should return a message', async () => {
+      const redis = new Redis()
+
+      try {
+        expect(
+          equals(await redis[command](), 'Background saving started')
+        ).toBe(true)
+      } catch (error) {
+        expect(error.message).toMatch('Background save already in progress')
+      }
+      redis.disconnect()
+    })
   })
 })

@@ -1,26 +1,34 @@
 import Redis from 'ioredis'
 
-describe('hgetall', () => {
-  it('should return all the keys and values in a hash map', () => {
-    const emails = {
-      'clark@daily.planet': '1',
-      'bruce@wayne.enterprises': '2',
-    }
-    const redis = new Redis({
-      data: {
-        emails,
-      },
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('hgetall', (command, equals) => {
+  describe(command, () => {
+    it('should return all the keys and values in a hash map', async () => {
+      const emails = {
+        'clark@daily.planet': '1',
+        'bruce@wayne.enterprises': '2',
+      }
+      const redis = new Redis({
+        data: {
+          emails,
+        },
+      })
+
+      const result = await redis[command]('emails')
+
+      Object.keys(result).forEach(key => {
+        equals(result[key], emails[key])
+      })
+      redis.disconnect()
     })
 
-    return redis.hgetall('emails').then(result => {
-      return expect(result).toEqual(emails)
-    })
-  })
+    it('should return an empty object if the hash does not exist', async () => {
+      const redis = new Redis()
 
-  it('should return an empty object if the hash does not exist', () => {
-    const redis = new Redis()
-    return redis.hgetall('emails').then(result => {
-      return expect(result).toEqual({})
+      expect(await redis[command]('emails')).toEqual({})
+      redis.disconnect()
     })
   })
 })
