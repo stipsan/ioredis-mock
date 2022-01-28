@@ -1,13 +1,13 @@
-## Supported commands ![Commands Coverage: 29%](https://img.shields.io/badge/coverage-29%25-orange.svg)
+## Supported commands ![Commands Coverage: 30%](https://img.shields.io/badge/coverage-30%25-orange.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    | buffer                          |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: | ------------------------------- | :----------------: | :----------------: |
 | [acl]                  | :white_check_mark: |        :x:         | [aclBuffer][1]                  | :white_check_mark: |        :x:         |
-| [append]               | :white_check_mark: | :white_check_mark: | [appendBuffer][1]               | :white_check_mark: |        :x:         |
+| [append]               | :white_check_mark: | :white_check_mark: | [appendBuffer][1]               | :white_check_mark: | :white_check_mark: |
 | [asking]               | :white_check_mark: |        :x:         | [askingBuffer][1]               | :white_check_mark: |        :x:         |
 | [auth]                 | :white_check_mark: | :white_check_mark: | [authBuffer][1]                 | :white_check_mark: |        :x:         |
-| [bgrewriteaof]         | :white_check_mark: | :white_check_mark: | [bgrewriteaofBuffer][1]         | :white_check_mark: |        :x:         |
-| [bgsave]               | :white_check_mark: | :white_check_mark: | [bgsaveBuffer][1]               | :white_check_mark: |        :x:         |
+| [bgrewriteaof]         | :white_check_mark: | :white_check_mark: | [bgrewriteaofBuffer][1]         | :white_check_mark: | :white_check_mark: |
+| [bgsave]               | :white_check_mark: | :white_check_mark: | [bgsaveBuffer][1]               | :white_check_mark: | :white_check_mark: |
 | [bitcount]             | :white_check_mark: |        :x:         | [bitcountBuffer][1]             | :white_check_mark: |        :x:         |
 | [bitfield]             | :white_check_mark: |        :x:         | [bitfieldBuffer][1]             | :white_check_mark: |        :x:         |
 | [bitfield_ro]          | :white_check_mark: |        :x:         | [bitfield_roBuffer][1]          | :white_check_mark: |        :x:         |
