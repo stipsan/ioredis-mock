@@ -100,8 +100,8 @@ Replace it with `.duplicate()` or use another `new Redis` instance.
 `ioredis-mock` is no longer doing a `import { Command } from 'ioredis'` internally, it's now doing a direct import `import Command from 'ioredis/built/command'` and thus the `jest.js` [workaround](https://github.com/stipsan/ioredis-mock/issues/568) is no longer needed:
 
 ```diff
-+jest.mock('ioredis', () => require('ioredis-mock'))
 -jest.mock('ioredis', () => require('ioredis-mock/jest'))
++jest.mock('ioredis', () => require('ioredis-mock'))
 ```
 
 ### Pub/Sub channels
