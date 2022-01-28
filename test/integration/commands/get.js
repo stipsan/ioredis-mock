@@ -1,23 +1,18 @@
 import Redis from 'ioredis'
 
 describe('get', () => {
-  it('should return null on keys that do not exist', () => {
+  it('should return null on keys that do not exist', async () => {
     const redis = new Redis()
 
-    return redis.get('foo').then(result => {
-      return expect(result).toBe(null)
-    })
+    expect(await redis.get('foo')).toBe(null)
+    redis.disconnect()
   })
 
-  it('should return value of key', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-      },
-    })
+  it('should return value of key', async () => {
+    const redis = new Redis()
+    await redis.set('foo', 'bar')
 
-    return redis.get('foo').then(result => {
-      return expect(result).toBe('bar')
-    })
+    expect(await redis.get('foo')).toBe('bar')
+    redis.disconnect()
   })
 })
