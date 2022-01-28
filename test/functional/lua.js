@@ -1,89 +1,89 @@
-import fengari from 'fengari';
-import interop from 'fengari-interop';
+import fengari from 'fengari'
+import interop from 'fengari-interop'
 
 import {
   defineArgv,
   defineKeys,
   defineRedisObject,
-} from '../../src/commands/defineCommand';
-import { dispose, init } from '../../src/lua';
+} from '../../src/commands/defineCommand'
+import { dispose, init } from '../../src/lua'
 
-const { lua } = fengari;
+const { lua } = fengari
 
 describe('lua', () => {
-  let vm;
+  let vm
 
   beforeEach(() => {
-    vm = init();
-  });
+    vm = init()
+  })
 
   afterEach(() => {
-    dispose(vm);
-  });
+    dispose(vm)
+  })
 
   describe('lua utils', () => {
     describe('isTopArray', () => {
       it('should be an array', () => {
-        vm.luaExecString('return {1, 2}');
-        expect(vm.utils.isTopArray(vm.L)).toEqual(true);
-      });
+        vm.luaExecString('return {1, 2}')
+        expect(vm.utils.isTopArray(vm.L)).toEqual(true)
+      })
       it('should NOT be an array when it is a string', () => {
-        interop.push(vm.L, 'hi');
-        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
-      });
+        interop.push(vm.L, 'hi')
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false)
+      })
       it('should NOT be an array when it is a number', () => {
-        interop.push(vm.L, 1000);
-        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
-      });
+        interop.push(vm.L, 1000)
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false)
+      })
       it('should NOT be an array when it is a userdata', () => {
-        interop.push(vm.L, { hi: 'hello', bye: 'goodbye' });
-        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
-      });
+        interop.push(vm.L, { hi: 'hello', bye: 'goodbye' })
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false)
+      })
       it('should NOT be an array when it is a table', () => {
-        vm.utils.push({ hi: 'hello', bye: 'goodbye' });
-        expect(vm.utils.isTopArray(vm.L)).toEqual(false);
-      });
-    });
+        vm.utils.push({ hi: 'hello', bye: 'goodbye' })
+        expect(vm.utils.isTopArray(vm.L)).toEqual(false)
+      })
+    })
     describe('luaExecString', () => {
       it('should execute returning some value', () => {
-        const topBeforeCall = lua.lua_gettop(vm.L);
-        vm.luaExecString('return 1 + 1');
-        expect(vm.popReturnValue(topBeforeCall)).toBe(2);
-      });
+        const topBeforeCall = lua.lua_gettop(vm.L)
+        vm.luaExecString('return 1 + 1')
+        expect(vm.popReturnValue(topBeforeCall)).toBe(2)
+      })
 
       it('should report an error in the lua code', () => {
         expect(() => {
-          vm.luaExecString('error("kaboom!")');
-        }).toThrowError(/kaboom!/);
-      });
-    });
-  });
+          vm.luaExecString('error("kaboom!")')
+        }).toThrowError(/kaboom!/)
+      })
+    })
+  })
 
   describe('setting up the LUA server context', () => {
     describe('the redis global object', () => {
       it('should execute a lua script that calls the call fn of the global redis object', () => {
         // a flag to expect on
-        let wasCalledWith = false;
+        let wasCalledWith = false
 
         // the call function
         const call = () => {
-          const top = lua.lua_gettop(vm.L);
-          const args = [];
-          let a = -top;
+          const top = lua.lua_gettop(vm.L)
+          const args = []
+          let a = -top
           while (a < 0) {
-            args.push(a);
-            a += 1;
+            args.push(a)
+            a += 1
           }
-          const argu = args.map((i) => interop.tojs(vm.L, i));
+          const argu = args.map(i => interop.tojs(vm.L, i))
 
-          wasCalledWith = argu;
+          wasCalledWith = argu
 
-          interop.push(vm.L, 15);
+          interop.push(vm.L, 15)
 
-          return 1;
-        };
+          return 1
+        }
 
-        defineRedisObject(vm)(call);
+        defineRedisObject(vm)(call)
 
         // execute fn
         vm.luaExecString(`
@@ -95,12 +95,12 @@ describe('lua', () => {
 
             local testingReturningAnyNumber = 15200
             return testingReturningAnyNumber
-          `);
+          `)
 
         // expect it was called and we can get the right arguments
-        expect(wasCalledWith).toEqual([false, 'EXISTS', 'PEPE', 'THIRD']);
-      });
-    });
+        expect(wasCalledWith).toEqual([false, 'EXISTS', 'PEPE', 'THIRD'])
+      })
+    })
 
     describe('the KEYS and ARGV global tables', () => {
       it('should be able to get key and arguments', () => {
@@ -111,10 +111,10 @@ describe('lua', () => {
           'arg1',
           'arg2',
           'argof***yourself',
-        ];
+        ]
 
-        defineKeys(vm, 3, args);
-        defineArgv(vm, 3, args);
+        defineKeys(vm, 3, args)
+        defineArgv(vm, 3, args)
 
         vm.luaExecString(`
           local check = function(tname, t, i, v)
@@ -143,8 +143,8 @@ describe('lua', () => {
           argCheck(1, "${args[3]}")
           argCheck(2, "${args[4]}")
           argCheck(3, "${args[5]}")
-        `);
-      });
-    });
-  });
-});
+        `)
+      })
+    })
+  })
+})

@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('sinter', () => {
   it('should return the members from the intersection of all the given sets', () => {
@@ -8,12 +8,12 @@ describe('sinter', () => {
         key2: new Set(['c']),
         key3: new Set(['a', 'c', 'e']),
       },
-    });
+    })
 
-    return redis
-      .sinter('key1', 'key2', 'key3')
-      .then((result) => expect(result).toEqual(['c']));
-  });
+    return redis.sinter('key1', 'key2', 'key3').then(result => {
+      return expect(result).toEqual(['c'])
+    })
+  })
 
   it('should throw an exception if one of the keys is not a set', () => {
     const redis = new Redis({
@@ -21,20 +21,18 @@ describe('sinter', () => {
         foo: new Set(),
         bar: 'not a set',
       },
-    });
+    })
 
-    return redis
-      .sinter('foo', 'bar')
-      .catch((err) =>
-        expect(err.message).toBe('Key bar does not contain a set')
-      );
-  });
+    return redis.sinter('foo', 'bar').catch(err => {
+      return expect(err.message).toBe('Key bar does not contain a set')
+    })
+  })
 
   it("should return empty array if sources don't exists", () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis
-      .sinter('foo', 'bar')
-      .then((result) => expect(result).toEqual([]));
-  });
-});
+    return redis.sinter('foo', 'bar').then(result => {
+      return expect(result).toEqual([])
+    })
+  })
+})

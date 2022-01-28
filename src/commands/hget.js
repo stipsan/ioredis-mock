@@ -1,9 +1,9 @@
 export function hget(key, hashKey) {
-  const hash = this.data.get(key);
+  const hash = this.data.get(key)
 
   if (!hash || hash[hashKey] === undefined) {
-    return null;
+    return null
   }
 
-  return hash[hashKey];
+  return hash[hashKey]
 }

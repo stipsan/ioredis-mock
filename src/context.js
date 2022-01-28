@@ -1,14 +1,14 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'events'
 
-import { createSharedData } from './data';
-import { createSharedExpires } from './expires';
+import { createSharedData } from './data'
+import { createSharedExpires } from './expires'
 
-const contextMap = new Map();
+const contextMap = new Map()
 
-export default contextMap;
+export default contextMap
 
 export function createContext(keyPrefix) {
-  const expires = createSharedExpires();
+  const expires = createSharedExpires()
 
   return {
     channels: new EventEmitter(),
@@ -16,5 +16,5 @@ export function createContext(keyPrefix) {
     data: createSharedData(expires),
     patternChannels: new EventEmitter(),
     keyPrefix,
-  };
+  }
 }

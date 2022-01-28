@@ -1,8 +1,8 @@
 // declare peer dependencies so RunKit don't throw errors
-require('ioredis/package.json');
-require('redis-commands/package.json');
+require('ioredis/package.json')
+require('redis-commands/package.json')
 
-const Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock')
 const redis = new Redis({
   data: {
     user_next: '3',
@@ -13,10 +13,10 @@ const redis = new Redis({
     'user:1': { id: '1', username: 'superman', email: 'clark@daily.planet' },
     'user:2': { id: '2', username: 'batman', email: 'bruce@wayne.enterprises' },
   },
-});
+})
 
 async function main() {
-  const userNext = await redis.incr('user_next');
+  const userNext = await redis.incr('user_next')
   await redis.hmset(
     `user:${userNext}`,
     new Map([
@@ -24,8 +24,8 @@ async function main() {
       ['username', 'wonderwoman'],
       ['email', 'diana@amazon.gr'],
     ])
-  );
-  console.log(await redis.hgetall(`user:${userNext}`));
+  )
+  console.log(await redis.hgetall(`user:${userNext}`))
 }
 
-main();
+main()

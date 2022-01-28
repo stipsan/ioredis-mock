@@ -1,11 +1,11 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('echo', () => {
   it('should return message', () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis
-      .echo('Hello World!')
-      .then((result) => expect(result).toBe('Hello World!'));
-  });
-});
+    return redis.echo('Hello World!').then(result => {
+      return expect(result).toBe('Hello World!')
+    })
+  })
+})

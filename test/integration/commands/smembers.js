@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('smembers', () => {
   it('should returns items in set as array', () => {
@@ -6,15 +6,17 @@ describe('smembers', () => {
       data: {
         foos: new Set(['bar', 'foo']),
       },
-    });
+    })
 
-    return redis
-      .smembers('foos')
-      .then((result) => expect(result.sort()).toEqual(['bar', 'foo']));
-  });
+    return redis.smembers('foos').then(result => {
+      return expect(result.sort()).toEqual(['bar', 'foo'])
+    })
+  })
   it("should return empty array if source don't exists", () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis.smembers('bars').then((result) => expect(result).toEqual([]));
-  });
-});
+    return redis.smembers('bars').then(result => {
+      return expect(result).toEqual([])
+    })
+  })
+})

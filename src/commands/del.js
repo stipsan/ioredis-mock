@@ -1,13 +1,13 @@
-import { emitNotification } from '../keyspace-notifications';
+import { emitNotification } from '../keyspace-notifications'
 
 export function del(...keys) {
-  let deleted = 0;
-  keys.forEach((key) => {
+  let deleted = 0
+  keys.forEach(key => {
     if (this.data.has(key)) {
-      deleted++;
-      emitNotification(this, 'g', key, 'del');
+      deleted++
+      emitNotification(this, 'g', key, 'del')
     }
-    this.data.delete(key);
-  });
-  return deleted;
+    this.data.delete(key)
+  })
+  return deleted
 }

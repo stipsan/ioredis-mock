@@ -1,11 +1,13 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('keys', () => {
   it('should return an empty array if there are no keys', () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis.keys('*').then((result) => expect(result).toEqual([]));
-  });
+    return redis.keys('*').then(result => {
+      return expect(result).toEqual([])
+    })
+  })
 
   it('should return all data keys', () => {
     const redis = new Redis({
@@ -13,12 +15,12 @@ describe('keys', () => {
         foo: 'bar',
         baz: 'quux',
       },
-    });
+    })
 
-    return redis
-      .keys('*')
-      .then((result) => expect(result).toEqual(['foo', 'baz']));
-  });
+    return redis.keys('*').then(result => {
+      return expect(result).toEqual(['foo', 'baz'])
+    })
+  })
 
   it('should only return keys matching the given pattern', () => {
     const redis = new Redis({
@@ -27,20 +29,26 @@ describe('keys', () => {
         baz: 'quux',
         flambé: 'baked alaska',
       },
-    });
+    })
 
-    return redis
-      .keys('f*')
-      .then((result) => expect(result).toEqual(['foo', 'flambé']));
-  });
+    return redis.keys('f*').then(result => {
+      return expect(result).toEqual(['foo', 'flambé'])
+    })
+  })
 
   it('should not return empty sets', () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
     return redis
       .sadd('a', 'b')
-      .then(() => redis.srem('a', 'b'))
-      .then(() => redis.keys('*'))
-      .then((result) => expect(result).toEqual([]));
-  });
-});
+      .then(() => {
+        return redis.srem('a', 'b')
+      })
+      .then(() => {
+        return redis.keys('*')
+      })
+      .then(result => {
+        return expect(result).toEqual([])
+      })
+  })
+})

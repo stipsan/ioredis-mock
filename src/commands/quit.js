@@ -1,4 +1,4 @@
 export function quit() {
-  this.disconnect();
-  return 'OK';
+  this.disconnect()
+  return 'OK'
 }

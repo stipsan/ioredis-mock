@@ -1,14 +1,14 @@
 export function zrem(key, ...vals) {
-  const map = this.data.get(key);
-  if (!map) return 0;
+  const map = this.data.get(key)
+  if (!map) return 0
 
-  let removed = 0;
-  vals.forEach((val) => {
+  let removed = 0
+  vals.forEach(val => {
     if (map.delete(val)) {
-      removed++;
+      removed++
     }
-  });
+  })
 
-  this.data.set(key, map);
-  return removed;
+  this.data.set(key, map)
+  return removed
 }

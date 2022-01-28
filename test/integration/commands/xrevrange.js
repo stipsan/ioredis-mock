@@ -1,12 +1,12 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('xrevrange', () => {
   it('returns an empty list on a non existing stream', () => {
-    const redis = new Redis();
-    return redis
-      .xrevrange('non-existing', '-', '+')
-      .then((events) => expect(events).toEqual([]));
-  });
+    const redis = new Redis()
+    return redis.xrevrange('non-existing', '-', '+').then(events => {
+      return expect(events).toEqual([])
+    })
+  })
 
   it('returns the contents of the stream', () => {
     const redis = new Redis({
@@ -22,7 +22,7 @@ describe('xrevrange', () => {
         'stream:stream:3-0': { polled: false },
         'stream:stream:4-0': { polled: false },
       },
-    });
+    })
     return Promise.all([
       redis.xrevrange('stream', '+', '-'),
       redis.xrevrange('stream', '2', '-'),
@@ -35,23 +35,23 @@ describe('xrevrange', () => {
         ['3-0', ['key', 'val']],
         ['2-0', ['key', 'val']],
         ['1-0', ['key', 'val']],
-      ]);
+      ])
       expect(events2).toEqual([
         ['2-0', ['key', 'val']],
         ['1-0', ['key', 'val']],
-      ]);
+      ])
       expect(events3).toEqual([
         ['4-0', ['key', 'val']],
         ['3-0', ['key', 'val']],
         ['2-0', ['key', 'val']],
-      ]);
+      ])
       expect(events4).toEqual([
         ['3-0', ['key', 'val']],
         ['2-0', ['key', 'val']],
-      ]);
-      expect(events5).toEqual([['2-0', ['key', 'val']]]);
-    });
-  });
+      ])
+      expect(events5).toEqual([['2-0', ['key', 'val']]])
+    })
+  })
 
   it('should limit the count of events', () => {
     const redis = new Redis({
@@ -65,34 +65,40 @@ describe('xrevrange', () => {
         'stream:stream:2-0': { polled: false },
         'stream:stream:3-0': { polled: false },
       },
-    });
-    return redis.xrevrange('stream', '+', '-', 'COUNT', '2').then((events) => {
+    })
+    return redis.xrevrange('stream', '+', '-', 'COUNT', '2').then(events => {
       expect(events).toEqual([
         ['3-0', ['key', 'val']],
         ['2-0', ['key', 'val']],
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   it('should throw with a wrong number of arguments', () => {
-    const redis = new Redis();
+    const redis = new Redis()
     return Promise.all([
-      redis.xrevrange('stream', '+').catch((err) => err.message),
-      redis.xrevrange('stream').catch((err) => err.message),
-      redis.xrevrange().catch((err) => err.message),
-    ]).then((errors) =>
-      errors.forEach((err) =>
-        expect(err).toBe(
+      redis.xrevrange('stream', '+').catch(err => {
+        return err.message
+      }),
+      redis.xrevrange('stream').catch(err => {
+        return err.message
+      }),
+      redis.xrevrange().catch(err => {
+        return err.message
+      }),
+    ]).then(errors => {
+      return errors.forEach(err => {
+        return expect(err).toBe(
           "ERR wrong number of arguments for 'xrevrange' command"
         )
-      )
-    );
-  });
+      })
+    })
+  })
 
   it('should throw with a missing count', () => {
-    const redis = new Redis();
-    return redis
-      .xrevrange('stream', '+', '-', 'COUNT')
-      .catch((err) => expect(err.message).toBe('ERR syntax error'));
-  });
-});
+    const redis = new Redis()
+    return redis.xrevrange('stream', '+', '-', 'COUNT').catch(err => {
+      return expect(err.message).toBe('ERR syntax error')
+    })
+  })
+})

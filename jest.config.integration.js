@@ -6,4 +6,4 @@ module.exports = {
   ...require('./jest.config'),
   testMatch: ['**/test/integration/**/*.js'],
   setupFiles: ['<rootDir>/testSetupLib.js'],
-};
+}

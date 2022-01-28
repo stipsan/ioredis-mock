@@ -1,7 +1,7 @@
 export function hvals(key) {
   if (!this.data.has(key)) {
-    return [];
+    return []
   }
 
-  return Object.values(this.data.get(key));
+  return Object.values(this.data.get(key))
 }

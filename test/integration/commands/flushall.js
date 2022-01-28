@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('flushall', () => {
   const redis = new Redis({
@@ -6,11 +6,16 @@ describe('flushall', () => {
       deleteme: 'please',
       metoo: 'pretty please',
     },
-  });
-  test('should empty current db', () =>
-    redis
+  })
+  test('should empty current db', () => {
+    return redis
       .flushall()
-      .then((status) => expect(status).toBe('OK'))
-      .then(() => expect(redis.data.keys().length).toBe(0)));
-  test.todo('should empty every db');
-});
+      .then(status => {
+        return expect(status).toBe('OK')
+      })
+      .then(() => {
+        return expect(redis.data.keys().length).toBe(0)
+      })
+  })
+  test.todo('should empty every db')
+})

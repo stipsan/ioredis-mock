@@ -1,12 +1,12 @@
-import hrtime from 'browser-process-hrtime';
-import { Buffer } from 'buffer';
+import hrtime from 'browser-process-hrtime'
+import { Buffer } from 'buffer'
 
-global.Buffer = Buffer;
+global.Buffer = Buffer
 
 export function nextTickShim(fn) {
   Promise.resolve().then(() => {
-    fn();
-  });
+    fn()
+  })
 }
 
-export const hrtimeShim = hrtime;
+export const hrtimeShim = hrtime

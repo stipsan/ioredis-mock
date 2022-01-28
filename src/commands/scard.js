@@ -1,10 +1,10 @@
 export function scard(key) {
-  const set = this.data.get(key);
+  const set = this.data.get(key)
   if (!set) {
-    return 0;
+    return 0
   }
   if (!(set instanceof Set)) {
-    throw new Error(`Key ${key} does not contain a set`);
+    throw new Error(`Key ${key} does not contain a set`)
   }
-  return this.data.get(key).size;
+  return this.data.get(key).size
 }

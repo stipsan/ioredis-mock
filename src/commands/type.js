@@ -1,30 +1,30 @@
-import isPlainObject from 'lodash.isplainobject';
+import isPlainObject from 'lodash.isplainobject'
 
 // eslint-disable-next-line consistent-return
 export function type(key) {
   if (!this.data.has(key)) {
-    return 'none';
+    return 'none'
   }
 
-  const val = this.data.get(key);
+  const val = this.data.get(key)
 
   if (val instanceof Set) {
-    return 'set';
+    return 'set'
   }
 
   if (val instanceof Map) {
-    return 'zset';
+    return 'zset'
   }
 
   if (Array.isArray(val)) {
-    return 'list';
+    return 'list'
   }
 
   if (val != null && typeof val.valueOf() === 'string') {
-    return 'string';
+    return 'string'
   }
 
   if (isPlainObject(val)) {
-    return 'hash';
+    return 'hash'
   }
 }

@@ -1,3 +1,3 @@
 export function role() {
-  return ['master', 0];
+  return ['master', 0]
 }

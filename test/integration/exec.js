@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('exec', () => {
   it('should resolve Promise.all after all operations is done', () => {
@@ -7,7 +7,7 @@ describe('exec', () => {
         user_next: '1',
         post_next: '1',
       },
-    });
+    })
 
     return redis
       .multi([
@@ -15,21 +15,21 @@ describe('exec', () => {
         ['incr', 'post_next'],
       ])
       .exec()
-      .then((results) =>
-        expect(results).toEqual([
+      .then(results => {
+        return expect(results).toEqual([
           [null, 2],
           [null, 2],
         ])
-      );
-  });
+      })
+  })
 
-  it('should support a callback function', (done) => {
+  it('should support a callback function', done => {
     const redis = new Redis({
       data: {
         user_next: '1',
         post_next: '1',
       },
-    });
+    })
 
     redis
       .multi([
@@ -40,8 +40,8 @@ describe('exec', () => {
         expect(results).toEqual([
           [null, 2],
           [null, 2],
-        ]);
-        done();
-      });
-  });
-});
+        ])
+        done()
+      })
+  })
+})

@@ -1,5 +1,5 @@
-import createCommand from '../command';
-import { customCommand } from './defineCommand';
+import createCommand from '../command'
+import { customCommand } from './defineCommand'
 
 /**
  * EVALSHA redis command
@@ -18,12 +18,12 @@ import { customCommand } from './defineCommand';
  */
 export function evalsha(sha1, numberOfKeys, ...args) {
   if (!(sha1 in this.shaScripts) || !this.shaScripts[sha1]) {
-    throw new Error(`NOSCRIPT for sha1 ${sha1}`);
+    throw new Error(`NOSCRIPT for sha1 ${sha1}`)
   }
-  const script = this.shaScripts[sha1];
+  const script = this.shaScripts[sha1]
   return createCommand(
     customCommand(numberOfKeys, script).bind(this),
     '',
     this
-  )(...args);
+  )(...args)
 }

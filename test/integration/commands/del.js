@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('del', () => {
   const redis = new Redis({
@@ -6,13 +6,23 @@ describe('del', () => {
       deleteme: 'please',
       metoo: 'pretty please',
     },
-  });
-  it('should delete passed in keys', () =>
-    redis
+  })
+  it('should delete passed in keys', () => {
+    return redis
       .del('deleteme', 'metoo')
-      .then((status) => expect(status).toBe(2))
-      .then(() => expect(redis.data.has('deleteme')).toBe(false))
-      .then(() => expect(redis.data.has('metoo')).toBe(false)));
-  it('return the number of keys removed', () =>
-    redis.del('deleteme', 'metoo').then((status) => expect(status).toBe(0)));
-});
+      .then(status => {
+        return expect(status).toBe(2)
+      })
+      .then(() => {
+        return expect(redis.data.has('deleteme')).toBe(false)
+      })
+      .then(() => {
+        return expect(redis.data.has('metoo')).toBe(false)
+      })
+  })
+  it('return the number of keys removed', () => {
+    return redis.del('deleteme', 'metoo').then(status => {
+      return expect(status).toBe(0)
+    })
+  })
+})

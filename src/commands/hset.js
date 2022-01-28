@@ -1,23 +1,23 @@
 export function hset(key, ...keyValuePairs) {
   if (!this.data.has(key)) {
-    this.data.set(key, {});
+    this.data.set(key, {})
   }
 
-  const hash = this.data.get(key);
-  let reply = 0;
+  const hash = this.data.get(key)
+  let reply = 0
 
   for (let i = 0; i < keyValuePairs.length; i += 2) {
-    const field = keyValuePairs[i];
-    const value = keyValuePairs[i + 1];
+    const field = keyValuePairs[i]
+    const value = keyValuePairs[i + 1]
 
     if (!{}.hasOwnProperty.call(hash, field)) {
-      reply++;
+      reply++
     }
 
-    hash[field] = value;
+    hash[field] = value
   }
 
-  this.data.set(key, hash);
+  this.data.set(key, hash)
 
-  return reply;
+  return reply
 }

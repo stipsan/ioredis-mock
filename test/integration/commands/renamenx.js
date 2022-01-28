@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('renamenx', () => {
   it('should return integer 1 on key rename', () => {
@@ -6,15 +6,17 @@ describe('renamenx', () => {
       data: {
         foo: 'baz',
       },
-    });
+    })
     return redis
       .renamenx('foo', 'bar')
-      .then((status) => expect(status).toBe(1))
+      .then(status => {
+        return expect(status).toBe(1)
+      })
       .then(() => {
-        expect(redis.data.has('foo')).toBe(false);
-        expect(redis.data.get('bar')).toBe('baz');
-      });
-  });
+        expect(redis.data.has('foo')).toBe(false)
+        expect(redis.data.get('bar')).toBe('baz')
+      })
+  })
 
   it('should return integer 0 if new key already exist', () => {
     const redis = new Redis({
@@ -22,13 +24,15 @@ describe('renamenx', () => {
         foo: 'baz',
         bar: 'foobar',
       },
-    });
+    })
     return redis
       .renamenx('foo', 'bar')
-      .then((status) => expect(status).toBe(0))
+      .then(status => {
+        return expect(status).toBe(0)
+      })
       .then(() => {
-        expect(redis.data.get('foo')).toBe('baz');
-        expect(redis.data.get('bar')).toBe('foobar');
-      });
-  });
-});
+        expect(redis.data.get('foo')).toBe('baz')
+        expect(redis.data.get('bar')).toBe('foobar')
+      })
+  })
+})

@@ -1,9 +1,9 @@
 export function decrby(key, decrement = 0) {
   if (!this.data.has(key)) {
-    this.data.set(key, '0');
+    this.data.set(key, '0')
   }
-  const curVal = Number(this.data.get(key));
-  const nextVal = curVal - parseInt(decrement, 10);
-  this.data.set(key, nextVal.toString());
-  return nextVal;
+  const curVal = Number(this.data.get(key))
+  const nextVal = curVal - parseInt(decrement, 10)
+  this.data.set(key, nextVal.toString())
+  return nextVal
 }

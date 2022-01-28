@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('zincrby', () => {
   const data = {
@@ -7,29 +7,33 @@ describe('zincrby', () => {
       ['bar', { value: 'bar', score: 2 }],
       ['baz', { value: 'baz', score: 3 }],
     ]),
-  };
+  }
   it('should increment the score of an item in a sorted set', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
     return redis
       .zincrby('foos', 10, 'foo')
-      .then((status) => expect(status).toBe('11'))
-      .then(() =>
-        expect(redis.data.get('foos').get('foo')).toEqual({
+      .then(status => {
+        return expect(status).toBe('11')
+      })
+      .then(() => {
+        return expect(redis.data.get('foos').get('foo')).toEqual({
           value: 'foo',
           score: 11,
         })
-      );
-  });
+      })
+  })
   it('should initialize a non-existent key', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
     return redis
       .zincrby('foos', 4, 'qux')
-      .then((status) => expect(status).toBe('4'))
+      .then(status => {
+        return expect(status).toBe('4')
+      })
       .then(() => {
         expect(redis.data.get('foos').get('qux')).toEqual({
           value: 'qux',
           score: 4,
-        });
-      });
-  });
-});
+        })
+      })
+  })
+})

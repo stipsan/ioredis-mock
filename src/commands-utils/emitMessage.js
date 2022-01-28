@@ -6,13 +6,13 @@ export default function emitMessage(redisMock, channel, message, pattern) {
         pattern,
         channel,
         message
-      );
+      )
     } else {
       redisMock.emit(
         Buffer.isBuffer(message) ? 'messageBuffer' : 'message',
         channel,
         message
-      );
+      )
     }
-  });
+  })
 }

@@ -1,3 +1,3 @@
 export function save() {
-  return 'OK';
+  return 'OK'
 }

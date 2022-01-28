@@ -1,3 +1,3 @@
 export function auth() {
-  return 'OK';
+  return 'OK'
 }

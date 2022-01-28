@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('zinterstore', () => {
   const data = {
@@ -20,34 +20,34 @@ describe('zinterstore', () => {
       ['thirtieth', { score: 30, value: 'thirtiest' }],
     ]),
     key: 'value',
-  };
+  }
 
   it('should intersect two sorted sets and return the number of resulting elements', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 2, 'foo', 'bar')
-      .then((res) => expect(res).toEqual(3));
-  });
+    return redis.zinterstore('dest', 2, 'foo', 'bar').then(res => {
+      return expect(res).toEqual(3)
+    })
+  })
 
   it('should return 0 if the intersection is an empty set', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 2, 'foo', 'baz')
-      .then((res) => expect(res).toEqual(0));
-  });
+    return redis.zinterstore('dest', 2, 'foo', 'baz').then(res => {
+      return expect(res).toEqual(0)
+    })
+  })
 
   it('should not create a sorted set if the intersection is an empty set', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
     return redis.zinterstore('dest', 2, 'foo', 'baz').then(() => {
-      expect(redis.data.get('dest')).toBe(undefined);
-    });
-  });
+      expect(redis.data.get('dest')).toBe(undefined)
+    })
+  })
 
   it('should intersect two sorted sets with the correct data in the specified key', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
     return redis.zinterstore('dest', 2, 'foo', 'bar').then(() => {
       expect(redis.data.get('dest')).toEqual(
@@ -56,39 +56,39 @@ describe('zinterstore', () => {
           ['third', { score: 6, value: 'third' }],
           ['fourth', { score: 8, value: 'fourth' }],
         ])
-      );
-    });
-  });
+      )
+    })
+  })
 
   it('should throw a syntax error if more keys specified than numKeys', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 2, 'foo', 'bar', 'baz')
-      .catch((err) => expect(err.message).toBe('ERR syntax error'));
-  });
+    return redis.zinterstore('dest', 2, 'foo', 'bar', 'baz').catch(err => {
+      return expect(err.message).toBe('ERR syntax error')
+    })
+  })
 
   it('should throw a syntax error if fewer keys specified than numKeys', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 3, 'foo', 'bar')
-      .catch((err) => expect(err.message).toBe('ERR syntax error'));
-  });
+    return redis.zinterstore('dest', 3, 'foo', 'bar').catch(err => {
+      return expect(err.message).toBe('ERR syntax error')
+    })
+  })
 
   it('should return 0 if one of the keys does not exist', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 2, 'foo', 'doesnotexist')
-      .then((res) => expect(res).toEqual(0));
-  });
+    return redis.zinterstore('dest', 2, 'foo', 'doesnotexist').then(res => {
+      return expect(res).toEqual(0)
+    })
+  })
 
   it('should return 0 if one of the keys is not a sorted set', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zinterstore('dest', 2, 'foo', 'key')
-      .then((res) => expect(res).toEqual(0));
-  });
-});
+    return redis.zinterstore('dest', 2, 'foo', 'key').then(res => {
+      return expect(res).toEqual(0)
+    })
+  })
+})

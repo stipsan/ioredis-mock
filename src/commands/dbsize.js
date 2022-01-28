@@ -1,3 +1,3 @@
 export function dbsize() {
-  return this.data.keys().length;
+  return this.data.keys().length
 }

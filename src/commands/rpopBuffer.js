@@ -1,5 +1,5 @@
-import { rpop } from './rpop';
+import { rpop } from './rpop'
 
 export function rpopBuffer(key) {
-  return rpop.apply(this, [key]);
+  return rpop.apply(this, [key])
 }

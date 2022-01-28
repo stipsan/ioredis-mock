@@ -1,3 +1,3 @@
 export function hlen(key) {
-  return this.data.has(key) ? Object.keys(this.data.get(key)).length : 0;
+  return this.data.has(key) ? Object.keys(this.data.get(key)).length : 0
 }
