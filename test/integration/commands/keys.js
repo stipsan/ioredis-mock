@@ -13,7 +13,7 @@ describe('keys', () => {
     await redis.set('foo', 'bar')
     await redis.set('baz', 'quux')
 
-    expect(await redis.keys('*')).toEqual(['foo', 'baz'])
+    expect((await redis.keys('*')).sort()).toEqual(['baz', 'foo'])
     redis.disconnect()
   })
 
@@ -23,7 +23,7 @@ describe('keys', () => {
     await redis.set('baz', 'quux')
     await redis.set('flambé', 'baked alaska')
 
-    expect(await redis.keys('f*')).toEqual(['foo', 'flambé'])
+    expect((await redis.keys('f*')).sort()).toEqual(['flambé', 'foo'])
     redis.disconnect()
   })
 
