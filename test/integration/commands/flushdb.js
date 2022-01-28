@@ -1,21 +1,16 @@
 import Redis from 'ioredis'
 
 describe('flushdb', () => {
-  const redis = new Redis({
-    data: {
-      deleteme: 'please',
-      metoo: 'pretty please',
-    },
-  })
-  test('should empty current db', () => {
-    return redis
-      .flushdb()
-      .then(status => {
-        return expect(status).toBe('OK')
-      })
-      .then(() => {
-        return expect(redis.data.keys().length).toBe(0)
-      })
+  test('should empty current db', async () => {
+    const redis = new Redis()
+    await redis.set('deleteme', 'please')
+    await redis.set('metoo', 'pretty please')
+
+    expect(await redis.flushdb()).toBe('OK')
+
+    expect(await redis.get('deleteme')).toBe(null)
+    expect(await redis.get('metoo')).toBe(null)
+    redis.disconnect()
   })
   test('should stay in sync cross instances', async () => {
     const redis1 = new Redis()
