@@ -1,11 +1,12 @@
 import Redis from 'ioredis'
 
 describe('bgsave', () => {
-  it('should return OK', () => {
+  it('should return OK', async () => {
     const redis = new Redis()
 
-    return redis.bgsave().then(status => {
-      return expect(status).toBe('OK')
-    })
+    expect(await redis.bgsave()).toMatchInlineSnapshot(
+      '"Background saving started"'
+    )
+    redis.disconnect()
   })
 })
