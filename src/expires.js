@@ -1,7 +1,10 @@
 export function createSharedExpires() {
-  const expires = {};
+  let expires = {};
 
   return Object.freeze({
+    clear() {
+      expires = {};
+    },
     get(key) {
       return expires[key];
     },
@@ -23,6 +26,7 @@ export function createSharedExpires() {
 export function createExpires(sharedExpires, keyPrefix = '') {
   function createInstance(prefix) {
     return {
+      clear: () => sharedExpires.clear(),
       get: (key) => sharedExpires.get(`${prefix}${key}`),
       set: (key, timestamp) => sharedExpires.set(`${prefix}${key}`, timestamp),
       has: (key) => sharedExpires.has(`${prefix}${key}`),
