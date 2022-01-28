@@ -1,3 +1,4 @@
+import hrtime from 'browser-process-hrtime';
 import { Buffer } from 'buffer';
 
 global.Buffer = Buffer;
@@ -7,3 +8,5 @@ export function nextTickShim(fn) {
     fn();
   });
 }
+
+export const hrtimeShim = hrtime;
