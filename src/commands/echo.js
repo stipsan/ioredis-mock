@@ -1,3 +1,3 @@
 export function echo(message) {
-  return message;
+  return message
 }

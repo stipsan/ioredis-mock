@@ -1,16 +1,16 @@
 export function zscore(key, member) {
-  const map = this.data.get(key);
+  const map = this.data.get(key)
 
   // @TODO investigate a more stable way to detect sorted lists
   if (!map || !(map instanceof Map)) {
-    return null;
+    return null
   }
 
-  const entry = map.get(member);
+  const entry = map.get(member)
 
   if (!entry) {
-    return null;
+    return null
   }
 
-  return entry.score.toString();
+  return entry.score.toString()
 }

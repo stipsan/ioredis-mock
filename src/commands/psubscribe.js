@@ -1,22 +1,22 @@
 import {
   getSubscribedChannels,
   subscribeToChannel,
-} from '../commands-utils/channel-subscription';
+} from '../commands-utils/channel-subscription'
 
 export function psubscribe(...args) {
-  args.forEach((pattern) => {
+  args.forEach(pattern => {
     if (!this.patternChannels.instanceListeners) {
-      this.patternChannels.instanceListeners = new Map();
+      this.patternChannels.instanceListeners = new Map()
     }
-    subscribeToChannel(this, pattern, this.patternChannels, true);
-  });
+    subscribeToChannel(this, pattern, this.patternChannels, true)
+  })
 
   const numberOfSubscribedChannels = getSubscribedChannels(
     this,
     this.patternChannels
-  ).length;
+  ).length
   if (numberOfSubscribedChannels > 0) {
-    this.subscriberMode = true;
+    this.subscriberMode = true
   }
-  return numberOfSubscribedChannels;
+  return numberOfSubscribedChannels
 }

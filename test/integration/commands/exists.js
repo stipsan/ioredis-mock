@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('exists', () => {
   const redis = new Redis({
@@ -6,7 +6,10 @@ describe('exists', () => {
       foo: '1',
       bar: '1',
     },
-  });
-  it('should return how many keys exists', () =>
-    redis.exists('foo', 'bar', 'baz').then((status) => expect(status).toBe(2)));
-});
+  })
+  it('should return how many keys exists', () => {
+    return redis.exists('foo', 'bar', 'baz').then(status => {
+      return expect(status).toBe(2)
+    })
+  })
+})

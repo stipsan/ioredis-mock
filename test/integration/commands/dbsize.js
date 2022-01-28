@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('dbsize', () => {
   it('should return how many keys exists in db', () => {
@@ -7,8 +7,10 @@ describe('dbsize', () => {
         foo: 'bar',
         bar: 'foo',
       },
-    });
+    })
 
-    return redis.dbsize().then((result) => expect(result).toBe(2));
-  });
-});
+    return redis.dbsize().then(result => {
+      return expect(result).toBe(2)
+    })
+  })
+})

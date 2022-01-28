@@ -1,17 +1,17 @@
-import { zrange } from './index';
+import { zrange } from './index'
 
 export function zremrangebyrank(key, s, e) {
-  const vals = zrange.call(this, key, s, e);
+  const vals = zrange.call(this, key, s, e)
 
   if (!this.data.has(key)) {
-    return 0; // Short circuit.
+    return 0 // Short circuit.
   }
 
-  const map = this.data.get(key);
-  vals.forEach((val) => {
-    map.delete(val);
-  });
+  const map = this.data.get(key)
+  vals.forEach(val => {
+    map.delete(val)
+  })
 
-  this.data.set(key, map);
-  return vals.length;
+  this.data.set(key, map)
+  return vals.length
 }

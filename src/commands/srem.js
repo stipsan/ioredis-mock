@@ -1,22 +1,22 @@
 export function srem(key, ...vals) {
   if (!this.data.has(key)) {
-    return 0;
+    return 0
   }
 
-  let removed = 0;
-  const set = this.data.get(key);
-  vals.forEach((val) => {
+  let removed = 0
+  const set = this.data.get(key)
+  vals.forEach(val => {
     if (set.has(val)) {
-      removed++;
+      removed++
     }
-    set.delete(val);
-  });
+    set.delete(val)
+  })
 
   if (set.size === 0) {
-    this.data.delete(key);
+    this.data.delete(key)
   } else {
-    this.data.set(key, set);
+    this.data.set(key, set)
   }
 
-  return removed;
+  return removed
 }

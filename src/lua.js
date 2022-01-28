@@ -1,5 +1,5 @@
-import fengari from 'fengari';
-import interop from 'fengari-interop';
+import fengari from 'fengari'
+import interop from 'fengari-interop'
 
 const {
   lua,
@@ -7,16 +7,16 @@ const {
   lauxlib,
   to_luastring: toLuaString,
   to_jsstring: toJsString,
-} = fengari;
+} = fengari
 
-const luaExecString = (L) => (str) => {
-  const retCode = lauxlib.luaL_dostring(L, toLuaString(str));
+const luaExecString = L => str => {
+  const retCode = lauxlib.luaL_dostring(L, toLuaString(str))
   if (retCode !== 0) {
-    const errorMsg = lua.lua_tojsstring(L, -1);
-    const message = `Error trying to loading or executing lua code string in VM: ${errorMsg}`;
-    throw new Error(message);
+    const errorMsg = lua.lua_tojsstring(L, -1)
+    const message = `Error trying to loading or executing lua code string in VM: ${errorMsg}`
+    throw new Error(message)
   }
-};
+}
 
 // DEBUGGING PRINT TOOL
 // const printStack = L => msg => {
@@ -35,144 +35,143 @@ const luaExecString = (L) => (str) => {
 //   console.log(output.join('\n'))
 // };
 
-const getTopLength = (L) => {
+const getTopLength = L => {
   // get length of array in top of the stack
-  lua.lua_len(L, -1);
-  const length = lua.lua_tointeger(L, -1);
-  lua.lua_pop(L, 1);
-  return length;
+  lua.lua_len(L, -1)
+  const length = lua.lua_tointeger(L, -1)
+  lua.lua_pop(L, 1)
+  return length
   // ~get length of array in top of the stack
-};
+}
 
-const typeOf = (L) => (pos) =>
-  toJsString(lua.lua_typename(L, lua.lua_type(L, pos)));
+const typeOf = L => pos => toJsString(lua.lua_typename(L, lua.lua_type(L, pos)))
 
-const getTopKeys = (L) => {
-  if (lua.lua_isnil(L, -1)) throw new Error('cannot get keys on nil');
+const getTopKeys = L => {
+  if (lua.lua_isnil(L, -1)) throw new Error('cannot get keys on nil')
   if (!lua.lua_istable(L, -1))
-    throw new Error(`non-tables don't have keys! type is "${typeOf(L)(-1)}"`);
-  lua.lua_pushnil(L);
-  const keys = [];
+    throw new Error(`non-tables don't have keys! type is "${typeOf(L)(-1)}"`)
+  lua.lua_pushnil(L)
+  const keys = []
   while (lua.lua_next(L, -2) !== 0) {
-    keys.push(interop.tojs(L, -2));
-    lua.lua_pop(L, 1);
+    keys.push(interop.tojs(L, -2))
+    lua.lua_pop(L, 1)
   }
-  return keys;
-};
+  return keys
+}
 
-const isTopArray = (L) => () => {
+const isTopArray = L => () => {
   try {
-    const keys = getTopKeys(L);
+    const keys = getTopKeys(L)
     // reversing as putting and getting things from the stack ends with everything upside down.
-    return keys.reverse().every((v, i) => v === i + 1);
+    return keys.reverse().every((v, i) => v === i + 1)
   } catch (e) {
-    return false;
+    return false
   }
-};
+}
 
-const makeReturnValue = (L) => {
-  const isArray = isTopArray(L)();
+const makeReturnValue = L => {
+  const isArray = isTopArray(L)()
 
   if (!isArray) {
-    const retVal = interop.tojs(L, -1);
+    const retVal = interop.tojs(L, -1)
     if (Array.isArray(retVal)) {
       // we push 'null' into position 0 in Arrays because in lua Arrays are one-based
       // see src/commands/defineCommand:callToRedisCommand
       // this removes the null element before returning
-      return retVal.slice(1);
+      return retVal.slice(1)
     }
-    return retVal;
+    return retVal
   }
 
-  const arrayLength = getTopLength(L);
+  const arrayLength = getTopLength(L)
 
-  const table = interop.tojs(L, -1);
-  const retVal = [];
+  const table = interop.tojs(L, -1)
+  const retVal = []
 
   if (arrayLength === 0) {
-    lua.lua_pop(L, 1);
-    return retVal;
+    lua.lua_pop(L, 1)
+    return retVal
   }
 
   for (let i = 1; i <= arrayLength; i++) {
-    interop.push(L, table.get(i));
-    retVal.push(makeReturnValue(L));
+    interop.push(L, table.get(i))
+    retVal.push(makeReturnValue(L))
   }
 
-  lua.lua_pop(L, 1);
-  return retVal;
-};
+  lua.lua_pop(L, 1)
+  return retVal
+}
 
-const popReturnValue = (L) => (topBeforeCall) => {
-  const numReturn = lua.lua_gettop(L) - topBeforeCall + 1;
-  let ret;
+const popReturnValue = L => topBeforeCall => {
+  const numReturn = lua.lua_gettop(L) - topBeforeCall + 1
+  let ret
   if (numReturn > 0) {
-    ret = makeReturnValue(L);
+    ret = makeReturnValue(L)
   }
-  lua.lua_settop(L, topBeforeCall);
-  return ret;
-};
+  lua.lua_settop(L, topBeforeCall)
+  return ret
+}
 
-const pushTable = (L) => (obj) => {
-  lua.lua_newtable(L);
-  const index = lua.lua_gettop(L);
+const pushTable = L => obj => {
+  lua.lua_newtable(L)
+  const index = lua.lua_gettop(L)
 
-  Object.keys(obj).forEach((fieldName) => {
-    interop.push(L, fieldName);
+  Object.keys(obj).forEach(fieldName => {
+    interop.push(L, fieldName)
     // eslint-disable-next-line no-use-before-define
-    push(L)(obj[fieldName]);
-    lua.lua_settable(L, index);
-  });
-};
+    push(L)(obj[fieldName])
+    lua.lua_settable(L, index)
+  })
+}
 
-const pushArray = (L) => (array) => {
-  lua.lua_newtable(L);
-  const subTableIndex = lua.lua_gettop(L);
+const pushArray = L => array => {
+  lua.lua_newtable(L)
+  const subTableIndex = lua.lua_gettop(L)
 
   array.forEach((e, i) => {
-    interop.push(L, i + 1);
-    interop.push(L, e);
-    lua.lua_settable(L, subTableIndex);
-  });
-};
+    interop.push(L, i + 1)
+    interop.push(L, e)
+    lua.lua_settable(L, subTableIndex)
+  })
+}
 
-const push = (L) => (value) => {
+const push = L => value => {
   if (Array.isArray(value)) {
-    pushArray(L)(value);
+    pushArray(L)(value)
   } else if (value && typeof value === 'object' && !Array.isArray(value)) {
-    pushTable(L)(value);
+    pushTable(L)(value)
   } else {
-    interop.push(L, value);
+    interop.push(L, value)
   }
-};
+}
 
-const defineGlobalArray = (L) => (array, name) => {
-  push(L)(array);
-  lua.lua_setglobal(L, toLuaString(name));
-};
+const defineGlobalArray = L => (array, name) => {
+  push(L)(array)
+  lua.lua_setglobal(L, toLuaString(name))
+}
 
-const defineGlobalFunction = (L) => (fn, name) => {
+const defineGlobalFunction = L => (fn, name) => {
   // define global fn call
-  lua.lua_pushjsfunction(L, fn);
-  lua.lua_setglobal(L, toLuaString(name));
-};
+  lua.lua_pushjsfunction(L, fn)
+  lua.lua_setglobal(L, toLuaString(name))
+}
 
-const extractArgs = (L) => () => {
-  const top = lua.lua_gettop(L);
-  const args = [];
-  let a = -top;
+const extractArgs = L => () => {
+  const top = lua.lua_gettop(L)
+  const args = []
+  let a = -top
   while (a < 0) {
-    args.push(a);
-    a += 1;
+    args.push(a)
+    a += 1
   }
-  return args.map((i) => interop.tojs(L, i));
-};
+  return args.map(i => interop.tojs(L, i))
+}
 
 export const init = () => {
   // init fengari
-  const L = lauxlib.luaL_newstate();
-  lualib.luaL_openlibs(L);
-  interop.luaopen_js(L);
+  const L = lauxlib.luaL_newstate()
+  lualib.luaL_openlibs(L)
+  interop.luaopen_js(L)
   return {
     L,
     defineGlobalFunction: defineGlobalFunction(L),
@@ -184,10 +183,10 @@ export const init = () => {
       isTopArray: isTopArray(L),
       push: push(L),
     },
-  };
-};
+  }
+}
 
-export const dispose = (vm) => {
-  const L = vm.L || vm;
-  lua.lua_close(L);
-};
+export const dispose = vm => {
+  const L = vm.L || vm
+  lua.lua_close(L)
+}

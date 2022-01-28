@@ -1,31 +1,31 @@
 import {
   getSubscribedChannels,
   unsubscribeFromChannel,
-} from '../commands-utils/channel-subscription';
+} from '../commands-utils/channel-subscription'
 
 export function unsubscribe(...args) {
   if (args.length === 0) {
-    getSubscribedChannels(this, this.channels).forEach((channel) => {
-      unsubscribeFromChannel(this, channel, this.channels);
-    });
+    getSubscribedChannels(this, this.channels).forEach(channel => {
+      unsubscribeFromChannel(this, channel, this.channels)
+    })
 
-    return 0;
+    return 0
   }
 
-  args.forEach((chan) => {
-    unsubscribeFromChannel(this, chan, this.channels);
-  });
+  args.forEach(chan => {
+    unsubscribeFromChannel(this, chan, this.channels)
+  })
 
   const numberOfSubscribedChannels = getSubscribedChannels(
     this,
     this.channels
-  ).length;
+  ).length
   if (
     numberOfSubscribedChannels +
       getSubscribedChannels(this, this.patternChannels).length ===
     0
   ) {
-    this.subscriberMode = false;
+    this.subscriberMode = false
   }
-  return numberOfSubscribedChannels;
+  return numberOfSubscribedChannels
 }

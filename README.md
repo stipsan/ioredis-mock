@@ -24,7 +24,7 @@ Check the [compatibility table](compat.md) for supported redis commands.
 ## Usage ([try it in your browser with RunKit](https://runkit.com/npm/ioredis-mock))
 
 ```js
-const Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock')
 const redis = new Redis({
   // `options.data` does not exist in `ioredis`, only `ioredis-mock`
   data: {
@@ -36,7 +36,7 @@ const redis = new Redis({
     'user:1': { id: '1', username: 'superman', email: 'clark@daily.planet' },
     'user:2': { id: '2', username: 'batman', email: 'bruce@wayne.enterprises' },
   },
-});
+})
 // Basically use it just like ioredis
 ```
 
@@ -45,11 +45,11 @@ const redis = new Redis({
 There's a browser build available. You can import it directly (`import Redis from 'ioredis-mock/browser.js'`), or use it on unpkg.com:
 
 ```js
-import Redis from 'https://unpkg.com/ioredis-mock';
+import Redis from 'https://unpkg.com/ioredis-mock'
 
-const redis = new Redis();
-redis.set('foo', 'bar');
-console.log(await redis.get('foo'));
+const redis = new Redis()
+redis.set('foo', 'bar')
+console.log(await redis.get('foo'))
 ```
 
 ### Breaking API changes from v5
@@ -57,38 +57,38 @@ console.log(await redis.get('foo'));
 Before v6, each instance of `ioredis-mock` lived in isolation:
 
 ```js
-const Redis = require('ioredis-mock');
-const redis1 = new Redis();
-const redis2 = new Redis();
+const Redis = require('ioredis-mock')
+const redis1 = new Redis()
+const redis2 = new Redis()
 
-await redis1.set('foo', 'bar');
-console.log(await redis1.get('foo'), await redis2.get('foo')); // 'bar', null
+await redis1.set('foo', 'bar')
+console.log(await redis1.get('foo'), await redis2.get('foo')) // 'bar', null
 ```
 
 In v6 the [internals were rewritten](https://github.com/stipsan/ioredis-mock/pull/1110) to behave more like real life redis, if the host and port is the same, the context is now shared:
 
 ```js
-const Redis = require('ioredis-mock');
-const redis1 = new Redis();
-const redis2 = new Redis();
-const redis3 = new Redis({ port: 6380 }); // 6379 is the default port
+const Redis = require('ioredis-mock')
+const redis1 = new Redis()
+const redis2 = new Redis()
+const redis3 = new Redis({ port: 6380 }) // 6379 is the default port
 
-await redis1.set('foo', 'bar');
+await redis1.set('foo', 'bar')
 console.log(
   await redis1.get('foo'), // 'bar'
   await redis2.get('foo'), // 'bar'
   await redis3.get('foo') // null
-);
+)
 ```
 
 And since `ioredis-mock` now persist data between instances, you'll [likely](https://github.com/luin/ioredis/blob/8278ec0a435756c54ba4f98587aec1a913e8b7d3/test/helpers/global.ts#L8) need to run `flushall` between testing suites:
 
 ```js
-const Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock')
 
-afterEach((done) => {
-  new Redis().flushall().then(() => done());
-});
+afterEach(done => {
+  new Redis().flushall().then(() => done())
+})
 ```
 
 #### `createConnectedClient` is deprecated
@@ -110,15 +110,15 @@ We also support redis [publish/subscribe](https://redis.io/topics/pubsub) channe
 Like [ioredis](https://github.com/luin/ioredis#pubsub), you need two clients:
 
 ```js
-const Redis = require('ioredis-mock');
-const redisPub = new Redis();
-const redisSub = new Redis();
+const Redis = require('ioredis-mock')
+const redisPub = new Redis()
+const redisSub = new Redis()
 
 redisSub.on('message', (channel, message) => {
-  console.log(`Received ${message} from ${channel}`);
-});
-redisSub.subscribe('emails');
-redisPub.publish('emails', 'clark@daily.planet');
+  console.log(`Received ${message} from ${channel}`)
+})
+redisSub.subscribe('emails')
+redisPub.publish('emails', 'clark@daily.planet')
 ```
 
 ### Promises
@@ -126,10 +126,10 @@ redisPub.publish('emails', 'clark@daily.planet');
 By default, ioredis-mock uses the native Promise library. If you need (or prefer) [bluebird](http://bluebirdjs.com/) promises, set `Redis.Promise`:
 
 ```js
-var Promise = require('bluebird');
-var Redis = require('ioredis-mock');
+var Promise = require('bluebird')
+var Redis = require('ioredis-mock')
 
-Redis.Promise = Promise;
+Redis.Promise = Promise
 ```
 
 ### Lua scripting
@@ -142,26 +142,26 @@ You could define a custom command `multiply` which accepts one
 key and one argument. A redis key, where you can get the multiplicand, and an argument which will be the multiplicator:
 
 ```js
-const Redis = require('ioredis-mock');
-const redis = new Redis({ data: { k1: 5 } });
+const Redis = require('ioredis-mock')
+const redis = new Redis({ data: { k1: 5 } })
 const commandDefinition = {
   numberOfKeys: 1,
   lua: 'return redis.call("GET", KEYS[1]) * ARGV[1]',
-};
-redis.defineCommand('multiply', commandDefinition); // defineCommand(name, definition)
+}
+redis.defineCommand('multiply', commandDefinition) // defineCommand(name, definition)
 // now we can call our brand new multiply command as an ordinary command
-redis.multiply('k1', 10).then((result) => {
-  expect(result).toBe(5 * 10);
-});
+redis.multiply('k1', 10).then(result => {
+  expect(result).toBe(5 * 10)
+})
 ```
 
 You can also achieve the same effect by using the `eval` command:
 
 ```js
-const Redis = require('ioredis-mock');
-const redis = new Redis({ data: { k1: 5 } });
-const result = redis.eval(`return redis.call("GET", "k1") * 10`);
-expect(result).toBe(5 * 10);
+const Redis = require('ioredis-mock')
+const redis = new Redis({ data: { k1: 5 } })
+const result = redis.eval(`return redis.call("GET", "k1") * 10`)
+expect(result).toBe(5 * 10)
 ```
 
 note we are calling the ordinary redis `GET` command by using the global `redis` object's `call` method.
@@ -178,11 +178,11 @@ As a difference from ioredis we currently don't support:
 Work on Cluster support has started, the current implementation is minimal and PRs welcome #359
 
 ```js
-const Redis = require('ioredis-mock');
+const Redis = require('ioredis-mock')
 
-const cluster = new Redis.Cluster(['redis://localhost:7001']);
-const nodes = cluster.nodes;
-expect(nodes.length).toEqual(1);
+const cluster = new Redis.Cluster(['redis://localhost:7001'])
+const nodes = cluster.nodes
+expect(nodes.length).toEqual(1)
 ```
 
 ## [Roadmap](https://github.com/users/stipsan/projects/1/views/4)

@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('randomkey', () => {
   it('should return a random key', () => {
@@ -7,16 +7,18 @@ describe('randomkey', () => {
         foo: 'bar',
         bar: 'foo',
       },
-    });
+    })
 
-    return redis
-      .randomkey()
-      .then((result) => expect(['foo', 'bar']).toContain(result));
-  });
+    return redis.randomkey().then(result => {
+      return expect(['foo', 'bar']).toContain(result)
+    })
+  })
 
   it('should return null if db is empty', () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis.randomkey().then((result) => expect(result).toBe(null));
-  });
-});
+    return redis.randomkey().then(result => {
+      return expect(result).toBe(null)
+    })
+  })
+})

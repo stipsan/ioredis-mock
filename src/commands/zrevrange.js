@@ -1,34 +1,34 @@
-import orderBy from 'lodash.orderby';
+import orderBy from 'lodash.orderby'
 
-import { slice } from './zrange-command.common';
+import { slice } from './zrange-command.common'
 
 export function zrevrange(key, s, e, w) {
-  const map = this.data.get(key);
+  const map = this.data.get(key)
   if (!map) {
-    return [];
+    return []
   }
 
   // @TODO investigate a more stable way to detect sorted lists
   if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
-    return [];
+    return []
   }
 
-  const start = parseInt(s, 10);
-  const end = parseInt(e, 10);
+  const start = parseInt(s, 10)
+  const end = parseInt(e, 10)
 
   let val = orderBy(
     Array.from(map.values()),
     ['score', 'value'],
     ['desc', 'desc']
-  ).map((it) => {
+  ).map(it => {
     if (w) {
-      return [it.value, it.score];
+      return [it.value, it.score]
     }
 
-    return [it.value];
-  });
+    return [it.value]
+  })
 
-  val = slice(val, start, end);
+  val = slice(val, start, end)
 
-  return [].concat(...val);
+  return [].concat(...val)
 }

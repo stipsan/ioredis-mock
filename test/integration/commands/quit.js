@@ -1,7 +1,10 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('quit', () => {
-  const redis = new Redis();
-  it('should return OK', () =>
-    redis.quit().then((res) => expect(res).toBe('OK')));
-});
+  const redis = new Redis()
+  it('should return OK', () => {
+    return redis.quit().then(res => {
+      return expect(res).toBe('OK')
+    })
+  })
+})

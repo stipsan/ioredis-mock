@@ -1,6 +1,6 @@
 export function info() {
   if (this.data.has('info')) {
-    return this.data.get('info');
+    return this.data.get('info')
   }
 
   const defaultInfo = [
@@ -143,7 +143,7 @@ export function info() {
     '',
     '# Keyspace',
     'db0:keys=38,expires=0,avg_ttl=0',
-  ].join('\r\n');
+  ].join('\r\n')
 
-  return defaultInfo;
+  return defaultInfo
 }

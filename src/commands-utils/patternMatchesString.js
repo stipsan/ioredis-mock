@@ -44,10 +44,10 @@ export function stringmatchlen(
     switch (pattern[p]) {
       case '*':
         while (patternLen && pattern[p + 1] === '*') {
-          p++;
-          patternLen--;
+          p++
+          patternLen--
         }
-        if (patternLen === 1) return true; /* match */
+        if (patternLen === 1) return true /* match */
         while (stringLen) {
           if (
             stringmatchlen(
@@ -60,98 +60,98 @@ export function stringmatchlen(
               nocase
             )
           ) {
-            return true; /* match */
+            return true /* match */
           }
-          s++;
-          stringLen--;
+          s++
+          stringLen--
         }
-        return false; /* no match */
+        return false /* no match */
       case '?':
-        s++;
-        stringLen--;
-        break;
+        s++
+        stringLen--
+        break
       case '[': {
-        let match = false;
+        let match = false
 
-        p++;
-        patternLen--;
-        const not = pattern[p] === '^';
+        p++
+        patternLen--
+        const not = pattern[p] === '^'
         if (not) {
-          p++;
-          patternLen--;
+          p++
+          patternLen--
         }
         // eslint-disable-next-line no-constant-condition
         while (true) {
           if (pattern[p] === '\\' && patternLen >= 2) {
-            p++;
-            patternLen--;
-            if (pattern[p] === string[s]) match = true;
+            p++
+            patternLen--
+            if (pattern[p] === string[s]) match = true
           } else if (pattern[p] === ']') {
-            break;
+            break
           } else if (patternLen === 0) {
-            p--;
-            patternLen++;
-            break;
+            p--
+            patternLen++
+            break
           } else if (patternLen >= 3 && pattern[p + 1] === '-') {
-            let start = pattern[p];
-            let end = pattern[p + 2];
-            let c = string[s];
+            let start = pattern[p]
+            let end = pattern[p + 2]
+            let c = string[s]
             if (start > end) {
-              const t = start;
-              start = end;
-              end = t;
+              const t = start
+              start = end
+              end = t
             }
             if (nocase) {
-              start = start.toLowerCase();
-              end = end.toLowerCase();
-              c = c.toLowerCase();
+              start = start.toLowerCase()
+              end = end.toLowerCase()
+              c = c.toLowerCase()
             }
-            p += 2;
-            patternLen -= 2;
+            p += 2
+            patternLen -= 2
             if (c >= start && c <= end) {
-              match = true;
+              match = true
             }
           } else if (!nocase) {
-            if (pattern[p] === string[s]) match = true;
+            if (pattern[p] === string[s]) match = true
           } else if (pattern[p].toLowerCase() === string[s].toLowerCase()) {
-            match = true;
+            match = true
           }
-          p++;
-          patternLen--;
+          p++
+          patternLen--
         }
-        if (not) match = !match;
-        if (!match) return false; /* no match */
-        s++;
-        stringLen--;
-        break;
+        if (not) match = !match
+        if (!match) return false /* no match */
+        s++
+        stringLen--
+        break
       }
       case '\\':
         if (patternLen >= 2) {
-          p++;
-          patternLen--;
+          p++
+          patternLen--
         }
       // eslint-disable-line no-fallthrough
       default:
         if (!nocase) {
-          if (pattern[p] !== string[s]) return false; /* no match */
+          if (pattern[p] !== string[s]) return false /* no match */
         } else if (pattern[p].toLowerCase() !== string[s].toLowerCase()) {
-          return false; /* no match */
+          return false /* no match */
         }
-        s++;
-        stringLen--;
-        break;
+        s++
+        stringLen--
+        break
     }
-    p++;
-    patternLen--;
+    p++
+    patternLen--
     if (stringLen === 0) {
       while (pattern[p] === '*') {
-        p++;
-        patternLen--;
+        p++
+        patternLen--
       }
-      break;
+      break
     }
   }
-  return patternLen === 0 && stringLen === 0;
+  return patternLen === 0 && stringLen === 0
 }
 
 function stringmatch(pattern, string, nocase) {
@@ -163,9 +163,9 @@ function stringmatch(pattern, string, nocase) {
     0,
     string.length,
     nocase
-  );
+  )
 }
 
 export default function patternMatchesString(pattern, string) {
-  return stringmatch(pattern, string, false);
+  return stringmatch(pattern, string, false)
 }

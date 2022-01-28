@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('persist', () => {
   it('should remove expire status on key', () => {
@@ -6,28 +6,34 @@ describe('persist', () => {
       data: {
         foo: 'bar',
       },
-    });
+    })
     return redis
       .expire('foo', 1)
-      .then(() => redis.persist('foo'))
-      .then((status) => {
-        expect(status).toBe(1);
-        expect(redis.expires.has('foo')).toBe(false);
-      });
-  });
+      .then(() => {
+        return redis.persist('foo')
+      })
+      .then(status => {
+        expect(status).toBe(1)
+        expect(redis.expires.has('foo')).toBe(false)
+      })
+  })
 
   it('should return 0 if key does not have expire status', () => {
     const redis = new Redis({
       data: {
         foo: 'bar',
       },
-    });
-    return redis.persist('foo').then((status) => expect(status).toBe(0));
-  });
+    })
+    return redis.persist('foo').then(status => {
+      return expect(status).toBe(0)
+    })
+  })
 
   it('should return 0 if key does not exist', () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis.persist('foo').then((status) => expect(status).toBe(0));
-  });
-});
+    return redis.persist('foo').then(status => {
+      return expect(status).toBe(0)
+    })
+  })
+})

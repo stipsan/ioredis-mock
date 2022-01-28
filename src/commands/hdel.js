@@ -1,21 +1,21 @@
 export function hdel(key, ...fields) {
-  const value = this.data.get(key);
+  const value = this.data.get(key)
   if (!value) {
-    return 0;
+    return 0
   }
-  const numDeleted = fields.filter((field) => {
+  const numDeleted = fields.filter(field => {
     if ({}.hasOwnProperty.call(value, field)) {
-      delete value[field];
-      return true;
+      delete value[field]
+      return true
     }
-    return false;
-  }).length;
+    return false
+  }).length
 
-  const numLeft = Object.getOwnPropertyNames(value).length;
+  const numLeft = Object.getOwnPropertyNames(value).length
   if (numLeft > 0) {
-    this.data.set(key, value);
+    this.data.set(key, value)
   } else {
-    this.data.delete(key);
+    this.data.delete(key)
   }
-  return numDeleted;
+  return numDeleted
 }

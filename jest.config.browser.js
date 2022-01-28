@@ -14,4 +14,4 @@ module.exports = {
     'test/integration/commands/scanStream.js',
     'test/integration/keyprefix.js',
   ],
-};
+}

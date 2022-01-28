@@ -4,4 +4,4 @@
 // @TODO run the test suite in an actual browser env, not a node env
 
 // eslint-disable-next-line global-require, import/no-unresolved, import/extensions
-jest.mock('ioredis', () => require('./browser'));
+jest.mock('ioredis', () => require('./browser'))

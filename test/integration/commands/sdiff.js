@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('sdiff', () => {
   it('should return the difference between the first set and all the successive sets', () => {
@@ -9,26 +9,24 @@ describe('sdiff', () => {
         // key3: keys that do not exist are considered to be empty sets
         key4: new Set(['a', 'c', 'e']),
       },
-    });
+    })
 
-    return redis
-      .sdiff('key1', 'key2', 'key3', 'key4')
-      .then((result) => expect(result).toEqual(['b', 'd']));
-  });
+    return redis.sdiff('key1', 'key2', 'key3', 'key4').then(result => {
+      return expect(result).toEqual(['b', 'd'])
+    })
+  })
 
   it('should throw an exception if the first key is not of a set', () => {
     const redis = new Redis({
       data: {
         foo: 'not a set',
       },
-    });
+    })
 
-    return redis
-      .sdiff('foo', 'bar')
-      .catch((err) =>
-        expect(err.message).toBe('Key foo does not contain a set')
-      );
-  });
+    return redis.sdiff('foo', 'bar').catch(err => {
+      return expect(err.message).toBe('Key foo does not contain a set')
+    })
+  })
 
   it('should throw an exception if the destination contains something other than a set', () => {
     const redis = new Redis({
@@ -36,20 +34,18 @@ describe('sdiff', () => {
         foo: new Set(),
         bar: 'not a set',
       },
-    });
+    })
 
-    return redis
-      .sdiff('foo', 'bar')
-      .catch((err) =>
-        expect(err.message).toBe('Key bar does not contain a set')
-      );
-  });
+    return redis.sdiff('foo', 'bar').catch(err => {
+      return expect(err.message).toBe('Key bar does not contain a set')
+    })
+  })
 
   it("should return empty array if sources don't exists", () => {
-    const redis = new Redis();
+    const redis = new Redis()
 
-    return redis
-      .sdiff('foo', 'bar')
-      .then((result) => expect(result).toEqual([]));
-  });
-});
+    return redis.sdiff('foo', 'bar').then(result => {
+      return expect(result).toEqual([])
+    })
+  })
+})

@@ -1,4 +1,4 @@
 export function flushdb() {
-  this.flushall();
-  return 'OK';
+  this.flushall()
+  return 'OK'
 }

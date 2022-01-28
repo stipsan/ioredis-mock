@@ -108,4 +108,4 @@ module.exports = {
     'test/integration/commands/zscan.js',
     'test/integration/commands/zscanStream.js',
   ],
-};
+}

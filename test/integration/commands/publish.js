@@ -1,80 +1,82 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('publish', () => {
   it('should return 0 when publishing without subscribers', () => {
-    const redis = new Redis();
-    return redis
-      .publish('emails', 'clark@daily.planet')
-      .then((subscribers) => expect(subscribers).toBe(0));
-  });
+    const redis = new Redis()
+    return redis.publish('emails', 'clark@daily.planet').then(subscribers => {
+      return expect(subscribers).toBe(0)
+    })
+  })
 
   it('should return 1 when publishing with a single subscriber', () => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
-    redisPubSub.subscribe('emails');
-    return redis2
-      .publish('emails', 'clark@daily.planet')
-      .then((subscribers) => expect(subscribers).toBe(1));
-  });
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
+    redisPubSub.subscribe('emails')
+    return redis2.publish('emails', 'clark@daily.planet').then(subscribers => {
+      return expect(subscribers).toBe(1)
+    })
+  })
 
-  it('should publish a message, which can be received by a previous subscribe', (done) => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
+  it('should publish a message, which can be received by a previous subscribe', done => {
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
     redisPubSub.on('message', (channel, message) => {
-      expect(channel).toBe('emails');
-      expect(message).toBe('clark@daily.planet');
-      done();
-    });
-    redisPubSub.subscribe('emails');
-    redis2.publish('emails', 'clark@daily.planet');
-  });
+      expect(channel).toBe('emails')
+      expect(message).toBe('clark@daily.planet')
+      done()
+    })
+    redisPubSub.subscribe('emails')
+    redis2.publish('emails', 'clark@daily.planet')
+  })
 
-  it('should emit messageBuffer event when a Buffer message is published on a subscribed channel', (done) => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
-    const buffer = Buffer.alloc(8);
+  it('should emit messageBuffer event when a Buffer message is published on a subscribed channel', done => {
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
+    const buffer = Buffer.alloc(8)
     redisPubSub.on('messageBuffer', (channel, message) => {
-      expect(channel).toBe('emails');
-      expect(message).toBe(buffer);
-      done();
-    });
-    redisPubSub.subscribe('emails');
-    redis2.publish('emails', buffer);
-  });
+      expect(channel).toBe('emails')
+      expect(message).toBe(buffer)
+      done()
+    })
+    redisPubSub.subscribe('emails')
+    redis2.publish('emails', buffer)
+  })
 
   it('should return 1 when publishing with a single pattern subscriber', () => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
-    redisPubSub.psubscribe('emails.*');
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
+    redisPubSub.psubscribe('emails.*')
     return redis2
       .publish('emails.urgent', 'clark@daily.planet')
-      .then((subscribers) => expect(subscribers).toBe(1));
-  });
+      .then(subscribers => {
+        return expect(subscribers).toBe(1)
+      })
+  })
 
-  it('should publish a message, which can be received by a previous psubscribe', (done) => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
+  it('should publish a message, which can be received by a previous psubscribe', done => {
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
     redisPubSub.on('pmessage', (pattern, channel, message) => {
-      expect(pattern).toBe('emails.*');
-      expect(channel).toBe('emails.urgent');
-      expect(message).toBe('clark@daily.planet');
-      done();
-    });
-    redisPubSub.psubscribe('emails.*');
-    redis2.publish('emails.urgent', 'clark@daily.planet');
-  });
+      expect(pattern).toBe('emails.*')
+      expect(channel).toBe('emails.urgent')
+      expect(message).toBe('clark@daily.planet')
+      done()
+    })
+    redisPubSub.psubscribe('emails.*')
+    redis2.publish('emails.urgent', 'clark@daily.planet')
+  })
 
-  it('should emit a pmessageBuffer event when a Buffer message is published matching a psubscribed pattern', (done) => {
-    const redisPubSub = new Redis();
-    const redis2 = new Redis();
-    const buffer = Buffer.alloc(0);
+  it('should emit a pmessageBuffer event when a Buffer message is published matching a psubscribed pattern', done => {
+    const redisPubSub = new Redis()
+    const redis2 = new Redis()
+    const buffer = Buffer.alloc(0)
     redisPubSub.on('pmessageBuffer', (pattern, channel, message) => {
-      expect(pattern).toBe('emails.*');
-      expect(channel).toBe('emails.urgent');
-      expect(message).toBe(buffer);
-      done();
-    });
-    redisPubSub.psubscribe('emails.*');
-    redis2.publish('emails.urgent', buffer);
-  });
-});
+      expect(pattern).toBe('emails.*')
+      expect(channel).toBe('emails.urgent')
+      expect(message).toBe(buffer)
+      done()
+    })
+    redisPubSub.psubscribe('emails.*')
+    redis2.publish('emails.urgent', buffer)
+  })
+})

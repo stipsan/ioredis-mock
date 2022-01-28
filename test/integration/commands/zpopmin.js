@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
 
 describe('zpopmin', () => {
   const data = {
@@ -9,39 +9,39 @@ describe('zpopmin', () => {
       ['fourth', { score: 4, value: 'fourth' }],
       ['fifth', { score: 5, value: 'fifth' }],
     ]),
-  };
+  }
 
   it('should return first item with score', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zpopmin('foo')
-      .then((res) => expect(res).toEqual(['first', 1]));
-  });
+    return redis.zpopmin('foo').then(res => {
+      return expect(res).toEqual(['first', 1])
+    })
+  })
 
   it('should return first N item with score if count=N', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
-    return redis
-      .zpopmin('foo', 3)
-      .then((res) =>
-        expect(res).toEqual(['first', 1, 'second', 2, 'third', 3])
-      );
-  });
+    return redis.zpopmin('foo', 3).then(res => {
+      return expect(res).toEqual(['first', 1, 'second', 2, 'third', 3])
+    })
+  })
 
   it('should return empty list if no data', () => {
-    const redis = new Redis({ data: {} });
+    const redis = new Redis({ data: {} })
 
-    return redis.zpopmin('foo').then((res) => expect(res).toEqual([]));
-  });
+    return redis.zpopmin('foo').then(res => {
+      return expect(res).toEqual([])
+    })
+  })
 
   it('should remove the items', () => {
-    const redis = new Redis({ data });
+    const redis = new Redis({ data })
 
     return redis.zpopmin('foo', 2).then(() => {
-      expect(redis.data.get('foo').has('first')).toBe(false);
-      expect(redis.data.get('foo').has('second')).toBe(false);
-      expect(redis.data.get('foo').has('third')).toBe(true);
-    });
-  });
-});
+      expect(redis.data.get('foo').has('first')).toBe(false)
+      expect(redis.data.get('foo').has('second')).toBe(false)
+      expect(redis.data.get('foo').has('third')).toBe(true)
+    })
+  })
+})
