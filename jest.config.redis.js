@@ -13,7 +13,6 @@ module.exports = {
     'test/integration/commands/discard.js',
     'test/integration/commands/eval.js',
     'test/integration/commands/evalsha.js',
-    'test/integration/commands/exists.js',
     'test/integration/commands/expire.js',
     'test/integration/commands/expireat.js',
     'test/integration/commands/flushall.js',
