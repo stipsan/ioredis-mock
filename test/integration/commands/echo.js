@@ -1,11 +1,10 @@
 import Redis from 'ioredis'
 
 describe('echo', () => {
-  it('should return message', () => {
+  it('should return message', async () => {
     const redis = new Redis()
 
-    return redis.echo('Hello World!').then(result => {
-      return expect(result).toBe('Hello World!')
-    })
+    expect(await redis.echo('Hello World!')).toBe('Hello World!')
+    redis.disconnect()
   })
 })

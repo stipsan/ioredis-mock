@@ -11,7 +11,6 @@ module.exports = {
     'test/integration/commands/connect.js',
     'test/integration/commands/defineCommand.js',
     'test/integration/commands/discard.js',
-    'test/integration/commands/echo.js',
     'test/integration/commands/eval.js',
     'test/integration/commands/evalsha.js',
     'test/integration/commands/exists.js',
