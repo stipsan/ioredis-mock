@@ -1,5 +1,11 @@
 export function get(key) {
-  return this.data.has(key) ? this.data.get(key) : null
+  const value = this.data.has(key) ? this.data.get(key) : null
+
+  if (Buffer.isBuffer(value)) {
+    return value.toString()
+  }
+
+  return value
 }
 
 export function getBuffer(key) {
