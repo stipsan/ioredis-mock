@@ -5,3 +5,5 @@ export function hexists(key, field) {
   }
   return {}.hasOwnProperty.call(hash, field) ? 1 : 0
 }
+
+export const hexistsBuffer = hexists
