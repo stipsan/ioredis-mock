@@ -7,3 +7,5 @@ export function expireat(key, at) {
 
   return 1
 }
+
+export const expireatBuffer = expireat
