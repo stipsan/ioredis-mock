@@ -1,50 +1,52 @@
 import Redis from 'ioredis'
 
-describe('incrby', () => {
-  it('should initialize the key with 0 if there is no key', () => {
-    const redis = new Redis({
-      data: {},
-    })
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    return redis
-      .incrby('user_next', 10)
-      .then(userNext => {
-        return expect(userNext).toBe(10)
+runTwinSuite('incrby', command => {
+  describe(command, () => {
+    it('should initialize the key with 0 if there is no key', () => {
+      const redis = new Redis({
+        data: {},
       })
-      .then(() => {
-        return expect(redis.data.get('user_next')).toBe('10')
-      })
-  })
-  it('should increment an integer with passed increment', () => {
-    const redis = new Redis({
-      data: {
-        user_next: '1',
-      },
-    })
 
-    return redis
-      .incrby('user_next', 10)
-      .then(userNext => {
-        return expect(userNext).toBe(11)
-      })
-      .then(() => {
-        return expect(redis.data.get('user_next')).toBe('11')
-      })
-  })
-  it('should not increment if no increment is passed', () => {
-    const redis = new Redis({
-      data: {
-        user_next: '1',
-      },
+      return redis[command]('user_next', 10)
+        .then(userNext => {
+          return expect(userNext).toBe(10)
+        })
+        .then(() => {
+          return expect(redis.data.get('user_next')).toBe('10')
+        })
     })
+    it('should increment an integer with passed increment', () => {
+      const redis = new Redis({
+        data: {
+          user_next: '1',
+        },
+      })
 
-    return redis
-      .incrby('user_next')
-      .then(userNext => {
-        return expect(userNext).toBe(1)
+      return redis[command]('user_next', 10)
+        .then(userNext => {
+          return expect(userNext).toBe(11)
+        })
+        .then(() => {
+          return expect(redis.data.get('user_next')).toBe('11')
+        })
+    })
+    it('should not increment if no increment is passed', () => {
+      const redis = new Redis({
+        data: {
+          user_next: '1',
+        },
       })
-      .then(() => {
-        return expect(redis.data.get('user_next')).toBe('1')
-      })
+
+      return redis[command]('user_next')
+        .then(userNext => {
+          return expect(userNext).toBe(1)
+        })
+        .then(() => {
+          return expect(redis.data.get('user_next')).toBe('1')
+        })
+    })
   })
 })
