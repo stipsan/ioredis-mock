@@ -12,3 +12,5 @@ export function getbit(key, offset) {
   // eslint-disable-next-line no-bitwise
   return (current.charCodeAt(byteOffset) >> shift) & 1
 }
+
+export const getbitBuffer = getbit

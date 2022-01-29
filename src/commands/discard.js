@@ -5,3 +5,8 @@ export function discard() {
   this.batch = undefined
   return 'OK'
 }
+
+export function discardBuffer() {
+  const val = discard.call(this)
+  return val ? Buffer.from(val) : val
+}

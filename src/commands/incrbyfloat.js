@@ -6,3 +6,5 @@ export function incrbyfloat(key, increment) {
   this.data.set(key, (curVal + parseFloat(increment)).toString())
   return this.data.get(key)
 }
+
+export const incrbyfloatBuffer = incrbyfloat

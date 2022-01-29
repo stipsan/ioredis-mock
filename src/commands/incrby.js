@@ -7,3 +7,5 @@ export function incrby(key, increment = 0) {
   this.data.set(key, nextVal.toString())
   return nextVal
 }
+
+export const incrbyBuffer = incrby

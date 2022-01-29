@@ -4,3 +4,8 @@ export function flushall() {
 
   return 'OK'
 }
+
+export function flushallBuffer() {
+  const val = flushall.call(this)
+  return val ? Buffer.from(val) : val
+}

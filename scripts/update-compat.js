@@ -8,6 +8,26 @@ const RedisMock = require('../src')
 
 const mockedRedis = new RedisMock()
 
+const skipList = {
+  'host:': false,
+  'restore-asking': false,
+  debug: 'This command is intended to aid in debugging redis',
+  dump: "Doesn't make sense to implement the internal data format used by RDB",
+  exec: false,
+  hello:
+    "THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use",
+  latency:
+    "ioredis-mock isn't operating over the network so there is no latency to monitor",
+  module: "It's unlikely that we'll be able to run Redis Modules in a JS VM",
+  multi: false,
+  pfselftest: false,
+  post: false,
+  pselftest: false,
+  restore:
+    'The RDB specific format used for restores would be a massive undertaking to implement with very little gain.',
+  slowlog: "Useful when you're on redis, not so much when on ioredis-mock",
+}
+const commandsList = commands.list.filter(command => !(command in skipList))
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'
 let bufferSupportedCommands = 0
@@ -15,7 +35,7 @@ let supportedCommands = 0
 let tableRows = `
 | redis | ioredis | ioredis-mock | buffer | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|--------|:-------:|:------------:|`
-commands.list.forEach(command => {
+commandsList.forEach(command => {
   footerLinks += `
   [${command}]: http://redis.io/commands/${command.toUpperCase()}`
   const redisCol = `[${command}]`
@@ -44,8 +64,25 @@ commands.list.forEach(command => {
   tableRows += `[${commandBuffer}][1]|${ioredisColBuffer}|${ioredisMockColBuffer}|`
 })
 
+let skipTableRows = `
+| redis | why it doesn't make sense to emulate |
+|:------|:-------------------------------------|`
+Object.keys(skipList).forEach(command => {
+  // Add skipped commands to the total
+  supportedCommands += 2
+  if (skipList[command] === false) {
+    return
+  }
+  footerLinks += `
+  [${command}]: http://redis.io/commands/${command.toUpperCase()}`
+  const redisCol = `[${command}]`
+
+  skipTableRows += `
+|${redisCol}|${skipList[command]}|`
+})
+
 const percentage = Math.floor(
-  (supportedCommands / (commands.list.length + bufferSupportedCommands)) * 100
+  (supportedCommands / (commandsList.length + bufferSupportedCommands)) * 100
 )
 
 let color = 'red'
@@ -67,6 +104,9 @@ if (percentage === 100) {
 
 const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
 ${tableRows}
+
+### Commands that won't be implemented
+${skipTableRows}
 
 ${footerLinks}`
 

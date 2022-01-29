@@ -11,3 +11,5 @@ export function decrby(key, decrement) {
   this.data.set(key, nextVal.toString())
   return nextVal
 }
+
+export const decrbyBuffer = decrby

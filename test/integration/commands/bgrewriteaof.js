@@ -1,12 +1,26 @@
 import Redis from 'ioredis'
 
-describe('bgrewriteaof', () => {
-  it('should return OK', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.bgrewriteaof()).toMatchInlineSnapshot(
-      '"Background append only file rewriting started"'
-    )
-    redis.disconnect()
+runTwinSuite('bgrewriteaof', (command, equals) => {
+  describe(command, () => {
+    it('should return a message', async () => {
+      const redis = new Redis()
+
+      try {
+        expect(
+          equals(
+            await redis[command](),
+            'Background append only file rewriting started'
+          )
+        ).toBe(true)
+      } catch (error) {
+        expect(error.message).toMatch(
+          'Background append only file rewriting already in progress'
+        )
+      }
+      redis.disconnect()
+    })
   })
 })

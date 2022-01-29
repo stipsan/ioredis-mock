@@ -7,3 +7,8 @@ export function hget(key, hashKey) {
 
   return hash[hashKey]
 }
+
+export function hgetBuffer(key, hashKey) {
+  const val = hget.apply(this, [key, hashKey])
+  return val ? Buffer.from(val) : val
+}

@@ -7,3 +7,8 @@ export function mset(...msetData) {
 
   return 'OK'
 }
+
+export function msetBuffer(...msetData) {
+  const val = mset.apply(this, msetData)
+  return val ? Buffer.from(val) : val
+}

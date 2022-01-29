@@ -1,21 +1,36 @@
 import Redis from 'ioredis'
 
-describe('hmget', () => {
-  it('should return the values of specified keys in a hash map', () => {
-    const redis = new Redis({
-      data: {
-        'user:1': { id: '1', email: 'bruce@wayne.enterprises' },
-      },
-    })
-    return redis.hmget('user:1', 'id', 'email', 'location').then(values => {
-      return expect(values).toEqual(['1', 'bruce@wayne.enterprises', null])
-    })
-  })
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-  it('should return an array of nulls if the hash does not exist', () => {
-    const redis = new Redis()
-    return redis.hmget('user:1', 'id', 'email', 'location').then(values => {
-      return expect(values).toEqual([null, null, null])
+runTwinSuite('hmget', (command, equals) => {
+  describe(command, () => {
+    it('should return the values of specified keys in a hash map', async () => {
+      const redis = new Redis({
+        data: {
+          'user:1': { id: '1', email: 'bruce@wayne.enterprises' },
+        },
+      })
+
+      const [id, email, location] = await redis[command](
+        'user:1',
+        'id',
+        'email',
+        'location'
+      )
+      expect(equals(id, '1')).toBe(true)
+      expect(equals(email, 'bruce@wayne.enterprises')).toBe(true)
+      expect(location).toBe(null)
+      redis.disconnect()
+    })
+
+    it('should return an array of nulls if the hash does not exist', async () => {
+      const redis = new Redis()
+
+      expect(await redis[command]('user:1', 'id', 'email', 'location')).toEqual(
+        [null, null, null]
+      )
+      redis.disconnect()
     })
   })
 })

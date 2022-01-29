@@ -1,12 +1,17 @@
 import Redis from 'ioredis'
 
-describe('lastsave', () => {
-  it('should return unix time since last save', async () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    expect(await redis.lastsave()).toBeLessThanOrEqual(
-      Math.floor(new Date().getTime() / 1000)
-    )
-    redis.disconnect()
+runTwinSuite('lastsave', command => {
+  describe(command, () => {
+    it('should return unix time since last save', async () => {
+      const redis = new Redis()
+
+      expect(await redis[command]()).toBeLessThanOrEqual(
+        Math.floor(new Date().getTime() / 1000)
+      )
+      redis.disconnect()
+    })
   })
 })

@@ -1,29 +1,36 @@
 import Redis from 'ioredis'
 
-describe('getrange', () => {
-  const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-  afterAll(() => {
-    redis.disconnect()
-  })
+runTwinSuite('getrange', (command, equals) => {
+  describe(command, () => {
+    const redis = new Redis()
 
-  it('should return "This"', async () => {
-    await redis.set('foo', 'This is a string')
-    expect(await redis.getrange('foo', 0, 3)).toBe('This')
-  })
+    afterAll(() => {
+      redis.disconnect()
+    })
 
-  it('should return "ing"', async () => {
-    await redis.set('foo', 'This is a string')
-    expect(await redis.getrange('foo', -3, -1)).toBe('ing')
-  })
+    it('should return "This"', async () => {
+      await redis.set('foo', 'This is a string')
+      expect(equals(await redis[command]('foo', 0, 3), 'This')).toBe(true)
+    })
 
-  it('should return "This is a string"', async () => {
-    await redis.set('foo', 'This is a string')
-    expect(await redis.getrange('foo', 0, -1)).toBe('This is a string')
-  })
+    it('should return "ing"', async () => {
+      await redis.set('foo', 'This is a string')
+      expect(equals(await redis[command]('foo', -3, -1), 'ing')).toBe(true)
+    })
 
-  it('should return "string"', async () => {
-    await redis.set('foo', 'This is a string')
-    expect(await redis.getrange('foo', 10, 100)).toBe('string')
+    it('should return "This is a string"', async () => {
+      await redis.set('foo', 'This is a string')
+      expect(
+        equals(await redis[command]('foo', 0, -1), 'This is a string')
+      ).toBe(true)
+    })
+
+    it('should return "string"', async () => {
+      await redis.set('foo', 'This is a string')
+      expect(equals(await redis[command]('foo', 10, 100), 'string')).toBe(true)
+    })
   })
 })

@@ -10,3 +10,5 @@ export function expire(key, seconds) {
 
   return 1
 }
+
+export const expireBuffer = expire

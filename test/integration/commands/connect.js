@@ -1,73 +1,65 @@
 import Redis from 'ioredis'
 
 describe('connect', () => {
-  it('should throw if redis has already connected in ctor', done => {
+  it('should throw if redis has already connected in ctor', async () => {
     // no option specified means {lazyConnect: false}
     const redis = new Redis()
 
-    setTimeout(() => {
-      redis
-        .connect()
-        .then(() => {
-          throw new Error('connect should not have succeeded')
-        })
-        .catch(reason => {
-          expect(reason.message).toBe('Redis is already connecting/connected')
-          done()
-        })
-    }, 20)
+    await new Promise(resolve => {
+      setTimeout(resolve, 20)
+    })
+
+    try {
+      await redis.connect()
+      throw new Error('connect should not have succeeded')
+    } catch (error) {
+      expect(error.message).toBe('Redis is already connecting/connected')
+    } finally {
+      redis.disconnect()
+    }
   })
 
-  it('should signal successful connection', done => {
+  it('should signal successful connection', async () => {
     const redis = new Redis({ lazyConnect: true })
 
-    setTimeout(() => {
-      redis
-        .connect()
-        .catch(reason => {
-          return expect(reason).toBeFalsy()
-        })
-        .then(result => {
-          expect(result).toBe(undefined)
-          done()
-        })
-    }, 20)
+    await new Promise(resolve => {
+      setTimeout(resolve, 20)
+    })
+
+    try {
+      expect(await redis.connect()).toBe(undefined)
+    } catch (error) {
+      expect(error).toBeFalsy()
+    } finally {
+      redis.disconnect()
+    }
   })
 
-  it('should throw if manually connected before', () => {
+  it('should throw if manually connected before', async () => {
     const redis = new Redis({ lazyConnect: true })
 
-    return redis
-      .connect()
-      .then(result => {
-        return expect(result).toBe(undefined)
-      })
-      .then(() => {
-        return new Promise(resolve => {
-          redis
-            .connect()
-            .catch(reason => {
-              return expect(reason).toBeInstanceOf(Error)
-            })
-            .then(() => {
-              return resolve()
-            })
-        })
-      })
+    expect(await redis.connect()).toBe(undefined)
+    try {
+      await redis.connect()
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error)
+    } finally {
+      redis.disconnect()
+    }
   })
 
-  it('should throw if executing any command when not connected', () => {
-    const redis = new Redis({ lazyConnect: true })
+  it('should throw if executing any command when not connected', async () => {
+    const redis = new Redis({ lazyConnect: true, enableOfflineQueue: false })
 
-    return redis
-      .get('key')
-      .then(() => {
-        throw new Error('get shall not succeed when redis is not connected')
-      })
-      .catch(reason => {
-        return expect(reason.message).toBe(
-          "Stream isn't writeable and enableOfflineQueue options is false"
-        )
-      })
+    try {
+      await redis.get('key')
+      throw new Error('get shall not succeed when redis is not connected')
+    } catch (error) {
+      expect(error.message).toBe(
+        "Stream isn't writeable and enableOfflineQueue options is false"
+      )
+    } finally {
+      redis.disconnect()
+    }
   })
 })

@@ -10,3 +10,7 @@ export function rpop(key) {
 
   return item
 }
+
+export function rpopBuffer(key) {
+  return rpop.apply(this, [key])
+}

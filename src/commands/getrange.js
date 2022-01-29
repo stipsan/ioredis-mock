@@ -9,3 +9,8 @@ export function getrange(key, s, e) {
 
   return val.slice(start, end + 1)
 }
+
+export function getrangeBuffer(...args) {
+  const val = getrange.apply(this, args)
+  return val ? Buffer.from(val) : val
+}
