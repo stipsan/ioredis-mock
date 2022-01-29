@@ -66,8 +66,10 @@ commandsList.forEach(command => {
 
 let skipTableRows = `
 | redis | why it doesn't make sense to emulate |
-|-------|:-------------------------------------|`
+|:------|:-------------------------------------|`
 Object.keys(skipList).forEach(command => {
+  // Add skipped commands to the total
+  supportedCommands += 2
   if (skipList[command] === false) {
     return
   }
