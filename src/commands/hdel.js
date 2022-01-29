@@ -19,3 +19,5 @@ export function hdel(key, ...fields) {
   }
   return numDeleted
 }
+
+export const hdelBuffer = hdel
