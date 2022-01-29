@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 35%](https://img.shields.io/badge/coverage-35%25-orange.svg)
+## Supported commands ![Commands Coverage: 38%](https://img.shields.io/badge/coverage-38%25-orange.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    | buffer                          |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: | ------------------------------- | :----------------: | :----------------: |
@@ -25,16 +25,13 @@
 | [config]               | :white_check_mark: |        :x:         | [configBuffer][1]               | :white_check_mark: |        :x:         |
 | [copy]                 | :white_check_mark: |        :x:         | [copyBuffer][1]                 | :white_check_mark: |        :x:         |
 | [dbsize]               | :white_check_mark: | :white_check_mark: | [dbsizeBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [debug]                | :white_check_mark: |        :x:         | [debugBuffer][1]                | :white_check_mark: |        :x:         |
 | [decr]                 | :white_check_mark: | :white_check_mark: | [decrBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [decrby]               | :white_check_mark: | :white_check_mark: | [decrbyBuffer][1]               | :white_check_mark: | :white_check_mark: |
 | [del]                  | :white_check_mark: | :white_check_mark: | [delBuffer][1]                  | :white_check_mark: | :white_check_mark: |
 | [discard]              | :white_check_mark: | :white_check_mark: | [discardBuffer][1]              | :white_check_mark: |        :x:         |
-| [dump]                 | :white_check_mark: |        :x:         | [dumpBuffer][1]                 | :white_check_mark: |        :x:         |
 | [echo]                 | :white_check_mark: | :white_check_mark: | [echoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [eval]                 | :white_check_mark: | :white_check_mark: | [evalBuffer][1]                 | :white_check_mark: |        :x:         |
 | [evalsha]              | :white_check_mark: | :white_check_mark: | [evalshaBuffer][1]              | :white_check_mark: |        :x:         |
-| [exec]                 | :white_check_mark: |        :x:         | [execBuffer][1]                 | :white_check_mark: |        :x:         |
 | [exists]               | :white_check_mark: | :white_check_mark: | [existsBuffer][1]               | :white_check_mark: | :white_check_mark: |
 | [expire]               | :white_check_mark: | :white_check_mark: | [expireBuffer][1]               | :white_check_mark: |        :x:         |
 | [expireat]             | :white_check_mark: | :white_check_mark: | [expireatBuffer][1]             | :white_check_mark: |        :x:         |
@@ -58,7 +55,6 @@
 | [getrange]             | :white_check_mark: | :white_check_mark: | [getrangeBuffer][1]             | :white_check_mark: | :white_check_mark: |
 | [getset]               | :white_check_mark: | :white_check_mark: | [getsetBuffer][1]               | :white_check_mark: |        :x:         |
 | [hdel]                 | :white_check_mark: | :white_check_mark: | [hdelBuffer][1]                 | :white_check_mark: |        :x:         |
-| [hello]                | :white_check_mark: |        :x:         | [helloBuffer][1]                | :white_check_mark: |        :x:         |
 | [hexists]              | :white_check_mark: | :white_check_mark: | [hexistsBuffer][1]              | :white_check_mark: |        :x:         |
 | [hget]                 | :white_check_mark: | :white_check_mark: | [hgetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [hgetall]              | :white_check_mark: | :white_check_mark: | [hgetallBuffer][1]              | :white_check_mark: | :white_check_mark: |
@@ -68,7 +64,6 @@
 | [hlen]                 | :white_check_mark: | :white_check_mark: | [hlenBuffer][1]                 | :white_check_mark: |        :x:         |
 | [hmget]                | :white_check_mark: | :white_check_mark: | [hmgetBuffer][1]                | :white_check_mark: | :white_check_mark: |
 | [hmset]                | :white_check_mark: | :white_check_mark: | [hmsetBuffer][1]                | :white_check_mark: | :white_check_mark: |
-| [host:]                | :white_check_mark: |        :x:         | [host:Buffer][1]                | :white_check_mark: |        :x:         |
 | [hrandfield]           | :white_check_mark: |        :x:         | [hrandfieldBuffer][1]           | :white_check_mark: |        :x:         |
 | [hscan]                | :white_check_mark: | :white_check_mark: | [hscanBuffer][1]                | :white_check_mark: |        :x:         |
 | [hset]                 | :white_check_mark: | :white_check_mark: | [hsetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
@@ -81,7 +76,6 @@
 | [info]                 | :white_check_mark: | :white_check_mark: | [infoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [keys]                 | :white_check_mark: | :white_check_mark: | [keysBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [lastsave]             | :white_check_mark: | :white_check_mark: | [lastsaveBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [latency]              | :white_check_mark: |        :x:         | [latencyBuffer][1]              | :white_check_mark: |        :x:         |
 | [lindex]               | :white_check_mark: | :white_check_mark: | [lindexBuffer][1]               | :white_check_mark: |        :x:         |
 | [linsert]              | :white_check_mark: | :white_check_mark: | [linsertBuffer][1]              | :white_check_mark: |        :x:         |
 | [llen]                 | :white_check_mark: | :white_check_mark: | [llenBuffer][1]                 | :white_check_mark: |        :x:         |
@@ -98,12 +92,10 @@
 | [memory]               | :white_check_mark: |        :x:         | [memoryBuffer][1]               | :white_check_mark: |        :x:         |
 | [mget]                 | :white_check_mark: | :white_check_mark: | [mgetBuffer][1]                 | :white_check_mark: |        :x:         |
 | [migrate]              | :white_check_mark: |        :x:         | [migrateBuffer][1]              | :white_check_mark: |        :x:         |
-| [module]               | :white_check_mark: |        :x:         | [moduleBuffer][1]               | :white_check_mark: |        :x:         |
 | [monitor]              | :white_check_mark: |        :x:         | [monitorBuffer][1]              |        :x:         |        :x:         |
 | [move]                 | :white_check_mark: |        :x:         | [moveBuffer][1]                 | :white_check_mark: |        :x:         |
 | [mset]                 | :white_check_mark: | :white_check_mark: | [msetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [msetnx]               | :white_check_mark: | :white_check_mark: | [msetnxBuffer][1]               | :white_check_mark: |        :x:         |
-| [multi]                | :white_check_mark: |        :x:         | [multiBuffer][1]                | :white_check_mark: |        :x:         |
 | [object]               | :white_check_mark: |        :x:         | [objectBuffer][1]               | :white_check_mark: |        :x:         |
 | [persist]              | :white_check_mark: | :white_check_mark: | [persistBuffer][1]              | :white_check_mark: |        :x:         |
 | [pexpire]              | :white_check_mark: | :white_check_mark: | [pexpireBuffer][1]              | :white_check_mark: |        :x:         |
@@ -112,9 +104,7 @@
 | [pfcount]              | :white_check_mark: |        :x:         | [pfcountBuffer][1]              | :white_check_mark: |        :x:         |
 | [pfdebug]              | :white_check_mark: |        :x:         | [pfdebugBuffer][1]              | :white_check_mark: |        :x:         |
 | [pfmerge]              | :white_check_mark: |        :x:         | [pfmergeBuffer][1]              | :white_check_mark: |        :x:         |
-| [pfselftest]           | :white_check_mark: |        :x:         | [pfselftestBuffer][1]           | :white_check_mark: |        :x:         |
 | [ping]                 | :white_check_mark: | :white_check_mark: | [pingBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [post]                 | :white_check_mark: |        :x:         | [postBuffer][1]                 | :white_check_mark: |        :x:         |
 | [psetex]               | :white_check_mark: | :white_check_mark: | [psetexBuffer][1]               | :white_check_mark: |        :x:         |
 | [psubscribe]           | :white_check_mark: | :white_check_mark: | [psubscribeBuffer][1]           | :white_check_mark: |        :x:         |
 | [psync]                | :white_check_mark: |        :x:         | [psyncBuffer][1]                | :white_check_mark: |        :x:         |
@@ -128,11 +118,9 @@
 | [readwrite]            | :white_check_mark: |        :x:         | [readwriteBuffer][1]            | :white_check_mark: |        :x:         |
 | [rename]               | :white_check_mark: | :white_check_mark: | [renameBuffer][1]               | :white_check_mark: |        :x:         |
 | [renamenx]             | :white_check_mark: | :white_check_mark: | [renamenxBuffer][1]             | :white_check_mark: |        :x:         |
-| [replconf]             | :white_check_mark: |        :x:         | [replconfBuffer][1]             | :white_check_mark: |        :x:         |
+| [replconf]             | :white_check_mark: | :white_check_mark: | [replconfBuffer][1]             | :white_check_mark: | :white_check_mark: |
 | [replicaof]            | :white_check_mark: |        :x:         | [replicaofBuffer][1]            | :white_check_mark: |        :x:         |
 | [reset]                | :white_check_mark: |        :x:         | [resetBuffer][1]                | :white_check_mark: |        :x:         |
-| [restore]              | :white_check_mark: |        :x:         | [restoreBuffer][1]              | :white_check_mark: |        :x:         |
-| [restore-asking]       | :white_check_mark: |        :x:         | [restore-askingBuffer][1]       | :white_check_mark: |        :x:         |
 | [role]                 | :white_check_mark: | :white_check_mark: | [roleBuffer][1]                 | :white_check_mark: |        :x:         |
 | [rpop]                 | :white_check_mark: | :white_check_mark: | [rpopBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [rpoplpush]            | :white_check_mark: | :white_check_mark: | [rpoplpushBuffer][1]            | :white_check_mark: | :white_check_mark: |
@@ -156,7 +144,6 @@
 | [sinterstore]          | :white_check_mark: | :white_check_mark: | [sinterstoreBuffer][1]          | :white_check_mark: |        :x:         |
 | [sismember]            | :white_check_mark: | :white_check_mark: | [sismemberBuffer][1]            | :white_check_mark: |        :x:         |
 | [slaveof]              | :white_check_mark: |        :x:         | [slaveofBuffer][1]              | :white_check_mark: |        :x:         |
-| [slowlog]              | :white_check_mark: |        :x:         | [slowlogBuffer][1]              | :white_check_mark: |        :x:         |
 | [smembers]             | :white_check_mark: | :white_check_mark: | [smembersBuffer][1]             | :white_check_mark: |        :x:         |
 | [smismember]           | :white_check_mark: | :white_check_mark: | [smismemberBuffer][1]           | :white_check_mark: |        :x:         |
 | [smove]                | :white_check_mark: | :white_check_mark: | [smoveBuffer][1]                | :white_check_mark: |        :x:         |
@@ -228,6 +215,18 @@
 | [zunion]               | :white_check_mark: |        :x:         | [zunionBuffer][1]               | :white_check_mark: |        :x:         |
 | [zunionstore]          | :white_check_mark: |        :x:         | [zunionstoreBuffer][1]          | :white_check_mark: |        :x:         |
 
+### Commands that won't be implemented
+
+| redis     | why it doesn't make sense to emulate                                                                         |
+| --------- | :----------------------------------------------------------------------------------------------------------- |
+| [debug]   | This command is intended to aid in debugging redis                                                           |
+| [dump]    | Doesn't make sense to implement the internal data format used by RDB                                         |
+| [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                        |
+| [latency] | ioredis-mock isn't operating over the network so there is no latency to monitor                              |
+| [module]  | It's unlikely that we'll be able to run Redis Modules in a JS VM                                             |
+| [restore] | The RDB specific format used for restores would be a massive undertaking to implement with very little gain. |
+| [slowlog] | Useful when you're on redis, not so much when on ioredis-mock                                                |
+
 [1]: https://github.com/luin/ioredis#handle-binary-data
 [acl]: http://redis.io/commands/ACL
 [append]: http://redis.io/commands/APPEND
@@ -252,16 +251,13 @@
 [config]: http://redis.io/commands/CONFIG
 [copy]: http://redis.io/commands/COPY
 [dbsize]: http://redis.io/commands/DBSIZE
-[debug]: http://redis.io/commands/DEBUG
 [decr]: http://redis.io/commands/DECR
 [decrby]: http://redis.io/commands/DECRBY
 [del]: http://redis.io/commands/DEL
 [discard]: http://redis.io/commands/DISCARD
-[dump]: http://redis.io/commands/DUMP
 [echo]: http://redis.io/commands/ECHO
 [eval]: http://redis.io/commands/EVAL
 [evalsha]: http://redis.io/commands/EVALSHA
-[exec]: http://redis.io/commands/EXEC
 [exists]: http://redis.io/commands/EXISTS
 [expire]: http://redis.io/commands/EXPIRE
 [expireat]: http://redis.io/commands/EXPIREAT
@@ -285,7 +281,6 @@
 [getrange]: http://redis.io/commands/GETRANGE
 [getset]: http://redis.io/commands/GETSET
 [hdel]: http://redis.io/commands/HDEL
-[hello]: http://redis.io/commands/HELLO
 [hexists]: http://redis.io/commands/HEXISTS
 [hget]: http://redis.io/commands/HGET
 [hgetall]: http://redis.io/commands/HGETALL
@@ -295,7 +290,6 @@
 [hlen]: http://redis.io/commands/HLEN
 [hmget]: http://redis.io/commands/HMGET
 [hmset]: http://redis.io/commands/HMSET
-[host:]: http://redis.io/commands/HOST:
 [hrandfield]: http://redis.io/commands/HRANDFIELD
 [hscan]: http://redis.io/commands/HSCAN
 [hset]: http://redis.io/commands/HSET
@@ -308,7 +302,6 @@
 [info]: http://redis.io/commands/INFO
 [keys]: http://redis.io/commands/KEYS
 [lastsave]: http://redis.io/commands/LASTSAVE
-[latency]: http://redis.io/commands/LATENCY
 [lindex]: http://redis.io/commands/LINDEX
 [linsert]: http://redis.io/commands/LINSERT
 [llen]: http://redis.io/commands/LLEN
@@ -325,12 +318,10 @@
 [memory]: http://redis.io/commands/MEMORY
 [mget]: http://redis.io/commands/MGET
 [migrate]: http://redis.io/commands/MIGRATE
-[module]: http://redis.io/commands/MODULE
 [monitor]: http://redis.io/commands/MONITOR
 [move]: http://redis.io/commands/MOVE
 [mset]: http://redis.io/commands/MSET
 [msetnx]: http://redis.io/commands/MSETNX
-[multi]: http://redis.io/commands/MULTI
 [object]: http://redis.io/commands/OBJECT
 [persist]: http://redis.io/commands/PERSIST
 [pexpire]: http://redis.io/commands/PEXPIRE
@@ -339,9 +330,7 @@
 [pfcount]: http://redis.io/commands/PFCOUNT
 [pfdebug]: http://redis.io/commands/PFDEBUG
 [pfmerge]: http://redis.io/commands/PFMERGE
-[pfselftest]: http://redis.io/commands/PFSELFTEST
 [ping]: http://redis.io/commands/PING
-[post]: http://redis.io/commands/POST
 [psetex]: http://redis.io/commands/PSETEX
 [psubscribe]: http://redis.io/commands/PSUBSCRIBE
 [psync]: http://redis.io/commands/PSYNC
@@ -358,8 +347,6 @@
 [replconf]: http://redis.io/commands/REPLCONF
 [replicaof]: http://redis.io/commands/REPLICAOF
 [reset]: http://redis.io/commands/RESET
-[restore]: http://redis.io/commands/RESTORE
-[restore-asking]: http://redis.io/commands/RESTORE-ASKING
 [role]: http://redis.io/commands/ROLE
 [rpop]: http://redis.io/commands/RPOP
 [rpoplpush]: http://redis.io/commands/RPOPLPUSH
@@ -383,7 +370,6 @@
 [sinterstore]: http://redis.io/commands/SINTERSTORE
 [sismember]: http://redis.io/commands/SISMEMBER
 [slaveof]: http://redis.io/commands/SLAVEOF
-[slowlog]: http://redis.io/commands/SLOWLOG
 [smembers]: http://redis.io/commands/SMEMBERS
 [smismember]: http://redis.io/commands/SMISMEMBER
 [smove]: http://redis.io/commands/SMOVE
@@ -454,3 +440,10 @@
 [zscore]: http://redis.io/commands/ZSCORE
 [zunion]: http://redis.io/commands/ZUNION
 [zunionstore]: http://redis.io/commands/ZUNIONSTORE
+[debug]: http://redis.io/commands/DEBUG
+[dump]: http://redis.io/commands/DUMP
+[hello]: http://redis.io/commands/HELLO
+[latency]: http://redis.io/commands/LATENCY
+[module]: http://redis.io/commands/MODULE
+[restore]: http://redis.io/commands/RESTORE
+[slowlog]: http://redis.io/commands/SLOWLOG
