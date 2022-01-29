@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 38%](https://img.shields.io/badge/coverage-38%25-orange.svg)
+## Supported commands ![Commands Coverage: 46%](https://img.shields.io/badge/coverage-46%25-yellow.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    | buffer                          |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: | ------------------------------- | :----------------: | :----------------: |
@@ -28,13 +28,13 @@
 | [decr]                 | :white_check_mark: | :white_check_mark: | [decrBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [decrby]               | :white_check_mark: | :white_check_mark: | [decrbyBuffer][1]               | :white_check_mark: | :white_check_mark: |
 | [del]                  | :white_check_mark: | :white_check_mark: | [delBuffer][1]                  | :white_check_mark: | :white_check_mark: |
-| [discard]              | :white_check_mark: | :white_check_mark: | [discardBuffer][1]              | :white_check_mark: |        :x:         |
+| [discard]              | :white_check_mark: | :white_check_mark: | [discardBuffer][1]              | :white_check_mark: | :white_check_mark: |
 | [echo]                 | :white_check_mark: | :white_check_mark: | [echoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [eval]                 | :white_check_mark: | :white_check_mark: | [evalBuffer][1]                 | :white_check_mark: |        :x:         |
 | [evalsha]              | :white_check_mark: | :white_check_mark: | [evalshaBuffer][1]              | :white_check_mark: |        :x:         |
 | [exists]               | :white_check_mark: | :white_check_mark: | [existsBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [expire]               | :white_check_mark: | :white_check_mark: | [expireBuffer][1]               | :white_check_mark: |        :x:         |
-| [expireat]             | :white_check_mark: | :white_check_mark: | [expireatBuffer][1]             | :white_check_mark: |        :x:         |
+| [expire]               | :white_check_mark: | :white_check_mark: | [expireBuffer][1]               | :white_check_mark: | :white_check_mark: |
+| [expireat]             | :white_check_mark: | :white_check_mark: | [expireatBuffer][1]             | :white_check_mark: | :white_check_mark: |
 | [failover]             | :white_check_mark: |        :x:         | [failoverBuffer][1]             | :white_check_mark: |        :x:         |
 | [flushall]             | :white_check_mark: | :white_check_mark: | [flushallBuffer][1]             | :white_check_mark: | :white_check_mark: |
 | [flushdb]              | :white_check_mark: | :white_check_mark: | [flushdbBuffer][1]              | :white_check_mark: | :white_check_mark: |
@@ -54,8 +54,8 @@
 | [getex]                | :white_check_mark: |        :x:         | [getexBuffer][1]                | :white_check_mark: |        :x:         |
 | [getrange]             | :white_check_mark: | :white_check_mark: | [getrangeBuffer][1]             | :white_check_mark: | :white_check_mark: |
 | [getset]               | :white_check_mark: | :white_check_mark: | [getsetBuffer][1]               | :white_check_mark: |        :x:         |
-| [hdel]                 | :white_check_mark: | :white_check_mark: | [hdelBuffer][1]                 | :white_check_mark: |        :x:         |
-| [hexists]              | :white_check_mark: | :white_check_mark: | [hexistsBuffer][1]              | :white_check_mark: |        :x:         |
+| [hdel]                 | :white_check_mark: | :white_check_mark: | [hdelBuffer][1]                 | :white_check_mark: | :white_check_mark: |
+| [hexists]              | :white_check_mark: | :white_check_mark: | [hexistsBuffer][1]              | :white_check_mark: | :white_check_mark: |
 | [hget]                 | :white_check_mark: | :white_check_mark: | [hgetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [hgetall]              | :white_check_mark: | :white_check_mark: | [hgetallBuffer][1]              | :white_check_mark: | :white_check_mark: |
 | [hincrby]              | :white_check_mark: | :white_check_mark: | [hincrbyBuffer][1]              | :white_check_mark: |        :x:         |
@@ -71,8 +71,8 @@
 | [hstrlen]              | :white_check_mark: | :white_check_mark: | [hstrlenBuffer][1]              | :white_check_mark: |        :x:         |
 | [hvals]                | :white_check_mark: | :white_check_mark: | [hvalsBuffer][1]                | :white_check_mark: |        :x:         |
 | [incr]                 | :white_check_mark: | :white_check_mark: | [incrBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [incrby]               | :white_check_mark: | :white_check_mark: | [incrbyBuffer][1]               | :white_check_mark: |        :x:         |
-| [incrbyfloat]          | :white_check_mark: | :white_check_mark: | [incrbyfloatBuffer][1]          | :white_check_mark: |        :x:         |
+| [incrby]               | :white_check_mark: | :white_check_mark: | [incrbyBuffer][1]               | :white_check_mark: | :white_check_mark: |
+| [incrbyfloat]          | :white_check_mark: | :white_check_mark: | [incrbyfloatBuffer][1]          | :white_check_mark: | :white_check_mark: |
 | [info]                 | :white_check_mark: | :white_check_mark: | [infoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [keys]                 | :white_check_mark: | :white_check_mark: | [keysBuffer][1]                 | :white_check_mark: | :white_check_mark: |
 | [lastsave]             | :white_check_mark: | :white_check_mark: | [lastsaveBuffer][1]             | :white_check_mark: | :white_check_mark: |
@@ -218,7 +218,7 @@
 ### Commands that won't be implemented
 
 | redis     | why it doesn't make sense to emulate                                                                         |
-| --------- | :----------------------------------------------------------------------------------------------------------- |
+| :-------- | :----------------------------------------------------------------------------------------------------------- |
 | [debug]   | This command is intended to aid in debugging redis                                                           |
 | [dump]    | Doesn't make sense to implement the internal data format used by RDB                                         |
 | [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                        |
