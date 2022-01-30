@@ -7,3 +7,5 @@ export function rpushx(key, value) {
 
   return rpush.call(this, key, value)
 }
+
+export const rpushxBuffer = rpushx
