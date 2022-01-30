@@ -4,7 +4,7 @@
 | ---------------------- | :----------------: | :----------------: |
 | [acl]                  | :white_check_mark: |        :x:         |
 | [append]               | :white_check_mark: | :white_check_mark: |
-| [asking]               | :white_check_mark: |        :x:         |
+| [asking]               | :white_check_mark: | :white_check_mark: |
 | [auth]                 | :white_check_mark: | :white_check_mark: |
 | [bgrewriteaof]         | :white_check_mark: | :white_check_mark: |
 | [bgsave]               | :white_check_mark: | :white_check_mark: |

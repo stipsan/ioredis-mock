@@ -1,4 +1,5 @@
 export * from './append'
+export * from './asking'
 export * from './auth'
 export * from './bgrewriteaof'
 export * from './bgsave'
