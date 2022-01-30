@@ -61,7 +61,6 @@ module.exports = {
     'test/integration/commands/srem.js',
     'test/integration/commands/sscan.js',
     'test/integration/commands/sscanStream.js',
-    'test/integration/commands/strlen.js',
     'test/integration/commands/subscribe.js',
     'test/integration/commands/sunion.js',
     'test/integration/commands/sunionstore.js',

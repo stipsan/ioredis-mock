@@ -241,7 +241,6 @@
 - [srandmemberBuffer][1]
 - [sremBuffer][1]
 - [sscanBuffer][1]
-- [strlenBuffer][1]
 - [subscribeBuffer][1]
 - [sunionBuffer][1]
 - [sunionstoreBuffer][1]

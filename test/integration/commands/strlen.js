@@ -1,23 +1,29 @@
 import Redis from 'ioredis'
 
-describe('strlen', () => {
-  it('should return 0 on keys that do not exist', () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    return redis.strlen('nonexisting').then(result => {
-      return expect(result).toBe(0)
-    })
-  })
+runTwinSuite('strlen', command => {
+  describe(command, () => {
+    it('should return 0 on keys that do not exist', async () => {
+      const redis = new Redis()
 
-  it('should return string length of keys that do exist', () => {
-    const redis = new Redis({
-      data: {
-        mykey: 'Hello world',
-      },
+      expect(await redis[command]('nonexisting')).toBe(0)
+
+      redis.disconnect()
     })
 
-    return redis.strlen('mykey').then(result => {
-      return expect(result).toBe(11)
+    it('should return string length of keys that do exist', async () => {
+      const redis = new Redis({
+        data: {
+          mykey: 'Hello world',
+        },
+      })
+      await redis.set('mykey', 'Hello world')
+
+      expect(await redis[command]('mykey')).toBe(11)
+
+      redis.disconnect()
     })
   })
 })
