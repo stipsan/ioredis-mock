@@ -18,8 +18,11 @@ const skipList = {
     "THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use",
   latency:
     "ioredis-mock isn't operating over the network so there is no latency to monitor",
+  migrate:
+    "This command actually executes a DUMP + DEL on the source instance, and a RESTORE in the target. Since DUMP and RESTORE won't be implemented it includes MIGRATE.",
   module: "It's unlikely that we'll be able to run Redis Modules in a JS VM",
   multi: false,
+  pfdebug: 'This command is intended to aid in debugging redis',
   pfselftest: false,
   post: false,
   pselftest: false,
