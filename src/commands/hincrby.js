@@ -13,3 +13,5 @@ export function hincrby(key, field, increment = 0) {
 
   return nextVal
 }
+
+export const hincrbyBuffer = hincrby
