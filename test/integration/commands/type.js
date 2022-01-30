@@ -39,6 +39,10 @@ runTwinSuite('type', (command, equals) => {
       expect(equals(await redis[command]('myhash'), 'hash')).toBe(true)
     })
 
-    test.todo('should return zset')
+    test('should return zset', async () => {
+      await redis.zadd('myzset', '1', 'foo')
+
+      expect(equals(await redis[command]('myzset'), 'zset')).toBe(true)
+    })
   })
 })

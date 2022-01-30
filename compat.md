@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 39%](https://img.shields.io/badge/coverage-39%25-red.svg)
+## Supported commands ![Commands Coverage: 40%](https://img.shields.io/badge/coverage-40%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -217,7 +217,6 @@
 
 ## Missing buffer commands
 
-- [authBuffer][1]
 - [evalBuffer][1]
 - [evalshaBuffer][1]
 - [getsetBuffer][1]
@@ -277,7 +276,6 @@
 - [sunionstoreBuffer][1]
 - [timeBuffer][1]
 - [ttlBuffer][1]
-- [typeBuffer][1]
 - [unlinkBuffer][1]
 - [unsubscribeBuffer][1]
 - [xaddBuffer][1]
