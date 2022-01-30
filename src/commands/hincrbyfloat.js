@@ -11,3 +11,5 @@ export function hincrbyfloat(key, field, increment) {
   this.data.set(key, hash)
   return hash[field]
 }
+
+export const hincrbyfloatBuffer = hincrbyfloat
