@@ -7,3 +7,8 @@ export function psetex(key, milliseconds, value) {
 
   return 'OK'
 }
+
+export function psetexBuffer(...args) {
+  const val = psetex.apply(this, args)
+  return val ? Buffer.from(val) : val
+}

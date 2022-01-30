@@ -50,7 +50,6 @@ module.exports = {
     'test/integration/commands/persist.js',
     'test/integration/commands/pexpire.js',
     'test/integration/commands/pexpireat.js',
-    'test/integration/commands/psetex.js',
     'test/integration/commands/psubscribe.js',
     'test/integration/commands/pttl.js',
     'test/integration/commands/publish.js',

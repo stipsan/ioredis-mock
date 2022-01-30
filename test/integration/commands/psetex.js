@@ -1,26 +1,26 @@
-import Promise from 'bluebird'
 import Redis from 'ioredis'
 
-describe('psetex', () => {
-  it('should set value and expire', () => {
-    const redis = new Redis()
-    return redis
-      .psetex('foo', 100, 'bar')
-      .then(status => {
-        return expect(status).toBe('OK')
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('psetex', (command, equals) => {
+  describe(command, () => {
+    it('should set value and expire', async () => {
+      const redis = new Redis()
+
+      const status = await redis[command]('foo', 100, 'bar')
+      expect(equals(status, 'OK')).toBe(true)
+      expect(await redis.get('foo')).toBe('bar')
+      expect(await redis.pttl('foo')).toBeGreaterThan(0)
+
+      await new Promise(resolve => {
+        return setTimeout(resolve, 200)
       })
-      .then(() => {
-        expect(redis.data.get('foo')).toBe('bar')
-        expect(redis.expires.has('foo')).toBe(true)
-      })
-      .then(() => {
-        return Promise.delay(200)
-      })
-      .then(() => {
-        return redis.get('foo')
-      })
-      .then(result => {
-        return expect(result).toBe(null)
-      })
+
+      expect(await redis.get('foo')).toBe(null)
+      expect(await redis.pttl('foo')).toBe(-2)
+
+      redis.disconnect()
+    })
   })
 })

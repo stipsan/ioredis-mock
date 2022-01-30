@@ -242,7 +242,6 @@
 - [persistBuffer][1]
 - [pexpireBuffer][1]
 - [pexpireatBuffer][1]
-- [psetexBuffer][1]
 - [psubscribeBuffer][1]
 - [pttlBuffer][1]
 - [publishBuffer][1]
