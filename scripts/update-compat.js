@@ -97,7 +97,7 @@ if (percentage === 100) {
 if (missingBufferCommands.length) {
   missingBufferCommands = `
 
-### Missing buffer commands
+## Missing buffer commands
 
 ${missingBufferCommands}`
 }
