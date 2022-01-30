@@ -53,3 +53,5 @@ export function zadd(key, ...vals) {
   this.data.set(key, map)
   return ch ? added + updated : added
 }
+
+export const zaddBuffer = zadd

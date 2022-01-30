@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 45%](https://img.shields.io/badge/coverage-45%25-red.svg)
+## Supported commands ![Commands Coverage: 46%](https://img.shields.io/badge/coverage-46%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -260,7 +260,6 @@
 - [xrangeBuffer][1]
 - [xreadBuffer][1]
 - [xrevrangeBuffer][1]
-- [zaddBuffer][1]
 - [zcardBuffer][1]
 - [zcountBuffer][1]
 - [zincrbyBuffer][1]
