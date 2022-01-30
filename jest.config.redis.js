@@ -22,7 +22,6 @@ module.exports = {
     'test/integration/commands/hgetBuffer.js',
     'test/integration/commands/hincrby.js',
     'test/integration/commands/hincrbyfloat.js',
-    'test/integration/commands/hkeys.js',
     'test/integration/commands/hlen.js',
     'test/integration/commands/hmget.js',
     'test/integration/commands/hmgetBuffer.js',

@@ -1,23 +1,27 @@
 import Redis from 'ioredis'
 
-describe('hkeys', () => {
-  it('should return an empty array if there are no keys', () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    return redis.hkeys('foo').then(result => {
-      return expect(result).toEqual([])
-    })
-  })
+runTwinSuite('hkeys', (command, equals) => {
+  describe(command, () => {
+    it('should return an empty array if there are no keys', async () => {
+      const redis = new Redis()
 
-  it('should return all data keys', () => {
-    const redis = new Redis({
-      data: {
-        foo: { bar: '1', baz: '2' },
-      },
+      const result = await redis[command]('foo')
+      expect(result).toEqual([])
+
+      redis.disconnect()
     })
 
-    return redis.hkeys('foo').then(result => {
-      return expect(result).toEqual(['bar', 'baz'])
+    it('should return all data keys', async () => {
+      const redis = new Redis()
+      await redis.hset('foo', 'bar', '1', 'baz', '2')
+      const result = await redis[command]('foo')
+      expect(equals(result[0], 'bar')).toBe(true)
+      expect(equals(result[1], 'baz')).toBe(true)
+
+      redis.disconnect()
     })
   })
 })

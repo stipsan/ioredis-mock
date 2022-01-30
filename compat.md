@@ -221,7 +221,6 @@
 - [evalshaBuffer][1]
 - [hincrbyBuffer][1]
 - [hincrbyfloatBuffer][1]
-- [hkeysBuffer][1]
 - [hlenBuffer][1]
 - [hscanBuffer][1]
 - [hsetnxBuffer][1]
