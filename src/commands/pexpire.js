@@ -7,3 +7,5 @@ export function pexpire(key, milliseconds) {
 
   return 1
 }
+
+export const pexpireBuffer = pexpire

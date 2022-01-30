@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 43%](https://img.shields.io/badge/coverage-43%25-red.svg)
+## Supported commands ![Commands Coverage: 44%](https://img.shields.io/badge/coverage-44%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -230,7 +230,6 @@
 - [lremBuffer][1]
 - [lsetBuffer][1]
 - [ltrimBuffer][1]
-- [pexpireBuffer][1]
 - [pexpireatBuffer][1]
 - [psubscribeBuffer][1]
 - [pttlBuffer][1]
