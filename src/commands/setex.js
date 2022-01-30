@@ -7,3 +7,8 @@ export function setex(key, seconds, value) {
 
   return 'OK'
 }
+
+export function setexBuffer(...args) {
+  const val = setex.apply(this, args)
+  return val ? Buffer.from(val) : val
+}

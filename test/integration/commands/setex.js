@@ -1,16 +1,19 @@
 import Redis from 'ioredis'
 
-describe('setex', () => {
-  it('should set value and expire', () => {
-    const redis = new Redis()
-    return redis
-      .setex('foo', 1, 'bar')
-      .then(status => {
-        return expect(status).toBe('OK')
-      })
-      .then(() => {
-        expect(redis.data.get('foo')).toBe('bar')
-        expect(redis.expires.has('foo')).toBe(true)
-      })
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('setex', (command, equals) => {
+  describe(command, () => {
+    it('should set value and expire', async () => {
+      const redis = new Redis()
+
+      const status = await redis[command]('foo', 10, 'bar')
+      expect(equals(status, 'OK')).toBe(true)
+      expect(await redis.get('foo')).toBe('bar')
+      expect(await redis.ttl('foo')).toBeGreaterThan(0)
+
+      redis.disconnect()
+    })
   })
 })
