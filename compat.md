@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 51%](https://img.shields.io/badge/coverage-51%25-red.svg)
+## Supported commands ![Commands Coverage: 52%](https://img.shields.io/badge/coverage-52%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -91,7 +91,6 @@
 | [ltrim]                | :white_check_mark: | :white_check_mark: |
 | [memory]               | :white_check_mark: |        :x:         |
 | [mget]                 | :white_check_mark: | :white_check_mark: |
-| [migrate]              | :white_check_mark: |        :x:         |
 | [monitor]              | :white_check_mark: |        :x:         |
 | [move]                 | :white_check_mark: |        :x:         |
 | [mset]                 | :white_check_mark: | :white_check_mark: |
@@ -102,7 +101,6 @@
 | [pexpireat]            | :white_check_mark: | :white_check_mark: |
 | [pfadd]                | :white_check_mark: |        :x:         |
 | [pfcount]              | :white_check_mark: |        :x:         |
-| [pfdebug]              | :white_check_mark: |        :x:         |
 | [pfmerge]              | :white_check_mark: |        :x:         |
 | [ping]                 | :white_check_mark: | :white_check_mark: |
 | [psetex]               | :white_check_mark: | :white_check_mark: |
@@ -114,7 +112,7 @@
 | [punsubscribe]         | :white_check_mark: | :white_check_mark: |
 | [quit]                 | :white_check_mark: | :white_check_mark: |
 | [randomkey]            | :white_check_mark: | :white_check_mark: |
-| [readonly]             | :white_check_mark: |        :x:         |
+| [readonly]             | :white_check_mark: | :white_check_mark: |
 | [readwrite]            | :white_check_mark: |        :x:         |
 | [rename]               | :white_check_mark: | :white_check_mark: |
 | [renamenx]             | :white_check_mark: | :white_check_mark: |
@@ -264,15 +262,17 @@
 
 ## Commands that won't be implemented
 
-| redis     | why it doesn't make sense to emulate                                                                         |
-| :-------- | :----------------------------------------------------------------------------------------------------------- |
-| [debug]   | This command is intended to aid in debugging redis                                                           |
-| [dump]    | Doesn't make sense to implement the internal data format used by RDB                                         |
-| [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                        |
-| [latency] | ioredis-mock isn't operating over the network so there is no latency to monitor                              |
-| [module]  | It's unlikely that we'll be able to run Redis Modules in a JS VM                                             |
-| [restore] | The RDB specific format used for restores would be a massive undertaking to implement with very little gain. |
-| [slowlog] | Useful when you're on redis, not so much when on ioredis-mock                                                |
+| redis     | why it doesn't make sense to emulate                                                                                                                              |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [debug]   | This command is intended to aid in debugging redis                                                                                                                |
+| [dump]    | Doesn't make sense to implement the internal data format used by RDB                                                                                              |
+| [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                                                                             |
+| [latency] | ioredis-mock isn't operating over the network so there is no latency to monitor                                                                                   |
+| [migrate] | This command actually executes a DUMP + DEL on the source instance, and a RESTORE in the target. Since DUMP and RESTORE won't be implemented it includes MIGRATE. |
+| [module]  | It's unlikely that we'll be able to run Redis Modules in a JS VM                                                                                                  |
+| [pfdebug] | This command is intended to aid in debugging redis                                                                                                                |
+| [restore] | The RDB specific format used for restores would be a massive undertaking to implement with very little gain.                                                      |
+| [slowlog] | Useful when you're on redis, not so much when on ioredis-mock                                                                                                     |
 
 [1]: https://github.com/luin/ioredis#handle-binary-data
 [acl]: http://redis.io/commands/ACL
@@ -364,7 +364,6 @@
 [ltrim]: http://redis.io/commands/LTRIM
 [memory]: http://redis.io/commands/MEMORY
 [mget]: http://redis.io/commands/MGET
-[migrate]: http://redis.io/commands/MIGRATE
 [monitor]: http://redis.io/commands/MONITOR
 [move]: http://redis.io/commands/MOVE
 [mset]: http://redis.io/commands/MSET
@@ -375,7 +374,6 @@
 [pexpireat]: http://redis.io/commands/PEXPIREAT
 [pfadd]: http://redis.io/commands/PFADD
 [pfcount]: http://redis.io/commands/PFCOUNT
-[pfdebug]: http://redis.io/commands/PFDEBUG
 [pfmerge]: http://redis.io/commands/PFMERGE
 [ping]: http://redis.io/commands/PING
 [psetex]: http://redis.io/commands/PSETEX
@@ -491,6 +489,8 @@
 [dump]: http://redis.io/commands/DUMP
 [hello]: http://redis.io/commands/HELLO
 [latency]: http://redis.io/commands/LATENCY
+[migrate]: http://redis.io/commands/MIGRATE
 [module]: http://redis.io/commands/MODULE
+[pfdebug]: http://redis.io/commands/PFDEBUG
 [restore]: http://redis.io/commands/RESTORE
 [slowlog]: http://redis.io/commands/SLOWLOG
