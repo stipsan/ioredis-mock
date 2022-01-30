@@ -21,6 +21,7 @@
     "lib/",
     "browser.js",
     "browser.js.map",
+    "compat.md",
     "example.js",
     "jest.js"
   ],

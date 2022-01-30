@@ -30,11 +30,11 @@ const skipList = {
 const commandsList = commands.list.filter(command => !(command in skipList))
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'
-let bufferSupportedCommands = 0
 let supportedCommands = 0
+let missingBufferCommands = ''
 let tableRows = `
-| redis | ioredis | ioredis-mock | buffer | ioredis | ioredis-mock |
-|-------|:-------:|:------------:|--------|:-------:|:------------:|`
+| redis | ioredis | ioredis-mock |
+|-------|:-------:|:------------:|`
 commandsList.forEach(command => {
   footerLinks += `
   [${command}]: http://redis.io/commands/${command.toUpperCase()}`
@@ -50,26 +50,20 @@ commandsList.forEach(command => {
 
   const commandBuffer = `${command}Buffer`
   const ioredisSupportsBuffer = commandBuffer in redis.prototype
-  const ioredisColBuffer = ioredisSupportsBuffer ? ':white_check_mark:' : ':x:'
   const supportedCommandBuffer = mockCommands.includes(commandBuffer)
-  const ioredisMockColBuffer = supportedCommandBuffer
-    ? ':white_check_mark:'
-    : ':x:'
-  if (ioredisSupportsBuffer) {
-    bufferSupportedCommands += 1
+
+  if (ioredisSupportsBuffer && supportedCommand && !supportedCommandBuffer) {
+    // Subtract half a point since we don't consider a command fully implemented if it's missing a buffer version
+    supportedCommands -= 0.5
+    missingBufferCommands += `
+- [${commandBuffer}][1]`
   }
-  if (supportedCommandBuffer) {
-    supportedCommands += 1
-  }
-  tableRows += `[${commandBuffer}][1]|${ioredisColBuffer}|${ioredisMockColBuffer}|`
 })
 
 let skipTableRows = `
 | redis | why it doesn't make sense to emulate |
 |:------|:-------------------------------------|`
 Object.keys(skipList).forEach(command => {
-  // Add skipped commands to the total
-  supportedCommands += 2
   if (skipList[command] === false) {
     return
   }
@@ -81,31 +75,39 @@ Object.keys(skipList).forEach(command => {
 |${redisCol}|${skipList[command]}|`
 })
 
-const percentage = Math.floor(
-  (supportedCommands / (commandsList.length + bufferSupportedCommands)) * 100
-)
+const percentage = Math.floor((supportedCommands / commandsList.length) * 100)
 
 let color = 'red'
-if (percentage >= 28) {
+if (percentage >= 60) {
   color = 'orange'
 }
-if (percentage >= 46) {
+if (percentage >= 70) {
   color = 'yellow'
 }
-if (percentage >= 64) {
+if (percentage >= 80) {
   color = 'yellowgreen'
 }
-if (percentage >= 82) {
+if (percentage >= 90) {
   color = 'green'
 }
 if (percentage === 100) {
   color = 'brightgreen'
 }
 
+if (missingBufferCommands.length) {
+  missingBufferCommands = `
+
+## Missing buffer commands
+
+${missingBufferCommands}`
+}
+
 const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
 ${tableRows}
 
-### Commands that won't be implemented
+${missingBufferCommands}
+
+## Commands that won't be implemented
 ${skipTableRows}
 
 ${footerLinks}`

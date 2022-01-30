@@ -1,221 +1,310 @@
-## Supported commands ![Commands Coverage: 46%](https://img.shields.io/badge/coverage-46%25-yellow.svg)
+## Supported commands ![Commands Coverage: 39%](https://img.shields.io/badge/coverage-39%25-red.svg)
 
-| redis                  |      ioredis       |    ioredis-mock    | buffer                          |      ioredis       |    ioredis-mock    |
-| ---------------------- | :----------------: | :----------------: | ------------------------------- | :----------------: | :----------------: |
-| [acl]                  | :white_check_mark: |        :x:         | [aclBuffer][1]                  | :white_check_mark: |        :x:         |
-| [append]               | :white_check_mark: | :white_check_mark: | [appendBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [asking]               | :white_check_mark: |        :x:         | [askingBuffer][1]               | :white_check_mark: |        :x:         |
-| [auth]                 | :white_check_mark: | :white_check_mark: | [authBuffer][1]                 | :white_check_mark: |        :x:         |
-| [bgrewriteaof]         | :white_check_mark: | :white_check_mark: | [bgrewriteaofBuffer][1]         | :white_check_mark: | :white_check_mark: |
-| [bgsave]               | :white_check_mark: | :white_check_mark: | [bgsaveBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [bitcount]             | :white_check_mark: |        :x:         | [bitcountBuffer][1]             | :white_check_mark: |        :x:         |
-| [bitfield]             | :white_check_mark: |        :x:         | [bitfieldBuffer][1]             | :white_check_mark: |        :x:         |
-| [bitfield_ro]          | :white_check_mark: |        :x:         | [bitfield_roBuffer][1]          | :white_check_mark: |        :x:         |
-| [bitop]                | :white_check_mark: |        :x:         | [bitopBuffer][1]                | :white_check_mark: |        :x:         |
-| [bitpos]               | :white_check_mark: |        :x:         | [bitposBuffer][1]               | :white_check_mark: |        :x:         |
-| [blmove]               | :white_check_mark: |        :x:         | [blmoveBuffer][1]               | :white_check_mark: |        :x:         |
-| [blpop]                | :white_check_mark: |        :x:         | [blpopBuffer][1]                | :white_check_mark: |        :x:         |
-| [brpop]                | :white_check_mark: |        :x:         | [brpopBuffer][1]                | :white_check_mark: |        :x:         |
-| [brpoplpush]           | :white_check_mark: | :white_check_mark: | [brpoplpushBuffer][1]           | :white_check_mark: | :white_check_mark: |
-| [bzpopmax]             | :white_check_mark: |        :x:         | [bzpopmaxBuffer][1]             | :white_check_mark: |        :x:         |
-| [bzpopmin]             | :white_check_mark: |        :x:         | [bzpopminBuffer][1]             | :white_check_mark: |        :x:         |
-| [client]               | :white_check_mark: |        :x:         | [clientBuffer][1]               | :white_check_mark: |        :x:         |
-| [cluster]              | :white_check_mark: |        :x:         | [clusterBuffer][1]              | :white_check_mark: |        :x:         |
-| [command]              | :white_check_mark: |        :x:         | [commandBuffer][1]              | :white_check_mark: |        :x:         |
-| [config]               | :white_check_mark: |        :x:         | [configBuffer][1]               | :white_check_mark: |        :x:         |
-| [copy]                 | :white_check_mark: |        :x:         | [copyBuffer][1]                 | :white_check_mark: |        :x:         |
-| [dbsize]               | :white_check_mark: | :white_check_mark: | [dbsizeBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [decr]                 | :white_check_mark: | :white_check_mark: | [decrBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [decrby]               | :white_check_mark: | :white_check_mark: | [decrbyBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [del]                  | :white_check_mark: | :white_check_mark: | [delBuffer][1]                  | :white_check_mark: | :white_check_mark: |
-| [discard]              | :white_check_mark: | :white_check_mark: | [discardBuffer][1]              | :white_check_mark: | :white_check_mark: |
-| [echo]                 | :white_check_mark: | :white_check_mark: | [echoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [eval]                 | :white_check_mark: | :white_check_mark: | [evalBuffer][1]                 | :white_check_mark: |        :x:         |
-| [evalsha]              | :white_check_mark: | :white_check_mark: | [evalshaBuffer][1]              | :white_check_mark: |        :x:         |
-| [exists]               | :white_check_mark: | :white_check_mark: | [existsBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [expire]               | :white_check_mark: | :white_check_mark: | [expireBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [expireat]             | :white_check_mark: | :white_check_mark: | [expireatBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [failover]             | :white_check_mark: |        :x:         | [failoverBuffer][1]             | :white_check_mark: |        :x:         |
-| [flushall]             | :white_check_mark: | :white_check_mark: | [flushallBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [flushdb]              | :white_check_mark: | :white_check_mark: | [flushdbBuffer][1]              | :white_check_mark: | :white_check_mark: |
-| [geoadd]               | :white_check_mark: |        :x:         | [geoaddBuffer][1]               | :white_check_mark: |        :x:         |
-| [geodist]              | :white_check_mark: |        :x:         | [geodistBuffer][1]              | :white_check_mark: |        :x:         |
-| [geohash]              | :white_check_mark: |        :x:         | [geohashBuffer][1]              | :white_check_mark: |        :x:         |
-| [geopos]               | :white_check_mark: |        :x:         | [geoposBuffer][1]               | :white_check_mark: |        :x:         |
-| [georadius]            | :white_check_mark: |        :x:         | [georadiusBuffer][1]            | :white_check_mark: |        :x:         |
-| [georadius_ro]         | :white_check_mark: |        :x:         | [georadius_roBuffer][1]         | :white_check_mark: |        :x:         |
-| [georadiusbymember]    | :white_check_mark: |        :x:         | [georadiusbymemberBuffer][1]    | :white_check_mark: |        :x:         |
-| [georadiusbymember_ro] | :white_check_mark: |        :x:         | [georadiusbymember_roBuffer][1] | :white_check_mark: |        :x:         |
-| [geosearch]            | :white_check_mark: |        :x:         | [geosearchBuffer][1]            | :white_check_mark: |        :x:         |
-| [geosearchstore]       | :white_check_mark: |        :x:         | [geosearchstoreBuffer][1]       | :white_check_mark: |        :x:         |
-| [get]                  | :white_check_mark: | :white_check_mark: | [getBuffer][1]                  | :white_check_mark: | :white_check_mark: |
-| [getbit]               | :white_check_mark: | :white_check_mark: | [getbitBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [getdel]               | :white_check_mark: |        :x:         | [getdelBuffer][1]               | :white_check_mark: |        :x:         |
-| [getex]                | :white_check_mark: |        :x:         | [getexBuffer][1]                | :white_check_mark: |        :x:         |
-| [getrange]             | :white_check_mark: | :white_check_mark: | [getrangeBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [getset]               | :white_check_mark: | :white_check_mark: | [getsetBuffer][1]               | :white_check_mark: |        :x:         |
-| [hdel]                 | :white_check_mark: | :white_check_mark: | [hdelBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [hexists]              | :white_check_mark: | :white_check_mark: | [hexistsBuffer][1]              | :white_check_mark: | :white_check_mark: |
-| [hget]                 | :white_check_mark: | :white_check_mark: | [hgetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [hgetall]              | :white_check_mark: | :white_check_mark: | [hgetallBuffer][1]              | :white_check_mark: | :white_check_mark: |
-| [hincrby]              | :white_check_mark: | :white_check_mark: | [hincrbyBuffer][1]              | :white_check_mark: |        :x:         |
-| [hincrbyfloat]         | :white_check_mark: | :white_check_mark: | [hincrbyfloatBuffer][1]         | :white_check_mark: |        :x:         |
-| [hkeys]                | :white_check_mark: | :white_check_mark: | [hkeysBuffer][1]                | :white_check_mark: |        :x:         |
-| [hlen]                 | :white_check_mark: | :white_check_mark: | [hlenBuffer][1]                 | :white_check_mark: |        :x:         |
-| [hmget]                | :white_check_mark: | :white_check_mark: | [hmgetBuffer][1]                | :white_check_mark: | :white_check_mark: |
-| [hmset]                | :white_check_mark: | :white_check_mark: | [hmsetBuffer][1]                | :white_check_mark: | :white_check_mark: |
-| [hrandfield]           | :white_check_mark: |        :x:         | [hrandfieldBuffer][1]           | :white_check_mark: |        :x:         |
-| [hscan]                | :white_check_mark: | :white_check_mark: | [hscanBuffer][1]                | :white_check_mark: |        :x:         |
-| [hset]                 | :white_check_mark: | :white_check_mark: | [hsetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [hsetnx]               | :white_check_mark: | :white_check_mark: | [hsetnxBuffer][1]               | :white_check_mark: |        :x:         |
-| [hstrlen]              | :white_check_mark: | :white_check_mark: | [hstrlenBuffer][1]              | :white_check_mark: |        :x:         |
-| [hvals]                | :white_check_mark: | :white_check_mark: | [hvalsBuffer][1]                | :white_check_mark: |        :x:         |
-| [incr]                 | :white_check_mark: | :white_check_mark: | [incrBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [incrby]               | :white_check_mark: | :white_check_mark: | [incrbyBuffer][1]               | :white_check_mark: | :white_check_mark: |
-| [incrbyfloat]          | :white_check_mark: | :white_check_mark: | [incrbyfloatBuffer][1]          | :white_check_mark: | :white_check_mark: |
-| [info]                 | :white_check_mark: | :white_check_mark: | [infoBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [keys]                 | :white_check_mark: | :white_check_mark: | [keysBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [lastsave]             | :white_check_mark: | :white_check_mark: | [lastsaveBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [lindex]               | :white_check_mark: | :white_check_mark: | [lindexBuffer][1]               | :white_check_mark: |        :x:         |
-| [linsert]              | :white_check_mark: | :white_check_mark: | [linsertBuffer][1]              | :white_check_mark: |        :x:         |
-| [llen]                 | :white_check_mark: | :white_check_mark: | [llenBuffer][1]                 | :white_check_mark: |        :x:         |
-| [lmove]                | :white_check_mark: |        :x:         | [lmoveBuffer][1]                | :white_check_mark: |        :x:         |
-| [lolwut]               | :white_check_mark: |        :x:         | [lolwutBuffer][1]               | :white_check_mark: |        :x:         |
-| [lpop]                 | :white_check_mark: | :white_check_mark: | [lpopBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [lpos]                 | :white_check_mark: |        :x:         | [lposBuffer][1]                 | :white_check_mark: |        :x:         |
-| [lpush]                | :white_check_mark: | :white_check_mark: | [lpushBuffer][1]                | :white_check_mark: |        :x:         |
-| [lpushx]               | :white_check_mark: | :white_check_mark: | [lpushxBuffer][1]               | :white_check_mark: |        :x:         |
-| [lrange]               | :white_check_mark: | :white_check_mark: | [lrangeBuffer][1]               | :white_check_mark: |        :x:         |
-| [lrem]                 | :white_check_mark: | :white_check_mark: | [lremBuffer][1]                 | :white_check_mark: |        :x:         |
-| [lset]                 | :white_check_mark: | :white_check_mark: | [lsetBuffer][1]                 | :white_check_mark: |        :x:         |
-| [ltrim]                | :white_check_mark: | :white_check_mark: | [ltrimBuffer][1]                | :white_check_mark: |        :x:         |
-| [memory]               | :white_check_mark: |        :x:         | [memoryBuffer][1]               | :white_check_mark: |        :x:         |
-| [mget]                 | :white_check_mark: | :white_check_mark: | [mgetBuffer][1]                 | :white_check_mark: |        :x:         |
-| [migrate]              | :white_check_mark: |        :x:         | [migrateBuffer][1]              | :white_check_mark: |        :x:         |
-| [monitor]              | :white_check_mark: |        :x:         | [monitorBuffer][1]              |        :x:         |        :x:         |
-| [move]                 | :white_check_mark: |        :x:         | [moveBuffer][1]                 | :white_check_mark: |        :x:         |
-| [mset]                 | :white_check_mark: | :white_check_mark: | [msetBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [msetnx]               | :white_check_mark: | :white_check_mark: | [msetnxBuffer][1]               | :white_check_mark: |        :x:         |
-| [object]               | :white_check_mark: |        :x:         | [objectBuffer][1]               | :white_check_mark: |        :x:         |
-| [persist]              | :white_check_mark: | :white_check_mark: | [persistBuffer][1]              | :white_check_mark: |        :x:         |
-| [pexpire]              | :white_check_mark: | :white_check_mark: | [pexpireBuffer][1]              | :white_check_mark: |        :x:         |
-| [pexpireat]            | :white_check_mark: | :white_check_mark: | [pexpireatBuffer][1]            | :white_check_mark: |        :x:         |
-| [pfadd]                | :white_check_mark: |        :x:         | [pfaddBuffer][1]                | :white_check_mark: |        :x:         |
-| [pfcount]              | :white_check_mark: |        :x:         | [pfcountBuffer][1]              | :white_check_mark: |        :x:         |
-| [pfdebug]              | :white_check_mark: |        :x:         | [pfdebugBuffer][1]              | :white_check_mark: |        :x:         |
-| [pfmerge]              | :white_check_mark: |        :x:         | [pfmergeBuffer][1]              | :white_check_mark: |        :x:         |
-| [ping]                 | :white_check_mark: | :white_check_mark: | [pingBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [psetex]               | :white_check_mark: | :white_check_mark: | [psetexBuffer][1]               | :white_check_mark: |        :x:         |
-| [psubscribe]           | :white_check_mark: | :white_check_mark: | [psubscribeBuffer][1]           | :white_check_mark: |        :x:         |
-| [psync]                | :white_check_mark: |        :x:         | [psyncBuffer][1]                | :white_check_mark: |        :x:         |
-| [pttl]                 | :white_check_mark: | :white_check_mark: | [pttlBuffer][1]                 | :white_check_mark: |        :x:         |
-| [publish]              | :white_check_mark: | :white_check_mark: | [publishBuffer][1]              | :white_check_mark: |        :x:         |
-| [pubsub]               | :white_check_mark: |        :x:         | [pubsubBuffer][1]               | :white_check_mark: |        :x:         |
-| [punsubscribe]         | :white_check_mark: | :white_check_mark: | [punsubscribeBuffer][1]         | :white_check_mark: |        :x:         |
-| [quit]                 | :white_check_mark: | :white_check_mark: | [quitBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [randomkey]            | :white_check_mark: | :white_check_mark: | [randomkeyBuffer][1]            | :white_check_mark: |        :x:         |
-| [readonly]             | :white_check_mark: |        :x:         | [readonlyBuffer][1]             | :white_check_mark: |        :x:         |
-| [readwrite]            | :white_check_mark: |        :x:         | [readwriteBuffer][1]            | :white_check_mark: |        :x:         |
-| [rename]               | :white_check_mark: | :white_check_mark: | [renameBuffer][1]               | :white_check_mark: |        :x:         |
-| [renamenx]             | :white_check_mark: | :white_check_mark: | [renamenxBuffer][1]             | :white_check_mark: |        :x:         |
-| [replconf]             | :white_check_mark: | :white_check_mark: | [replconfBuffer][1]             | :white_check_mark: | :white_check_mark: |
-| [replicaof]            | :white_check_mark: |        :x:         | [replicaofBuffer][1]            | :white_check_mark: |        :x:         |
-| [reset]                | :white_check_mark: |        :x:         | [resetBuffer][1]                | :white_check_mark: |        :x:         |
-| [role]                 | :white_check_mark: | :white_check_mark: | [roleBuffer][1]                 | :white_check_mark: |        :x:         |
-| [rpop]                 | :white_check_mark: | :white_check_mark: | [rpopBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [rpoplpush]            | :white_check_mark: | :white_check_mark: | [rpoplpushBuffer][1]            | :white_check_mark: | :white_check_mark: |
-| [rpush]                | :white_check_mark: | :white_check_mark: | [rpushBuffer][1]                | :white_check_mark: |        :x:         |
-| [rpushx]               | :white_check_mark: | :white_check_mark: | [rpushxBuffer][1]               | :white_check_mark: |        :x:         |
-| [sadd]                 | :white_check_mark: | :white_check_mark: | [saddBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [save]                 | :white_check_mark: | :white_check_mark: | [saveBuffer][1]                 | :white_check_mark: | :white_check_mark: |
-| [scan]                 | :white_check_mark: | :white_check_mark: | [scanBuffer][1]                 | :white_check_mark: |        :x:         |
-| [scard]                | :white_check_mark: | :white_check_mark: | [scardBuffer][1]                | :white_check_mark: |        :x:         |
-| [script]               | :white_check_mark: |        :x:         | [scriptBuffer][1]               | :white_check_mark: |        :x:         |
-| [sdiff]                | :white_check_mark: | :white_check_mark: | [sdiffBuffer][1]                | :white_check_mark: |        :x:         |
-| [sdiffstore]           | :white_check_mark: | :white_check_mark: | [sdiffstoreBuffer][1]           | :white_check_mark: |        :x:         |
-| [select]               | :white_check_mark: |        :x:         | [selectBuffer][1]               | :white_check_mark: |        :x:         |
-| [set]                  | :white_check_mark: | :white_check_mark: | [setBuffer][1]                  | :white_check_mark: | :white_check_mark: |
-| [setbit]               | :white_check_mark: | :white_check_mark: | [setbitBuffer][1]               | :white_check_mark: |        :x:         |
-| [setex]                | :white_check_mark: | :white_check_mark: | [setexBuffer][1]                | :white_check_mark: |        :x:         |
-| [setnx]                | :white_check_mark: | :white_check_mark: | [setnxBuffer][1]                | :white_check_mark: |        :x:         |
-| [setrange]             | :white_check_mark: |        :x:         | [setrangeBuffer][1]             | :white_check_mark: |        :x:         |
-| [shutdown]             | :white_check_mark: |        :x:         | [shutdownBuffer][1]             | :white_check_mark: |        :x:         |
-| [sinter]               | :white_check_mark: | :white_check_mark: | [sinterBuffer][1]               | :white_check_mark: |        :x:         |
-| [sinterstore]          | :white_check_mark: | :white_check_mark: | [sinterstoreBuffer][1]          | :white_check_mark: |        :x:         |
-| [sismember]            | :white_check_mark: | :white_check_mark: | [sismemberBuffer][1]            | :white_check_mark: |        :x:         |
-| [slaveof]              | :white_check_mark: |        :x:         | [slaveofBuffer][1]              | :white_check_mark: |        :x:         |
-| [smembers]             | :white_check_mark: | :white_check_mark: | [smembersBuffer][1]             | :white_check_mark: |        :x:         |
-| [smismember]           | :white_check_mark: | :white_check_mark: | [smismemberBuffer][1]           | :white_check_mark: |        :x:         |
-| [smove]                | :white_check_mark: | :white_check_mark: | [smoveBuffer][1]                | :white_check_mark: |        :x:         |
-| [sort]                 | :white_check_mark: |        :x:         | [sortBuffer][1]                 | :white_check_mark: |        :x:         |
-| [spop]                 | :white_check_mark: | :white_check_mark: | [spopBuffer][1]                 | :white_check_mark: |        :x:         |
-| [srandmember]          | :white_check_mark: | :white_check_mark: | [srandmemberBuffer][1]          | :white_check_mark: |        :x:         |
-| [srem]                 | :white_check_mark: | :white_check_mark: | [sremBuffer][1]                 | :white_check_mark: |        :x:         |
-| [sscan]                | :white_check_mark: | :white_check_mark: | [sscanBuffer][1]                | :white_check_mark: |        :x:         |
-| [stralgo]              | :white_check_mark: |        :x:         | [stralgoBuffer][1]              | :white_check_mark: |        :x:         |
-| [strlen]               | :white_check_mark: | :white_check_mark: | [strlenBuffer][1]               | :white_check_mark: |        :x:         |
-| [subscribe]            | :white_check_mark: | :white_check_mark: | [subscribeBuffer][1]            | :white_check_mark: |        :x:         |
-| [substr]               | :white_check_mark: |        :x:         | [substrBuffer][1]               | :white_check_mark: |        :x:         |
-| [sunion]               | :white_check_mark: | :white_check_mark: | [sunionBuffer][1]               | :white_check_mark: |        :x:         |
-| [sunionstore]          | :white_check_mark: | :white_check_mark: | [sunionstoreBuffer][1]          | :white_check_mark: |        :x:         |
-| [swapdb]               | :white_check_mark: |        :x:         | [swapdbBuffer][1]               | :white_check_mark: |        :x:         |
-| [sync]                 | :white_check_mark: |        :x:         | [syncBuffer][1]                 | :white_check_mark: |        :x:         |
-| [time]                 | :white_check_mark: | :white_check_mark: | [timeBuffer][1]                 | :white_check_mark: |        :x:         |
-| [touch]                | :white_check_mark: |        :x:         | [touchBuffer][1]                | :white_check_mark: |        :x:         |
-| [ttl]                  | :white_check_mark: | :white_check_mark: | [ttlBuffer][1]                  | :white_check_mark: |        :x:         |
-| [type]                 | :white_check_mark: | :white_check_mark: | [typeBuffer][1]                 | :white_check_mark: |        :x:         |
-| [unlink]               | :white_check_mark: | :white_check_mark: | [unlinkBuffer][1]               | :white_check_mark: |        :x:         |
-| [unsubscribe]          | :white_check_mark: | :white_check_mark: | [unsubscribeBuffer][1]          | :white_check_mark: |        :x:         |
-| [unwatch]              | :white_check_mark: |        :x:         | [unwatchBuffer][1]              | :white_check_mark: |        :x:         |
-| [wait]                 | :white_check_mark: |        :x:         | [waitBuffer][1]                 | :white_check_mark: |        :x:         |
-| [watch]                | :white_check_mark: |        :x:         | [watchBuffer][1]                | :white_check_mark: |        :x:         |
-| [xack]                 | :white_check_mark: |        :x:         | [xackBuffer][1]                 | :white_check_mark: |        :x:         |
-| [xadd]                 | :white_check_mark: | :white_check_mark: | [xaddBuffer][1]                 | :white_check_mark: |        :x:         |
-| [xautoclaim]           | :white_check_mark: |        :x:         | [xautoclaimBuffer][1]           | :white_check_mark: |        :x:         |
-| [xclaim]               | :white_check_mark: |        :x:         | [xclaimBuffer][1]               | :white_check_mark: |        :x:         |
-| [xdel]                 | :white_check_mark: |        :x:         | [xdelBuffer][1]                 | :white_check_mark: |        :x:         |
-| [xgroup]               | :white_check_mark: |        :x:         | [xgroupBuffer][1]               | :white_check_mark: |        :x:         |
-| [xinfo]                | :white_check_mark: |        :x:         | [xinfoBuffer][1]                | :white_check_mark: |        :x:         |
-| [xlen]                 | :white_check_mark: | :white_check_mark: | [xlenBuffer][1]                 | :white_check_mark: |        :x:         |
-| [xpending]             | :white_check_mark: |        :x:         | [xpendingBuffer][1]             | :white_check_mark: |        :x:         |
-| [xrange]               | :white_check_mark: | :white_check_mark: | [xrangeBuffer][1]               | :white_check_mark: |        :x:         |
-| [xread]                | :white_check_mark: | :white_check_mark: | [xreadBuffer][1]                | :white_check_mark: |        :x:         |
-| [xreadgroup]           | :white_check_mark: |        :x:         | [xreadgroupBuffer][1]           | :white_check_mark: |        :x:         |
-| [xrevrange]            | :white_check_mark: | :white_check_mark: | [xrevrangeBuffer][1]            | :white_check_mark: |        :x:         |
-| [xsetid]               | :white_check_mark: |        :x:         | [xsetidBuffer][1]               | :white_check_mark: |        :x:         |
-| [xtrim]                | :white_check_mark: |        :x:         | [xtrimBuffer][1]                | :white_check_mark: |        :x:         |
-| [zadd]                 | :white_check_mark: | :white_check_mark: | [zaddBuffer][1]                 | :white_check_mark: |        :x:         |
-| [zcard]                | :white_check_mark: | :white_check_mark: | [zcardBuffer][1]                | :white_check_mark: |        :x:         |
-| [zcount]               | :white_check_mark: | :white_check_mark: | [zcountBuffer][1]               | :white_check_mark: |        :x:         |
-| [zdiff]                | :white_check_mark: |        :x:         | [zdiffBuffer][1]                | :white_check_mark: |        :x:         |
-| [zdiffstore]           | :white_check_mark: |        :x:         | [zdiffstoreBuffer][1]           | :white_check_mark: |        :x:         |
-| [zincrby]              | :white_check_mark: | :white_check_mark: | [zincrbyBuffer][1]              | :white_check_mark: |        :x:         |
-| [zinter]               | :white_check_mark: |        :x:         | [zinterBuffer][1]               | :white_check_mark: |        :x:         |
-| [zinterstore]          | :white_check_mark: | :white_check_mark: | [zinterstoreBuffer][1]          | :white_check_mark: |        :x:         |
-| [zlexcount]            | :white_check_mark: |        :x:         | [zlexcountBuffer][1]            | :white_check_mark: |        :x:         |
-| [zmscore]              | :white_check_mark: |        :x:         | [zmscoreBuffer][1]              | :white_check_mark: |        :x:         |
-| [zpopmax]              | :white_check_mark: | :white_check_mark: | [zpopmaxBuffer][1]              | :white_check_mark: |        :x:         |
-| [zpopmin]              | :white_check_mark: | :white_check_mark: | [zpopminBuffer][1]              | :white_check_mark: |        :x:         |
-| [zrandmember]          | :white_check_mark: |        :x:         | [zrandmemberBuffer][1]          | :white_check_mark: |        :x:         |
-| [zrange]               | :white_check_mark: | :white_check_mark: | [zrangeBuffer][1]               | :white_check_mark: |        :x:         |
-| [zrangebylex]          | :white_check_mark: |        :x:         | [zrangebylexBuffer][1]          | :white_check_mark: |        :x:         |
-| [zrangebyscore]        | :white_check_mark: | :white_check_mark: | [zrangebyscoreBuffer][1]        | :white_check_mark: |        :x:         |
-| [zrangestore]          | :white_check_mark: |        :x:         | [zrangestoreBuffer][1]          | :white_check_mark: |        :x:         |
-| [zrank]                | :white_check_mark: | :white_check_mark: | [zrankBuffer][1]                | :white_check_mark: |        :x:         |
-| [zrem]                 | :white_check_mark: | :white_check_mark: | [zremBuffer][1]                 | :white_check_mark: |        :x:         |
-| [zremrangebylex]       | :white_check_mark: |        :x:         | [zremrangebylexBuffer][1]       | :white_check_mark: |        :x:         |
-| [zremrangebyrank]      | :white_check_mark: | :white_check_mark: | [zremrangebyrankBuffer][1]      | :white_check_mark: |        :x:         |
-| [zremrangebyscore]     | :white_check_mark: | :white_check_mark: | [zremrangebyscoreBuffer][1]     | :white_check_mark: |        :x:         |
-| [zrevrange]            | :white_check_mark: | :white_check_mark: | [zrevrangeBuffer][1]            | :white_check_mark: |        :x:         |
-| [zrevrangebylex]       | :white_check_mark: |        :x:         | [zrevrangebylexBuffer][1]       | :white_check_mark: |        :x:         |
-| [zrevrangebyscore]     | :white_check_mark: | :white_check_mark: | [zrevrangebyscoreBuffer][1]     | :white_check_mark: |        :x:         |
-| [zrevrank]             | :white_check_mark: | :white_check_mark: | [zrevrankBuffer][1]             | :white_check_mark: |        :x:         |
-| [zscan]                | :white_check_mark: | :white_check_mark: | [zscanBuffer][1]                | :white_check_mark: |        :x:         |
-| [zscore]               | :white_check_mark: | :white_check_mark: | [zscoreBuffer][1]               | :white_check_mark: |        :x:         |
-| [zunion]               | :white_check_mark: |        :x:         | [zunionBuffer][1]               | :white_check_mark: |        :x:         |
-| [zunionstore]          | :white_check_mark: |        :x:         | [zunionstoreBuffer][1]          | :white_check_mark: |        :x:         |
+| redis                  |      ioredis       |    ioredis-mock    |
+| ---------------------- | :----------------: | :----------------: |
+| [acl]                  | :white_check_mark: |        :x:         |
+| [append]               | :white_check_mark: | :white_check_mark: |
+| [asking]               | :white_check_mark: |        :x:         |
+| [auth]                 | :white_check_mark: | :white_check_mark: |
+| [bgrewriteaof]         | :white_check_mark: | :white_check_mark: |
+| [bgsave]               | :white_check_mark: | :white_check_mark: |
+| [bitcount]             | :white_check_mark: |        :x:         |
+| [bitfield]             | :white_check_mark: |        :x:         |
+| [bitfield_ro]          | :white_check_mark: |        :x:         |
+| [bitop]                | :white_check_mark: |        :x:         |
+| [bitpos]               | :white_check_mark: |        :x:         |
+| [blmove]               | :white_check_mark: |        :x:         |
+| [blpop]                | :white_check_mark: |        :x:         |
+| [brpop]                | :white_check_mark: |        :x:         |
+| [brpoplpush]           | :white_check_mark: | :white_check_mark: |
+| [bzpopmax]             | :white_check_mark: |        :x:         |
+| [bzpopmin]             | :white_check_mark: |        :x:         |
+| [client]               | :white_check_mark: |        :x:         |
+| [cluster]              | :white_check_mark: |        :x:         |
+| [command]              | :white_check_mark: |        :x:         |
+| [config]               | :white_check_mark: |        :x:         |
+| [copy]                 | :white_check_mark: |        :x:         |
+| [dbsize]               | :white_check_mark: | :white_check_mark: |
+| [decr]                 | :white_check_mark: | :white_check_mark: |
+| [decrby]               | :white_check_mark: | :white_check_mark: |
+| [del]                  | :white_check_mark: | :white_check_mark: |
+| [discard]              | :white_check_mark: | :white_check_mark: |
+| [echo]                 | :white_check_mark: | :white_check_mark: |
+| [eval]                 | :white_check_mark: | :white_check_mark: |
+| [evalsha]              | :white_check_mark: | :white_check_mark: |
+| [exists]               | :white_check_mark: | :white_check_mark: |
+| [expire]               | :white_check_mark: | :white_check_mark: |
+| [expireat]             | :white_check_mark: | :white_check_mark: |
+| [failover]             | :white_check_mark: |        :x:         |
+| [flushall]             | :white_check_mark: | :white_check_mark: |
+| [flushdb]              | :white_check_mark: | :white_check_mark: |
+| [geoadd]               | :white_check_mark: |        :x:         |
+| [geodist]              | :white_check_mark: |        :x:         |
+| [geohash]              | :white_check_mark: |        :x:         |
+| [geopos]               | :white_check_mark: |        :x:         |
+| [georadius]            | :white_check_mark: |        :x:         |
+| [georadius_ro]         | :white_check_mark: |        :x:         |
+| [georadiusbymember]    | :white_check_mark: |        :x:         |
+| [georadiusbymember_ro] | :white_check_mark: |        :x:         |
+| [geosearch]            | :white_check_mark: |        :x:         |
+| [geosearchstore]       | :white_check_mark: |        :x:         |
+| [get]                  | :white_check_mark: | :white_check_mark: |
+| [getbit]               | :white_check_mark: | :white_check_mark: |
+| [getdel]               | :white_check_mark: |        :x:         |
+| [getex]                | :white_check_mark: |        :x:         |
+| [getrange]             | :white_check_mark: | :white_check_mark: |
+| [getset]               | :white_check_mark: | :white_check_mark: |
+| [hdel]                 | :white_check_mark: | :white_check_mark: |
+| [hexists]              | :white_check_mark: | :white_check_mark: |
+| [hget]                 | :white_check_mark: | :white_check_mark: |
+| [hgetall]              | :white_check_mark: | :white_check_mark: |
+| [hincrby]              | :white_check_mark: | :white_check_mark: |
+| [hincrbyfloat]         | :white_check_mark: | :white_check_mark: |
+| [hkeys]                | :white_check_mark: | :white_check_mark: |
+| [hlen]                 | :white_check_mark: | :white_check_mark: |
+| [hmget]                | :white_check_mark: | :white_check_mark: |
+| [hmset]                | :white_check_mark: | :white_check_mark: |
+| [hrandfield]           | :white_check_mark: |        :x:         |
+| [hscan]                | :white_check_mark: | :white_check_mark: |
+| [hset]                 | :white_check_mark: | :white_check_mark: |
+| [hsetnx]               | :white_check_mark: | :white_check_mark: |
+| [hstrlen]              | :white_check_mark: | :white_check_mark: |
+| [hvals]                | :white_check_mark: | :white_check_mark: |
+| [incr]                 | :white_check_mark: | :white_check_mark: |
+| [incrby]               | :white_check_mark: | :white_check_mark: |
+| [incrbyfloat]          | :white_check_mark: | :white_check_mark: |
+| [info]                 | :white_check_mark: | :white_check_mark: |
+| [keys]                 | :white_check_mark: | :white_check_mark: |
+| [lastsave]             | :white_check_mark: | :white_check_mark: |
+| [lindex]               | :white_check_mark: | :white_check_mark: |
+| [linsert]              | :white_check_mark: | :white_check_mark: |
+| [llen]                 | :white_check_mark: | :white_check_mark: |
+| [lmove]                | :white_check_mark: |        :x:         |
+| [lolwut]               | :white_check_mark: |        :x:         |
+| [lpop]                 | :white_check_mark: | :white_check_mark: |
+| [lpos]                 | :white_check_mark: |        :x:         |
+| [lpush]                | :white_check_mark: | :white_check_mark: |
+| [lpushx]               | :white_check_mark: | :white_check_mark: |
+| [lrange]               | :white_check_mark: | :white_check_mark: |
+| [lrem]                 | :white_check_mark: | :white_check_mark: |
+| [lset]                 | :white_check_mark: | :white_check_mark: |
+| [ltrim]                | :white_check_mark: | :white_check_mark: |
+| [memory]               | :white_check_mark: |        :x:         |
+| [mget]                 | :white_check_mark: | :white_check_mark: |
+| [migrate]              | :white_check_mark: |        :x:         |
+| [monitor]              | :white_check_mark: |        :x:         |
+| [move]                 | :white_check_mark: |        :x:         |
+| [mset]                 | :white_check_mark: | :white_check_mark: |
+| [msetnx]               | :white_check_mark: | :white_check_mark: |
+| [object]               | :white_check_mark: |        :x:         |
+| [persist]              | :white_check_mark: | :white_check_mark: |
+| [pexpire]              | :white_check_mark: | :white_check_mark: |
+| [pexpireat]            | :white_check_mark: | :white_check_mark: |
+| [pfadd]                | :white_check_mark: |        :x:         |
+| [pfcount]              | :white_check_mark: |        :x:         |
+| [pfdebug]              | :white_check_mark: |        :x:         |
+| [pfmerge]              | :white_check_mark: |        :x:         |
+| [ping]                 | :white_check_mark: | :white_check_mark: |
+| [psetex]               | :white_check_mark: | :white_check_mark: |
+| [psubscribe]           | :white_check_mark: | :white_check_mark: |
+| [psync]                | :white_check_mark: |        :x:         |
+| [pttl]                 | :white_check_mark: | :white_check_mark: |
+| [publish]              | :white_check_mark: | :white_check_mark: |
+| [pubsub]               | :white_check_mark: |        :x:         |
+| [punsubscribe]         | :white_check_mark: | :white_check_mark: |
+| [quit]                 | :white_check_mark: | :white_check_mark: |
+| [randomkey]            | :white_check_mark: | :white_check_mark: |
+| [readonly]             | :white_check_mark: |        :x:         |
+| [readwrite]            | :white_check_mark: |        :x:         |
+| [rename]               | :white_check_mark: | :white_check_mark: |
+| [renamenx]             | :white_check_mark: | :white_check_mark: |
+| [replconf]             | :white_check_mark: | :white_check_mark: |
+| [replicaof]            | :white_check_mark: |        :x:         |
+| [reset]                | :white_check_mark: |        :x:         |
+| [role]                 | :white_check_mark: | :white_check_mark: |
+| [rpop]                 | :white_check_mark: | :white_check_mark: |
+| [rpoplpush]            | :white_check_mark: | :white_check_mark: |
+| [rpush]                | :white_check_mark: | :white_check_mark: |
+| [rpushx]               | :white_check_mark: | :white_check_mark: |
+| [sadd]                 | :white_check_mark: | :white_check_mark: |
+| [save]                 | :white_check_mark: | :white_check_mark: |
+| [scan]                 | :white_check_mark: | :white_check_mark: |
+| [scard]                | :white_check_mark: | :white_check_mark: |
+| [script]               | :white_check_mark: |        :x:         |
+| [sdiff]                | :white_check_mark: | :white_check_mark: |
+| [sdiffstore]           | :white_check_mark: | :white_check_mark: |
+| [select]               | :white_check_mark: |        :x:         |
+| [set]                  | :white_check_mark: | :white_check_mark: |
+| [setbit]               | :white_check_mark: | :white_check_mark: |
+| [setex]                | :white_check_mark: | :white_check_mark: |
+| [setnx]                | :white_check_mark: | :white_check_mark: |
+| [setrange]             | :white_check_mark: |        :x:         |
+| [shutdown]             | :white_check_mark: |        :x:         |
+| [sinter]               | :white_check_mark: | :white_check_mark: |
+| [sinterstore]          | :white_check_mark: | :white_check_mark: |
+| [sismember]            | :white_check_mark: | :white_check_mark: |
+| [slaveof]              | :white_check_mark: |        :x:         |
+| [smembers]             | :white_check_mark: | :white_check_mark: |
+| [smismember]           | :white_check_mark: | :white_check_mark: |
+| [smove]                | :white_check_mark: | :white_check_mark: |
+| [sort]                 | :white_check_mark: |        :x:         |
+| [spop]                 | :white_check_mark: | :white_check_mark: |
+| [srandmember]          | :white_check_mark: | :white_check_mark: |
+| [srem]                 | :white_check_mark: | :white_check_mark: |
+| [sscan]                | :white_check_mark: | :white_check_mark: |
+| [stralgo]              | :white_check_mark: |        :x:         |
+| [strlen]               | :white_check_mark: | :white_check_mark: |
+| [subscribe]            | :white_check_mark: | :white_check_mark: |
+| [substr]               | :white_check_mark: |        :x:         |
+| [sunion]               | :white_check_mark: | :white_check_mark: |
+| [sunionstore]          | :white_check_mark: | :white_check_mark: |
+| [swapdb]               | :white_check_mark: |        :x:         |
+| [sync]                 | :white_check_mark: |        :x:         |
+| [time]                 | :white_check_mark: | :white_check_mark: |
+| [touch]                | :white_check_mark: |        :x:         |
+| [ttl]                  | :white_check_mark: | :white_check_mark: |
+| [type]                 | :white_check_mark: | :white_check_mark: |
+| [unlink]               | :white_check_mark: | :white_check_mark: |
+| [unsubscribe]          | :white_check_mark: | :white_check_mark: |
+| [unwatch]              | :white_check_mark: |        :x:         |
+| [wait]                 | :white_check_mark: |        :x:         |
+| [watch]                | :white_check_mark: |        :x:         |
+| [xack]                 | :white_check_mark: |        :x:         |
+| [xadd]                 | :white_check_mark: | :white_check_mark: |
+| [xautoclaim]           | :white_check_mark: |        :x:         |
+| [xclaim]               | :white_check_mark: |        :x:         |
+| [xdel]                 | :white_check_mark: |        :x:         |
+| [xgroup]               | :white_check_mark: |        :x:         |
+| [xinfo]                | :white_check_mark: |        :x:         |
+| [xlen]                 | :white_check_mark: | :white_check_mark: |
+| [xpending]             | :white_check_mark: |        :x:         |
+| [xrange]               | :white_check_mark: | :white_check_mark: |
+| [xread]                | :white_check_mark: | :white_check_mark: |
+| [xreadgroup]           | :white_check_mark: |        :x:         |
+| [xrevrange]            | :white_check_mark: | :white_check_mark: |
+| [xsetid]               | :white_check_mark: |        :x:         |
+| [xtrim]                | :white_check_mark: |        :x:         |
+| [zadd]                 | :white_check_mark: | :white_check_mark: |
+| [zcard]                | :white_check_mark: | :white_check_mark: |
+| [zcount]               | :white_check_mark: | :white_check_mark: |
+| [zdiff]                | :white_check_mark: |        :x:         |
+| [zdiffstore]           | :white_check_mark: |        :x:         |
+| [zincrby]              | :white_check_mark: | :white_check_mark: |
+| [zinter]               | :white_check_mark: |        :x:         |
+| [zinterstore]          | :white_check_mark: | :white_check_mark: |
+| [zlexcount]            | :white_check_mark: |        :x:         |
+| [zmscore]              | :white_check_mark: |        :x:         |
+| [zpopmax]              | :white_check_mark: | :white_check_mark: |
+| [zpopmin]              | :white_check_mark: | :white_check_mark: |
+| [zrandmember]          | :white_check_mark: |        :x:         |
+| [zrange]               | :white_check_mark: | :white_check_mark: |
+| [zrangebylex]          | :white_check_mark: |        :x:         |
+| [zrangebyscore]        | :white_check_mark: | :white_check_mark: |
+| [zrangestore]          | :white_check_mark: |        :x:         |
+| [zrank]                | :white_check_mark: | :white_check_mark: |
+| [zrem]                 | :white_check_mark: | :white_check_mark: |
+| [zremrangebylex]       | :white_check_mark: |        :x:         |
+| [zremrangebyrank]      | :white_check_mark: | :white_check_mark: |
+| [zremrangebyscore]     | :white_check_mark: | :white_check_mark: |
+| [zrevrange]            | :white_check_mark: | :white_check_mark: |
+| [zrevrangebylex]       | :white_check_mark: |        :x:         |
+| [zrevrangebyscore]     | :white_check_mark: | :white_check_mark: |
+| [zrevrank]             | :white_check_mark: | :white_check_mark: |
+| [zscan]                | :white_check_mark: | :white_check_mark: |
+| [zscore]               | :white_check_mark: | :white_check_mark: |
+| [zunion]               | :white_check_mark: |        :x:         |
+| [zunionstore]          | :white_check_mark: |        :x:         |
 
-### Commands that won't be implemented
+## Missing buffer commands
+
+- [authBuffer][1]
+- [evalBuffer][1]
+- [evalshaBuffer][1]
+- [getsetBuffer][1]
+- [hincrbyBuffer][1]
+- [hincrbyfloatBuffer][1]
+- [hkeysBuffer][1]
+- [hlenBuffer][1]
+- [hscanBuffer][1]
+- [hsetnxBuffer][1]
+- [hstrlenBuffer][1]
+- [hvalsBuffer][1]
+- [lindexBuffer][1]
+- [linsertBuffer][1]
+- [llenBuffer][1]
+- [lpushBuffer][1]
+- [lpushxBuffer][1]
+- [lrangeBuffer][1]
+- [lremBuffer][1]
+- [lsetBuffer][1]
+- [ltrimBuffer][1]
+- [mgetBuffer][1]
+- [msetnxBuffer][1]
+- [persistBuffer][1]
+- [pexpireBuffer][1]
+- [pexpireatBuffer][1]
+- [psetexBuffer][1]
+- [psubscribeBuffer][1]
+- [pttlBuffer][1]
+- [publishBuffer][1]
+- [punsubscribeBuffer][1]
+- [randomkeyBuffer][1]
+- [renameBuffer][1]
+- [renamenxBuffer][1]
+- [roleBuffer][1]
+- [rpushBuffer][1]
+- [rpushxBuffer][1]
+- [scanBuffer][1]
+- [scardBuffer][1]
+- [sdiffBuffer][1]
+- [sdiffstoreBuffer][1]
+- [setbitBuffer][1]
+- [setexBuffer][1]
+- [setnxBuffer][1]
+- [sinterBuffer][1]
+- [sinterstoreBuffer][1]
+- [sismemberBuffer][1]
+- [smembersBuffer][1]
+- [smismemberBuffer][1]
+- [smoveBuffer][1]
+- [spopBuffer][1]
+- [srandmemberBuffer][1]
+- [sremBuffer][1]
+- [sscanBuffer][1]
+- [strlenBuffer][1]
+- [subscribeBuffer][1]
+- [sunionBuffer][1]
+- [sunionstoreBuffer][1]
+- [timeBuffer][1]
+- [ttlBuffer][1]
+- [typeBuffer][1]
+- [unlinkBuffer][1]
+- [unsubscribeBuffer][1]
+- [xaddBuffer][1]
+- [xlenBuffer][1]
+- [xrangeBuffer][1]
+- [xreadBuffer][1]
+- [xrevrangeBuffer][1]
+- [zaddBuffer][1]
+- [zcardBuffer][1]
+- [zcountBuffer][1]
+- [zincrbyBuffer][1]
+- [zinterstoreBuffer][1]
+- [zpopmaxBuffer][1]
+- [zpopminBuffer][1]
+- [zrangeBuffer][1]
+- [zrangebyscoreBuffer][1]
+- [zrankBuffer][1]
+- [zremBuffer][1]
+- [zremrangebyrankBuffer][1]
+- [zremrangebyscoreBuffer][1]
+- [zrevrangeBuffer][1]
+- [zrevrangebyscoreBuffer][1]
+- [zrevrankBuffer][1]
+- [zscanBuffer][1]
+- [zscoreBuffer][1]
+
+## Commands that won't be implemented
 
 | redis     | why it doesn't make sense to emulate                                                                         |
 | :-------- | :----------------------------------------------------------------------------------------------------------- |
