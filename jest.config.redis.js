@@ -52,7 +52,6 @@ module.exports = {
     'test/integration/commands/sinter.js',
     'test/integration/commands/sinterstore.js',
     'test/integration/commands/smembers.js',
-    'test/integration/commands/smismember.js',
     'test/integration/commands/smove.js',
     'test/integration/commands/spop.js',
     'test/integration/commands/srandmember.js',

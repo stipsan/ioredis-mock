@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-red.svg)
+## Supported commands ![Commands Coverage: 50%](https://img.shields.io/badge/coverage-50%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -234,7 +234,6 @@
 - [sinterBuffer][1]
 - [sinterstoreBuffer][1]
 - [smembersBuffer][1]
-- [smismemberBuffer][1]
 - [spopBuffer][1]
 - [srandmemberBuffer][1]
 - [sremBuffer][1]

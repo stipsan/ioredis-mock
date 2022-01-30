@@ -6,3 +6,5 @@ export function smismember(key, ...valArray) {
   }
   return valArray.map(() => 0)
 }
+
+export const smismemberBuffer = smismember
