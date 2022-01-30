@@ -155,7 +155,7 @@
 | [stralgo]              | :white_check_mark: |        :x:         |
 | [strlen]               | :white_check_mark: | :white_check_mark: |
 | [subscribe]            | :white_check_mark: | :white_check_mark: |
-| [substr]               | :white_check_mark: |        :x:         |
+| [substr]               | :white_check_mark: | :white_check_mark: |
 | [sunion]               | :white_check_mark: | :white_check_mark: |
 | [sunionstore]          | :white_check_mark: | :white_check_mark: |
 | [swapdb]               | :white_check_mark: |        :x:         |
