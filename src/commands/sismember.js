@@ -7,3 +7,5 @@ export function sismember(key, val) {
 
   return 0
 }
+
+export const sismemberBuffer = sismember

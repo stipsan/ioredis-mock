@@ -233,7 +233,6 @@
 - [sdiffstoreBuffer][1]
 - [sinterBuffer][1]
 - [sinterstoreBuffer][1]
-- [sismemberBuffer][1]
 - [smembersBuffer][1]
 - [smismemberBuffer][1]
 - [smoveBuffer][1]
