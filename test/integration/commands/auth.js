@@ -1,11 +1,15 @@
 import Redis from 'ioredis'
 
-describe('auth', () => {
-  it('should return OK', () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    return redis.auth('123456').then(status => {
-      return expect(status).toBe('OK')
+runTwinSuite('auth', (command, equals) => {
+  describe(command, () => {
+    it('should return OK', async () => {
+      const redis = new Redis()
+
+      expect(equals(await redis[command]('123456'), 'OK')).toBe(true)
+      redis.disconnect()
     })
   })
 })
