@@ -71,7 +71,6 @@ module.exports = {
     'test/integration/commands/sunion.js',
     'test/integration/commands/sunionstore.js',
     'test/integration/commands/ttl.js',
-    'test/integration/commands/unlink.js',
     'test/integration/commands/xadd.js',
     'test/integration/commands/xlen.js',
     'test/integration/commands/xrange.js',
