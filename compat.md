@@ -220,7 +220,6 @@
 - [evalBuffer][1]
 - [evalshaBuffer][1]
 - [hscanBuffer][1]
-- [hstrlenBuffer][1]
 - [hvalsBuffer][1]
 - [lindexBuffer][1]
 - [linsertBuffer][1]

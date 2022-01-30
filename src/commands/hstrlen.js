@@ -3,3 +3,5 @@ export function hstrlen(key, field) {
     ? this.data.get(key)[field].length
     : 0
 }
+
+export const hstrlenBuffer = hstrlen
