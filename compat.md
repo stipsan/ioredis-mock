@@ -233,7 +233,6 @@
 - [psubscribeBuffer][1]
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]
-- [rpushBuffer][1]
 - [scanBuffer][1]
 - [scardBuffer][1]
 - [sdiffBuffer][1]

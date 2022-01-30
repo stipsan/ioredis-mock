@@ -16,9 +16,7 @@ runTwinSuite('rpushx', command => {
 
       await redis[command]('foo', 2)
 
-      const result = await redis.lrange('foo', 0, -1)
-      expect(result[0]).toBe('1')
-      expect(result[1]).toBe('2')
+      expect(await redis.lrange('foo', 0, -1)).toEqual(['1', '2'])
     })
 
     it('should return the new length of the list', async () => {

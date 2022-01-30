@@ -7,3 +7,5 @@ export function rpush(key, ...values) {
   this.data.set(key, list)
   return length
 }
+
+export const rpushBuffer = rpush
