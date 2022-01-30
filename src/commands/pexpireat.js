@@ -7,3 +7,5 @@ export function pexpireat(key, at) {
 
   return 1
 }
+
+export const pexpireatBuffer = pexpireat
