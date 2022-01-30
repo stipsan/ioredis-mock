@@ -113,7 +113,7 @@
 | [quit]                 | :white_check_mark: | :white_check_mark: |
 | [randomkey]            | :white_check_mark: | :white_check_mark: |
 | [readonly]             | :white_check_mark: | :white_check_mark: |
-| [readwrite]            | :white_check_mark: |        :x:         |
+| [readwrite]            | :white_check_mark: | :white_check_mark: |
 | [rename]               | :white_check_mark: | :white_check_mark: |
 | [renamenx]             | :white_check_mark: | :white_check_mark: |
 | [replconf]             | :white_check_mark: | :white_check_mark: |
