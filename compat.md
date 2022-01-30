@@ -265,7 +265,6 @@
 - [zrangeBuffer][1]
 - [zrangebyscoreBuffer][1]
 - [zrankBuffer][1]
-- [zremBuffer][1]
 - [zremrangebyrankBuffer][1]
 - [zremrangebyscoreBuffer][1]
 - [zrevrangeBuffer][1]

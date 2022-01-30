@@ -12,3 +12,5 @@ export function zrem(key, ...vals) {
   this.data.set(key, map)
   return removed
 }
+
+export const zremBuffer = zrem
