@@ -233,7 +233,6 @@
 - [psubscribeBuffer][1]
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]
-- [randomkeyBuffer][1]
 - [roleBuffer][1]
 - [rpushBuffer][1]
 - [rpushxBuffer][1]
