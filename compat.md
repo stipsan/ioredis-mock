@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 48%](https://img.shields.io/badge/coverage-48%25-red.svg)
+## Supported commands ![Commands Coverage: 49%](https://img.shields.io/badge/coverage-49%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -247,7 +247,6 @@
 - [sunionstoreBuffer][1]
 - [unsubscribeBuffer][1]
 - [xaddBuffer][1]
-- [xlenBuffer][1]
 - [xrangeBuffer][1]
 - [xreadBuffer][1]
 - [xrevrangeBuffer][1]
