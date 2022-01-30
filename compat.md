@@ -221,7 +221,6 @@
 - [evalshaBuffer][1]
 - [hlenBuffer][1]
 - [hscanBuffer][1]
-- [hsetnxBuffer][1]
 - [hstrlenBuffer][1]
 - [hvalsBuffer][1]
 - [lindexBuffer][1]

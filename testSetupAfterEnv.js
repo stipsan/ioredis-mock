@@ -1,5 +1,12 @@
 import Redis from 'ioredis'
 
+// If the test suite failed it might have dirty data that could create false negatives if we don't purge before we start
+beforeAll(async () => {
+  const redis = new Redis()
+  await redis.flushall()
+  await redis.disconnect()
+})
+
 afterEach(async () => {
   const redis = new Redis()
   await redis.flushall()

@@ -27,7 +27,6 @@ module.exports = {
     'test/integration/commands/hmgetBuffer.js',
     'test/integration/commands/hscan.js',
     'test/integration/commands/hscanStream.js',
-    'test/integration/commands/hsetnx.js',
     'test/integration/commands/hstrlen.js',
     'test/integration/commands/hvals.js',
     'test/integration/commands/incrby.js',

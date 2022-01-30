@@ -13,3 +13,5 @@ export function hsetnx(key, hashKey, hashVal) {
 
   return 0
 }
+
+export const hsetnxBuffer = hsetnx
