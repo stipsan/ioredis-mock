@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 50%](https://img.shields.io/badge/coverage-50%25-red.svg)
+## Supported commands ![Commands Coverage: 51%](https://img.shields.io/badge/coverage-51%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -35,7 +35,7 @@
 | [exists]               | :white_check_mark: | :white_check_mark: |
 | [expire]               | :white_check_mark: | :white_check_mark: |
 | [expireat]             | :white_check_mark: | :white_check_mark: |
-| [failover]             | :white_check_mark: |        :x:         |
+| [failover]             | :white_check_mark: | :white_check_mark: |
 | [flushall]             | :white_check_mark: | :white_check_mark: |
 | [flushdb]              | :white_check_mark: | :white_check_mark: |
 | [geoadd]               | :white_check_mark: |        :x:         |
