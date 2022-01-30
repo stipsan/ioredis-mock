@@ -20,7 +20,7 @@
 | [bzpopmax]             | :white_check_mark: |        :x:         |
 | [bzpopmin]             | :white_check_mark: |        :x:         |
 | [client]               | :white_check_mark: |        :x:         |
-| [cluster]              | :white_check_mark: |        :x:         |
+| [cluster]              | :white_check_mark: | :white_check_mark: |
 | [command]              | :white_check_mark: |        :x:         |
 | [config]               | :white_check_mark: |        :x:         |
 | [copy]                 | :white_check_mark: |        :x:         |
