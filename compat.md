@@ -252,7 +252,6 @@
 - [sdiffBuffer][1]
 - [sdiffstoreBuffer][1]
 - [setbitBuffer][1]
-- [setnxBuffer][1]
 - [sinterBuffer][1]
 - [sinterstoreBuffer][1]
 - [sismemberBuffer][1]

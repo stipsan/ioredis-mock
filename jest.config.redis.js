@@ -66,7 +66,6 @@ module.exports = {
     'test/integration/commands/sdiff.js',
     'test/integration/commands/sdiffstore.js',
     'test/integration/commands/setbit.js',
-    'test/integration/commands/setnx.js',
     'test/integration/commands/sinter.js',
     'test/integration/commands/sinterstore.js',
     'test/integration/commands/sismember.js',

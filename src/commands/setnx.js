@@ -7,3 +7,5 @@ export function setnx(key, val) {
 
   return 0
 }
+
+export const setnxBuffer = setnx
