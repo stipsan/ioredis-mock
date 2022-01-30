@@ -9,3 +9,5 @@ export function ttl(key) {
 
   return Math.ceil((this.expires.get(key) - Date.now()) / 1000)
 }
+
+export const ttlBuffer = ttl
