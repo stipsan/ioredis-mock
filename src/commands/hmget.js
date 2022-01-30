@@ -8,7 +8,7 @@ export function hmget(key, ...fields) {
   })
 }
 
-export function hmgetBuffer(key, ...fields) {
-  const val = hmget.apply(this, [key, ...fields])
+export function hmgetBuffer(...args) {
+  const val = hmget.apply(this, args)
   return val.map(payload => (payload ? Buffer.from(payload) : payload))
 }
