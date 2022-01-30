@@ -4,3 +4,7 @@ export function time() {
     `${Math.round(process.hrtime()[1] / 1000)}`,
   ]
 }
+export function timeBuffer() {
+  const val = time.call(this)
+  return val.map(payload => (payload ? Buffer.from(payload) : payload))
+}

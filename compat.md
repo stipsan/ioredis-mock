@@ -249,7 +249,6 @@
 - [subscribeBuffer][1]
 - [sunionBuffer][1]
 - [sunionstoreBuffer][1]
-- [timeBuffer][1]
 - [unsubscribeBuffer][1]
 - [xaddBuffer][1]
 - [xlenBuffer][1]
