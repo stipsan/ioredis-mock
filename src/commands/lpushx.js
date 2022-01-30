@@ -7,3 +7,5 @@ export function lpushx(key, value) {
 
   return lpush.call(this, key, value)
 }
+
+export const lpushxBuffer = lpushx

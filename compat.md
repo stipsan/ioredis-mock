@@ -226,7 +226,6 @@
 - [lindexBuffer][1]
 - [linsertBuffer][1]
 - [llenBuffer][1]
-- [lpushxBuffer][1]
 - [lrangeBuffer][1]
 - [lremBuffer][1]
 - [lsetBuffer][1]
