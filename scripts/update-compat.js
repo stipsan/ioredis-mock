@@ -30,9 +30,7 @@ const skipList = {
 const commandsList = commands.list.filter(command => !(command in skipList))
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'
-let ioredisCommandsWithBuffers = 0
 let supportedCommands = 0
-let supportedBufferCommands = 0
 let missingBufferCommands = ''
 let tableRows = `
 | redis | ioredis | ioredis-mock |
@@ -53,13 +51,7 @@ commandsList.forEach(command => {
   const commandBuffer = `${command}Buffer`
   const ioredisSupportsBuffer = commandBuffer in redis.prototype
   const supportedCommandBuffer = mockCommands.includes(commandBuffer)
-  if (supportedCommand && ioredisSupportsBuffer) {
-    ioredisCommandsWithBuffers += 1
-  }
-  if (supportedCommand && supportedCommandBuffer) {
-    supportedBufferCommands += 1
- 
-  }
+
   if (ioredisSupportsBuffer && supportedCommand && !supportedCommandBuffer) {
     // Subtract half a point since we don't consider a command fully implemented if it's missing a buffer version
     supportedCommands -= 0.5
@@ -102,7 +94,7 @@ if (percentage === 100) {
   color = 'brightgreen'
 }
 
-if(missingBufferCommands.length) {
+if (missingBufferCommands.length) {
   missingBufferCommands = `
 
 ### Missing buffer commands
