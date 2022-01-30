@@ -32,5 +32,4 @@ jobs:
           key: v3-dependencies-{{ checksum "package-lock.json" }}
 
       # Semantic release is setup to check on its own when to publish a new release or not
-      # Temporarily disable semantic release to queue up changes
-      # - run: npx semantic-release
+      - run: npx semantic-release
