@@ -16,7 +16,6 @@ runTwinSuite('rename', (command, equals) => {
 
       redis.disconnect()
     })
-
     ;(process.env.IS_E2E ? it.skip : it)(
       'should emit keyspace notifications if configured',
       done => {
