@@ -15,3 +15,8 @@ export function rename(key, newKey) {
   emitNotification(this, 'g', newKey, 'rename_to')
   return 'OK'
 }
+
+export function renameBuffer(...args) {
+  const val = rename.apply(this, args)
+  return val ? Buffer.from(val) : val
+}

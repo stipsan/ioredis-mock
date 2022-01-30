@@ -46,14 +46,18 @@ runTwinSuite('brpoplpush', (command, equals) => {
       redis.disconnect()
     })
 
-    it.skip('should return buffer values correctly', async () => {
-      const bufferVal = Buffer.from('bar')
-      const redis = new Redis()
-      await redis.rpush('foo', 'foo', bufferVal)
-      const result = await redis[command]('foo', bufferVal, 1)
-      expect(equals(result, 'bar')).toBe(true)
-      redis.disconnect()
-    })
+    // TODO Skipped because there's a bug in our implementation
+    ;(process.env.IS_E2E ? it : it.skip)(
+      'should return buffer values correctly',
+      async () => {
+        const bufferVal = Buffer.from('bar')
+        const redis = new Redis()
+        await redis.rpush('foo', 'foo', bufferVal)
+        const result = await redis[command]('foo', bufferVal, 1)
+        expect(equals(result, 'bar')).toBe(true)
+        redis.disconnect()
+      }
+    )
 
     it('should throw an exception if the source key contains something other than a list', async () => {
       const redis = new Redis()
