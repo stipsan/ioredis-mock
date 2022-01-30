@@ -26,7 +26,7 @@ runTwinSuite('rpush', command => {
       try {
         await redis[command]('foo', 1)
       } catch (err) {
-        expect(err.message).toBe('Key foo does not contain a list')
+        expect(err.message).toBe('WRONGTYPE Operation against a key holding the wrong kind of value')
       }
     })
   })

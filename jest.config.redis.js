@@ -45,7 +45,6 @@ module.exports = {
     'test/integration/commands/publish.js',
     'test/integration/commands/rpop.js',
     'test/integration/commands/rpoplpush.js',
-    'test/integration/commands/rpush.js',
     'test/integration/commands/scan.js',
     'test/integration/commands/scanStream.js',
     'test/integration/commands/scard.js',
