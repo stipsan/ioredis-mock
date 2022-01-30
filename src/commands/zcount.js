@@ -14,3 +14,5 @@ export function zcount(key, inputMin, inputMax) {
   const max = parseLimit(inputMax)
   return Array.from(map.values()).filter(filterPredicate(min, max)).length
 }
+
+export const zcountBuffer = zcount

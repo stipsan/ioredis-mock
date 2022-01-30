@@ -252,7 +252,6 @@
 - [xreadBuffer][1]
 - [xrevrangeBuffer][1]
 - [zcardBuffer][1]
-- [zcountBuffer][1]
 - [zincrbyBuffer][1]
 - [zinterstoreBuffer][1]
 - [zpopmaxBuffer][1]
