@@ -46,13 +46,5 @@ runTwinSuite('rename', (command, equals) => {
           })
       }
     )
-    /*
-    if( process.env.IS_E2E) {
-      // Skipped in E2E as the `notifyKeyspaceEvents` option only exists in ioredis-mock
-      it.skip(testDesc, testFn)
-    } else {
-      it(testDesc, testFn)
-    }
-    // */
   })
 })
