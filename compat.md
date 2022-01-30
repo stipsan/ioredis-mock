@@ -230,7 +230,6 @@
 - [lremBuffer][1]
 - [lsetBuffer][1]
 - [ltrimBuffer][1]
-- [persistBuffer][1]
 - [pexpireBuffer][1]
 - [pexpireatBuffer][1]
 - [psubscribeBuffer][1]

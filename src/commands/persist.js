@@ -11,3 +11,5 @@ export function persist(key) {
 
   return 1
 }
+
+export const persistBuffer = persist

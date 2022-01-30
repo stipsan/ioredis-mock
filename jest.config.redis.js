@@ -38,7 +38,6 @@ module.exports = {
     'test/integration/commands/lrem.js',
     'test/integration/commands/lset.js',
     'test/integration/commands/ltrim.js',
-    'test/integration/commands/persist.js',
     'test/integration/commands/pexpire.js',
     'test/integration/commands/pexpireat.js',
     'test/integration/commands/psubscribe.js',

@@ -1,39 +1,38 @@
 import Redis from 'ioredis'
 
-describe('persist', () => {
-  it('should remove expire status on key', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-      },
-    })
-    return redis
-      .expire('foo', 1)
-      .then(() => {
-        return redis.persist('foo')
-      })
-      .then(status => {
-        expect(status).toBe(1)
-        expect(redis.expires.has('foo')).toBe(false)
-      })
-  })
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-  it('should return 0 if key does not have expire status', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'bar',
-      },
-    })
-    return redis.persist('foo').then(status => {
-      return expect(status).toBe(0)
-    })
-  })
+runTwinSuite('persist', command => {
+  describe(command, () => {
+    it('should remove expire status on key', async () => {
+      const redis = new Redis()
+      await redis.set('foo', 'bar')
+      await redis.expire('foo', 1)
 
-  it('should return 0 if key does not exist', () => {
-    const redis = new Redis()
+      expect(await redis.persist('foo')).toBe(1)
+      expect(await redis.ttl('foo')).toBe(-1)
 
-    return redis.persist('foo').then(status => {
-      return expect(status).toBe(0)
+      redis.disconnect()
+    })
+
+    it('should return 0 if key does not have expire status', async () => {
+      const redis = new Redis()
+      await redis.set('foo', 'bar')
+
+      expect(await redis.persist('foo')).toBe(0)
+      expect(await redis.ttl('foo')).toBe(-1)
+
+      redis.disconnect()
+    })
+
+    it('should return 0 if key does not exist', async () => {
+      const redis = new Redis()
+
+      expect(await redis.persist('foo')).toBe(0)
+      expect(await redis.ttl('foo')).toBe(-2)
+
+      redis.disconnect()
     })
   })
 })
