@@ -215,7 +215,7 @@
 | [zunion]               | :white_check_mark: |        :x:         |
 | [zunionstore]          | :white_check_mark: |        :x:         |
 
-### Missing buffer commands
+## Missing buffer commands
 
 - [authBuffer][1]
 - [evalBuffer][1]
