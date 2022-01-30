@@ -8,3 +8,5 @@ export function scard(key) {
   }
   return this.data.get(key).size
 }
+
+export const scardBuffer = scard

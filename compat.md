@@ -234,7 +234,6 @@
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]
 - [scanBuffer][1]
-- [scardBuffer][1]
 - [sdiffBuffer][1]
 - [sdiffstoreBuffer][1]
 - [sinterBuffer][1]
