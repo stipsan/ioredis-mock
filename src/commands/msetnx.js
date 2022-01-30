@@ -13,3 +13,5 @@ export function msetnx(...msetData) {
 
   return 1
 }
+
+export const msetnxBuffer = msetnx

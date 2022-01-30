@@ -233,7 +233,6 @@
 - [lsetBuffer][1]
 - [ltrimBuffer][1]
 - [mgetBuffer][1]
-- [msetnxBuffer][1]
 - [persistBuffer][1]
 - [pexpireBuffer][1]
 - [pexpireatBuffer][1]
