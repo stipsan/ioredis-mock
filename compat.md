@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 44%](https://img.shields.io/badge/coverage-44%25-red.svg)
+## Supported commands ![Commands Coverage: 45%](https://img.shields.io/badge/coverage-45%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -234,7 +234,6 @@
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]
 - [randomkeyBuffer][1]
-- [renamenxBuffer][1]
 - [roleBuffer][1]
 - [rpushBuffer][1]
 - [rpushxBuffer][1]

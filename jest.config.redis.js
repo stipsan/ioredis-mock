@@ -44,7 +44,6 @@ module.exports = {
     'test/integration/commands/pttl.js',
     'test/integration/commands/publish.js',
     'test/integration/commands/randomkey.js',
-    'test/integration/commands/renamenx.js',
     'test/integration/commands/role.js',
     'test/integration/commands/rpop.js',
     'test/integration/commands/rpoplpush.js',

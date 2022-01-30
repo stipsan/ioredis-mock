@@ -9,3 +9,5 @@ export function renamenx(key, newKey) {
 
   return 1
 }
+
+export const renamenxBuffer = renamenx
