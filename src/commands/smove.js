@@ -31,3 +31,5 @@ export function smove(source, destination, member) {
 
   return 1
 }
+
+export const smoveBuffer = smove

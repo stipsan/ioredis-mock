@@ -235,7 +235,6 @@
 - [sinterstoreBuffer][1]
 - [smembersBuffer][1]
 - [smismemberBuffer][1]
-- [smoveBuffer][1]
 - [spopBuffer][1]
 - [srandmemberBuffer][1]
 - [sremBuffer][1]
