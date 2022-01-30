@@ -4,3 +4,5 @@ export function llen(key) {
   }
   return (this.data.get(key) || []).length
 }
+
+export const llenBuffer = llen
