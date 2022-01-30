@@ -14,7 +14,6 @@ module.exports = {
     'test/integration/commands/evalsha.js',
     'test/integration/commands/expire.js',
     'test/integration/commands/expireat.js',
-    'test/integration/commands/getset.js',
     'test/integration/commands/hdel.js',
     'test/integration/commands/hexists.js',
     'test/integration/commands/hget.js',

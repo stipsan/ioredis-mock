@@ -219,7 +219,6 @@
 
 - [evalBuffer][1]
 - [evalshaBuffer][1]
-- [getsetBuffer][1]
 - [hincrbyBuffer][1]
 - [hincrbyfloatBuffer][1]
 - [hkeysBuffer][1]
