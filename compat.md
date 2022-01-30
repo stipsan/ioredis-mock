@@ -226,7 +226,6 @@
 - [lrangeBuffer][1]
 - [lremBuffer][1]
 - [lsetBuffer][1]
-- [ltrimBuffer][1]
 - [psubscribeBuffer][1]
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]

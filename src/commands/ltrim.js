@@ -10,3 +10,8 @@ export function ltrim(key, s, e) {
   this.data.set(key, list.slice(start, end + 1 || undefined))
   return 'OK'
 }
+
+export function ltrimBuffer(...args) {
+  const val = ltrim.apply(this, args)
+  return val ? Buffer.from(val) : val
+}
