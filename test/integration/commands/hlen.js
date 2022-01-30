@@ -1,23 +1,28 @@
 import Redis from 'ioredis'
 
-describe('hlen', () => {
-  it('should return an empty array if there are no keys', () => {
-    const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-    return redis.hlen('foo').then(result => {
-      return expect(result).toBe(0)
-    })
-  })
+runTwinSuite('hlen', command => {
+  describe(command, () => {
+    it('should return an empty array if there are no keys', () => {
+      const redis = new Redis()
 
-  it('should return all data keys', () => {
-    const redis = new Redis({
-      data: {
-        foo: { bar: '1', baz: '2' },
-      },
+      return redis[command]('foo').then(result => {
+        return expect(result).toBe(0)
+      })
     })
 
-    return redis.hlen('foo').then(result => {
-      return expect(result).toEqual(2)
+    it('should return all data keys', () => {
+      const redis = new Redis({
+        data: {
+          foo: { bar: '1', baz: '2' },
+        },
+      })
+
+      return redis[command]('foo').then(result => {
+        return expect(result).toEqual(2)
+      })
     })
   })
 })
