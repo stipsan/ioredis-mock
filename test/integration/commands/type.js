@@ -1,39 +1,44 @@
 import Redis from 'ioredis'
 
-describe('type', () => {
-  const redis = new Redis()
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-  afterAll(() => {
-    redis.disconnect()
+runTwinSuite('type', (command, equals) => {
+  describe(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
+    test('should return none when key does not exist', async () => {
+      expect(equals(await redis[command]('nope'), 'none')).toBe(true)
+    })
+
+    test('should return string', async () => {
+      await redis.set('mystring', 'foo')
+
+      expect(equals(await redis[command]('mystring'), 'string')).toBe(true)
+    })
+
+    test('should return list', async () => {
+      await redis.lpush('mylist', 'foo')
+
+      expect(equals(await redis[command]('mylist'), 'list')).toBe(true)
+    })
+
+    test('should return set', async () => {
+      await redis.sadd('myset', 'foo')
+
+      expect(equals(await redis[command]('myset'), 'set')).toBe(true)
+    })
+
+    test('should return hash', async () => {
+      await redis.hset('myhash', 'foo', 'bar')
+
+      expect(equals(await redis[command]('myhash'), 'hash')).toBe(true)
+    })
+
+    test.todo('should return zset')
   })
-
-  test('should return none when key does not exist', async () => {
-    expect(await redis.type('nope')).toBe('none')
-  })
-
-  test('should return string', async () => {
-    await redis.set('mystring', 'foo')
-
-    expect(await redis.type('mystring')).toBe('string')
-  })
-
-  test('should return list', async () => {
-    await redis.lpush('mylist', 'foo')
-
-    expect(await redis.type('mylist')).toBe('list')
-  })
-
-  test('should return set', async () => {
-    await redis.sadd('myset', 'foo')
-
-    expect(await redis.type('myset')).toBe('set')
-  })
-
-  test('should return hash', async () => {
-    await redis.hset('myhash', 'foo', 'bar')
-
-    expect(await redis.type('myhash')).toBe('hash')
-  })
-
-  test.todo('should return zset')
 })

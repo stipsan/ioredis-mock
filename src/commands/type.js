@@ -28,3 +28,8 @@ export function type(key) {
     return 'hash'
   }
 }
+
+export function typeBuffer(key) {
+  const val = type.call(this, key)
+  return val ? Buffer.from(val) : val
+}

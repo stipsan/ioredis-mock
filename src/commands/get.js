@@ -9,6 +9,6 @@ export function get(key) {
 }
 
 export function getBuffer(key) {
-  const val = get.apply(this, [key])
+  const val = get.call(this, key)
   return val ? Buffer.from(val) : val
 }
