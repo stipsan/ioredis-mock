@@ -38,3 +38,5 @@ export function setbit(key, offset, value) {
 
   return getBitAt(bitOffset)(prevByte)
 }
+
+export const setbitBuffer = setbit
