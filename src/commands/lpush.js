@@ -7,3 +7,5 @@ export function lpush(key, ...values) {
   this.data.set(key, list)
   return length
 }
+
+export const lpushBuffer = lpush
