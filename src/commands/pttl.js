@@ -9,3 +9,5 @@ export function pttl(key) {
 
   return Math.ceil(this.expires.get(key) - Date.now())
 }
+
+export const pttlBuffer = pttl
