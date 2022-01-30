@@ -224,7 +224,6 @@
 - [lindexBuffer][1]
 - [linsertBuffer][1]
 - [lrangeBuffer][1]
-- [lremBuffer][1]
 - [lsetBuffer][1]
 - [psubscribeBuffer][1]
 - [publishBuffer][1]

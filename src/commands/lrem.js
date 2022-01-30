@@ -16,3 +16,5 @@ export function lrem(key, c, value) {
   this.data.set(key, list)
   return removed
 }
+
+export const lremBuffer = lrem
