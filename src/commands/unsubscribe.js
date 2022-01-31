@@ -29,3 +29,5 @@ export function unsubscribe(...args) {
   }
   return numberOfSubscribedChannels
 }
+
+export const unsubscribeBuffer = unsubscribe
