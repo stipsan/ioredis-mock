@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 57%](https://img.shields.io/badge/coverage-57%25-red.svg)
+## Supported commands ![Commands Coverage: 58%](https://img.shields.io/badge/coverage-58%25-red.svg)
 
 > PRs welcome :heart:
 
@@ -217,7 +217,6 @@
 ## Missing buffer commands
 
 - [hscanBuffer][1]
-- [linsertBuffer][1]
 - [lrangeBuffer][1]
 - [lsetBuffer][1]
 - [psubscribeBuffer][1]
