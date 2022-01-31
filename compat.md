@@ -82,7 +82,7 @@
 | [linsert]              | :white_check_mark: | :white_check_mark: |
 | [llen]                 | :white_check_mark: | :white_check_mark: |
 | [lmove]                | :white_check_mark: |        :x:         |
-| [lolwut]               | :white_check_mark: |        :x:         |
+| [lolwut]               | :white_check_mark: | :white_check_mark: |
 | [lpop]                 | :white_check_mark: | :white_check_mark: |
 | [lpos]                 | :white_check_mark: |        :x:         |
 | [lpush]                | :white_check_mark: | :white_check_mark: |
