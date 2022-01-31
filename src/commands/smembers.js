@@ -5,3 +5,8 @@ export function smembers(key) {
 
   return Array.from(this.data.get(key))
 }
+
+export function smembersBuffer(...args) {
+  const val = smembers.apply(this, args)
+  return val.map(Buffer.from)
+}
