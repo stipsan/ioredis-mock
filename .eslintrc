@@ -39,7 +39,6 @@
         "testSetupBrowser.js",
         "testSetupSrc.js",
         "testSetupLib.js",
-        "testSetupJestLegacy.js",
         "testSetupRedis.js"
       ],
       "env": {

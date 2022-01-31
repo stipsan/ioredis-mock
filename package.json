@@ -22,8 +22,7 @@
     "browser.js",
     "browser.js.map",
     "compat.md",
-    "example.js",
-    "jest.js"
+    "example.js"
   ],
   "scripts": {
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap",
@@ -38,11 +37,10 @@
     "prepublishOnly": "npm run build:lib && npm run build:browser.js -- --minify-whitespace --minify-identifiers",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
-    "posttest": "npm run build:lib && npm run test:integration && npm run build:browser.js && npm run test:browser.js && npm run test:jestlegacy",
+    "posttest": "npm run build:lib && npm run test:integration && npm run build:browser.js && npm run test:browser.js",
     "test:browser.js": "jest --config jest.config.browser.js",
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --forceExit --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
-    "test:jestlegacy": "jest --config jest.config.jestlegacy.js",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
   },
   "dependencies": {
