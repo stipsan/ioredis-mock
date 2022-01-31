@@ -1,4 +1,3 @@
-import Promise from 'bluebird'
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
