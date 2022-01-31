@@ -1,4 +1,3 @@
-import flatMap from 'array.prototype.flatmap'
 import orderBy from 'lodash.orderby'
 
 import {
@@ -32,7 +31,7 @@ export function zrevrangebyscore(key, inputMax, inputMin, ...args) {
       ordered = offsetAndLimit(ordered, offset, limit)
     }
 
-    return flatMap(ordered, it => [it.value, it.score])
+    return ordered.flatMap(it => [it.value, it.score])
   }
 
   const results = ordered.map(it => it.value)

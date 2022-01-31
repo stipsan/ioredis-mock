@@ -1,4 +1,3 @@
-import flatMap from 'array.prototype.flatmap'
 import orderBy from 'lodash.orderby'
 
 import { slice } from './zrange-command.common'
@@ -27,7 +26,7 @@ export function zrange(key, s, e, withScores) {
     typeof withScores === 'string' &&
     withScores.toUpperCase() === 'WITHSCORES'
   ) {
-    return flatMap(ordered, it => [it.value, `${it.score}`])
+    return ordered.flatMap(it => [it.value, `${it.score}`])
   }
 
   return ordered.map(it => it.value)

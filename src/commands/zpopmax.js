@@ -1,4 +1,3 @@
-import flatMap from 'array.prototype.flatmap'
 import orderBy from 'lodash.orderby'
 
 import { slice } from './zrange-command.common'
@@ -21,5 +20,5 @@ export function zpopmax(key, count = 1) {
   })
   this.data.set(key, map)
 
-  return flatMap(ordered, it => [it.value, it.score])
+  return ordered.flatMap(it => [it.value, it.score])
 }
