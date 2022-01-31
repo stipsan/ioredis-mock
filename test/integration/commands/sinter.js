@@ -1,38 +1,49 @@
 import Redis from 'ioredis'
 
-describe('sinter', () => {
-  it('should return the members from the intersection of all the given sets', () => {
-    const redis = new Redis({
-      data: {
-        key1: new Set(['a', 'b', 'c', 'd']),
-        key2: new Set(['c']),
-        key3: new Set(['a', 'c', 'e']),
-      },
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('sinter', command => {
+  describe(command, () => {
+    it('should return the members from the intersection of all the given sets', () => {
+      const redis = new Redis({
+        data: {
+          key1: new Set(['a', 'b', 'c', 'd']),
+          key2: new Set(['c']),
+          key3: new Set(['a', 'c', 'e']),
+        },
+      })
+
+      return redis[command]('key1', 'key2', 'key3').then(result => {
+        return expect(
+          command === 'sinterBuffer'
+            ? result.map(v => {
+                return v.toString()
+              })
+            : result
+        ).toEqual(['c'])
+      })
     })
 
-    return redis.sinter('key1', 'key2', 'key3').then(result => {
-      return expect(result).toEqual(['c'])
+    it('should throw an exception if one of the keys is not a set', () => {
+      const redis = new Redis({
+        data: {
+          foo: new Set(),
+          bar: 'not a set',
+        },
+      })
+
+      return redis[command]('foo', 'bar').catch(err => {
+        return expect(err.message).toBe('Key bar does not contain a set')
+      })
     })
-  })
 
-  it('should throw an exception if one of the keys is not a set', () => {
-    const redis = new Redis({
-      data: {
-        foo: new Set(),
-        bar: 'not a set',
-      },
-    })
+    it("should return empty array if sources don't exists", () => {
+      const redis = new Redis()
 
-    return redis.sinter('foo', 'bar').catch(err => {
-      return expect(err.message).toBe('Key bar does not contain a set')
-    })
-  })
-
-  it("should return empty array if sources don't exists", () => {
-    const redis = new Redis()
-
-    return redis.sinter('foo', 'bar').then(result => {
-      return expect(result).toEqual([])
+      return redis[command]('foo', 'bar').then(result => {
+        return expect(result).toEqual([])
+      })
     })
   })
 })

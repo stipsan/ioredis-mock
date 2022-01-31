@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 60%](https://img.shields.io/badge/coverage-60%25-orange.svg)
+## Supported commands ![Commands Coverage: 61%](https://img.shields.io/badge/coverage-61%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -218,7 +218,6 @@
 
 - [hscanBuffer][1]
 - [scanBuffer][1]
-- [sinterBuffer][1]
 - [smembersBuffer][1]
 - [spopBuffer][1]
 - [srandmemberBuffer][1]
