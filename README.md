@@ -52,9 +52,9 @@ redis.set('foo', 'bar')
 console.log(await redis.get('foo'))
 ```
 
-### Breaking Changes
+## Breaking Changes
 
-#### from v6 to v7
+### from v6 to v7
 
 #### `createConnectedClient` is removed
 
@@ -73,7 +73,7 @@ Replace it with `.duplicate()` or use another `new Redis` instance.
 +jest.mock('ioredis', () => require('ioredis-mock'))
 ```
 
-#### from v5 to v6
+### from v5 to v6
 
 Before v6, each instance of `ioredis-mock` lived in isolation:
 
