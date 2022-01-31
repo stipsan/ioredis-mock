@@ -2,7 +2,7 @@ import fengari from 'fengari'
 import interop from 'fengari-interop'
 
 import createCommand from '../command'
-import { dispose, init } from '../lua'
+import { dispose, init, newDefineGlobalArray } from '../lua'
 import * as commands from '.'
 
 const { lua, to_luastring: toLuaString } = fengari
@@ -154,9 +154,83 @@ export const customCommand = (numberOfKeys, luaCode) =>
     return retVal
   }
 
+  const { LuaFactory, decorate } = require('wasmoon')
+
+  export const customCommand2 = (numberOfKeys, luaCode) =>
+  async function customCommand3(...luaScriptArgs) {
+        // Initialize a new lua environment factory
+// You can pass the wasm location as the first argument, useful if you are using wasmoon on a web environment and want to host the file by yourself
+const factory = new LuaFactory()
+// Create a standalone lua environment from the factory
+const engine = await factory.createEngine()
+    try {
+
+    const KEYS = luaScriptArgs.slice(0, numberOfKeys).map(val => Buffer.isBuffer(val) ? val.toString() : val)
+      await engine.global.set('KEYS', KEYS)
+      // newDefineGlobalArray(engine, KEYS, 'KEYS')
+      const ARGV = luaScriptArgs.slice(numberOfKeys)
+      
+      await engine.global.set('ARGV', decorate({},{metatable: { __index: (_, k) => console.log('__index', {_,k, '-1': ARGV[k-1], '0': ARGV[k]}) || ARGV[k-1] }}))
+      // await engine.global.set('ARGV2', decorateUserData(ARGV, { reference: true }))
+      // newDefineGlobalArray(engine, ARGV, 'ARGV')
+
+      console.log({KEYS, ARGV,luaScriptArgs})
+
+await engine.global.set('redis', {
+
+})
+
+// /* 
+await engine.doString(`
+      struct = {}
+      struct.pack = function(...)
+          return string.pack(...)
+      end
+      struct.unpack = function(fmt, s, post)
+          print('struct.unpack', fmt, s, post)  
+          return string.unpack(fmt, s, pos)
+      end
+      struct.size = function(fmt)
+          return string.packsize(fmt)
+      end
+`)
+// */
+
+/*
+// string.unpack (fmt, s [, pos])
+// string.packsize (fmt)
+// string.pack (fmt, v1, v2, ···)
+await engine.global.set('struct', {
+  unpack: (fmt, s, pos) => console.log('calling structUnpack', {fmt, s, pos}, engine.global.get('structUnpack')) || engine.global.get('structUnpack').apply(this, [fmt, s]),
+  unpacks: (...args) => console.log('calling struct.unpack', ...args) || engine.doString(`return string.unpack(${args.map(JSON.stringify).join(',')})`),
+})
+// */
+
+
+await engine.global.set('cjson', {
+  encode: (val) => JSON.stringify(val),
+  decode: (val) => JSON.parse(val),
+})
+
+    
+
+    // defineKeys.bind(this)(vm, numberOfKeys, luaScriptArgs)
+    // defineArgv.bind(this)(vm, numberOfKeys, luaScriptArgs)
+
+    // const topBeforeExecute = lua.lua_gettop(vm.L)
+    // vm.luaExecString(luaCode)
+    // const retVal = vm.popReturnValue(topBeforeExecute)
+    // dispose(vm)
+    return  await engine.doString(luaCode)
+    } finally {
+ // Close the lua environment, so it can be freed
+ engine.global.close()
+    }
+  }
+
 export function defineCommand(command, { numberOfKeys, lua: luaCode }) {
   const cmd = createCommand(
-    customCommand(numberOfKeys, luaCode).bind(this),
+    customCommand2(numberOfKeys, luaCode).bind(this),
     command,
     this
   )

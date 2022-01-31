@@ -82,15 +82,18 @@ runTwinSuite('eval', (command, equals) => {
       describe.skip('Table Manipulation', () => {})
       describe.skip('Mathematical Functions', () => {})
 
-      describe('the struct library', () => {
+      describe.only('the struct library', () => {
         it('struct.pack', async () => {
           const retVal = await redis[command]("return struct.pack('HH', 1, 2)" , 0)
 
           expect(equals(retVal, '\x01\x00\x02\x00')).toBe(true)
         })
 
-        it('struct.unpack', async () => {
-          const retVal = await redis[command]("return { struct.unpack('HH', ARGV[1]) }" , 0, '\x01\x00\x02\x00')
+        it.only('struct.unpack', async () => {
+
+          console.log('DEBUG', '\x01\x00\x02\x00')
+          // const retVal = await redis[command]("return { struct.unpack('HH', ARGV[1]) }" , 0, '\x01\x00\x02\x00')
+          const retVal = await redis[command]("print('struct.unpack2', ARGV)  return { struct.unpack('HH', ARGV[1]) }" , 0, Buffer.from('\x01\x00\x02\x00'))
     
           expect(retVal).toEqual([1,2,5])
         })
@@ -101,11 +104,10 @@ runTwinSuite('eval', (command, equals) => {
         })
       })
 
-      describe.only('the cjson library', () => {
+      describe('the cjson library', () => {
         it('cjson.encode', async () => {
           const retVal = await redis[command]("return cjson.encode({ ['foo'] = 'bar' })" , 0)
     
-          expect(retVal).toEqual('{"foo":"bar"}')
           expect(equals(retVal,'{"foo":"bar"}')).toBe(true)
         })
 
@@ -118,7 +120,7 @@ runTwinSuite('eval', (command, equals) => {
        
       })
 
-      describe('the cmsgpack library', () => {
+      describe.skip('the cmsgpack library', () => {
         it('cmsgpack.pack', async () => {
           const retVal = await redis[command]("return cmsgpack.pack({'foo', 'bar', 'baz'})", 0)
     
@@ -135,7 +137,7 @@ runTwinSuite('eval', (command, equals) => {
 
       })
 
-      describe('the bit library', () => {
+      describe.skip('the bit library', () => {
         it('bit.tobit', async () => {
           const retVal = await redis[command]('return bit.tobit(1)' , 0)
     

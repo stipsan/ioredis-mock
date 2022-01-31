@@ -150,6 +150,23 @@ const defineGlobalArray = L => (array, name) => {
   lua.lua_setglobal(L, toLuaString(name))
 }
 
+export const newDefineGlobalArray = (engine, array, name) => {
+
+  console.warn(engine.global.lua.lua_createtable)
+
+  engine.global.lua.lua_createtable(engine.global.address, 0,0)
+  const subTableIndex = engine.global.lua.lua_gettop(engine.global.address)
+
+  array.forEach((e, i) => {
+    console.log(i + 1, e)
+    engine.global.pushValue(engine.global.address, i + 1)
+    engine.global.pushValue(engine.global.address, e)
+    engine.global.lua.lua_settable(engine.global.address, subTableIndex)
+  })
+  
+  engine.global.lua.lua_setglobal(engine.global.address, name)
+}
+
 const defineGlobalFunction = L => (fn, name) => {
   // define global fn call
   lua.lua_pushjsfunction(L, fn)
