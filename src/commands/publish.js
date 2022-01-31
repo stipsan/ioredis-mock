@@ -12,3 +12,5 @@ export function publish(channel, message) {
     matchingPatterns.length + this.channels.listenerCount(channel)
   return numberOfSubscribers
 }
+
+export const publishBuffer = publish
