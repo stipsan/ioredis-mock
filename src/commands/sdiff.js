@@ -23,3 +23,8 @@ export function sdiff(ours, ...theirs) {
 
   return Array.from(difference)
 }
+
+export function sdiffBuffer(...args) {
+  const val = sdiff.apply(this, args)
+  return val.map(Buffer.from)
+}

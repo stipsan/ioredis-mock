@@ -218,7 +218,6 @@
 
 - [hscanBuffer][1]
 - [scanBuffer][1]
-- [sdiffBuffer][1]
 - [sdiffstoreBuffer][1]
 - [sinterBuffer][1]
 - [sinterstoreBuffer][1]
