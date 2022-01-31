@@ -53,7 +53,7 @@
 | [get]                  | :white_check_mark: | :white_check_mark: |
 | [getbit]               | :white_check_mark: | :white_check_mark: |
 | [getdel]               | :white_check_mark: | :white_check_mark: |
-| [getex]                | :white_check_mark: |        :x:         |
+| [getex]                | :white_check_mark: | :white_check_mark: |
 | [getrange]             | :white_check_mark: | :white_check_mark: |
 | [getset]               | :white_check_mark: | :white_check_mark: |
 | [hdel]                 | :white_check_mark: | :white_check_mark: |
