@@ -7,3 +7,8 @@ export function lindex(key, i) {
   const item = list[index < 0 ? list.length + index : index]
   return item !== undefined ? item : null
 }
+
+export function lindexBuffer(...args) {
+  const val = lindex.apply(this, args)
+  return val ? Buffer.from(val) : val
+}
