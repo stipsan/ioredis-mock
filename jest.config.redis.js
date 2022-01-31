@@ -10,7 +10,6 @@ module.exports = {
     'test/integration/commands/auth.js',
     'test/integration/commands/defineCommand.js',
     'test/integration/commands/discard.js',
-    'test/integration/commands/evalsha.js',
     'test/integration/commands/expire.js',
     'test/integration/commands/expireat.js',
     'test/integration/commands/hdel.js',
