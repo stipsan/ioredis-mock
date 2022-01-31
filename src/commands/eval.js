@@ -16,5 +16,8 @@ export function evaluate(script, numberOfKeys, ...args) {
 
 export async function evalBuffer(...args) {
   const val = await evaluate.apply(this, args)
+  if(Array.isArray(val)) {
+    return val.map(subval => !subval || Number.isInteger(subval) ? subval : Buffer.from(subval))
+  }
   return !val || Number.isInteger(val) ? val : Buffer.from(val)
 }

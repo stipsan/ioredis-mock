@@ -8,7 +8,6 @@ module.exports = {
     'test/integration/cluster.js',
     'test/integration/command-transformers.js',
     'test/integration/commands/auth.js',
-    'test/integration/commands/defineCommand.js',
     'test/integration/commands/discard.js',
     'test/integration/commands/hdel.js',
     'test/integration/commands/hexists.js',

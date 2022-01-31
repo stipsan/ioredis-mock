@@ -76,5 +76,88 @@ runTwinSuite('eval', (command, equals) => {
       )
       expect(retVal).toEqual(0)
     })
+
+    describe('Runtime libraries', () => {
+      describe.skip('String Manipulation', () => {})
+      describe.skip('Table Manipulation', () => {})
+      describe.skip('Mathematical Functions', () => {})
+
+      describe('the struct library', () => {
+        it('struct.pack', async () => {
+          const retVal = await redis[command]("return struct.pack('HH', 1, 2)" , 0)
+
+          expect(equals(retVal, '\x01\x00\x02\x00')).toBe(true)
+        })
+
+        it('struct.unpack', async () => {
+          const retVal = await redis[command]("return { struct.unpack('HH', ARGV[1]) }" , 0, '\x01\x00\x02\x00')
+    
+          expect(retVal).toEqual([1,2,5])
+        })
+
+        it('struct.size', async () => {
+    
+          expect(await redis[command]("return struct.size('HH')" , 0)).toEqual(4)
+        })
+      })
+
+      describe.only('the cjson library', () => {
+        it('cjson.encode', async () => {
+          const retVal = await redis[command]("return cjson.encode({ ['foo'] = 'bar' })" , 0)
+    
+          expect(retVal).toEqual('{"foo":"bar"}')
+          expect(equals(retVal,'{"foo":"bar"}')).toBe(true)
+        })
+
+        it('cjson.decode', async () => {
+          const retVal = await redis[command]("return cjson.decode(ARGV[1])['foo']", 0, '{"foo":"bar"}')
+    
+          expect(equals(retVal,'bar')).toBe(true)
+        })
+
+       
+      })
+
+      describe('the cmsgpack library', () => {
+        it('cmsgpack.pack', async () => {
+          const retVal = await redis[command]("return cmsgpack.pack({'foo', 'bar', 'baz'})", 0)
+    
+          expect(Buffer.isBuffer(retVal) ? retVal.toString() : retVal).toBe(Buffer.from('\x93\xa3foo\xa3bar\xa3baz', 'binary').toString())
+        })
+
+        it('cmsgpack.unpack', async () => {
+          const retVal = await redis[command]('return cmsgpack.unpack(ARGV[1])', 0, Buffer.from('\x93\xa3foo\xa3bar\xa3baz', 'binary'))
+    
+          expect(equals(retVal[0],'foo')).toBe(true)
+          expect(equals(retVal[1],'bar')).toBe(true)
+          expect(equals(retVal[2],'baz')).toBe(true)
+        })
+
+      })
+
+      describe('the bit library', () => {
+        it('bit.tobit', async () => {
+          const retVal = await redis[command]('return bit.tobit(1)' , 0)
+    
+          expect(retVal).toEqual(1)
+        })
+
+        it('bit.tohex', async () => {
+          const retVal = await redis[command]('return bit.tohex(422342)' , 0)
+    
+          expect(equals(retVal,'000671c6')).toBe(true)
+        })
+
+        it('bit.bor', async () => {
+          const retVal = await redis[command]('return bit.bor(1,2,4,8,16,32,64,128)' , 0)
+    
+          expect(retVal).toEqual(255)
+        })
+
+      })
+      
+    })
+
+    
   })
 })

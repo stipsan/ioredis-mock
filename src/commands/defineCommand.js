@@ -73,6 +73,57 @@ const callToRedisCommand = vm =>
     return 0
   }
 
+  const defineStructObject = vm => {
+    vm.luaExecString(`
+      local struct = {}
+      struct.pack = function(...)
+          return string.pack(...)
+      end
+      struct.unpack = function(...)
+          return string.unpack(...)
+      end
+      struct.size = function(...)
+          return string.packsize(...)
+      end
+      return struct
+    `)
+  
+    // loads the redis object from the stack into the global table under key 'redis'
+    lua.lua_setglobal(vm.L, toLuaString('struct'))
+  }
+
+  const defineCjsonObject = vm => {
+    vm.defineGlobalFunction(() => {
+      const json = vm.extractArgs()
+      
+      
+      interop.push(vm.L, JSON.stringify(interop.tojs(vm.L, json)))
+      return 1
+    }, 'cjsonEncode')
+    vm.defineGlobalFunction(() => {
+      const [json] = vm.extractArgs()
+
+      interop.push(vm.L, JSON.parse(json))
+      return 1
+    }, 'cjsonDecode')
+   
+  
+    vm.luaExecString(`
+      local cjson = {}
+      cjson.encode = function(val)
+          return js.global.JSON.stringify(val)
+      end
+      cjson.decode = function(val)
+          return cjsonDecode(val)
+      end
+      
+      return cjson
+    `)
+  
+    // loads the redis object from the stack into the global table under key 'redis'
+    lua.lua_setglobal(vm.L, toLuaString('cjson'))
+  }
+
 // exported to test
 export function defineKeys(vm, numberOfKeys, commandArgs) {
   const keys = commandArgs.slice(0, numberOfKeys)
@@ -90,6 +141,8 @@ export const customCommand = (numberOfKeys, luaCode) =>
   function customCommand2(...luaScriptArgs) {
     const vm = init()
     defineRedisObject(vm)(callToRedisCommand(vm).bind(this))
+    defineStructObject(vm)
+    defineCjsonObject(vm)
 
     defineKeys.bind(this)(vm, numberOfKeys, luaScriptArgs)
     defineArgv.bind(this)(vm, numberOfKeys, luaScriptArgs)
