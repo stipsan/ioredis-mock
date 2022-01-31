@@ -6,11 +6,7 @@ import { runTwinSuite } from '../../../test-utils'
 runTwinSuite('setbit', command => {
   describe(command, () => {
     it('should return old bit value of key', async () => {
-      const redis = new Redis({
-        data: {
-          foo: '@',
-        },
-      })
+      const redis = new Redis()
       await redis.set('foo', '@')
 
       return redis[command]('foo', 1, 0)
@@ -38,11 +34,7 @@ runTwinSuite('setbit', command => {
     })
 
     it('should override bit value of key', async () => {
-      const redis = new Redis({
-        data: {
-          foo: 'bar',
-        },
-      })
+      const redis = new Redis()
       await redis.set('foo', 'bar')
 
       return redis[command]('foo', 3, 1)

@@ -136,7 +136,7 @@
 | [setbit]               | :white_check_mark: | :white_check_mark: |
 | [setex]                | :white_check_mark: | :white_check_mark: |
 | [setnx]                | :white_check_mark: | :white_check_mark: |
-| [setrange]             | :white_check_mark: |        :x:         |
+| [setrange]             | :white_check_mark: | :white_check_mark: |
 | [shutdown]             | :white_check_mark: |        :x:         |
 | [sinter]               | :white_check_mark: | :white_check_mark: |
 | [sinterstore]          | :white_check_mark: | :white_check_mark: |
