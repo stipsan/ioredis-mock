@@ -226,7 +226,6 @@
 - [sscanBuffer][1]
 - [subscribeBuffer][1]
 - [sunionBuffer][1]
-- [sunionstoreBuffer][1]
 - [xaddBuffer][1]
 - [xrangeBuffer][1]
 - [xreadBuffer][1]
