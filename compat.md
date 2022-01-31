@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 52%](https://img.shields.io/badge/coverage-52%25-red.svg)
+## Supported commands ![Commands Coverage: 53%](https://img.shields.io/badge/coverage-53%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -117,7 +117,7 @@
 | [rename]               | :white_check_mark: | :white_check_mark: |
 | [renamenx]             | :white_check_mark: | :white_check_mark: |
 | [replconf]             | :white_check_mark: | :white_check_mark: |
-| [replicaof]            | :white_check_mark: |        :x:         |
+| [replicaof]            | :white_check_mark: | :white_check_mark: |
 | [reset]                | :white_check_mark: |        :x:         |
 | [role]                 | :white_check_mark: | :white_check_mark: |
 | [rpop]                 | :white_check_mark: | :white_check_mark: |
@@ -141,7 +141,7 @@
 | [sinter]               | :white_check_mark: | :white_check_mark: |
 | [sinterstore]          | :white_check_mark: | :white_check_mark: |
 | [sismember]            | :white_check_mark: | :white_check_mark: |
-| [slaveof]              | :white_check_mark: |        :x:         |
+| [slaveof]              | :white_check_mark: | :white_check_mark: |
 | [smembers]             | :white_check_mark: | :white_check_mark: |
 | [smismember]           | :white_check_mark: | :white_check_mark: |
 | [smove]                | :white_check_mark: | :white_check_mark: |
