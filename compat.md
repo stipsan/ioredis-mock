@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 61%](https://img.shields.io/badge/coverage-61%25-orange.svg)
+## Supported commands ![Commands Coverage: 62%](https://img.shields.io/badge/coverage-62%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -66,7 +66,7 @@
 | [hlen]                 | :white_check_mark: | :white_check_mark: |
 | [hmget]                | :white_check_mark: | :white_check_mark: |
 | [hmset]                | :white_check_mark: | :white_check_mark: |
-| [hrandfield]           | :white_check_mark: |        :x:         |
+| [hrandfield]           | :white_check_mark: | :white_check_mark: |
 | [hscan]                | :white_check_mark: | :white_check_mark: |
 | [hset]                 | :white_check_mark: | :white_check_mark: |
 | [hsetnx]               | :white_check_mark: | :white_check_mark: |
