@@ -52,7 +52,20 @@ redis.set('foo', 'bar')
 console.log(await redis.get('foo'))
 ```
 
-### Breaking API changes from v5
+### Breaking Changes
+
+#### from v6 to v7
+
+#### `ioredis-mock/jest.js` is removed
+
+`ioredis-mock` is no longer doing a `import { Command } from 'ioredis'` internally, it's now doing a direct import `import Command from 'ioredis/built/command'` and thus the `jest.js` [workaround](https://github.com/stipsan/ioredis-mock/issues/568) is no longer needed:
+
+```diff
+-jest.mock('ioredis', () => require('ioredis-mock/jest'))
++jest.mock('ioredis', () => require('ioredis-mock'))
+```
+
+#### from v5 to v6
 
 Before v6, each instance of `ioredis-mock` lived in isolation:
 
@@ -94,15 +107,6 @@ afterEach(done => {
 #### `createConnectedClient` is deprecated
 
 Replace it with `.duplicate()` or use another `new Redis` instance.
-
-#### `ioredis-mock/jest.js` is deprecated
-
-`ioredis-mock` is no longer doing a `import { Command } from 'ioredis'` internally, it's now doing a direct import `import Command from 'ioredis/built/command'` and thus the `jest.js` [workaround](https://github.com/stipsan/ioredis-mock/issues/568) is no longer needed:
-
-```diff
--jest.mock('ioredis', () => require('ioredis-mock/jest'))
-+jest.mock('ioredis', () => require('ioredis-mock'))
-```
 
 ### Pub/Sub channels
 

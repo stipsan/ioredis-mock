@@ -43,11 +43,6 @@ jobs:
           npm run build:lib
           npm run test:integration
 
-      # @TODO remove in ioredis-mock v7
-      - name: E2E test generated jest.js mock
-        if: matrix.os != 'windows-latest'
-        run: npm run test:jestlegacy
-
   browser:
     name: Test browser.js
     runs-on: ubuntu-latest
