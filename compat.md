@@ -217,7 +217,6 @@
 ## Missing buffer commands
 
 - [hscanBuffer][1]
-- [psubscribeBuffer][1]
 - [publishBuffer][1]
 - [punsubscribeBuffer][1]
 - [scanBuffer][1]

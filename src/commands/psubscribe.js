@@ -20,3 +20,5 @@ export function psubscribe(...args) {
   }
   return numberOfSubscribedChannels
 }
+
+export const psubscribeBuffer = psubscribe
