@@ -23,3 +23,5 @@ export function linsert(key, position, pivot, element) {
   this.data.set(key, list)
   return length
 }
+
+export const linsertBuffer = linsert
