@@ -83,7 +83,7 @@ export function object(_subcommand, key, ...args) {
 
 export function objectBuffer(...args) {
   const val = object.apply(this, args)
-  if (val?.map) {
+  if (Array.isArray(val)) {
     return val.map(payload => (payload ? Buffer.from(payload) : payload))
   }
   return !val || Number.isInteger(val) ? val : Buffer.from(val)

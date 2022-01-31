@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 55%](https://img.shields.io/badge/coverage-55%25-red.svg)
+## Supported commands ![Commands Coverage: 56%](https://img.shields.io/badge/coverage-56%25-red.svg)
 
 > PRs welcome :heart:
 
@@ -23,7 +23,7 @@
 | [bzpopmin]             | :white_check_mark: |        :x:         |
 | [client]               | :white_check_mark: |        :x:         |
 | [cluster]              | :white_check_mark: | :white_check_mark: |
-| [command]              | :white_check_mark: |        :x:         |
+| [command]              | :white_check_mark: | :white_check_mark: |
 | [config]               | :white_check_mark: | :white_check_mark: |
 | [copy]                 | :white_check_mark: |        :x:         |
 | [dbsize]               | :white_check_mark: | :white_check_mark: |
