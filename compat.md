@@ -1,4 +1,6 @@
-## Supported commands ![Commands Coverage: 54%](https://img.shields.io/badge/coverage-54%25-red.svg)
+## Supported commands ![Commands Coverage: 55%](https://img.shields.io/badge/coverage-55%25-red.svg)
+
+> PRs welcome :heart:
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -50,7 +52,7 @@
 | [geosearchstore]       | :white_check_mark: |        :x:         |
 | [get]                  | :white_check_mark: | :white_check_mark: |
 | [getbit]               | :white_check_mark: | :white_check_mark: |
-| [getdel]               | :white_check_mark: |        :x:         |
+| [getdel]               | :white_check_mark: | :white_check_mark: |
 | [getex]                | :white_check_mark: |        :x:         |
 | [getrange]             | :white_check_mark: | :white_check_mark: |
 | [getset]               | :white_check_mark: | :white_check_mark: |
@@ -89,7 +91,6 @@
 | [lrem]                 | :white_check_mark: | :white_check_mark: |
 | [lset]                 | :white_check_mark: | :white_check_mark: |
 | [ltrim]                | :white_check_mark: | :white_check_mark: |
-| [memory]               | :white_check_mark: |        :x:         |
 | [mget]                 | :white_check_mark: | :white_check_mark: |
 | [monitor]              | :white_check_mark: |        :x:         |
 | [move]                 | :white_check_mark: |        :x:         |
@@ -262,12 +263,15 @@
 
 ## Commands that won't be implemented
 
+> This is just the current status, and may change in the future. If you have ideas on how to implement any of them feel free to tell us about it.
+
 | redis     | why it doesn't make sense to emulate                                                                                                                              |
 | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [debug]   | This command is intended to aid in debugging redis                                                                                                                |
 | [dump]    | Doesn't make sense to implement the internal data format used by RDB                                                                                              |
 | [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                                                                             |
 | [latency] | ioredis-mock isn't operating over the network so there is no latency to monitor                                                                                   |
+| [memory]  | It's unlikely this can be emulated in a JS environment                                                                                                            |
 | [migrate] | This command actually executes a DUMP + DEL on the source instance, and a RESTORE in the target. Since DUMP and RESTORE won't be implemented it includes MIGRATE. |
 | [module]  | It's unlikely that we'll be able to run Redis Modules in a JS VM                                                                                                  |
 | [pfdebug] | This command is intended to aid in debugging redis                                                                                                                |
@@ -362,7 +366,6 @@
 [lrem]: http://redis.io/commands/LREM
 [lset]: http://redis.io/commands/LSET
 [ltrim]: http://redis.io/commands/LTRIM
-[memory]: http://redis.io/commands/MEMORY
 [mget]: http://redis.io/commands/MGET
 [monitor]: http://redis.io/commands/MONITOR
 [move]: http://redis.io/commands/MOVE
@@ -489,6 +492,7 @@
 [dump]: http://redis.io/commands/DUMP
 [hello]: http://redis.io/commands/HELLO
 [latency]: http://redis.io/commands/LATENCY
+[memory]: http://redis.io/commands/MEMORY
 [migrate]: http://redis.io/commands/MIGRATE
 [module]: http://redis.io/commands/MODULE
 [pfdebug]: http://redis.io/commands/PFDEBUG
