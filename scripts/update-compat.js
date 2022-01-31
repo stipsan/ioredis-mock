@@ -18,6 +18,7 @@ const skipList = {
     "THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use",
   latency:
     "ioredis-mock isn't operating over the network so there is no latency to monitor",
+  memory: "It's unlikely this can be emulated in a JS environment",
   migrate:
     "This command actually executes a DUMP + DEL on the source instance, and a RESTORE in the target. Since DUMP and RESTORE won't be implemented it includes MIGRATE.",
   module: "It's unlikely that we'll be able to run Redis Modules in a JS VM",
@@ -106,11 +107,13 @@ ${missingBufferCommands}`
 }
 
 const tableMd = `## Supported commands ![Commands Coverage: ${percentage}%](https://img.shields.io/badge/coverage-${percentage}%25-${color}.svg)
+> PRs welcome :heart:
 ${tableRows}
 
 ${missingBufferCommands}
 
 ## Commands that won't be implemented
+> This is just the current status, and may change in the future. If you have ideas on how to implement any of them feel free to tell us about it.
 ${skipTableRows}
 
 ${footerLinks}`
