@@ -14,3 +14,8 @@ export function lset(key, i, value) {
 
   return 'OK'
 }
+
+export function lsetBuffer(...args) {
+  const val = lset.apply(this, args)
+  return Buffer.from(val)
+}
