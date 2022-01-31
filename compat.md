@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 53%](https://img.shields.io/badge/coverage-53%25-red.svg)
+## Supported commands ![Commands Coverage: 54%](https://img.shields.io/badge/coverage-54%25-red.svg)
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
@@ -95,7 +95,7 @@
 | [move]                 | :white_check_mark: |        :x:         |
 | [mset]                 | :white_check_mark: | :white_check_mark: |
 | [msetnx]               | :white_check_mark: | :white_check_mark: |
-| [object]               | :white_check_mark: |        :x:         |
+| [object]               | :white_check_mark: | :white_check_mark: |
 | [persist]              | :white_check_mark: | :white_check_mark: |
 | [pexpire]              | :white_check_mark: | :white_check_mark: |
 | [pexpireat]            | :white_check_mark: | :white_check_mark: |
