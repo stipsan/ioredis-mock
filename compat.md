@@ -217,7 +217,6 @@
 ## Missing buffer commands
 
 - [hscanBuffer][1]
-- [lrangeBuffer][1]
 - [lsetBuffer][1]
 - [psubscribeBuffer][1]
 - [publishBuffer][1]
