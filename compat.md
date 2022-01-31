@@ -219,7 +219,6 @@
 - [hscanBuffer][1]
 - [scanBuffer][1]
 - [sinterBuffer][1]
-- [sinterstoreBuffer][1]
 - [smembersBuffer][1]
 - [spopBuffer][1]
 - [srandmemberBuffer][1]
