@@ -21,11 +21,17 @@ export function throwIfInSubscriberMode(commandName, RedisMock) {
   if (isInSubscriberMode(RedisMock)) {
     const allowedCommands = [
       'subscribe',
+      'subscribeBuffer',
       'psubscribe',
+      'psubscribeBuffer',
       'unsubscribe',
+      'unsubscribeBuffer',
       'punsubscribe',
+      'punsubscribeBuffer',
       'ping',
+      'pingBuffer',
       'quit',
+      'quitBuffer',
       'disconnect',
     ]
     if (allowedCommands.indexOf(commandName) > -1) {
