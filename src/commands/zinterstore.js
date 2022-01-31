@@ -52,3 +52,5 @@ export function zinterstore(destKey, numKeys, ...keys) {
 
   return intersected.length
 }
+
+export const zinterstoreBuffer = zinterstore
