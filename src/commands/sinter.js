@@ -17,3 +17,8 @@ export function sinter(...keys) {
 
   return Array.from(intersection)
 }
+
+export function sinterBuffer(...args) {
+  const val = sinter.apply(this, args)
+  return val.map(Buffer.from)
+}
