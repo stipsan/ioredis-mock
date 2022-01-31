@@ -36,3 +36,11 @@ export function spop(key, count) {
   this.data.set(key, set)
   return result
 }
+
+export function spopBuffer(...args) {
+  const val = spop.apply(this, args)
+  if (Array.isArray(val)) {
+    return val.map(Buffer.from)
+  }
+  return val ? Buffer.from(val) : val
+}
