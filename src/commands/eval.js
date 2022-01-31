@@ -13,3 +13,8 @@ export function evaluate(script, numberOfKeys, ...args) {
     this
   )(...args)
 }
+
+export async function evalBuffer(...args) {
+  const val = await evaluate.apply(this, args)
+  return !val || Number.isInteger(val) ? val : Buffer.from(val)
+}
