@@ -56,6 +56,10 @@ console.log(await redis.get('foo'))
 
 #### from v6 to v7
 
+#### `createConnectedClient` is removed
+
+Replace it with `.duplicate()` or use another `new Redis` instance.
+
 #### Dropped support for Node v10
 
 [It's been EOL since Apr, 2021 and it's recommended to upgrade to v14.x LTS.](https://twitter.com/nodejs/status/1388116425361874945)
@@ -107,10 +111,6 @@ afterEach(done => {
   new Redis().flushall().then(() => done())
 })
 ```
-
-#### `createConnectedClient` is deprecated
-
-Replace it with `.duplicate()` or use another `new Redis` instance.
 
 ### Pub/Sub channels
 

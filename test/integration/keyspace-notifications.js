@@ -32,7 +32,7 @@ describe('keyspaceNotifications', () => {
 
   it('should appear on a connected second mock instance when configured and the triggering event occurs', done => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gK' }) // gK: generic keyspace
-    const redis2 = redis.createConnectedClient({ notifyKeyspaceEvents: 'gK' })
+    const redis2 = new Redis({ notifyKeyspaceEvents: 'gK' })
     redis2.on('message', (channel, message) => {
       expect(channel).toBe('__keyspace@0__:key')
       expect(message).toBe('del')
