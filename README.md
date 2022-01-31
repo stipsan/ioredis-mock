@@ -56,6 +56,10 @@ console.log(await redis.get('foo'))
 
 #### from v6 to v7
 
+#### Dropped support for Node v10
+
+[It's been EOL since Apr, 2021 and it's recommended to upgrade to v14.x LTS.](https://twitter.com/nodejs/status/1388116425361874945)
+
 #### `ioredis-mock/jest.js` is removed
 
 `ioredis-mock` is no longer doing a `import { Command } from 'ioredis'` internally, it's now doing a direct import `import Command from 'ioredis/built/command'` and thus the `jest.js` [workaround](https://github.com/stipsan/ioredis-mock/issues/568) is no longer needed:
