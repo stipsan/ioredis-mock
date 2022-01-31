@@ -18,7 +18,7 @@ import { customCommand } from './defineCommand'
  */
 export function evalsha(sha1, numberOfKeys, ...args) {
   if (!(sha1 in this.shaScripts) || !this.shaScripts[sha1]) {
-    throw new Error(`NOSCRIPT for sha1 ${sha1}`)
+    throw new Error('NOSCRIPT No matching script. Please use EVAL.')
   }
   const script = this.shaScripts[sha1]
   return createCommand(
@@ -26,4 +26,9 @@ export function evalsha(sha1, numberOfKeys, ...args) {
     '',
     this
   )(...args)
+}
+
+export async function evalshaBuffer(...args) {
+  const val = await evalsha.apply(this, args)
+  return !val || Number.isInteger(val) ? val : Buffer.from(val)
 }

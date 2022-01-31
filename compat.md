@@ -216,7 +216,6 @@
 
 ## Missing buffer commands
 
-- [evalshaBuffer][1]
 - [hscanBuffer][1]
 - [hvalsBuffer][1]
 - [lindexBuffer][1]
