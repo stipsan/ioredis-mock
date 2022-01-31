@@ -44,7 +44,7 @@ export function config(_subcommand, ...args) {
 
 export function configBuffer(...args) {
   const val = config.apply(this, args)
-  if (val?.map) {
+  if (Array.isArray(val)) {
     return val.map(payload => (payload ? Buffer.from(payload) : payload))
   }
   return val ? Buffer.from(val) : val
