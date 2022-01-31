@@ -217,7 +217,6 @@
 ## Missing buffer commands
 
 - [hscanBuffer][1]
-- [lindexBuffer][1]
 - [linsertBuffer][1]
 - [lrangeBuffer][1]
 - [lsetBuffer][1]
