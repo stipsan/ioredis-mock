@@ -183,23 +183,13 @@ class RedisMock extends EventEmitter {
     return pipeline.exec(callback)
   }
 
-  createConnectedClient(options = {}) {
-    const mock = new RedisMock(options)
-    mock.expires =
-      typeof options.keyPrefix === 'string'
-        ? this.expires.withKeyPrefix(options.keyPrefix)
-        : this.expires
-    mock.data =
-      typeof options.keyPrefix === 'string'
-        ? this.data.withKeyPrefix(options.keyPrefix)
-        : this.data
+  duplicate() {
+    const mock = new RedisMock()
+    mock.expires = this.expires
+    mock.data = this.data
     mock.channels = this.channels
     mock.patternChannels = this.patternChannels
     return mock
-  }
-
-  duplicate() {
-    return this.createConnectedClient()
   }
 
   // eslint-disable-next-line class-methods-use-this
