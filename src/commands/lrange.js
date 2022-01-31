@@ -25,3 +25,8 @@ export function lrange(key, s, e) {
 
   return list.slice(start, end + 1)
 }
+
+export function lrangeBuffer(...args) {
+  const val = lrange.apply(this, args)
+  return val.map(Buffer.from)
+}
