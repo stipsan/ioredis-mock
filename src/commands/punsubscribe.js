@@ -25,3 +25,5 @@ export function punsubscribe(...args) {
   }
   return numberOfSubscribedChannels
 }
+
+export const punsubscribeBuffer = punsubscribe
