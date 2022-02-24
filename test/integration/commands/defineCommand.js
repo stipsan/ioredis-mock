@@ -32,6 +32,33 @@ describe('defineCommand', () => {
     redis.disconnect()
   })
 
+  it('should return a table/array for hgetall', async () => {
+    const luaCode = `
+        local rcall = redis.call
+        rcall("HSET", KEYS[1], ARGV[1], ARGV[2])
+        rcall("HSET", KEYS[1], ARGV[3], ARGV[4])
+        return rcall("HGETALL", KEYS[1])
+      `
+    const redis = new Redis()
+    const someKey = 'k'
+    const someField1 = 'f1'
+    const someField2 = 'f2'
+    const someVal1 = 'v1'
+    const someVal2 = 'v2'
+    const definition = { numberOfKeys: 1, lua: luaCode }
+
+    await redis.defineCommand('someCmd', definition)
+    const tableResponse = await redis.someCmd(
+      someKey,
+      someField1,
+      someVal1,
+      someField2,
+      someVal2
+    )
+    expect(tableResponse).toEqual([someField1, someVal1, someField2, someVal2])
+    redis.disconnect()
+  })
+
   it('should support custom commmands returning a table/array of table/array elements', async () => {
     const luaCode = 'return {{10}, {100, 200}, {}}'
     const redis = new Redis()

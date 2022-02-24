@@ -50,6 +50,10 @@ const callToRedisCommand = vm =>
       const name = args[0].toLowerCase()
       const redisCmd = commands[name].bind(this)
       result = redisCmd(...args.slice(1))
+      // maintain original table format of HGETALL in Lua https://redis.io/commands/HGETALL
+      if (name === 'hgetall') {
+        result = [].concat(...Object.entries(result))
+      }
     } catch (err) {
       if (!returnError) {
         throw err
