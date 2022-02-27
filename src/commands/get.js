@@ -9,11 +9,5 @@ export function get(key) {
 }
 
 export function getBuffer(key) {
-  const value = this.data.has(key) ? this.data.get(key) : null
-
-  if (value && !Buffer.isBuffer(value)) {
-    return Buffer.from(value)
-  }
-
-  return value
+  return this.data.has(key) ? Buffer.from(this.data.get(key)) : null
 }

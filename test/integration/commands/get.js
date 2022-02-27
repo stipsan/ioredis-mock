@@ -19,5 +19,16 @@ runTwinSuite('get', (command, equals) => {
       expect(equals(await redis[command]('foo'), 'bar')).toBe(true)
       redis.disconnect()
     })
+
+    if (command.endsWith('Buffer')) {
+      it('should return value of a binary key unchanged', async () => {
+        const redis = new Redis()
+        const value = Buffer.from('1T+HJWDNyTa4jJXwoBbV6Q==', 'base64')
+        await redis.set('foo', value)
+
+        expect(equals(await redis[command]('foo'), value)).toBe(true)
+        redis.disconnect()
+      })
+    }
   })
 })
