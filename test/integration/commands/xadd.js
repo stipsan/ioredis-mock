@@ -29,19 +29,18 @@ describe('xadd', () => {
         return redis.xadd(
           'stream',
           'MAXLEN',
-          '~',
-          '50',
+          '=',
+          '2',
           '*',
           'reading',
           '{"key": "value"}'
         )
       })
       .then(id => {
-        expect(id).toBe('MAXLEN-0')
+        expect(id).toBe('3-0')
         expect(redis.data.get('stream')).toEqual([
-          ['1-0', ['key', 'val']],
           ['2-0', ['key', 'val']],
-          ['MAXLEN-0', ['~', '50', '*', 'reading', '{"key": "value"}']],
+          ['3-0', ['reading', '{"key": "value"}']],
         ])
         expect(redis.data.get(`stream:stream:${id}`)).toEqual({
           polled: false,

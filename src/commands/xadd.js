@@ -3,13 +3,23 @@ export function xadd(stream, id, ...args) {
     !stream ||
     !id ||
     args.length === 0 ||
-    (args.includes('~') ? args.length < 4 : args.length % 2 !== 0)
+    ((args.includes('~') || (args.includes('='))) ? args.length < 4 : args.length % 2 !== 0)
   ) {
     throw new Error("ERR wrong number of arguments for 'xadd' command")
   }
   if (!this.data.has(stream)) {
     this.data.set(stream, [])
   }
+  
+  let threshold;
+  if (id === 'MAXLEN') {
+    threshold = args.shift();
+    if (threshold === '=' || threshold === '~') {
+      threshold = args.shift();
+    }
+    id = args.shift();
+  }
+
   const eventId = `${id === '*' ? this.data.get(stream).length + 1 : id}-0`
   const list = this.data.get(stream)
 
@@ -20,7 +30,11 @@ export function xadd(stream, id, ...args) {
   }
 
   this.data.set(`stream:${stream}:${eventId}`, { polled: false })
-  this.data.set(stream, list.concat([[`${eventId}`, [...args]]]))
 
+  let newData = list.concat([[`${eventId}`, [...args]]]);
+  if (threshold && newData.length > threshold) {
+    newData = newData.slice(-threshold);
+  }
+  this.data.set(stream, newData);
   return `${eventId}`
 }
