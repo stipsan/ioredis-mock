@@ -12,15 +12,16 @@ export function xadd(stream, id, ...args) {
   }
   
   let threshold;
-  if (id === 'MAXLEN') {
+  let keyId = id;
+  if (keyId === 'MAXLEN') {
     threshold = args.shift();
     if (threshold === '=' || threshold === '~') {
       threshold = args.shift();
     }
-    id = args.shift();
+    keyId = args.shift();
   }
 
-  const eventId = `${id === '*' ? this.data.get(stream).length + 1 : id}-0`
+  const eventId = `${keyId === '*' ? this.data.get(stream).length + 1 : keyId}-0`
   const list = this.data.get(stream)
 
   if (list.length > 0 && list[0][0] === `${eventId}`) {
