@@ -1,7 +1,6 @@
 import IoredisCommand from 'ioredis/built/Command'
 import asCallback from 'standard-as-callback'
 
-import promiseContainer from './promise-container'
 
 export function isInSubscriberMode(RedisMock) {
   if (RedisMock.channels === undefined) {
@@ -142,8 +141,6 @@ export default function command(commandEmulator, commandName, RedisMock) {
         ...commandArgs
       )
     }
-
-    const Promise = promiseContainer.get()
 
     return asCallback(
       new Promise(resolve =>

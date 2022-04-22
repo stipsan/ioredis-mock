@@ -1,8 +1,5 @@
-import promiseContainer from '../promise-container'
-
 export function xread(option, ...args) {
-  const Promise = promiseContainer.get()
-
+  
   const { op, opVal, rest } =
     option === 'STREAMS'
       ? { op: 'COUNT', opVal: Infinity, rest: args }
