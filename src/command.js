@@ -1,4 +1,4 @@
-import IoredisCommand from 'ioredis/built/command'
+import IoredisCommand from 'ioredis/built/Command'
 import asCallback from 'standard-as-callback'
 
 import promiseContainer from './promise-container'
