@@ -7,7 +7,6 @@ mocking the redis-server is a better option.
 
 Cases like:
 
-
 - Your workflow already use a local redis-server instance for the dev server.
 - You're on a platform
   [without an official redis release](https://github.com/MSOpenTech/redis),

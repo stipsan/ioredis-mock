@@ -1,7 +1,6 @@
 import IoredisCommand from 'ioredis/built/Command'
 import asCallback from 'standard-as-callback'
 
-
 export function isInSubscriberMode(RedisMock) {
   if (RedisMock.channels === undefined) {
     return false

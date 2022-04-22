@@ -65,7 +65,7 @@ class Pipeline {
   exec(callback) {
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch
-    
+
     this.batch = []
     return asCallback(
       Promise.all(batch.map(cmd => cmd())).then(replies =>
