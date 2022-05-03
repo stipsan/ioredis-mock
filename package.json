@@ -25,7 +25,7 @@
     "example.js"
   ],
   "scripts": {
-    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap",
+    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap --external:ioredis/built/command",
     "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap --minify-syntax",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
@@ -74,7 +74,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "events": "^3.3.0",
     "husky": "^6.0.0",
-    "ioredis": "^4.28.3",
+    "ioredis": "^5.0.4",
     "jest": "^27.4.7",
     "jest-circus": "^27.4.6",
     "lint-staged": "^11.2.6",

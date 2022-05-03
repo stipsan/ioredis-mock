@@ -4,13 +4,13 @@ import promiseContainer from './promise-container'
 
 let IoredisCommand
 try {
-  // ioredis v4
-  // eslint-disable-next-line global-require, import/no-unresolved
-  IoredisCommand = require('ioredis/built/command').default
-} catch (err) {
   // ioredis v5
   // eslint-disable-next-line global-require, import/no-unresolved
   IoredisCommand = require('ioredis/built/Command').default
+} catch (err) {
+  // ioredis v4
+  // eslint-disable-next-line global-require, import/no-unresolved
+  IoredisCommand = require('ioredis/built/command').default
 }
 
 export function isInSubscriberMode(RedisMock) {
