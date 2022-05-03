@@ -151,7 +151,7 @@
 | [srandmember]          | :white_check_mark: | :white_check_mark: |
 | [srem]                 | :white_check_mark: | :white_check_mark: |
 | [sscan]                | :white_check_mark: | :white_check_mark: |
-| [stralgo]              | :white_check_mark: |        :x:         |
+| [stralgo]              |        :x:         |        :x:         |
 | [strlen]               | :white_check_mark: | :white_check_mark: |
 | [subscribe]            | :white_check_mark: | :white_check_mark: |
 | [substr]               | :white_check_mark: | :white_check_mark: |
