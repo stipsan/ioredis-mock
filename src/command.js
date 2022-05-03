@@ -1,4 +1,3 @@
-import IoredisCommand from 'ioredis/built/command'
 import asCallback from 'standard-as-callback'
 
 import promiseContainer from './promise-container'
@@ -59,9 +58,24 @@ export function throwIfCommandIsNotAllowed(commandName, RedisMock) {
   throwIfNotConnected(commandName, RedisMock)
 }
 
+let memoizedIoredisCommand;
+
 export const Command = {
   // eslint-disable-next-line no-underscore-dangle
-  transformers: IoredisCommand._transformer,
+  get transformers () {
+      if (!memoizedIoredisCommand) {
+        try {
+          // eslint-disable-next-line global-require, import/no-unresolved
+          memoizedIoredisCommand = require('ioredis/built/Command'); // Attempt to load v5.x
+        } catch {
+          // eslint-disable-next-line global-require, import/no-unresolved
+          memoizedIoredisCommand = require('ioredis/built/command'); // Attempt to load v4.x
+        }
+      }
+
+      // eslint-disable-next-line no-underscore-dangle
+      return memoizedIoredisCommand.default._transformer;
+  },
   setArgumentTransformer: (name, func) => {
     Command.transformers.argument[name] = func
   },
