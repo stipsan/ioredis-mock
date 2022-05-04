@@ -4,14 +4,14 @@ export function lrem(key, c, value) {
   }
   const count = parseInt(c, 10)
   const list = [...(this.data.get(key) || [])]
-  const indexFun = (count < 0 ? [].lastIndexOf : [].indexOf).bind(list)
+  const indexFun = count < 0 ? 'lastIndexOf' : 'indexOf'
   const max = count === 0 ? list.length : Math.abs(count)
   let removed = 0
-  let idx = indexFun(value)
+  let idx = list[indexFun](value)
   while (idx !== -1 && removed < max) {
     removed++
     list.splice(idx, 1)
-    idx = indexFun(value)
+    idx = list[indexFun](value)
   }
   this.data.set(key, list)
   return removed
