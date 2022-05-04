@@ -53,7 +53,10 @@ export function command(_subcommand, ...args) {
   }
 
   if (subcommand === 'INFO') {
-    const result = args.length > 0 ? commandsList.filter(item => args.includes(item[0])) : commandsList
+    const result =
+      args.length > 0
+        ? commandsList.filter(item => args.includes(item[0]))
+        : commandsList
     return result.length === 0 ? [null] : result
   }
 
@@ -61,15 +64,13 @@ export function command(_subcommand, ...args) {
     return commandsList.map(item => item[0])
   }
 
-  if(args.length > 0) {
+  if (args.length > 0) {
     throw new Error(
       `ERR wrong number of arguments for 'command|${_subcommand.toLowerCase()}' command`
     )
   }
 
-  throw new Error(
-    `ERR unknown subcommand '${_subcommand}'. Try COMMAND HELP.`
-  )
+  throw new Error(`ERR unknown subcommand '${_subcommand}'. Try COMMAND HELP.`)
 }
 
 export function commandBuffer(...args) {
@@ -106,20 +107,19 @@ function isString(value) {
  * expect(res).to.eql(['foo', ['bar']])
  * ```
  */
- function convertStringToBuffer(value) {
+function convertStringToBuffer(value) {
   if (isString(value)) {
-    return Buffer.from(value);
+    return Buffer.from(value)
   }
   if (Array.isArray(value)) {
-    const {length} = value;
-    const res = Array(length);
+    const { length } = value
+    const res = Array(length)
     for (let i = 0; i < length; ++i) {
-      res[i] =
-        isString(value[i])
-          ? Buffer.from(value[i])
-          : convertStringToBuffer(value[i]);
+      res[i] = isString(value[i])
+        ? Buffer.from(value[i])
+        : convertStringToBuffer(value[i])
     }
-    return res;
+    return res
   }
-  return value;
+  return value
 }

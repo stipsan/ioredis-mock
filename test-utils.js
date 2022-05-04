@@ -7,10 +7,10 @@ export function runTwinSuite(commandName, cb) {
     command === commandName
       ? cb(command, (a, b) => a === b)
       : cb(command, (a, b) => {
-        if(Buffer.isBuffer(a)) return a.equals(Buffer.from(b))
-        
-        console.warn('a was expected to be a Buffer:', typeof a, {a, b})
-        return a === b
-      })
+          if (Buffer.isBuffer(a)) return a.equals(Buffer.from(b))
+
+          console.warn('a was expected to be a Buffer:', typeof a, { a, b })
+          return a === b
+        })
   )
 }

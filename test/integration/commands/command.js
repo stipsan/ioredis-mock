@@ -3,7 +3,7 @@ import Redis from 'ioredis'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
 
-runTwinSuite('command', (command) => {
+runTwinSuite('command', command => {
   describe(command, () => {
     const redis = new Redis()
 
@@ -30,20 +30,20 @@ runTwinSuite('command', (command) => {
     describe('info', () => {
       it('returns nothing on an unknown command', async () => {
         const commands = await redis[command]('info', 'foo')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns the same list as COMMAND without args', async () => {
         const defaults = await redis[command]()
         const commands = await redis[command]('info')
-  
+
         expect(defaults).toEqual(commands)
       })
 
       it('returns a command description', async () => {
         const commands = await redis[command]('info', 'get', 'sinter')
-  
+
         expect(commands).toMatchSnapshot()
       })
     })
@@ -85,25 +85,25 @@ runTwinSuite('command', (command) => {
     describe('docs', () => {
       it('returns nothing on an unknown command', async () => {
         const commands = await redis[command]('docs', 'foo')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns a all commands by default', async () => {
         const commands = await redis[command]('docs')
-  
+
         expect(commands).toEqual(expect.any(Array))
       })
 
       it('returns a command description', async () => {
         const commands = await redis[command]('docs', 'get')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns a description of multiple commands', async () => {
         const commands = await redis[command]('docs', 'get', 'set')
-  
+
         expect(commands).toMatchSnapshot()
       })
     })
@@ -134,23 +134,27 @@ runTwinSuite('command', (command) => {
 
       it('returns the keys used in get', async () => {
         const commands = await redis[command]('getkeys', 'get', 'foo')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns the keys used in sdiff', async () => {
         const commands = await redis[command]('getkeys', 'sdiff', 'foo', 'bar')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns the keys used in hmset', async () => {
-        const commands = await redis[command]('getkeys', 'hmset', 'user:1',
-        'id',
-        '1',
-        'email',
-        'bruce@wayne.enterprises')
-  
+        const commands = await redis[command](
+          'getkeys',
+          'hmset',
+          'user:1',
+          'id',
+          '1',
+          'email',
+          'bruce@wayne.enterprises'
+        )
+
         expect(commands).toMatchSnapshot()
       })
     })
@@ -181,23 +185,32 @@ runTwinSuite('command', (command) => {
 
       it('returns the keys used in get', async () => {
         const commands = await redis[command]('getkeysandflags', 'get', 'foo')
-  
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns the keys used in sdiff', async () => {
-        const commands = await redis[command]('getkeysandflags', 'sdiff', 'foo', 'bar')
-  
+        const commands = await redis[command](
+          'getkeysandflags',
+          'sdiff',
+          'foo',
+          'bar'
+        )
+
         expect(commands).toMatchSnapshot()
       })
 
       it('returns the keys used in hmset', async () => {
-        const commands = await redis[command]('getkeysandflags', 'hmset', 'user:1',
-        'id',
-        '1',
-        'email',
-        'bruce@wayne.enterprises')
-  
+        const commands = await redis[command](
+          'getkeysandflags',
+          'hmset',
+          'user:1',
+          'id',
+          '1',
+          'email',
+          'bruce@wayne.enterprises'
+        )
+
         expect(commands).toMatchSnapshot()
       })
     })
