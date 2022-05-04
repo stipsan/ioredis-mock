@@ -123,7 +123,7 @@ afterEach(done => {
 })
 ```
 
-### Pub/Sub channels
+## Pub/Sub channels
 
 We also support redis [publish/subscribe](https://redis.io/topics/pubsub) channels.
 Like [ioredis](https://github.com/luin/ioredis#pubsub), you need two clients:
@@ -140,7 +140,7 @@ redisSub.subscribe('emails')
 redisPub.publish('emails', 'clark@daily.planet')
 ```
 
-### Lua scripting
+## Lua scripting
 
 You can use the `defineCommand` to define custom commands using lua or `eval` to directly execute lua code.
 
@@ -181,7 +181,7 @@ As a difference from ioredis we currently don't support:
 - the `evalsha` command
 - the `script` command
 
-### Cluster(Experimental)
+## Cluster(Experimental)
 
 Work on Cluster support has started, the current implementation is minimal and PRs welcome #359
 
