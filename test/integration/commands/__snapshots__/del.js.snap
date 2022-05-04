@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`del throws if too few arguments 1`] = `"ERR wrong number of arguments for 'del' command"`;
+
+exports[`delBuffer throws if too few arguments 1`] = `"ERR wrong number of arguments for 'del' command"`;
