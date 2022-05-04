@@ -1,4 +1,5 @@
 import Redis from 'ioredis'
+import sortBy from 'lodash.sortby'
 
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
@@ -11,10 +12,10 @@ runTwinSuite('command', command => {
       redis.disconnect()
     })
 
-    it('returns a all commands by default', async () => {
+    it('returns all commands by default', async () => {
       const commands = await redis[command]()
 
-      expect(commands).toMatchSnapshot()
+      expect(sortBy(commands, ([cmd]) => cmd)).toMatchSnapshot()
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -89,7 +90,7 @@ runTwinSuite('command', command => {
         expect(commands).toMatchSnapshot()
       })
 
-      it('returns a all commands by default', async () => {
+      it('returns all commands by default', async () => {
         const commands = await redis[command]('docs')
 
         expect(commands).toEqual(expect.any(Array))
@@ -235,9 +236,7 @@ runTwinSuite('command', command => {
         const result = await redis[command]('HELP')
 
         expect(
-          result.map(val => {
-            return Buffer.isBuffer(val) ? val.toString() : val
-          })
+          result.map(val => (Buffer.isBuffer(val) ? val.toString() : val))
         ).toMatchSnapshot()
       })
     })

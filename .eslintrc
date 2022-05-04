@@ -49,8 +49,7 @@
     {
       "files": ["test/integration/**/*.js"],
       "rules": {
-        "import/no-relative-parent-imports": ["error"],
-        "arrow-body-style": ["error", "always"]
+        "import/no-relative-parent-imports": ["error"]
       }
     }
   ]
