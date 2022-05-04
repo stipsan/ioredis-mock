@@ -30,7 +30,9 @@ runTwinSuite('sinter', command => {
       })
 
       return redis[command]('foo', 'bar').catch(err =>
-        expect(err.message).toBe('Key bar does not contain a set')
+        expect(err.message).toBe(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
       )
     })
 

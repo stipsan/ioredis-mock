@@ -1,31 +1,37 @@
 import Redis from 'ioredis'
 
-describe('sunion', () => {
-  it('should return the union between the first set and all the successive sets', () => {
-    const redis = new Redis({
-      data: {
-        key1: new Set(['a', 'b', 'c', 'd']),
-        key2: new Set(['c']),
-        // key3: keys that do not exist are considered to be empty sets
-        key4: new Set(['a', 'c', 'e']),
-      },
+// eslint-disable-next-line import/no-relative-parent-imports
+import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
+
+runTwinSuite('sunion', command => {
+  browserSafeDescribe(command)(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
     })
 
-    return redis
-      .sunion('key1', 'key2', 'key3', 'key4')
-      .then(result => expect(result).toEqual(['a', 'b', 'c', 'd', 'e']))
-  })
+    it('should return the union between the first set and all the successive sets', async () => {
+      expect.assertions(1)
+      await redis.sadd('key1', 'a', 'b', 'c', 'd')
+      await redis.sadd('key2', 'c')
+      await redis.sadd('key4', 'a', 'c', 'e')
 
-  it('should throw an exception if one of the keys is not a set', () => {
-    const redis = new Redis({
-      data: {
-        foo: new Set(),
-        bar: 'not a set',
-      },
+      const result = await redis[command]('key1', 'key2', 'key3', 'key4')
+      result.sort()
+      expect(result).toMatchSnapshot()
     })
 
-    return redis
-      .sunion('foo', 'bar')
-      .catch(err => expect(err.message).toBe('Key bar does not contain a set'))
+    it('should throw an exception if one of the keys is not a set', async () => {
+      expect.assertions(1)
+      await redis.sadd('foo', 'bar')
+      await redis.set('bar', 'not a set')
+
+      try {
+        await redis[command]('foo', 'bar')
+      } catch (err) {
+        expect(err.message).toMatchSnapshot()
+      }
+    })
   })
 })

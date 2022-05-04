@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sunionstore should store the union between the first set and all the successive sets at dest 1`] = `
+Array [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+]
+`;
+
+exports[`sunionstore should throw an exception if one of the keys is not a set 1`] = `"WRONGTYPE Operation against a key holding the wrong kind of value"`;
+
+exports[`sunionstoreBuffer should store the union between the first set and all the successive sets at dest 1`] = `
+Array [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+]
+`;
+
+exports[`sunionstoreBuffer should throw an exception if one of the keys is not a set 1`] = `"WRONGTYPE Operation against a key holding the wrong kind of value"`;

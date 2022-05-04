@@ -29,7 +29,9 @@ runTwinSuite('sinterstore', command => {
       })
 
       return expect(redis[command]('foo', 'bar')).rejects.toEqual(
-        Error('Key bar does not contain a set')
+        Error(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
       )
     })
 

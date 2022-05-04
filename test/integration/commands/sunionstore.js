@@ -1,37 +1,40 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('sunionstore', command => {
-  describe(command, () => {
-    it('should store the union between the first set and all the successive sets at dest', () => {
-      const redis = new Redis({
-        data: {
-          key1: new Set(['a', 'b', 'c', 'd']),
-          key2: new Set(['c']),
-          // key3: keys that do not exist are considered to be empty sets
-          key4: new Set(['a', 'c', 'e']),
-        },
-      })
+  browserSafeDescribe(command)(command, () => {
+    const redis = new Redis()
 
-      return redis[command]('dest', 'key1', 'key2', 'key3', 'key4')
-        .then(count => expect(count).toEqual(5))
-        .then(() => redis.smembers('dest'))
-        .then(result => expect(result).toEqual(['a', 'b', 'c', 'd', 'e']))
+    afterAll(() => {
+      redis.disconnect()
     })
 
-    it('should throw an exception if one of the keys is not a set', () => {
-      const redis = new Redis({
-        data: {
-          foo: new Set(),
-          bar: 'not a set',
-        },
-      })
+    it('should store the union between the first set and all the successive sets at dest', async () => {
+      expect.assertions(2)
+      await redis.sadd('key1', 'a', 'b', 'c', 'd')
+      await redis.sadd('key2', 'c')
+      await redis.sadd('key4', 'a', 'c', 'e')
 
-      return expect(redis[command]('foo', 'bar')).rejects.toEqual(
-        Error('Key bar does not contain a set')
-      )
+      const count = await redis[command]('dest', 'key1', 'key2', 'key3', 'key4')
+      expect(count).toEqual(5)
+
+      const result = await redis.smembers('dest')
+      result.sort()
+      expect(result).toMatchSnapshot()
+    })
+
+    it('should throw an exception if one of the keys is not a set', async () => {
+      expect.assertions(1)
+      await redis.sadd('foo', 'bar')
+      await redis.set('bar', 'not a set')
+
+      try {
+        await redis[command]('foo', 'bar')
+      } catch (err) {
+        expect(err.message).toMatchSnapshot()
+      }
     })
   })
 })

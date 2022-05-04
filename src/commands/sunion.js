@@ -1,7 +1,11 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function sunion(...keys) {
   keys.forEach(key => {
     if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
-      throw new Error(`Key ${key} does not contain a set`)
+      throw new Error(
+        'WRONGTYPE Operation against a key holding the wrong kind of value'
+      )
     }
   })
 
@@ -13,4 +17,9 @@ export function sunion(...keys) {
   )
 
   return Array.from(union)
+}
+
+export function sunionBuffer(...args) {
+  const val = sunion.apply(this, args)
+  return convertStringToBuffer(val)
 }

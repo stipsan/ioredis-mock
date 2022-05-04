@@ -50,8 +50,6 @@ module.exports = {
     'test/integration/commands/sscan.js',
     'test/integration/commands/sscanStream.js',
     'test/integration/commands/subscribe.js',
-    'test/integration/commands/sunion.js',
-    'test/integration/commands/sunionstore.js',
     'test/integration/commands/ttl.js',
     'test/integration/commands/xadd.js',
     'test/integration/commands/xlen.js',
