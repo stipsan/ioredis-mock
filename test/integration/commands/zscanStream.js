@@ -6,13 +6,7 @@ const chance = new Chance()
 
 describe('zscanStream', () => {
   let writable
-  const createMap = keys => {
-    return new Map(
-      keys.map(k => {
-        return [k, { score: 0, value: k }]
-      })
-    )
-  }
+  const createMap = keys => new Map(keys.map(k => [k, { score: 0, value: k }]))
 
   beforeEach(() => {
     writable = new ObjectWritableMock()
@@ -131,9 +125,7 @@ describe('zscanStream', () => {
       expect(err).toBeInstanceOf(Error)
       done()
     })
-    writable.on('finish', () => {
-      return done(new Error('should not finish'))
-    })
+    writable.on('finish', () => done(new Error('should not finish')))
   })
 
   it('zscanStream behavior should match ioredis', done => {

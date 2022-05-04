@@ -12,17 +12,13 @@ runTwinSuite('scard', command => {
         },
       })
 
-      return redis[command]('foo').then(length => {
-        return expect(length).toBe(3)
-      })
+      return redis[command]('foo').then(length => expect(length).toBe(3))
     })
 
     it('should return 0 if the set does not exist', () => {
       const redis = new Redis()
 
-      return redis[command]('foo').then(length => {
-        return expect(length).toBe(0)
-      })
+      return redis[command]('foo').then(length => expect(length).toBe(0))
     })
 
     it('should throw an exception if the key contains something other than a set', () => {
@@ -32,9 +28,9 @@ runTwinSuite('scard', command => {
         },
       })
 
-      return redis[command]('foo').catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a set')
-      })
+      return redis[command]('foo').catch(err =>
+        expect(err.message).toBe('Key foo does not contain a set')
+      )
     })
   })
 })

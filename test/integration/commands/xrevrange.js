@@ -3,9 +3,9 @@ import Redis from 'ioredis'
 describe('xrevrange', () => {
   it('returns an empty list on a non existing stream', () => {
     const redis = new Redis()
-    return redis.xrevrange('non-existing', '-', '+').then(events => {
-      return expect(events).toEqual([])
-    })
+    return redis
+      .xrevrange('non-existing', '-', '+')
+      .then(events => expect(events).toEqual([]))
   })
 
   it('returns the contents of the stream', () => {
@@ -77,28 +77,22 @@ describe('xrevrange', () => {
   it('should throw with a wrong number of arguments', () => {
     const redis = new Redis()
     return Promise.all([
-      redis.xrevrange('stream', '+').catch(err => {
-        return err.message
-      }),
-      redis.xrevrange('stream').catch(err => {
-        return err.message
-      }),
-      redis.xrevrange().catch(err => {
-        return err.message
-      }),
-    ]).then(errors => {
-      return errors.forEach(err => {
-        return expect(err).toBe(
+      redis.xrevrange('stream', '+').catch(err => err.message),
+      redis.xrevrange('stream').catch(err => err.message),
+      redis.xrevrange().catch(err => err.message),
+    ]).then(errors =>
+      errors.forEach(err =>
+        expect(err).toBe(
           "ERR wrong number of arguments for 'xrevrange' command"
         )
-      })
-    })
+      )
+    )
   })
 
   it('should throw with a missing count', () => {
     const redis = new Redis()
-    return redis.xrevrange('stream', '+', '-', 'COUNT').catch(err => {
-      return expect(err.message).toBe('ERR syntax error')
-    })
+    return redis
+      .xrevrange('stream', '+', '-', 'COUNT')
+      .catch(err => expect(err.message).toBe('ERR syntax error'))
   })
 })

@@ -34,9 +34,7 @@ runTwinSuite('getex', (command, equals) => {
 
       const beforeExpire = await redis[command]('foo', 'EX', 1)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 1500)
-      })
+      await new Promise(resolve => setTimeout(resolve, 1500))
 
       expect(equals(beforeExpire, 'bar')).toBe(true)
       expect(await redis.get('foo')).toBe(null)
@@ -47,9 +45,7 @@ runTwinSuite('getex', (command, equals) => {
 
       const beforeExpire = await redis[command]('foo', 'PX', 100)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 200)
-      })
+      await new Promise(resolve => setTimeout(resolve, 200))
 
       expect(equals(beforeExpire, 'bar')).toBe(true)
       expect(await redis.get('foo')).toBe(null)
@@ -70,9 +66,7 @@ runTwinSuite('getex', (command, equals) => {
       expect(equals(await redis[command]('foo', 'PXAT', at), 'bar')).toBe(true)
       expect(await redis.pttl('foo')).toBeGreaterThanOrEqual(1)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 200)
-      })
+      await new Promise(resolve => setTimeout(resolve, 200))
 
       expect(await redis.get('foo')).toBe(null)
     })

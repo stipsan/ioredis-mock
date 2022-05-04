@@ -15,16 +15,12 @@ runTwinSuite('xlen', command => {
           ],
         },
       })
-      return redis[command]('stream').then(len => {
-        return expect(len).toBe(3)
-      })
+      return redis[command]('stream').then(len => expect(len).toBe(3))
     })
 
     it('should return 0 for a non existing stream', () => {
       const redis = new Redis()
-      return redis[command]('non-existing').then(len => {
-        return expect(len).toBe(0)
-      })
+      return redis[command]('non-existing').then(len => expect(len).toBe(0))
     })
   })
 })

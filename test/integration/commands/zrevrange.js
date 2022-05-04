@@ -13,39 +13,33 @@ describe('zrevrange', () => {
   it('should return first 3 items ordered by score in reverse', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrange('foo', 0, 2).then(res => {
-      return expect(res).toEqual(['fifth', 'fourth', 'third'])
-    })
+    return redis
+      .zrevrange('foo', 0, 2)
+      .then(res => expect(res).toEqual(['fifth', 'fourth', 'third']))
   })
 
   it('should return last 3 items in reverse', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrange('foo', -3, -1).then(res => {
-      return expect(res).toEqual(['third', 'second', 'first'])
-    })
+    return redis
+      .zrevrange('foo', -3, -1)
+      .then(res => expect(res).toEqual(['third', 'second', 'first']))
   })
 
   it('should return last all items on larger numbers in reverse', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrange('foo', 0, 100).then(res => {
-      return expect(res).toEqual([
-        'fifth',
-        'fourth',
-        'third',
-        'second',
-        'first',
-      ])
-    })
+    return redis
+      .zrevrange('foo', 0, 100)
+      .then(res =>
+        expect(res).toEqual(['fifth', 'fourth', 'third', 'second', 'first'])
+      )
   })
 
   it('should return empty array if out-of-range', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrange('foo', 10, 100).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrevrange('foo', 10, 100).then(res => expect(res).toEqual([]))
   })
 
   it('should return empty array if the key contains something other than a list', () => {
@@ -55,9 +49,7 @@ describe('zrevrange', () => {
       },
     })
 
-    return redis.zrevrange('foo', 0, 2).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrevrange('foo', 0, 2).then(res => expect(res).toEqual([]))
   })
 
   it('should sort items with the same score in reverse lexicographical order', () => {
@@ -72,8 +64,8 @@ describe('zrevrange', () => {
       },
     })
 
-    return redis.zrevrange('foo', 0, 100).then(res => {
-      return expect(res).toEqual(['aaa', 'ddd', 'ccc', 'bbb'])
-    })
+    return redis
+      .zrevrange('foo', 0, 100)
+      .then(res => expect(res).toEqual(['aaa', 'ddd', 'ccc', 'bbb']))
   })
 })

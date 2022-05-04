@@ -20,10 +20,9 @@ runTwinSuite('unlink', command => {
       expect(await redis.get('unlinkme')).toBe(null)
       expect(await redis.get('metoo')).toBe(null)
     })
-    it('should return the number of keys unlinked', async () => {
-      return redis[command]('deleteme', 'metoo').then(status => {
-        return expect(status).toBe(0)
-      })
-    })
+    it('should return the number of keys unlinked', async () =>
+      redis[command]('deleteme', 'metoo').then(status =>
+        expect(status).toBe(0)
+      ))
   })
 })

@@ -13,9 +13,7 @@ runTwinSuite('setex', (command, equals) => {
       expect(await redis.get('foo')).toBe('bar')
       expect(await redis.ttl('foo')).toBe(1)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 1500)
-      })
+      await new Promise(resolve => setTimeout(resolve, 1500))
 
       expect(await redis.get('foo')).toBe(null)
       expect(await redis.ttl('foo')).toBe(-2)

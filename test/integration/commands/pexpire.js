@@ -17,9 +17,7 @@ runTwinSuite('pexpire', command => {
       expect(await redis[command]('foo', 100)).toBe(1)
       expect(await redis.pttl('foo')).toBeGreaterThanOrEqual(1)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 200)
-      })
+      await new Promise(resolve => setTimeout(resolve, 200))
 
       expect(await redis.get('foo')).toBe(null)
     })

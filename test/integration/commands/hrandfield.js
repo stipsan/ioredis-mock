@@ -64,9 +64,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', 5)
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(5)
@@ -94,9 +92,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', 5, 'withvalues')
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(10)
@@ -129,9 +125,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', 10)
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(6)
@@ -160,9 +154,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', -5)
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(5)
@@ -190,9 +182,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', -5, 'withvalues')
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(10)
@@ -226,9 +216,7 @@ runTwinSuite('hrandfield', command => {
 
         let results = await redis[command]('numbers', -10)
         if (command === 'hrandfieldBuffer') {
-          results = results.map(r => {
-            return r.toString()
-          })
+          results = results.map(r => r.toString())
         }
 
         expect(results.length).toBe(10)

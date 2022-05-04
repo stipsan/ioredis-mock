@@ -5,9 +5,7 @@ describe('multipleMocks', () => {
     const client1 = new Redis()
     const client2 = new Redis()
     client1.hset('testing', 'test', '2').then(() => {
-      client2.hget('testing', 'test').then(val => {
-        return expect(val).toBe('2')
-      })
+      client2.hget('testing', 'test').then(val => expect(val).toBe('2'))
     })
   })
 
@@ -28,9 +26,8 @@ describe('multipleMocks', () => {
       const client = new Redis()
 
       const testChannel = 'hello'
-      const numberOfListeners = () => {
-        return client.channels.instanceListeners.get(testChannel).size
-      }
+      const numberOfListeners = () =>
+        client.channels.instanceListeners.get(testChannel).size
 
       const connectedClients = []
       for (let i = 0; i < 10; i++) {

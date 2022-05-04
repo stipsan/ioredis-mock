@@ -8,9 +8,7 @@ runTwinSuite('ttl', command => {
     it('should return -2 if key does not exist', () => {
       const redis = new Redis()
 
-      return redis[command]('foo').then(result => {
-        return expect(result).toBe(-2)
-      })
+      return redis[command]('foo').then(result => expect(result).toBe(-2))
     })
 
     it('should return -1 if key exist but have no expire', () => {
@@ -20,9 +18,7 @@ runTwinSuite('ttl', command => {
         },
       })
 
-      return redis[command]('foo').then(result => {
-        return expect(result).toBe(-1)
-      })
+      return redis[command]('foo').then(result => expect(result).toBe(-1))
     })
 
     it('should return seconds left until expire', () => {
@@ -34,12 +30,8 @@ runTwinSuite('ttl', command => {
 
       return redis
         .expire('foo', 1)
-        .then(() => {
-          return redis[command]('foo')
-        })
-        .then(result => {
-          return expect(result).toBe(1)
-        })
+        .then(() => redis[command]('foo'))
+        .then(result => expect(result).toBe(1))
     })
   })
 })

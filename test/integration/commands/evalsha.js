@@ -20,9 +20,7 @@ runTwinSuite('evalsha', (command, equals) => {
 
       return redis
         .set(KEY1, 10)
-        .then(() => {
-          return redis.set(KEY2, 20)
-        })
+        .then(() => redis.set(KEY2, 20))
         .then(() => {
           const luaScript = `
               local rcall = redis.call
@@ -42,9 +40,7 @@ runTwinSuite('evalsha', (command, equals) => {
             KEY2,
             100,
             5
-          ).then(result => {
-            return expect(result).toEqual(3005)
-          })
+          ).then(result => expect(result).toEqual(3005))
         })
     })
 
@@ -61,9 +57,9 @@ runTwinSuite('evalsha', (command, equals) => {
         const scriptSha = sha1(luaScript)
         // first run eval to store the script in cache
         redis.eval(luaScript, NUMBER_OF_KEYS, KEY1)
-        return redis[command](scriptSha, NUMBER_OF_KEYS, KEY1).then(result => {
-          return expect(equals(result, '10')).toBe(true)
-        })
+        return redis[command](scriptSha, NUMBER_OF_KEYS, KEY1).then(result =>
+          expect(equals(result, '10')).toBe(true)
+        )
       })
     })
 

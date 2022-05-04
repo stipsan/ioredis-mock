@@ -63,9 +63,9 @@ runTwinSuite('brpoplpush', (command, equals) => {
       const redis = new Redis()
       await redis.set('foo', 'not a list')
 
-      await expect(() => {
-        return redis[command]('foo', 'bar', 1)
-      }).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(() =>
+        redis[command]('foo', 'bar', 1)
+      ).rejects.toThrowErrorMatchingInlineSnapshot(
         '"WRONGTYPE Operation against a key holding the wrong kind of value"'
       )
       redis.disconnect()

@@ -16,26 +16,16 @@ runTwinSuite('hdel', command => {
         },
       })
       return redis[command]('user:1', 'id', 'email', 'location')
-        .then(status => {
-          return expect(status).toBe(2)
-        })
-        .then(() => {
-          return expect(redis.data.get('user:1')).toEqual({
+        .then(status => expect(status).toBe(2))
+        .then(() =>
+          expect(redis.data.get('user:1')).toEqual({
             name: 'Bruce Wayne',
           })
-        })
-        .then(() => {
-          return redis[command]('user:1', 'name')
-        })
-        .then(status => {
-          return expect(status).toBe(1)
-        })
-        .then(() => {
-          return redis.exists('user:1')
-        })
-        .then(status => {
-          return expect(status).toBe(0)
-        })
+        )
+        .then(() => redis[command]('user:1', 'name'))
+        .then(status => expect(status).toBe(1))
+        .then(() => redis.exists('user:1'))
+        .then(status => expect(status).toBe(0))
     })
 
     it('should return 0 for key that does not exist', done => {
@@ -49,15 +39,9 @@ runTwinSuite('hdel', command => {
         },
       })
       redis[command]('nonExistingUser', 'someField')
-        .then(status => {
-          return expect(status).toBe(0)
-        })
-        .then(() => {
-          return done()
-        })
-        .catch(err => {
-          return done(err)
-        })
+        .then(status => expect(status).toBe(0))
+        .then(() => done())
+        .catch(err => done(err))
     })
   })
 })

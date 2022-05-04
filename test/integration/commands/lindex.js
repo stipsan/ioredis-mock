@@ -13,21 +13,11 @@ runTwinSuite('lindex', (command, equals) => {
       })
 
       return redis[command]('mylist', 0)
-        .then(result => {
-          return expect(equals(result, 'Hello')).toBe(true)
-        })
-        .then(() => {
-          return redis[command]('mylist', -1)
-        })
-        .then(result => {
-          return expect(equals(result, 'World')).toBe(true)
-        })
-        .then(() => {
-          return redis[command]('mylist', 3)
-        })
-        .then(result => {
-          return expect(result).toBe(null)
-        })
+        .then(result => expect(equals(result, 'Hello')).toBe(true))
+        .then(() => redis[command]('mylist', -1))
+        .then(result => expect(equals(result, 'World')).toBe(true))
+        .then(() => redis[command]('mylist', 3))
+        .then(result => expect(result).toBe(null))
     })
 
     it('should return null if the list does not exist', () => {
@@ -35,9 +25,7 @@ runTwinSuite('lindex', (command, equals) => {
         data: {},
       })
 
-      return redis[command]('foo', 0).then(result => {
-        return expect(result).toBe(null)
-      })
+      return redis[command]('foo', 0).then(result => expect(result).toBe(null))
     })
 
     it('should throw an exception if the key contains something other than a list', () => {
@@ -47,9 +35,9 @@ runTwinSuite('lindex', (command, equals) => {
         },
       })
 
-      return redis[command]('foo', 0).catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo', 0).catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
   })
 })

@@ -17,41 +17,33 @@ runTwinSuite('zcount', command => {
     it('should return using not strict compare', () => {
       const redis = new Redis({ data })
 
-      return redis[command]('foo', 1, 3).then(res => {
-        return expect(res).toEqual(3)
-      })
+      return redis[command]('foo', 1, 3).then(res => expect(res).toEqual(3))
     })
 
     it('should return using strict compare', () => {
       const redis = new Redis({ data })
 
-      return redis[command]('foo', '(3', 5).then(res => {
-        return expect(res).toEqual(2)
-      })
+      return redis[command]('foo', '(3', 5).then(res => expect(res).toEqual(2))
     })
 
     it('should accept infinity string', () => {
       const redis = new Redis({ data })
 
-      return redis[command]('foo', '-inf', '+inf').then(res => {
-        return expect(res).toEqual(5)
-      })
+      return redis[command]('foo', '-inf', '+inf').then(res =>
+        expect(res).toEqual(5)
+      )
     })
 
     it('should return 0 if out-of-range', () => {
       const redis = new Redis({ data })
 
-      return redis[command]('foo', 10, 100).then(res => {
-        return expect(res).toEqual(0)
-      })
+      return redis[command]('foo', 10, 100).then(res => expect(res).toEqual(0))
     })
 
     it('should return 0 if key not found', () => {
       const redis = new Redis({ data })
 
-      return redis[command]('boo', 10, 100).then(res => {
-        return expect(res).toEqual(0)
-      })
+      return redis[command]('boo', 10, 100).then(res => expect(res).toEqual(0))
     })
 
     it('should return 0 if the key contains something other than a list', () => {
@@ -61,9 +53,7 @@ runTwinSuite('zcount', command => {
         },
       })
 
-      return redis[command]('foo', 1, 2).then(res => {
-        return expect(res).toEqual(0)
-      })
+      return redis[command]('foo', 1, 2).then(res => expect(res).toEqual(0))
     })
   })
 })

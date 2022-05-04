@@ -2,11 +2,7 @@ import Redis from 'ioredis'
 
 describe('zscan', () => {
   function createMap(keys) {
-    return new Map(
-      keys.map(k => {
-        return [k, { score: 0, value: k }]
-      })
-    )
+    return new Map(keys.map(k => [k, { score: 0, value: k }]))
   }
 
   it('should return null array if zset does not exist', () => {

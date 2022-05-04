@@ -15,19 +15,13 @@ runTwinSuite('zrem', command => {
     it('should remove 1 item from sorted set', () => {
       const redis = new Redis({ data })
       return redis[command]('foos', 'foo')
-        .then(status => {
-          return expect(status).toBe(1)
-        })
-        .then(() => {
-          return expect(redis.data.get('foos').has('foo')).toBe(false)
-        })
+        .then(status => expect(status).toBe(1))
+        .then(() => expect(redis.data.get('foos').has('foo')).toBe(false))
     })
     it('should remove 2 items from sorted set', () => {
       const redis = new Redis({ data })
       return redis[command]('foos', 'foo', 'baz')
-        .then(status => {
-          return expect(status).toBe(2)
-        })
+        .then(status => expect(status).toBe(2))
         .then(() => {
           expect(redis.data.get('foos').has('foo')).toBe(false)
           expect(redis.data.get('foos').has('bar')).toBe(true)
@@ -37,22 +31,14 @@ runTwinSuite('zrem', command => {
     it('should not remove an item that does not exist', () => {
       const redis = new Redis({ data })
       return redis[command]('foos', 'qux')
-        .then(status => {
-          return expect(status).toBe(0)
-        })
-        .then(() => {
-          return expect(redis.data.get('foos').has('qux')).toBe(false)
-        })
+        .then(status => expect(status).toBe(0))
+        .then(() => expect(redis.data.get('foos').has('qux')).toBe(false))
     })
     it('should ignore non-existent keys', () => {
       const redis = new Redis({ data })
       return redis[command]('bars', 'bar')
-        .then(status => {
-          return expect(status).toBe(0)
-        })
-        .then(() => {
-          return expect(redis.data.get('bars')).toBeFalsy()
-        })
+        .then(status => expect(status).toBe(0))
+        .then(() => expect(redis.data.get('bars')).toBeFalsy())
     })
   })
 })

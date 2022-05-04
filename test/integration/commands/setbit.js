@@ -10,27 +10,17 @@ runTwinSuite('setbit', command => {
       await redis.set('foo', '@')
 
       return redis[command]('foo', 1, 0)
-        .then(result => {
-          return expect(result).toBe(1)
-        })
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .then(result => expect(result).toBe(1))
+        .finally(() => redis.disconnect())
     })
 
     it('should padd if offset out of range', () => {
       const redis = new Redis({})
 
       return redis[command]('foo', 9, 1)
-        .then(result => {
-          return expect(result).toBe(0)
-        })
-        .then(async () => {
-          return expect(await redis.get('foo')).toBe('\x00@')
-        })
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .then(result => expect(result).toBe(0))
+        .then(async () => expect(await redis.get('foo')).toBe('\x00@'))
+        .finally(() => redis.disconnect())
     })
 
     it('should override bit value of key', async () => {
@@ -38,30 +28,18 @@ runTwinSuite('setbit', command => {
       await redis.set('foo', 'bar')
 
       return redis[command]('foo', 3, 1)
-        .then(result => {
-          return expect(result).toBe(0)
-        })
-        .then(async () => {
-          return expect(await redis.get('foo')).toBe('rar')
-        })
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .then(result => expect(result).toBe(0))
+        .then(async () => expect(await redis.get('foo')).toBe('rar'))
+        .finally(() => redis.disconnect())
     })
 
     it('should create key if not exist', () => {
       const redis = new Redis({})
 
       return redis[command]('foo', 1, 1)
-        .then(result => {
-          return expect(result).toBe(0)
-        })
-        .then(async () => {
-          return expect(await redis.get('foo')).toBe('@')
-        })
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .then(result => expect(result).toBe(0))
+        .then(async () => expect(await redis.get('foo')).toBe('@'))
+        .finally(() => redis.disconnect())
     })
 
     it('should throw if offset > 2^32', () => {
@@ -79,9 +57,7 @@ runTwinSuite('setbit', command => {
             )
           }
         )
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .finally(() => redis.disconnect())
     })
 
     it('should throw if value is not 1 or 0', () => {
@@ -99,9 +75,7 @@ runTwinSuite('setbit', command => {
             )
           }
         )
-        .finally(() => {
-          return redis.disconnect()
-        })
+        .finally(() => redis.disconnect())
     })
   })
 })

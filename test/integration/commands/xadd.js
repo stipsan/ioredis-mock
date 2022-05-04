@@ -12,9 +12,7 @@ describe('xadd', () => {
           polled: false,
         })
       })
-      .then(() => {
-        return redis.xadd('stream', '*', 'key', 'val')
-      })
+      .then(() => redis.xadd('stream', '*', 'key', 'val'))
       .then(id => {
         expect(id).toBe('2-0')
         expect(redis.data.get('stream')).toEqual([
@@ -25,8 +23,8 @@ describe('xadd', () => {
           polled: false,
         })
       })
-      .then(() => {
-        return redis.xadd(
+      .then(() =>
+        redis.xadd(
           'stream',
           'MAXLEN',
           '=',
@@ -35,7 +33,7 @@ describe('xadd', () => {
           'reading',
           '{"key": "value"}'
         )
-      })
+      )
       .then(id => {
         expect(id).toBe('3-0')
         expect(redis.data.get('stream')).toEqual([
@@ -51,38 +49,26 @@ describe('xadd', () => {
   it('should throw with an illegal amount of arguments', () => {
     const redis = new Redis()
     return Promise.all([
-      redis.xadd().catch(err => {
-        return err.message
-      }),
-      redis.xadd('stream').catch(err => {
-        return err.message
-      }),
-      redis.xadd('stream', '*').catch(err => {
-        return err.message
-      }),
-      redis.xadd('stream', '*', 'one').catch(err => {
-        return err.message
-      }),
-    ]).then(errors => {
-      return errors.forEach(err => {
-        return expect(err).toBe(
-          "ERR wrong number of arguments for 'xadd' command"
-        )
-      })
-    })
+      redis.xadd().catch(err => err.message),
+      redis.xadd('stream').catch(err => err.message),
+      redis.xadd('stream', '*').catch(err => err.message),
+      redis.xadd('stream', '*', 'one').catch(err => err.message),
+    ]).then(errors =>
+      errors.forEach(err =>
+        expect(err).toBe("ERR wrong number of arguments for 'xadd' command")
+      )
+    )
   })
 
   it('should throw with a duplicate id', () => {
     const redis = new Redis()
     redis
       .xadd('stream', '*', 'key', 'value')
-      .then(id => {
-        return redis.xadd('stream', id, 'key', 'value')
-      })
-      .catch(err => {
-        return expect(err.message).toBe(
+      .then(id => redis.xadd('stream', id, 'key', 'value'))
+      .catch(err =>
+        expect(err.message).toBe(
           'ERR The ID specified in XADD is equal or smaller than the target stream top item'
         )
-      })
+      )
   })
 })

@@ -14,15 +14,11 @@ runTwinSuite('sinter', command => {
         },
       })
 
-      return redis[command]('key1', 'key2', 'key3').then(result => {
-        return expect(
-          command === 'sinterBuffer'
-            ? result.map(v => {
-                return v.toString()
-              })
-            : result
+      return redis[command]('key1', 'key2', 'key3').then(result =>
+        expect(
+          command === 'sinterBuffer' ? result.map(v => v.toString()) : result
         ).toEqual(['c'])
-      })
+      )
     })
 
     it('should throw an exception if one of the keys is not a set', () => {
@@ -33,17 +29,17 @@ runTwinSuite('sinter', command => {
         },
       })
 
-      return redis[command]('foo', 'bar').catch(err => {
-        return expect(err.message).toBe('Key bar does not contain a set')
-      })
+      return redis[command]('foo', 'bar').catch(err =>
+        expect(err.message).toBe('Key bar does not contain a set')
+      )
     })
 
     it("should return empty array if sources don't exists", () => {
       const redis = new Redis()
 
-      return redis[command]('foo', 'bar').then(result => {
-        return expect(result).toEqual([])
-      })
+      return redis[command]('foo', 'bar').then(result =>
+        expect(result).toEqual([])
+      )
     })
   })
 })

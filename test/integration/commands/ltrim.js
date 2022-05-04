@@ -13,12 +13,12 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', 0, 2).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual(['1', '2', '3'])
-        }),
+        redis[command]('foo', 0, 2).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis
+          .lrange('foo', 0, -1)
+          .then(res => expect(res).toEqual(['1', '2', '3'])),
       ])
     })
 
@@ -30,12 +30,12 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', -3, -1).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual(['3', '4', '5'])
-        }),
+        redis[command]('foo', -3, -1).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis
+          .lrange('foo', 0, -1)
+          .then(res => expect(res).toEqual(['3', '4', '5'])),
       ])
     })
 
@@ -47,12 +47,12 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', -6, -1).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual(['1', '2', '3', '4', '5'])
-        }),
+        redis[command]('foo', -6, -1).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis
+          .lrange('foo', 0, -1)
+          .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
       ])
     })
 
@@ -64,12 +64,10 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', 0, -6).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual([])
-        }),
+        redis[command]('foo', 0, -6).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis.lrange('foo', 0, -1).then(res => expect(res).toEqual([])),
       ])
     })
 
@@ -81,12 +79,12 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', 0, 100).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual(['1', '2', '3', '4', '5'])
-        }),
+        redis[command]('foo', 0, 100).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis
+          .lrange('foo', 0, -1)
+          .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
       ])
     })
 
@@ -98,12 +96,10 @@ runTwinSuite('ltrim', (command, equals) => {
       })
 
       return Promise.all([
-        redis[command]('foo', 10, 100).then(res => {
-          return expect(equals(res, 'OK')).toBe(true)
-        }),
-        redis.lrange('foo', 0, -1).then(res => {
-          return expect(res).toEqual([])
-        }),
+        redis[command]('foo', 10, 100).then(res =>
+          expect(equals(res, 'OK')).toBe(true)
+        ),
+        redis.lrange('foo', 0, -1).then(res => expect(res).toEqual([])),
       ])
     })
 
@@ -114,9 +110,9 @@ runTwinSuite('ltrim', (command, equals) => {
         },
       })
 
-      return redis[command]('foo', 0, 2).catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo', 0, 2).catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
   })
 })

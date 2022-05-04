@@ -17,9 +17,7 @@ runTwinSuite('expire', command => {
       const status = await redis[command]('foo', 1)
       const beforeExpire = await redis.get('foo')
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 1500)
-      })
+      await new Promise(resolve => setTimeout(resolve, 1500))
       const afterExpire = await redis.get('foo')
 
       expect(status).toBe(1)
@@ -35,11 +33,8 @@ runTwinSuite('expire', command => {
       expect(await redis.get('foo')).toBe(null)
     })
 
-    it('should return 0 if key does not exist', () => {
-      return redis[command]('foo', 1).then(status => {
-        return expect(status).toBe(0)
-      })
-    })
+    it('should return 0 if key does not exist', () =>
+      redis[command]('foo', 1).then(status => expect(status).toBe(0)))
 
     it('should remove expire on SET', async () => {
       await redis.set('foo', 'bar')
@@ -76,11 +71,11 @@ runTwinSuite('expire', command => {
           expect(message).toBe('expire')
           done()
         })
-        redisPubSub.subscribe('__keyspace@0__:foo').then(() => {
-          return redis1.set('foo', 'value').then(() => {
-            return redis1[command]('foo', 1)
-          })
-        })
+        redisPubSub
+          .subscribe('__keyspace@0__:foo')
+          .then(() =>
+            redis1.set('foo', 'value').then(() => redis1[command]('foo', 1))
+          )
       }
     )
   })

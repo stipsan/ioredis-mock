@@ -13,9 +13,7 @@ runTwinSuite('smove', command => {
       })
 
       return redis[command]('foo', 'bar', 'two')
-        .then(status => {
-          return expect(status).toBe(1)
-        })
+        .then(status => expect(status).toBe(1))
         .then(() => {
           expect(redis.data.get('foo').has('two')).toBe(false)
           expect(redis.data.get('bar').has('two')).toBe(true)
@@ -30,20 +28,16 @@ runTwinSuite('smove', command => {
       })
 
       return redis[command]('foo', 'bar', 'two')
-        .then(status => {
-          return expect(status).toBe(0)
-        })
-        .then(() => {
-          return expect(redis.data.has('bar')).toBe(false)
-        })
+        .then(status => expect(status).toBe(0))
+        .then(() => expect(redis.data.has('bar')).toBe(false))
     })
 
     it('should return 0 if source does not exist', () => {
       const redis = new Redis()
 
-      return redis[command]('foo', 'bar', 'two').then(status => {
-        return expect(status).toBe(0)
-      })
+      return redis[command]('foo', 'bar', 'two').then(status =>
+        expect(status).toBe(0)
+      )
     })
 
     it('should throw an exception if the source contains something other than a set', () => {
@@ -53,9 +47,9 @@ runTwinSuite('smove', command => {
         },
       })
 
-      return redis[command]('foo', 'bar', 'two').catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a set')
-      })
+      return redis[command]('foo', 'bar', 'two').catch(err =>
+        expect(err.message).toBe('Key foo does not contain a set')
+      )
     })
 
     it('should throw an exception if the destination contains something other than a set', () => {
@@ -66,9 +60,9 @@ runTwinSuite('smove', command => {
         },
       })
 
-      return redis[command]('foo', 'bar', 'two').catch(err => {
-        return expect(err.message).toBe('Key bar does not contain a set')
-      })
+      return redis[command]('foo', 'bar', 'two').catch(err =>
+        expect(err.message).toBe('Key bar does not contain a set')
+      )
     })
   })
 })

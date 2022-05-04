@@ -12,9 +12,9 @@ runTwinSuite('hexists', command => {
             foo: { bar: 'baz' },
           },
         })
-        return redis[command]('foo', 'bar').then(status => {
-          return expect(status).toBe(1)
-        })
+        return redis[command]('foo', 'bar').then(status =>
+          expect(status).toBe(1)
+        )
       })
 
       it('should return 0 if key not exists in hash map', () => {
@@ -23,18 +23,18 @@ runTwinSuite('hexists', command => {
             foo: { bar: 'baz' },
           },
         })
-        return redis[command]('foo', 'baz').then(status => {
-          return expect(status).toBe(0)
-        })
+        return redis[command]('foo', 'baz').then(status =>
+          expect(status).toBe(0)
+        )
       })
     })
 
     describe("hash doesn't exist", () => {
       it('should return 0', () => {
         const redis = new Redis()
-        return redis[command]('foo', 'baz').then(status => {
-          return expect(status).toBe(0)
-        })
+        return redis[command]('foo', 'baz').then(status =>
+          expect(status).toBe(0)
+        )
       })
     })
   })

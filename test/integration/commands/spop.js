@@ -44,9 +44,7 @@ runTwinSuite('spop', command => {
 
       return redis[command]('myset', 2).then(_results => {
         const results = Buffer.isBuffer(_results[0])
-          ? _results.map(result => {
-              return result.toString()
-            })
+          ? _results.map(result => result.toString())
           : _results
         expect(['one', 'two', 'three']).toContain(results[0])
         expect(['one', 'two', 'three']).toContain(results[1])
@@ -63,9 +61,7 @@ runTwinSuite('spop', command => {
 
       return redis[command]('myset', 5).then(_results => {
         const results = Buffer.isBuffer(_results[0])
-          ? _results.map(result => {
-              return result.toString()
-            })
+          ? _results.map(result => result.toString())
           : _results
         expect(results).toEqual(['one', 'two', 'three'])
         expect(redis.data.get('myset').size).toBe(0)
@@ -75,9 +71,7 @@ runTwinSuite('spop', command => {
     it('should return null if set is empty', () => {
       const redis = new Redis()
 
-      return redis[command]('myset').then(result => {
-        return expect(result).toBe(null)
-      })
+      return redis[command]('myset').then(result => expect(result).toBe(null))
     })
 
     it('should return undefined if count is 0', () => {
@@ -87,9 +81,9 @@ runTwinSuite('spop', command => {
         },
       })
 
-      return redis[command]('myset', 0).then(result => {
-        return expect(result).toBe(undefined)
-      })
+      return redis[command]('myset', 0).then(result =>
+        expect(result).toBe(undefined)
+      )
     })
 
     it('should throw an exception if the key contains something other than a set', () => {
@@ -99,9 +93,9 @@ runTwinSuite('spop', command => {
         },
       })
 
-      return redis[command]('foo').catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a set')
-      })
+      return redis[command]('foo').catch(err =>
+        expect(err.message).toBe('Key foo does not contain a set')
+      )
     })
 
     it('should throw an exception if count is not an integer', () => {
@@ -111,11 +105,9 @@ runTwinSuite('spop', command => {
         },
       })
 
-      return redis[command]('myset', 'not an integer').catch(err => {
-        return expect(err.message).toBe(
-          'ERR value is not an integer or out of range'
-        )
-      })
+      return redis[command]('myset', 'not an integer').catch(err =>
+        expect(err.message).toBe('ERR value is not an integer or out of range')
+      )
     })
 
     it('should throw an exception if count is out of range', () => {
@@ -125,11 +117,9 @@ runTwinSuite('spop', command => {
         },
       })
 
-      return redis[command]('myset', -10).catch(err => {
-        return expect(err.message).toBe(
-          'ERR value is not an integer or out of range'
-        )
-      })
+      return redis[command]('myset', -10).catch(err =>
+        expect(err.message).toBe('ERR value is not an integer or out of range')
+      )
     })
   })
 })

@@ -16,15 +16,9 @@ runTwinSuite('sdiffstore', command => {
       })
 
       return redis[command]('result', 'key1', 'key2', 'key3', 'key4')
-        .then(count => {
-          return expect(count).toEqual(2)
-        })
-        .then(() => {
-          return redis.smembers('result')
-        })
-        .then(result => {
-          return expect(result).toEqual(['b', 'd'])
-        })
+        .then(count => expect(count).toEqual(2))
+        .then(() => redis.smembers('result'))
+        .then(result => expect(result).toEqual(['b', 'd']))
     })
 
     it('should throw an exception if the target key is not of a set', () => {
@@ -56,15 +50,9 @@ runTwinSuite('sdiffstore', command => {
       const redis = new Redis()
 
       return redis[command]('dest', 'foo', 'bar')
-        .then(count => {
-          return expect(count).toEqual(0)
-        })
-        .then(() => {
-          return redis.smembers('dest')
-        })
-        .then(result => {
-          return expect(result).toEqual([])
-        })
+        .then(count => expect(count).toEqual(0))
+        .then(() => redis.smembers('dest'))
+        .then(result => expect(result).toEqual([]))
     })
   })
 })

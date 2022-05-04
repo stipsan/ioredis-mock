@@ -13,9 +13,9 @@ runTwinSuite('object', command => {
 
     it('should throw on too few arguments', async () => {
       expect.hasAssertions()
-      await expect(() => {
-        return redis[command]()
-      }).rejects.toThrow('wrong number of arguments')
+      await expect(() => redis[command]()).rejects.toThrow(
+        'wrong number of arguments'
+      )
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -140,9 +140,7 @@ runTwinSuite('object', command => {
 
         // @TODO implement this functionality together with the TOUCH command
         if (process.env.IS_E2E) {
-          await new Promise(resolve => {
-            return setTimeout(resolve, 1100)
-          })
+          await new Promise(resolve => setTimeout(resolve, 1100))
 
           expect(await redis[command]('IDLETIME', 'foo')).toBeGreaterThan(0)
         }
@@ -197,9 +195,7 @@ runTwinSuite('object', command => {
         const result = await redis[command]('HELP')
 
         expect(
-          result.map(val => {
-            return Buffer.isBuffer(val) ? val.toString() : val
-          })
+          result.map(val => (Buffer.isBuffer(val) ? val.toString() : val))
         ).toEqual([
           'OBJECT <subcommand> [<arg> [value] [opt] ...]. Subcommands are:',
           'ENCODING <key>',

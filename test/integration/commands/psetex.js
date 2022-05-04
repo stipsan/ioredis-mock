@@ -13,9 +13,7 @@ runTwinSuite('psetex', (command, equals) => {
       expect(await redis.get('foo')).toBe('bar')
       expect(await redis.pttl('foo')).toBeGreaterThan(0)
 
-      await new Promise(resolve => {
-        return setTimeout(resolve, 200)
-      })
+      await new Promise(resolve => setTimeout(resolve, 200))
 
       expect(await redis.get('foo')).toBe(null)
       expect(await redis.pttl('foo')).toBe(-2)

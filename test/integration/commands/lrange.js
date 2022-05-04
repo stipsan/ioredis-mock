@@ -12,13 +12,13 @@ runTwinSuite('lrange', command => {
         },
       })
 
-      return redis[command]('foo', 0, 2).then(res => {
-        return expect(
-          res.map(v => {
-            return Buffer.isBuffer(v) ? v.toString() : v
-          })
-        ).toEqual(['1', '2', '3'])
-      })
+      return redis[command]('foo', 0, 2).then(res =>
+        expect(res.map(v => (Buffer.isBuffer(v) ? v.toString() : v))).toEqual([
+          '1',
+          '2',
+          '3',
+        ])
+      )
     })
 
     it('should return last 3 items', () => {
@@ -28,13 +28,13 @@ runTwinSuite('lrange', command => {
         },
       })
 
-      return redis[command]('foo', -3, -1).then(res => {
-        return expect(
-          res.map(v => {
-            return Buffer.isBuffer(v) ? v.toString() : v
-          })
-        ).toEqual(['3', '4', '5'])
-      })
+      return redis[command]('foo', -3, -1).then(res =>
+        expect(res.map(v => (Buffer.isBuffer(v) ? v.toString() : v))).toEqual([
+          '3',
+          '4',
+          '5',
+        ])
+      )
     })
 
     it('should return last all items on larger numbers', () => {
@@ -44,13 +44,15 @@ runTwinSuite('lrange', command => {
         },
       })
 
-      return redis[command]('foo', 0, 100).then(res => {
-        return expect(
-          res.map(v => {
-            return Buffer.isBuffer(v) ? v.toString() : v
-          })
-        ).toEqual(['1', '2', '3', '4', '5'])
-      })
+      return redis[command]('foo', 0, 100).then(res =>
+        expect(res.map(v => (Buffer.isBuffer(v) ? v.toString() : v))).toEqual([
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+        ])
+      )
     })
 
     it('should return empty array if out-of-range', () => {
@@ -60,13 +62,11 @@ runTwinSuite('lrange', command => {
         },
       })
 
-      return redis[command]('foo', 10, 100).then(res => {
-        return expect(
-          res.map(v => {
-            return Buffer.isBuffer(v) ? v.toString() : v
-          })
-        ).toEqual([])
-      })
+      return redis[command]('foo', 10, 100).then(res =>
+        expect(res.map(v => (Buffer.isBuffer(v) ? v.toString() : v))).toEqual(
+          []
+        )
+      )
     })
 
     it('should throw an exception if the key contains something other than a list', () => {
@@ -76,9 +76,9 @@ runTwinSuite('lrange', command => {
         },
       })
 
-      return redis[command]('foo', 0, 2).catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo', 0, 2).catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
   })
 })

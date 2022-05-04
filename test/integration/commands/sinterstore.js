@@ -15,15 +15,9 @@ runTwinSuite('sinterstore', command => {
       })
 
       return redis[command]('dest', 'key1', 'key2', 'key3')
-        .then(count => {
-          return expect(count).toEqual(1)
-        })
-        .then(() => {
-          return redis.smembers('dest')
-        })
-        .then(result => {
-          return expect(result).toEqual(['c'])
-        })
+        .then(count => expect(count).toEqual(1))
+        .then(() => redis.smembers('dest'))
+        .then(result => expect(result).toEqual(['c']))
     })
 
     it('should throw an exception if one of the keys is not a set', () => {
@@ -43,15 +37,9 @@ runTwinSuite('sinterstore', command => {
       const redis = new Redis()
 
       return redis[command]('dest', 'foo', 'bar')
-        .then(count => {
-          return expect(count).toEqual(0)
-        })
-        .then(() => {
-          return redis.smembers('dest')
-        })
-        .then(result => {
-          return expect(result).toEqual([])
-        })
+        .then(count => expect(count).toEqual(0))
+        .then(() => redis.smembers('dest'))
+        .then(result => expect(result).toEqual([]))
     })
   })
 })

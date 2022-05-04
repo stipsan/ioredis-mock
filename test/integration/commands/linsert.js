@@ -13,15 +13,9 @@ runTwinSuite('linsert', command => {
       })
 
       return redis[command]('foo', 'BEFORE', 1, 0)
-        .then(() => {
-          return expect(redis.data.get('foo')).toEqual(['0', '1'])
-        })
-        .then(() => {
-          return redis[command]('foo', 'AFTER', 1, 2)
-        })
-        .then(() => {
-          return expect(redis.data.get('foo')).toEqual(['0', '1', '2'])
-        })
+        .then(() => expect(redis.data.get('foo')).toEqual(['0', '1']))
+        .then(() => redis[command]('foo', 'AFTER', 1, 2))
+        .then(() => expect(redis.data.get('foo')).toEqual(['0', '1', '2']))
     })
 
     it('should return the new length of the list', () => {
@@ -30,20 +24,14 @@ runTwinSuite('linsert', command => {
       })
 
       return redis[command]('foo', 'BEFORE', 1, 0)
-        .then(length => {
-          return expect(length).toBe(-1)
-        })
+        .then(length => expect(length).toBe(-1))
         .then(() => {
           redis = new Redis({
             data: { foo: ['1'] },
           })
         })
-        .then(() => {
-          return redis[command]('foo', 'BEFORE', 1, 0)
-        })
-        .then(length => {
-          return expect(length).toBe(2)
-        })
+        .then(() => redis[command]('foo', 'BEFORE', 1, 0))
+        .then(length => expect(length).toBe(2))
     })
 
     it('should throw an exception if the key contains something other than a list', () => {
@@ -53,9 +41,9 @@ runTwinSuite('linsert', command => {
         },
       })
 
-      return redis[command]('foo', 'BEFORE', 1, 0).catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo', 'BEFORE', 1, 0).catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
 
     it('should throw an exception if the position is not allowed', () => {
@@ -63,11 +51,11 @@ runTwinSuite('linsert', command => {
         data: {},
       })
 
-      return redis[command]('foo', 'POSITION_UNKNOWN', 1, 0).catch(err => {
-        return expect(err.message).toBe(
+      return redis[command]('foo', 'POSITION_UNKNOWN', 1, 0).catch(err =>
+        expect(err.message).toBe(
           'The position of the new element must be BEFORE the pivot or AFTER the pivot'
         )
-      })
+      )
     })
   })
 })
