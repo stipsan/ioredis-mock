@@ -4,7 +4,9 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('lolwut', command => {
-  describe(command, () => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {

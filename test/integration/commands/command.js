@@ -5,7 +5,9 @@ import sortBy from 'lodash.sortby'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('command', command => {
-  describe(command, () => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
