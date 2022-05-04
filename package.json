@@ -39,7 +39,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jest",
     "posttest": "npm run build:lib && npm run test:integration && npm run build:browser.js && npm run test:browser.js",
-    "test:browser.js": "jest --config jest.config.browser.js",
+    "test:browser.js": "IS_BROWSER=true jest --config jest.config.browser.js",
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --forceExit --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
     "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
