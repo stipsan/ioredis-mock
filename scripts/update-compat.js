@@ -31,6 +31,7 @@ const skipList = {
     'The RDB specific format used for restores would be a massive undertaking to implement with very little gain.',
   slowlog: "Useful when you're on redis, not so much when on ioredis-mock",
 }
+// @TODO: test to ensure that if something in the skipList isn't in the command list then it should be deleted here
 const commandsList = commands.list.filter(command => !(command in skipList))
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'

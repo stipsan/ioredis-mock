@@ -1,21 +1,9 @@
-import commandsJson from 'redis-commands/commands.json'
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 
-const commandsList = Object.keys(commandsJson).reduce((acc, key) => {
-  const item = commandsJson[key]
-  acc.push([
-    key,
-    item.arity,
-    item.flags,
-    item.keyStart,
-    item.keyStop,
-    item.step,
-  ])
-  return acc
-}, [])
-
-export function command(_subcommand, ...args) {
+export async function command(_subcommand, ...args) {
   if (!_subcommand) {
-    return commandsList
+    const json = await import('../../data/command-info.json')
+    return json.default || json
   }
 
   const subcommand = _subcommand.toUpperCase()
@@ -47,21 +35,53 @@ export function command(_subcommand, ...args) {
   }
 
   if (subcommand === 'COUNT' && args.length === 0) {
-    // @TODO: redis-commands isn't updated with the latest redis version yet and returns 225 commands, while redis e2e reports 240
-    // return commandsList.length
-    return 240
-  }
-
-  if (subcommand === 'INFO') {
-    const result =
-      args.length > 0
-        ? commandsList.filter(item => args.includes(item[0]))
-        : commandsList
-    return result.length === 0 ? [null] : result
+    const { count } = await import('../../data/command-list.json')
+    return count
   }
 
   if (subcommand === 'LIST') {
-    return commandsList.map(item => item[0])
+    if (args.length > 0) {
+      throw new Error('ERR syntax error')
+    }
+
+    const { list } = await import('../../data/command-list.json')
+    return list
+  }
+
+  if (subcommand === 'INFO') {
+    const json = await import('../../data/command-info.json')
+    const data = json.default || json
+    const result =
+      args.length > 0 ? data.filter(item => args.includes(item[0])) : data
+    return result.length === 0 ? [null] : result
+  }
+
+  if (subcommand === 'DOCS') {
+    const json = await import('../../data/command-docs.json')
+    const data = json.default || json
+
+    if (args.length === 0) {
+      return data
+    }
+
+    const result = []
+    for (const arg of args) {
+      const index = data.indexOf(arg)
+      if (index !== -1) {
+        result.push(arg, data[index + 1])
+      }
+    }
+    return result
+  }
+
+  if (subcommand === 'GETKEYS' && args.length >= 2) {
+    const { getKeyIndexes, exists } = await import('redis-commands')
+    const [cmd, ...subArgs] = args
+    if (!exists(cmd)) {
+      throw new Error('ERR Invalid command specified')
+    }
+
+    return getKeyIndexes(cmd, subArgs).map(i => subArgs[i])
   }
 
   if (args.length > 0) {
@@ -73,9 +93,10 @@ export function command(_subcommand, ...args) {
   throw new Error(`ERR unknown subcommand '${_subcommand}'. Try COMMAND HELP.`)
 }
 
-export function commandBuffer(...args) {
-  const val = command.apply(this, args)
+export async function commandBuffer(...args) {
+  const val = await command.apply(this, args)
   return convertStringToBuffer(val)
+  // @TODO: test if safe to remove
   /*
   if (Array.isArray(val) && Array.isArray(val[0])) {
     return val.map(([name, arity, flags, keyStart, keyStop, step]) => [
@@ -92,34 +113,4 @@ export function commandBuffer(...args) {
   }
   return !val || Number.isInteger(val) ? val : Buffer.from(val)
   // */
-}
-
-function isString(value) {
-  return Object.prototype.toString.call(value) === '[object String]'
-}
-/**
- * Convert a buffer to string, supports buffer array
- *
- * @example
- * ```js
- * const input = [Buffer.from('foo'), [Buffer.from('bar')]]
- * const res = convertBufferToString(input, 'utf8')
- * expect(res).to.eql(['foo', ['bar']])
- * ```
- */
-function convertStringToBuffer(value) {
-  if (isString(value)) {
-    return Buffer.from(value)
-  }
-  if (Array.isArray(value)) {
-    const { length } = value
-    const res = Array(length)
-    for (let i = 0; i < length; ++i) {
-      res[i] = isString(value[i])
-        ? Buffer.from(value[i])
-        : convertStringToBuffer(value[i])
-    }
-    return res
-  }
-  return value
 }

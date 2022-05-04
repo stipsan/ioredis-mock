@@ -18,6 +18,7 @@
     "./lib": "./browser.js"
   },
   "files": [
+    "data/",
     "lib/",
     "browser.js",
     "browser.js.map",
@@ -26,7 +27,7 @@
   ],
   "scripts": {
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap --external:ioredis/built/command",
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --sourcemap --minify-syntax",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:redis-commands --external:standard-as-callback --external:ioredis --external:./data/*.json --sourcemap --minify-syntax",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
@@ -41,7 +42,8 @@
     "test:browser.js": "jest --config jest.config.browser.js",
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --forceExit --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
-    "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true"
+    "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
+    "update-data": "node scripts/update-data"
   },
   "dependencies": {
     "fengari": "^0.1.4",

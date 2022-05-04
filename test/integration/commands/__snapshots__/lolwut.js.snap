@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lolwut should return Redis version by default 1`] = `
+"Redis ver. 7.0.0
+"
+`;
+
+exports[`lolwutBuffer should return Redis version by default 1`] = `
+Object {
+  "data": Array [
+    82,
+    101,
+    100,
+    105,
+    115,
+    32,
+    118,
+    101,
+    114,
+    46,
+    32,
+    55,
+    46,
+    48,
+    46,
+    48,
+    10,
+  ],
+  "type": "Buffer",
+}
+`;

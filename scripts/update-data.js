@@ -6,7 +6,7 @@ const path = require('path')
 
 async function main() {
   const redis = new Redis()
-  const dir = path.resolve(__dirname, '..', 'src', 'commands-data')
+  const dir = path.resolve(__dirname, '..', 'data')
   const results = await Promise.all([
     redis.info(),
     redis.command('info'),

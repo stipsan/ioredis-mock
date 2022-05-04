@@ -77,7 +77,8 @@ runTwinSuite('command', command => {
 
       it('returns a list of all commands', async () => {
         const commands = await redis[command]('LIST')
-        commands.sort()
+        // @TODO: is sorting needed?
+        // commands.sort()
         expect(commands).toMatchSnapshot()
       })
     })
@@ -95,21 +96,20 @@ runTwinSuite('command', command => {
         expect(commands).toEqual(expect.any(Array))
       })
 
-      it('returns a command description', async () => {
+      it('returns a commands docs', async () => {
         const commands = await redis[command]('docs', 'get')
 
         expect(commands).toMatchSnapshot()
       })
 
       it('returns a description of multiple commands', async () => {
-        const commands = await redis[command]('docs', 'get', 'set')
+        const commands = await redis[command]('docs', 'get', 'foo', 'set')
 
         expect(commands).toMatchSnapshot()
       })
     })
 
-    // TODO: implement this command
-    describe.skip('getkeys', () => {
+    describe('getkeys', () => {
       it('should throw on wrong number of arguments', async () => {
         expect.assertions(3)
 

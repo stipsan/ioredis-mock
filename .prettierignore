@@ -5,4 +5,4 @@ lib
 coverage
 junit
 browser.js
-src/commands-data
+data

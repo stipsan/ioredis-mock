@@ -1,4 +1,4 @@
-const redisVersion = '6.2.3'
+const redisVersion = '7.0.0'
 
 // schotter, plotter on paper, by Georg Nees
 function version5() {
@@ -51,7 +51,8 @@ export function lolwut(VERSION = 'VERSION', version) {
     return version5()
   }
 
-  return version6()
+  return `Redis ver. ${redisVersion}
+`
 }
 
 export function lolwutBuffer(...args) {
