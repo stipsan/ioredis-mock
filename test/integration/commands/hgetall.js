@@ -10,11 +10,9 @@ runTwinSuite('hgetall', (command, equals) => {
         'clark@daily.planet': '1',
         'bruce@wayne.enterprises': '2',
       }
-      const redis = new Redis({
-        data: {
-          emails,
-        },
-      })
+      const redis = new Redis()
+      await redis.hset('emails', 'clark@daily.planet', '1')
+      await redis.hset('emails', 'bruce@wayne.enterprises', '2')
 
       const result = await redis[command]('emails')
 

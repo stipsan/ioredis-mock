@@ -150,7 +150,7 @@ class RedisMock extends EventEmitter {
     // eslint-disable-next-line no-underscore-dangle
     this.batch._transactions += 1
 
-    batch.forEach(([command, ...options]) => this.batch[command](...options))
+    batch.forEach?.(([command, ...options]) => this.batch[command](...options))
 
     return this.batch
   }

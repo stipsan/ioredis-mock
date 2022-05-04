@@ -1,29 +1,29 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
 
-runTwinSuite('discard', (command, equals) => {
-  describe(command, () => {
-    it('should discard any batch queue ', () => {
+runTwinSuite('discard', command => {
+  browserSafeDescribe(command)(command, () => {
+    it('should discard any batch queue ', async () => {
+      expect.assertions(1)
       const redis = new Redis()
 
-      redis.multi([
-        ['incr', 'user_next'],
-        ['incr', 'post_next'],
-      ])
-      return redis[command]().then(result => {
-        expect(equals(result, 'OK')).toBe(true)
-        expect(redis.batch).toBe(undefined)
-      })
+      await redis.multi({ pipeline: false })
+      await redis.incr('user_next')
+      const result = await redis[command]()
+      expect(result).toMatchSnapshot()
     })
 
-    it('errors if you discard without starting a pipeline', () => {
+    it('errors if you discard without starting a pipeline', async () => {
+      expect.assertions(1)
       const redis = new Redis()
 
-      return redis[command]().catch(err => {
-        expect(err).toBeInstanceOf(Error)
-      })
+      try {
+        await redis[command]()
+      } catch (err) {
+        expect(err.message).toMatchSnapshot()
+      }
     })
   })
 })

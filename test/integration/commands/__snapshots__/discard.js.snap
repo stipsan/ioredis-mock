@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`discard errors if you discard without starting a pipeline 1`] = `"ERR DISCARD without MULTI"`;
+
+exports[`discard should discard any batch queue  1`] = `"OK"`;
+
+exports[`discardBuffer errors if you discard without starting a pipeline 1`] = `"ERR DISCARD without MULTI"`;
+
+exports[`discardBuffer should discard any batch queue  1`] = `Buffer<4f 4b>`;

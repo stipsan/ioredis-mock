@@ -6,23 +6,17 @@ import { runTwinSuite } from '../../../test-utils'
 runTwinSuite('hexists', command => {
   describe(command, () => {
     describe('hash exists', () => {
-      it('should return 1 if key exists in hash map', () => {
-        const redis = new Redis({
-          data: {
-            foo: { bar: 'baz' },
-          },
-        })
+      it('should return 1 if key exists in hash map', async () => {
+        const redis = new Redis()
+        await redis.hset('foo', 'bar', 'baz')
         return redis[command]('foo', 'bar').then(status =>
           expect(status).toBe(1)
         )
       })
 
-      it('should return 0 if key not exists in hash map', () => {
-        const redis = new Redis({
-          data: {
-            foo: { bar: 'baz' },
-          },
-        })
+      it('should return 0 if key not exists in hash map', async () => {
+        const redis = new Redis()
+        await redis.hset('foo', 'bar', 'baz')
         return redis[command]('foo', 'baz').then(status =>
           expect(status).toBe(0)
         )

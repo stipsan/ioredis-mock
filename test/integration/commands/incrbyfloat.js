@@ -1,4 +1,5 @@
 import Redis from 'ioredis'
+import { convertBufferToString } from 'ioredis/built/utils'
 
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
@@ -6,38 +7,32 @@ import { runTwinSuite } from '../../../test-utils'
 runTwinSuite('incrbyfloat', command => {
   describe(command, () => {
     it('should initialize the key with 0 if there is no key', () => {
-      const redis = new Redis({
-        data: {},
-      })
+      const redis = new Redis()
 
       return redis[command]('user_next', 10.1)
-        .then(userNext => expect(userNext).toBe('10.1'))
-        .then(() => expect(redis.data.get('user_next')).toBe('10.1'))
+        .then(userNext => expect(Number(userNext).toFixed(1)).toBe('10.1'))
+        .then(async () => expect(Number(await redis.get('user_next')).toFixed(1)).toBe('10.1'))
+        
     })
-    it('should increment an float with passed increment', () => {
-      const redis = new Redis({
-        data: {
-          mykey: '10.50',
-        },
-      })
+    it('should increment an float with passed increment', async () => {
+      const redis = new Redis()
+      await redis.set('mykey', '10.50')
 
       return redis[command]('mykey', 0.1)
-        .then(result => expect(result).toBe('10.6'))
+        .then(result => expect(Number(result).toFixed(1)).toBe('10.6'))
         .then(() => redis[command]('mykey', -5))
-        .then(result => expect(result).toBe('5.6'))
-        .then(() => expect(redis.data.get('mykey')).toBe('5.6'))
+        .then(result => expect(Number(result).toFixed(1)).toBe('5.6'))
+        .then(async () => expect(Number(await redis.get('mykey')).toFixed(1)).toBe('5.6'))
+        
     })
 
-    it('should support exponents', () => {
-      const redis = new Redis({
-        data: {
-          mykey: '5.0e3',
-        },
-      })
+    it('should support exponents', async () => {
+      const redis = new Redis()
+      await redis.set('mykey', '5.0e3')
 
       return redis[command]('mykey', '2.0e2')
-        .then(result => expect(result).toBe('5200'))
-        .then(() => expect(redis.data.get('mykey')).toBe('5200'))
+        .then(result => expect(convertBufferToString(result)).toBe('5200'))
+        .then(async () => expect(await redis.get('mykey')).toBe('5200'))
     })
   })
 })

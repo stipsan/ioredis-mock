@@ -11,12 +11,9 @@ runTwinSuite('hlen', command => {
       return redis[command]('foo').then(result => expect(result).toBe(0))
     })
 
-    it('should return all data keys', () => {
-      const redis = new Redis({
-        data: {
-          foo: { bar: '1', baz: '2' },
-        },
-      })
+    it('should return all data keys', async () => {
+      const redis = new Redis()
+      await redis.hset('foo', 'bar', '1', 'baz', '2')
 
       return redis[command]('foo').then(result => expect(result).toEqual(2))
     })

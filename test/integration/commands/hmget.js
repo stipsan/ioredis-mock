@@ -6,11 +6,8 @@ import { runTwinSuite } from '../../../test-utils'
 runTwinSuite('hmget', (command, equals) => {
   describe(command, () => {
     it('should return the values of specified keys in a hash map', async () => {
-      const redis = new Redis({
-        data: {
-          'user:1': { id: '1', email: 'bruce@wayne.enterprises' },
-        },
-      })
+      const redis = new Redis()
+      await redis.hset('user:1', 'id', '1', 'email', 'bruce@wayne.enterprises')
 
       const [id, email, location] = await redis[command](
         'user:1',
