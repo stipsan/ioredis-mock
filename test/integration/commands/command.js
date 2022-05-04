@@ -17,7 +17,25 @@ runTwinSuite('command', command => {
     it('returns all commands by default', async () => {
       const commands = await redis[command]()
 
-      expect(sortBy(commands, ([cmd]) => cmd)).toMatchSnapshot()
+      expect(
+        sortBy(commands, ([cmd]) => cmd).map(
+          ([_0, _1, _2, _3, _4, _5, _6, _7, _8, subcommands, ...rest]) => [
+            _0,
+            _1,
+            _2,
+            _3,
+            _4,
+            _5,
+            _6,
+            _7,
+            _8,
+            subcommands?.length
+              ? sortBy(subcommands, ([cmd]) => cmd)
+              : subcommands,
+            ...rest,
+          ]
+        )
+      ).toMatchSnapshot()
     })
 
     it('should throw on unknown subcommand', async () => {
