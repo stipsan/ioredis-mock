@@ -2,6 +2,11 @@ export function srem(key, ...vals) {
   if (!this.data.has(key)) {
     return 0
   }
+  if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
+    throw new Error(
+      'WRONGTYPE Operation against a key holding the wrong kind of value'
+    )
+  }
 
   let removed = 0
   const set = this.data.get(key)
@@ -20,3 +25,5 @@ export function srem(key, ...vals) {
 
   return removed
 }
+
+export const sremBuffer = srem

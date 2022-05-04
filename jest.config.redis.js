@@ -47,7 +47,6 @@ module.exports = {
     'test/integration/commands/smembers.js',
     'test/integration/commands/smove.js',
     'test/integration/commands/spop.js',
-    'test/integration/commands/srem.js',
     'test/integration/commands/sscan.js',
     'test/integration/commands/sscanStream.js',
     'test/integration/commands/subscribe.js',

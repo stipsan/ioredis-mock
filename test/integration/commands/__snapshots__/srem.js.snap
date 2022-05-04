@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`srem should throw an exception if the key contains something other than a set 1`] = `"WRONGTYPE Operation against a key holding the wrong kind of value"`;
+
+exports[`sremBuffer should throw an exception if the key contains something other than a set 1`] = `"WRONGTYPE Operation against a key holding the wrong kind of value"`;
