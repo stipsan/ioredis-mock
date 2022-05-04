@@ -79,6 +79,7 @@
     "jest": "^28.0.0",
     "jest-buffer-snapshot-serializer": "^1.0.0",
     "jest-circus": "^28.0.0",
+    "jest-environment-jsdom": "^28.0.2",
     "lint-staged": "^11.2.6",
     "lodash.intersectionby": "^4.7.0",
     "lodash.isplainobject": "^4.0.6",
