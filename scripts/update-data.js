@@ -3,6 +3,7 @@
 const Redis = require('ioredis')
 const writeFile = require('write-file-atomic')
 const path = require('path')
+const sortBy = require('lodash.sortby')
 
 async function main() {
   const redis = new Redis()
@@ -24,9 +25,28 @@ async function main() {
           'executable:/tmp/redis-server'
         ),
       ],
-      ['command-info.json', commandInfo],
+      [
+        'command-info.json',
+        sortBy(commandInfo, ([cmd]) => cmd).map(
+          ([_0, _1, _2, _3, _4, _5, _6, _7, _8, subcommands, ...rest]) => [
+            _0,
+            _1,
+            _2,
+            _3,
+            _4,
+            _5,
+            _6,
+            _7,
+            _8,
+            subcommands?.length
+              ? sortBy(subcommands, ([cmd]) => cmd)
+              : subcommands,
+            ...rest,
+          ]
+        ),
+      ],
       ['command-docs.json', commandDocs],
-      ['command-list.json', { list: commandList, count: commandCount }],
+      ['command-list.json', { list: sortBy(commandList), count: commandCount }],
     ].map(([file, data]) =>
       writeFile(path.resolve(dir, file), JSON.stringify(data))
     )
