@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 62%](https://img.shields.io/badge/coverage-62%25-orange.svg)
+## Supported commands ![Commands Coverage: 57%](https://img.shields.io/badge/coverage-57%25-red.svg)
 
 > PRs welcome :heart:
 
@@ -16,9 +16,11 @@
 | [bitop]                | :white_check_mark: |        :x:         |
 | [bitpos]               | :white_check_mark: |        :x:         |
 | [blmove]               | :white_check_mark: |        :x:         |
+| [blmpop]               | :white_check_mark: |        :x:         |
 | [blpop]                | :white_check_mark: |        :x:         |
 | [brpop]                | :white_check_mark: |        :x:         |
 | [brpoplpush]           | :white_check_mark: | :white_check_mark: |
+| [bzmpop]               | :white_check_mark: |        :x:         |
 | [bzpopmax]             | :white_check_mark: |        :x:         |
 | [bzpopmin]             | :white_check_mark: |        :x:         |
 | [client]               | :white_check_mark: |        :x:         |
@@ -33,13 +35,19 @@
 | [discard]              | :white_check_mark: | :white_check_mark: |
 | [echo]                 | :white_check_mark: | :white_check_mark: |
 | [eval]                 | :white_check_mark: | :white_check_mark: |
+| [eval_ro]              | :white_check_mark: |        :x:         |
 | [evalsha]              | :white_check_mark: | :white_check_mark: |
+| [evalsha_ro]           | :white_check_mark: |        :x:         |
 | [exists]               | :white_check_mark: | :white_check_mark: |
 | [expire]               | :white_check_mark: | :white_check_mark: |
 | [expireat]             | :white_check_mark: | :white_check_mark: |
+| [expiretime]           | :white_check_mark: |        :x:         |
 | [failover]             | :white_check_mark: | :white_check_mark: |
+| [fcall]                | :white_check_mark: |        :x:         |
+| [fcall_ro]             | :white_check_mark: |        :x:         |
 | [flushall]             | :white_check_mark: | :white_check_mark: |
 | [flushdb]              | :white_check_mark: | :white_check_mark: |
+| [function]             | :white_check_mark: |        :x:         |
 | [geoadd]               | :white_check_mark: |        :x:         |
 | [geodist]              | :white_check_mark: |        :x:         |
 | [geohash]              | :white_check_mark: |        :x:         |
@@ -78,10 +86,12 @@
 | [info]                 | :white_check_mark: | :white_check_mark: |
 | [keys]                 | :white_check_mark: | :white_check_mark: |
 | [lastsave]             | :white_check_mark: | :white_check_mark: |
+| [lcs]                  | :white_check_mark: |        :x:         |
 | [lindex]               | :white_check_mark: | :white_check_mark: |
 | [linsert]              | :white_check_mark: | :white_check_mark: |
 | [llen]                 | :white_check_mark: | :white_check_mark: |
 | [lmove]                | :white_check_mark: |        :x:         |
+| [lmpop]                | :white_check_mark: |        :x:         |
 | [lolwut]               | :white_check_mark: | :white_check_mark: |
 | [lpop]                 | :white_check_mark: | :white_check_mark: |
 | [lpos]                 | :white_check_mark: |        :x:         |
@@ -100,6 +110,7 @@
 | [persist]              | :white_check_mark: | :white_check_mark: |
 | [pexpire]              | :white_check_mark: | :white_check_mark: |
 | [pexpireat]            | :white_check_mark: | :white_check_mark: |
+| [pexpiretime]          | :white_check_mark: |        :x:         |
 | [pfadd]                | :white_check_mark: |        :x:         |
 | [pfcount]              | :white_check_mark: |        :x:         |
 | [pfmerge]              | :white_check_mark: |        :x:         |
@@ -140,6 +151,7 @@
 | [setrange]             | :white_check_mark: | :white_check_mark: |
 | [shutdown]             | :white_check_mark: |        :x:         |
 | [sinter]               | :white_check_mark: | :white_check_mark: |
+| [sintercard]           | :white_check_mark: |        :x:         |
 | [sinterstore]          | :white_check_mark: | :white_check_mark: |
 | [sismember]            | :white_check_mark: | :white_check_mark: |
 | [slaveof]              | :white_check_mark: | :white_check_mark: |
@@ -147,16 +159,19 @@
 | [smismember]           | :white_check_mark: | :white_check_mark: |
 | [smove]                | :white_check_mark: | :white_check_mark: |
 | [sort]                 | :white_check_mark: |        :x:         |
+| [sort_ro]              | :white_check_mark: |        :x:         |
 | [spop]                 | :white_check_mark: | :white_check_mark: |
+| [spublish]             | :white_check_mark: |        :x:         |
 | [srandmember]          | :white_check_mark: | :white_check_mark: |
 | [srem]                 | :white_check_mark: | :white_check_mark: |
 | [sscan]                | :white_check_mark: | :white_check_mark: |
-| [stralgo]              |        :x:         |        :x:         |
+| [ssubscribe]           | :white_check_mark: |        :x:         |
 | [strlen]               | :white_check_mark: | :white_check_mark: |
 | [subscribe]            | :white_check_mark: | :white_check_mark: |
 | [substr]               | :white_check_mark: | :white_check_mark: |
 | [sunion]               | :white_check_mark: | :white_check_mark: |
 | [sunionstore]          | :white_check_mark: | :white_check_mark: |
+| [sunsubscribe]         | :white_check_mark: |        :x:         |
 | [swapdb]               | :white_check_mark: |        :x:         |
 | [sync]                 | :white_check_mark: |        :x:         |
 | [time]                 | :white_check_mark: | :white_check_mark: |
@@ -190,8 +205,10 @@
 | [zdiffstore]           | :white_check_mark: |        :x:         |
 | [zincrby]              | :white_check_mark: | :white_check_mark: |
 | [zinter]               | :white_check_mark: |        :x:         |
+| [zintercard]           | :white_check_mark: |        :x:         |
 | [zinterstore]          | :white_check_mark: | :white_check_mark: |
 | [zlexcount]            | :white_check_mark: |        :x:         |
+| [zmpop]                | :white_check_mark: |        :x:         |
 | [zmscore]              | :white_check_mark: |        :x:         |
 | [zpopmax]              | :white_check_mark: | :white_check_mark: |
 | [zpopmin]              | :white_check_mark: | :white_check_mark: |
@@ -272,9 +289,11 @@
 [bitop]: http://redis.io/commands/BITOP
 [bitpos]: http://redis.io/commands/BITPOS
 [blmove]: http://redis.io/commands/BLMOVE
+[blmpop]: http://redis.io/commands/BLMPOP
 [blpop]: http://redis.io/commands/BLPOP
 [brpop]: http://redis.io/commands/BRPOP
 [brpoplpush]: http://redis.io/commands/BRPOPLPUSH
+[bzmpop]: http://redis.io/commands/BZMPOP
 [bzpopmax]: http://redis.io/commands/BZPOPMAX
 [bzpopmin]: http://redis.io/commands/BZPOPMIN
 [client]: http://redis.io/commands/CLIENT
@@ -289,13 +308,19 @@
 [discard]: http://redis.io/commands/DISCARD
 [echo]: http://redis.io/commands/ECHO
 [eval]: http://redis.io/commands/EVAL
+[eval_ro]: http://redis.io/commands/EVAL_RO
 [evalsha]: http://redis.io/commands/EVALSHA
+[evalsha_ro]: http://redis.io/commands/EVALSHA_RO
 [exists]: http://redis.io/commands/EXISTS
 [expire]: http://redis.io/commands/EXPIRE
 [expireat]: http://redis.io/commands/EXPIREAT
+[expiretime]: http://redis.io/commands/EXPIRETIME
 [failover]: http://redis.io/commands/FAILOVER
+[fcall]: http://redis.io/commands/FCALL
+[fcall_ro]: http://redis.io/commands/FCALL_RO
 [flushall]: http://redis.io/commands/FLUSHALL
 [flushdb]: http://redis.io/commands/FLUSHDB
+[function]: http://redis.io/commands/FUNCTION
 [geoadd]: http://redis.io/commands/GEOADD
 [geodist]: http://redis.io/commands/GEODIST
 [geohash]: http://redis.io/commands/GEOHASH
@@ -334,10 +359,12 @@
 [info]: http://redis.io/commands/INFO
 [keys]: http://redis.io/commands/KEYS
 [lastsave]: http://redis.io/commands/LASTSAVE
+[lcs]: http://redis.io/commands/LCS
 [lindex]: http://redis.io/commands/LINDEX
 [linsert]: http://redis.io/commands/LINSERT
 [llen]: http://redis.io/commands/LLEN
 [lmove]: http://redis.io/commands/LMOVE
+[lmpop]: http://redis.io/commands/LMPOP
 [lolwut]: http://redis.io/commands/LOLWUT
 [lpop]: http://redis.io/commands/LPOP
 [lpos]: http://redis.io/commands/LPOS
@@ -356,6 +383,7 @@
 [persist]: http://redis.io/commands/PERSIST
 [pexpire]: http://redis.io/commands/PEXPIRE
 [pexpireat]: http://redis.io/commands/PEXPIREAT
+[pexpiretime]: http://redis.io/commands/PEXPIRETIME
 [pfadd]: http://redis.io/commands/PFADD
 [pfcount]: http://redis.io/commands/PFCOUNT
 [pfmerge]: http://redis.io/commands/PFMERGE
@@ -396,6 +424,7 @@
 [setrange]: http://redis.io/commands/SETRANGE
 [shutdown]: http://redis.io/commands/SHUTDOWN
 [sinter]: http://redis.io/commands/SINTER
+[sintercard]: http://redis.io/commands/SINTERCARD
 [sinterstore]: http://redis.io/commands/SINTERSTORE
 [sismember]: http://redis.io/commands/SISMEMBER
 [slaveof]: http://redis.io/commands/SLAVEOF
@@ -403,16 +432,19 @@
 [smismember]: http://redis.io/commands/SMISMEMBER
 [smove]: http://redis.io/commands/SMOVE
 [sort]: http://redis.io/commands/SORT
+[sort_ro]: http://redis.io/commands/SORT_RO
 [spop]: http://redis.io/commands/SPOP
+[spublish]: http://redis.io/commands/SPUBLISH
 [srandmember]: http://redis.io/commands/SRANDMEMBER
 [srem]: http://redis.io/commands/SREM
 [sscan]: http://redis.io/commands/SSCAN
-[stralgo]: http://redis.io/commands/STRALGO
+[ssubscribe]: http://redis.io/commands/SSUBSCRIBE
 [strlen]: http://redis.io/commands/STRLEN
 [subscribe]: http://redis.io/commands/SUBSCRIBE
 [substr]: http://redis.io/commands/SUBSTR
 [sunion]: http://redis.io/commands/SUNION
 [sunionstore]: http://redis.io/commands/SUNIONSTORE
+[sunsubscribe]: http://redis.io/commands/SUNSUBSCRIBE
 [swapdb]: http://redis.io/commands/SWAPDB
 [sync]: http://redis.io/commands/SYNC
 [time]: http://redis.io/commands/TIME
@@ -446,8 +478,10 @@
 [zdiffstore]: http://redis.io/commands/ZDIFFSTORE
 [zincrby]: http://redis.io/commands/ZINCRBY
 [zinter]: http://redis.io/commands/ZINTER
+[zintercard]: http://redis.io/commands/ZINTERCARD
 [zinterstore]: http://redis.io/commands/ZINTERSTORE
 [zlexcount]: http://redis.io/commands/ZLEXCOUNT
+[zmpop]: http://redis.io/commands/ZMPOP
 [zmscore]: http://redis.io/commands/ZMSCORE
 [zpopmax]: http://redis.io/commands/ZPOPMAX
 [zpopmin]: http://redis.io/commands/ZPOPMIN

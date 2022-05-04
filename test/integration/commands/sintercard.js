@@ -20,7 +20,7 @@ runTwinSuite('sintercard', command => {
           ['key2', 'e'],
           // eslint-disable-next-line arrow-body-style
         ].map(args => redis.sadd(...args))
-        )
+      )
     })
 
     afterAll(() => {
