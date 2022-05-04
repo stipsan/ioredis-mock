@@ -1,10 +1,13 @@
 import shuffle from 'lodash.shuffle'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import random from '../commands-utils/random'
 
 export function srandmember(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Set)) {
-    throw new Error(`Key ${key} does not contain a set`)
+    throw new Error(
+      'WRONGTYPE Operation against a key holding the wrong kind of value'
+    )
   }
 
   const set = this.data.get(key) || new Set()
@@ -33,4 +36,9 @@ export function srandmember(key, count) {
   }
 
   return shouldReturnArray ? items : items[0]
+}
+
+export function srandmemberBuffer(...args) {
+  const val = srandmember.apply(this, args)
+  return convertStringToBuffer(val)
 }

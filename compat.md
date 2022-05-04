@@ -235,7 +235,6 @@
 
 - [hscanBuffer][1]
 - [scanBuffer][1]
-- [srandmemberBuffer][1]
 - [sremBuffer][1]
 - [sscanBuffer][1]
 - [subscribeBuffer][1]

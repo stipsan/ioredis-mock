@@ -18,3 +18,11 @@ export function runTwinSuite(commandName, cb) {
         )
   )
 }
+
+// Util for calling describe.skip if the suite asserts Buffer outputs, which will fail in test:browser.js due to the polyfill
+export const browserSafeDescribe = command =>
+  process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? // eslint-disable-next-line no-undef
+      describe.skip
+    : // eslint-disable-next-line no-undef
+      describe

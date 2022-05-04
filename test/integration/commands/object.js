@@ -1,12 +1,10 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('object', command => {
-  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
-    ? describe.skip
-    : describe)(command, () => {
+  browserSafeDescribe(command)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
