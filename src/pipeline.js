@@ -1,4 +1,4 @@
-import asCallback from 'standard-as-callback'
+import asCallback from '@ioredis/as-callback'
 
 import { processArguments, safelyExecuteCommand } from './command'
 import * as commands from './commands'

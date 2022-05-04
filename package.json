@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap --external:ioredis/built/command",
-    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:@ioredis/commands --external:standard-as-callback --external:ioredis --external:./data/*.json --sourcemap --minify-syntax",
+    "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:@ioredis/commands --external:@ioredis/as-callback --external:ioredis --external:./data/*.json --sourcemap --minify-syntax",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
@@ -46,10 +46,10 @@
     "update-data": "node scripts/update-data"
   },
   "dependencies": {
+    "@ioredis/as-callback": "^3.0.0",
     "@ioredis/commands": "^1.1.1",
     "fengari": "^0.1.4",
-    "fengari-interop": "^0.1.3",
-    "standard-as-callback": "^2.1.0"
+    "fengari-interop": "^0.1.3"
   },
   "peerDependencies": {
     "ioredis": "5.x"
