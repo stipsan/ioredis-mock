@@ -11,8 +11,9 @@ runTwinSuite('incrbyfloat', command => {
 
       return redis[command]('user_next', 10.1)
         .then(userNext => expect(Number(userNext).toFixed(1)).toBe('10.1'))
-        .then(async () => expect(Number(await redis.get('user_next')).toFixed(1)).toBe('10.1'))
-        
+        .then(async () =>
+          expect(Number(await redis.get('user_next')).toFixed(1)).toBe('10.1')
+        )
     })
     it('should increment an float with passed increment', async () => {
       const redis = new Redis()
@@ -22,8 +23,9 @@ runTwinSuite('incrbyfloat', command => {
         .then(result => expect(Number(result).toFixed(1)).toBe('10.6'))
         .then(() => redis[command]('mykey', -5))
         .then(result => expect(Number(result).toFixed(1)).toBe('5.6'))
-        .then(async () => expect(Number(await redis.get('mykey')).toFixed(1)).toBe('5.6'))
-        
+        .then(async () =>
+          expect(Number(await redis.get('mykey')).toFixed(1)).toBe('5.6')
+        )
     })
 
     it('should support exponents', async () => {

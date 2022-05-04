@@ -4,7 +4,7 @@ import { convertBufferToString } from 'ioredis/built/utils'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
 
-runTwinSuite('lindex', (command, equals) => {
+runTwinSuite('lindex', command => {
   describe(command, () => {
     it('should return item list', async () => {
       const redis = new Redis()
