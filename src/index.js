@@ -242,8 +242,12 @@ class RedisMock extends EventEmitter {
 RedisMock.Command = Command
 
 RedisMock.Cluster = class RedisClusterMock extends RedisMock {
-  constructor(nodesOptions) {
-    super()
+  constructor(nodesOptions, clusterOptions) {
+    if (clusterOptions && clusterOptions.redisOptions) {
+      super(clusterOptions.redisOptions)
+    } else {
+      super()
+    }
     this.nodes = []
     nodesOptions.forEach(options => this.nodes.push(new RedisMock(options)))
   }
