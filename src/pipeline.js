@@ -2,7 +2,6 @@ import asCallback from 'standard-as-callback'
 
 import { processArguments, safelyExecuteCommand } from './command'
 import * as commands from './commands'
-import promiseContainer from './promise-container'
 
 class Pipeline {
   constructor(redis) {
@@ -45,7 +44,6 @@ class Pipeline {
   }
 
   _addTransaction(commandEmulator, commandName, commandArgs, callback) {
-    const Promise = promiseContainer.get()
     this.batch.push(() =>
       asCallback(
         new Promise(resolve =>
@@ -67,7 +65,6 @@ class Pipeline {
   exec(callback) {
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch
-    const Promise = promiseContainer.get()
 
     this.batch = []
     return asCallback(

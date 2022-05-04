@@ -27,7 +27,7 @@ runTwinSuite('config', (command, equals) => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('Unknown subcommand')
+        expect(err.message).toMatch('unknown subcommand')
       }
     })
 
@@ -71,7 +71,7 @@ runTwinSuite('config', (command, equals) => {
           await redis[command]('SET', 'maxmockmemory', '1000000')
         } catch (err) {
           expect(err.message).toMatch(
-            'ERR Unsupported CONFIG parameter: maxmockmemory'
+            "ERR Unknown option or number of arguments for CONFIG SET - 'maxmockmemory'"
           )
         }
       })

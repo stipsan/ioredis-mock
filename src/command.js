@@ -1,17 +1,5 @@
+import IoredisCommand from 'ioredis/built/Command'
 import asCallback from 'standard-as-callback'
-
-import promiseContainer from './promise-container'
-
-let IoredisCommand
-try {
-  // ioredis v5
-  // eslint-disable-next-line global-require, import/no-unresolved
-  IoredisCommand = require('ioredis/built/Command').default
-} catch (err) {
-  // ioredis v4
-  // eslint-disable-next-line global-require, import/no-unresolved
-  IoredisCommand = require('ioredis/built/command').default
-}
 
 export function isInSubscriberMode(RedisMock) {
   if (RedisMock.channels === undefined) {
@@ -152,8 +140,6 @@ export default function command(commandEmulator, commandName, RedisMock) {
         ...commandArgs
       )
     }
-
-    const Promise = promiseContainer.get()
 
     return asCallback(
       new Promise(resolve =>

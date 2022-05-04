@@ -13,12 +13,9 @@ runTwinSuite('object', command => {
 
     it('should throw on too few arguments', async () => {
       expect.hasAssertions()
-
-      try {
-        await redis[command]()
-      } catch (err) {
-        expect(err.message).toMatch('wrong number of arguments')
-      }
+      await expect(() => {
+        return redis[command]()
+      }).rejects.toThrow('wrong number of arguments')
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -27,7 +24,7 @@ runTwinSuite('object', command => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('Unknown subcommand')
+        expect(err.message).toMatch('unknown subcommand')
       }
     })
 
@@ -91,7 +88,7 @@ runTwinSuite('object', command => {
         const mysortedset = await redis[command]('encoding', 'mysortedset')
         expect(
           Buffer.isBuffer(mysortedset) ? mysortedset.toString() : mysortedset
-        ).toBe('ziplist')
+        ).toBe('listpick')
       })
     })
 

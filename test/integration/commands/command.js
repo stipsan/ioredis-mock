@@ -43,7 +43,7 @@ runTwinSuite('command', (command, equals) => {
         expect(equals(sinter[0], 'sinter')).toBe(true)
         expect(sinter[1]).toBe(-2)
         expect(equals(sinter[2][0], 'readonly')).toBe(true)
-        expect(equals(sinter[2][1], 'sort_for_script')).toBe(true)
+        expect(equals(sinter[2][1], 'sort_for_script')).toBe(false)
         expect(sinter[3]).toBe(1)
         expect(sinter[4]).toBe(-1)
         expect(sinter[5]).toBe(1)

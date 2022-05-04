@@ -12,7 +12,6 @@ import { createData } from './data'
 import { createExpires } from './expires'
 import parseKeyspaceEvents from './keyspace-notifications'
 import Pipeline from './pipeline'
-import promiseContainer from './promise-container'
 
 const defaultOptions = {
   data: {},
@@ -74,14 +73,6 @@ const getOptions = (...args) => {
 }
 
 class RedisMock extends EventEmitter {
-  static get Promise() {
-    return promiseContainer.get()
-  }
-
-  static set Promise(lib) {
-    return promiseContainer.set(lib)
-  }
-
   constructor(...args) {
     super()
 
@@ -173,8 +164,6 @@ class RedisMock extends EventEmitter {
   }
 
   exec(callback) {
-    const Promise = promiseContainer.get()
-
     if (!this.batch) {
       return Promise.reject(new Error('ERR EXEC without MULTI'))
     }
