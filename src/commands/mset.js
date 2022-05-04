@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { set } from './index'
 
 export function mset(...msetData) {
@@ -10,5 +11,5 @@ export function mset(...msetData) {
 
 export function msetBuffer(...args) {
   const val = mset.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

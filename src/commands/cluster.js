@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function cluster(...args) {
   if (args.length === 0) {
     throw new Error("ERR wrong number of arguments for 'cluster' command")
@@ -8,5 +10,5 @@ export function cluster(...args) {
 
 export function clusterBuffer(...args) {
   const val = cluster.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

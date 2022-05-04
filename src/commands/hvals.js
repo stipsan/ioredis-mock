@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function hvals(key) {
   if (!this.data.has(key)) {
     return []
@@ -8,5 +10,5 @@ export function hvals(key) {
 
 export function hvalsBuffer(key) {
   const val = hvals.call(this, key)
-  return val.map(Buffer.from)
+  return convertStringToBuffer(val)
 }

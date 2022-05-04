@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { expire, expireat, get, persist, pexpire, pexpireat } from './index'
 
 export function getex(key, _optionKey, optionValue) {
@@ -36,5 +37,5 @@ export function getex(key, _optionKey, optionValue) {
 
 export function getexBuffer(...args) {
   const val = getex.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function config(_subcommand, ...args) {
   if (!_subcommand) {
     throw new Error("ERR wrong number of arguments for 'config' command")
@@ -26,7 +28,9 @@ export function config(_subcommand, ...args) {
   }
 
   if (subcommand === 'SET' && args.length > 1) {
-    throw new Error(`ERR Unknown option or number of arguments for CONFIG SET - '${args[0]}'`)
+    throw new Error(
+      `ERR Unknown option or number of arguments for CONFIG SET - '${args[0]}'`
+    )
   }
 
   if (subcommand === 'RESETSTAT' && args.length === 0) {
@@ -55,8 +59,5 @@ export function config(_subcommand, ...args) {
 
 export function configBuffer(...args) {
   const val = config.apply(this, args)
-  if (Array.isArray(val)) {
-    return val.map(payload => (payload ? Buffer.from(payload) : payload))
-  }
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

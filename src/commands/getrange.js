@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function getrange(key, s, e) {
   const val = this.data.get(key)
   const start = parseInt(s, 10)
@@ -12,7 +14,7 @@ export function getrange(key, s, e) {
 
 export function getrangeBuffer(...args) {
   const val = getrange.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }
 
 // SUBSTR is deprecated as of Redis 2.0, but as it's unlikely it'll be completely removed we support it

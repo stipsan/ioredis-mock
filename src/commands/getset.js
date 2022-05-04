@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function getset(key, val) {
   const old = this.data.has(key) ? this.data.get(key) : null
   this.data.set(key, val)
@@ -7,5 +9,5 @@ export function getset(key, val) {
 
 export function getsetBuffer(...args) {
   const val = getset.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

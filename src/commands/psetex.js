@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { pexpire, set } from './index'
 
 export function psetex(key, milliseconds, value) {
@@ -10,5 +11,5 @@ export function psetex(key, milliseconds, value) {
 
 export function psetexBuffer(...args) {
   const val = psetex.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

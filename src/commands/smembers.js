@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function smembers(key) {
   if (!this.data.has(key)) {
     return []
@@ -8,5 +10,5 @@ export function smembers(key) {
 
 export function smembersBuffer(...args) {
   const val = smembers.apply(this, args)
-  return val.map(Buffer.from)
+  return convertStringToBuffer(val)
 }

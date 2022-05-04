@@ -54,7 +54,6 @@ export function object(_subcommand, key, ...args) {
     ]
   }
 
-
   if (!key || args.length > 0) {
     switch (subcommand) {
       case 'REFCOUNT':

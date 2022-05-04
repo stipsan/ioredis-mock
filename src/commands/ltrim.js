@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function ltrim(key, s, e) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`)
@@ -13,5 +15,5 @@ export function ltrim(key, s, e) {
 
 export function ltrimBuffer(...args) {
   const val = ltrim.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

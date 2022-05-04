@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 const redisVersion = '7.0.0'
 
 // schotter, plotter on paper, by Georg Nees
@@ -57,5 +59,5 @@ export function lolwut(VERSION = 'VERSION', version) {
 
 export function lolwutBuffer(...args) {
   const val = lolwut.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

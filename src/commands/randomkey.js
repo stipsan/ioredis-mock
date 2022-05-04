@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import random from '../commands-utils/random'
 
 export function randomkey() {
@@ -7,5 +8,5 @@ export function randomkey() {
 
 export function randomkeyBuffer() {
   const val = randomkey.call(this)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

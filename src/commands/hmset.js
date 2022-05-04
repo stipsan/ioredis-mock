@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function hmset(key, ...args) {
   if (!this.data.has(key)) {
     this.data.set(key, {})
@@ -15,5 +17,5 @@ export function hmset(key, ...args) {
 
 export function hmsetBuffer(...args) {
   const val = hmset.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

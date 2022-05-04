@@ -96,21 +96,4 @@ export async function command(_subcommand, ...args) {
 export async function commandBuffer(...args) {
   const val = await command.apply(this, args)
   return convertStringToBuffer(val)
-  // @TODO: test if safe to remove
-  /*
-  if (Array.isArray(val) && Array.isArray(val[0])) {
-    return val.map(([name, arity, flags, keyStart, keyStop, step]) => [
-      Buffer.from(name),
-      arity,
-      flags.map(Buffer.from),
-      keyStart,
-      keyStop,
-      step,
-    ])
-  }
-  if (Array.isArray(val)) {
-    return val.map(v => v !== null ? Buffer.from(v) : v)
-  }
-  return !val || Number.isInteger(val) ? val : Buffer.from(val)
-  // */
 }

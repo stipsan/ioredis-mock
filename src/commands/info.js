@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function info() {
   // @TODO should deprecate this dirty trick
   if (this.data.has('info')) {
@@ -151,5 +153,5 @@ export function info() {
 
 export function infoBuffer() {
   const val = info.call(this)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

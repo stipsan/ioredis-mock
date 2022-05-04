@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { expire } from './index'
 
 function createGroupedArray(arr, groupSize) {
@@ -35,5 +36,5 @@ export function set(key, value, ...options) {
 
 export function setBuffer(...args) {
   const val = set.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

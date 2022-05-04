@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { emitNotification } from '../keyspace-notifications'
 
 export function rename(key, newKey) {
@@ -18,5 +19,5 @@ export function rename(key, newKey) {
 
 export function renameBuffer(...args) {
   const val = rename.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function hget(key, hashKey) {
   const hash = this.data.get(key)
 
@@ -10,5 +12,5 @@ export function hget(key, hashKey) {
 
 export function hgetBuffer(key, hashKey) {
   const val = hget.apply(this, [key, hashKey])
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

@@ -63,16 +63,18 @@ runTwinSuite('config', (command, equals) => {
           expect(err.message).toMatchSnapshot()
         }
       })
+      ;(process.env.IS_E2E ? it.skip : it)(
+        'should throw as we actually do not support setting the config',
+        async () => {
+          expect.hasAssertions()
 
-      ;(process.env.IS_E2E ? it.skip : it)('should throw as we actually do not support setting the config', async () => {
-        expect.hasAssertions()
-
-        try {
-          await redis[command]('SET', 'maxmemory', '1000000')
-        } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          try {
+            await redis[command]('SET', 'maxmemory', '1000000')
+          } catch (err) {
+            expect(err.message).toMatchSnapshot()
+          }
         }
-      })
+      )
       it('should throw as the option does not exist', async () => {
         expect.hasAssertions()
 
@@ -142,8 +144,7 @@ runTwinSuite('config', (command, equals) => {
       it('prints a list over available subcommands', async () => {
         const result = await redis[command]('HELP')
 
-        expect(
-         result).toMatchSnapshot()
+        expect(result).toMatchSnapshot()
       })
     })
   })

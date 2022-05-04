@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function replicaof(host, port) {
   if (!host || !port) {
     throw new Error("ERR wrong number of arguments for 'replicaof' command")
@@ -12,7 +14,7 @@ export function replicaof(host, port) {
 
 export function replicaofBuffer(...args) {
   const val = replicaof.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }
 
 // As of Redis version 5 the Redis project doesn't use the word slave, but it's included for backwards compatibility

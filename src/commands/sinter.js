@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { sunion } from './index'
 
 export function sinter(...keys) {
@@ -20,5 +21,5 @@ export function sinter(...keys) {
 
 export function sinterBuffer(...args) {
   const val = sinter.apply(this, args)
-  return val.map(Buffer.from)
+  return convertStringToBuffer(val)
 }
