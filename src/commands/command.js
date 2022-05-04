@@ -75,7 +75,7 @@ export async function command(_subcommand, ...args) {
   }
 
   if (subcommand === 'GETKEYS' && args.length >= 2) {
-    const { getKeyIndexes, exists } = await import('redis-commands')
+    const { getKeyIndexes, exists } = await import('@ioredis/commands')
     const [cmd, ...subArgs] = args
     if (!exists(cmd)) {
       throw new Error('ERR Invalid command specified')

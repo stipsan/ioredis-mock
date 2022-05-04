@@ -160,7 +160,7 @@ runTwinSuite('command', command => {
     })
 
     // TODO: implement this command
-    describe.skip('getkeysandflags', () => {
+    ;(process.env.IS_E2E ? describe : describe.skip)('getkeysandflags', () => {
       it('should throw on wrong number of arguments', async () => {
         expect.assertions(3)
 
