@@ -4,13 +4,13 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('readwrite', (command, equals) => {
-  describe(command, () => {
+  ;(process.env.IS_E2E ? describe.skip : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
       redis.disconnect()
     })
-    ;(process.env.IS_E2E ? it.skip : it)('should return OK', async () => {
+    it('should return OK', async () => {
       expect.assertions(1)
 
       expect(equals(await redis[command](), 'OK')).toBe(true)

@@ -1,4 +1,4 @@
-// Exports data from real redis to src/commands-data
+// Exports data from real redis to data/*.json
 
 const Redis = require('ioredis')
 const writeFile = require('write-file-atomic')
