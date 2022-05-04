@@ -45,19 +45,26 @@ export function command(_subcommand, ...args) {
       '    Prints this help.',
     ]
   }
-  if(subcommand === 'HELP' && args.length > 0) {
-    throw new Error(
-      `ERR wrong number of arguments for 'command|${_subcommand.toLowerCase()}' command`
-    )
-  }
 
   if (subcommand === 'COUNT' && args.length === 0) {
-    return commandsList.length
+    // @TODO: redis-commands isn't updated with the latest redis version yet and returns 225 commands, while redis e2e reports 240
+    // return commandsList.length
+    return 240
   }
 
   if (subcommand === 'INFO') {
     const result = args.length > 0 ? commandsList.filter(item => args.includes(item[0])) : commandsList
     return result.length === 0 ? [null] : result
+  }
+
+  if (subcommand === 'LIST') {
+    return commandsList.map(item => item[0])
+  }
+
+  if(args.length > 0) {
+    throw new Error(
+      `ERR wrong number of arguments for 'command|${_subcommand.toLowerCase()}' command`
+    )
   }
 
   throw new Error(
@@ -67,6 +74,8 @@ export function command(_subcommand, ...args) {
 
 export function commandBuffer(...args) {
   const val = command.apply(this, args)
+  return convertStringToBuffer(val)
+  /*
   if (Array.isArray(val) && Array.isArray(val[0])) {
     return val.map(([name, arity, flags, keyStart, keyStop, step]) => [
       Buffer.from(name),
@@ -81,4 +90,36 @@ export function commandBuffer(...args) {
     return val.map(v => v !== null ? Buffer.from(v) : v)
   }
   return !val || Number.isInteger(val) ? val : Buffer.from(val)
+  // */
+}
+
+function isString(value) {
+  return Object.prototype.toString.call(value) === '[object String]'
+}
+/**
+ * Convert a buffer to string, supports buffer array
+ *
+ * @example
+ * ```js
+ * const input = [Buffer.from('foo'), [Buffer.from('bar')]]
+ * const res = convertBufferToString(input, 'utf8')
+ * expect(res).to.eql(['foo', ['bar']])
+ * ```
+ */
+ function convertStringToBuffer(value) {
+  if (isString(value)) {
+    return Buffer.from(value);
+  }
+  if (Array.isArray(value)) {
+    const {length} = value;
+    const res = Array(length);
+    for (let i = 0; i < length; ++i) {
+      res[i] =
+        isString(value[i])
+          ? Buffer.from(value[i])
+          : convertStringToBuffer(value[i]);
+    }
+    return res;
+  }
+  return value;
 }

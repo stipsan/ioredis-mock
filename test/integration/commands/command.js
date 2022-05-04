@@ -3,7 +3,7 @@ import Redis from 'ioredis'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
 
-runTwinSuite('command', (command, equals) => {
+runTwinSuite('command', (command) => {
   describe(command, () => {
     const redis = new Redis()
 
@@ -11,14 +11,7 @@ runTwinSuite('command', (command, equals) => {
       redis.disconnect()
     })
 
-    // TODO works like info, returns everything as if COMMAND INFO *
     it('returns a all commands by default', async () => {
-      const commands = await redis[command]()
-
-      expect(commands).toEqual(expect.any(Array))
-    })
-    // TODO: update to snapshot testing to ensure consistency
-    it.skip('returns a all commands by default', async () => {
       const commands = await redis[command]()
 
       expect(commands).toMatchSnapshot()
@@ -41,36 +34,17 @@ runTwinSuite('command', (command, equals) => {
         expect(commands).toMatchSnapshot()
       })
 
-      it('returns a all commands by default', async () => {
+      it('returns the same list as COMMAND without args', async () => {
+        const defaults = await redis[command]()
         const commands = await redis[command]('info')
   
-        expect(commands).toEqual(expect.any(Array))
+        expect(defaults).toEqual(commands)
       })
 
       it('returns a command description', async () => {
-        const commands = await redis[command]('info', 'get')
+        const commands = await redis[command]('info', 'get', 'sinter')
   
         expect(commands).toMatchSnapshot()
-      })
-
-      it('returns a description of multiple commands', async () => {
-        const [get, sinter] = await redis[command]('info', 'get', 'sinter')
-
-        expect(equals(get[0], 'get')).toBe(true)
-        expect(get[1]).toBe(2)
-        expect(equals(get[2][0], 'readonly')).toBe(true)
-        expect(equals(get[2][1], 'fast')).toBe(true)
-        expect(get[3]).toBe(1)
-        expect(get[4]).toBe(1)
-        expect(get[5]).toBe(1)
-
-        expect(equals(sinter[0], 'sinter')).toBe(true)
-        expect(sinter[1]).toBe(-2)
-        expect(equals(sinter[2][0], 'readonly')).toBe(true)
-        expect(equals(sinter[2][1], 'sort_for_script')).toBe(false)
-        expect(sinter[3]).toBe(1)
-        expect(sinter[4]).toBe(-1)
-        expect(sinter[5]).toBe(1)
       })
     })
 
@@ -102,12 +76,13 @@ runTwinSuite('command', (command, equals) => {
       })
 
       it('returns a list of all commands', async () => {
-        expect(await redis[command]('LIST')).toMatchSnapshot()
+        const commands = await redis[command]('LIST')
+        commands.sort()
+        expect(commands).toMatchSnapshot()
       })
     })
 
-    // TODO: implement this command
-    describe.skip('docs', () => {
+    describe('docs', () => {
       it('returns nothing on an unknown command', async () => {
         const commands = await redis[command]('docs', 'foo')
   

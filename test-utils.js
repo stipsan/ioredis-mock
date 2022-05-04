@@ -1,6 +1,7 @@
 // Runs both a regular string suite and a buffer suite
 export function runTwinSuite(commandName, cb) {
   const commands = [commandName, `${commandName}Buffer`]
+  // const commands = [commandName]
 
   return commands.forEach(command =>
     command === commandName
