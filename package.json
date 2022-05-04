@@ -60,7 +60,6 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
     "babel-eslint": "^10.1.0",
-    "bluebird": "^3.7.2",
     "browser-process-hrtime": "^1.0.0",
     "buffer": "^6.0.3",
     "chance": "^1.1.8",

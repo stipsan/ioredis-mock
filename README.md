@@ -140,17 +140,6 @@ redisSub.subscribe('emails')
 redisPub.publish('emails', 'clark@daily.planet')
 ```
 
-### Promises
-
-By default, ioredis-mock uses the native Promise library. If you need (or prefer) [bluebird](http://bluebirdjs.com/) promises, set `Redis.Promise`:
-
-```js
-var Promise = require('bluebird')
-var Redis = require('ioredis-mock')
-
-Redis.Promise = Promise
-```
-
 ### Lua scripting
 
 You can use the `defineCommand` to define custom commands using lua or `eval` to directly execute lua code.
