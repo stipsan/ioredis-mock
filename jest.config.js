@@ -4,4 +4,5 @@ module.exports = {
   coverageDirectory: 'coverage',
   setupFiles: ['<rootDir>/testSetupSrc.js'],
   setupFilesAfterEnv: ['<rootDir>/testSetupAfterEnv.js'],
+  snapshotSerializers: ['jest-buffer-snapshot-serializer'],
 }

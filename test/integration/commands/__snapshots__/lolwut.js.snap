@@ -5,27 +5,4 @@ exports[`lolwut should return Redis version by default 1`] = `
 "
 `;
 
-exports[`lolwutBuffer should return Redis version by default 1`] = `
-Object {
-  "data": Array [
-    82,
-    101,
-    100,
-    105,
-    115,
-    32,
-    118,
-    101,
-    114,
-    46,
-    32,
-    55,
-    46,
-    48,
-    46,
-    48,
-    10,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`lolwutBuffer should return Redis version by default 1`] = `Buffer<52 65 64 69 73 20 76 65 72 2e 20 37 2e 30 2e 30 0a>`;

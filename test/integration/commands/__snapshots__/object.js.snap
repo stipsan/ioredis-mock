@@ -20,110 +20,19 @@ exports[`object encoding should throw on wrong number of arguments 2`] = `"ERR w
 
 exports[`object should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try OBJECT HELP."`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 1`] = `
-Object {
-  "data": Array [
-    101,
-    109,
-    98,
-    115,
-    116,
-    114,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 1`] = `Buffer<65 6d 62 73 74 72>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 2`] = `
-Object {
-  "data": Array [
-    105,
-    110,
-    116,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 2`] = `Buffer<69 6e 74>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 3`] = `
-Object {
-  "data": Array [
-    113,
-    117,
-    105,
-    99,
-    107,
-    108,
-    105,
-    115,
-    116,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 3`] = `Buffer<71 75 69 63 6b 6c 69 73 74>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 4`] = `
-Object {
-  "data": Array [
-    105,
-    110,
-    116,
-    115,
-    101,
-    116,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 4`] = `Buffer<69 6e 74 73 65 74>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 5`] = `
-Object {
-  "data": Array [
-    104,
-    97,
-    115,
-    104,
-    116,
-    97,
-    98,
-    108,
-    101,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 5`] = `Buffer<68 61 73 68 74 61 62 6c 65>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 6`] = `
-Object {
-  "data": Array [
-    108,
-    105,
-    115,
-    116,
-    112,
-    97,
-    99,
-    107,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 6`] = `Buffer<6c 69 73 74 70 61 63 6b>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 7`] = `
-Object {
-  "data": Array [
-    108,
-    105,
-    115,
-    116,
-    112,
-    97,
-    99,
-    107,
-  ],
-  "type": "Buffer",
-}
-`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 7`] = `Buffer<6c 69 73 74 70 61 63 6b>`;
 
 exports[`objectBuffer encoding should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'object|encoding' command"`;
 
