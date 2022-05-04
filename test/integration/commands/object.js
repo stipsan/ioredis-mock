@@ -13,8 +13,9 @@ runTwinSuite('object', command => {
 
     it('should throw on too few arguments', async () => {
       expect.hasAssertions()
-      await expect(() => redis[command]()).rejects.toThrow('wrong number of arguments');
-      
+      await expect(() => {
+        return redis[command]()
+      }).rejects.toThrow('wrong number of arguments')
     })
 
     it('should throw on unknown subcommand', async () => {
