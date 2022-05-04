@@ -54,6 +54,13 @@ console.log(await redis.get('foo'))
 
 ## Breaking Changes
 
+### from v7 to v8
+
+#### `PromiseContainer` has been removed.
+
+Support for third-party Promise libraries is dropped. The native Promise library
+will always be used.
+
 ### from v6 to v7
 
 #### `createConnectedClient` is removed
