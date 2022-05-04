@@ -24,7 +24,7 @@ runTwinSuite('command', (command, equals) => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatchInlineSnapshot('Unknown subcommand')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -52,12 +52,12 @@ runTwinSuite('command', (command, equals) => {
 
     describe('count', () => {
       it('should throw on wrong number of arguments', async () => {
-        expect.hasAssertions()
+        expect.assertions(2)
 
         try {
           await redis[command]('count', 'foo')
         } catch (err) {
-          expect(err.message).toMatchInlineSnapshot('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -73,13 +73,13 @@ runTwinSuite('command', (command, equals) => {
         try {
           await redis[command]('HELP', 'foo')
         } catch (err) {
-          expect(err.message).toMatchInlineSnapshot('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('HELP', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatchInlineSnapshot('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -90,19 +90,7 @@ runTwinSuite('command', (command, equals) => {
           result.map(val => {
             return Buffer.isBuffer(val) ? val.toString() : val
           })
-        ).toMatchInlineSnapshot([
-          'COMMAND <subcommand> [<arg> [value] [opt] ...]. Subcommands are:',
-          '(no subcommand)',
-          '    Return details about all Redis commands.',
-          'COUNT',
-          '    Return the total number of commands in this Redis server.',
-          'GETKEYS <full-command>',
-          '    Return the keys from a full Redis command.',
-          'INFO [<command-name> ...]',
-          '    Return details about multiple Redis commands.',
-          'HELP',
-          '    Prints this help.',
-        ])
+        ).toMatchSnapshot()
       })
     })
   })

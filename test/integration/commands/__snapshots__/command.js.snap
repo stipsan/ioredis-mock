@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`command count should throw on wrong number of arguments 1`] = `"ERR unknown subcommand 'count'. Try COMMAND HELP."`;
+
+exports[`command help prints a list over available subcommands 1`] = `
+Array [
+  "COMMAND <subcommand> [<arg> [value] [opt] ...]. Subcommands are:",
+  "(no subcommand)",
+  "    Return details about all Redis commands.",
+  "COUNT",
+  "    Return the total number of commands in this Redis server.",
+  "GETKEYS <full-command>",
+  "    Return the keys from a full Redis command.",
+  "INFO [<command-name> ...]",
+  "    Return details about multiple Redis commands.",
+  "HELP",
+  "    Prints this help.",
+]
+`;
+
+exports[`command help should throw on wrong number of arguments 1`] = `"ERR unknown subcommand 'HELP'. Try COMMAND HELP."`;
+
+exports[`command help should throw on wrong number of arguments 2`] = `"ERR unknown subcommand 'HELP'. Try COMMAND HELP."`;
+
+exports[`command should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try COMMAND HELP."`;
+
+exports[`commandBuffer count should throw on wrong number of arguments 1`] = `"ERR unknown subcommand 'count'. Try COMMAND HELP."`;
+
+exports[`commandBuffer help prints a list over available subcommands 1`] = `
+Array [
+  "COMMAND <subcommand> [<arg> [value] [opt] ...]. Subcommands are:",
+  "(no subcommand)",
+  "    Return details about all Redis commands.",
+  "COUNT",
+  "    Return the total number of commands in this Redis server.",
+  "GETKEYS <full-command>",
+  "    Return the keys from a full Redis command.",
+  "INFO [<command-name> ...]",
+  "    Return details about multiple Redis commands.",
+  "HELP",
+  "    Prints this help.",
+]
+`;
+
+exports[`commandBuffer help should throw on wrong number of arguments 1`] = `"ERR unknown subcommand 'HELP'. Try COMMAND HELP."`;
+
+exports[`commandBuffer help should throw on wrong number of arguments 2`] = `"ERR unknown subcommand 'HELP'. Try COMMAND HELP."`;
+
+exports[`commandBuffer should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try COMMAND HELP."`;
