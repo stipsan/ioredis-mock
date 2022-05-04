@@ -17,7 +17,7 @@ runTwinSuite('config', (command, equals) => {
       try {
         await redis[command]()
       } catch (err) {
-        expect(err.message).toMatch('wrong number of arguments')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -27,7 +27,7 @@ runTwinSuite('config', (command, equals) => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('unknown subcommand')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -38,7 +38,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('get')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -54,13 +54,13 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('set')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('SET', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -70,9 +70,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('SET', 'maxmockmemory', '1000000')
         } catch (err) {
-          expect(err.message).toMatch(
-            "ERR Unknown option or number of arguments for CONFIG SET - 'maxmockmemory'"
-          )
+          expect(err.message).toMatchSnapshot()
         }
       })
     })
@@ -84,7 +82,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('RESETSTAT', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -100,7 +98,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('REWRITE', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -110,9 +108,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('REWRITE')
         } catch (err) {
-          expect(err.message).toMatch(
-            'ERR The server is running without a config file'
-          )
+          expect(err.message).toMatchSnapshot()
         }
       })
     })
@@ -124,13 +120,13 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('HELP', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('HELP', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -138,22 +134,7 @@ runTwinSuite('config', (command, equals) => {
         const result = await redis[command]('HELP')
 
         expect(
-          result.map(val => {
-            return Buffer.isBuffer(val) ? val.toString() : val
-          })
-        ).toEqual([
-          'CONFIG <subcommand> [<arg> [value] [opt] ...]. Subcommands are:',
-          'GET <pattern>',
-          '    Return parameters matching the glob-like <pattern> and their values.',
-          'SET <directive> <value>',
-          '    Set the configuration <directive> to <value>.',
-          'RESETSTAT',
-          '    Reset statistics reported by the INFO command.',
-          'REWRITE',
-          '    Rewrite the configuration file.',
-          'HELP',
-          '    Prints this help.',
-        ])
+         result).toMatchSnapshot()
       })
     })
   })

@@ -10,18 +10,10 @@ runTwinSuite('readwrite', (command, equals) => {
     afterAll(() => {
       redis.disconnect()
     })
-
-    it('should return OK', async () => {
+    ;(process.env.IS_E2E ? it.skip : it)('should return OK', async () => {
       expect.assertions(1)
 
-      try {
-        expect(equals(await redis[command](), 'OK')).toBe(true)
-      } catch (err) {
-        // @TODO: we don't have cluster support in the e2e tests yet
-        expect(err.message).toMatch(
-          'This instance has cluster support disabled'
-        )
-      }
+      expect(equals(await redis[command](), 'OK')).toBe(true)
     })
   })
 })

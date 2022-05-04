@@ -24,7 +24,7 @@ runTwinSuite('object', command => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('unknown subcommand')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -35,13 +35,13 @@ runTwinSuite('object', command => {
         try {
           await redis[command]('encoding')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('ENCODING', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -52,43 +52,31 @@ runTwinSuite('object', command => {
       it('returns the internal encoding for the Redis object', async () => {
         await redis.set('mystring', 'hello')
         const mystring = await redis[command]('encoding', 'mystring')
-        expect(Buffer.isBuffer(mystring) ? mystring.toString() : mystring).toBe(
-          'embstr'
-        )
+        expect(mystring).toMatchSnapshot()
 
         await redis.set('myint', 1)
         const myint = await redis[command]('encoding', 'myint')
-        expect(Buffer.isBuffer(myint) ? myint.toString() : myint).toBe('int')
+        expect(myint).toMatchSnapshot()
 
         await redis.rpush('mylist', 'one')
         const mylist = await redis[command]('encoding', 'mylist')
-        expect(Buffer.isBuffer(mylist) ? mylist.toString() : mylist).toBe(
-          'quicklist'
-        )
+        expect(mylist).toMatchSnapshot()
 
         await redis.sadd('myintset', 1, 2, 3)
         const myintset = await redis[command]('encoding', 'myintset')
-        expect(Buffer.isBuffer(myintset) ? myintset.toString() : myintset).toBe(
-          'intset'
-        )
+        expect(myintset).toMatchSnapshot()
 
         await redis.sadd('myset', 'one', 'two', 'three')
         const myset = await redis[command]('encoding', 'myset')
-        expect(Buffer.isBuffer(myset) ? myset.toString() : myset).toBe(
-          'hashtable'
-        )
+        expect(myset).toMatchSnapshot()
 
         await redis.hmset('myhash', 'one', 1, 'two', 2)
         const myhash = await redis[command]('encoding', 'myhash')
-        expect(Buffer.isBuffer(myhash) ? myhash.toString() : myhash).toBe(
-          'listpack'
-        )
+        expect(myhash).toMatchSnapshot()
 
         await redis.zadd('mysortedset', 1, 'one', 2, 'two', 3, 'three')
         const mysortedset = await redis[command]('encoding', 'mysortedset')
-        expect(
-          Buffer.isBuffer(mysortedset) ? mysortedset.toString() : mysortedset
-        ).toBe('listpack')
+        expect(mysortedset).toMatchSnapshot()
       })
     })
 
