@@ -27,25 +27,41 @@ export function command(_subcommand, ...args) {
       '    Return details about all Redis commands.',
       'COUNT',
       '    Return the total number of commands in this Redis server.',
-      'GETKEYS <full-command>',
-      '    Return the keys from a full Redis command.',
+      'LIST',
+      '    Return a list of all commands in this Redis server.',
       'INFO [<command-name> ...]',
       '    Return details about multiple Redis commands.',
+      '    If no command names are given, documentation details for all',
+      '    commands are returned.',
+      'DOCS [<command-name> ...]',
+      '    Return documentation details about multiple Redis commands.',
+      '    If no command names are given, documentation details for all',
+      '    commands are returned.',
+      'GETKEYS <full-command>',
+      '    Return the keys from a full Redis command.',
+      'GETKEYSANDFLAGS <full-command>',
+      '    Return the keys and the access flags from a full Redis command.',
       'HELP',
       '    Prints this help.',
     ]
+  }
+  if(subcommand === 'HELP' && args.length > 0) {
+    throw new Error(
+      `ERR wrong number of arguments for 'command|${_subcommand.toLowerCase()}' command`
+    )
   }
 
   if (subcommand === 'COUNT' && args.length === 0) {
     return commandsList.length
   }
 
-  if (subcommand === 'INFO' && args.length > 0) {
-    return commandsList.filter(item => args.includes(item[0]))
+  if (subcommand === 'INFO') {
+    const result = args.length > 0 ? commandsList.filter(item => args.includes(item[0])) : commandsList
+    return result.length === 0 ? [null] : result
   }
 
   throw new Error(
-    `ERR Unknown subcommand or wrong number of arguments for '${_subcommand}'. Try COMMAND HELP.`
+    `ERR unknown subcommand '${_subcommand}'. Try COMMAND HELP.`
   )
 }
 
@@ -62,7 +78,7 @@ export function commandBuffer(...args) {
     ])
   }
   if (Array.isArray(val)) {
-    return val.map(Buffer.from)
+    return val.map(v => v !== null ? Buffer.from(v) : v)
   }
   return !val || Number.isInteger(val) ? val : Buffer.from(val)
 }

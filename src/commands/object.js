@@ -23,7 +23,7 @@ function encoding(key) {
     return 'embstr'
   }
 
-  return 'ziplist'
+  return 'listpack'
 }
 
 export function object(_subcommand, key, ...args) {

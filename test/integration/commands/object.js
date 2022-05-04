@@ -81,14 +81,14 @@ runTwinSuite('object', command => {
         await redis.hmset('myhash', 'one', 1, 'two', 2)
         const myhash = await redis[command]('encoding', 'myhash')
         expect(Buffer.isBuffer(myhash) ? myhash.toString() : myhash).toBe(
-          'ziplist'
+          'listpack'
         )
 
         await redis.zadd('mysortedset', 1, 'one', 2, 'two', 3, 'three')
         const mysortedset = await redis[command]('encoding', 'mysortedset')
         expect(
           Buffer.isBuffer(mysortedset) ? mysortedset.toString() : mysortedset
-        ).toBe('listpick')
+        ).toBe('listpack')
       })
     })
 
