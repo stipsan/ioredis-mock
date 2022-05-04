@@ -64,7 +64,16 @@ runTwinSuite('config', (command, equals) => {
         }
       })
 
-      it('should throw as we actually do not support setting the config', async () => {
+      ;(process.env.IS_E2E ? it.skip : it)('should throw as we actually do not support setting the config', async () => {
+        expect.hasAssertions()
+
+        try {
+          await redis[command]('SET', 'maxmemory', '1000000')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+      })
+      it('should throw as the option does not exist', async () => {
         expect.hasAssertions()
 
         try {

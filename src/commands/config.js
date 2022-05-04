@@ -26,7 +26,7 @@ export function config(_subcommand, ...args) {
   }
 
   if (subcommand === 'SET' && args.length > 1) {
-    throw new Error(`ERR Unsupported CONFIG parameter: ${args[0]}`)
+    throw new Error(`ERR Unknown option or number of arguments for CONFIG SET - '${args[0]}'`)
   }
 
   if (subcommand === 'RESETSTAT' && args.length === 0) {
@@ -37,9 +37,20 @@ export function config(_subcommand, ...args) {
     throw new Error('ERR The server is running without a config file')
   }
 
-  throw new Error(
-    `ERR Unknown subcommand or wrong number of arguments for '${_subcommand}'. Try CONFIG HELP.`
-  )
+  switch (subcommand) {
+    case 'HELP':
+    case 'GET':
+    case 'SET':
+    case 'RESETSTAT':
+    case 'REWRITE':
+      throw new Error(
+        `ERR wrong number of arguments for 'config|${_subcommand.toLowerCase()}' command`
+      )
+    default:
+      throw new Error(
+        `ERR unknown subcommand '${_subcommand.toLowerCase()}'. Try CONFIG HELP.`
+      )
+  }
 }
 
 export function configBuffer(...args) {
