@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite, toMatchSnapshot } from '../../../test-utils'
+import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('sintercard', command => {
   // @TODO: implement this command
@@ -29,12 +29,12 @@ runTwinSuite('sintercard', command => {
 
     test('SINTERCARD 2 key1 key2', async () => {
       const result = await redis[command](2, 'key1', 'key2')
-      expect(result)[toMatchSnapshot]()
+      expect(result).toMatchSnapshot()
     })
 
     test('SINTERCARD 2 key1 key2 LIMIT 1', async () => {
       const result = await redis[command](2, 'key1', 'key2', 'LIMIT', 1)
-      expect(result)[toMatchSnapshot]()
+      expect(result).toMatchSnapshot()
     })
   })
 })

@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite, toMatchSnapshot } from '../../../test-utils'
+import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('object', command => {
   describe(command, () => {
@@ -24,7 +24,7 @@ runTwinSuite('object', command => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message)[toMatchSnapshot]()
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -35,13 +35,13 @@ runTwinSuite('object', command => {
         try {
           await redis[command]('encoding')
         } catch (err) {
-          expect(err.message)[toMatchSnapshot]()
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('ENCODING', 'foo', 'bar')
         } catch (err) {
-          expect(err.message)[toMatchSnapshot]()
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -52,31 +52,31 @@ runTwinSuite('object', command => {
       it('returns the internal encoding for the Redis object', async () => {
         await redis.set('mystring', 'hello')
         const mystring = await redis[command]('encoding', 'mystring')
-        expect(mystring)[toMatchSnapshot]()
+        expect(mystring).toMatchSnapshot()
 
         await redis.set('myint', 1)
         const myint = await redis[command]('encoding', 'myint')
-        expect(myint)[toMatchSnapshot]()
+        expect(myint).toMatchSnapshot()
 
         await redis.rpush('mylist', 'one')
         const mylist = await redis[command]('encoding', 'mylist')
-        expect(mylist)[toMatchSnapshot]()
+        expect(mylist).toMatchSnapshot()
 
         await redis.sadd('myintset', 1, 2, 3)
         const myintset = await redis[command]('encoding', 'myintset')
-        expect(myintset)[toMatchSnapshot]()
+        expect(myintset).toMatchSnapshot()
 
         await redis.sadd('myset', 'one', 'two', 'three')
         const myset = await redis[command]('encoding', 'myset')
-        expect(myset)[toMatchSnapshot]()
+        expect(myset).toMatchSnapshot()
 
         await redis.hmset('myhash', 'one', 1, 'two', 2)
         const myhash = await redis[command]('encoding', 'myhash')
-        expect(myhash)[toMatchSnapshot]()
+        expect(myhash).toMatchSnapshot()
 
         await redis.zadd('mysortedset', 1, 'one', 2, 'two', 3, 'three')
         const mysortedset = await redis[command]('encoding', 'mysortedset')
-        expect(mysortedset)[toMatchSnapshot]()
+        expect(mysortedset).toMatchSnapshot()
       })
     })
 

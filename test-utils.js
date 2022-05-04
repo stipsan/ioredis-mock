@@ -1,6 +1,8 @@
 // Runs both a regular string suite and a buffer suite
 export function runTwinSuite(commandName, cb) {
-  const commands = [`${commandName}Buffer`, commandName]
+  const commands = process.env.IS_BROWSER
+    ? [commandName]
+    : [`${commandName}Buffer`, commandName]
 
   return commands.forEach(command =>
     command === commandName
@@ -18,8 +20,3 @@ export function runTwinSuite(commandName, cb) {
         )
   )
 }
-
-// Don't run snapshot tests in browser.js as the Buffer polyfill isn't compatible with the serializer
-export const toMatchSnapshot = process.env.IS_BROWSER
-  ? 'toBeTruthy'
-  : 'toMatchSnapshot'
