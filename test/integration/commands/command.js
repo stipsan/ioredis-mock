@@ -2,7 +2,7 @@ import Redis from 'ioredis'
 import sortBy from 'lodash.sortby'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { runTwinSuite, toMatchSnapshot } from '../../../test-utils'
 
 runTwinSuite('command', command => {
   describe(command, () => {
@@ -15,7 +15,7 @@ runTwinSuite('command', command => {
     it('returns all commands by default', async () => {
       const commands = await redis[command]()
 
-      expect(sortBy(commands, ([cmd]) => cmd)).toMatchSnapshot()
+      expect(sortBy(commands, ([cmd]) => cmd))[toMatchSnapshot]()
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -24,7 +24,7 @@ runTwinSuite('command', command => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatchSnapshot()
+        expect(err.message)[toMatchSnapshot]()
       }
     })
 
@@ -32,7 +32,7 @@ runTwinSuite('command', command => {
       it('returns nothing on an unknown command', async () => {
         const commands = await redis[command]('info', 'foo')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns the same list as COMMAND without args', async () => {
@@ -45,7 +45,7 @@ runTwinSuite('command', command => {
       it('returns a command description', async () => {
         const commands = await redis[command]('info', 'get', 'sinter')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
     })
 
@@ -56,12 +56,12 @@ runTwinSuite('command', command => {
         try {
           await redis[command]('count', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
       it('returns number of commands', async () => {
-        expect(await redis[command]('COUNT')).toMatchSnapshot()
+        expect(await redis[command]('COUNT'))[toMatchSnapshot]()
       })
     })
 
@@ -72,14 +72,14 @@ runTwinSuite('command', command => {
         try {
           await redis[command]('list', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
       it('returns a list of all commands', async () => {
         const commands = await redis[command]('LIST')
         commands.sort()
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
     })
 
@@ -87,7 +87,7 @@ runTwinSuite('command', command => {
       it('returns nothing on an unknown command', async () => {
         const commands = await redis[command]('docs', 'foo')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns all commands by default', async () => {
@@ -99,13 +99,13 @@ runTwinSuite('command', command => {
       it('returns a commands docs', async () => {
         const commands = await redis[command]('docs', 'get')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns a description of multiple commands', async () => {
         const commands = await redis[command]('docs', 'get', 'foo', 'set')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
     })
 
@@ -116,32 +116,32 @@ runTwinSuite('command', command => {
         try {
           await redis[command]('GETKEYS', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('GETKEYS', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('GETKEYS', 'get')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
       it('returns the keys used in get', async () => {
         const commands = await redis[command]('getkeys', 'get', 'foo')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns the keys used in sdiff', async () => {
         const commands = await redis[command]('getkeys', 'sdiff', 'foo', 'bar')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns the keys used in hmset', async () => {
@@ -155,7 +155,7 @@ runTwinSuite('command', command => {
           'bruce@wayne.enterprises'
         )
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
     })
 
@@ -167,26 +167,26 @@ runTwinSuite('command', command => {
         try {
           await redis[command]('GETKEYSANDFLAGS', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('GETKEYSANDFLAGS', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('GETKEYSANDFLAGS', 'get')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
       it('returns the keys used in get', async () => {
         const commands = await redis[command]('getkeysandflags', 'get', 'foo')
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns the keys used in sdiff', async () => {
@@ -197,7 +197,7 @@ runTwinSuite('command', command => {
           'bar'
         )
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
 
       it('returns the keys used in hmset', async () => {
@@ -211,7 +211,7 @@ runTwinSuite('command', command => {
           'bruce@wayne.enterprises'
         )
 
-        expect(commands).toMatchSnapshot()
+        expect(commands)[toMatchSnapshot]()
       })
     })
 
@@ -222,13 +222,13 @@ runTwinSuite('command', command => {
         try {
           await redis[command]('HELP', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('HELP', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
@@ -237,7 +237,7 @@ runTwinSuite('command', command => {
 
         expect(
           result.map(val => (Buffer.isBuffer(val) ? val.toString() : val))
-        ).toMatchSnapshot()
+        )[toMatchSnapshot]()
       })
     })
   })

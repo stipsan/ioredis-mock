@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { runTwinSuite, toMatchSnapshot } from '../../../test-utils'
 
 runTwinSuite('config', (command, equals) => {
   describe(command, () => {
@@ -17,7 +17,7 @@ runTwinSuite('config', (command, equals) => {
       try {
         await redis[command]()
       } catch (err) {
-        expect(err.message).toMatchSnapshot()
+        expect(err.message)[toMatchSnapshot]()
       }
     })
 
@@ -27,7 +27,7 @@ runTwinSuite('config', (command, equals) => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatchSnapshot()
+        expect(err.message)[toMatchSnapshot]()
       }
     })
 
@@ -38,7 +38,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('get')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
@@ -54,13 +54,13 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('set')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('SET', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
       ;(process.env.IS_E2E ? it.skip : it)(
@@ -71,7 +71,7 @@ runTwinSuite('config', (command, equals) => {
           try {
             await redis[command]('SET', 'maxmemory', '1000000')
           } catch (err) {
-            expect(err.message).toMatchSnapshot()
+            expect(err.message)[toMatchSnapshot]()
           }
         }
       )
@@ -81,7 +81,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('SET', 'maxmockmemory', '1000000')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
     })
@@ -93,7 +93,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('RESETSTAT', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
@@ -109,7 +109,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('REWRITE', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
@@ -119,7 +119,7 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('REWRITE')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
     })
@@ -131,20 +131,20 @@ runTwinSuite('config', (command, equals) => {
         try {
           await redis[command]('HELP', 'foo')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
 
         try {
           await redis[command]('HELP', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          expect(err.message)[toMatchSnapshot]()
         }
       })
 
       it('prints a list over available subcommands', async () => {
         const result = await redis[command]('HELP')
 
-        expect(result).toMatchSnapshot()
+        expect(result)[toMatchSnapshot]()
       })
     })
   })

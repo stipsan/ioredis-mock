@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 
 // eslint-disable-next-line import/no-relative-parent-imports
-import { runTwinSuite } from '../../../test-utils'
+import { runTwinSuite, toMatchSnapshot } from '../../../test-utils'
 
 runTwinSuite('lolwut', command => {
   describe(command, () => {
@@ -13,7 +13,7 @@ runTwinSuite('lolwut', command => {
 
     test('should return Redis version by default', async () => {
       const result = await redis[command]()
-      expect(result).toMatchSnapshot()
+      expect(result)[toMatchSnapshot]()
     })
 
     test('version 6', async () => {
