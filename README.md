@@ -56,6 +56,10 @@ console.log(await redis.get('foo'))
 
 ### from v7 to v8
 
+#### `ioredis@v4` support dropped
+
+`ioredis@v5` is the new baseline. Stay on `ioredis-mock@v7` until you're ready to upgrade to `ioredis@v5`.
+
 #### `PromiseContainer` has been removed.
 
 Support for third-party Promise libraries is dropped. The native Promise library
