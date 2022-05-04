@@ -77,8 +77,7 @@ runTwinSuite('command', command => {
 
       it('returns a list of all commands', async () => {
         const commands = await redis[command]('LIST')
-        // @TODO: is sorting needed?
-        // commands.sort()
+        commands.sort()
         expect(commands).toMatchSnapshot()
       })
     })
