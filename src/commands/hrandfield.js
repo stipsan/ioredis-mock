@@ -1,5 +1,6 @@
 import shuffle from 'lodash.shuffle'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import sample from '../commands-utils/sample'
 import { type } from './index'
 
@@ -45,8 +46,5 @@ export function hrandfield(key, count, WITHVALUES) {
 
 export function hrandfieldBuffer(...args) {
   const val = hrandfield.apply(this, args)
-  if (Array.isArray(val)) {
-    return val.map(Buffer.from)
-  }
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

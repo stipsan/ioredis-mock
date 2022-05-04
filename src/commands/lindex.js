@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function lindex(key, i) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`)
@@ -10,5 +12,5 @@ export function lindex(key, i) {
 
 export function lindexBuffer(...args) {
   const val = lindex.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

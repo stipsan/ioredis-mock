@@ -1,5 +1,7 @@
 import isPlainObject from 'lodash.isplainobject'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 // eslint-disable-next-line consistent-return
 export function type(key) {
   if (!this.data.has(key)) {
@@ -31,5 +33,5 @@ export function type(key) {
 
 export function typeBuffer(key) {
   const val = type.call(this, key)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

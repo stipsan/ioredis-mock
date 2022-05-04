@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sintercard SINTERCARD 2 key1 key2 1`] = `2`;
+
+exports[`sintercard SINTERCARD 2 key1 key2 LIMIT 1 1`] = `1`;
+
+exports[`sintercardBuffer SINTERCARD 2 key1 key2 1`] = `2`;
+
+exports[`sintercardBuffer SINTERCARD 2 key1 key2 LIMIT 1 1`] = `1`;

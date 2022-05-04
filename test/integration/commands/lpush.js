@@ -12,9 +12,9 @@ runTwinSuite('lpush', command => {
         },
       })
 
-      return redis[command]('foo', 9, 8, 7).then(() => {
-        return expect(redis.data.get('foo')).toEqual(['7', '8', '9', '1'])
-      })
+      return redis[command]('foo', 9, 8, 7).then(() =>
+        expect(redis.data.get('foo')).toEqual(['7', '8', '9', '1'])
+      )
     })
 
     it('should return the new length of the list', () => {
@@ -22,9 +22,9 @@ runTwinSuite('lpush', command => {
         data: {},
       })
 
-      return redis[command]('foo', 9, 8, 7).then(length => {
-        return expect(length).toBe(3)
-      })
+      return redis[command]('foo', 9, 8, 7).then(length =>
+        expect(length).toBe(3)
+      )
     })
 
     it('should throw an exception if the key contains something other than a list', () => {
@@ -34,9 +34,9 @@ runTwinSuite('lpush', command => {
         },
       })
 
-      return redis[command]('foo', 1).catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo', 1).catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
   })
 })

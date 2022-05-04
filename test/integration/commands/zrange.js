@@ -14,63 +14,53 @@ describe('zrange', () => {
   it('should return first 3 items ordered by score', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', 0, 2).then(res => {
-      return expect(res).toEqual(['first', 'second', 'third'])
-    })
+    return redis
+      .zrange('foo', 0, 2)
+      .then(res => expect(res).toEqual(['first', 'second', 'third']))
   })
 
   it('should return nothing when min > max', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', 2, 0).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrange('foo', 2, 0).then(res => expect(res).toEqual([]))
   })
 
   it('should return nothing if the min is greater than the max, and max is negative', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', 0, -8).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrange('foo', 0, -8).then(res => expect(res).toEqual([]))
   })
 
   it('should return last 3 items', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', -3, -1).then(res => {
-      return expect(res).toEqual(['third', 'fourth', 'fifth'])
-    })
+    return redis
+      .zrange('foo', -3, -1)
+      .then(res => expect(res).toEqual(['third', 'fourth', 'fifth']))
   })
 
   it('should return all items on larger ranges', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', 0, 100).then(res => {
-      return expect(res).toEqual([
-        'first',
-        'second',
-        'third',
-        'fourth',
-        'fifth',
-      ])
-    })
+    return redis
+      .zrange('foo', 0, 100)
+      .then(res =>
+        expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
+      )
   })
 
   it('should work even if the min is negative and larger than set size', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', -200, -3).then(res => {
-      return expect(res).toEqual(['first', 'second', 'third'])
-    })
+    return redis
+      .zrange('foo', -200, -3)
+      .then(res => expect(res).toEqual(['first', 'second', 'third']))
   })
 
   it('should return empty array if out-of-range', () => {
     const redis = new Redis({ data })
 
-    return redis.zrange('foo', 10, 100).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrange('foo', 10, 100).then(res => expect(res).toEqual([]))
   })
 
   it('should return empty array if the key contains something other than a list', () => {
@@ -80,16 +70,16 @@ describe('zrange', () => {
       },
     })
 
-    return redis.zrange('foo', 0, 2).then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zrange('foo', 0, 2).then(res => expect(res).toEqual([]))
   })
 
   it('should include scores if WITHSCORES is specified', () => {
     const redis = new Redis({ data })
-    return redis.zrange('foo', 0, 2, 'WITHSCORES').then(res => {
-      return expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
-    })
+    return redis
+      .zrange('foo', 0, 2, 'WITHSCORES')
+      .then(res =>
+        expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
+      )
   })
 
   it('should sort items with the same score lexicographically', () => {
@@ -104,8 +94,8 @@ describe('zrange', () => {
       },
     })
 
-    return redis.zrange('foo', 0, 100).then(res => {
-      return expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa'])
-    })
+    return redis
+      .zrange('foo', 0, 100)
+      .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']))
   })
 })

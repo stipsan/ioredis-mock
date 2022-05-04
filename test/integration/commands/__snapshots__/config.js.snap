@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config get should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|get' command"`;
+
+exports[`config help prints a list over available subcommands 1`] = `
+Array [
+  "CONFIG <subcommand> [<arg> [value] [opt] ...]. Subcommands are:",
+  "GET <pattern>",
+  "    Return parameters matching the glob-like <pattern> and their values.",
+  "SET <directive> <value>",
+  "    Set the configuration <directive> to <value>.",
+  "RESETSTAT",
+  "    Reset statistics reported by the INFO command.",
+  "REWRITE",
+  "    Rewrite the configuration file.",
+  "HELP",
+  "    Prints this help.",
+]
+`;
+
+exports[`config help should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|help' command"`;
+
+exports[`config help should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'config|help' command"`;
+
+exports[`config resetstat should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|resetstat' command"`;
+
+exports[`config rewrite should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|rewrite' command"`;
+
+exports[`config rewrite throws as redis is running without a config file 1`] = `"ERR The server is running without a config file"`;
+
+exports[`config set should throw as the option does not exist 1`] = `"ERR Unknown option or number of arguments for CONFIG SET - 'maxmockmemory'"`;
+
+exports[`config set should throw as we actually do not support setting the config 1`] = `"ERR Unknown option or number of arguments for CONFIG SET - 'maxmemory'"`;
+
+exports[`config set should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|set' command"`;
+
+exports[`config set should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'config|set' command"`;
+
+exports[`config should throw on too few arguments 1`] = `"ERR wrong number of arguments for 'config' command"`;
+
+exports[`config should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try CONFIG HELP."`;
+
+exports[`configBuffer get should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|get' command"`;
+
+exports[`configBuffer help prints a list over available subcommands 1`] = `
+Array [
+  Buffer<
+  43 4f 4e 46 49 47 20 3c 73 75 62 63 6f 6d 6d 61 6e 64 3e 20 5b 3c 61 72 67 3e
+  20 5b 76 61 6c 75 65 5d 20 5b 6f 70 74 5d 20 2e 2e 2e 5d 2e 20 53 75 62 63 6f
+  6d 6d 61 6e 64 73 20 61 72 65 3a
+>,
+  Buffer<47 45 54 20 3c 70 61 74 74 65 72 6e 3e>,
+  Buffer<
+  20 20 20 20 52 65 74 75 72 6e 20 70 61 72 61 6d 65 74 65 72 73 20 6d 61 74 63
+  68 69 6e 67 20 74 68 65 20 67 6c 6f 62 2d 6c 69 6b 65 20 3c 70 61 74 74 65 72
+  6e 3e 20 61 6e 64 20 74 68 65 69 72 20 76 61 6c 75 65 73 2e
+>,
+  Buffer<
+  53 45 54 20 3c 64 69 72 65 63 74 69 76 65 3e 20 3c 76 61 6c 75 65 3e
+>,
+  Buffer<
+  20 20 20 20 53 65 74 20 74 68 65 20 63 6f 6e 66 69 67 75 72 61 74 69 6f 6e 20
+  3c 64 69 72 65 63 74 69 76 65 3e 20 74 6f 20 3c 76 61 6c 75 65 3e 2e
+>,
+  Buffer<52 45 53 45 54 53 54 41 54>,
+  Buffer<
+  20 20 20 20 52 65 73 65 74 20 73 74 61 74 69 73 74 69 63 73 20 72 65 70 6f 72
+  74 65 64 20 62 79 20 74 68 65 20 49 4e 46 4f 20 63 6f 6d 6d 61 6e 64 2e
+>,
+  Buffer<52 45 57 52 49 54 45>,
+  Buffer<
+  20 20 20 20 52 65 77 72 69 74 65 20 74 68 65 20 63 6f 6e 66 69 67 75 72 61 74
+  69 6f 6e 20 66 69 6c 65 2e
+>,
+  Buffer<48 45 4c 50>,
+  Buffer<20 20 20 20 50 72 69 6e 74 73 20 74 68 69 73 20 68 65 6c 70 2e>,
+]
+`;
+
+exports[`configBuffer help should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|help' command"`;
+
+exports[`configBuffer help should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'config|help' command"`;
+
+exports[`configBuffer resetstat should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|resetstat' command"`;
+
+exports[`configBuffer rewrite should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|rewrite' command"`;
+
+exports[`configBuffer rewrite throws as redis is running without a config file 1`] = `"ERR The server is running without a config file"`;
+
+exports[`configBuffer set should throw as the option does not exist 1`] = `"ERR Unknown option or number of arguments for CONFIG SET - 'maxmockmemory'"`;
+
+exports[`configBuffer set should throw as we actually do not support setting the config 1`] = `"ERR Unknown option or number of arguments for CONFIG SET - 'maxmemory'"`;
+
+exports[`configBuffer set should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|set' command"`;
+
+exports[`configBuffer set should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'config|set' command"`;
+
+exports[`configBuffer should throw on too few arguments 1`] = `"ERR wrong number of arguments for 'config' command"`;
+
+exports[`configBuffer should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try CONFIG HELP."`;

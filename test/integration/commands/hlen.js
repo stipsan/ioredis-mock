@@ -8,9 +8,7 @@ runTwinSuite('hlen', command => {
     it('should return an empty array if there are no keys', () => {
       const redis = new Redis()
 
-      return redis[command]('foo').then(result => {
-        return expect(result).toBe(0)
-      })
+      return redis[command]('foo').then(result => expect(result).toBe(0))
     })
 
     it('should return all data keys', () => {
@@ -20,9 +18,7 @@ runTwinSuite('hlen', command => {
         },
       })
 
-      return redis[command]('foo').then(result => {
-        return expect(result).toEqual(2)
-      })
+      return redis[command]('foo').then(result => expect(result).toEqual(2))
     })
   })
 })

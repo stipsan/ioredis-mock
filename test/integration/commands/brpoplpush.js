@@ -4,7 +4,9 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('brpoplpush', (command, equals) => {
-  describe(command, () => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     it('should remove one item from the tail of the source list', async () => {
       const redis = new Redis()
       await redis.rpush('foo', 'foo', 'bar')
@@ -63,9 +65,9 @@ runTwinSuite('brpoplpush', (command, equals) => {
       const redis = new Redis()
       await redis.set('foo', 'not a list')
 
-      await expect(() => {
-        return redis[command]('foo', 'bar', 1)
-      }).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(() =>
+        redis[command]('foo', 'bar', 1)
+      ).rejects.toThrowErrorMatchingInlineSnapshot(
         '"WRONGTYPE Operation against a key holding the wrong kind of value"'
       )
       redis.disconnect()

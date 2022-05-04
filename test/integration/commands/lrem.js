@@ -12,9 +12,9 @@ runTwinSuite('lrem', command => {
         },
       })
 
-      return redis[command]('foo', -2, 'foo').then(() => {
-        return expect(redis.data.get('foo')).toEqual(['foo', 'bar', 'baz'])
-      })
+      return redis[command]('foo', -2, 'foo').then(() =>
+        expect(redis.data.get('foo')).toEqual(['foo', 'bar', 'baz'])
+      )
     })
 
     it('should remove the items from the beginning of the list when count is positive', () => {
@@ -24,9 +24,9 @@ runTwinSuite('lrem', command => {
         },
       })
 
-      return redis[command]('foo', 2, 'foo').then(() => {
-        return expect(redis.data.get('foo')).toEqual(['bar', 'baz', 'foo'])
-      })
+      return redis[command]('foo', 2, 'foo').then(() =>
+        expect(redis.data.get('foo')).toEqual(['bar', 'baz', 'foo'])
+      )
     })
 
     it('should remove all the items when count is 0', () => {
@@ -36,9 +36,9 @@ runTwinSuite('lrem', command => {
         },
       })
 
-      return redis[command]('foo', 0, 'foo').then(() => {
-        return expect(redis.data.get('foo')).toEqual(['bar', 'baz'])
-      })
+      return redis[command]('foo', 0, 'foo').then(() =>
+        expect(redis.data.get('foo')).toEqual(['bar', 'baz'])
+      )
     })
 
     it('should return the number of items removed ', () => {
@@ -48,9 +48,9 @@ runTwinSuite('lrem', command => {
         },
       })
 
-      return redis[command]('foo', -2, 'baz').then(removed => {
-        return expect(removed).toBe(1)
-      })
+      return redis[command]('foo', -2, 'baz').then(removed =>
+        expect(removed).toBe(1)
+      )
     })
 
     it('should return 0 if the key contains something other than a list', () => {
@@ -60,9 +60,7 @@ runTwinSuite('lrem', command => {
         },
       })
 
-      return redis[command]('foo', 1).then(removed => {
-        return expect(removed).toBe(0)
-      })
+      return redis[command]('foo', 1).then(removed => expect(removed).toBe(0))
     })
   })
 })

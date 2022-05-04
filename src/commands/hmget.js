@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function hmget(key, ...fields) {
   const hash = this.data.get(key)
   return fields.map(field => {
@@ -10,5 +12,5 @@ export function hmget(key, ...fields) {
 
 export function hmgetBuffer(...args) {
   const val = hmget.apply(this, args)
-  return val.map(payload => (payload ? Buffer.from(payload) : payload))
+  return convertStringToBuffer(val)
 }

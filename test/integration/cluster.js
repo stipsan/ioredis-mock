@@ -12,11 +12,7 @@ describe('cluster', () => {
     const cluster = new Redis.Cluster(nodes)
     expect(cluster.connected).toEqual(true)
     expect(cluster.nodes.length).toEqual(nodes.length)
-    expect(
-      cluster.nodes.every(node => {
-        return node instanceof Redis
-      })
-    ).toBeTruthy()
+    expect(cluster.nodes.every(node => node instanceof Redis)).toBeTruthy()
   })
 
   it('can set and get', () => {
@@ -24,12 +20,8 @@ describe('cluster', () => {
     expect(cluster.connected).toEqual(true)
     return cluster
       .set('k', 'v')
-      .then(() => {
-        return cluster.get('k')
-      })
-      .then(v => {
-        return expect(v).toEqual('v')
-      })
+      .then(() => cluster.get('k'))
+      .then(v => expect(v).toEqual('v'))
   })
 
   it('can pass redis options to redis mock', () => {

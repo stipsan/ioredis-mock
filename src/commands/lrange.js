@@ -7,6 +7,8 @@
  * @param {string} end End index (included in returned range)
  * @return {Array} An array in the defined range
  */
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function lrange(key, s, e) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`)
@@ -28,5 +30,5 @@ export function lrange(key, s, e) {
 
 export function lrangeBuffer(...args) {
   const val = lrange.apply(this, args)
-  return val.map(Buffer.from)
+  return convertStringToBuffer(val)
 }

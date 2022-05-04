@@ -13,18 +13,10 @@ runTwinSuite('hincrbyfloat', command => {
       })
 
       return redis[command]('mykey', 'field', 0.1)
-        .then(result => {
-          return expect(result).toBe('10.6')
-        })
-        .then(() => {
-          return redis[command]('mykey', 'field', -5)
-        })
-        .then(result => {
-          return expect(result).toBe('5.6')
-        })
-        .then(() => {
-          return expect(redis.data.get('mykey').field).toBe('5.6')
-        })
+        .then(result => expect(result).toBe('10.6'))
+        .then(() => redis[command]('mykey', 'field', -5))
+        .then(result => expect(result).toBe('5.6'))
+        .then(() => expect(redis.data.get('mykey').field).toBe('5.6'))
     })
 
     it('should support exponents', () => {
@@ -35,24 +27,16 @@ runTwinSuite('hincrbyfloat', command => {
       })
 
       return redis[command]('mykey', 'field', '2.0e2')
-        .then(result => {
-          return expect(result).toBe('5200')
-        })
-        .then(() => {
-          return expect(redis.data.get('mykey').field).toBe('5200')
-        })
+        .then(result => expect(result).toBe('5200'))
+        .then(() => expect(redis.data.get('mykey').field).toBe('5200'))
     })
 
     it('should create hash if not exists', () => {
       const redis = new Redis()
 
       return redis[command]('stats', 'health', 0.5)
-        .then(result => {
-          return expect(result).toBe('0.5')
-        })
-        .then(() => {
-          return expect(redis.data.get('stats').health).toBe('0.5')
-        })
+        .then(result => expect(result).toBe('0.5'))
+        .then(() => expect(redis.data.get('stats').health).toBe('0.5'))
     })
 
     it('should create field in hash if not exists', () => {
@@ -63,12 +47,8 @@ runTwinSuite('hincrbyfloat', command => {
       })
 
       return redis[command]('stats', 'health', 0.5)
-        .then(result => {
-          return expect(result).toBe('0.5')
-        })
-        .then(() => {
-          return expect(redis.data.get('stats').health).toBe('0.5')
-        })
+        .then(result => expect(result).toBe('0.5'))
+        .then(() => expect(redis.data.get('stats').health).toBe('0.5'))
     })
   })
 })

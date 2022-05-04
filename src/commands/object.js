@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 function encoding(key) {
   const val = this.data.get(key)
 
@@ -9,7 +11,7 @@ function encoding(key) {
   }
 
   if (val instanceof Map) {
-    return 'ziplist'
+    return 'listpack'
   }
 
   if (Array.isArray(val)) {
@@ -23,7 +25,7 @@ function encoding(key) {
     return 'embstr'
   }
 
-  return 'ziplist'
+  return 'listpack'
 }
 
 export function object(_subcommand, key, ...args) {
@@ -53,9 +55,20 @@ export function object(_subcommand, key, ...args) {
   }
 
   if (!key || args.length > 0) {
-    throw new Error(
-      `ERR Unknown subcommand or wrong number of arguments for '${key}'. Try OBJECT HELP.`
-    )
+    switch (subcommand) {
+      case 'REFCOUNT':
+      case 'IDLETIME':
+      case 'HELP':
+      case 'FREQ':
+      case 'ENCODING':
+        throw new Error(
+          `ERR wrong number of arguments for 'object|${_subcommand.toLowerCase()}' command`
+        )
+      default:
+        throw new Error(
+          `ERR unknown subcommand '${_subcommand.toLowerCase()}'. Try OBJECT HELP.`
+        )
+    }
   }
 
   if (subcommand !== 'HELP' && !this.data.has(key)) {
@@ -69,6 +82,10 @@ export function object(_subcommand, key, ...args) {
       throw new Error(
         'ERR An LFU maxmemory policy is not selected, access frequency not tracked. Please note that when switching between policies at runtime LRU and LFU data will take some time to adjust.'
       )
+    case 'HELP':
+      throw new Error(
+        `ERR wrong number of arguments for 'object|${_subcommand.toLowerCase()}' command`
+      )
     case 'IDLETIME':
       // @TODO implement this functionality together with the TOUCH command
       return 0
@@ -76,15 +93,12 @@ export function object(_subcommand, key, ...args) {
       return 1
     default:
       throw new Error(
-        `ERR Unknown subcommand or wrong number of arguments for '${key}'. Try OBJECT HELP.`
+        `ERR unknown subcommand '${_subcommand.toLowerCase()}'. Try OBJECT HELP.`
       )
   }
 }
 
 export function objectBuffer(...args) {
   const val = object.apply(this, args)
-  if (Array.isArray(val)) {
-    return val.map(payload => (payload ? Buffer.from(payload) : payload))
-  }
-  return !val || Number.isInteger(val) ? val : Buffer.from(val)
+  return convertStringToBuffer(val)
 }

@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events'
 import { parseURL } from 'ioredis/built/utils/index'
-import redisCommands from 'redis-commands'
 
+import { list as redisCommands } from '../data/command-list.json'
 import createCommand, { Command } from './command'
 import * as commands from './commands'
 import * as commandsStream from './commands-stream'
@@ -216,9 +216,10 @@ class RedisMock extends EventEmitter {
       this[command] = commandsStream[command].bind(this)
     })
 
+    const list = redisCommands.filter(cmd => !cmd.includes('|'))
     const supportedCommands = [
-      ...redisCommands.list,
-      ...redisCommands.list.map(command => `${command}Buffer`),
+      ...list,
+      ...list.map(command => `${command}Buffer`),
     ]
     const docsLink =
       'https://github.com/stipsan/ioredis-mock/blob/main/compat.md#supported-commands-'

@@ -7,51 +7,43 @@ runTwinSuite('psubscribe', command => {
   describe(command, () => {
     it('should return number of subscribed channels', () => {
       const redis = new Redis()
-      return redis[command]('news.*', 'music.*').then(subNum => {
-        return expect(subNum).toBe(2)
-      })
+      return redis[command]('news.*', 'music.*').then(subNum =>
+        expect(subNum).toBe(2)
+      )
     })
 
     it('should return number of subscribed channels when calling subscribe twice', () => {
       const redis = new Redis()
       return redis[command]('first.*')
-        .then(subNum => {
-          return expect(subNum).toBe(1)
-        })
-        .then(() => {
-          return redis[command]('second.*').then(subNum => {
-            return expect(subNum).toBe(2)
-          })
-        })
+        .then(subNum => expect(subNum).toBe(1))
+        .then(() =>
+          redis[command]('second.*').then(subNum => expect(subNum).toBe(2))
+        )
     })
 
     it('should not incremented number of subscribed channels when subscribing to same channel multiple times', () => {
       const redis = new Redis()
       return redis[command]('channel.*')
-        .then(subNum => {
-          return expect(subNum).toBe(1)
-        })
-        .then(() => {
-          return redis[command]('channel.*').then(subNum => {
-            return expect(subNum).toBe(1)
-          })
-        })
+        .then(subNum => expect(subNum).toBe(1))
+        .then(() =>
+          redis[command]('channel.*').then(subNum => expect(subNum).toBe(1))
+        )
     })
 
     it('should reject non-subscribe commands when having at least one open subscription', () => {
       const redis = new Redis()
-      return redis[command]('channel').then(() => {
-        return redis
+      return redis[command]('channel').then(() =>
+        redis
           .get('key')
           .then(() => {
             throw new Error('get should fail when in subscriber mode')
           })
-          .catch(error => {
-            return expect(error.message).toBe(
+          .catch(error =>
+            expect(error.message).toBe(
               'Connection in subscriber mode, only subscriber commands may be used'
             )
-          })
-      })
+          )
+      )
     })
 
     it('should allow multiple instances to subscribe to the same channel', () => {

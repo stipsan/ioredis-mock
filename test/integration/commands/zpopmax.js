@@ -14,25 +14,21 @@ describe('zpopmax', () => {
   it('should return first item with score', () => {
     const redis = new Redis({ data })
 
-    return redis.zpopmax('foo').then(res => {
-      return expect(res).toEqual(['fifth', 5])
-    })
+    return redis.zpopmax('foo').then(res => expect(res).toEqual(['fifth', 5]))
   })
 
   it('should return first N item with score if count=N', () => {
     const redis = new Redis({ data })
 
-    return redis.zpopmax('foo', 3).then(res => {
-      return expect(res).toEqual(['fifth', 5, 'fourth', 4, 'third', 3])
-    })
+    return redis
+      .zpopmax('foo', 3)
+      .then(res => expect(res).toEqual(['fifth', 5, 'fourth', 4, 'third', 3]))
   })
 
   it('should return empty list if no data', () => {
     const redis = new Redis({ data: {} })
 
-    return redis.zpopmax('foo').then(res => {
-      return expect(res).toEqual([])
-    })
+    return redis.zpopmax('foo').then(res => expect(res).toEqual([]))
   })
 
   it('should remove the items', () => {

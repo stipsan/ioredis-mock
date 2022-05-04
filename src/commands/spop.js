@@ -1,5 +1,6 @@
 import shuffle from 'lodash.shuffle'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import sample from '../commands-utils/sample'
 
 const safeCount = count => {
@@ -39,8 +40,5 @@ export function spop(key, count) {
 
 export function spopBuffer(...args) {
   const val = spop.apply(this, args)
-  if (Array.isArray(val)) {
-    return val.map(Buffer.from)
-  }
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

@@ -43,9 +43,9 @@ runTwinSuite('set', (command, equals) => {
     it('should throw an exception if both NX and XX are specified', async () => {
       const redis = new Redis()
 
-      await expect(() => {
-        return redis[command]('foo', 1, 'NX', 'XX')
-      }).rejects.toThrow('ERR syntax error')
+      await expect(() => redis[command]('foo', 1, 'NX', 'XX')).rejects.toThrow(
+        'ERR syntax error'
+      )
       redis.disconnect()
     })
 

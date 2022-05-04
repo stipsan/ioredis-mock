@@ -1,4 +1,5 @@
 import createCommand from '../command'
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import sha1 from '../commands-utils/sha1'
 import { customCommand } from './defineCommand'
 
@@ -16,5 +17,5 @@ export function evaluate(script, numberOfKeys, ...args) {
 
 export async function evalBuffer(...args) {
   const val = await evaluate.apply(this, args)
-  return !val || Number.isInteger(val) ? val : Buffer.from(val)
+  return convertStringToBuffer(val)
 }

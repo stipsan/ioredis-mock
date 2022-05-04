@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function get(key) {
   const value = this.data.has(key) ? this.data.get(key) : null
 
@@ -9,5 +11,5 @@ export function get(key) {
 }
 
 export function getBuffer(key) {
-  return this.data.has(key) ? Buffer.from(this.data.get(key)) : null
+  return this.data.has(key) ? convertStringToBuffer(this.data.get(key)) : null
 }

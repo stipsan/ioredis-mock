@@ -1,21 +1,41 @@
 import Redis from 'ioredis'
+import sortBy from 'lodash.sortby'
 
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
 
-runTwinSuite('command', (command, equals) => {
-  describe(command, () => {
+runTwinSuite('command', command => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
       redis.disconnect()
     })
 
-    // TODO works like info, returns everything as if COMMAND INFO *
-    it('returns a all commands by default', async () => {
+    it('returns all commands by default', async () => {
       const commands = await redis[command]()
 
-      expect(commands).toEqual(expect.any(Array))
+      expect(
+        sortBy(commands, ([cmd]) => cmd).map(
+          ([_0, _1, _2, _3, _4, _5, _6, _7, _8, subcommands, ...rest]) => [
+            _0,
+            _1,
+            _2,
+            _3,
+            _4,
+            _5,
+            _6,
+            _7,
+            _8,
+            subcommands?.length
+              ? sortBy(subcommands, ([cmd]) => cmd)
+              : subcommands,
+            ...rest,
+          ]
+        )
+      ).toMatchSnapshot()
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -24,45 +44,194 @@ runTwinSuite('command', (command, equals) => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('Unknown subcommand')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
     describe('info', () => {
-      it('returns a description of the command', async () => {
-        const [get, sinter] = await redis[command]('info', 'get', 'sinter')
+      it('returns nothing on an unknown command', async () => {
+        const commands = await redis[command]('info', 'foo')
 
-        expect(equals(get[0], 'get')).toBe(true)
-        expect(get[1]).toBe(2)
-        expect(equals(get[2][0], 'readonly')).toBe(true)
-        expect(equals(get[2][1], 'fast')).toBe(true)
-        expect(get[3]).toBe(1)
-        expect(get[4]).toBe(1)
-        expect(get[5]).toBe(1)
+        expect(commands).toMatchSnapshot()
+      })
 
-        expect(equals(sinter[0], 'sinter')).toBe(true)
-        expect(sinter[1]).toBe(-2)
-        expect(equals(sinter[2][0], 'readonly')).toBe(true)
-        expect(equals(sinter[2][1], 'sort_for_script')).toBe(false)
-        expect(sinter[3]).toBe(1)
-        expect(sinter[4]).toBe(-1)
-        expect(sinter[5]).toBe(1)
+      it('returns the same list as COMMAND without args', async () => {
+        const defaults = await redis[command]()
+        const commands = await redis[command]('info')
+
+        expect(defaults).toEqual(commands)
+      })
+
+      it('returns a command description', async () => {
+        const commands = await redis[command]('info', 'get', 'sinter')
+
+        expect(commands).toMatchSnapshot()
       })
     })
 
     describe('count', () => {
       it('should throw on wrong number of arguments', async () => {
-        expect.hasAssertions()
+        expect.assertions(1)
 
         try {
           await redis[command]('count', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
       it('returns number of commands', async () => {
-        expect(await redis[command]('COUNT')).toBeGreaterThanOrEqual(224)
+        expect(await redis[command]('COUNT')).toMatchSnapshot()
+      })
+    })
+
+    describe('list', () => {
+      it('should throw on wrong number of arguments', async () => {
+        expect.assertions(1)
+
+        try {
+          await redis[command]('list', 'foo')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+      })
+
+      it('returns a list of all commands', async () => {
+        const commands = await redis[command]('LIST')
+        commands.sort()
+        expect(commands).toMatchSnapshot()
+      })
+    })
+
+    describe('docs', () => {
+      it('returns nothing on an unknown command', async () => {
+        const commands = await redis[command]('docs', 'foo')
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns all commands by default', async () => {
+        const commands = await redis[command]('docs')
+
+        expect(commands).toEqual(expect.any(Array))
+      })
+
+      it('returns a commands docs', async () => {
+        const commands = await redis[command]('docs', 'get')
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns a description of multiple commands', async () => {
+        const commands = await redis[command]('docs', 'get', 'foo', 'set')
+
+        expect(commands).toMatchSnapshot()
+      })
+    })
+
+    describe('getkeys', () => {
+      it('should throw on wrong number of arguments', async () => {
+        expect.assertions(3)
+
+        try {
+          await redis[command]('GETKEYS', 'foo')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+
+        try {
+          await redis[command]('GETKEYS', 'foo', 'bar')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+
+        try {
+          await redis[command]('GETKEYS', 'get')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+      })
+
+      it('returns the keys used in get', async () => {
+        const commands = await redis[command]('getkeys', 'get', 'foo')
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns the keys used in sdiff', async () => {
+        const commands = await redis[command]('getkeys', 'sdiff', 'foo', 'bar')
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns the keys used in hmset', async () => {
+        const commands = await redis[command](
+          'getkeys',
+          'hmset',
+          'user:1',
+          'id',
+          '1',
+          'email',
+          'bruce@wayne.enterprises'
+        )
+
+        expect(commands).toMatchSnapshot()
+      })
+    })
+
+    // TODO: implement this command
+    ;(process.env.IS_E2E ? describe : describe.skip)('getkeysandflags', () => {
+      it('should throw on wrong number of arguments', async () => {
+        expect.assertions(3)
+
+        try {
+          await redis[command]('GETKEYSANDFLAGS', 'foo')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+
+        try {
+          await redis[command]('GETKEYSANDFLAGS', 'foo', 'bar')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+
+        try {
+          await redis[command]('GETKEYSANDFLAGS', 'get')
+        } catch (err) {
+          expect(err.message).toMatchSnapshot()
+        }
+      })
+
+      it('returns the keys used in get', async () => {
+        const commands = await redis[command]('getkeysandflags', 'get', 'foo')
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns the keys used in sdiff', async () => {
+        const commands = await redis[command](
+          'getkeysandflags',
+          'sdiff',
+          'foo',
+          'bar'
+        )
+
+        expect(commands).toMatchSnapshot()
+      })
+
+      it('returns the keys used in hmset', async () => {
+        const commands = await redis[command](
+          'getkeysandflags',
+          'hmset',
+          'user:1',
+          'id',
+          '1',
+          'email',
+          'bruce@wayne.enterprises'
+        )
+
+        expect(commands).toMatchSnapshot()
       })
     })
 
@@ -73,13 +242,13 @@ runTwinSuite('command', (command, equals) => {
         try {
           await redis[command]('HELP', 'foo')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('HELP', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -87,22 +256,8 @@ runTwinSuite('command', (command, equals) => {
         const result = await redis[command]('HELP')
 
         expect(
-          result.map(val => {
-            return Buffer.isBuffer(val) ? val.toString() : val
-          })
-        ).toEqual([
-          'COMMAND <subcommand> [<arg> [value] [opt] ...]. Subcommands are:',
-          '(no subcommand)',
-          '    Return details about all Redis commands.',
-          'COUNT',
-          '    Return the total number of commands in this Redis server.',
-          'GETKEYS <full-command>',
-          '    Return the keys from a full Redis command.',
-          'INFO [<command-name> ...]',
-          '    Return details about multiple Redis commands.',
-          'HELP',
-          '    Prints this help.',
-        ])
+          result.map(val => (Buffer.isBuffer(val) ? val.toString() : val))
+        ).toMatchSnapshot()
       })
     })
   })

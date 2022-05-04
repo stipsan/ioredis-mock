@@ -16,15 +16,9 @@ runTwinSuite('sunionstore', command => {
       })
 
       return redis[command]('dest', 'key1', 'key2', 'key3', 'key4')
-        .then(count => {
-          return expect(count).toEqual(5)
-        })
-        .then(() => {
-          return redis.smembers('dest')
-        })
-        .then(result => {
-          return expect(result).toEqual(['a', 'b', 'c', 'd', 'e'])
-        })
+        .then(count => expect(count).toEqual(5))
+        .then(() => redis.smembers('dest'))
+        .then(result => expect(result).toEqual(['a', 'b', 'c', 'd', 'e']))
     })
 
     it('should throw an exception if one of the keys is not a set', () => {

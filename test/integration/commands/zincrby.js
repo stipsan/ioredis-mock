@@ -12,23 +12,19 @@ describe('zincrby', () => {
     const redis = new Redis({ data })
     return redis
       .zincrby('foos', 10, 'foo')
-      .then(status => {
-        return expect(status).toBe('11')
-      })
-      .then(() => {
-        return expect(redis.data.get('foos').get('foo')).toEqual({
+      .then(status => expect(status).toBe('11'))
+      .then(() =>
+        expect(redis.data.get('foos').get('foo')).toEqual({
           value: 'foo',
           score: 11,
         })
-      })
+      )
   })
   it('should initialize a non-existent key', () => {
     const redis = new Redis({ data })
     return redis
       .zincrby('foos', 4, 'qux')
-      .then(status => {
-        return expect(status).toBe('4')
-      })
+      .then(status => expect(status).toBe('4'))
       .then(() => {
         expect(redis.data.get('foos').get('qux')).toEqual({
           value: 'qux',

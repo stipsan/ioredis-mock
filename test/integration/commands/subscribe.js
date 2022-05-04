@@ -3,60 +3,50 @@ import Redis from 'ioredis'
 describe('subscribe', () => {
   it('should ignore an empty subscribe call', () => {
     const redis = new Redis()
-    return redis.subscribe().then(subNum => {
-      return expect(subNum).toBe(0)
-    })
+    return redis.subscribe().then(subNum => expect(subNum).toBe(0))
   })
 
   it('should return number of subscribed channels', () => {
     const redis = new Redis()
-    return redis.subscribe('news', 'music').then(subNum => {
-      return expect(subNum).toBe(2)
-    })
+    return redis
+      .subscribe('news', 'music')
+      .then(subNum => expect(subNum).toBe(2))
   })
 
   it('should return number of subscribed channels when calling subscribe twice', () => {
     const redis = new Redis()
     return redis
       .subscribe('first')
-      .then(subNum => {
-        return expect(subNum).toBe(1)
-      })
-      .then(() => {
-        return redis.subscribe('second').then(subNum => {
-          return expect(subNum).toBe(2)
-        })
-      })
+      .then(subNum => expect(subNum).toBe(1))
+      .then(() =>
+        redis.subscribe('second').then(subNum => expect(subNum).toBe(2))
+      )
   })
 
   it('should not incremented number of subscribed channels when subscribing to same channel multiple times', () => {
     const redis = new Redis()
     return redis
       .subscribe('channel')
-      .then(subNum => {
-        return expect(subNum).toBe(1)
-      })
-      .then(() => {
-        return redis.subscribe('channel').then(subNum => {
-          return expect(subNum).toBe(1)
-        })
-      })
+      .then(subNum => expect(subNum).toBe(1))
+      .then(() =>
+        redis.subscribe('channel').then(subNum => expect(subNum).toBe(1))
+      )
   })
 
   it('should reject non-subscribe commands when having at least one open subscription', () => {
     const redis = new Redis()
-    return redis.subscribe('channel').then(() => {
-      return redis
+    return redis.subscribe('channel').then(() =>
+      redis
         .get('key')
         .then(() => {
           throw new Error('get should fail when in subscriber mode')
         })
-        .catch(error => {
-          return expect(error.message).toBe(
+        .catch(error =>
+          expect(error.message).toBe(
             'Connection in subscriber mode, only subscriber commands may be used'
           )
-        })
-    })
+        )
+    )
   })
 
   it('should allow multiple instances to subscribe to the same channel', () => {

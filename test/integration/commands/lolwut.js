@@ -4,28 +4,18 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('lolwut', command => {
-  describe(command, () => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
       redis.disconnect()
     })
 
-    test('should throw on invalid arguments', async () => {
-      expect.hasAssertions()
-
-      try {
-        await redis[command]('ver', 5)
-      } catch (err) {
-        expect(err.message).toMatch('ERR')
-      }
-    })
-
-    test('should return Plaguemon by hikikomori. by default', async () => {
+    test('should return Redis version by default', async () => {
       const result = await redis[command]()
-      expect(Buffer.isBuffer(result) ? result.toString() : result).toMatch(
-        'hikikomori'
-      )
+      expect(result).toMatchSnapshot()
     })
 
     test('version 6', async () => {

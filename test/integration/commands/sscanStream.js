@@ -106,8 +106,6 @@ describe('sscanStream', () => {
       expect(err).toBeInstanceOf(Error)
       done()
     })
-    writable.on('finish', () => {
-      return done(new Error('should not finish'))
-    })
+    writable.on('finish', () => done(new Error('should not finish')))
   })
 })

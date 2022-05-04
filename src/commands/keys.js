@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import patternMatchesString from '../commands-utils/patternMatchesString'
 
 export function keys(globString) {
@@ -5,6 +6,6 @@ export function keys(globString) {
 }
 
 export function keysBuffer(globString) {
-  const vals = keys.call(this, globString)
-  return vals.map(Buffer.from)
+  const val = keys.call(this, globString)
+  return convertStringToBuffer(val)
 }

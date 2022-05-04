@@ -15,32 +15,24 @@ describe('zscore', () => {
   it('should return the score of an existing member as a string', () => {
     const redis = new Redis({ data })
 
-    return redis.zscore('foo', 'third').then(res => {
-      return expect(res).toBe('3')
-    })
+    return redis.zscore('foo', 'third').then(res => expect(res).toBe('3'))
   })
 
   it('should return null when the member does not exist', () => {
     const redis = new Redis({ data })
 
-    return redis.zscore('foo', 'sixth').then(res => {
-      return expect(res).toBeFalsy()
-    })
+    return redis.zscore('foo', 'sixth').then(res => expect(res).toBeFalsy())
   })
 
   it('should return null when the key is not a sorted set', () => {
     const redis = new Redis({ data })
 
-    return redis.zscore('bar', 'first').then(res => {
-      return expect(res).toBeFalsy()
-    })
+    return redis.zscore('bar', 'first').then(res => expect(res).toBeFalsy())
   })
 
   it('should return null when the key does not exist', () => {
     const redis = new Redis({ data })
 
-    return redis.zscore('baz', 'first').then(res => {
-      return expect(res).toBeFalsy()
-    })
+    return redis.zscore('baz', 'first').then(res => expect(res).toBeFalsy())
   })
 })

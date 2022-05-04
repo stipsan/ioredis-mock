@@ -7,12 +7,8 @@ const chance = new Chance()
 
 describe('hscanStream', () => {
   let writable
-  const randomCCType = () => {
-    return chance.cc_type({ raw: true })
-  }
-  const createHashSet = keys => {
-    return zipObject(keys, keys.map(randomCCType))
-  }
+  const randomCCType = () => chance.cc_type({ raw: true })
+  const createHashSet = keys => zipObject(keys, keys.map(randomCCType))
 
   beforeEach(() => {
     writable = new ObjectWritableMock()
@@ -113,8 +109,6 @@ describe('hscanStream', () => {
       expect(err).toBeInstanceOf(Error)
       done()
     })
-    writable.on('finish', () => {
-      return done(new Error('should not finish'))
-    })
+    writable.on('finish', () => done(new Error('should not finish')))
   })
 })

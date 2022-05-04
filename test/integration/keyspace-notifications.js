@@ -9,11 +9,9 @@ describe('keyspaceNotifications', () => {
       expect(message).toBe('del')
       done()
     })
-    redisPubSub.subscribe('__keyspace@0__:key').then(() => {
-      return redis.set('key', 'value').then(() => {
-        return redis.del('key')
-      })
-    })
+    redisPubSub
+      .subscribe('__keyspace@0__:key')
+      .then(() => redis.set('key', 'value').then(() => redis.del('key')))
   })
 
   it('should not appear when not configured and the triggering event occurs', done => {
@@ -21,13 +19,9 @@ describe('keyspaceNotifications', () => {
     redis.on('message', (channel, message) => {
       throw new Error(`should not receive ${message} on ${channel}`)
     })
-    redis.set('key', 'value').then(() => {
-      return redis.del('key')
-    })
+    redis.set('key', 'value').then(() => redis.del('key'))
     // wait for notification to NOT appear
-    setTimeout(() => {
-      return done()
-    }, 40)
+    setTimeout(() => done(), 40)
   })
 
   it('should appear on a connected second mock instance when configured and the triggering event occurs', done => {
@@ -38,11 +32,9 @@ describe('keyspaceNotifications', () => {
       expect(message).toBe('del')
       done()
     })
-    redis2.subscribe('__keyspace@0__:key').then(() => {
-      return redis.set('key', 'value').then(() => {
-        return redis.del('key')
-      })
-    })
+    redis2
+      .subscribe('__keyspace@0__:key')
+      .then(() => redis.set('key', 'value').then(() => redis.del('key')))
   })
 })
 
@@ -55,10 +47,8 @@ describe('keyeventNotifications', () => {
       expect(message).toBe('key')
       done()
     })
-    redisPubSub.subscribe('__keyevent@0__:del').then(() => {
-      return redis.set('key', 'value').then(() => {
-        return redis.del('key')
-      })
-    })
+    redisPubSub
+      .subscribe('__keyevent@0__:del')
+      .then(() => redis.set('key', 'value').then(() => redis.del('key')))
   })
 })

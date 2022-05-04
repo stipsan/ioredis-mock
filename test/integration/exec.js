@@ -15,12 +15,12 @@ describe('exec', () => {
         ['incr', 'post_next'],
       ])
       .exec()
-      .then(results => {
-        return expect(results).toEqual([
+      .then(results =>
+        expect(results).toEqual([
           [null, 2],
           [null, 2],
         ])
-      })
+      )
   })
 
   it('should support a callback function', done => {

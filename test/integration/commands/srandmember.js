@@ -8,9 +8,9 @@ describe('srandmember', () => {
       },
     })
 
-    return redis.srandmember('myset').then(result => {
-      return expect(['one', 'two', 'three']).toContain(result)
-    })
+    return redis
+      .srandmember('myset')
+      .then(result => expect(['one', 'two', 'three']).toContain(result))
   })
 
   it('should return random unique items', () => {
@@ -48,17 +48,15 @@ describe('srandmember', () => {
       },
     })
 
-    return redis.srandmember('myset', -5).then(results => {
-      return expect(results.length).toBe(5)
-    })
+    return redis
+      .srandmember('myset', -5)
+      .then(results => expect(results.length).toBe(5))
   })
 
   it('should return null if set is empty', () => {
     const redis = new Redis()
 
-    return redis.srandmember('myset').then(result => {
-      return expect(result).toBe(null)
-    })
+    return redis.srandmember('myset').then(result => expect(result).toBe(null))
   })
 
   it('should throw an exception if the key contains something other than a set', () => {
@@ -68,8 +66,8 @@ describe('srandmember', () => {
       },
     })
 
-    return redis.srandmember('foo').catch(err => {
-      return expect(err.message).toBe('Key foo does not contain a set')
-    })
+    return redis
+      .srandmember('foo')
+      .catch(err => expect(err.message).toBe('Key foo does not contain a set'))
   })
 })

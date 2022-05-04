@@ -1,15 +1,14 @@
 require('@babel/register')
 const path = require('path')
 const fs = require('fs')
-const commands = require('redis-commands')
 const redis = require('ioredis')
 const prettier = require('prettier')
+const { list } = require('../data/command-list.json')
 const RedisMock = require('../src')
 
 const mockedRedis = new RedisMock()
 
 const skipList = {
-  'host:': false,
   'restore-asking': false,
   debug: 'This command is intended to aid in debugging redis',
   dump: "Doesn't make sense to implement the internal data format used by RDB",
@@ -25,13 +24,19 @@ const skipList = {
   multi: false,
   pfdebug: 'This command is intended to aid in debugging redis',
   pfselftest: false,
-  post: false,
-  pselftest: false,
   restore:
     'The RDB specific format used for restores would be a massive undertaking to implement with very little gain.',
   slowlog: "Useful when you're on redis, not so much when on ioredis-mock",
 }
-const commandsList = commands.list.filter(command => !(command in skipList))
+for (const key of Object.keys(skipList)) {
+  if (list.indexOf(key) === -1) {
+    throw new Error(`Remove ${key} from skipList`)
+  }
+}
+const commandsList = list.filter(
+  command => !(command in skipList) && !command.includes('|')
+)
+commandsList.sort()
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'
 let supportedCommands = 0

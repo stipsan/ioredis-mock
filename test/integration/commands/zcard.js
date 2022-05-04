@@ -12,17 +12,13 @@ describe('zcard', () => {
       },
     })
 
-    return redis.zcard('foo').then(length => {
-      return expect(length).toBe(3)
-    })
+    return redis.zcard('foo').then(length => expect(length).toBe(3))
   })
 
   it('should return 0 if the sorted set does not exist', () => {
     const redis = new Redis()
 
-    return redis.zcard('foo').then(length => {
-      return expect(length).toBe(0)
-    })
+    return redis.zcard('foo').then(length => expect(length).toBe(0))
   })
 
   it('should throw an exception if the key contains something other than a sorted set', () => {
@@ -32,8 +28,10 @@ describe('zcard', () => {
       },
     })
 
-    return redis.zcard('foo').catch(err => {
-      return expect(err.message).toBe('Key foo does not contain a sorted set')
-    })
+    return redis
+      .zcard('foo')
+      .catch(err =>
+        expect(err.message).toBe('Key foo does not contain a sorted set')
+      )
   })
 })

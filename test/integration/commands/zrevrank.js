@@ -14,27 +14,21 @@ describe('zrevrank', () => {
 
     return redis
       .zrevrank('foo', 'not-exist')
-      .then(status => {
-        return expect(status).toBe(null)
-      })
-      .then(() => {
-        return expect(redis.data.has('foo')).toBe(false)
-      })
+      .then(status => expect(status).toBe(null))
+      .then(() => expect(redis.data.has('foo')).toBe(false))
   })
 
   it('should return null if not found', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrank('foo', 'not-found').then(status => {
-      return expect(status).toBe(null)
-    })
+    return redis
+      .zrevrank('foo', 'not-found')
+      .then(status => expect(status).toBe(null))
   })
 
   it('should return found index', () => {
     const redis = new Redis({ data })
 
-    return redis.zrevrank('foo', 'first').then(status => {
-      return expect(status).toBe(2)
-    })
+    return redis.zrevrank('foo', 'first').then(status => expect(status).toBe(2))
   })
 })

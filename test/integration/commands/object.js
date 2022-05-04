@@ -4,7 +4,9 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('object', command => {
-  describe(command, () => {
+  ;(process.env.IS_BROWSER && command.endsWith('Buffer')
+    ? describe.skip
+    : describe)(command, () => {
     const redis = new Redis()
 
     afterAll(() => {
@@ -13,9 +15,9 @@ runTwinSuite('object', command => {
 
     it('should throw on too few arguments', async () => {
       expect.hasAssertions()
-      await expect(() => {
-        return redis[command]()
-      }).rejects.toThrow('wrong number of arguments')
+      await expect(() => redis[command]()).rejects.toThrow(
+        'wrong number of arguments'
+      )
     })
 
     it('should throw on unknown subcommand', async () => {
@@ -24,7 +26,7 @@ runTwinSuite('object', command => {
       try {
         await redis[command]('foobar')
       } catch (err) {
-        expect(err.message).toMatch('unknown subcommand')
+        expect(err.message).toMatchSnapshot()
       }
     })
 
@@ -35,13 +37,13 @@ runTwinSuite('object', command => {
         try {
           await redis[command]('encoding')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
 
         try {
           await redis[command]('ENCODING', 'foo', 'bar')
         } catch (err) {
-          expect(err.message).toMatch('wrong number of arguments')
+          expect(err.message).toMatchSnapshot()
         }
       })
 
@@ -52,43 +54,31 @@ runTwinSuite('object', command => {
       it('returns the internal encoding for the Redis object', async () => {
         await redis.set('mystring', 'hello')
         const mystring = await redis[command]('encoding', 'mystring')
-        expect(Buffer.isBuffer(mystring) ? mystring.toString() : mystring).toBe(
-          'embstr'
-        )
+        expect(mystring).toMatchSnapshot()
 
         await redis.set('myint', 1)
         const myint = await redis[command]('encoding', 'myint')
-        expect(Buffer.isBuffer(myint) ? myint.toString() : myint).toBe('int')
+        expect(myint).toMatchSnapshot()
 
         await redis.rpush('mylist', 'one')
         const mylist = await redis[command]('encoding', 'mylist')
-        expect(Buffer.isBuffer(mylist) ? mylist.toString() : mylist).toBe(
-          'quicklist'
-        )
+        expect(mylist).toMatchSnapshot()
 
         await redis.sadd('myintset', 1, 2, 3)
         const myintset = await redis[command]('encoding', 'myintset')
-        expect(Buffer.isBuffer(myintset) ? myintset.toString() : myintset).toBe(
-          'intset'
-        )
+        expect(myintset).toMatchSnapshot()
 
         await redis.sadd('myset', 'one', 'two', 'three')
         const myset = await redis[command]('encoding', 'myset')
-        expect(Buffer.isBuffer(myset) ? myset.toString() : myset).toBe(
-          'hashtable'
-        )
+        expect(myset).toMatchSnapshot()
 
         await redis.hmset('myhash', 'one', 1, 'two', 2)
         const myhash = await redis[command]('encoding', 'myhash')
-        expect(Buffer.isBuffer(myhash) ? myhash.toString() : myhash).toBe(
-          'ziplist'
-        )
+        expect(myhash).toMatchSnapshot()
 
         await redis.zadd('mysortedset', 1, 'one', 2, 'two', 3, 'three')
         const mysortedset = await redis[command]('encoding', 'mysortedset')
-        expect(
-          Buffer.isBuffer(mysortedset) ? mysortedset.toString() : mysortedset
-        ).toBe('listpick')
+        expect(mysortedset).toMatchSnapshot()
       })
     })
 
@@ -152,9 +142,7 @@ runTwinSuite('object', command => {
 
         // @TODO implement this functionality together with the TOUCH command
         if (process.env.IS_E2E) {
-          await new Promise(resolve => {
-            return setTimeout(resolve, 1100)
-          })
+          await new Promise(resolve => setTimeout(resolve, 1100))
 
           expect(await redis[command]('IDLETIME', 'foo')).toBeGreaterThan(0)
         }
@@ -209,9 +197,7 @@ runTwinSuite('object', command => {
         const result = await redis[command]('HELP')
 
         expect(
-          result.map(val => {
-            return Buffer.isBuffer(val) ? val.toString() : val
-          })
+          result.map(val => (Buffer.isBuffer(val) ? val.toString() : val))
         ).toEqual([
           'OBJECT <subcommand> [<arg> [value] [opt] ...]. Subcommands are:',
           'ENCODING <key>',

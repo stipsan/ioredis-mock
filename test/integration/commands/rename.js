@@ -39,11 +39,11 @@ runTwinSuite('rename', (command, equals) => {
         })
         redisPubSub
           .subscribe('__keyspace@0__:before', '__keyspace@0__:after')
-          .then(async () => {
-            return redis.set('before', 'value').then(() => {
-              return redis.rename('before', 'after')
-            })
-          })
+          .then(async () =>
+            redis
+              .set('before', 'value')
+              .then(() => redis.rename('before', 'after'))
+          )
       }
     )
   })

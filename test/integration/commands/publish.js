@@ -7,10 +7,8 @@ runTwinSuite('publish', command => {
   describe(command, () => {
     it('should return 0 when publishing without subscribers', () => {
       const redis = new Redis()
-      return redis[command]('emails', 'clark@daily.planet').then(
-        subscribers => {
-          return expect(subscribers).toBe(0)
-        }
+      return redis[command]('emails', 'clark@daily.planet').then(subscribers =>
+        expect(subscribers).toBe(0)
       )
     })
 
@@ -19,12 +17,8 @@ runTwinSuite('publish', command => {
       const redis2 = new Redis()
       redisPubSub.subscribe('emails')
       return redis2[command]('emails', 'clark@daily.planet')
-        .then(subscribers => {
-          return expect(subscribers).toBe(1)
-        })
-        .finally(() => {
-          return redisPubSub.unsubscribe('emails')
-        })
+        .then(subscribers => expect(subscribers).toBe(1))
+        .finally(() => redisPubSub.unsubscribe('emails'))
     })
 
     it('should publish a message, which can be received by a previous subscribe', done => {
@@ -59,12 +53,8 @@ runTwinSuite('publish', command => {
       const redis2 = new Redis()
       redisPubSub.psubscribe('emails.*')
       return redis2[command]('emails.urgent', 'clark@daily.planet')
-        .then(subscribers => {
-          return expect(subscribers).toBe(1)
-        })
-        .finally(() => {
-          return redisPubSub.punsubscribe('emails.*')
-        })
+        .then(subscribers => expect(subscribers).toBe(1))
+        .finally(() => redisPubSub.punsubscribe('emails.*'))
     })
 
     it('should publish a message, which can be received by a previous psubscribe', done => {

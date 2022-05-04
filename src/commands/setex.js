@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { expire, set } from './index'
 
 export function setex(key, seconds, value) {
@@ -10,5 +11,5 @@ export function setex(key, seconds, value) {
 
 export function setexBuffer(...args) {
   const val = setex.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

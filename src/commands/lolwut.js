@@ -1,4 +1,6 @@
-const redisVersion = '6.2.3'
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
+const redisVersion = '7.0.0'
 
 // schotter, plotter on paper, by Georg Nees
 function version5() {
@@ -51,10 +53,11 @@ export function lolwut(VERSION = 'VERSION', version) {
     return version5()
   }
 
-  return version6()
+  return `Redis ver. ${redisVersion}
+`
 }
 
 export function lolwutBuffer(...args) {
   const val = lolwut.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

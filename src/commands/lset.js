@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function lset(key, i, value) {
   if (!this.data.has(key)) {
     throw new Error('no such key')
@@ -17,5 +19,5 @@ export function lset(key, i, value) {
 
 export function lsetBuffer(...args) {
   const val = lset.apply(this, args)
-  return Buffer.from(val)
+  return convertStringToBuffer(val)
 }

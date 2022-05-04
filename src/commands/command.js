@@ -1,21 +1,9 @@
-import commandsJson from 'redis-commands/commands.json'
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 
-const commandsList = Object.keys(commandsJson).reduce((acc, key) => {
-  const item = commandsJson[key]
-  acc.push([
-    key,
-    item.arity,
-    item.flags,
-    item.keyStart,
-    item.keyStop,
-    item.step,
-  ])
-  return acc
-}, [])
-
-export function command(_subcommand, ...args) {
+export async function command(_subcommand, ...args) {
   if (!_subcommand) {
-    return commandsList
+    const json = await import('../../data/command-info.json')
+    return json.default || json
   }
 
   const subcommand = _subcommand.toUpperCase()
@@ -27,42 +15,85 @@ export function command(_subcommand, ...args) {
       '    Return details about all Redis commands.',
       'COUNT',
       '    Return the total number of commands in this Redis server.',
-      'GETKEYS <full-command>',
-      '    Return the keys from a full Redis command.',
+      'LIST',
+      '    Return a list of all commands in this Redis server.',
       'INFO [<command-name> ...]',
       '    Return details about multiple Redis commands.',
+      '    If no command names are given, documentation details for all',
+      '    commands are returned.',
+      'DOCS [<command-name> ...]',
+      '    Return documentation details about multiple Redis commands.',
+      '    If no command names are given, documentation details for all',
+      '    commands are returned.',
+      'GETKEYS <full-command>',
+      '    Return the keys from a full Redis command.',
+      'GETKEYSANDFLAGS <full-command>',
+      '    Return the keys and the access flags from a full Redis command.',
       'HELP',
       '    Prints this help.',
     ]
   }
 
   if (subcommand === 'COUNT' && args.length === 0) {
-    return commandsList.length
+    const { count } = await import('../../data/command-list.json')
+    return count
   }
 
-  if (subcommand === 'INFO' && args.length > 0) {
-    return commandsList.filter(item => args.includes(item[0]))
+  if (subcommand === 'LIST') {
+    if (args.length > 0) {
+      throw new Error('ERR syntax error')
+    }
+
+    const { list } = await import('../../data/command-list.json')
+    return list
   }
 
-  throw new Error(
-    `ERR Unknown subcommand or wrong number of arguments for '${_subcommand}'. Try COMMAND HELP.`
-  )
+  if (subcommand === 'INFO') {
+    const json = await import('../../data/command-info.json')
+    const data = json.default || json
+    const result =
+      args.length > 0 ? data.filter(item => args.includes(item[0])) : data
+    return result.length === 0 ? [null] : result
+  }
+
+  if (subcommand === 'DOCS') {
+    const json = await import('../../data/command-docs.json')
+    const data = json.default || json
+
+    if (args.length === 0) {
+      return data
+    }
+
+    const result = []
+    for (const arg of args) {
+      const index = data.indexOf(arg)
+      if (index !== -1) {
+        result.push(arg, data[index + 1])
+      }
+    }
+    return result
+  }
+
+  if (subcommand === 'GETKEYS' && args.length >= 2) {
+    const { getKeyIndexes, exists } = await import('@ioredis/commands')
+    const [cmd, ...subArgs] = args
+    if (!exists(cmd)) {
+      throw new Error('ERR Invalid command specified')
+    }
+
+    return getKeyIndexes(cmd, subArgs).map(i => subArgs[i])
+  }
+
+  if (args.length > 0) {
+    throw new Error(
+      `ERR wrong number of arguments for 'command|${_subcommand.toLowerCase()}' command`
+    )
+  }
+
+  throw new Error(`ERR unknown subcommand '${_subcommand}'. Try COMMAND HELP.`)
 }
 
-export function commandBuffer(...args) {
-  const val = command.apply(this, args)
-  if (Array.isArray(val) && Array.isArray(val[0])) {
-    return val.map(([name, arity, flags, keyStart, keyStop, step]) => [
-      Buffer.from(name),
-      arity,
-      flags.map(Buffer.from),
-      keyStart,
-      keyStop,
-      step,
-    ])
-  }
-  if (Array.isArray(val)) {
-    return val.map(Buffer.from)
-  }
-  return !val || Number.isInteger(val) ? val : Buffer.from(val)
+export async function commandBuffer(...args) {
+  const val = await command.apply(this, args)
+  return convertStringToBuffer(val)
 }

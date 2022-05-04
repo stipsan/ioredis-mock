@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { type } from './index'
 
 export function getdel(key) {
@@ -19,5 +20,5 @@ export function getdel(key) {
 
 export function getdelBuffer(...args) {
   const val = getdel.apply(this, args)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

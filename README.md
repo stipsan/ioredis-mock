@@ -1,4 +1,4 @@
-# ioredis-mock &middot; [![npm](https://img.shields.io/npm/dm/ioredis-mock.svg?style=flat-square)](https://npm-stat.com/charts.html?package=ioredis-mock) [![npm version](https://img.shields.io/npm/v/ioredis-mock.svg?style=flat-square)](https://www.npmjs.com/package/ioredis-mock) [![Redis Compatibility: 62%](https://img.shields.io/badge/redis-62%25-orange.svg?style=flat-square)](compat.md) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+# ioredis-mock &middot; [![npm](https://img.shields.io/npm/dm/ioredis-mock.svg?style=flat-square)](https://npm-stat.com/charts.html?package=ioredis-mock) [![npm version](https://img.shields.io/npm/v/ioredis-mock.svg?style=flat-square)](https://www.npmjs.com/package/ioredis-mock) [![Redis Compatibility: 57%](https://img.shields.io/badge/redis-57%25-red.svg?style=flat-square)](compat.md) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 This library emulates [ioredis](https://github.com/luin/ioredis) by performing
 all operations in-memory. The best way to do integration testing against redis
@@ -55,6 +55,10 @@ console.log(await redis.get('foo'))
 ## Breaking Changes
 
 ### from v7 to v8
+
+#### `ioredis@v4` support dropped
+
+`ioredis@v5` is the new baseline. Stay on `ioredis-mock@v7` until you're ready to upgrade to `ioredis@v5`.
 
 #### `PromiseContainer` has been removed.
 
@@ -134,17 +138,6 @@ redisSub.on('message', (channel, message) => {
 })
 redisSub.subscribe('emails')
 redisPub.publish('emails', 'clark@daily.planet')
-```
-
-### Promises
-
-By default, ioredis-mock uses the native Promise library. If you need (or prefer) [bluebird](http://bluebirdjs.com/) promises, set `Redis.Promise`:
-
-```js
-var Promise = require('bluebird')
-var Redis = require('ioredis-mock')
-
-Redis.Promise = Promise
 ```
 
 ### Lua scripting

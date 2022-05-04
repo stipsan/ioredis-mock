@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function discard() {
   if (!this.batch) {
     throw new Error('ERR DISCARD without MULTI')
@@ -8,5 +10,5 @@ export function discard() {
 
 export function discardBuffer() {
   const val = discard.call(this)
-  return val ? Buffer.from(val) : val
+  return convertStringToBuffer(val)
 }

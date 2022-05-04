@@ -1,4 +1,5 @@
 import createCommand from '../command'
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { customCommand } from './defineCommand'
 
 /**
@@ -30,5 +31,5 @@ export function evalsha(sha1, numberOfKeys, ...args) {
 
 export async function evalshaBuffer(...args) {
   const val = await evalsha.apply(this, args)
-  return !val || Number.isInteger(val) ? val : Buffer.from(val)
+  return convertStringToBuffer(val)
 }

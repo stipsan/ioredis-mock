@@ -21,9 +21,9 @@ runTwinSuite('decrby', command => {
       })
       await redis.set('user_next', '1')
 
-      await expect(() => {
-        return redis[command]('user_next')
-      }).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(() =>
+        redis[command]('user_next')
+      ).rejects.toThrowErrorMatchingInlineSnapshot(
         '"ERR wrong number of arguments for \'decrby\' command"'
       )
       expect(await redis.get('user_next')).toBe('1')

@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function sdiff(ours, ...theirs) {
   if (this.data.has(ours) && !(this.data.get(ours) instanceof Set)) {
     throw new Error(`Key ${ours} does not contain a set`)
@@ -26,5 +28,5 @@ export function sdiff(ours, ...theirs) {
 
 export function sdiffBuffer(...args) {
   const val = sdiff.apply(this, args)
-  return val.map(Buffer.from)
+  return convertStringToBuffer(val)
 }

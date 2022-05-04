@@ -13,12 +13,8 @@ runTwinSuite('lpop', (command, equals) => {
       })
 
       return redis[command]('foo')
-        .then(result => {
-          return expect(equals(result, '3')).toBe(true)
-        })
-        .then(() => {
-          return expect(redis.data.get('foo')).toEqual(['2', '1'])
-        })
+        .then(result => expect(equals(result, '3')).toBe(true))
+        .then(() => expect(redis.data.get('foo')).toEqual(['2', '1']))
     })
 
     it('should return buffer values correctly as buffer', () => {
@@ -46,9 +42,7 @@ runTwinSuite('lpop', (command, equals) => {
         },
       })
 
-      return redis[command]('foo').then(result => {
-        return expect(result).toBe(null)
-      })
+      return redis[command]('foo').then(result => expect(result).toBe(null))
     })
 
     it('should throw an exception if the key contains something other than a list', () => {
@@ -58,9 +52,9 @@ runTwinSuite('lpop', (command, equals) => {
         },
       })
 
-      return redis[command]('foo').catch(err => {
-        return expect(err.message).toBe('Key foo does not contain a list')
-      })
+      return redis[command]('foo').catch(err =>
+        expect(err.message).toBe('Key foo does not contain a list')
+      )
     })
   })
 })
