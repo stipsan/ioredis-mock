@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [zcardBuffer][1]
 - [zincrbyBuffer][1]
 - [zpopmaxBuffer][1]
 - [zpopminBuffer][1]

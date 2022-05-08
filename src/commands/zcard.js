@@ -8,3 +8,5 @@ export function zcard(key) {
   }
   return this.data.get(key).size
 }
+
+export const zcardBuffer = zcard
