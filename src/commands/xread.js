@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function xread(option, ...args) {
   const { op, opVal, rest } =
     option === 'STREAMS'
@@ -66,4 +68,9 @@ export function xread(option, ...args) {
         if (events.length === 0) return resolve(null)
         return resolve(events.slice().reverse())
       })
+}
+
+export async function xreadBuffer(...args) {
+  const val = await xread.apply(this, args)
+  return convertStringToBuffer(val)
 }

@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [xreadBuffer][1]
 - [xrevrangeBuffer][1]
 - [zcardBuffer][1]
 - [zincrbyBuffer][1]
