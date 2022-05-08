@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [xaddBuffer][1]
 - [xrangeBuffer][1]
 - [xreadBuffer][1]
 - [xrevrangeBuffer][1]

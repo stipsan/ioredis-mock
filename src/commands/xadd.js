@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function xadd(stream, id, ...args) {
   if (
     !stream ||
@@ -42,4 +44,9 @@ export function xadd(stream, id, ...args) {
   }
   this.data.set(stream, newData)
   return `${eventId}`
+}
+
+export function xaddBuffer(...args) {
+  const val = xadd.apply(this, args)
+  return convertStringToBuffer(val)
 }
