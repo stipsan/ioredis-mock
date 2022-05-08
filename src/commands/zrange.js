@@ -1,5 +1,6 @@
 import orderBy from 'lodash.orderby'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { slice } from './zrange-command.common'
 
 export function zrange(key, s, e, withScores) {
@@ -30,4 +31,9 @@ export function zrange(key, s, e, withScores) {
   }
 
   return ordered.map(it => it.value)
+}
+
+export function zrangeBuffer(...args) {
+  const val = zrange.apply(this, args)
+  return convertStringToBuffer(val)
 }
