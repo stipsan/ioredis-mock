@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 59%](https://img.shields.io/badge/coverage-59%25-red.svg)
+## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -230,10 +230,6 @@
 | [zscore]               | :white_check_mark: | :white_check_mark: |
 | [zunion]               | :white_check_mark: |        :x:         |
 | [zunionstore]          | :white_check_mark: |        :x:         |
-
-## Missing buffer commands
-
-- [zscoreBuffer][1]
 
 ## Commands that won't be implemented
 

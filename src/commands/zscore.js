@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function zscore(key, member) {
   const map = this.data.get(key)
 
@@ -13,4 +15,9 @@ export function zscore(key, member) {
   }
 
   return entry.score.toString()
+}
+
+export function zscoreBuffer(...args) {
+  const val = zscore.apply(this, args)
+  return convertStringToBuffer(val)
 }
