@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [zrankBuffer][1]
 - [zremrangebyrankBuffer][1]
 - [zremrangebyscoreBuffer][1]
 - [zrevrangeBuffer][1]

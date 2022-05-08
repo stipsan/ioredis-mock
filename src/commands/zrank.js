@@ -5,3 +5,5 @@ export function zrank(key, member) {
   const idx = vals.indexOf(member)
   return idx >= 0 ? idx : null
 }
+
+export const zrankBuffer = zrank
