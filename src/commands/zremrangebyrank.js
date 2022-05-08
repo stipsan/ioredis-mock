@@ -15,3 +15,5 @@ export function zremrangebyrank(key, s, e) {
   this.data.set(key, map)
   return vals.length
 }
+
+export const zremrangebyrankBuffer = zremrangebyrank
