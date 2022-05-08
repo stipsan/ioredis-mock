@@ -234,7 +234,6 @@
 ## Missing buffer commands
 
 - [hscanBuffer][1]
-- [scanBuffer][1]
 - [sscanBuffer][1]
 - [subscribeBuffer][1]
 - [xaddBuffer][1]

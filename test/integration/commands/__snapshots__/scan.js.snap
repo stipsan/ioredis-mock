@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scan should return null array if nothing in db 1`] = `
+Array [
+  "0",
+  Array [],
+]
+`;
+
+exports[`scanBuffer should return null array if nothing in db 1`] = `
+Array [
+  Buffer<30>,
+  Array [],
+]
+`;
