@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [zrevrankBuffer][1]
 - [zscoreBuffer][1]
 
 ## Commands that won't be implemented
