@@ -1,3 +1,4 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { scanHelper } from '../commands-utils/scan-command.common'
 
 export function zscan(key, cursor, ...args) {
@@ -12,4 +13,9 @@ export function zscan(key, cursor, ...args) {
 
   const [offset, keys] = scanHelper(zKeys, 1, cursor, ...args)
   return [offset, [].concat(...keys)]
+}
+
+export function zscanBuffer(...args) {
+  const val = zscan.apply(this, args)
+  return convertStringToBuffer(val)
 }
