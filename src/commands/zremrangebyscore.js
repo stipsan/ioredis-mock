@@ -15,3 +15,5 @@ export function zremrangebyscore(key, inputMin, inputMax) {
 
   return vals.length
 }
+
+export const zremrangebyscoreBuffer = zremrangebyscore
