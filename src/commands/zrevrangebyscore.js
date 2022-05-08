@@ -1,5 +1,6 @@
 import orderBy from 'lodash.orderby'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import {
   filterPredicate,
   getWithScoresAndLimit,
@@ -39,4 +40,9 @@ export function zrevrangebyscore(key, inputMax, inputMin, ...args) {
     return offsetAndLimit(results, offset, limit)
   }
   return results
+}
+
+export function zrevrangebyscoreBuffer(...args) {
+  const val = zrevrangebyscore.apply(this, args)
+  return convertStringToBuffer(val)
 }
