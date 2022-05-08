@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [zpopmaxBuffer][1]
 - [zpopminBuffer][1]
 - [zrangeBuffer][1]
 - [zrangebyscoreBuffer][1]

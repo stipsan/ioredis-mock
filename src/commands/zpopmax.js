@@ -1,5 +1,6 @@
 import orderBy from 'lodash.orderby'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { slice } from './zrange-command.common'
 
 export function zpopmax(key, count = 1) {
@@ -21,4 +22,9 @@ export function zpopmax(key, count = 1) {
   this.data.set(key, map)
 
   return ordered.flatMap(it => [it.value, it.score])
+}
+
+export function zpopmaxBuffer(...args) {
+  const val = zpopmax.apply(this, args)
+  return convertStringToBuffer(val)
 }
