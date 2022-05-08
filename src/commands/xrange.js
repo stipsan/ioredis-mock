@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function xrange(stream, start, end, ...args) {
   if (!stream || !start || !end) {
     throw new Error("ERR wrong number of arguments for 'xrange' command")
@@ -24,4 +26,9 @@ export function xrange(stream, start, end, ...args) {
 
   if (count) return result.slice(0, count)
   return result
+}
+
+export function xrangeBuffer(...args) {
+  const val = xrange.apply(this, args)
+  return convertStringToBuffer(val)
 }
