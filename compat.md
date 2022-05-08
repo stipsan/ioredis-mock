@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [xrevrangeBuffer][1]
 - [zcardBuffer][1]
 - [zincrbyBuffer][1]
 - [zpopmaxBuffer][1]
