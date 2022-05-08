@@ -233,7 +233,6 @@
 
 ## Missing buffer commands
 
-- [zincrbyBuffer][1]
 - [zpopmaxBuffer][1]
 - [zpopminBuffer][1]
 - [zrangeBuffer][1]

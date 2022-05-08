@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function zincrby(key, increment, value) {
   if (!this.data.has(key)) {
     this.data.set(key, new Map())
@@ -14,4 +16,9 @@ export function zincrby(key, increment, value) {
 
   this.data.set(key, map)
   return score.toString()
+}
+
+export function zincrbyBuffer(...args) {
+  const val = zincrby.apply(this, args)
+  return convertStringToBuffer(val)
 }
