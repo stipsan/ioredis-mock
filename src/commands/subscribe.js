@@ -24,3 +24,5 @@ export function subscribe(...args) {
   }
   return numberOfSubscribedChannels
 }
+
+export const subscribeBuffer = subscribe
