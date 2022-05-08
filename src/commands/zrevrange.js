@@ -1,5 +1,6 @@
 import orderBy from 'lodash.orderby'
 
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { slice } from './zrange-command.common'
 
 export function zrevrange(key, s, e, w) {
@@ -31,4 +32,9 @@ export function zrevrange(key, s, e, w) {
   val = slice(val, start, end)
 
   return [].concat(...val)
+}
+
+export function zrevrangeBuffer(...args) {
+  const val = zrevrange.apply(this, args)
+  return convertStringToBuffer(val)
 }
