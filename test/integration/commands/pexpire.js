@@ -5,13 +5,17 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('pexpire', command => {
   describe(command, () => {
-    const redis = new Redis()
+    let redis
 
-    afterAll(() => {
-      redis.disconnect()
+    afterEach(() => {
+      if (redis) {
+        redis.disconnect()
+        redis = null
+      }
     })
 
     it('should set expire status on key', async () => {
+      redis = new Redis()
       await redis.set('foo', 'bar')
 
       expect(await redis[command]('foo', 100)).toBe(1)
@@ -23,6 +27,7 @@ runTwinSuite('pexpire', command => {
     })
 
     it('should return 0 if key does not exist', async () => {
+      redis = new Redis()
       expect(await redis[command]('foo', 100)).toBe(0)
     })
   })
