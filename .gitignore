@@ -12,3 +12,5 @@ yarn-error.log*
 browser.js
 browser.js.map
 .DS_Store
+dump.rdb
+appendonlydir
