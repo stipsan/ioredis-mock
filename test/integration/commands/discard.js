@@ -5,9 +5,14 @@ import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('discard', command => {
   browserSafeDescribe(command)(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     it('should discard any batch queue ', async () => {
       expect.assertions(1)
-      const redis = new Redis()
 
       await redis.multi({ pipeline: false })
       await redis.incr('user_next')
@@ -17,7 +22,6 @@ runTwinSuite('discard', command => {
 
     it('errors if you discard without starting a pipeline', async () => {
       expect.assertions(1)
-      const redis = new Redis()
 
       try {
         await redis[command]()

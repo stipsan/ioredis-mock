@@ -6,8 +6,13 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('lindex', command => {
   describe(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     it('should return item list', async () => {
-      const redis = new Redis()
       await redis.lpush('mylist', 'World')
       await redis.lpush('mylist', 'Hello')
 
@@ -19,19 +24,11 @@ runTwinSuite('lindex', command => {
         .then(result => expect(result).toBe(null))
     })
 
-    it('should return null if the list does not exist', () => {
-      const redis = new Redis()
-
-      return redis[command]('foo', 0).then(result => expect(result).toBe(null))
-    })
+    it('should return null if the list does not exist', () =>
+      redis[command]('foo', 0).then(result => expect(result).toBe(null)))
 
     // @TODO: fix the implementation
     it.skip('should throw an exception if the key contains something other than a list', async () => {
-      const redis = new Redis({
-        data: {
-          foo: 'not a list',
-        },
-      })
       await redis.set('foo', 'not a list')
 
       return redis[command]('foo', 0).catch(err =>

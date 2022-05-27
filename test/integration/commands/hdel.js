@@ -5,8 +5,13 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('hdel', command => {
   describe(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     it('should delete passed in keys from hash map, and when the last key is removed, should remove the hash map itself', async () => {
-      const redis = new Redis()
       await redis.hset(
         'user:1',
         'id',
@@ -32,8 +37,6 @@ runTwinSuite('hdel', command => {
     })
 
     it('should return 0 for key that does not exist', done => {
-      const redis = new Redis()
-
       redis
         .hset(
           'user:1',

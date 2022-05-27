@@ -5,8 +5,13 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('replconf', (command, equals) => {
   describe(command, () => {
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     it('should return OK', async () => {
-      const redis = new Redis()
       expect(equals(await redis[command](), 'OK')).toBe(true)
     })
   })

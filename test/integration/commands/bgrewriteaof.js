@@ -5,9 +5,13 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('bgrewriteaof', (command, equals) => {
   describe(command, () => {
-    it('should return a message', async () => {
-      const redis = new Redis()
+    const redis = new Redis()
 
+    afterAll(() => {
+      redis.disconnect()
+    })
+
+    it('should return a message', async () => {
       try {
         expect(
           equals(
@@ -20,7 +24,6 @@ runTwinSuite('bgrewriteaof', (command, equals) => {
           'Background append only file rewriting already in progress'
         )
       }
-      redis.disconnect()
     })
   })
 })

@@ -6,17 +6,19 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('incrbyfloat', command => {
   describe(command, () => {
-    it('should initialize the key with 0 if there is no key', () => {
-      const redis = new Redis()
+    const redis = new Redis()
 
-      return redis[command]('user_next', 10.1)
+    afterAll(() => {
+      redis.disconnect()
+    })
+
+    it('should initialize the key with 0 if there is no key', () =>
+      redis[command]('user_next', 10.1)
         .then(userNext => expect(Number(userNext).toFixed(1)).toBe('10.1'))
         .then(async () =>
           expect(Number(await redis.get('user_next')).toFixed(1)).toBe('10.1')
-        )
-    })
+        ))
     it('should increment an float with passed increment', async () => {
-      const redis = new Redis()
       await redis.set('mykey', '10.50')
 
       return redis[command]('mykey', 0.1)
@@ -29,7 +31,6 @@ runTwinSuite('incrbyfloat', command => {
     })
 
     it('should support exponents', async () => {
-      const redis = new Redis()
       await redis.set('mykey', '5.0e3')
 
       return redis[command]('mykey', '2.0e2')
