@@ -16,7 +16,7 @@ Cases like:
   as two redis-server instances on the same CI build is hard.
 - The GitHub repo have bots that run the testing suite and is limited through
   npm package.json install scripts and can't fire up servers. (Having
-  [Greenkeeper](https://greenkeeper.io/) notifying you when a new release of
+  [Renovatebot](https://renovatebot.com/) notifying you when a new release of
   ioredis is out and wether your code breaks or not is awesome).
 
 Check the [compatibility table](compat.md) for supported redis commands.
