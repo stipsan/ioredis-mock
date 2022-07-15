@@ -17,6 +17,17 @@ runTwinSuite('eval', (command, equals) => {
       expect(equals(retVal, 'hello')).toBe(true)
     })
 
+    it('should support unpack', async () => {
+      const luaScript = `
+          function sum(a, b)
+            return tonumber(a)+tonumber(b)
+          end
+          return sum(unpack(ARGV))`
+      const retVal = await redis[command](luaScript, 0, 2, 12)
+
+      expect(retVal).toEqual(14)
+    })
+
     it('should execute a lua script through eval and get the return value', () => {
       const NUMBER_OF_KEYS = 2
       const KEY1 = 'KEY1'

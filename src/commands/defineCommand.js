@@ -27,6 +27,7 @@ export const defineRedisObject = vm => fn => {
       end
       return val
     end
+    unpack = table.unpack
     redis.call = function(...)
         return repair(call(false, ...))
     end
