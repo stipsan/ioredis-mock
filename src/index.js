@@ -254,4 +254,6 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
   }
 }
 
+RedisMock.default = RedisMock;
+
 module.exports = RedisMock
