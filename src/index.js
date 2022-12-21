@@ -113,6 +113,7 @@ class RedisMock extends EventEmitter {
       this.connected = true
       emitConnectEvent(this)
     }
+    this.options = optionsWithDefault;
   }
 
   get channels() {
