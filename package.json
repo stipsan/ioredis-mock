@@ -114,7 +114,7 @@
     "stream-browserify": "^3.0.0",
     "stream-mock": "^2.0.5",
     "url": "^0.11.0",
-    "write-file-atomic": "^4.0.2"
+    "write-file-atomic": "^5.0.0"
   },
   "peerDependencies": {
     "@types/ioredis-mock": "^8",
