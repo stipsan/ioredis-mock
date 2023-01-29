@@ -1270,7 +1270,6 @@ Array [
     Array [
       "write",
       "denyoom",
-      "movablekeys",
     ],
     1,
     1,
@@ -2370,9 +2369,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2392,9 +2389,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2453,9 +2448,7 @@ Array [
         Array [
           "@slow",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2475,9 +2468,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2497,9 +2488,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2519,9 +2508,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2541,9 +2528,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2563,9 +2548,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2634,9 +2617,7 @@ Array [
         Array [
           "@slow",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2674,9 +2655,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2692,9 +2671,7 @@ Array [
         Array [
           "@slow",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2753,15 +2730,13 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
       Array [
         "cluster|reset",
-        3,
+        -2,
         Array [
           "admin",
           "noscript",
@@ -2775,9 +2750,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2797,9 +2770,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2819,9 +2790,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -2841,9 +2810,7 @@ Array [
           "@slow",
           "@dangerous",
         ],
-        Array [
-          "nondeterministic_output",
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -3539,6 +3506,8 @@ Array [
     "echo",
     2,
     Array [
+      "loading",
+      "stale",
       "fast",
     ],
     0,
@@ -3559,7 +3528,6 @@ Array [
       "noscript",
       "stale",
       "skip_monitor",
-      "may_replicate",
       "no_mandatory_keys",
       "movablekeys",
     ],
@@ -3613,6 +3581,7 @@ Array [
     "eval_ro",
     -3,
     Array [
+      "readonly",
       "noscript",
       "stale",
       "skip_monitor",
@@ -3671,7 +3640,6 @@ Array [
       "noscript",
       "stale",
       "skip_monitor",
-      "may_replicate",
       "no_mandatory_keys",
       "movablekeys",
     ],
@@ -3723,6 +3691,7 @@ Array [
     "evalsha_ro",
     -3,
     Array [
+      "readonly",
       "noscript",
       "stale",
       "skip_monitor",
@@ -4025,7 +3994,6 @@ Array [
       "noscript",
       "stale",
       "skip_monitor",
-      "may_replicate",
       "no_mandatory_keys",
       "movablekeys",
     ],
@@ -4079,6 +4047,7 @@ Array [
     "fcall_ro",
     -3,
     Array [
+      "readonly",
       "noscript",
       "stale",
       "skip_monitor",
@@ -8477,7 +8446,6 @@ Array [
     -2,
     Array [
       "readonly",
-      "may_replicate",
     ],
     1,
     -1,
@@ -8527,7 +8495,7 @@ Array [
   ],
   Array [
     "pfdebug",
-    -3,
+    3,
     Array [
       "write",
       "denyoom",
@@ -8854,7 +8822,6 @@ Array [
       "loading",
       "stale",
       "fast",
-      "may_replicate",
     ],
     0,
     0,
@@ -10125,7 +10092,6 @@ Array [
     Array [
       "write",
       "denyoom",
-      "movablekeys",
     ],
     1,
     1,
@@ -11188,7 +11154,6 @@ Array [
       "loading",
       "stale",
       "fast",
-      "may_replicate",
     ],
     1,
     1,
@@ -12096,7 +12061,9 @@ Array [
     Array [
       Array [
         "flags",
-        Array [],
+        Array [
+          "RO",
+        ],
         "begin_search",
         Array [
           "type",
@@ -16335,7 +16302,6 @@ Array [
     Array [
       Buffer<77 72 69 74 65>,
       Buffer<64 65 6e 79 6f 6f 6d>,
-      Buffer<6d 6f 76 61 62 6c 65 6b 65 79 73>,
     ],
     1,
     1,
@@ -17443,11 +17409,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17467,11 +17429,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17539,11 +17497,7 @@ Array [
         Array [
           Buffer<40 73 6c 6f 77>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17563,11 +17517,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17587,11 +17537,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17611,11 +17557,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17635,11 +17577,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17659,11 +17597,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17736,11 +17670,7 @@ Array [
         Array [
           Buffer<40 73 6c 6f 77>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17780,11 +17710,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17800,11 +17726,7 @@ Array [
         Array [
           Buffer<40 73 6c 6f 77>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17867,17 +17789,13 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
       Array [
         Buffer<63 6c 75 73 74 65 72 7c 72 65 73 65 74>,
-        3,
+        -2,
         Array [
           Buffer<61 64 6d 69 6e>,
           Buffer<6e 6f 73 63 72 69 70 74>,
@@ -17891,11 +17809,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17915,11 +17829,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17941,11 +17851,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -17965,11 +17871,7 @@ Array [
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        Array [
-          Buffer<
-  6e 6f 6e 64 65 74 65 72 6d 69 6e 69 73 74 69 63 5f 6f 75 74 70 75 74
->,
-        ],
+        Array [],
         Array [],
         Array [],
       ],
@@ -18700,6 +18602,8 @@ Array [
     Buffer<65 63 68 6f>,
     2,
     Array [
+      Buffer<6c 6f 61 64 69 6e 67>,
+      Buffer<73 74 61 6c 65>,
       Buffer<66 61 73 74>,
     ],
     0,
@@ -18720,7 +18624,6 @@ Array [
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
       Buffer<6e 6f 5f 6d 61 6e 64 61 74 6f 72 79 5f 6b 65 79 73>,
       Buffer<6d 6f 76 61 62 6c 65 6b 65 79 73>,
     ],
@@ -18778,6 +18681,7 @@ Array [
     Buffer<65 76 61 6c 5f 72 6f>,
     -3,
     Array [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
@@ -18840,7 +18744,6 @@ Array [
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
       Buffer<6e 6f 5f 6d 61 6e 64 61 74 6f 72 79 5f 6b 65 79 73>,
       Buffer<6d 6f 76 61 62 6c 65 6b 65 79 73>,
     ],
@@ -18892,6 +18795,7 @@ Array [
     Buffer<65 76 61 6c 73 68 61 5f 72 6f>,
     -3,
     Array [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
@@ -19198,7 +19102,6 @@ Array [
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
       Buffer<6e 6f 5f 6d 61 6e 64 61 74 6f 72 79 5f 6b 65 79 73>,
       Buffer<6d 6f 76 61 62 6c 65 6b 65 79 73>,
     ],
@@ -19256,6 +19159,7 @@ Array [
     Buffer<66 63 61 6c 6c 5f 72 6f>,
     -3,
     Array [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
       Buffer<6e 6f 73 63 72 69 70 74>,
       Buffer<73 74 61 6c 65>,
       Buffer<73 6b 69 70 5f 6d 6f 6e 69 74 6f 72>,
@@ -23813,7 +23717,6 @@ Array [
     -2,
     Array [
       Buffer<72 65 61 64 6f 6e 6c 79>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
     ],
     1,
     -1,
@@ -23868,7 +23771,7 @@ Array [
   ],
   Array [
     Buffer<70 66 64 65 62 75 67>,
-    -3,
+    3,
     Array [
       Buffer<77 72 69 74 65>,
       Buffer<64 65 6e 79 6f 6f 6d>,
@@ -24202,7 +24105,6 @@ Array [
       Buffer<6c 6f 61 64 69 6e 67>,
       Buffer<73 74 61 6c 65>,
       Buffer<66 61 73 74>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
     ],
     0,
     0,
@@ -25502,7 +25404,6 @@ Array [
     Array [
       Buffer<77 72 69 74 65>,
       Buffer<64 65 6e 79 6f 6f 6d>,
-      Buffer<6d 6f 76 61 62 6c 65 6b 65 79 73>,
     ],
     1,
     1,
@@ -26609,7 +26510,6 @@ Array [
       Buffer<6c 6f 61 64 69 6e 67>,
       Buffer<73 74 61 6c 65>,
       Buffer<66 61 73 74>,
-      Buffer<6d 61 79 5f 72 65 70 6c 69 63 61 74 65>,
     ],
     1,
     1,
@@ -27540,7 +27440,9 @@ Array [
     Array [
       Array [
         Buffer<66 6c 61 67 73>,
-        Array [],
+        Array [
+          Buffer<52 4f>,
+        ],
         Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
         Array [
           Buffer<74 79 70 65>,

@@ -1,6 +1,6 @@
 import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 
-const redisVersion = '7.0.0'
+const redisVersion = '7.0.5'
 
 // schotter, plotter on paper, by Georg Nees
 function version5() {

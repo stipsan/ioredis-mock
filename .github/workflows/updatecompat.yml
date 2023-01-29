@@ -1,36 +1,26 @@
 name: Update compat.md
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   format:
-    if: github.repository == 'stipsan/ioredis-mock'
+    name: Should compat.md be updated? 🤔
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{github.head_ref}}
-      - name: use node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
+          cache: npm
+          node-version: lts/*
       - run: node scripts/update-compat
-      - name: commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add compat.md
-          git commit -m "docs: update feature compat table"
-        continue-on-error: true
-      - name: push changes
-        uses: ad-m/github-push-action@master
+      - uses: EndBug/add-and-commit@v9
         with:
-          branch: ${{github.head_ref}}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_author: github_actions
+          commit: --no-verify
+          message: 'docs(compat.md): 🤖 ✨'
