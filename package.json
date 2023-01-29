@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@ioredis/as-callback": "^3.0.0",
-    "@ioredis/commands": "^1.1.1",
+    "@ioredis/commands": "^1.2.0",
     "fengari": "^0.1.4",
     "fengari-interop": "^0.1.3"
   },
