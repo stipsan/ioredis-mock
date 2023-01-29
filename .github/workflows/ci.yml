@@ -101,7 +101,6 @@ jobs:
   e2e:
     name: Run integration tests on real redis
     runs-on: ubuntu-latest
-    needs: [build]
     services:
       redis:
         image: redis:7.0.5
