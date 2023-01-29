@@ -30,7 +30,7 @@ jobs:
         with:
           path: node_modules/.cache/prettier/.prettier-cache
           key: prettier-${{ hashFiles('package-lock.json') }}-${{ hashFiles('.gitignore') }}
-      - run: prettier --ignore-path .gitignore --cache --write .
+      - run: npx prettier --ignore-path .gitignore --cache --write .
       - run: git restore .github/workflows
       - uses: gr2m/create-or-update-pull-request-action@v1.x
         with:
