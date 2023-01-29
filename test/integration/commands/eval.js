@@ -18,7 +18,7 @@ runTwinSuite('eval', (command, equals) => {
     })
 
     // More information: https://github.com/stipsan/ioredis-mock/issues/1193
-    ;(process.env.IS_E2E ? it : it.skip)('should support unpack', async () => {
+    ;(process.env.IS_E2E ? it.skip : it)('should support unpack', async () => {
       const luaScript = `
           function sum(a, b)
             return tonumber(a)+tonumber(b)
