@@ -1,5 +1,3 @@
-package.json
-package-lock.json
 lib
 .nyc_output
 coverage
