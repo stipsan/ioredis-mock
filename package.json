@@ -33,7 +33,6 @@
     "coverage": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
-    "postlint": "npx prettier . --check",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run build:lib && npm run build:browser.js -- --minify-whitespace --minify-identifiers",
     "test": "jest",
