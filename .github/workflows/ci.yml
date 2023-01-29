@@ -104,7 +104,7 @@ jobs:
     needs: [build]
     services:
       redis:
-        image: redis
+        image: redis:7.0.5
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
