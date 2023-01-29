@@ -15,6 +15,17 @@ describe('multi', () => {
     expect(redis.batch.batch[1]).toEqual(expect.any(Function))
   })
 
+  it('should map batch length to length in pipeline',() => {
+    const redis = new Redis()
+    const pipeline = redis.pipeline()
+
+    pipeline
+      .incr('user_next')
+      .incr('post_next');
+
+    expect(pipeline.length).toBe(2);
+  })
+
   it('allows for pipelining methods', () => {
     const redis = new Redis()
 
