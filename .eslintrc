@@ -3,7 +3,7 @@
     "node": true
   },
   "extends": ["airbnb-base", "prettier"],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "plugins": ["jest", "simple-import-sort"],
   "rules": {
     "no-restricted-syntax": "off",
