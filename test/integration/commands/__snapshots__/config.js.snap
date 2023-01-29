@@ -3,7 +3,7 @@
 exports[`config get should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|get' command"`;
 
 exports[`config help prints a list over available subcommands 1`] = `
-Array [
+[
   "CONFIG <subcommand> [<arg> [value] [opt] ...]. Subcommands are:",
   "GET <pattern>",
   "    Return parameters matching the glob-like <pattern> and their values.",
@@ -43,7 +43,7 @@ exports[`config should throw on unknown subcommand 1`] = `"ERR unknown subcomman
 exports[`configBuffer get should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'config|get' command"`;
 
 exports[`configBuffer help prints a list over available subcommands 1`] = `
-Array [
+[
   Buffer<
   43 4f 4e 46 49 47 20 3c 73 75 62 63 6f 6d 6d 61 6e 64 3e 20 5b 3c 61 72 67 3e
   20 5b 76 61 6c 75 65 5d 20 5b 6f 70 74 5d 20 2e 2e 2e 5d 2e 20 53 75 62 63 6f
