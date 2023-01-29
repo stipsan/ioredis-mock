@@ -5,6 +5,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.4](https://github.com/stipsan/ioredis-mock/compare/v8.2.3...v8.2.4) (2023-01-29)
+
+### Bug Fixes
+
+- add `@types/ioredis-mock` as a peer ([06bc0a8](https://github.com/stipsan/ioredis-mock/commit/06bc0a80502e3434d19caf1a266ec8d92eb123f6))
+- ioredis 5.x uses a default export ([#1203](https://github.com/stipsan/ioredis-mock/issues/1203)) ([6fbeaf3](https://github.com/stipsan/ioredis-mock/commit/6fbeaf31ca105ab618a1a42a9e8c75f37e6ca6de))
+- keep options as redis property ([#1202](https://github.com/stipsan/ioredis-mock/issues/1202)) ([fbb9cd4](https://github.com/stipsan/ioredis-mock/commit/fbb9cd4dd19c4f571b6a40c514af8cc4f61a08c0))
+- **lua:** Expose unpack to imitate redis's lua 5.1 support ([#1194](https://github.com/stipsan/ioredis-mock/issues/1194)) ([df83646](https://github.com/stipsan/ioredis-mock/commit/df83646f11af08e40f6914b97c7bf65601bd6808)), closes [#1193](https://github.com/stipsan/ioredis-mock/issues/1193)
+- map batch length to length in pipeline ([#1201](https://github.com/stipsan/ioredis-mock/issues/1201)) ([a4e8a4a](https://github.com/stipsan/ioredis-mock/commit/a4e8a4aa4783e864ed6a110250a94deebed0d793)), closes [#1046](https://github.com/stipsan/ioredis-mock/issues/1046)
+- **publish:** channel is Buffer for `messageBuffer` event ([#1206](https://github.com/stipsan/ioredis-mock/issues/1206)) ([1537301](https://github.com/stipsan/ioredis-mock/commit/15373013a7cb283b205ae829c66b06c1877ce023)), closes [#1205](https://github.com/stipsan/ioredis-mock/issues/1205)
+- update `@ioredis/commands` ([3137d2b](https://github.com/stipsan/ioredis-mock/commit/3137d2b3d561015927138899203bbdcf73933db5))
+- use same `engines` as `ioredis` ([54aa189](https://github.com/stipsan/ioredis-mock/commit/54aa189dc900aecd715c67a40508427f829958bf))
+
 ## [8.2.3](https://github.com/stipsan/ioredis-mock/compare/v8.2.2...v8.2.3) (2023-01-29)
 
 ### Bug Fixes
