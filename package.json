@@ -115,7 +115,7 @@
     "redisjs"
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=12.22"
   },
   "prettier": {
     "singleQuote": true,
