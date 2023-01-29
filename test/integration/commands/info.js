@@ -34,19 +34,19 @@ runTwinSuite('info', command => {
       ).toMatchSnapshot()
       redis.disconnect()
     })
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return enough info to be useful',
+      async () => {
+        const redis = new Redis()
+        let value = await redis[command]()
+        if (command === 'infoBuffer') {
+          expect(Buffer.isBuffer(value)).toBe(true)
+          value = value.toString()
+        }
 
-    ;(process.env.IS_E2E ? it.skip : it)('should return enough info to be useful', async () => {
-      const redis = new Redis()
-      let value = await redis[command]()
-      if (command === 'infoBuffer') {
-        expect(Buffer.isBuffer(value)).toBe(true)
-        value = value.toString()
+        expect(value.split('\n')).toMatchSnapshot()
+        redis.disconnect()
       }
-
-      expect(
-        value.split('\n')
-      ).toMatchSnapshot()
-      redis.disconnect()
-    })
+    )
   })
 })
