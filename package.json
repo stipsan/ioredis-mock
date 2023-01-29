@@ -118,10 +118,11 @@
     "write-file-atomic": "^4.0.1"
   },
   "peerDependencies": {
-    "ioredis": "5.x"
+    "@types/ioredis-mock": "^8",
+    "ioredis": "^5"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=12.22"
   },
   "runkitExampleFilename": "example.js"
 }
