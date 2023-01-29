@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.5](https://github.com/stipsan/ioredis-mock/compare/v8.2.4...v8.2.5) (2023-01-29)
+
+### Bug Fixes
+
+- **info:** report correct redis version (7.0.8) ([08cab51](https://github.com/stipsan/ioredis-mock/commit/08cab51ec580543fe2b6d354f608896c8cde01db)), closes [#1199](https://github.com/stipsan/ioredis-mock/issues/1199)
+
 ## [8.2.4](https://github.com/stipsan/ioredis-mock/compare/v8.2.3...v8.2.4) (2023-01-29)
 
 ### Bug Fixes
