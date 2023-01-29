@@ -58,7 +58,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
     "@sanity/semantic-release-preset": "^4.0.0",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.11.0",
     "browser-process-hrtime": "^1.0.0",
     "buffer": "^6.0.3",
     "chance": "^1.1.8",
