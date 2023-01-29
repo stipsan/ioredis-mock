@@ -12,10 +12,10 @@ class Pipeline {
     this.copyCommands()
 
     Object.defineProperty(this, 'length', {
-      get () {
-        return this.batch.length;
+      get() {
+        return this.batch.length
       },
-    });
+    })
   }
 
   copyCommands() {

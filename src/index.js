@@ -113,7 +113,7 @@ class RedisMock extends EventEmitter {
       this.connected = true
       emitConnectEvent(this)
     }
-    this.options = optionsWithDefault;
+    this.options = optionsWithDefault
   }
 
   get channels() {
@@ -255,6 +255,6 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
   }
 }
 
-RedisMock.default = RedisMock;
+RedisMock.default = RedisMock
 
 module.exports = RedisMock
