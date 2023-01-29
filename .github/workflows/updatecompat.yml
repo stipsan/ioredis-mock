@@ -18,6 +18,7 @@ jobs:
         with:
           cache: npm
           node-version: lts/*
+      - run: npm ci --no-scripts
       - run: node scripts/update-compat
       - uses: EndBug/add-and-commit@v9
         with:
