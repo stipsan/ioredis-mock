@@ -2,6 +2,7 @@
   "name": "ioredis-mock",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "license": "MIT",
+  "version": "8.2.2",
   "author": "Cody Olsen <stipsan@gmail.com>",
   "homepage": "https://github.com/stipsan/ioredis-mock#readme",
   "repository": {
@@ -50,7 +51,8 @@
     "fengari-interop": "^0.1.3"
   },
   "peerDependencies": {
-    "ioredis": "5.x"
+    "ioredis": "^5",
+    "@types/ioredis-mock": "^8"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
