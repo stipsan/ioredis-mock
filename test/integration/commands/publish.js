@@ -39,7 +39,7 @@ runTwinSuite('publish', command => {
       const redis2 = new Redis()
       const buffer = Buffer.alloc(8)
       redisPubSub.on('messageBuffer', (channel, message) => {
-        expect(channel).toBe('emails')
+        expect(channel).toEqual(Buffer.from('emails'))
         expect(message).toBe(buffer)
         redisPubSub.unsubscribe('emails')
         done()
@@ -77,7 +77,7 @@ runTwinSuite('publish', command => {
       const buffer = Buffer.alloc(0)
       redisPubSub.on('pmessageBuffer', (pattern, channel, message) => {
         expect(pattern).toBe('emails.*')
-        expect(channel).toBe('emails.urgent')
+        expect(channel).toEqual(Buffer.from('emails.urgent'))
         expect(message).toBe(buffer)
         redisPubSub.punsubscribe('emails.*')
         done()

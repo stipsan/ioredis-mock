@@ -1,18 +1,12 @@
 export default function emitMessage(redisMock, channel, message, pattern) {
   process.nextTick(() => {
+    const [patternEvent, regularEvent, channelToEmit] = Buffer.isBuffer(message)
+      ? ['pmessageBuffer', 'messageBuffer', Buffer.from(channel)]
+      : ['pmessage', 'message', channel]
     if (pattern) {
-      redisMock.emit(
-        Buffer.isBuffer(message) ? 'pmessageBuffer' : 'pmessage',
-        pattern,
-        channel,
-        message
-      )
+      redisMock.emit(patternEvent, pattern, channelToEmit, message)
     } else {
-      redisMock.emit(
-        Buffer.isBuffer(message) ? 'messageBuffer' : 'message',
-        channel,
-        message
-      )
+      redisMock.emit(regularEvent, channelToEmit, message)
     }
   })
 }
