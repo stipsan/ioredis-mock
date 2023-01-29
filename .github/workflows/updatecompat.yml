@@ -1,3 +1,4 @@
+---
 name: Update compat.md
 
 on:
@@ -8,10 +9,16 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   format:
     name: Should compat.md be updated? 🤔
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # for gr2m/create-or-update-pull-request-action to push local changes
+      pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,8 +27,13 @@ jobs:
           node-version: lts/*
       - run: npm ci --no-scripts
       - run: node scripts/update-compat
-      - uses: EndBug/add-and-commit@v9
+      - uses: gr2m/create-or-update-pull-request-action@v1.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          default_author: github_actions
-          commit: --no-verify
-          message: 'docs(compat.md): 🤖 ✨'
+          author: github-actions <github-actions[bot]@users.noreply.github.com>
+          branch: actions/updatecompat
+          title: 'docs(compat.md): 🤖 ✨'
+          body: A robot ran `node scripts/update-compat` and made this PR.
+          commit-message: 'docs(compat.md): 🤖 ✨'
+          labels: automation
