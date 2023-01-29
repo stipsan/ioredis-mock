@@ -33,6 +33,8 @@ jobs:
       - run: npx prettier --ignore-path .gitignore --cache --write .
       - run: git restore .github/workflows
       - uses: gr2m/create-or-update-pull-request-action@v1.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           author: github-actions <github-actions[bot]@users.noreply.github.com>
           branch: actions/prettier
