@@ -1,3 +1,16 @@
+<!-- markdownlint-disable --><!-- textlint-disable -->
+
+# 📓 Changelog
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [8.2.3](https://github.com/stipsan/ioredis-mock/compare/v8.2.2...v8.2.3) (2023-01-29)
+
+### Bug Fixes
+
+- improve automation ([392109c](https://github.com/stipsan/ioredis-mock/commit/392109cb6c2b2f40752f33175dfa30e6fdeadf90))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

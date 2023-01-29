@@ -122,5 +122,6 @@
     "arrowParens": "avoid"
   },
   "runkitExampleFilename": "example.js",
-  "unpkg": "./browser.js"
+  "unpkg": "./browser.js",
+  "version": "8.2.3"
 }
