@@ -174,7 +174,7 @@ class RedisMock extends EventEmitter {
   }
 
   duplicate(override) {
-    const mock = new RedisMock({ ...this.options, ...override });
+    const mock = new RedisMock({ ...this.options, ...override })
     mock.expires = this.expires
     mock.data = this.data
     mock.channels = this.channels

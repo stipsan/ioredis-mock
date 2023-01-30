@@ -10,6 +10,8 @@ describe('duplicate', () => {
   })
   it('should handle overrides', () => {
     const redis = new Redis({ lazyConnect: true })
-    expect(redis.duplicate({ lazyConnect: false }).options.lazyConnect).toBe(false)
+    expect(redis.duplicate({ lazyConnect: false }).options.lazyConnect).toBe(
+      false
+    )
   })
 })
