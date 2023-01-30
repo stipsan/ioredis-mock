@@ -47,7 +47,7 @@
       },
       "rules": {
         "prefer-const": "off"
-      },
+      }
     },
     {
       "files": ["test/integration/**/*.js"],
