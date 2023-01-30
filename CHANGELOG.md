@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.6](https://github.com/stipsan/ioredis-mock/compare/v8.2.5...v8.2.6) (2023-01-30)
+
+### Bug Fixes
+
+- **duplicate:** preserve options as well as accept overrides ([#1234](https://github.com/stipsan/ioredis-mock/issues/1234)) ([284f711](https://github.com/stipsan/ioredis-mock/commit/284f711fa091446765d51053a34b2c3cc75f7c49))
+
 ## [8.2.5](https://github.com/stipsan/ioredis-mock/compare/v8.2.4...v8.2.5) (2023-01-29)
 
 ### Bug Fixes
