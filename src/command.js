@@ -143,6 +143,7 @@ export default function command(commandEmulator, commandName, RedisMock) {
 
     return asCallback(
       new Promise(resolve =>
+        // eslint-disable-next-line no-promise-executor-return
         resolve(
           safelyExecuteCommand(
             commandEmulator,

@@ -65,8 +65,8 @@ export function xread(option, ...args) {
       })
     : new Promise(resolve => {
         const events = pollEvents(toPoll, opVal)
-        if (events.length === 0) return resolve(null)
-        return resolve(events.slice().reverse())
+        if (events.length === 0) resolve(null)
+        resolve(events.slice().reverse())
       })
 }
 

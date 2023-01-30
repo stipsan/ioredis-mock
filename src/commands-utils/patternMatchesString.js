@@ -130,7 +130,7 @@ export function stringmatchlen(
           p++
           patternLen--
         }
-      // eslint-disable-line no-fallthrough
+      // eslint-disable-next-line no-fallthrough
       default:
         if (!nocase) {
           if (pattern[p] !== string[s]) return false /* no match */
