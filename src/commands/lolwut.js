@@ -38,6 +38,7 @@ Dedicated to the 8 bit game developers of past and present.
 Original 8 bit image from Plaguemon by hikikomori. Redis ver. ${redisVersion}`
 }
 
+// eslint-disable-next-line default-param-last
 export function lolwut(VERSION = 'VERSION', version) {
   if (VERSION && VERSION.toUpperCase() !== 'VERSION') {
     throw new Error('ERR value is not an integer or out of range')

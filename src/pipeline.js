@@ -53,6 +53,7 @@ class Pipeline {
     this.batch.push(() =>
       asCallback(
         new Promise(resolve =>
+          // eslint-disable-next-line no-promise-executor-return
           resolve(
             safelyExecuteCommand(
               commandEmulator,

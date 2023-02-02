@@ -1,3 +1,4 @@
+/* eslint-disable import/no-import-module-exports */
 /* eslint-disable max-classes-per-file */
 import { EventEmitter } from 'events'
 import { parseURL } from 'ioredis/built/utils/index'

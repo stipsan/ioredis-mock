@@ -54,6 +54,12 @@
       "rules": {
         "import/no-relative-parent-imports": ["error"]
       }
+    },
+    {
+      "files": ["test/**/*.js"],
+      "rules": {
+        "no-promise-executor-return": "off"
+      }
     }
   ]
 }
