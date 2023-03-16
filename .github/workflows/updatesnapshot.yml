@@ -34,7 +34,7 @@ jobs:
           cache: npm
           node-version: lts/*
       - run: npm ci --ignore-scripts
-      - run: npm run test:e2e -- --detectOpenHandles -u
+      - run: npm run test:e2e -- -u
       - uses: EndBug/add-and-commit@61a88be553afe4206585b31aa72387c64295d08b # v9
         with:
           default_author: github_actions
