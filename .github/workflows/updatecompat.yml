@@ -20,8 +20,8 @@ jobs:
       contents: write # for gr2m/create-or-update-pull-request-action to push local changes
       pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
-      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           cache: npm
           node-version: lts/*
