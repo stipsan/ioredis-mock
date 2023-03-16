@@ -36,7 +36,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run test:e2e -- -u
       - run: node scripts/update-data
-      - run: jest -u
+      - run: npx jest -u
       - run: node scripts/update-compat
       - uses: EndBug/add-and-commit@61a88be553afe4206585b31aa72387c64295d08b # v9
         with:
