@@ -1,9 +1,9 @@
+import { coerce } from 'semver'
+
 import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 
-const redisVersion = '7.0.8'
-
 // schotter, plotter on paper, by Georg Nees
-function version5() {
+async function version5(redisVersion) {
   // Using lolwut version 5 20 10
   return `⢰⠒⢲⠒⢲⠒⣶⠒⡖⢲⡖⢲⠒⣶⠒⡖⠒⡖⠒⡆
   ⢸⠒⢺⠒⢺⠒⣿⠒⡗⢺⡗⢺⠒⣿⠒⡗⠒⡗⠒⡇
@@ -22,7 +22,7 @@ function version5() {
 }
 
 // Plaguemon by hikimori
-function version6() {
+function version6(redisVersion) {
   // Using lolwut version 6 20 10
   return `[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m
 [0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;37;47m [0m[0;37;47m [0m[0;37;47m [0m[0;37;47m [0m[0;37;47m [0m[0;37;47m [0m[0;37;47m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m[0;97;107m [0m
@@ -39,26 +39,33 @@ Original 8 bit image from Plaguemon by hikikomori. Redis ver. ${redisVersion}`
 }
 
 // eslint-disable-next-line default-param-last
-export function lolwut(VERSION = 'VERSION', version) {
+export async function lolwut(VERSION = 'VERSION', version) {
+  const json = await import('../../data/info.json')
+  const data = json.default || json
+  const redisRawVersion = data
+    .split('\n')
+    .find(line => line.indexOf('redis_version') !== -1)
+  const redisVersion = coerce(redisRawVersion).version
+
   if (VERSION && VERSION.toUpperCase() !== 'VERSION') {
     throw new Error('ERR value is not an integer or out of range')
   }
 
   // eslint-disable-next-line eqeqeq
   if (version == 6) {
-    return version6()
+    return version6(redisVersion)
   }
 
   // eslint-disable-next-line eqeqeq
   if (version == 5) {
-    return version5()
+    return version5(redisVersion)
   }
 
   return `Redis ver. ${redisVersion}
 `
 }
 
-export function lolwutBuffer(...args) {
-  const val = lolwut.apply(this, args)
+export async function lolwutBuffer(...args) {
+  const val = await lolwut.apply(this, args)
   return convertStringToBuffer(val)
 }

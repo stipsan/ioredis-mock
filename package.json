@@ -74,7 +74,8 @@
     "@ioredis/as-callback": "^3.0.0",
     "@ioredis/commands": "^1.2.0",
     "fengari": "^0.1.4",
-    "fengari-interop": "^0.1.3"
+    "fengari-interop": "^0.1.3",
+    "semver": "^7.3.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

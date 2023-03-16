@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`info should return default info with CRLF 1`] = `"redis_version:7.0.9"`;
+exports[`info should return default info with CRLF 1`] = `"redis_version:7.0.8"`;
 
 exports[`info should return enough info to be useful 1`] = `
 [
@@ -411,11 +411,11 @@ exports[`info should return enough info to be useful 1`] = `
 `;
 
 exports[`info should return the Redis version number used during end-to-end testing 1`] = `
-"redis_version:7.0.9
+"redis_version:7.0.8
 "
 `;
 
-exports[`infoBuffer should return default info with CRLF 1`] = `"redis_version:7.0.9"`;
+exports[`infoBuffer should return default info with CRLF 1`] = `"redis_version:7.0.8"`;
 
 exports[`infoBuffer should return enough info to be useful 1`] = `
 [
@@ -826,6 +826,6 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 `;
 
 exports[`infoBuffer should return the Redis version number used during end-to-end testing 1`] = `
-"redis_version:7.0.9
+"redis_version:7.0.8
 "
 `;
