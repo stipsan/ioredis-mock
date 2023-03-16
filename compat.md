@@ -201,7 +201,6 @@
 | [zadd]                 | :white_check_mark: | :white_check_mark: |
 | [zcard]                | :white_check_mark: | :white_check_mark: |
 | [zcount]               | :white_check_mark: | :white_check_mark: |
-| [zdiff]                | :white_check_mark: |        :x:         |
 | [zdiffstore]           | :white_check_mark: |        :x:         |
 | [zincrby]              | :white_check_mark: | :white_check_mark: |
 | [zinter]               | :white_check_mark: |        :x:         |

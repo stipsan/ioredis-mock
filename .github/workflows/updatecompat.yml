@@ -21,6 +21,8 @@ jobs:
       pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           cache: npm
@@ -28,10 +30,8 @@ jobs:
       - run: npm ci --no-scripts
       - run: node scripts/update-compat
       - uses: gr2m/create-or-update-pull-request-action@v1.x
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          author: github-actions <github-actions[bot]@users.noreply.github.com>
+          author: github-actions <41898282+github-actions[bot]@users.noreply.github.com>
           branch: actions/updatecompat
           title: 'docs(compat.md): 🤖 ✨'
           body: A robot ran `node scripts/update-compat` and made this PR.
