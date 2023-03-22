@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.7](https://github.com/stipsan/ioredis-mock/compare/v8.2.6...v8.2.7) (2023-03-22)
+
+### Bug Fixes
+
+- **deps:** update redis docker tag to v7.0.10 ([#1257](https://github.com/stipsan/ioredis-mock/issues/1257)) ([ea219bd](https://github.com/stipsan/ioredis-mock/commit/ea219bdc21b843267355d9942d635ee3befcd017))
+- **deps:** update redis docker tag to v7.0.9 ([#1247](https://github.com/stipsan/ioredis-mock/issues/1247)) ([9378ff4](https://github.com/stipsan/ioredis-mock/commit/9378ff4d7e4707807adca24c969ef5ac3bafa430))
+- lockfile ([1fb2078](https://github.com/stipsan/ioredis-mock/commit/1fb2078e67b67e0236b1cf472913424026b1e61b))
+
 ## [8.2.6](https://github.com/stipsan/ioredis-mock/compare/v8.2.5...v8.2.6) (2023-01-30)
 
 ### Bug Fixes
