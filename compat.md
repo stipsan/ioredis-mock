@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-orange.svg)
+## Supported commands ![Commands Coverage: 64%](https://img.shields.io/badge/coverage-64%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -41,7 +41,7 @@
 | [exists]               | :white_check_mark: | :white_check_mark: |
 | [expire]               | :white_check_mark: | :white_check_mark: |
 | [expireat]             | :white_check_mark: | :white_check_mark: |
-| [expiretime]           | :white_check_mark: |        :x:         |
+| [expiretime]           | :white_check_mark: | :white_check_mark: |
 | [failover]             | :white_check_mark: | :white_check_mark: |
 | [fcall]                | :white_check_mark: |        :x:         |
 | [fcall_ro]             | :white_check_mark: |        :x:         |
@@ -110,7 +110,7 @@
 | [persist]              | :white_check_mark: | :white_check_mark: |
 | [pexpire]              | :white_check_mark: | :white_check_mark: |
 | [pexpireat]            | :white_check_mark: | :white_check_mark: |
-| [pexpiretime]          | :white_check_mark: |        :x:         |
+| [pexpiretime]          | :white_check_mark: | :white_check_mark: |
 | [pfadd]                | :white_check_mark: |        :x:         |
 | [pfcount]              | :white_check_mark: |        :x:         |
 | [pfmerge]              | :white_check_mark: |        :x:         |
