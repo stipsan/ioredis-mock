@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.3.0](https://github.com/stipsan/ioredis-mock/compare/v8.2.7...v8.3.0) (2023-03-28)
+
+### Features
+
+- implement nodes method in cluster mock ([#1260](https://github.com/stipsan/ioredis-mock/issues/1260)) ([7224f09](https://github.com/stipsan/ioredis-mock/commit/7224f09c2a81f77ee0c133029b7a7c331d775788))
+
+### Bug Fixes
+
+- change clusterNodes back to nodes ([#1263](https://github.com/stipsan/ioredis-mock/issues/1263)) ([6263d63](https://github.com/stipsan/ioredis-mock/commit/6263d632cfcaf96b57478d0ecc9be502e2b8f06c))
+
 ## [8.2.7](https://github.com/stipsan/ioredis-mock/compare/v8.2.6...v8.2.7) (2023-03-22)
 
 ### Bug Fixes
