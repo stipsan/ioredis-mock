@@ -20,6 +20,11 @@ export function set(key, value, ...options) {
   if (nx && this.data.has(key)) return null
   if (xx && !this.data.has(key)) return null
 
+  let result = 'OK'
+  if (options.indexOf('GET') !== -1) {
+    result = this.data.has(key) ? this.data.get(key) : null
+  }
+
   this.data.set(key, value)
 
   const expireOptions = new Map(createGroupedArray(filteredOptions, 2))
@@ -31,7 +36,7 @@ export function set(key, value, ...options) {
     this.expires.delete(key)
   }
 
-  return 'OK'
+  return result
 }
 
 export function setBuffer(...args) {
