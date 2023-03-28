@@ -67,5 +67,23 @@ runTwinSuite('set', (command, equals) => {
       expect(await redis[command]('foo', 1, 'NX')).toBe(null)
       redis.disconnect()
     })
+
+    it('should return null if GET is specified and the key does not exist', async () => {
+      const redis = new Redis()
+
+      expect(await redis[command]('foo', 1, 'GET')).toBe(null)
+      redis.disconnect()
+    })
+
+    it('should return previous value if GET is specified and the key already exists', async () => {
+      const redis = new Redis({
+        data: {
+          foo: 'bar',
+        },
+      })
+
+      expect(equals(await redis[command]('foo', 1, 'GET'), 'bar')).toBe(true)
+      redis.disconnect()
+    })
   })
 })
