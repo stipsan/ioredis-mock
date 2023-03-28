@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.4.0](https://github.com/stipsan/ioredis-mock/compare/v8.3.0...v8.4.0) (2023-03-28)
+
+### Features
+
+- add `expiretime` command ([e62202d](https://github.com/stipsan/ioredis-mock/commit/e62202d8c0f83b8a833c9cfe0026e69cfc5411c5))
+- add `pexpiretime` command ([fe783a2](https://github.com/stipsan/ioredis-mock/commit/fe783a27883fb90f65546b25ee636085507e1792))
+
+### Bug Fixes
+
+- **set:** support optional "GET" parameter ([#1264](https://github.com/stipsan/ioredis-mock/issues/1264)) ([f8b6671](https://github.com/stipsan/ioredis-mock/commit/f8b66712379ca2f64d1310fa98b3db22775002df))
+
 ## [8.3.0](https://github.com/stipsan/ioredis-mock/compare/v8.2.7...v8.3.0) (2023-03-28)
 
 ### Features
