@@ -11,8 +11,8 @@ describe('cluster', () => {
     const nodes = ['redis://localhost:7001', 'redis://localhost:7002']
     const cluster = new Redis.Cluster(nodes)
     expect(cluster.connected).toEqual(true)
-    expect(cluster.nodes.length).toEqual(nodes.length)
-    expect(cluster.nodes.every(node => node instanceof Redis)).toBeTruthy()
+    expect(cluster.nodes().length).toEqual(nodes.length)
+    expect(cluster.nodes().every(node => node instanceof Redis)).toBeTruthy()
   })
 
   it('can set and get', () => {
