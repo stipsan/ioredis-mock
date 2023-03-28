@@ -252,11 +252,11 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
       super()
     }
     nodesOptions.forEach(options =>
-      this.nodes.all.push(new RedisMock(options))
+      this.clusterNodes.all.push(new RedisMock(options))
     )
   }
 
-  nodes = {
+  clusterNodes = {
     all: [],
     master: [],
     slave: [],
@@ -268,7 +268,7 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
         `Invalid role "${role}". Expected "all", "master" or "slave"`
       )
     }
-    return this.nodes.all // temporary return all until implemented slave and master logic
+    return this.clusterNodes.all // temporary return all until implemented slave and master logic
   }
 }
 
