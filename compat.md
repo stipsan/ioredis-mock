@@ -239,7 +239,7 @@
 | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [debug]   | This command is intended to aid in debugging redis                                                                                                                |
 | [dump]    | Doesn't make sense to implement the internal data format used by RDB                                                                                              |
-| [hello]   | THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                                                                             |
+| [hello]   | The protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use                                                                             |
 | [latency] | ioredis-mock isn't operating over the network so there is no latency to monitor                                                                                   |
 | [memory]  | It's unlikely this can be emulated in a JS environment                                                                                                            |
 | [migrate] | This command actually executes a DUMP + DEL on the source instance, and a RESTORE in the target. Since DUMP and RESTORE won't be implemented it includes MIGRATE. |

@@ -14,7 +14,7 @@ const skipList = {
   dump: "Doesn't make sense to implement the internal data format used by RDB",
   exec: false,
   hello:
-    "THe protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use",
+    "The protocols this command is switching between (RESP2, RESP3, Redis 6) aren't in use",
   latency:
     "ioredis-mock isn't operating over the network so there is no latency to monitor",
   memory: "It's unlikely this can be emulated in a JS environment",
