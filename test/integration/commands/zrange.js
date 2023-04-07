@@ -98,4 +98,76 @@ describe('zrange', () => {
       .zrange('foo', 0, 100)
       .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']))
   })
+
+  it('should handle REV', () => {
+    const redis = new Redis({ data })
+
+    return redis.zrange('foo', 0, 2, 'REV').then(res => {
+      expect(res).toEqual(['fifth', 'fourth', 'third'])
+    })
+  })
+  it('should handle REV WITHSCORES', () => {
+    const redis = new Redis({ data })
+
+    return redis.zrange('foo', 0, 2, 'REV', 'WITHSCORES').then(res => {
+      expect(res).toEqual(['fifth', '5', 'fourth', '4', 'third', '3'])
+    })
+  })
+  it('should handle BYSCORE', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', 2, '(4', 'BYSCORE')
+      .then(res => expect(res).toEqual(['second', 'third']))
+  })
+
+  it('should handle BYSCORE with LIMIT', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2)
+      .then(res => expect(res).toEqual(['third']))
+  })
+
+  it('should handle BYSCORE with LIMIT WITHSCORES', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['third', '3']))
+  })
+
+  it('should handle BYSCORE REV', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', '3', '1', 'BYSCORE', 'REV')
+      .then(res => expect(res).toEqual(['third', 'second', 'first']))
+  })
+
+  it('should handle BYSCORE REV WITHSCORES', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'WITHSCORES')
+      .then(res =>
+        expect(res).toEqual(['third', '3', 'second', '2', 'first', '1'])
+      )
+  })
+
+  it('should handle BYSCORE REV with LIMIT', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1)
+      .then(res => expect(res).toEqual(['third']))
+  })
+
+  it('should handle BYSCORE REV with LIMIT WITHSCORES', () => {
+    const redis = new Redis({ data })
+
+    return redis
+      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1, 'WITHSCORES')
+      .then(res => expect(res).toEqual(['third', '3']))
+  })
 })
