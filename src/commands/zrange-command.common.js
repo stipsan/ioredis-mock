@@ -111,9 +111,8 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
   let start;
   let end;
 
-  const minIdx = argsStart + 1;
-  const maxIdx = argsStart + 2;
-
+  let minIdx = argsStart + 1;
+  let maxIdx = argsStart + 2;
 
   /* Step 1: Skip the <src> <min> <max> args and parse remaining optional arguments. */
   for (let j = argsStart + 3; j < args.length; j++) {
@@ -148,6 +147,14 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
     throw new Error('ERR syntax error, WITHSCORES not supported in combination with BYLEX');
   }
 
+  if (direction === DIRECTION_REVERSE && (range === RANGE_SCORE || range === RANGE_LEX)) {
+    /* Range is given as [max,min] */
+    const tmp = maxIdx;
+    maxIdx = minIdx;
+    minIdx = tmp;
+  }
+
+
   /* Step 2: Parse the range. */
   switch (range) {
     case RANGE_RANK:
@@ -179,6 +186,7 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
       throw new Error('ERR syntax error');
   }
   
+  /* Step 3: Lookup the key and get the range. */
   let sort;
   if (direction === DIRECTION_REVERSE) {
     sort = ['desc', 'desc']

@@ -68,7 +68,7 @@ describe('zrevrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', 3, 1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['third', 3, 'second', 2, 'first', 1]))
+      .then(res => expect(res).toEqual(['third', '3', 'second', '2', 'first', '1']))
   })
 
   it('should sort items with the same score in reverse lexicographical order', () => {
@@ -86,7 +86,7 @@ describe('zrevrangebyscore', () => {
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'WITHSCORES')
       .then(res =>
-        expect(res).toEqual(['aaa', 5, 'ddd', 4, 'ccc', 4, 'bbb', 4])
+        expect(res).toEqual(['aaa', '5', 'ddd', '4', 'ccc', '4', 'bbb', '4'])
       )
   })
 
@@ -106,13 +106,13 @@ describe('zrevrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', 3, 1, 'WITHSCORES', 'LIMIT', 1, 1)
-      .then(res => expect(res).toEqual(['second', 2]))
+      .then(res => expect(res).toEqual(['second', '2']))
   })
   it('should handle LIMIT specified before WITHSCORES', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', 3, 1, 'LIMIT', 1, 1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['second', 2]))
+      .then(res => expect(res).toEqual(['second', '2']))
   })
   it('should handle LIMIT of -1', () => {
     const redis = new Redis({ data })
@@ -124,7 +124,7 @@ describe('zrevrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['fourth', 4, 'third', 3, 'second', 2]))
+      .then(res => expect(res).toEqual(['fourth', '4', 'third', '3', 'second', '2']))
   })
   it('should handle LIMIT of -2', () => {
     const redis = new Redis({ data })
