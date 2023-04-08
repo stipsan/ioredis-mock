@@ -1,4 +1,4 @@
-import orderBy from 'lodash.orderby';
+import orderBy from 'lodash.orderby'
 
 export function slice(arr, start, end) {
   return arr.slice(start, end === -1 ? undefined : end + 1)
@@ -55,16 +55,22 @@ function streq(a, b) {
   return a.toString().toLowerCase() === b.toString().toLowerCase()
 }
 
-export const DIRECTION_REVERSE = 'reverse';
-const DIRECTION_FORWARD = 'forward';
+export const DIRECTION_REVERSE = 'reverse'
+const DIRECTION_FORWARD = 'forward'
 
-export const RANGE_RANK = 'rank';
-export const RANGE_LEX = 'lex';
-export const RANGE_SCORE = 'score';
+export const RANGE_RANK = 'rank'
+export const RANGE_LEX = 'lex'
+export const RANGE_SCORE = 'score'
 
 /** https://github.com/redis/redis/blob/f651708a19b4fc8137eec13180fcea39e68fb284/src/t_zset.c#L3589 */
-export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange = null, inputDirection = null) {
-  const key = args[argsStart];
+export function zrangeBaseCommand(
+  args,
+  argsStart = 0,
+  store = false,
+  inputRange = null,
+  inputDirection = null
+) {
+  const key = args[argsStart]
   const map = this.data.get(key)
   if (!map) {
     return []
@@ -75,76 +81,82 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
     return []
   }
 
-  let withScores = false;
-  let offset = 0;
-  let limit = null;
-  let direction = inputDirection || DIRECTION_FORWARD;
-  let range = inputRange || RANGE_RANK;
-  let start;
-  let end;
+  let withScores = false
+  let offset = 0
+  let limit = null
+  let direction = inputDirection || DIRECTION_FORWARD
+  let range = inputRange || RANGE_RANK
+  let start
+  let end
 
-  let minIdx = argsStart + 1;
-  let maxIdx = argsStart + 2;
+  let minIdx = argsStart + 1
+  let maxIdx = argsStart + 2
 
   /* Step 1: Skip the <src> <min> <max> args and parse remaining optional arguments. */
   for (let j = argsStart + 3; j < args.length; j++) {
-    const leftargs = args.length - j - 1;
-    
+    const leftargs = args.length - j - 1
+
     if (!store && streq(args[j], 'withscores')) {
-      withScores = 1;
+      withScores = 1
     } else if (streq(args[j], 'limit') && leftargs >= 2) {
-      offset = parseInt(args[j + 1], 10);
-      limit = parseInt(args[j + 2], 10);
+      offset = parseInt(args[j + 1], 10)
+      limit = parseInt(args[j + 2], 10)
       if (Number.isNaN(offset) || Number.isNaN(limit)) {
         throw new Error('ERR syntax error')
       }
 
-      j += 2;
+      j += 2
     } else if (!inputDirection && streq(args[j], 'rev')) {
-      direction = DIRECTION_REVERSE;
-    } else if (!inputRange && streq(args[j] , 'bylex')) {
-      range = RANGE_LEX;
+      direction = DIRECTION_REVERSE
+    } else if (!inputRange && streq(args[j], 'bylex')) {
+      range = RANGE_LEX
     } else if (!inputRange && streq(args[j], 'byscore')) {
-      range = RANGE_SCORE;
+      range = RANGE_SCORE
     } else {
-       throw new Error('ERR syntax error');
+      throw new Error('ERR syntax error')
     }
   }
 
   if (limit !== null && range === RANGE_RANK) {
-    throw new Error('ERR syntax error, LIMIT is only supported in combination with either BYSCORE or BYLEX');
+    throw new Error(
+      'ERR syntax error, LIMIT is only supported in combination with either BYSCORE or BYLEX'
+    )
   }
 
   if (withScores && range === RANGE_LEX) {
-    throw new Error('ERR syntax error, WITHSCORES not supported in combination with BYLEX');
+    throw new Error(
+      'ERR syntax error, WITHSCORES not supported in combination with BYLEX'
+    )
   }
 
-  if (direction === DIRECTION_REVERSE && (range === RANGE_SCORE || range === RANGE_LEX)) {
+  if (
+    direction === DIRECTION_REVERSE &&
+    (range === RANGE_SCORE || range === RANGE_LEX)
+  ) {
     /* Range is given as [max,min] */
-    const tmp = maxIdx;
-    maxIdx = minIdx;
-    minIdx = tmp;
+    const tmp = maxIdx
+    maxIdx = minIdx
+    minIdx = tmp
   }
-
 
   /* Step 2: Parse the range. */
   switch (range) {
     case RANGE_RANK:
       /* Z[REV]RANGE, ZRANGESTORE [REV]RANGE */
-      start = parseInt(args[minIdx], 10);
-      end = parseInt(args[maxIdx], 10);
+      start = parseInt(args[minIdx], 10)
+      end = parseInt(args[maxIdx], 10)
 
       if (Number.isNaN(start) || Number.isNaN(end)) {
-        throw new Error('ERR syntax error ');
+        throw new Error('ERR syntax error ')
       }
-      break;
+      break
 
     case RANGE_SCORE:
-        /* Z[REV]RANGEBYSCORE, ZRANGESTORE [REV]RANGEBYSCORE */
-        start = parseLimit(args[minIdx]);
-        end = parseLimit(args[maxIdx]);
-        
-        break;
+      /* Z[REV]RANGEBYSCORE, ZRANGESTORE [REV]RANGEBYSCORE */
+      start = parseLimit(args[minIdx])
+      end = parseLimit(args[maxIdx])
+
+      break
     // FIXME: handle RANGE_LEX
     // case ZRANGE_LEX:
     //     /* Z[REV]RANGEBYLEX, ZRANGESTORE [REV]RANGEBYLEX */
@@ -154,24 +166,24 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
     //     }
     //     break;
     // }
-    default: 
-      throw new Error('ERR syntax error');
+    default:
+      throw new Error('ERR syntax error')
   }
-  
+
   /* Step 3: Lookup the key and get the range. */
-  let sort;
+  let sort
   if (direction === DIRECTION_REVERSE) {
     sort = ['desc', 'desc']
   }
 
-  let ordered;
+  let ordered
   if (range === RANGE_SCORE) {
     const filteredArray = Array.from(map.values()).filter(
       filterPredicate(start, end)
     )
 
-    ordered = orderBy(filteredArray, ['score', 'value'], sort);
-  } 
+    ordered = orderBy(filteredArray, ['score', 'value'], sort)
+  }
   // FIXME: handle RANGE_LEX
   else {
     ordered = slice(
@@ -184,10 +196,10 @@ export function zrangeBaseCommand(args, argsStart = 0, store = false, inputRange
   if (limit !== null) {
     ordered = offsetAndLimit(ordered, offset, limit)
   }
-  
+
   if (withScores) {
     return ordered.flatMap(it => [it.value, `${it.score}`])
   }
 
-  return ordered.map(it => it.value);
+  return ordered.map(it => it.value)
 }
