@@ -66,7 +66,9 @@ describe('zrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrangebyscore('foo', 1, 3, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['first', '1', 'second', '2', 'third', '3']))
+      .then(res =>
+        expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
+      )
   })
 
   it('should sort items with the same score lexicographically', () => {
@@ -121,7 +123,9 @@ describe('zrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, -1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['second', '2', 'third', '3', 'fourth', '4']))
+      .then(res =>
+        expect(res).toEqual(['second', '2', 'third', '3', 'fourth', '4'])
+      )
   })
   it('should handle LIMIT of -2', () => {
     const redis = new Redis({ data })
