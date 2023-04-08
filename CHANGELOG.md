@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.0](https://github.com/stipsan/ioredis-mock/compare/v8.4.0...v8.5.0) (2023-04-08)
+
+### Features
+
+- refactor zrange ([#1267](https://github.com/stipsan/ioredis-mock/issues/1267)) ([0d0de54](https://github.com/stipsan/ioredis-mock/commit/0d0de5438bc2f6fed5c6920c3630e34763caf41d))
+
 ## [8.4.0](https://github.com/stipsan/ioredis-mock/compare/v8.3.0...v8.4.0) (2023-03-28)
 
 ### Features
