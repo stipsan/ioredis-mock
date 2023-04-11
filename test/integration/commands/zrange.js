@@ -11,13 +11,17 @@ describe('zrange', () => {
     ]),
   }
 
-  it('should return first 3 items ordered by score', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return first 3 items ordered by score',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', 0, 2)
-      .then(res => expect(res).toEqual(['first', 'second', 'third']))
-  })
+      return redis
+        .zrange('foo', 0, 2)
+        .then(res => expect(res).toEqual(['first', 'second', 'third']))
+    }
+  )
 
   it('should return nothing when min > max', () => {
     const redis = new Redis({ data })
@@ -31,7 +35,8 @@ describe('zrange', () => {
     return redis.zrange('foo', 0, -8).then(res => expect(res).toEqual([]))
   })
 
-  it('should return last 3 items', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should return last 3 items', () => {
     const redis = new Redis({ data })
 
     return redis
@@ -39,23 +44,31 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['third', 'fourth', 'fifth']))
   })
 
-  it('should return all items on larger ranges', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return all items on larger ranges',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', 0, 100)
-      .then(res =>
-        expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
-      )
-  })
+      return redis
+        .zrange('foo', 0, 100)
+        .then(res =>
+          expect(res).toEqual(['first', 'second', 'third', 'fourth', 'fifth'])
+        )
+    }
+  )
 
-  it('should work even if the min is negative and larger than set size', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should work even if the min is negative and larger than set size',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', -200, -3)
-      .then(res => expect(res).toEqual(['first', 'second', 'third']))
-  })
+      return redis
+        .zrange('foo', -200, -3)
+        .then(res => expect(res).toEqual(['first', 'second', 'third']))
+    }
+  )
 
   it('should return empty array if out-of-range', () => {
     const redis = new Redis({ data })
@@ -77,47 +90,58 @@ describe('zrange', () => {
       )
   })
 
-  it('should include scores if WITHSCORES is specified', () => {
-    const redis = new Redis({ data })
-    return redis
-      .zrange('foo', 0, 2, 'WITHSCORES')
-      .then(res =>
-        expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
-      )
-  })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should include scores if WITHSCORES is specified',
+    () => {
+      const redis = new Redis({ data })
+      return redis
+        .zrange('foo', 0, 2, 'WITHSCORES')
+        .then(res =>
+          expect(res).toEqual(['first', '1', 'second', '2', 'third', '3'])
+        )
+    }
+  )
 
-  it('should sort items with the same score lexicographically', () => {
-    const redis = new Redis({
-      data: {
-        foo: new Map([
-          ['aaa', { score: 5, value: 'aaa' }],
-          ['ccc', { score: 4, value: 'ccc' }],
-          ['ddd', { score: 4, value: 'ddd' }],
-          ['bbb', { score: 4, value: 'bbb' }],
-        ]),
-      },
-    })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should sort items with the same score lexicographically',
+    () => {
+      const redis = new Redis({
+        data: {
+          foo: new Map([
+            ['aaa', { score: 5, value: 'aaa' }],
+            ['ccc', { score: 4, value: 'ccc' }],
+            ['ddd', { score: 4, value: 'ddd' }],
+            ['bbb', { score: 4, value: 'bbb' }],
+          ]),
+        },
+      })
 
-    return redis
-      .zrange('foo', 0, 100)
-      .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']))
-  })
+      return redis
+        .zrange('foo', 0, 100)
+        .then(res => expect(res).toEqual(['bbb', 'ccc', 'ddd', 'aaa']))
+    }
+  )
 
-  it('should handle REV', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle REV', () => {
     const redis = new Redis({ data })
 
     return redis.zrange('foo', 0, 2, 'REV').then(res => {
       expect(res).toEqual(['fifth', 'fourth', 'third'])
     })
   })
-  it('should handle REV WITHSCORES', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle REV WITHSCORES', () => {
     const redis = new Redis({ data })
 
     return redis.zrange('foo', 0, 2, 'REV', 'WITHSCORES').then(res => {
       expect(res).toEqual(['fifth', '5', 'fourth', '4', 'third', '3'])
     })
   })
-  it('should handle BYSCORE', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle BYSCORE', () => {
     const redis = new Redis({ data })
 
     return redis
@@ -125,23 +149,32 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['second', 'third']))
   })
 
-  it('should handle BYSCORE with LIMIT', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYSCORE with LIMIT',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2)
-      .then(res => expect(res).toEqual(['third']))
-  })
+      return redis
+        .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2)
+        .then(res => expect(res).toEqual(['third']))
+    }
+  )
 
-  it('should handle BYSCORE with LIMIT WITHSCORES', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYSCORE with LIMIT WITHSCORES',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['third', '3']))
-  })
+      return redis
+        .zrange('foo', 2, '(4', 'BYSCORE', 'LIMIT', 1, 2, 'WITHSCORES')
+        .then(res => expect(res).toEqual(['third', '3']))
+    }
+  )
 
-  it('should handle BYSCORE REV', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle BYSCORE REV', () => {
     const redis = new Redis({ data })
 
     return redis
@@ -149,31 +182,43 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['third', 'second', 'first']))
   })
 
-  it('should handle BYSCORE REV WITHSCORES', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYSCORE REV WITHSCORES',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'WITHSCORES')
-      .then(res =>
-        expect(res).toEqual(['third', '3', 'second', '2', 'first', '1'])
-      )
-  })
+      return redis
+        .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'WITHSCORES')
+        .then(res =>
+          expect(res).toEqual(['third', '3', 'second', '2', 'first', '1'])
+        )
+    }
+  )
 
-  it('should handle BYSCORE REV with LIMIT', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYSCORE REV with LIMIT',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1)
-      .then(res => expect(res).toEqual(['third']))
-  })
+      return redis
+        .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1)
+        .then(res => expect(res).toEqual(['third']))
+    }
+  )
 
-  it('should handle BYSCORE REV with LIMIT WITHSCORES', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYSCORE REV with LIMIT WITHSCORES',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1, 'WITHSCORES')
-      .then(res => expect(res).toEqual(['third', '3']))
-  })
+      return redis
+        .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1, 'WITHSCORES')
+        .then(res => expect(res).toEqual(['third', '3']))
+    }
+  )
 
   const lexData = {
     foo: new Map([
@@ -185,7 +230,8 @@ describe('zrange', () => {
     ]),
   }
 
-  it('should handle BYLEX', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle BYLEX', () => {
     const redis = new Redis({ data: lexData })
 
     return redis
@@ -193,7 +239,8 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['b', 'c']))
   })
 
-  it('should handle BYLEX with LIMIT', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle BYLEX with LIMIT', () => {
     const redis = new Redis({ data: lexData })
 
     return redis
@@ -201,7 +248,8 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['c']))
   })
 
-  it('should handle BYLEX REV', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle BYLEX REV', () => {
     const redis = new Redis({ data: lexData })
 
     return redis
@@ -209,11 +257,15 @@ describe('zrange', () => {
       .then(res => expect(res).toEqual(['c', 'b', 'a']))
   })
 
-  it('should handle BYLEX REV with LIMIT', () => {
-    const redis = new Redis({ data: lexData })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should handle BYLEX REV with LIMIT',
+    () => {
+      const redis = new Redis({ data: lexData })
 
-    return redis
-      .zrange('foo', '[c', '[a', 'BYLEX', 'REV', 'LIMIT', 0, 1)
-      .then(res => expect(res).toEqual(['c']))
-  })
+      return redis
+        .zrange('foo', '[c', '[a', 'BYLEX', 'REV', 'LIMIT', 0, 1)
+        .then(res => expect(res).toEqual(['c']))
+    }
+  )
 })

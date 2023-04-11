@@ -4,7 +4,8 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('psubscribe', command => {
-  describe(command, () => {
+  // @TODO Rewrite test suite so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? describe.skip : describe)(command, () => {
     it('should return number of subscribed channels', () => {
       const redis = new Redis()
       return redis[command]('news.*', 'music.*').then(subNum =>

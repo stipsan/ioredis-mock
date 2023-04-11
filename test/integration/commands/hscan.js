@@ -4,6 +4,11 @@ import Redis from 'ioredis'
 const chance = new Chance()
 
 describe('hscan', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   function createHashSet(keys) {
     return keys.reduce((obj, key) => {
       const res = obj
@@ -13,7 +18,6 @@ describe('hscan', () => {
   }
 
   it('should return null array if hset does not exist', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0).then(result => {
       expect(result[0]).toBe('0')
       expect(result[1]).toEqual([])
@@ -100,37 +104,31 @@ describe('hscan', () => {
   )
 
   it('should fail if incorrect cursor', () => {
-    const redis = new Redis()
     return redis.hscan('key', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect command', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0, 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect MATCH usage', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0, 'MATCH', 'pattern', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect COUNT usage', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0, 'COUNT', 10, 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect COUNT usage 2', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0, 'COUNT', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if too many arguments', () => {
-    const redis = new Redis()
     return redis
       .hscan('key', 0, 'MATCH', 'foo*', 'COUNT', 1, 'ZU')
       .catch(result => {
@@ -140,7 +138,6 @@ describe('hscan', () => {
   })
 
   it('should fail if arguments length not odd', () => {
-    const redis = new Redis()
     return redis.hscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch(result => {
       expect(result).toBeInstanceOf(Error)
       expect(result.message).toEqual(

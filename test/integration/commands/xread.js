@@ -1,6 +1,11 @@
 import Redis from 'ioredis'
 
 describe('xread', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)(
     'reads a number of events since an id',
@@ -109,7 +114,6 @@ describe('xread', () => {
   ;(process.env.IS_E2E ? it.skip : it)(
     'should block reads till data becomes available',
     () => {
-      const redis = new Redis()
       const op = redis
         .xread('BLOCK', '0', 'STREAMS', 'stream', '$')
         .then(row => {
@@ -126,7 +130,6 @@ describe('xread', () => {
   ;(process.env.IS_E2E ? it.skip : it)(
     'should block reads till data becomes available since an id',
     () => {
-      const redis = new Redis()
       const op = redis
         .xread('BLOCK', '0', 'STREAMS', 'stream', '2-0')
         .then(row => {
@@ -143,7 +146,6 @@ describe('xread', () => {
   )
 
   it('should block reads with a time out', () => {
-    const redis = new Redis()
     return redis.xread('BLOCK', '500', 'STREAMS', 'stream', '$').then(row => {
       expect(row).toBe(null)
     })
@@ -180,14 +182,12 @@ describe('xread', () => {
   )
 
   it('throws if the operation is neither BLOCK or COUNT', () => {
-    const redis = new Redis()
     return redis
       .xread('INVALID', '2', 'STREAMS', 'stream', '$')
       .catch(err => expect(err.message).toBe('ERR syntax error'))
   })
 
   it('throws and error on unabalanced stream/id list', () => {
-    const redis = new Redis()
     return redis
       .xread('BLOCK', '0', 'STREAMS', 'stream', 'other-stream', '$')
       .catch(err =>

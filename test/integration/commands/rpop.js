@@ -5,30 +5,38 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('rpop', command => {
   describe(command, () => {
-    it('should remove and return last element of list', () => {
-      const redis = new Redis({
-        data: {
-          foo: ['1', '2', '3'],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should remove and return last element of list',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3'],
+          },
+        })
 
-      return redis[command]('foo')
-        .then(result => expect(result).toBe('3'))
-        .then(async () => expect(redis.data.get('foo')).toEqual(['1', '2']))
-    })
+        return redis[command]('foo')
+          .then(result => expect(result).toBe('3'))
+          .then(async () => expect(redis.data.get('foo')).toEqual(['1', '2']))
+      }
+    )
 
-    it('should return buffer values correctly', () => {
-      const bufferVal = Buffer.from('bar')
-      const redis = new Redis({
-        data: {
-          foo: ['1', '2', bufferVal],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return buffer values correctly',
+      () => {
+        const bufferVal = Buffer.from('bar')
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', bufferVal],
+          },
+        })
 
-      return redis[command]('foo').then(result =>
-        expect(result).toBe(bufferVal)
-      )
-    })
+        return redis[command]('foo').then(result =>
+          expect(result).toBe(bufferVal)
+        )
+      }
+    )
 
     it('should return null on empty list', () => {
       const redis = new Redis({

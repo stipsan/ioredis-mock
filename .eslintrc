@@ -58,7 +58,9 @@
     {
       "files": ["test/**/*.js"],
       "rules": {
-        "no-promise-executor-return": "off"
+        "no-promise-executor-return": "off",
+        "arrow-body-style": "off",
+        "no-shadow": "off"
       }
     }
   ]

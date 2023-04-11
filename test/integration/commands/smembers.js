@@ -5,12 +5,14 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('smembers', command => {
   describe(command, () => {
-    it('should returns items in set as array', () => {
-      const redis = new Redis({
-        data: {
-          foos: new Set(['bar', 'foo']),
-        },
-      })
+    const redis = new Redis()
+
+    afterAll(() => {
+      redis.disconnect()
+    })
+
+    it('should returns items in set as array', async () => {
+      await redis.sadd('foos', 'bar', 'foo')
 
       return redis[command]('foos').then(result => {
         const formatted =
@@ -19,8 +21,6 @@ runTwinSuite('smembers', command => {
       })
     })
     it("should return empty array if source don't exists", () => {
-      const redis = new Redis()
-
       return redis[command]('bars').then(result => expect(result).toEqual([]))
     })
   })

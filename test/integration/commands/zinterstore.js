@@ -26,13 +26,17 @@ runTwinSuite('zinterstore', command => {
       key: 'value',
     }
 
-    it('should intersect two sorted sets and return the number of resulting elements', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should intersect two sorted sets and return the number of resulting elements',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('dest', 2, 'foo', 'bar').then(res =>
-        expect(res).toEqual(3)
-      )
-    })
+        return redis[command]('dest', 2, 'foo', 'bar').then(res =>
+          expect(res).toEqual(3)
+        )
+      }
+    )
 
     it('should return 0 if the intersection is an empty set', () => {
       const redis = new Redis({ data })
@@ -42,27 +46,35 @@ runTwinSuite('zinterstore', command => {
       )
     })
 
-    it('should not create a sorted set if the intersection is an empty set', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should not create a sorted set if the intersection is an empty set',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('dest', 2, 'foo', 'baz').then(() => {
-        expect(redis.data.get('dest')).toBe(undefined)
-      })
-    })
+        return redis[command]('dest', 2, 'foo', 'baz').then(() => {
+          expect(redis.data.get('dest')).toBe(undefined)
+        })
+      }
+    )
 
-    it('should intersect two sorted sets with the correct data in the specified key', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should intersect two sorted sets with the correct data in the specified key',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('dest', 2, 'foo', 'bar').then(() => {
-        expect(redis.data.get('dest')).toEqual(
-          new Map([
-            ['first', { score: 2, value: 'first' }],
-            ['third', { score: 6, value: 'third' }],
-            ['fourth', { score: 8, value: 'fourth' }],
-          ])
-        )
-      })
-    })
+        return redis[command]('dest', 2, 'foo', 'bar').then(() => {
+          expect(redis.data.get('dest')).toEqual(
+            new Map([
+              ['first', { score: 2, value: 'first' }],
+              ['third', { score: 6, value: 'third' }],
+              ['fourth', { score: 8, value: 'fourth' }],
+            ])
+          )
+        })
+      }
+    )
 
     it('should throw a syntax error if more keys specified than numKeys', () => {
       const redis = new Redis({ data })

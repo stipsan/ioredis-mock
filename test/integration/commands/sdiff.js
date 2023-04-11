@@ -5,22 +5,26 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('sdiff', command => {
   describe(command, () => {
-    it('should return the difference between the first set and all the successive sets', () => {
-      const redis = new Redis({
-        data: {
-          key1: new Set(['a', 'b', 'c', 'd']),
-          key2: new Set(['c']),
-          // key3: keys that do not exist are considered to be empty sets
-          key4: new Set(['a', 'c', 'e']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return the difference between the first set and all the successive sets',
+      () => {
+        const redis = new Redis({
+          data: {
+            key1: new Set(['a', 'b', 'c', 'd']),
+            key2: new Set(['c']),
+            // key3: keys that do not exist are considered to be empty sets
+            key4: new Set(['a', 'c', 'e']),
+          },
+        })
 
-      return redis[command]('key1', 'key2', 'key3', 'key4').then(result =>
-        expect(
-          command === 'sdiffBuffer' ? result.map(r => r.toString()) : result
-        ).toEqual(['b', 'd'])
-      )
-    })
+        return redis[command]('key1', 'key2', 'key3', 'key4').then(result =>
+          expect(
+            command === 'sdiffBuffer' ? result.map(r => r.toString()) : result
+          ).toEqual(['b', 'd'])
+        )
+      }
+    )
 
     it('should throw an exception if the first key is not of a set', () => {
       const redis = new Redis({

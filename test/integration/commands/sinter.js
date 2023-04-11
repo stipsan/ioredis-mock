@@ -5,21 +5,30 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('sinter', command => {
   describe(command, () => {
-    it('should return the members from the intersection of all the given sets', () => {
-      const redis = new Redis({
-        data: {
-          key1: new Set(['a', 'b', 'c', 'd']),
-          key2: new Set(['c']),
-          key3: new Set(['a', 'c', 'e']),
-        },
-      })
-
-      return redis[command]('key1', 'key2', 'key3').then(result =>
-        expect(
-          command === 'sinterBuffer' ? result.map(v => v.toString()) : result
-        ).toEqual(['c'])
-      )
+    const redis = new Redis()
+    afterAll(() => {
+      redis.disconnect()
     })
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return the members from the intersection of all the given sets',
+      () => {
+        const redis = new Redis({
+          data: {
+            key1: new Set(['a', 'b', 'c', 'd']),
+            key2: new Set(['c']),
+            key3: new Set(['a', 'c', 'e']),
+          },
+        })
+
+        return redis[command]('key1', 'key2', 'key3').then(result =>
+          expect(
+            command === 'sinterBuffer' ? result.map(v => v.toString()) : result
+          ).toEqual(['c'])
+        )
+      }
+    )
 
     it('should throw an exception if one of the keys is not a set', () => {
       const redis = new Redis({

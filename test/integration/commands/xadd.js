@@ -1,9 +1,13 @@
 import Redis from 'ioredis'
 
 describe('xadd', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)('should add events to a stream', () => {
-    const redis = new Redis()
     return redis
       .xadd('stream', '*', 'key', 'val')
       .then(id => {
@@ -48,7 +52,6 @@ describe('xadd', () => {
   })
 
   it('should throw with an illegal amount of arguments', () => {
-    const redis = new Redis()
     return Promise.all([
       redis.xadd().catch(err => err.message),
       redis.xadd('stream').catch(err => err.message),
@@ -62,7 +65,6 @@ describe('xadd', () => {
   })
 
   it('should throw with a duplicate id', () => {
-    const redis = new Redis()
     redis
       .xadd('stream', '*', 'key', 'value')
       .then(id => redis.xadd('stream', id, 'key', 'value'))

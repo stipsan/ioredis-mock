@@ -13,6 +13,8 @@ describe('multipleMocks', () => {
       val = await client2.hget('testing', 'test')
     }
     expect(val).toBe('2')
+    await client2.disconnect()
+    await client1.disconnect()
   })
 
   // @TODO Rewrite test so it runs on a real Redis instance

@@ -14,25 +14,39 @@ runTwinSuite('zcount', command => {
         ['fifth', { score: 5, value: 'fifth' }],
       ]),
     }
-    it('should return using not strict compare', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return using not strict compare',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('foo', 1, 3).then(res => expect(res).toEqual(3))
-    })
+        return redis[command]('foo', 1, 3).then(res => expect(res).toEqual(3))
+      }
+    )
 
-    it('should return using strict compare', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return using strict compare',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('foo', '(3', 5).then(res => expect(res).toEqual(2))
-    })
+        return redis[command]('foo', '(3', 5).then(res =>
+          expect(res).toEqual(2)
+        )
+      }
+    )
 
-    it('should accept infinity string', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should accept infinity string',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('foo', '-inf', '+inf').then(res =>
-        expect(res).toEqual(5)
-      )
-    })
+        return redis[command]('foo', '-inf', '+inf').then(res =>
+          expect(res).toEqual(5)
+        )
+      }
+    )
 
     it('should return 0 if out-of-range', () => {
       const redis = new Redis({ data })

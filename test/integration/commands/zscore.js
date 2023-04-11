@@ -1,38 +1,44 @@
 import Redis from 'ioredis'
 
 describe('zscore', () => {
-  const data = {
-    foo: new Map([
-      ['first', { score: 1, value: 'first' }],
-      ['second', { score: 2, value: 'second' }],
-      ['third', { score: 3, value: 'third' }],
-      ['fourth', { score: 4, value: 'fourth' }],
-      ['fifth', { score: 5, value: 'fifth' }],
-    ]),
-    bar: 'not a sorted set',
-  }
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+  beforeEach(async () => {
+    await redis.zadd(
+      'foo',
+      1,
+      'first',
+      2,
+      'second',
+      3,
+      'third',
+      4,
+      'fourth',
+      5,
+      'fifth'
+    )
+    await redis.set('bar', 'not a sorted set')
+  })
 
   it('should return the score of an existing member as a string', () => {
-    const redis = new Redis({ data })
-
     return redis.zscore('foo', 'third').then(res => expect(res).toBe('3'))
   })
 
   it('should return null when the member does not exist', () => {
-    const redis = new Redis({ data })
-
     return redis.zscore('foo', 'sixth').then(res => expect(res).toBeFalsy())
   })
 
-  it('should return null when the key is not a sorted set', () => {
-    const redis = new Redis({ data })
-
-    return redis.zscore('bar', 'first').then(res => expect(res).toBeFalsy())
-  })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return null when the key is not a sorted set',
+    () => {
+      return redis.zscore('bar', 'first').then(res => expect(res).toBeFalsy())
+    }
+  )
 
   it('should return null when the key does not exist', () => {
-    const redis = new Redis({ data })
-
     return redis.zscore('baz', 'first').then(res => expect(res).toBeFalsy())
   })
 })

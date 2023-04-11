@@ -1,6 +1,8 @@
 import Redis from 'ioredis'
 
-describe('subscribe', () => {
+// @TODO Rewrite test suite so it runs on a real Redis instance
+// eslint-disable-next-line import/newline-after-import
+;(process.env.IS_E2E ? describe.skip : describe)('subscribe', () => {
   it('should ignore an empty subscribe call', () => {
     const redis = new Redis()
     return redis.subscribe().then(subNum => expect(subNum).toBe(0))

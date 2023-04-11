@@ -1,34 +1,27 @@
 import Redis from 'ioredis'
 
 describe('zrevrank', () => {
-  const data = {
-    foo: new Map([
-      ['first', { score: 1, value: 'first' }],
-      ['second', { score: 2, value: 'second' }],
-      ['third', { score: 3, value: 'third' }],
-    ]),
-  }
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+  beforeEach(async () => {
+    await redis.zadd('foo', 1, 'first', 2, 'second', 3, 'third')
+  })
 
   it('should do nothing if key does not exist', () => {
-    const redis = new Redis({ data: {} })
-
     return redis
-      .zrevrank('foo', 'not-exist')
+      .zrevrank('bar', 'not-exist')
       .then(status => expect(status).toBe(null))
-      .then(() => expect(redis.data.has('foo')).toBe(false))
   })
 
   it('should return null if not found', () => {
-    const redis = new Redis({ data })
-
     return redis
       .zrevrank('foo', 'not-found')
       .then(status => expect(status).toBe(null))
   })
 
   it('should return found index', () => {
-    const redis = new Redis({ data })
-
     return redis.zrevrank('foo', 'first').then(status => expect(status).toBe(2))
   })
 })

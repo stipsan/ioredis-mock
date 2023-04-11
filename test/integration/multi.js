@@ -1,12 +1,15 @@
 import Redis from 'ioredis'
 
 describe('multi', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)(
     'should setup a batch queue that can be passed to exec',
     () => {
-      const redis = new Redis()
-
       redis.multi([
         ['incr', 'user_next'],
         ['incr', 'post_next'],
@@ -20,7 +23,6 @@ describe('multi', () => {
   )
 
   it('should map batch length to length in pipeline', () => {
-    const redis = new Redis()
     const pipeline = redis.pipeline()
 
     pipeline.incr('user_next').incr('post_next')
@@ -29,8 +31,6 @@ describe('multi', () => {
   })
 
   it('allows for pipelining methods', () => {
-    const redis = new Redis()
-
     return redis
       .pipeline()
       .incr('user_next')
@@ -45,7 +45,6 @@ describe('multi', () => {
   })
 
   it('allows callbacks on any sequence of the pipeline', () => {
-    const redis = new Redis()
     let internalCallsCounter = 0
 
     return redis
@@ -71,7 +70,6 @@ describe('multi', () => {
   })
 
   it('allows pipeline to accept an array of String commands', async () => {
-    const redis = new Redis()
     const commands = [
       ['set', 'firstkey', 'firstvalue'],
       ['set', 'secondkey', 'secondvalue'],
@@ -88,7 +86,6 @@ describe('multi', () => {
     expect(await redis.get('secondkey')).toEqual('secondvalue')
   })
   ;(process.env.IS_E2E ? it.skip : it)('should increment _transactions', () => {
-    const redis = new Redis()
     const commands = [
       ['incr', 'user_next'],
       ['incr', 'post_next'],
@@ -99,8 +96,6 @@ describe('multi', () => {
   })
 
   it('errors if you exec without starting a pipeline', () => {
-    const redis = new Redis()
-
     return redis.exec().catch(err => {
       expect(err).toBeInstanceOf(Error)
     })

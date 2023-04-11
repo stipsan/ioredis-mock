@@ -4,6 +4,11 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('xlen', command => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   describe(command, () => {
     // @TODO Rewrite test so it runs on a real Redis instance
     ;(process.env.IS_E2E ? it.skip : it)(
@@ -23,7 +28,6 @@ runTwinSuite('xlen', command => {
     )
 
     it('should return 0 for a non existing stream', () => {
-      const redis = new Redis()
       return redis[command]('non-existing').then(len => expect(len).toBe(0))
     })
   })

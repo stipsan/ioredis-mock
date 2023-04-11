@@ -11,31 +11,40 @@ describe('zremrangebyrank', () => {
     ]),
   }
 
-  it('should do nothing if key does not exist', () => {
-    const redis = new Redis({ data: {} })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should do nothing if key does not exist',
+    () => {
+      const redis = new Redis({ data: {} })
 
-    return redis
-      .zremrangebyrank('foo', 0, 2)
-      .then(status => expect(status).toBe(0))
-      .then(() => expect(redis.data.has('foo')).toBe(false))
-  })
+      return redis
+        .zremrangebyrank('foo', 0, 2)
+        .then(status => expect(status).toBe(0))
+        .then(() => expect(redis.data.has('foo')).toBe(false))
+    }
+  )
 
-  it('should remove first 3 items ordered by score', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should remove first 3 items ordered by score',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyrank('foo', 0, 2)
-      .then(status => expect(status).toBe(3))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(false)
-        expect(redis.data.get('foo').has('second')).toBe(false)
-        expect(redis.data.get('foo').has('third')).toBe(false)
-        expect(redis.data.get('foo').has('fourth')).toBe(true)
-        expect(redis.data.get('foo').has('fifth')).toBe(true)
-      })
-  })
+      return redis
+        .zremrangebyrank('foo', 0, 2)
+        .then(status => expect(status).toBe(3))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(false)
+          expect(redis.data.get('foo').has('second')).toBe(false)
+          expect(redis.data.get('foo').has('third')).toBe(false)
+          expect(redis.data.get('foo').has('fourth')).toBe(true)
+          expect(redis.data.get('foo').has('fifth')).toBe(true)
+        })
+    }
+  )
 
-  it('should remove last 3 items', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should remove last 3 items', () => {
     const redis = new Redis({ data })
 
     return redis
@@ -50,50 +59,62 @@ describe('zremrangebyrank', () => {
       })
   })
 
-  it('should remove all items on larger rangers', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should remove all items on larger rangers',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyrank('foo', 0, 100)
-      .then(status => expect(status).toBe(5))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(false)
-        expect(redis.data.get('foo').has('second')).toBe(false)
-        expect(redis.data.get('foo').has('third')).toBe(false)
-        expect(redis.data.get('foo').has('fourth')).toBe(false)
-        expect(redis.data.get('foo').has('fifth')).toBe(false)
-      })
-  })
+      return redis
+        .zremrangebyrank('foo', 0, 100)
+        .then(status => expect(status).toBe(5))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(false)
+          expect(redis.data.get('foo').has('second')).toBe(false)
+          expect(redis.data.get('foo').has('third')).toBe(false)
+          expect(redis.data.get('foo').has('fourth')).toBe(false)
+          expect(redis.data.get('foo').has('fifth')).toBe(false)
+        })
+    }
+  )
 
-  it('should return 0 and delete nothing if out-of-range', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return 0 and delete nothing if out-of-range',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyrank('foo', 10, 100)
-      .then(status => expect(status).toBe(0))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(true)
-        expect(redis.data.get('foo').has('second')).toBe(true)
-        expect(redis.data.get('foo').has('third')).toBe(true)
-        expect(redis.data.get('foo').has('fourth')).toBe(true)
-        expect(redis.data.get('foo').has('fifth')).toBe(true)
-      })
-  })
+      return redis
+        .zremrangebyrank('foo', 10, 100)
+        .then(status => expect(status).toBe(0))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(true)
+          expect(redis.data.get('foo').has('second')).toBe(true)
+          expect(redis.data.get('foo').has('third')).toBe(true)
+          expect(redis.data.get('foo').has('fourth')).toBe(true)
+          expect(redis.data.get('foo').has('fifth')).toBe(true)
+        })
+    }
+  )
 
-  it('should remove nothing if max is before min', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should remove nothing if max is before min',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyrank('foo', 0, -6)
-      .then(status => expect(status).toBe(0))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(true)
-        expect(redis.data.get('foo').has('second')).toBe(true)
-        expect(redis.data.get('foo').has('third')).toBe(true)
-        expect(redis.data.get('foo').has('fourth')).toBe(true)
-        expect(redis.data.get('foo').has('fifth')).toBe(true)
-      })
-  })
+      return redis
+        .zremrangebyrank('foo', 0, -6)
+        .then(status => expect(status).toBe(0))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(true)
+          expect(redis.data.get('foo').has('second')).toBe(true)
+          expect(redis.data.get('foo').has('third')).toBe(true)
+          expect(redis.data.get('foo').has('fourth')).toBe(true)
+          expect(redis.data.get('foo').has('fifth')).toBe(true)
+        })
+    }
+  )
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)

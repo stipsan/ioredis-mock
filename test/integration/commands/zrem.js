@@ -12,33 +12,49 @@ runTwinSuite('zrem', command => {
         ['baz', { value: 'baz', score: 3 }],
       ]),
     }
-    it('should remove 1 item from sorted set', () => {
-      const redis = new Redis({ data })
-      return redis[command]('foos', 'foo')
-        .then(status => expect(status).toBe(1))
-        .then(() => expect(redis.data.get('foos').has('foo')).toBe(false))
-    })
-    it('should remove 2 items from sorted set', () => {
-      const redis = new Redis({ data })
-      return redis[command]('foos', 'foo', 'baz')
-        .then(status => expect(status).toBe(2))
-        .then(() => {
-          expect(redis.data.get('foos').has('foo')).toBe(false)
-          expect(redis.data.get('foos').has('bar')).toBe(true)
-          expect(redis.data.get('foos').has('baz')).toBe(false)
-        })
-    })
-    it('should not remove an item that does not exist', () => {
-      const redis = new Redis({ data })
-      return redis[command]('foos', 'qux')
-        .then(status => expect(status).toBe(0))
-        .then(() => expect(redis.data.get('foos').has('qux')).toBe(false))
-    })
-    it('should ignore non-existent keys', () => {
-      const redis = new Redis({ data })
-      return redis[command]('bars', 'bar')
-        .then(status => expect(status).toBe(0))
-        .then(() => expect(redis.data.get('bars')).toBeFalsy())
-    })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should remove 1 item from sorted set',
+      () => {
+        const redis = new Redis({ data })
+        return redis[command]('foos', 'foo')
+          .then(status => expect(status).toBe(1))
+          .then(() => expect(redis.data.get('foos').has('foo')).toBe(false))
+      }
+    )
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should remove 2 items from sorted set',
+      () => {
+        const redis = new Redis({ data })
+        return redis[command]('foos', 'foo', 'baz')
+          .then(status => expect(status).toBe(2))
+          .then(() => {
+            expect(redis.data.get('foos').has('foo')).toBe(false)
+            expect(redis.data.get('foos').has('bar')).toBe(true)
+            expect(redis.data.get('foos').has('baz')).toBe(false)
+          })
+      }
+    )
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should not remove an item that does not exist',
+      () => {
+        const redis = new Redis({ data })
+        return redis[command]('foos', 'qux')
+          .then(status => expect(status).toBe(0))
+          .then(() => expect(redis.data.get('foos').has('qux')).toBe(false))
+      }
+    )
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should ignore non-existent keys',
+      () => {
+        const redis = new Redis({ data })
+        return redis[command]('bars', 'bar')
+          .then(status => expect(status).toBe(0))
+          .then(() => expect(redis.data.get('bars')).toBeFalsy())
+      }
+    )
   })
 })

@@ -5,15 +5,24 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('scard', command => {
   describe(command, () => {
-    it('should return the number of items in the set', () => {
-      const redis = new Redis({
-        data: {
-          foo: new Set([1, 3, 4]),
-        },
-      })
-
-      return redis[command]('foo').then(length => expect(length).toBe(3))
+    const redis = new Redis()
+    afterAll(() => {
+      redis.disconnect()
     })
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return the number of items in the set',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: new Set([1, 3, 4]),
+          },
+        })
+
+        return redis[command]('foo').then(length => expect(length).toBe(3))
+      }
+    )
 
     it('should return 0 if the set does not exist', () => {
       const redis = new Redis()

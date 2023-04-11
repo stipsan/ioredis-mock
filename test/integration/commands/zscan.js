@@ -1,12 +1,16 @@
 import Redis from 'ioredis'
 
 describe('zscan', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   function createMap(keys) {
     return new Map(keys.map(k => [k, { score: 0, value: k }]))
   }
 
   it('should return null array if zset does not exist', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0).then(result => {
       expect(result[0]).toBe('0')
       expect(result[1]).toEqual([])
@@ -93,37 +97,31 @@ describe('zscan', () => {
   )
 
   it('should fail if incorrect cursor', () => {
-    const redis = new Redis()
     return redis.zscan('key', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect command', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0, 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect MATCH usage', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0, 'MATCH', 'pattern', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect COUNT usage', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0, 'COUNT', 10, 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if incorrect COUNT usage 2', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0, 'COUNT', 'ZU').catch(result => {
       expect(result).toBeInstanceOf(Error)
     })
   })
   it('should fail if too many arguments', () => {
-    const redis = new Redis()
     return redis
       .zscan('key', 0, 'MATCH', 'foo*', 'COUNT', 1, 'ZU')
       .catch(result => {
@@ -133,7 +131,6 @@ describe('zscan', () => {
   })
 
   it('should fail if arguments length not odd', () => {
-    const redis = new Redis()
     return redis.zscan('key', 0, 'MATCH', 'foo*', 'COUNT').catch(result => {
       expect(result).toBeInstanceOf(Error)
       expect(result.message).toEqual(
@@ -143,7 +140,6 @@ describe('zscan', () => {
   })
 
   it('should match ioredis behaviour', done => {
-    const redis = new Redis()
     redis.zadd('test', 1, 'a', 2, 'b', 3, 'c').then(() => {
       redis.zscan('test', 0).then(replies => {
         expect(replies).toEqual(['0', ['a', '1', 'b', '2', 'c', '3']])

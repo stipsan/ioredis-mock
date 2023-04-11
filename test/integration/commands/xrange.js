@@ -1,8 +1,12 @@
 import Redis from 'ioredis'
 
 describe('xrange', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   it('returns an empty list on a non existing stream', () => {
-    const redis = new Redis()
     return redis
       .xrange('non-existing', '-', '+')
       .then(events => expect(events).toEqual([]))
@@ -83,7 +87,6 @@ describe('xrange', () => {
   )
 
   it('should throw with a wrong number of arguments', () => {
-    const redis = new Redis()
     Promise.all([
       redis.xrange('stream', '-').catch(err => err.message),
       redis.xrange('stream').catch(err => err.message),
@@ -96,7 +99,6 @@ describe('xrange', () => {
   })
 
   it('should throw with a missing count', () => {
-    const redis = new Redis()
     redis
       .xrange('stream', '-', '+', 'COUNT')
       .catch(err => expect(err.message).toBe('ERR syntax error'))

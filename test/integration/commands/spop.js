@@ -5,7 +5,8 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('spop', command => {
   describe(command, () => {
-    it('should return a random item', () => {
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)('should return a random item', () => {
       const redis = new Redis({
         data: {
           myset: new Set(['one', 'two', 'three']),
@@ -20,53 +21,65 @@ runTwinSuite('spop', command => {
       })
     })
 
-    it('should not return an array when count == set.size == 1', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should not return an array when count == set.size == 1',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one']),
+          },
+        })
 
-      return redis[command]('myset').then(_result => {
-        const result = Buffer.isBuffer(_result) ? _result.toString() : _result
-        expect(result.constructor).toBe(String)
-        expect(result).toBe('one')
-        expect(redis.data.get('myset').size).toBe(0)
-      })
-    })
+        return redis[command]('myset').then(_result => {
+          const result = Buffer.isBuffer(_result) ? _result.toString() : _result
+          expect(result.constructor).toBe(String)
+          expect(result).toBe('one')
+          expect(redis.data.get('myset').size).toBe(0)
+        })
+      }
+    )
 
-    it('should return random unique items', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one', 'two', 'three']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return random unique items',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one', 'two', 'three']),
+          },
+        })
 
-      return redis[command]('myset', 2).then(_results => {
-        const results = Buffer.isBuffer(_results[0])
-          ? _results.map(result => result.toString())
-          : _results
-        expect(['one', 'two', 'three']).toContain(results[0])
-        expect(['one', 'two', 'three']).toContain(results[1])
-        expect(redis.data.get('myset').size).toBe(1)
-      })
-    })
+        return redis[command]('myset', 2).then(_results => {
+          const results = Buffer.isBuffer(_results[0])
+            ? _results.map(result => result.toString())
+            : _results
+          expect(['one', 'two', 'three']).toContain(results[0])
+          expect(['one', 'two', 'three']).toContain(results[1])
+          expect(redis.data.get('myset').size).toBe(1)
+        })
+      }
+    )
 
-    it('should return all items if positive count is bigger than set', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one', 'two', 'three']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return all items if positive count is bigger than set',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one', 'two', 'three']),
+          },
+        })
 
-      return redis[command]('myset', 5).then(_results => {
-        const results = Buffer.isBuffer(_results[0])
-          ? _results.map(result => result.toString())
-          : _results
-        expect(results).toEqual(['one', 'two', 'three'])
-        expect(redis.data.get('myset').size).toBe(0)
-      })
-    })
+        return redis[command]('myset', 5).then(_results => {
+          const results = Buffer.isBuffer(_results[0])
+            ? _results.map(result => result.toString())
+            : _results
+          expect(results).toEqual(['one', 'two', 'three'])
+          expect(redis.data.get('myset').size).toBe(0)
+        })
+      }
+    )
 
     it('should return null if set is empty', () => {
       const redis = new Redis()
@@ -74,17 +87,21 @@ runTwinSuite('spop', command => {
       return redis[command]('myset').then(result => expect(result).toBe(null))
     })
 
-    it('should return undefined if count is 0', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one', 'two', 'three']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return undefined if count is 0',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one', 'two', 'three']),
+          },
+        })
 
-      return redis[command]('myset', 0).then(result =>
-        expect(result).toBe(undefined)
-      )
-    })
+        return redis[command]('myset', 0).then(result =>
+          expect(result).toBe(undefined)
+        )
+      }
+    )
 
     it('should throw an exception if the key contains something other than a set', () => {
       const redis = new Redis({
@@ -98,28 +115,40 @@ runTwinSuite('spop', command => {
       )
     })
 
-    it('should throw an exception if count is not an integer', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one', 'two', 'three']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if count is not an integer',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one', 'two', 'three']),
+          },
+        })
 
-      return redis[command]('myset', 'not an integer').catch(err =>
-        expect(err.message).toBe('ERR value is not an integer or out of range')
-      )
-    })
+        return redis[command]('myset', 'not an integer').catch(err =>
+          expect(err.message).toBe(
+            'ERR value is not an integer or out of range'
+          )
+        )
+      }
+    )
 
-    it('should throw an exception if count is out of range', () => {
-      const redis = new Redis({
-        data: {
-          myset: new Set(['one', 'two', 'three']),
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if count is out of range',
+      () => {
+        const redis = new Redis({
+          data: {
+            myset: new Set(['one', 'two', 'three']),
+          },
+        })
 
-      return redis[command]('myset', -10).catch(err =>
-        expect(err.message).toBe('ERR value is not an integer or out of range')
-      )
-    })
+        return redis[command]('myset', -10).catch(err =>
+          expect(err.message).toBe(
+            'ERR value is not an integer or out of range'
+          )
+        )
+      }
+    )
   })
 })

@@ -1,14 +1,16 @@
 import Redis from 'ioredis'
 
 describe('exec', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
   beforeEach(async () => {
-    const redis = new Redis()
     await redis.set('user_next', '1')
     await redis.set('post_next', '1')
   })
-  it('should resolve Promise.all after all operations is done', async () => {
-    const redis = new Redis()
 
+  it('should resolve Promise.all after all operations is done', async () => {
     const results = await redis
       .multi([
         ['incr', 'user_next'],
@@ -23,8 +25,6 @@ describe('exec', () => {
   })
 
   it('should support a callback function', done => {
-    const redis = new Redis()
-
     redis
       .multi([
         ['incr', 'user_next'],

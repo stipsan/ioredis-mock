@@ -1,6 +1,11 @@
 import Redis from 'ioredis'
 
 describe('zremrangebyscore', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -12,45 +17,51 @@ describe('zremrangebyscore', () => {
   }
 
   it('should do nothing if key does not exist', () => {
-    const redis = new Redis({ data: {} })
-
     return redis
-      .zremrangebyscore('foo', 0, 2)
+      .zremrangebyscore('bar', 0, 2)
       .then(status => expect(status).toBe(0))
-      .then(() => expect(redis.data.has('foo')).toBe(false))
   })
 
-  it('should remove using not strict compare', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should remove using not strict compare',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyscore('foo', 1, 3)
-      .then(res => expect(res).toBe(3))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(false)
-        expect(redis.data.get('foo').has('second')).toBe(false)
-        expect(redis.data.get('foo').has('third')).toBe(false)
-        expect(redis.data.get('foo').has('fourth')).toBe(true)
-        expect(redis.data.get('foo').has('fifth')).toBe(true)
-      })
-  })
+      return redis
+        .zremrangebyscore('foo', 1, 3)
+        .then(res => expect(res).toBe(3))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(false)
+          expect(redis.data.get('foo').has('second')).toBe(false)
+          expect(redis.data.get('foo').has('third')).toBe(false)
+          expect(redis.data.get('foo').has('fourth')).toBe(true)
+          expect(redis.data.get('foo').has('fifth')).toBe(true)
+        })
+    }
+  )
 
-  it('should return using strict compare', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return using strict compare',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyscore('foo', '(3', 5)
-      .then(res => expect(res).toEqual(2))
-      .then(() => {
-        expect(redis.data.get('foo').has('first')).toBe(true)
-        expect(redis.data.get('foo').has('second')).toBe(true)
-        expect(redis.data.get('foo').has('third')).toBe(true)
-        expect(redis.data.get('foo').has('fourth')).toBe(false)
-        expect(redis.data.get('foo').has('fifth')).toBe(false)
-      })
-  })
+      return redis
+        .zremrangebyscore('foo', '(3', 5)
+        .then(res => expect(res).toEqual(2))
+        .then(() => {
+          expect(redis.data.get('foo').has('first')).toBe(true)
+          expect(redis.data.get('foo').has('second')).toBe(true)
+          expect(redis.data.get('foo').has('third')).toBe(true)
+          expect(redis.data.get('foo').has('fourth')).toBe(false)
+          expect(redis.data.get('foo').has('fifth')).toBe(false)
+        })
+    }
+  )
 
-  it('should accept infinity string', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should accept infinity string', () => {
     const redis = new Redis({ data })
 
     return redis
@@ -65,21 +76,29 @@ describe('zremrangebyscore', () => {
       })
   })
 
-  it('should return zero if out-of-range', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return zero if out-of-range',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyscore('foo', 100, 10)
-      .then(res => expect(res).toEqual(0))
-  })
+      return redis
+        .zremrangebyscore('foo', 100, 10)
+        .then(res => expect(res).toEqual(0))
+    }
+  )
 
-  it('should return zero if key not found', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return zero if key not found',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zremrangebyscore('boo', 100, 10)
-      .then(res => expect(res).toEqual(0))
-  })
+      return redis
+        .zremrangebyscore('boo', 100, 10)
+        .then(res => expect(res).toEqual(0))
+    }
+  )
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)

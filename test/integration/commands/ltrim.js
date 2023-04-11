@@ -5,7 +5,8 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('ltrim', (command, equals) => {
   describe(command, () => {
-    it('should return first 3 items', () => {
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)('should return first 3 items', () => {
       const redis = new Redis({
         data: {
           foo: ['1', '2', '3', '4', '5'],
@@ -22,7 +23,8 @@ runTwinSuite('ltrim', (command, equals) => {
       ])
     })
 
-    it('should return last 3 items', () => {
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)('should return last 3 items', () => {
       const redis = new Redis({
         data: {
           foo: ['1', '2', '3', '4', '5'],
@@ -39,54 +41,66 @@ runTwinSuite('ltrim', (command, equals) => {
       ])
     })
 
-    it('should return all items if start less than 0', () => {
-      const redis = new Redis({
-        data: {
-          foo: ['1', '2', '3', '4', '5'],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return all items if start less than 0',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3', '4', '5'],
+          },
+        })
 
-      return Promise.all([
-        redis[command]('foo', -6, -1).then(res =>
-          expect(equals(res, 'OK')).toBe(true)
-        ),
-        redis
-          .lrange('foo', 0, -1)
-          .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
-      ])
-    })
+        return Promise.all([
+          redis[command]('foo', -6, -1).then(res =>
+            expect(equals(res, 'OK')).toBe(true)
+          ),
+          redis
+            .lrange('foo', 0, -1)
+            .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
+        ])
+      }
+    )
 
-    it('should return empty if end - length before start', () => {
-      const redis = new Redis({
-        data: {
-          foo: ['1', '2', '3', '4', '5'],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return empty if end - length before start',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3', '4', '5'],
+          },
+        })
 
-      return Promise.all([
-        redis[command]('foo', 0, -6).then(res =>
-          expect(equals(res, 'OK')).toBe(true)
-        ),
-        redis.lrange('foo', 0, -1).then(res => expect(res).toEqual([])),
-      ])
-    })
+        return Promise.all([
+          redis[command]('foo', 0, -6).then(res =>
+            expect(equals(res, 'OK')).toBe(true)
+          ),
+          redis.lrange('foo', 0, -1).then(res => expect(res).toEqual([])),
+        ])
+      }
+    )
 
-    it('should return last all items on larger numbers', () => {
-      const redis = new Redis({
-        data: {
-          foo: ['1', '2', '3', '4', '5'],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return last all items on larger numbers',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3', '4', '5'],
+          },
+        })
 
-      return Promise.all([
-        redis[command]('foo', 0, 100).then(res =>
-          expect(equals(res, 'OK')).toBe(true)
-        ),
-        redis
-          .lrange('foo', 0, -1)
-          .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
-      ])
-    })
+        return Promise.all([
+          redis[command]('foo', 0, 100).then(res =>
+            expect(equals(res, 'OK')).toBe(true)
+          ),
+          redis
+            .lrange('foo', 0, -1)
+            .then(res => expect(res).toEqual(['1', '2', '3', '4', '5'])),
+        ])
+      }
+    )
 
     it('should return empty array if out-of-range', () => {
       const redis = new Redis({
