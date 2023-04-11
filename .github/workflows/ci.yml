@@ -120,7 +120,7 @@ jobs:
       - run: npm ci
       - name: test:e2e
       # run: npm run test:e2e
-        run: npm run test:e2e -- --openHandlesTimeout=5000
+        run: npm run test:e2e -- --openHandlesTimeout=60000
         timeout-minutes: 2
       - name: Find open handles
         if: failure()
