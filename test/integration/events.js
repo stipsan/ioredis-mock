@@ -1,12 +1,14 @@
 import Redis from 'ioredis'
 
 describe('events', () => {
-  it('should trigger ready and connect events on instantiation', () => {
+  it('should trigger ready and connect events on instantiation', async () => {
     const redis = new Redis()
 
-    return Promise.all([
+    await Promise.all([
       new Promise(resolve => redis.once('ready', resolve)),
       new Promise(resolve => redis.once('connect', resolve)),
     ])
+
+    return redis.disconnect()
   })
 })
