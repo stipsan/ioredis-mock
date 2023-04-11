@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 64%](https://img.shields.io/badge/coverage-64%25-orange.svg)
+## Supported commands ![Commands Coverage: 65%](https://img.shields.io/badge/coverage-65%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -214,7 +214,7 @@
 | [zpopmin]              | :white_check_mark: | :white_check_mark: |
 | [zrandmember]          | :white_check_mark: |        :x:         |
 | [zrange]               | :white_check_mark: | :white_check_mark: |
-| [zrangebylex]          | :white_check_mark: |        :x:         |
+| [zrangebylex]          | :white_check_mark: | :white_check_mark: |
 | [zrangebyscore]        | :white_check_mark: | :white_check_mark: |
 | [zrangestore]          | :white_check_mark: |        :x:         |
 | [zrank]                | :white_check_mark: | :white_check_mark: |
@@ -223,7 +223,7 @@
 | [zremrangebyrank]      | :white_check_mark: | :white_check_mark: |
 | [zremrangebyscore]     | :white_check_mark: | :white_check_mark: |
 | [zrevrange]            | :white_check_mark: | :white_check_mark: |
-| [zrevrangebylex]       | :white_check_mark: |        :x:         |
+| [zrevrangebylex]       | :white_check_mark: | :white_check_mark: |
 | [zrevrangebyscore]     | :white_check_mark: | :white_check_mark: |
 | [zrevrank]             | :white_check_mark: | :white_check_mark: |
 | [zscan]                | :white_check_mark: | :white_check_mark: |
