@@ -124,9 +124,9 @@ jobs:
       - name: Find open handles
         if: failure()
         run: |
-          npm run test:e2e -- --detectOpenHandles --forceExit --logHeapUsage
-        env:
-          DEBUG: ioredis:*
+          npm run test:e2e -- --detectOpenHandles --forceExit
+        #env:
+        #  DEBUG: ioredis:*
 
   release:
     needs: [build, test, browser, e2e]
