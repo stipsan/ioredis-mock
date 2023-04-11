@@ -24,8 +24,9 @@ runTwinSuite('scard', command => {
       }
     )
 
-    it('should return 0 if the set does not exist', () => {
-      return redis[command]('foo').then(length => expect(length).toBe(0))
+    it('should return 0 if the set does not exist', async () => {
+      const length = await redis[command]('foo')
+      expect(length).toBe(0)
     })
 
     // @TODO Rewrite test so it runs on a real Redis instance
