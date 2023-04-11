@@ -3,8 +3,6 @@ import Redis from 'ioredis'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { browserSafeDescribe, runTwinSuite } from '../../../test-utils'
 
-const TEST_TIMEOUT = 5000
-
 runTwinSuite('brpoplpush', (command, equals) => {
   browserSafeDescribe(command)(command, () => {
     const redis = new Redis()
@@ -27,13 +25,9 @@ runTwinSuite('brpoplpush', (command, equals) => {
       expect(await redis.lrange('bar', 0, -1)).toEqual(['bar', 'baz'])
     })
 
-    it(
-      'should return null if the source list does not exist',
-      async () => {
-        expect(await redis[command]('foo', 'bar', 1)).toEqual(null)
-      },
-      TEST_TIMEOUT
-    )
+    it('should return null if the source list does not exist', async () => {
+      expect(await redis[command]('foo', 'bar', 1)).toEqual(null)
+    })
 
     // @TODO Skipped because there's a bug in our implementation
     ;(process.env.IS_E2E ? it : it.skip)(
@@ -43,19 +37,14 @@ runTwinSuite('brpoplpush', (command, equals) => {
 
         expect(await redis[command]('foo', 'bar', 1)).toEqual(null)
         redis.disconnect()
-      },
-      TEST_TIMEOUT
+      }
     )
 
-    it(
-      'should return the item',
-      async () => {
-        await redis.rpush('foo', 'foo', 'bar')
+    it('should return the item', async () => {
+      await redis.rpush('foo', 'foo', 'bar')
 
-        expect(equals(await redis[command]('foo', 'bar', 1), 'bar')).toBe(true)
-      },
-      TEST_TIMEOUT
-    )
+      expect(equals(await redis[command]('foo', 'bar', 1), 'bar')).toBe(true)
+    })
 
     // TODO Skipped because there's a bug in our implementation
     ;(process.env.IS_E2E ? it : it.skip)(
