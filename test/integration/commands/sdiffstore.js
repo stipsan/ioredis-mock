@@ -63,15 +63,11 @@ runTwinSuite('sdiffstore', command => {
       }
     )
 
-    // @TODO Rewrite test so it runs on a real Redis instance
-    ;(process.env.IS_E2E ? it.skip : it)(
-      "should return 0 if sources don't exists",
-      () => {
-        return redis[command]('dest', 'foo', 'bar')
-          .then(count => expect(count).toEqual(0))
-          .then(() => redis.smembers('dest'))
-          .then(result => expect(result).toEqual([]))
-      }
-    )
+    it("should return 0 if sources don't exists", () => {
+      return redis[command]('dest', 'foo', 'bar')
+        .then(count => expect(count).toEqual(0))
+        .then(() => redis.smembers('dest'))
+        .then(result => expect(result).toEqual([]))
+    })
   })
 })

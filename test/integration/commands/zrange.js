@@ -1,6 +1,11 @@
 import Redis from 'ioredis'
 
 describe('zrange', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -23,17 +28,25 @@ describe('zrange', () => {
     }
   )
 
-  it('should return nothing when min > max', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return nothing when min > max',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis.zrange('foo', 2, 0).then(res => expect(res).toEqual([]))
-  })
+      return redis.zrange('foo', 2, 0).then(res => expect(res).toEqual([]))
+    }
+  )
 
-  it('should return nothing if the min is greater than the max, and max is negative', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return nothing if the min is greater than the max, and max is negative',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis.zrange('foo', 0, -8).then(res => expect(res).toEqual([]))
-  })
+      return redis.zrange('foo', 0, -8).then(res => expect(res).toEqual([]))
+    }
+  )
 
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)('should return last 3 items', () => {
@@ -70,15 +83,19 @@ describe('zrange', () => {
     }
   )
 
-  it('should return empty array if out-of-range', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return empty array if out-of-range',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis.zrange('foo', 10, 100).then(res => expect(res).toEqual([]))
-  })
+      return redis.zrange('foo', 10, 100).then(res => expect(res).toEqual([]))
+    }
+  )
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)
-    const redis = new Redis()
+
     await redis.set('foo', 'not a list')
 
     return redis

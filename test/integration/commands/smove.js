@@ -5,6 +5,11 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('smove', command => {
   describe(command, () => {
+    const redis = new Redis()
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     // @TODO Rewrite test so it runs on a real Redis instance
     ;(process.env.IS_E2E ? it.skip : it)(
       'should move value from source to destination',
@@ -41,36 +46,42 @@ runTwinSuite('smove', command => {
     )
 
     it('should return 0 if source does not exist', () => {
-      const redis = new Redis()
-
       return redis[command]('foo', 'bar', 'two').then(status =>
         expect(status).toBe(0)
       )
     })
 
-    it('should throw an exception if the source contains something other than a set', () => {
-      const redis = new Redis({
-        data: {
-          foo: 'not a set',
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if the source contains something other than a set',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: 'not a set',
+          },
+        })
 
-      return redis[command]('foo', 'bar', 'two').catch(err =>
-        expect(err.message).toBe('Key foo does not contain a set')
-      )
-    })
+        return redis[command]('foo', 'bar', 'two').catch(err =>
+          expect(err.message).toBe('Key foo does not contain a set')
+        )
+      }
+    )
 
-    it('should throw an exception if the destination contains something other than a set', () => {
-      const redis = new Redis({
-        data: {
-          foo: new Set(),
-          bar: 'not a set',
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if the destination contains something other than a set',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: new Set(),
+            bar: 'not a set',
+          },
+        })
 
-      return redis[command]('foo', 'bar', 'two').catch(err =>
-        expect(err.message).toBe('Key bar does not contain a set')
-      )
-    })
+        return redis[command]('foo', 'bar', 'two').catch(err =>
+          expect(err.message).toBe('Key bar does not contain a set')
+        )
+      }
+    )
   })
 })

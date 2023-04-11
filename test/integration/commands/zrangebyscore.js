@@ -1,6 +1,11 @@
 import Redis from 'ioredis'
 
 describe('zrangebyscore', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -45,25 +50,33 @@ describe('zrangebyscore', () => {
       )
   })
 
-  it('should return empty array if out-of-range', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return empty array if out-of-range',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrangebyscore('foo', 10, 100)
-      .then(res => expect(res).toEqual([]))
-  })
+      return redis
+        .zrangebyscore('foo', 10, 100)
+        .then(res => expect(res).toEqual([]))
+    }
+  )
 
-  it('should return empty array if key not found', () => {
-    const redis = new Redis({ data })
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return empty array if key not found',
+    () => {
+      const redis = new Redis({ data })
 
-    return redis
-      .zrangebyscore('boo', 10, 100)
-      .then(res => expect(res).toEqual([]))
-  })
+      return redis
+        .zrangebyscore('boo', 10, 100)
+        .then(res => expect(res).toEqual([]))
+    }
+  )
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)
-    const redis = new Redis()
+
     await redis.set('foo', 'not a list')
 
     return redis

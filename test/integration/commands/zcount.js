@@ -48,26 +48,42 @@ runTwinSuite('zcount', command => {
       }
     )
 
-    it('should return 0 if out-of-range', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return 0 if out-of-range',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('foo', 10, 100).then(res => expect(res).toEqual(0))
-    })
+        return redis[command]('foo', 10, 100).then(res =>
+          expect(res).toEqual(0)
+        )
+      }
+    )
 
-    it('should return 0 if key not found', () => {
-      const redis = new Redis({ data })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return 0 if key not found',
+      () => {
+        const redis = new Redis({ data })
 
-      return redis[command]('boo', 10, 100).then(res => expect(res).toEqual(0))
-    })
+        return redis[command]('boo', 10, 100).then(res =>
+          expect(res).toEqual(0)
+        )
+      }
+    )
 
-    it('should return 0 if the key contains something other than a list', () => {
-      const redis = new Redis({
-        data: {
-          foo: 'not a list',
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return 0 if the key contains something other than a list',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: 'not a list',
+          },
+        })
 
-      return redis[command]('foo', 1, 2).then(res => expect(res).toEqual(0))
-    })
+        return redis[command]('foo', 1, 2).then(res => expect(res).toEqual(0))
+      }
+    )
   })
 })
