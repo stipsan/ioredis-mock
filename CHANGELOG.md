@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.6.0](https://github.com/stipsan/ioredis-mock/compare/v8.5.0...v8.6.0) (2023-04-11)
+
+### Features
+
+- zrangebylex and zrevrangebylex ([#1269](https://github.com/stipsan/ioredis-mock/issues/1269)) ([08d6c98](https://github.com/stipsan/ioredis-mock/commit/08d6c985700dfcf9249b36e9ec835d648e71bb98))
+
+### Bug Fixes
+
+- sorted lists should throw WRONGTYPE instead of returning empty arrays ([b46b9b8](https://github.com/stipsan/ioredis-mock/commit/b46b9b83ce5af5a1c7756337b43f33f8a58808ed))
+
 ## [8.5.0](https://github.com/stipsan/ioredis-mock/compare/v8.4.0...v8.5.0) (2023-04-08)
 
 ### Features
