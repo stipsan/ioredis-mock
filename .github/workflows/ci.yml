@@ -119,13 +119,13 @@ jobs:
           node-version: lts/*
       - run: npm ci
       - name: test:e2e
-      # run: npm run test:e2e
-        run: npm run test:e2e -- --openHandlesTimeout=60000
-        timeout-minutes: 2
-      - name: Find open handles
-        if: failure()
-        run: |
-          npm run test:e2e -- --detectOpenHandles --forceExit
+        run: npm run test:e2e -- --forceExit
+        # run: npm run test:e2e -- --openHandlesTimeout=60000
+        # timeout-minutes: 2
+      # - name: Find open handles
+      #   if: failure()
+      #   run: |
+      #     npm run test:e2e -- --detectOpenHandles --forceExit
         #env:
         #  DEBUG: ioredis:*
 
