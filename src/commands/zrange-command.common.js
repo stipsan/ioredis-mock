@@ -126,7 +126,9 @@ export function zrangeBaseCommand(
 
   // @TODO investigate a more stable way to detect sorted lists
   if (this.data.has(key) && !(this.data.get(key) instanceof Map)) {
-    return []
+    throw new Error(
+      'WRONGTYPE Operation against a key holding the wrong kind of value'
+    )
   }
 
   let withScores = false
