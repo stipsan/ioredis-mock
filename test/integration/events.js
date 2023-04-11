@@ -1,17 +1,12 @@
 import Redis from 'ioredis'
 
 describe('events', () => {
-  it('should trigger ready and connect events on instantiation', done => {
-    const redis = new Redis({})
-    const readySpy = jest.fn()
-    const connectSpy = jest.fn()
-    redis.on('ready', readySpy)
-    redis.on('connect', connectSpy)
+  it('should trigger ready and connect events on instantiation', () => {
+    const redis = new Redis()
 
-    process.nextTick(() => {
-      expect(connectSpy).toHaveBeenCalled()
-      expect(readySpy).toHaveBeenCalled()
-      done()
-    })
+    return Promise.all([
+      new Promise(resolve => redis.once('ready', resolve)),
+      new Promise(resolve => redis.once('connect', resolve)),
+    ])
   })
 })

@@ -1,5 +1,7 @@
-import Redis from 'ioredis'
+import Redis from 'ioredis';
 
+// This is a mock-only feature
+(process.env.IS_E2E ? describe.skip : describe)('notifyKeyspaceEvents', () => {
 describe('keyspaceNotifications', () => {
   it('should appear when configured and the triggering event occurs', done => {
     const redis = new Redis({ notifyKeyspaceEvents: 'gK' }) // gK: generic keyspace
@@ -51,4 +53,5 @@ describe('keyeventNotifications', () => {
       .subscribe('__keyevent@0__:del')
       .then(() => redis.set('key', 'value').then(() => redis.del('key')))
   })
+})
 })

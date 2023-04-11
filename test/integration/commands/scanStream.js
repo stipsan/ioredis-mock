@@ -5,7 +5,8 @@ import { ObjectWritableMock } from 'stream-mock'
 
 const chance = new Chance()
 
-describe('scanStream', () => {
+// @TODO Rewrite test suite so it runs on a real Redis instance
+;(process.env.IS_E2E ? describe.skip : describe)('scanStream', () => {
   let writable
 
   beforeEach(() => {

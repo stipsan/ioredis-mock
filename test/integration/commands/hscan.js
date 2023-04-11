@@ -20,7 +20,8 @@ describe('hscan', () => {
     })
   })
 
-  it('should return keys in hset', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should return keys in hset', () => {
     const redis = new Redis({
       data: {
         hset: createHashSet(['foo', 'bar', 'baz']),
@@ -33,58 +34,70 @@ describe('hscan', () => {
     })
   })
 
-  it('should return only mathced keys', () => {
-    const redis = new Redis({
-      data: {
-        hset: createHashSet(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis.hscan('hset', 0, 'MATCH', 'foo*').then(result => {
-      expect(result[0]).toBe('0')
-      expect(result[1]).toEqual(['foo0', 'foo1', 'foo2'])
-    })
-  })
-
-  it('should return only mathced keys and limit by COUNT', () => {
-    const redis = new Redis({
-      data: {
-        hset: createHashSet(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis
-      .hscan('hset', 0, 'MATCH', 'foo*', 'COUNT', 1)
-      .then(result => {
-        expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
-        expect(result[1]).toEqual(['foo0'])
-        return redis.hscan('hset', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only mathced keys',
+    () => {
+      const redis = new Redis({
+        data: {
+          hset: createHashSet(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
       })
-      .then(result2 => {
-        expect(result2[0]).toBe('0')
-        expect(result2[1]).toEqual(['foo1', 'foo2'])
-      })
-  })
 
-  it('should return number of keys hset by COUNT and continue by cursor', () => {
-    const redis = new Redis({
-      data: {
-        hset: createHashSet(['foo0', 'foo1', 'bar0', 'bar1']),
-      },
-    })
+      return redis.hscan('hset', 0, 'MATCH', 'foo*').then(result => {
+        expect(result[0]).toBe('0')
+        expect(result[1]).toEqual(['foo0', 'foo1', 'foo2'])
+      })
+    }
+  )
 
-    return redis
-      .hscan('hset', 0, 'COUNT', 3)
-      .then(result => {
-        expect(result[0]).toBe('3')
-        expect(result[1]).toEqual(['foo0', 'foo1', 'bar0'])
-        return redis.hscan('hset', result[0], 'COUNT', 3)
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only mathced keys and limit by COUNT',
+    () => {
+      const redis = new Redis({
+        data: {
+          hset: createHashSet(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
       })
-      .then(result2 => {
-        expect(result2[0]).toBe('0')
-        expect(result2[1]).toEqual(['bar1'])
+
+      return redis
+        .hscan('hset', 0, 'MATCH', 'foo*', 'COUNT', 1)
+        .then(result => {
+          expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
+          expect(result[1]).toEqual(['foo0'])
+          return redis.hscan('hset', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+        })
+        .then(result2 => {
+          expect(result2[0]).toBe('0')
+          expect(result2[1]).toEqual(['foo1', 'foo2'])
+        })
+    }
+  )
+
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return number of keys hset by COUNT and continue by cursor',
+    () => {
+      const redis = new Redis({
+        data: {
+          hset: createHashSet(['foo0', 'foo1', 'bar0', 'bar1']),
+        },
       })
-  })
+
+      return redis
+        .hscan('hset', 0, 'COUNT', 3)
+        .then(result => {
+          expect(result[0]).toBe('3')
+          expect(result[1]).toEqual(['foo0', 'foo1', 'bar0'])
+          return redis.hscan('hset', result[0], 'COUNT', 3)
+        })
+        .then(result2 => {
+          expect(result2[0]).toBe('0')
+          expect(result2[1]).toEqual(['bar1'])
+        })
+    }
+  )
 
   it('should fail if incorrect cursor', () => {
     const redis = new Redis()

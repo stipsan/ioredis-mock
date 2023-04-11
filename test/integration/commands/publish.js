@@ -4,7 +4,8 @@ import Redis from 'ioredis'
 import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('publish', command => {
-  describe(command, () => {
+  // @TODO Rewrite test suite so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? describe.skip : describe)(command, () => {
     it('should return 0 when publishing without subscribers', () => {
       const redis = new Redis()
       return redis[command]('emails', 'clark@daily.planet').then(subscribers =>

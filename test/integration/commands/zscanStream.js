@@ -4,7 +4,8 @@ import { ObjectWritableMock } from 'stream-mock'
 
 const chance = new Chance()
 
-describe('zscanStream', () => {
+// @TODO Rewrite test suite so it runs on a real Redis instance
+;(process.env.IS_E2E ? describe.skip : describe)('zscanStream', () => {
   let writable
   const createMap = keys => new Map(keys.map(k => [k, { score: 0, value: k }]))
 

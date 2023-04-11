@@ -5,7 +5,8 @@ import { ObjectWritableMock } from 'stream-mock'
 
 const chance = new Chance()
 
-describe('hscanStream', () => {
+// @TODO Rewrite test suite so it runs on a real Redis instance
+;(process.env.IS_E2E ? describe.skip : describe)('hscanStream', () => {
   let writable
   const randomCCType = () => chance.cc_type({ raw: true })
   const createHashSet = keys => zipObject(keys, keys.map(randomCCType))

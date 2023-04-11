@@ -13,7 +13,8 @@ describe('zscan', () => {
     })
   })
 
-  it('should return keys in zset', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should return keys in zset', () => {
     const redis = new Redis({
       data: {
         zset: createMap(['foo', 'bar', 'baz']),
@@ -26,58 +27,70 @@ describe('zscan', () => {
     })
   })
 
-  it('should return only matched keys', () => {
-    const redis = new Redis({
-      data: {
-        zset: createMap(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis.zscan('zset', 0, 'MATCH', 'foo*').then(result => {
-      expect(result[0]).toBe('0')
-      expect(result[1]).toEqual(['foo0', '0', 'foo1', '0', 'foo2', '0'])
-    })
-  })
-
-  it('should return only matched keys and limit by COUNT', () => {
-    const redis = new Redis({
-      data: {
-        zset: createMap(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis
-      .zscan('zset', 0, 'MATCH', 'foo*', 'COUNT', 1)
-      .then(result => {
-        expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
-        expect(result[1]).toEqual(['foo0', '0'])
-        return redis.zscan('zset', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only matched keys',
+    () => {
+      const redis = new Redis({
+        data: {
+          zset: createMap(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
       })
-      .then(result2 => {
-        expect(result2[0]).toBe('0')
-        expect(result2[1]).toEqual(['foo1', '0', 'foo2', '0'])
-      })
-  })
 
-  it('should return number of keys zset by COUNT and continue by cursor', () => {
-    const redis = new Redis({
-      data: {
-        zset: createMap(['foo0', 'foo1', 'bar0', 'bar1']),
-      },
-    })
+      return redis.zscan('zset', 0, 'MATCH', 'foo*').then(result => {
+        expect(result[0]).toBe('0')
+        expect(result[1]).toEqual(['foo0', '0', 'foo1', '0', 'foo2', '0'])
+      })
+    }
+  )
 
-    return redis
-      .zscan('zset', 0, 'COUNT', 3)
-      .then(result => {
-        expect(result[0]).toBe('3')
-        expect(result[1]).toEqual(['foo0', '0', 'foo1', '0', 'bar0', '0'])
-        return redis.zscan('zset', result[0], 'COUNT', 3)
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only matched keys and limit by COUNT',
+    () => {
+      const redis = new Redis({
+        data: {
+          zset: createMap(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
       })
-      .then(result2 => {
-        expect(result2[0]).toBe('0')
-        expect(result2[1]).toEqual(['bar1', '0'])
+
+      return redis
+        .zscan('zset', 0, 'MATCH', 'foo*', 'COUNT', 1)
+        .then(result => {
+          expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
+          expect(result[1]).toEqual(['foo0', '0'])
+          return redis.zscan('zset', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+        })
+        .then(result2 => {
+          expect(result2[0]).toBe('0')
+          expect(result2[1]).toEqual(['foo1', '0', 'foo2', '0'])
+        })
+    }
+  )
+
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return number of keys zset by COUNT and continue by cursor',
+    () => {
+      const redis = new Redis({
+        data: {
+          zset: createMap(['foo0', 'foo1', 'bar0', 'bar1']),
+        },
       })
-  })
+
+      return redis
+        .zscan('zset', 0, 'COUNT', 3)
+        .then(result => {
+          expect(result[0]).toBe('3')
+          expect(result[1]).toEqual(['foo0', '0', 'foo1', '0', 'bar0', '0'])
+          return redis.zscan('zset', result[0], 'COUNT', 3)
+        })
+        .then(result2 => {
+          expect(result2[0]).toBe('0')
+          expect(result2[1]).toEqual(['bar1', '0'])
+        })
+    }
+  )
 
   it('should fail if incorrect cursor', () => {
     const redis = new Redis()

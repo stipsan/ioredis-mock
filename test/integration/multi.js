@@ -1,19 +1,23 @@
 import Redis from 'ioredis'
 
 describe('multi', () => {
-  it('should setup a batch queue that can be passed to exec', () => {
-    const redis = new Redis()
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should setup a batch queue that can be passed to exec',
+    () => {
+      const redis = new Redis()
 
-    redis.multi([
-      ['incr', 'user_next'],
-      ['incr', 'post_next'],
-    ])
-    expect(typeof redis.batch).toBe('object')
-    expect(redis.batch.batch).toEqual(expect.any(Array))
-    expect(redis.batch.batch.length).toBe(2)
-    expect(redis.batch.batch[0]).toEqual(expect.any(Function))
-    expect(redis.batch.batch[1]).toEqual(expect.any(Function))
-  })
+      redis.multi([
+        ['incr', 'user_next'],
+        ['incr', 'post_next'],
+      ])
+      expect(typeof redis.batch).toBe('object')
+      expect(redis.batch.batch).toEqual(expect.any(Array))
+      expect(redis.batch.batch.length).toBe(2)
+      expect(redis.batch.batch[0]).toEqual(expect.any(Function))
+      expect(redis.batch.batch[1]).toEqual(expect.any(Function))
+    }
+  )
 
   it('should map batch length to length in pipeline', () => {
     const redis = new Redis()
@@ -66,28 +70,24 @@ describe('multi', () => {
       })
   })
 
-  it('allows pipeline to accept an array of String commands', () => {
+  it('allows pipeline to accept an array of String commands', async () => {
     const redis = new Redis()
     const commands = [
       ['set', 'firstkey', 'firstvalue'],
       ['set', 'secondkey', 'secondvalue'],
     ]
 
-    return redis
-      .pipeline(commands)
-      .exec()
-      .then(results => {
-        expect(results).toEqual(expect.any(Array))
-        expect(results.length).toBe(2)
-        expect(results[0]).toEqual([null, 'OK'])
-        expect(results[1]).toEqual([null, 'OK'])
+    const results = await redis.pipeline(commands).exec()
 
-        expect(redis.data.get('firstkey')).toEqual('firstvalue')
-        expect(redis.data.get('secondkey')).toEqual('secondvalue')
-      })
+    expect(results).toEqual(expect.any(Array))
+    expect(results.length).toBe(2)
+    expect(results[0]).toEqual([null, 'OK'])
+    expect(results[1]).toEqual([null, 'OK'])
+
+    expect(await redis.get('firstkey')).toEqual('firstvalue')
+    expect(await redis.get('secondkey')).toEqual('secondvalue')
   })
-
-  it('should increment _transactions', () => {
+  ;(process.env.IS_E2E ? it.skip : it)('should increment _transactions', () => {
     const redis = new Redis()
     const commands = [
       ['incr', 'user_next'],

@@ -18,7 +18,8 @@ describe('sscan', () => {
     })
   })
 
-  it('should return keys in set', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should return keys in set', () => {
     redis = new Redis({
       data: {
         set: new Set(['foo', 'bar', 'baz']),
@@ -31,38 +32,46 @@ describe('sscan', () => {
     })
   })
 
-  it('should return only mathced keys', () => {
-    redis = new Redis({
-      data: {
-        set: new Set(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis.sscan('set', 0, 'MATCH', 'foo*').then(result => {
-      expect(result[0]).toBe('0')
-      expect(result[1]).toEqual(['foo0', 'foo1', 'foo2'])
-    })
-  })
-
-  it('should return only mathced keys and limit by COUNT', () => {
-    redis = new Redis({
-      data: {
-        set: new Set(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
-      },
-    })
-
-    return redis
-      .sscan('set', 0, 'MATCH', 'foo*', 'COUNT', 1)
-      .then(result => {
-        expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
-        expect(result[1]).toEqual(['foo0'])
-        return redis.sscan('set', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only mathced keys',
+    () => {
+      redis = new Redis({
+        data: {
+          set: new Set(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
       })
-      .then(result2 => {
-        expect(result2[0]).toBe('0')
-        expect(result2[1]).toEqual(['foo1', 'foo2'])
+
+      return redis.sscan('set', 0, 'MATCH', 'foo*').then(result => {
+        expect(result[0]).toBe('0')
+        expect(result[1]).toEqual(['foo0', 'foo1', 'foo2'])
       })
-  })
+    }
+  )
+
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should return only mathced keys and limit by COUNT',
+    () => {
+      redis = new Redis({
+        data: {
+          set: new Set(['foo0', 'foo1', 'foo2', 'ZU0', 'ZU1']),
+        },
+      })
+
+      return redis
+        .sscan('set', 0, 'MATCH', 'foo*', 'COUNT', 1)
+        .then(result => {
+          expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
+          expect(result[1]).toEqual(['foo0'])
+          return redis.sscan('set', result[0], 'MATCH', 'foo*', 'COUNT', 10)
+        })
+        .then(result2 => {
+          expect(result2[0]).toBe('0')
+          expect(result2[1]).toEqual(['foo1', 'foo2'])
+        })
+    }
+  )
 
   // @TODO: figure out why this test mismatches on redis v5 compared to v4 and the mock
   ;(process.env.IS_E2E ? it.skip : it)(
