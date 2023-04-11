@@ -102,7 +102,6 @@ describe('zremrangebyscore', () => {
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)
-    const redis = new Redis()
     await redis.set('foo', 'not a list')
 
     return redis

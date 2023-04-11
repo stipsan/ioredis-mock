@@ -11,8 +11,6 @@ runTwinSuite('ttl', command => {
     })
 
     it('should return -2 if key does not exist', () => {
-      const redis = new Redis()
-
       return redis[command]('foo').then(result => expect(result).toBe(-2))
     })
 

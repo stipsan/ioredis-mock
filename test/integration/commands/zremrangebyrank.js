@@ -1,6 +1,11 @@
 import Redis from 'ioredis'
 
 describe('zremrangebyrank', () => {
+  const redis = new Redis()
+  afterAll(() => {
+    redis.disconnect()
+  })
+
   const data = {
     foo: new Map([
       ['first', { score: 1, value: 'first' }],
@@ -118,7 +123,6 @@ describe('zremrangebyrank', () => {
 
   it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)
-    const redis = new Redis()
     await redis.set('foo', 'not a list')
 
     return redis

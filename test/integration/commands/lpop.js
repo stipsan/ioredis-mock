@@ -43,26 +43,34 @@ runTwinSuite('lpop', (command, equals) => {
       }
     )
 
-    it('should return null on empty list', () => {
-      const redis = new Redis({
-        data: {
-          foo: [],
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return null on empty list',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: [],
+          },
+        })
 
-      return redis[command]('foo').then(result => expect(result).toBe(null))
-    })
+        return redis[command]('foo').then(result => expect(result).toBe(null))
+      }
+    )
 
-    it('should throw an exception if the key contains something other than a list', () => {
-      const redis = new Redis({
-        data: {
-          foo: 'not a list',
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if the key contains something other than a list',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: 'not a list',
+          },
+        })
 
-      return redis[command]('foo').catch(err =>
-        expect(err.message).toBe('Key foo does not contain a list')
-      )
-    })
+        return redis[command]('foo').catch(err =>
+          expect(err.message).toBe('Key foo does not contain a list')
+        )
+      }
+    )
   })
 })

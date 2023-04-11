@@ -119,7 +119,13 @@ jobs:
           node-version: lts/*
       - run: npm ci
       - name: test:e2e
-        run: npm run test:e2e -- --detectOpenHandles
+        run: npm run test:e2e
+      - name: Find open handles
+        if: failure()
+        run: |
+          npm run test:e2e -- --detectOpenHandles --forceExit --logHeapUsage
+        env:
+          DEBUG: ioredis:*
 
   release:
     needs: [build, test, browser, e2e]

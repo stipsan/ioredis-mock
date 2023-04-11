@@ -5,6 +5,11 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('spop', command => {
   describe(command, () => {
+    const redis = new Redis()
+    afterAll(() => {
+      redis.disconnect()
+    })
+
     // @TODO Rewrite test so it runs on a real Redis instance
     ;(process.env.IS_E2E ? it.skip : it)('should return a random item', () => {
       const redis = new Redis({
@@ -82,8 +87,6 @@ runTwinSuite('spop', command => {
     )
 
     it('should return null if set is empty', () => {
-      const redis = new Redis()
-
       return redis[command]('myset').then(result => expect(result).toBe(null))
     })
 
@@ -103,17 +106,22 @@ runTwinSuite('spop', command => {
       }
     )
 
-    it('should throw an exception if the key contains something other than a set', () => {
-      const redis = new Redis({
-        data: {
-          foo: 'not a set',
-        },
-      })
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw an exception if the key contains something other than a set',
+      () => {
+        expect.assertions(1)
+        const redis = new Redis({
+          data: {
+            foo: 'not a set',
+          },
+        })
 
-      return redis[command]('foo').catch(err =>
-        expect(err.message).toBe('Key foo does not contain a set')
-      )
-    })
+        return redis[command]('foo').catch(err =>
+          expect(err.message).toBe('Key foo does not contain a set')
+        )
+      }
+    )
 
     // @TODO Rewrite test so it runs on a real Redis instance
     ;(process.env.IS_E2E ? it.skip : it)(

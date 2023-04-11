@@ -41,8 +41,6 @@ runTwinSuite('lpushx', command => {
     )
 
     it('should return 0 if list does not exist', () => {
-      const redis = new Redis()
-
       return redis[command]('foo', 1).then(result => expect(result).toBe(0))
     })
   })

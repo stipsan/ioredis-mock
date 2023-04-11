@@ -185,7 +185,8 @@ describe('zrevrangebyscore', () => {
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -2)
       .then(res => expect(res).toEqual(['fourth', 'third']))
   })
-  it('should handle LIMIT of 0', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should handle LIMIT of 0', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, 0)
