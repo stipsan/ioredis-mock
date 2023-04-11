@@ -3,11 +3,16 @@ module.exports = {
   ...require('./jest.config'),
   testMatch: ['**/test/integration/**/*.js'],
   setupFiles: ['<rootDir>/testSetupRedis.js'],
-  // @TODO rewrite these tests to no longer use the `data` constructor option
   testPathIgnorePatterns: [
+    // Tests that relate to `ioredis-mock` only features are commented out
     'test/integration/cluster.js',
     'test/integration/command-transformers.js',
-    'test/integration/commands/auth.js',
+    'test/integration/events.js',
+    'test/integration/exec.js',
+    'test/integration/keyspace-notifications.js',
+    'test/integration/multi.js',
+    'test/integration/multiple-mocks.js',
+    // @TODO rewrite these tests to no longer use the `data` constructor option
     'test/integration/commands/defineCommand.js',
     'test/integration/commands/hscan.js',
     'test/integration/commands/hscanStream.js',
@@ -62,11 +67,5 @@ module.exports = {
     'test/integration/commands/zscan.js',
     'test/integration/commands/zscanStream.js',
     'test/integration/commands/zscore.js',
-    'test/integration/events.js',
-    'test/integration/exec.js',
-    'test/integration/keyspace-notifications.js',
-    'test/integration/multi.js',
-    'test/integration/multiple-mocks.js',
-    'test/integration/promises.js',
   ],
 }
