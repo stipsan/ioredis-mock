@@ -170,4 +170,46 @@ describe('zrange', () => {
       .zrange('foo', '3', '1', 'BYSCORE', 'REV', 'LIMIT', 0, 1, 'WITHSCORES')
       .then(res => expect(res).toEqual(['third', '3']))
   })
+
+  const lexData = {
+    foo: new Map([
+      ['a', { score: 100, value: 'a' }],
+      ['b', { score: 100, value: 'b' }],
+      ['c', { score: 100, value: 'c' }],
+      ['d', { score: 100, value: 'd' }],
+      ['e', { score: 100, value: 'e' }],
+    ]),
+  }
+
+  it('should handle BYLEX', () => {
+    const redis = new Redis({ data: lexData })
+
+    return redis
+      .zrange('foo', '[b', '(d', 'BYLEX')
+      .then(res => expect(res).toEqual(['b', 'c']))
+  })
+
+  it('should handle BYLEX with LIMIT', () => {
+    const redis = new Redis({ data: lexData })
+
+    return redis
+      .zrange('foo', '[b', '(d', 'BYLEX', 'LIMIT', 1, 2)
+      .then(res => expect(res).toEqual(['c']))
+  })
+
+  it('should handle BYLEX REV', () => {
+    const redis = new Redis({ data: lexData })
+
+    return redis
+      .zrange('foo', '[c', '[a', 'BYLEX', 'REV')
+      .then(res => expect(res).toEqual(['c', 'b', 'a']))
+  })
+
+  it('should handle BYLEX REV with LIMIT', () => {
+    const redis = new Redis({ data: lexData })
+
+    return redis
+      .zrange('foo', '[c', '[a', 'BYLEX', 'REV', 'LIMIT', 0, 1)
+      .then(res => expect(res).toEqual(['c']))
+  })
 })
