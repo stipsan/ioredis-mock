@@ -31,9 +31,7 @@ describe('zrevrangebylex', () => {
 
     return redis
       .zrevrangebylex('foo', '(c', '-')
-      .then(res =>
-        expect(res).toEqual(['b', 'a'])
-      )
+      .then(res => expect(res).toEqual(['b', 'a']))
   })
 
   it('should accept + string', () => {
@@ -41,9 +39,7 @@ describe('zrevrangebylex', () => {
 
     return redis
       .zrevrangebylex('foo', '+', '(c')
-      .then(res =>
-        expect(res).toEqual(['e', 'd'])
-      )
+      .then(res => expect(res).toEqual(['e', 'd']))
   })
 
   it('should accept -+ strings', () => {
@@ -51,9 +47,7 @@ describe('zrevrangebylex', () => {
 
     return redis
       .zrevrangebylex('foo', '+', '-')
-      .then(res =>
-        expect(res).toEqual(['e', 'd', 'c', 'b', 'a'])
-      )
+      .then(res => expect(res).toEqual(['e', 'd', 'c', 'b', 'a']))
   })
   it('should return empty array if out-of-range', () => {
     const redis = new Redis({ data })

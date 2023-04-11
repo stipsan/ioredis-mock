@@ -46,9 +46,7 @@ describe('zrangebylex', () => {
 
     return redis
       .zrangebylex('foo', '-', '+')
-      .then(res =>
-        expect(res).toEqual(['a', 'b', 'c', 'd', 'e'])
-      )
+      .then(res => expect(res).toEqual(['a', 'b', 'c', 'd', 'e']))
   })
   it('should return empty array if out-of-range', () => {
     const redis = new Redis({ data })

@@ -6,7 +6,14 @@ import {
 } from './zrange-command.common'
 
 export function zrevrangebylex(...args) {
-  return zrangeBaseCommand.call(this, args, 0, false, RANGE_LEX, DIRECTION_REVERSE);
+  return zrangeBaseCommand.call(
+    this,
+    args,
+    0,
+    false,
+    RANGE_LEX,
+    DIRECTION_REVERSE
+  )
 }
 
 export function zrevrangebylexBuffer(...args) {
