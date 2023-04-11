@@ -41,14 +41,14 @@ function parseLexLimit(input) {
   if (input === '-') {
     return { value: '-', isExclusive: false }
   }
-  
+
   if (input === '+') {
     return { value: '+', isExclusive: false }
   }
 
   let str = input
   let exclusive = false
-  
+
   if (str[0] === '(') {
     str = str.substr(1, str.length)
     exclusive = true
