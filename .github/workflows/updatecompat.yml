@@ -27,13 +27,12 @@ jobs:
           node-version: lts/*
       - run: npm ci --no-scripts
       - run: node scripts/update-compat
-      - uses: gr2m/create-or-update-pull-request-action@v1.x
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - uses: peter-evans/create-pull-request@5b4a9f6a9e2af26e5f02351490b90d01eb8ec1e5 # v5
         with:
           author: github-actions <41898282+github-actions[bot]@users.noreply.github.com>
+          body: I ran `node scripts/update-compat` 🧑‍💻
           branch: actions/updatecompat
-          title: 'docs(compat.md): 🤖 ✨'
-          body: A robot ran `node scripts/update-compat` and made this PR.
           commit-message: 'docs(compat.md): 🤖 ✨'
-          labels: automation
+          labels: 🤖 bot
+          title: 'docs(compat.md): 🤖 ✨'
+          token: ${{ secrets.GH_TOKEN }}
