@@ -1,7 +1,8 @@
 import Redis from 'ioredis'
 
 describe('xadd', () => {
-  it('should add events to a stream', () => {
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)('should add events to a stream', () => {
     const redis = new Redis()
     return redis
       .xadd('stream', '*', 'key', 'val')

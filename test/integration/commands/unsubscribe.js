@@ -68,20 +68,24 @@ runTwinSuite('unsubscribe', command => {
       redisTwo.disconnect()
     })
 
-    it('should not alter parent instance when connected client unsubscribes', async () => {
-      const redisOne = new Redis()
-      const redisTwo = new Redis()
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should not alter parent instance when connected client unsubscribes',
+      async () => {
+        const redisOne = new Redis()
+        const redisTwo = new Redis()
 
-      await redisOne.subscribe('first')
-      expect(await redisTwo[command]('first')).toBe(0)
-      expect(await redisTwo.publish('first', '')).toBe(1)
+        await redisOne.subscribe('first')
+        expect(await redisTwo[command]('first')).toBe(0)
+        expect(await redisTwo.publish('first', '')).toBe(1)
 
-      // @TODO isn't needed by test:e2e, but is needed by test:integration
-      await redisOne[command]()
-      await redisTwo[command]()
+        // @TODO isn't needed by test:e2e, but is needed by test:integration
+        await redisOne[command]()
+        await redisTwo[command]()
 
-      redisOne.disconnect()
-      redisTwo.disconnect()
-    })
+        redisOne.disconnect()
+        redisTwo.disconnect()
+      }
+    )
   })
 })
