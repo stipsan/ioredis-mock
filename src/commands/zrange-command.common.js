@@ -37,6 +37,34 @@ export function parseLimit(input) {
   }
 }
 
+function parseLexLimit(input) {
+  if (input === '-') {
+    return { value: '-', isExclusive: false }
+  }
+  
+  if (input === '+') {
+    return { value: '+', isExclusive: false }
+  }
+
+  let str = input
+  let exclusive = false
+  
+  if (str[0] === '(') {
+    str = str.substr(1, str.length)
+    exclusive = true
+  } else if (str[0] === '[') {
+    str = str.substr(1, str.length)
+  } else {
+    // [ or ( are required
+    throw new Error('ERR synax error')
+  }
+
+  return {
+    value: str,
+    isExclusive: exclusive,
+  }
+}
+
 export function filterPredicate(min, max) {
   return it => {
     if (it.score < min.value || (min.isStrict && it.score === min.value)) {
@@ -44,6 +72,26 @@ export function filterPredicate(min, max) {
     }
 
     if (it.score > max.value || (max.isStrict && it.score === max.value)) {
+      return false
+    }
+
+    return true
+  }
+}
+
+export function filterLexPredicate(min, max) {
+  return it => {
+    if (
+      (min.value !== '-' && it.value < min.value) ||
+      (min.isExclusive && it.value === min.value)
+    ) {
+      return false
+    }
+
+    if (
+      (max.value !== '+' && it.value > max.value) ||
+      (max.isExclusive && it.value === max.value)
+    ) {
       return false
     }
 
@@ -157,15 +205,13 @@ export function zrangeBaseCommand(
       end = parseLimit(args[maxIdx])
 
       break
-    // FIXME: handle RANGE_LEX
-    // case ZRANGE_LEX:
-    //     /* Z[REV]RANGEBYLEX, ZRANGESTORE [REV]RANGEBYLEX */
-    //     if (zslParseLexRange(c->argv[minidx], c->argv[maxidx], &lexrange) != C_OK) {
-    //         addReplyError(c, "min or max not valid string range item");
-    //         return;
-    //     }
-    //     break;
-    // }
+
+    case RANGE_LEX:
+      /* Z[REV]RANGEBYLEX, ZRANGESTORE [REV]RANGEBYLEX */
+      start = parseLexLimit(args[minIdx])
+      end = parseLexLimit(args[maxIdx])
+
+      break
     default:
       throw new Error('ERR syntax error')
   }
@@ -177,22 +223,20 @@ export function zrangeBaseCommand(
   }
 
   let ordered
+  const inputArray = Array.from(map.values())
   if (range === RANGE_SCORE) {
-    const filteredArray = Array.from(map.values()).filter(
-      filterPredicate(start, end)
-    )
+    // TODO If items have different scores, result is unspecified
 
+    const filteredArray = inputArray.filter(filterPredicate(start, end))
     ordered = orderBy(filteredArray, ['score', 'value'], sort)
-  }
-  // FIXME: handle RANGE_LEX
-  else {
-    ordered = slice(
-      orderBy(Array.from(map.values()), ['score', 'value'], sort),
-      start,
-      end
-    )
+  } else if (range === RANGE_LEX) {
+    const filteredArray = inputArray.filter(filterLexPredicate(start, end))
+    ordered = orderBy(filteredArray, ['score', 'value'], sort)
+  } else {
+    ordered = slice(orderBy(inputArray, ['score', 'value'], sort), start, end)
   }
 
+  // TODO: handle STORE
   if (limit !== null) {
     ordered = offsetAndLimit(ordered, offset, limit)
   }
