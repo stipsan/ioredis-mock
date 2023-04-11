@@ -59,7 +59,7 @@ describe('zrangebylex', () => {
       .then(res => expect(res).toEqual([]))
   })
 
-  it('should return empty array if the key contains something other than a list', async () => {
+  it('should throw WRONGTYPE if the key contains something other than a list', async () => {
     expect.assertions(1)
     const redis = new Redis()
 

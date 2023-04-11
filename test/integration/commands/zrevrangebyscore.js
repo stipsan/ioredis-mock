@@ -52,16 +52,18 @@ describe('zrevrangebyscore', () => {
       .then(res => expect(res).toEqual([]))
   })
 
-  it('should return empty array if the key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-      },
-    })
+  it('should throw WRONGTYPE if the key contains something other than a list', async () => {
+    expect.assertions(1)
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
     return redis
       .zrevrangebyscore('foo', 2, 1)
-      .then(res => expect(res).toEqual([]))
+      .catch(err =>
+        expect(err.message).toBe(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
+      )
   })
 
   it('should include scores if WITHSCORES is specified', () => {

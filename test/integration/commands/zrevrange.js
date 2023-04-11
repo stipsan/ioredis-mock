@@ -42,14 +42,18 @@ describe('zrevrange', () => {
     return redis.zrevrange('foo', 10, 100).then(res => expect(res).toEqual([]))
   })
 
-  it('should return empty array if the key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-      },
-    })
+  it('should throw WRONGTYPE if the key contains something other than a list', async () => {
+    expect.assertions(1)
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
-    return redis.zrevrange('foo', 0, 2).then(res => expect(res).toEqual([]))
+    return redis
+      .zrevrange('foo', 0, 2)
+      .catch(err =>
+        expect(err.message).toBe(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
+      )
   })
 
   it('should sort items with the same score in reverse lexicographical order', () => {

@@ -81,15 +81,17 @@ describe('zremrangebyscore', () => {
       .then(res => expect(res).toEqual(0))
   })
 
-  it('should return zero if the key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-      },
-    })
+  it('should throw WRONGTYPE if the key contains something other than a list', async () => {
+    expect.assertions(1)
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
     return redis
       .zremrangebyscore('foo', 2, 1)
-      .then(res => expect(res).toEqual(0))
+      .catch(err =>
+        expect(err.message).toBe(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
+      )
   })
 })

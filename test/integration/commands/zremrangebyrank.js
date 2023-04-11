@@ -95,13 +95,17 @@ describe('zremrangebyrank', () => {
       })
   })
 
-  it('should return 0 the key contains something other than a list', () => {
-    const redis = new Redis({
-      data: {
-        foo: 'not a list',
-      },
-    })
+  it('should throw WRONGTYPE if the key contains something other than a list', async () => {
+    expect.assertions(1)
+    const redis = new Redis()
+    await redis.set('foo', 'not a list')
 
-    return redis.zremrangebyrank('foo', 0, 2).then(res => expect(res).toBe(0))
+    return redis
+      .zremrangebyrank('foo', 0, 2)
+      .catch(err =>
+        expect(err.message).toBe(
+          'WRONGTYPE Operation against a key holding the wrong kind of value'
+        )
+      )
   })
 })
