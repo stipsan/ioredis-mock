@@ -3,26 +3,22 @@ import Redis from 'ioredis'
 // eslint-disable-next-line import/no-relative-parent-imports
 import { runTwinSuite } from '../../../test-utils'
 
-const testChannels = [
-  'emails',
-  'messages',
-  'feed',
-];
+const testChannels = ['emails', 'messages', 'feed']
 
 runTwinSuite('pubsub', command => {
   // @TODO Rewrite test suite so it runs on a real Redis instance
   ;(process.env.IS_E2E ? describe.skip : describe)(command, () => {
     describe('CHANNELS', () => {
-      let redis;
+      let redis
 
       beforeEach(() => {
         redis = new Redis({
           host: 'pubsub',
-        });
+        })
       })
 
-      afterEach(async() => {
-        await Promise.all(testChannels.map((x) => redis.unsubscribe(x)));
+      afterEach(async () => {
+        await Promise.all(testChannels.map(x => redis.unsubscribe(x)))
       })
 
       test('should return 0 when publishing without subscribers', async () => {
@@ -54,7 +50,6 @@ runTwinSuite('pubsub', command => {
 
         expect(await redis[command]('CHANNELS', 'email*')).toMatchObject([
           'emails',
-
         ])
       })
     })
