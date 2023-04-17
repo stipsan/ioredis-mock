@@ -1,7 +1,7 @@
 export function zadd(key, ...vals) {
   // consume options
   const options = []
-  while (['NX', 'XX', 'CH', 'INCR'].includes(vals[0])) {
+  while (['NX', 'XX', 'GT', 'LT', 'CH', 'INCR'].includes(vals[0])) {
     options.push(vals.shift())
   }
 
@@ -12,12 +12,16 @@ export function zadd(key, ...vals) {
   // set option vals
   const nx = options.includes('NX')
   const xx = options.includes('XX')
+  const gt = options.includes('GT')
+  const lt = options.includes('LT')
   const ch = options.includes('CH')
   const incr = options.includes('INCR')
 
   // validate options
   if (nx && xx)
     throw new Error('XX and NX options at the same time are not compatible')
+  if (gt && lt)
+    throw new Error('GT and LT options at the same time are not compatible')
   if (incr && elems > 2)
     throw new Error('INCR option supports a single increment-element pair')
 
@@ -36,8 +40,12 @@ export function zadd(key, ...vals) {
 
     if (map.has(value)) {
       if (!nx) {
+        const exist = map.get(value)
         if (incr) {
-          score += Number(map.get(value).score)
+          score += Number(exist.score)
+        }
+        if (lt && score >= exist.score || gt && score <= exist.score) {
+          continue
         }
         map.set(value, { score, value })
         updated++
