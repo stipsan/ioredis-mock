@@ -55,11 +55,13 @@ runTwinSuite('zadd', command => {
       await redis[command]('key', 'LT', 2, 'value')
       expect(await redis[command]('key', 'LT', 2, 'value')).toBe(0)
       expect(await redis[command]('key', 'LT', 3, 'value')).toBe(0)
+      expect(await redis[command]('key', 'LT', 1, 'value')).toBe(1)
     })
     it('should not update a value with equal or higher score with GT option', async () => {
       await redis[command]('key', 'GT', 2, 'value')
       expect(await redis[command]('key', 'GT', 2, 'value')).toBe(0)
       expect(await redis[command]('key', 'GT', 1, 'value')).toBe(0)
+      expect(await redis[command]('key', 'GT', 3, 'value')).toBe(1)
     })
     it('should handle INCR and LT option', async () => {
       await redis[command]('key', 2, 'value')
