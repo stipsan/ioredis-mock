@@ -53,30 +53,30 @@ runTwinSuite('zadd', command => {
     })
     it('should not update a value with equal or lower score with LT option', async () => {
       await redis[command]('key', 'LT', 2, 'value')
-      expect(await redis[command]('key', 'LT', 2, 'value')).toBe(0)
-      expect(await redis[command]('key', 'LT', 3, 'value')).toBe(0)
-      expect(await redis[command]('key', 'LT', 1, 'value')).toBe(1)
+      expect(await redis[command]('key', ['LT', 'CH'], 2, 'value')).toBe(0)
+      expect(await redis[command]('key', ['LT', 'CH'], 3, 'value')).toBe(0)
+      expect(await redis[command]('key', ['LT', 'CH'], 1, 'value')).toBe(1)
     })
     it('should not update a value with equal or higher score with GT option', async () => {
       await redis[command]('key', 'GT', 2, 'value')
-      expect(await redis[command]('key', 'GT', 2, 'value')).toBe(0)
-      expect(await redis[command]('key', 'GT', 1, 'value')).toBe(0)
-      expect(await redis[command]('key', 'GT', 3, 'value')).toBe(1)
+      expect(await redis[command]('key', ['GT', 'CH'], 2, 'value')).toBe(0)
+      expect(await redis[command]('key', ['GT', 'CH'], 1, 'value')).toBe(0)
+      expect(await redis[command]('key', ['GT', 'CH'], 3, 'value')).toBe(1)
     })
     it('should handle INCR and LT option', async () => {
       await redis[command]('key', 2, 'value')
       // LT + INCR should never work
-      expect(await redis[command]('key', 'LT', 'INCR', 0, 'value')).toBe(0)
+      expect(await redis[command]('key', ['LT', 'CH', 'INCR'], 0, 'value')).toBe(0)
     })
     it('should handle INCR and GT option', async () => {
       await redis[command]('key', 2, 'value')
-      expect(await redis[command]('key', 'GT', 'INCR', 3, 'value')).toBe(1)
+      expect(await redis[command]('key', ['GT', 'CH', 'INCR'], 3, 'value')).toBe(1)
       expect(await redis.zrange('key', 0, -1, 'WITHSCORES')).toEqual([
         'value',
         '3',
       ])
       // should work even if specified score is lower
-      expect(await redis[command]('key', 'GT', 'INCR', 1, 'value')).toBe(1)
+      expect(await redis[command]('key', ['GT', 'CH', 'INCR'], 1, 'value')).toBe(1)
       expect(await redis.zrange('key', 0, -1, 'WITHSCORES')).toEqual([
         'value',
         '4',
