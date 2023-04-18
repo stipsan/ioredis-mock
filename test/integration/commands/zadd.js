@@ -65,15 +65,20 @@ runTwinSuite('zadd', command => {
     })
     it('should handle INCR and LT option', async () => {
       await redis[command]('key', 2, 'value')
-      // LT + INCR should never work
+      // LT + INCR w/ non-negative should never work
       expect(await redis[command]('key', ['LT', 'CH', 'INCR'], 0, 'value')).toBe(0)
+      expect(await redis[command]('key', ['LT', 'CH', 'INCR'], -2, 'value')).toBe(1)
+      expect(await redis.zrange('key', 0, -1, 'WITHSCORES')).toEqual([
+        'value',
+        '0',
+      ])
     })
     it('should handle INCR and GT option', async () => {
       await redis[command]('key', 2, 'value')
-      expect(await redis[command]('key', ['GT', 'CH', 'INCR'], 3, 'value')).toBe(1)
+      expect(await redis[command]('key', ['GT', 'CH', 'INCR'], 2, 'value')).toBe(1)
       expect(await redis.zrange('key', 0, -1, 'WITHSCORES')).toEqual([
         'value',
-        '3',
+        '4',
       ])
       // should work even if specified score is lower
       expect(await redis[command]('key', ['GT', 'CH', 'INCR'], 1, 'value')).toBe(1)

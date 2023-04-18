@@ -44,6 +44,7 @@ export function zadd(key, ...vals) {
         if (incr) {
           score += Number(exist.score)
         }
+        // eslint-ignore-next-line
         if (lt && score >= exist.score || gt && score <= exist.score) {
           continue
         }
