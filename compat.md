@@ -120,7 +120,7 @@
 | [psync]                | :white_check_mark: |        :x:         |
 | [pttl]                 | :white_check_mark: | :white_check_mark: |
 | [publish]              | :white_check_mark: | :white_check_mark: |
-| [pubsub]               | :white_check_mark: |        :x:         |
+| [pubsub]               | :white_check_mark: | :white_check_mark: |
 | [punsubscribe]         | :white_check_mark: | :white_check_mark: |
 | [quit]                 | :white_check_mark: | :white_check_mark: |
 | [randomkey]            | :white_check_mark: | :white_check_mark: |
