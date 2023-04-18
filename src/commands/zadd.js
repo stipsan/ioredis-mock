@@ -44,8 +44,8 @@ export function zadd(key, ...vals) {
         if (incr) {
           score += Number(exist.score)
         }
-        // eslint-ignore-next-line
         if (lt && score >= exist.score || gt && score <= exist.score) {
+          // eslint-disable-next-line no-continue
           continue
         }
         map.set(value, { score, value })
