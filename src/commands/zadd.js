@@ -45,6 +45,8 @@ export function zadd(key, ...vals) {
           score += Number(exist.score)
         }
         if (lt && score >= exist.score || gt && score <= exist.score) {
+          // null if INCR and we don't update
+          if(incr) return null
           // eslint-disable-next-line no-continue
           continue
         }
@@ -56,6 +58,11 @@ export function zadd(key, ...vals) {
     } else if (!xx) {
       map.set(value, { score, value })
       added++
+    }
+
+    // if INCR return value is the new score as a string
+    if(incr) {
+      return `${score}`
     }
   }
 
