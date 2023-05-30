@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       redis:
-        image: redis:7.0.10
+        image: redis:7.0.11
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -36,9 +36,9 @@ jobs:
           cache: npm
           node-version: lts/*
       - run: npm ci --ignore-scripts
-      - run: npm run test:e2e -- -u
+      - run: npm run test:e2e -- --forceExit -u
       - run: node scripts/update-data
-      - run: npx jest -u
+      - run: npx jest --forceExit -u
       - run: node scripts/update-compat
       - uses: EndBug/add-and-commit@61a88be553afe4206585b31aa72387c64295d08b # v9
         with:
