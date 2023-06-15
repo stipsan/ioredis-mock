@@ -189,7 +189,7 @@ Work on Cluster support has started, the current implementation is minimal and P
 const Redis = require('ioredis-mock')
 
 const cluster = new Redis.Cluster(['redis://localhost:7001'])
-const nodes = cluster.nodes
+const nodes = cluster.nodes()
 expect(nodes.length).toEqual(1)
 ```
 
