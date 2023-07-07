@@ -61,7 +61,7 @@
     "test:browser.js": "IS_BROWSER=true jest --config jest.config.browser.js",
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
-    "update-compat": "node scripts/update-compat && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
+    "update-compat": "node scripts/update-compat && npx prettier --write compat.md && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
     "update-data": "node scripts/update-data"
   },
   "prettier": {
