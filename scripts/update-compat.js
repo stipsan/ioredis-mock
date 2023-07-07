@@ -2,13 +2,11 @@ require('@babel/register')
 const path = require('path')
 const fs = require('fs')
 const redis = require('ioredis')
-const prettier = require('prettier')
 const { list } = require('../data/command-list.json')
 const RedisMock = require('../src')
 
 const mockedRedis = new RedisMock()
 
-async function main() {
   const skipList = {
     'restore-asking': false,
     debug: 'This command is intended to aid in debugging redis',
@@ -126,7 +124,7 @@ ${footerLinks}`
 
   fs.writeFile(
     path.resolve(__dirname, '..', 'compat.md'),
-    await prettier.format(tableMd, { parser: 'markdown' }),
+    tableMd,
     'utf8',
     err => {
       if (err) throw err
@@ -150,13 +148,4 @@ ${footerLinks}`
         if (err2) throw err2
       }
     )
-  })
-}
-
-main()
-  .then(process.exit)
-  .catch(err => {
-    // eslint-disable-next-line no-console
-    console.error(err)
-    process.exit(1)
   })
