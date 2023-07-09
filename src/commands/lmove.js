@@ -32,8 +32,6 @@ export function lmove(listKey1, listKey2, position1, position2) {
     value = list1.pop();
   }
 
-  console.log("Returning the value", value, list1);
-
   if (position2 === "LEFT") {
     list2.unshift(value);
   } else {
