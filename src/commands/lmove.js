@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function lmove(listKey1, listKey2, position1, position2) {
   if (this.data.has(listKey1) && !(this.data.get(listKey1) instanceof Array)) {
     throw new Error(
@@ -47,4 +49,9 @@ export function lmove(listKey1, listKey2, position1, position2) {
   }
 
   return value
+}
+
+export function lmoveBuffer(...args) {
+  const val = lmove.apply(this, args)
+  return convertStringToBuffer(val)
 }

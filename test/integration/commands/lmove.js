@@ -35,8 +35,10 @@ runTwinSuite('lmove', command => {
     })
 
     it('should move the value from LEFT of list1 to LEFT of list2', async () => {
-      const result = await redis.lmove(listId1, listId2, 'LEFT', 'LEFT')
-      expect(result).toEqual('one')
+      const result = await redis[command](listId1, listId2, 'LEFT', 'LEFT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'one'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
@@ -45,8 +47,10 @@ runTwinSuite('lmove', command => {
     })
 
     it('should move the value from RIGHT of list1 to LEFT of list2', async () => {
-      const result = await redis.lmove(listId1, listId2, 'RIGHT', 'LEFT')
-      expect(result).toEqual('two')
+      const result = await redis[command](listId1, listId2, 'RIGHT', 'LEFT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'two'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
@@ -55,8 +59,10 @@ runTwinSuite('lmove', command => {
     })
 
     it('should move the value from LEFT of list1 to RIGHT of list2', async () => {
-      const result = await redis.lmove(listId1, listId2, 'LEFT', 'RIGHT')
-      expect(result).toEqual('one')
+      const result = await redis[command](listId1, listId2, 'LEFT', 'RIGHT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'one'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
@@ -65,8 +71,10 @@ runTwinSuite('lmove', command => {
     })
 
     it('should move the value from RIGHT of list1 to RIGHT of list2', async () => {
-      const result = await redis.lmove(listId1, listId2, 'RIGHT', 'RIGHT')
-      expect(result).toEqual('two')
+      const result = await redis[command](listId1, listId2, 'RIGHT', 'RIGHT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'two'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
@@ -75,8 +83,10 @@ runTwinSuite('lmove', command => {
     })
 
     it('should rotate the list if the source and destination are the same', async () => {
-      const result = await redis.lmove(listId2, listId2, 'LEFT', 'RIGHT')
-      expect(result).toEqual('three')
+      const result = await redis[command](listId2, listId2, 'LEFT', 'RIGHT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'three'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
@@ -85,46 +95,62 @@ runTwinSuite('lmove', command => {
     })
 
     it('should perform no operation if the source is an empty list', async () => {
-      const result = await redis.lmove(emptyList, listId2, 'LEFT', 'LEFT')
+      const result = await redis[command](emptyList, listId2, 'LEFT', 'LEFT')
       expect(result).toEqual(null)
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
-      expect(current1).toEqual(['one', 'two'])
-      expect(current2).toEqual(['three', 'four'])
+      expect(
+        current1.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['one', 'two'])
+      expect(
+        current2.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['three', 'four'])
     })
 
     it('should perform no operation if the source and destination are the same and both positions are LEFT', async () => {
-      const result = await redis.lmove(listId2, listId2, 'LEFT', 'LEFT')
-      expect(result).toEqual('three')
+      const result = await redis[command](listId2, listId2, 'LEFT', 'LEFT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'three'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
-      expect(current1).toEqual(['one', 'two'])
-      expect(current2).toEqual(['three', 'four'])
+      expect(
+        current1.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['one', 'two'])
+      expect(
+        current2.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['three', 'four'])
     })
 
     it('should perform no operation if the source and destination are the same and both positions are RIGHT', async () => {
-      const result = await redis.lmove(listId2, listId2, 'RIGHT', 'RIGHT')
-      expect(result).toEqual('four')
+      const result = await redis[command](listId2, listId2, 'RIGHT', 'RIGHT')
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toEqual(
+        'four'
+      )
 
       const current1 = await redis.lrange(listId1, 0, -1)
       const current2 = await redis.lrange(listId2, 0, -1)
-      expect(current1).toEqual(['one', 'two'])
-      expect(current2).toEqual(['three', 'four'])
+      expect(
+        current1.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['one', 'two'])
+      expect(
+        current2.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+      ).toEqual(['three', 'four'])
     })
 
     it('should perform no operation and return nil when source does not exist', async () => {
       const value = await redis.get('unknown')
       expect(value).toEqual(null) // Ensures nil is being represented by null
 
-      const result = await redis.lmove('unknown', listId2, 'LEFT', 'LEFT')
+      const result = await redis[command]('unknown', listId2, 'LEFT', 'LEFT')
       expect(result).toEqual(null)
     })
 
     it('should error if the value is not a list', async () => {
       expect(async () => {
-        await redis.lmove(notalist, listId2, 'LEFT', 'LEFT')
+        await redis[command](notalist, listId2, 'LEFT', 'LEFT')
       }).rejects.toThrow(
         'WRONGTYPE Operation against a key holding the wrong kind of value'
       )
