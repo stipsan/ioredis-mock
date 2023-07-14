@@ -124,5 +124,8 @@
   "engines": {
     "node": ">=12.22"
   },
-  "runkitExampleFilename": "example.js"
+  "runkitExampleFilename": "example.js",
+  "publishConfig": {
+    "provenance": true
+  }
 }

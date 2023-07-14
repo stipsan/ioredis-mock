@@ -24,6 +24,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   build:
     name: Lint and build
@@ -130,6 +133,11 @@ jobs:
         #  DEBUG: ioredis:*
 
   release:
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     needs: [build, test, browser, e2e]
     # only run if opt-in during workflow_dispatch
     if: github.event.inputs.release == 'true'
@@ -145,6 +153,7 @@ jobs:
           node-version: lts/*
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm audit signatures
         # Branches that will release new versions are defined in .releaserc.json
       - run: npx semantic-release
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
