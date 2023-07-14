@@ -26,11 +26,11 @@ jobs:
           cache: npm
           node-version: lts/*
       - run: npm ci --no-scripts
-      - run: node scripts/update-compat
+      - run: node scripts/update-compat && npx prettier --write compat.md
       - uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5
         with:
           author: github-actions <41898282+github-actions[bot]@users.noreply.github.com>
-          body: I ran `node scripts/update-compat` 🧑‍💻
+          body: I ran `node scripts/update-compat && npx prettier --write compat.md` 🧑‍💻
           branch: actions/updatecompat
           commit-message: 'docs(compat.md): 🤖 ✨'
           labels: 🤖 bot
