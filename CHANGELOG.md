@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.1](https://github.com/stipsan/ioredis-mock/compare/v8.8.0...v8.8.1) (2023-07-14)
+
+### Bug Fixes
+
+- **commands:** add `lmoveBuffer` ([9cb31eb](https://github.com/stipsan/ioredis-mock/commit/9cb31eb5dc3eddfd225326bcbdb150adcb27eee7))
+- **deps:** update redis docker tag to v7.0.12 ([#1297](https://github.com/stipsan/ioredis-mock/issues/1297)) ([85726d0](https://github.com/stipsan/ioredis-mock/commit/85726d037731120a9121edd652dc5e0180ab3e27))
+
 ## [8.8.0](https://github.com/stipsan/ioredis-mock/compare/v8.7.0...v8.8.0) (2023-07-14)
 
 ### Features
