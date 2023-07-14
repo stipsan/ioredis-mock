@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.0](https://github.com/stipsan/ioredis-mock/compare/v8.7.0...v8.8.0) (2023-07-14)
+
+### Features
+
+- **commands:** add new command LMOVE ([#1292](https://github.com/stipsan/ioredis-mock/issues/1292)) ([7222ca8](https://github.com/stipsan/ioredis-mock/commit/7222ca87beac4e2c5e0e5313b2e6a1e7e3bfc069))
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.5.2 [security] ([#1286](https://github.com/stipsan/ioredis-mock/issues/1286)) ([23b0093](https://github.com/stipsan/ioredis-mock/commit/23b00932c6186e90b399fd7c2787a92a6930b080))
+
 ## [8.7.0](https://github.com/stipsan/ioredis-mock/compare/v8.6.0...v8.7.0) (2023-04-18)
 
 ### Features
