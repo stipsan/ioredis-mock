@@ -129,8 +129,8 @@ jobs:
       #   if: failure()
       #   run: |
       #     npm run test:e2e -- --detectOpenHandles --forceExit
-        #env:
-        #  DEBUG: ioredis:*
+      #env:
+      #  DEBUG: ioredis:*
 
   release:
     permissions:
