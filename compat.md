@@ -90,7 +90,7 @@
 | [lindex]               | :white_check_mark: | :white_check_mark: |
 | [linsert]              | :white_check_mark: | :white_check_mark: |
 | [llen]                 | :white_check_mark: | :white_check_mark: |
-| [lmove]                | :white_check_mark: |        :x:         |
+| [lmove]                | :white_check_mark: | :white_check_mark: |
 | [lmpop]                | :white_check_mark: |        :x:         |
 | [lolwut]               | :white_check_mark: | :white_check_mark: |
 | [lpop]                 | :white_check_mark: | :white_check_mark: |
@@ -230,6 +230,10 @@
 | [zscore]               | :white_check_mark: | :white_check_mark: |
 | [zunion]               | :white_check_mark: |        :x:         |
 | [zunionstore]          | :white_check_mark: |        :x:         |
+
+## Missing buffer commands
+
+- [lmoveBuffer][1]
 
 ## Commands that won't be implemented
 
