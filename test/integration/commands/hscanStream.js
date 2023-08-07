@@ -55,7 +55,7 @@ const chance = new Chance()
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count))
-      expect([].concat(...writable.data)).toEqual(keys.flatMap(key => [key, `${key}v`]))
+      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(keys))
       done()
     })
   })
