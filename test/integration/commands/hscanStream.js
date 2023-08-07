@@ -8,8 +8,8 @@ const chance = new Chance()
 ;(process.env.IS_E2E ? describe.skip : describe)('hscanStream', () => {
   let writable
 
-  const keysToPairs = keys => keys.flatMap(key => [key, `${key}v`]);
-  const createHashSet = keys => Object.fromEntries(keys.map(key => [key, `${key}v`]));
+  const keysToPairs = keys => keys.flatMap(key => [key, `${key}v`])
+  const createHashSet = keys => Object.fromEntries(keys.map(key => [key, `${key}v`]))
 
   beforeEach(() => {
     writable = new ObjectWritableMock()
