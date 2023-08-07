@@ -42,30 +42,30 @@ function getCountAndMatch(args) {
   return [count, matchPattern]
 }
 
-export function scanHelper(allKeys, size, cursorStart, ...args) {
+export function scanHelper(allKeysOrPairs, size, cursorStart, ...args) {
   const cursor = parseInt(cursorStart, 10)
   if (Number.isNaN(cursor)) {
     throw new Error('Cursor must be integer')
   }
   const [count, matchPattern] = getCountAndMatch(args)
   let nextCursor = cursor + count
-  const keys = allKeys.slice(cursor, nextCursor)
+  const keysOrPairs = allKeysOrPairs.slice(cursor, nextCursor)
 
   // Apply MATCH filtering _after_ getting number of keys
   if (matchPattern) {
     let i = 0
-    while (i < keys.length)
-      if (!matchPattern(keys[i])) {
-        keys.splice(i, size)
+    while (i < keysOrPairs.length)
+      if (!matchPattern(keysOrPairs[i])) {
+        keysOrPairs.splice(i, size)
       } else {
         i += size
       }
   }
 
   // Return 0 when iteration is complete.
-  if (nextCursor >= allKeys.length) {
+  if (nextCursor >= allKeysOrPairs.length) {
     nextCursor = 0
   }
 
-  return [String(nextCursor), keys]
+  return [String(nextCursor), keysOrPairs]
 }
