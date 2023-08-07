@@ -42,30 +42,33 @@ function getCountAndMatch(args) {
   return [count, matchPattern]
 }
 
-export function scanHelper(allKeysOrPairs, size, cursorStart, ...args) {
+// allKeysOrEntries and keysOrEntries are either:
+// - an array of keys: ['foo', 'bar']
+// - an array of entries: [['foo', 'value1'], ['bar', 'value2']]
+export function scanHelper(allKeysOrEntries, size, cursorStart, ...args) {
   const cursor = parseInt(cursorStart, 10)
   if (Number.isNaN(cursor)) {
     throw new Error('Cursor must be integer')
   }
   const [count, matchPattern] = getCountAndMatch(args)
   let nextCursor = cursor + count
-  const keysOrPairs = allKeysOrPairs.slice(cursor, nextCursor)
+  const keysOrEntries = allKeysOrEntries.slice(cursor, nextCursor)
 
   // Apply MATCH filtering _after_ getting number of keys
   if (matchPattern) {
     let i = 0
-    while (i < keysOrPairs.length)
-      if (!matchPattern(keysOrPairs[i])) {
-        keysOrPairs.splice(i, size)
+    while (i < keysOrEntries.length)
+      if (!matchPattern(keysOrEntries[i])) {
+        keysOrEntries.splice(i, size)
       } else {
         i += size
       }
   }
 
   // Return 0 when iteration is complete.
-  if (nextCursor >= allKeysOrPairs.length) {
+  if (nextCursor >= allKeysOrEntries.length) {
     nextCursor = 0
   }
 
-  return [String(nextCursor), keysOrPairs]
+  return [String(nextCursor), keysOrEntries]
 }
