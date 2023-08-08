@@ -15,4 +15,10 @@ describe('commands', () => {
       `"Unsupported command: "debugBuffer", please check the full list over mocked commands: https://github.com/stipsan/ioredis-mock/blob/main/compat.md#supported-commands-"`
     )
   })
+
+  test('unsupported commands should be writable', () => {
+    const redis = new Redis()
+    expect(() => (redis.debug = () => 'DEBUG')).not.toThrow()
+    expect(redis.debug()).toEqual('DEBUG')
+  })
 })
