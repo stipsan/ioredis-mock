@@ -43,8 +43,8 @@ function getCountAndMatch(args) {
 }
 
 // allKeysOrEntries and keysOrEntries are either:
-// - an array of keys: ['foo', 'bar']
-// - an array of entries: [['foo', 'value1'], ['bar', 'value2']]
+// - an array of keys: ['key1', 'key2']
+// - an array of entries: [['key1', 'value1'], ['key2', 'value2']]
 export function scanHelper(allKeysOrEntries, size, cursorStart, ...args) {
   const cursor = parseInt(cursorStart, 10)
   if (Number.isNaN(cursor)) {
