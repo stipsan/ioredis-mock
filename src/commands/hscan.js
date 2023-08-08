@@ -6,8 +6,8 @@ export function hscan(key, cursor, ...args) {
     return ['0', []]
   }
   const entries = Object.entries(this.data.get(key))
-  const [cur, pairs] = scanHelper(entries, 1, cursor, ...args)
-  return [cur, pairs.flat()]
+  const [cur, scannedEntries] = scanHelper(entries, 1, cursor, ...args)
+  return [cur, scannedEntries.flat()]
 }
 
 export function hscanBuffer(...args) {
