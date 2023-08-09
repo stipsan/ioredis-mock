@@ -18,7 +18,9 @@ describe('commands', () => {
 
   test('unsupported commands should be writable', () => {
     const redis = new Redis()
-    expect(() => (redis.debug = () => 'DEBUG')).not.toThrow()
+    expect(() => {
+      redis.debug = () => 'DEBUG'
+    }).not.toThrow()
     expect(redis.debug()).toEqual('DEBUG')
   })
 })
