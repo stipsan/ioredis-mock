@@ -235,7 +235,7 @@ class RedisMock extends EventEmitter {
               )}, please check the full list over mocked commands: ${docsLink}`
             )
           },
-          writable: false,
+          writable: true,
         })
       }
     })
