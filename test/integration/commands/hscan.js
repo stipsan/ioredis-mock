@@ -7,7 +7,8 @@ describe('hscan', () => {
   })
 
   const keysToFlatEntries = keys => keys.flatMap(key => [key, `${key}v`])
-  const createHashSet = keys => Object.fromEntries(keys.map(key => [key, `${key}v`]))
+  const createHashSet = keys =>
+    Object.fromEntries(keys.map(key => [key, `${key}v`]))
 
   it('should return null array if hset does not exist', () => {
     return redis.hscan('key', 0).then(result => {

@@ -9,7 +9,8 @@ const chance = new Chance()
   let writable
 
   const keysToFlatEntries = keys => keys.flatMap(key => [key, `${key}v`])
-  const createHashSet = keys => Object.fromEntries(keys.map(key => [key, `${key}v`]))
+  const createHashSet = keys =>
+    Object.fromEntries(keys.map(key => [key, `${key}v`]))
 
   beforeEach(() => {
     writable = new ObjectWritableMock()
@@ -39,7 +40,9 @@ const chance = new Chance()
     stream.pipe(writable)
     writable.on('finish', () => {
       // Then
-      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo', 'bar']))
+      expect([].concat(...writable.data)).toEqual(
+        keysToFlatEntries(['foo', 'bar'])
+      )
       done()
     })
   })
@@ -72,7 +75,9 @@ const chance = new Chance()
     stream.pipe(writable)
     writable.on('finish', () => {
       // Then
-      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo0', 'foo1', 'foo2']))
+      expect([].concat(...writable.data)).toEqual(
+        keysToFlatEntries(['foo0', 'foo1', 'foo2'])
+      )
       done()
     })
   })
@@ -90,7 +95,9 @@ const chance = new Chance()
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3))
-      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo0', 'foo1', 'foo2']))
+      expect([].concat(...writable.data)).toEqual(
+        keysToFlatEntries(['foo0', 'foo1', 'foo2'])
+      )
       done()
     })
   })
