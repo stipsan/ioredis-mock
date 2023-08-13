@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.2](https://github.com/stipsan/ioredis-mock/compare/v8.8.1...v8.8.2) (2023-08-13)
+
+### Bug Fixes
+
+- make `hscan` return flat list of entries ([#1300](https://github.com/stipsan/ioredis-mock/issues/1300)) ([6f440f0](https://github.com/stipsan/ioredis-mock/commit/6f440f0cef54e7e3f36e0e76e8d187dbb0e3ab52))
+- Make unsupported commands writable ([#1301](https://github.com/stipsan/ioredis-mock/issues/1301)) ([eb043e3](https://github.com/stipsan/ioredis-mock/commit/eb043e30184fff8d3483d858ffa6af5f597cbb02))
+
 ## [8.8.1](https://github.com/stipsan/ioredis-mock/compare/v8.8.0...v8.8.1) (2023-07-14)
 
 ### Bug Fixes
