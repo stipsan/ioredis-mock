@@ -1,6 +1,5 @@
 import Chance from 'chance'
 import Redis from 'ioredis'
-import zipObject from 'lodash.zipobject'
 import { ObjectWritableMock } from 'stream-mock'
 
 const chance = new Chance()
@@ -8,8 +7,9 @@ const chance = new Chance()
 // @TODO Rewrite test suite so it runs on a real Redis instance
 ;(process.env.IS_E2E ? describe.skip : describe)('hscanStream', () => {
   let writable
-  const randomCCType = () => chance.cc_type({ raw: true })
-  const createHashSet = keys => zipObject(keys, keys.map(randomCCType))
+
+  const keysToFlatEntries = keys => keys.flatMap(key => [key, `${key}v`])
+  const createHashSet = keys => Object.fromEntries(keys.map(key => [key, `${key}v`]))
 
   beforeEach(() => {
     writable = new ObjectWritableMock()
@@ -39,7 +39,7 @@ const chance = new Chance()
     stream.pipe(writable)
     writable.on('finish', () => {
       // Then
-      expect([].concat(...writable.data)).toEqual(['foo', 'bar'])
+      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo', 'bar']))
       done()
     })
   })
@@ -55,7 +55,7 @@ const chance = new Chance()
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(keys.length / count))
-      expect([].concat(...writable.data)).toEqual(keys)
+      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(keys))
       done()
     })
   })
@@ -72,7 +72,7 @@ const chance = new Chance()
     stream.pipe(writable)
     writable.on('finish', () => {
       // Then
-      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2'])
+      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo0', 'foo1', 'foo2']))
       done()
     })
   })
@@ -90,7 +90,7 @@ const chance = new Chance()
     writable.on('finish', () => {
       // Then
       expect(writable.data.length).toEqual(Math.ceil(3))
-      expect([].concat(...writable.data)).toEqual(['foo0', 'foo1', 'foo2'])
+      expect([].concat(...writable.data)).toEqual(keysToFlatEntries(['foo0', 'foo1', 'foo2']))
       done()
     })
   })
