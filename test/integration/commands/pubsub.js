@@ -18,7 +18,11 @@ runTwinSuite('pubsub', command => {
       })
 
       afterEach(async () => {
-        await Promise.all(testChannels.map(x => {return redis.unsubscribe(x)}))
+        await Promise.all(
+          testChannels.map(x => {
+            return redis.unsubscribe(x)
+          })
+        )
       })
 
       test('should return 0 when publishing without subscribers', async () => {

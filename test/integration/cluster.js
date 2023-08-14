@@ -33,10 +33,9 @@ describe('cluster', () => {
   })
 
   it('can pass redis options to redis mock', () => {
-    const nodes = [{host: 'localhost', port: 7001}]
-    const options = {redisOptions: {lazyConnect: true}}
+    const nodes = [{ host: 'localhost', port: 7001 }]
+    const options = { redisOptions: { lazyConnect: true } }
     const cluster = new Redis.Cluster(nodes, options)
     expect(cluster.connected).toEqual(false)
   })
-
 })
