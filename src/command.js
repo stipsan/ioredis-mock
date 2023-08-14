@@ -36,6 +36,8 @@ export function throwIfInSubscriberMode(commandName, RedisMock) {
       'psubscribeBuffer',
       'unsubscribe',
       'unsubscribeBuffer',
+      'pubsub',
+      'pubsubBuffer',
       'punsubscribe',
       'punsubscribeBuffer',
       'ping',
