@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.3](https://github.com/stipsan/ioredis-mock/compare/v8.8.2...v8.8.3) (2023-08-15)
+
+### Bug Fixes
+
+- **deps:** update dependency esbuild to ^0.19.2 ([#1306](https://github.com/stipsan/ioredis-mock/issues/1306)) ([c346711](https://github.com/stipsan/ioredis-mock/commit/c346711b5f2e7900de90f4174e07f7ce1055a4d1))
+
 ## [8.8.2](https://github.com/stipsan/ioredis-mock/compare/v8.8.1...v8.8.2) (2023-08-13)
 
 ### Bug Fixes
