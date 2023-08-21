@@ -30,7 +30,7 @@ export async function command(_subcommand, ...args) {
       'GETKEYSANDFLAGS <full-command>',
       '    Return the keys and the access flags from a full Redis command.',
       'HELP',
-      '    Prints this help.',
+      '    Print this help.',
     ]
   }
 

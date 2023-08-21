@@ -211,7 +211,7 @@ runTwinSuite('object', command => {
           '    Return the number of references of the value associated with the specified',
           '    <key>.',
           'HELP',
-          '    Prints this help.',
+          '    Print this help.',
         ])
       })
     })

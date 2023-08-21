@@ -16,7 +16,7 @@ export function xread(option, ...args) {
 
   if (rest.length % 2 !== 0) {
     throw new Error(
-      "ERR Unbalanced XREAD list of streams: for each stream key an ID or '$' must be specified."
+      "ERR Unbalanced 'xread' list of streams: for each stream key an ID or '$' must be specified."
     )
   }
 
