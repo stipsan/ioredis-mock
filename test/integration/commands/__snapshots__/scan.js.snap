@@ -10,6 +10,8 @@ exports[`scan should return null array if nothing in db 1`] = `
 exports[`scanBuffer should return null array if nothing in db 1`] = `
 [
   Buffer<30>,
-  [],
+  [
+    Buffer<62 61 72>,
+  ],
 ]
 `;

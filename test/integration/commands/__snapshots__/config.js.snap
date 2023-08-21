@@ -14,7 +14,7 @@ exports[`config help prints a list over available subcommands 1`] = `
   "REWRITE",
   "    Rewrite the configuration file.",
   "HELP",
-  "    Prints this help.",
+  "    Print this help.",
 ]
 `;
 
@@ -73,7 +73,7 @@ exports[`configBuffer help prints a list over available subcommands 1`] = `
   69 6f 6e 20 66 69 6c 65 2e
 >,
   Buffer<48 45 4c 50>,
-  Buffer<20 20 20 20 50 72 69 6e 74 73 20 74 68 69 73 20 68 65 6c 70 2e>,
+  Buffer<20 20 20 20 50 72 69 6e 74 20 74 68 69 73 20 68 65 6c 70 2e>,
 ]
 `;
 
