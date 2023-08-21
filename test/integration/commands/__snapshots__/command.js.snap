@@ -258,11 +258,11 @@ exports[`command getkeys returns the keys used in sdiff 1`] = `
 ]
 `;
 
-exports[`command getkeys should throw on wrong number of arguments 1`] = `"ERR Invalid command specified"`;
+exports[`command getkeys should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
-exports[`command getkeys should throw on wrong number of arguments 2`] = `"ERR Invalid command specified"`;
+exports[`command getkeys should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
-exports[`command getkeys should throw on wrong number of arguments 3`] = `"ERR Invalid number of arguments specified for command"`;
+exports[`command getkeys should throw on wrong number of arguments 3`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
 exports[`command getkeysandflags returns the keys used in get 1`] = `
 [
@@ -15383,11 +15383,11 @@ exports[`commandBuffer getkeys returns the keys used in sdiff 1`] = `
 ]
 `;
 
-exports[`commandBuffer getkeys should throw on wrong number of arguments 1`] = `"ERR Invalid command specified"`;
+exports[`commandBuffer getkeys should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
-exports[`commandBuffer getkeys should throw on wrong number of arguments 2`] = `"ERR Invalid command specified"`;
+exports[`commandBuffer getkeys should throw on wrong number of arguments 2`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
-exports[`commandBuffer getkeys should throw on wrong number of arguments 3`] = `"ERR Invalid number of arguments specified for command"`;
+exports[`commandBuffer getkeys should throw on wrong number of arguments 3`] = `"ERR wrong number of arguments for 'command|getkeys' command"`;
 
 exports[`commandBuffer getkeysandflags returns the keys used in get 1`] = `
 [
