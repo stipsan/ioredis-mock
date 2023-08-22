@@ -78,7 +78,9 @@ export async function command(_subcommand, ...args) {
     const { getKeyIndexes, exists } = await import('@ioredis/commands')
     const [cmd, ...subArgs] = args
     if (!exists(cmd)) {
-      throw new Error('ERR wrong number of arguments for \'command|getkeys\' command')
+      throw new Error(
+        "ERR wrong number of arguments for 'command|getkeys' command"
+      )
     }
 
     return getKeyIndexes(cmd, subArgs).map(i => subArgs[i])
