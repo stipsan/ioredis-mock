@@ -182,6 +182,7 @@
 | [unsubscribe]          | :white_check_mark: | :white_check_mark: |
 | [unwatch]              | :white_check_mark: |        :x:         |
 | [wait]                 | :white_check_mark: |        :x:         |
+| [waitaof]              |        :x:         |        :x:         |
 | [watch]                | :white_check_mark: |        :x:         |
 | [xack]                 | :white_check_mark: |        :x:         |
 | [xadd]                 | :white_check_mark: | :white_check_mark: |
@@ -427,6 +428,7 @@
 [unsubscribe]: http://redis.io/commands/UNSUBSCRIBE
 [unwatch]: http://redis.io/commands/UNWATCH
 [wait]: http://redis.io/commands/WAIT
+[waitaof]: http://redis.io/commands/WAITAOF
 [watch]: http://redis.io/commands/WATCH
 [xack]: http://redis.io/commands/XACK
 [xadd]: http://redis.io/commands/XADD
