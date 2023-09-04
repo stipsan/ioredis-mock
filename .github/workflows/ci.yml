@@ -32,7 +32,7 @@ jobs:
     name: Lint and build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           cache: npm
@@ -73,7 +73,7 @@ jobs:
             # Test the oldest LTS release of Node that's still receiving bugfixes and security patches, versions older than that have reached End-of-Life
             node: lts/*
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           cache: npm
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           cache: npm
@@ -115,7 +115,7 @@ jobs:
         ports:
           - 6379:6379
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           cache: npm
@@ -143,7 +143,7 @@ jobs:
     if: github.event.inputs.release == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # Need to fetch entire commit history to
           # analyze every commit since last release
