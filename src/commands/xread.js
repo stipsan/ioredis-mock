@@ -22,13 +22,9 @@ export function xread(option, ...args) {
 
   // Turn ["stream1", "stream2", "id1", "id2"] into tuples of
   //      [["stream1", "id1"], ["stream2", "id2"]]
-  const toPoll = rest.reduce((memo, arg, i) => {
-    const chunk = Math.floor(i / 2)
-    const tuple = memo[chunk] || []
-    // eslint-disable-next-line no-param-reassign
-    memo[chunk] = tuple.concat(arg)
-    return memo
-  }, [])
+  const half = Math.ceil(rest.length / 2)
+  const streamsHalf = rest.slice(0, half)
+  const toPoll = streamsHalf.map((ele, index) => [ele, rest[half+index]])
 
   const pollStream = (stream, id, count = 1) => {
     const data = this.data.get(stream)

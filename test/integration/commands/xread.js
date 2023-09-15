@@ -59,7 +59,7 @@ describe('xread', () => {
         },
       })
       return redis
-        .xread('COUNT', '2', 'STREAMS', 'stream', '1-0', 'other-stream', '1-0')
+        .xread('COUNT', '2', 'STREAMS', 'stream', 'other-stream', '1-0', '1-0')
         .then(events =>
           expect(events).toEqual([
             [
@@ -94,7 +94,7 @@ describe('xread', () => {
         },
       })
       return redis
-        .xread('COUNT', '2', 'STREAMS', 'stream', '1', 'other-stream', '1')
+        .xread('COUNT', '2', 'STREAMS', 'stream', 'other-stream', '1', '1')
         .then(events =>
           expect(events).toEqual([
             [
