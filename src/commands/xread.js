@@ -51,9 +51,12 @@ export function xread(option, ...args) {
         let timeElapsed = 0
         const f = () =>
           setTimeout(() => {
-            if (opVal > 0 && timeElapsed < opVal) return resolve(null)
+            if (opVal > 0 && timeElapsed >= opVal) return resolve(null)
             const events = pollEvents(toPoll, 1)
-            if (events.length > 0) return resolve(events)
+            // If any stream has a value return
+            if (events.find(event => event[1] && event[1].length > 0)) {
+              return resolve(events)
+            }
             timeElapsed += 100
             return f()
           }, 100)
