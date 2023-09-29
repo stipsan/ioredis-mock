@@ -11,6 +11,12 @@ class Pipeline {
     this._transactions = 0
 
     this.copyCommands()
+
+    Object.defineProperty(this, 'length', {
+      get () {
+        return this.batch.length;
+      },
+    });
   }
 
   copyCommands() {
