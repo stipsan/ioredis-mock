@@ -5,6 +5,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.9.0](https://github.com/stipsan/ioredis-mock/compare/v8.8.3...v8.9.0) (2023-09-29)
+
+### Features
+
+- add zdiff ([#1312](https://github.com/stipsan/ioredis-mock/issues/1312)) ([49a3b11](https://github.com/stipsan/ioredis-mock/commit/49a3b11ffa187012e3fc18cdf181a07cbf9ccdbc))
+
+### Bug Fixes
+
+- **deps:** update redis docker tag to v7.2.0 ([#1308](https://github.com/stipsan/ioredis-mock/issues/1308)) ([a5a9914](https://github.com/stipsan/ioredis-mock/commit/a5a9914fab5230e85ad72fcc52348ca41928c869))
+- **deps:** update redis docker tag to v7.2.1 ([#1317](https://github.com/stipsan/ioredis-mock/issues/1317)) ([06e2968](https://github.com/stipsan/ioredis-mock/commit/06e296866f2e8f1803dbf9b2a8c66bd88f08462b))
+- rpoplpush should rotate the list when source and destintation are the same ([#1321](https://github.com/stipsan/ioredis-mock/issues/1321)) ([897af68](https://github.com/stipsan/ioredis-mock/commit/897af68d44cffa4c3ed43ed02f15ff1c2365fb6a))
+- xread fixes ([#1318](https://github.com/stipsan/ioredis-mock/issues/1318)) ([3978302](https://github.com/stipsan/ioredis-mock/commit/3978302806c7b6f1a962038011c94f8496cc15f5))
+
 ## [8.8.3](https://github.com/stipsan/ioredis-mock/compare/v8.8.2...v8.8.3) (2023-08-15)
 
 ### Bug Fixes
