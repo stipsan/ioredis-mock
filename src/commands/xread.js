@@ -24,7 +24,7 @@ export function xread(option, ...args) {
   //      [["stream1", "id1"], ["stream2", "id2"]]
   const half = Math.ceil(rest.length / 2)
   const streamsHalf = rest.slice(0, half)
-  const toPoll = streamsHalf.map((ele, index) => [ele, rest[half+index]])
+  const toPoll = streamsHalf.map((ele, index) => [ele, rest[half + index]])
 
   const pollStream = (stream, id, count = 1) => {
     const data = this.data.get(stream)
