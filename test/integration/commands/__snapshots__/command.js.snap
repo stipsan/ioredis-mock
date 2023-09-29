@@ -884,7 +884,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@dangerous",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -1045,7 +1048,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@dangerous",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -1066,7 +1072,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@dangerous",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -2293,7 +2302,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@connection",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -2312,7 +2324,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@connection",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -3174,7 +3189,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@dangerous",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -3195,7 +3213,10 @@ exports[`command returns all commands by default 1`] = `
           "@slow",
           "@dangerous",
         ],
-        [],
+        [
+          "request_policy:all_nodes",
+          "response_policy:all_succeeded",
+        ],
         [],
         [],
       ],
@@ -6651,7 +6672,7 @@ exports[`command returns all commands by default 1`] = `
         ],
         [
           "request_policy:all_nodes",
-          "response_policy:all_succeeded",
+          "response_policy:agg_sum",
         ],
         [],
         [],
@@ -16021,7 +16042,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -16182,7 +16211,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -16203,7 +16240,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -17438,7 +17483,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 63 6f 6e 6e 65 63 74 69 6f 6e>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -17457,7 +17510,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 63 6f 6e 6e 65 63 74 69 6f 6e>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -18362,7 +18423,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -18383,7 +18452,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
           Buffer<40 73 6c 6f 77>,
           Buffer<40 64 61 6e 67 65 72 6f 75 73>,
         ],
-        [],
+        [
+          Buffer<
+  72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
+>,
+          Buffer<
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
+  64 65 64
+>,
+        ],
         [],
         [],
       ],
@@ -21980,8 +22057,7 @@ exports[`commandBuffer returns all commands by default 1`] = `
   72 65 71 75 65 73 74 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 6e 6f 64 65 73
 >,
           Buffer<
-  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 6c 6c 5f 73 75 63 63 65 65
-  64 65 64
+  72 65 73 70 6f 6e 73 65 5f 70 6f 6c 69 63 79 3a 61 67 67 5f 73 75 6d
 >,
         ],
         [],
