@@ -128,27 +128,31 @@ runTwinSuite('command', command => {
     })
 
     describe('getkeys', () => {
-      it('should throw on wrong number of arguments', async () => {
-        expect.assertions(3)
+      // @TODO Rewrite test so it runs on a real Redis instance
+      ;(process.env.IS_E2E ? it.skip : it)(
+        'should throw on wrong number of arguments',
+        async () => {
+          expect.assertions(3)
 
-        try {
-          await redis[command]('GETKEYS', 'foo')
-        } catch (err) {
-          expect(err.message).toMatchSnapshot()
-        }
+          try {
+            await redis[command]('GETKEYS', 'foo')
+          } catch (err) {
+            expect(err.message).toMatchSnapshot()
+          }
 
-        try {
-          await redis[command]('GETKEYS', 'foo', 'bar')
-        } catch (err) {
-          expect(err.message).toMatchSnapshot()
-        }
+          try {
+            await redis[command]('GETKEYS', 'foo', 'bar')
+          } catch (err) {
+            expect(err.message).toMatchSnapshot()
+          }
 
-        try {
-          await redis[command]('GETKEYS', 'get')
-        } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          try {
+            await redis[command]('GETKEYS', 'get')
+          } catch (err) {
+            expect(err.message).toMatchSnapshot()
+          }
         }
-      })
+      )
 
       it('returns the keys used in get', async () => {
         const commands = await redis[command]('getkeys', 'get', 'foo')
