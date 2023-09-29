@@ -22,11 +22,18 @@ export function rpoplpush(source, destination) {
   const newSource = this.data.get(source)
   const item = newSource.pop()
 
-  const newDest = this.data.get(destination)
+  let newDest = newSource // Operate on the same list
+  if (source !== destination) {
+    // Operate on two different lists
+    newDest = this.data.get(destination)
+  }
+
   newDest.unshift(item)
 
   this.data.set(source, newSource)
-  this.data.set(destination, newDest)
+  if (newSource !== newDest) {
+    this.data.set(destination, newDest)
+  }
 
   return item
 }

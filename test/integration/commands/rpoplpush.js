@@ -104,5 +104,19 @@ runTwinSuite('rpoplpush', (command, equals) => {
         return expect(err.message).toBe('Key bar does not contain a list')
       })
     })
+
+    it('should rotate the list if the source and destination are the same', async () => {
+      const redis = new Redis({
+        data: {
+          foo: ['1', '2'],
+        },
+      })
+
+      const result = await redis[command]('foo', 'foo', 'LEFT', 'RIGHT');
+      expect(result).toBe('2');
+
+      const list = await redis.lrange('foo', 0, -1)
+      expect(list).toEqual(['2', '1'])
+    })
   })
 })
