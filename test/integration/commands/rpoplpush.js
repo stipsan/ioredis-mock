@@ -112,8 +112,8 @@ runTwinSuite('rpoplpush', (command, equals) => {
         },
       })
 
-      const result = await redis[command]('foo', 'foo', 'LEFT', 'RIGHT');
-      expect(result).toBe('2');
+      const result = await redis[command]('foo', 'foo', 'LEFT', 'RIGHT')
+      expect(result).toBe('2')
 
       const list = await redis.lrange('foo', 0, -1)
       expect(list).toEqual(['2', '1'])
