@@ -177,33 +177,37 @@ describe('xread', () => {
       })
   })
 
-  it('should block until data is provided and return', () => {
-    const redis = new Redis()
-    const before = performance.now()
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should block until data is provided and return',
+    () => {
+      const redis = new Redis()
+      const before = performance.now()
 
-    setTimeout(() => {
-      return redis.xadd('empty-stream-2', '*', 'key', 'val')
-    }, 100)
+      setTimeout(() => {
+        return redis.xadd('empty-stream-2', '*', 'key', 'val')
+      }, 100)
 
-    return redis
-      .xread(
-        'BLOCK',
-        '500',
-        'STREAMS',
-        'empty-stream',
-        'empty-stream-2',
-        '$',
-        '$'
-      )
-      .then(row => {
-        const after = performance.now()
-        expect(after - before >= 100).toBe(true)
-        expect(row).toEqual([
-          ['empty-stream-2', [['1-0', ['key', 'val']]]],
-          ['empty-stream', []],
-        ])
-      })
-  })
+      return redis
+        .xread(
+          'BLOCK',
+          '500',
+          'STREAMS',
+          'empty-stream',
+          'empty-stream-2',
+          '$',
+          '$'
+        )
+        .then(row => {
+          const after = performance.now()
+          expect(after - before >= 100).toBe(true)
+          expect(row).toEqual([
+            ['empty-stream-2', [['1-0', ['key', 'val']]]],
+            ['empty-stream', []],
+          ])
+        })
+    }
+  )
 
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)(
