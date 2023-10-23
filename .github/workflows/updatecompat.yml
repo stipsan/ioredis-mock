@@ -21,7 +21,7 @@ jobs:
       pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: npm
           node-version: lts/*
