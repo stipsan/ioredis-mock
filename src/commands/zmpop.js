@@ -7,6 +7,9 @@ export async function zmpop(numKeysStr, ...vals) {
   }
 
   const numKeys = parseInt(numKeysStr, 10)
+  if (numKeys < 1 || isNaN(numKeys)) {
+    throw new Error("ERR count should be greater than 0")
+  }
 
   const withCount = vals[vals.length - 2] === "COUNT"
 
