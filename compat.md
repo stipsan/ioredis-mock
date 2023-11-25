@@ -20,7 +20,7 @@
 | [blpop]                | :white_check_mark: |        :x:         |
 | [brpop]                | :white_check_mark: |        :x:         |
 | [brpoplpush]           | :white_check_mark: | :white_check_mark: |
-| [bzmpop]               | :white_check_mark: |        :x:         |
+| [bzmpop]               | :white_check_mark: | :white_check_mark: |
 | [bzpopmax]             | :white_check_mark: |        :x:         |
 | [bzpopmin]             | :white_check_mark: |        :x:         |
 | [client]               | :white_check_mark: |        :x:         |
@@ -210,7 +210,7 @@
 | [zinterstore]          | :white_check_mark: | :white_check_mark: |
 | [zlexcount]            | :white_check_mark: |        :x:         |
 | [zmpop]                | :white_check_mark: |        :x:         |
-| [zmscore]              | :white_check_mark: |        :x:         |
+| [zmscore]              | :white_check_mark: | :white_check_mark: |
 | [zpopmax]              | :white_check_mark: | :white_check_mark: |
 | [zpopmin]              | :white_check_mark: | :white_check_mark: |
 | [zrandmember]          | :white_check_mark: |        :x:         |
