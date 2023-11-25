@@ -1,7 +1,9 @@
 import chunk from "lodash.chunk"
 import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+import { zpopmin } from "./zpopmin"
+import { zpopmax } from "./zpopmax"
 
-export async function zmpop(numKeysStr, ...vals) {
+export function zmpop(numKeysStr, ...vals) {
   if (vals.length < 2) {
     throw new Error("ERR wrong number of arguments for 'zmpop' command")
   }
@@ -30,9 +32,9 @@ export async function zmpop(numKeysStr, ...vals) {
   // zmpop is very similar to zpopmin/zpopmax, the main difference is that
   // it takes multiple keys and find the first non empty
   // we can simply use zpopmin/zpopmax and return the first non empty result
-  const popFunc = (minMax === "MIN" ? this.zpopmin : this.zpopmax)
+  const popFunc = (minMax === "MIN" ? zpopmin : zpopmax).bind(this)
   for (const key of keys) {
-    const result = await popFunc(key, count)
+    const result = popFunc(key, count)
     if (result.length > 0) {
       return [
         key,
