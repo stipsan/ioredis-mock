@@ -2,8 +2,14 @@ import Redis from 'ioredis'
 
 describe('xread', () => {
   const redis = new Redis()
+  if (!process.env.IS_E2E) jest.useFakeTimers({
+    doNotFake: ['setTimeout', 'performance'],
+  })
+  const fixedTimestamp = Date.now()
+
   afterAll(() => {
     redis.disconnect()
+    if (!process.env.IS_E2E) jest.useRealTimers()
   })
 
   // @TODO Rewrite test so it runs on a real Redis instance
@@ -13,26 +19,34 @@ describe('xread', () => {
       const redis = new Redis({
         data: {
           stream: [
-            ['1-0', ['key', 'val']],
-            ['2-0', ['key', 'val']],
-            ['3-0', ['key', 'val']],
-            ['4-0', ['key', 'val']],
+            [`${fixedTimestamp}-0`, ['key', 'val']],
+            [`${fixedTimestamp}-1`, ['key', 'val']],
+            [`${fixedTimestamp}-2`, ['key', 'val']],
+            [`${fixedTimestamp}-3`, ['key', 'val']],
           ],
-          'stream:stream:1-0': { polled: false },
-          'stream:stream:2-0': { polled: false },
-          'stream:stream:3-0': { polled: false },
-          'stream:stream:4-0': { polled: false },
+          [`stream:stream:${fixedTimestamp}-0`]: {
+            polled: false,
+          },
+          [`stream:stream:${fixedTimestamp}-1`]: {
+            polled: false,
+          },
+          [`stream:stream:${fixedTimestamp}-2`]: {
+            polled: false,
+          },
+          [`stream:stream:${fixedTimestamp}-3`]: {
+            polled: false,
+          },
         },
       })
       return redis
-        .xread('COUNT', '2', 'STREAMS', 'stream', '2-0')
+        .xread('COUNT', '2', 'STREAMS', 'stream', `${fixedTimestamp}-1`)
         .then(events =>
           expect(events).toEqual([
             [
               'stream',
               [
-                ['2-0', ['key', 'val']],
-                ['3-0', ['key', 'val']],
+                [`${fixedTimestamp}-1`, ['key', 'val']],
+                [`${fixedTimestamp}-2`, ['key', 'val']],
               ],
             ],
           ])
@@ -52,10 +66,18 @@ describe('xread', () => {
             ['3-0', ['key', 'val']],
           ],
           'other-stream': [['1-0', ['key', 'val']]],
-          'stream:stream:1-0': { polled: false },
-          'stream:stream:2-0': { polled: false },
-          'stream:stream:3-0': { polled: false },
-          'stream:other-stream:1-0': { polled: false },
+          'stream:stream:1-0': {
+            polled: false,
+          },
+          'stream:stream:2-0': {
+            polled: false,
+          },
+          'stream:stream:3-0': {
+            polled: false,
+          },
+          'stream:other-stream:1-0': {
+            polled: false,
+          },
         },
       })
       return redis
@@ -87,10 +109,18 @@ describe('xread', () => {
             ['3-0', ['key', 'val']],
           ],
           'other-stream': [['1-0', ['key', 'val']]],
-          'stream:stream:1-0': { polled: false },
-          'stream:stream:2-0': { polled: false },
-          'stream:stream:3-0': { polled: false },
-          'stream:other-stream:1-0': { polled: false },
+          'stream:stream:1-0': {
+            polled: false,
+          },
+          'stream:stream:2-0': {
+            polled: false,
+          },
+          'stream:stream:3-0': {
+            polled: false,
+          },
+          'stream:other-stream:1-0': {
+            polled: false,
+          },
         },
       })
       return redis
@@ -119,7 +149,7 @@ describe('xread', () => {
         .then(row => {
           const [[stream, [[id, values]]]] = row
           expect(stream).toBe('stream')
-          expect(id).toBe('1-0')
+          expect(id).toBe(`${fixedTimestamp}-0`)
           expect(values).toEqual(['key', 'val'])
         })
       return redis.xadd('stream', '*', 'key', 'val').then(() => op)
@@ -131,11 +161,11 @@ describe('xread', () => {
     'should block reads till data becomes available since an id',
     () => {
       const op = redis
-        .xread('BLOCK', '0', 'STREAMS', 'stream', '2-0')
+        .xread('BLOCK', '0', 'STREAMS', 'stream', `${fixedTimestamp}-1`)
         .then(row => {
           const [[stream, [[id, values]]]] = row
           expect(stream).toBe('stream')
-          expect(id).toBe('2-0')
+          expect(id).toBe(`${fixedTimestamp}-1`)
           expect(values).toEqual(['key', 'val'])
         })
       return redis
@@ -146,7 +176,6 @@ describe('xread', () => {
   )
 
   it('should block reads on a stream with a time out', () => {
-    const redis = new Redis()
     const before = performance.now()
     return redis
       .xread('BLOCK', '500', 'STREAMS', 'empty-stream', '$')
@@ -158,7 +187,6 @@ describe('xread', () => {
   })
 
   it('should block reads on multiple streams with a time out', () => {
-    const redis = new Redis()
     const before = performance.now()
     return redis
       .xread(
@@ -202,7 +230,7 @@ describe('xread', () => {
           const after = performance.now()
           expect(after - before >= 100).toBe(true)
           expect(row).toEqual([
-            ['empty-stream-2', [['1-0', ['key', 'val']]]],
+            ['empty-stream-2', [[`${fixedTimestamp}-0`, ['key', 'val']]]],
             ['empty-stream', []],
           ])
         })
@@ -220,9 +248,15 @@ describe('xread', () => {
             ['2-0', ['key', 'val']],
             ['3-0', ['key', 'val']],
           ],
-          'stream:stream:1-0': { polled: false },
-          'stream:stream:2-0': { polled: false },
-          'stream:stream:3-0': { polled: false },
+          'stream:stream:1-0': {
+            polled: false,
+          },
+          'stream:stream:2-0': {
+            polled: false,
+          },
+          'stream:stream:3-0': {
+            polled: false,
+          },
         },
       })
       return redis.xread('STREAMS', 'stream', '2-0').then(events =>
