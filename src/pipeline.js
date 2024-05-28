@@ -69,7 +69,31 @@ class Pipeline {
     this._transactions += 1
   }
 
+  _isDirty() {
+    if (this.redis.dirty) {
+      return true
+    }
+
+    // dirty if some watched keys have expired
+    const watchingKeys = this.redis.watching.values()
+    for (const key of watchingKeys) {
+      if (this.redis.expires.has(key) && this.redis.expires.isExpired(key)) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   exec(callback) {
+    // return null if WATCHed key was modified or expired
+    if (this._isDirty()) {
+      this.redis.dirty = false
+      this.redis.watching.clear()
+      this.batch = undefined
+      return asCallback(Promise.resolve(null), callback)
+    }
+
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch
 
