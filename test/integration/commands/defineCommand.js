@@ -63,6 +63,42 @@ describe('defineCommand', () => {
     redis.disconnect()
   })
 
+  it('should return false for hmget when key is undefined', async () => {
+    const luaCode = `
+      local reply = redis.call("HMGET", KEYS[1], ARGV[1])
+      local value = reply[1]
+      if type(value) ~= "boolean" or value ~= false then
+        return error("value was not a boolean")
+      end
+      return reply
+    `;
+    const definition = { numberOfKeys: 1, lua: luaCode };
+
+    const redis = new Redis()
+    redis.defineCommand('someCmd', definition);
+
+    const response = await redis.someCmd('key', 'field');
+    expect(response).toStrictEqual([false]);
+
+    redis.disconnect();
+  })
+
+  it('should return table/array for hmget when key is defined', async () => {
+    const luaCode = `
+      redis.call("HMSET", KEYS[1], ARGV[1], "hello, world")
+      return redis.call("HMGET", KEYS[1], ARGV[1])
+    `;
+    const definition = { numberOfKeys: 1, lua: luaCode };
+
+    const redis = new Redis()
+    redis.defineCommand('someCmd', definition);
+
+    const response = await redis.someCmd('key', 'field');
+    expect(response).toStrictEqual(['hello, world']);
+
+    redis.disconnect();
+  })
+
   it('should support custom commmands returning a table/array of table/array elements', async () => {
     const luaCode = 'return {{10}, {100, 200}, {}}'
     const redis = new Redis()
