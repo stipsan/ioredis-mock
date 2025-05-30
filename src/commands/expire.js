@@ -1,6 +1,10 @@
 import { emitNotification } from '../keyspace-notifications'
 
 export function expire(key, seconds) {
+  if (!Number.isInteger(seconds) || seconds < 0) {
+    throw new Error('ERR value is not an integer or out of range')
+  }
+
   if (!this.data.has(key)) {
     return 0
   }
