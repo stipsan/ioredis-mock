@@ -272,6 +272,8 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
   }
 }
 
+RedisMock.Pipeline = Pipeline
+
 RedisMock.default = RedisMock
 
 module.exports = RedisMock
