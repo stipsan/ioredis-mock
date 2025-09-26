@@ -11,9 +11,18 @@ runTwinSuite('lolwut', command => {
       redis.disconnect()
     })
 
-    test('should return Redis version by default', async () => {
+    test('version 8', async () => {
       const result = await redis[command]()
-      expect(result).toMatchSnapshot()
+      expect(
+        Buffer.isBuffer(result) ? result.toString() : result
+      ).toMatchSnapshot()
+    })
+
+    test('version 7', async () => {
+      const result = await redis[command]('version', 7, 20, 10)
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toMatch(
+        'Redis ver'
+      )
     })
 
     test('version 6', async () => {

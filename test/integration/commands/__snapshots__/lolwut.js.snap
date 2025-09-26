@@ -1,8 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lolwut should return Redis version by default 1`] = `
-"Redis ver. 8.2.1
-"
+exports[`lolwut version 8 1`] = `
+" TRYING   TO GRASP 
+ THE BLINDING   GLOBE   OF FIRE 
+ THEY ALL RETURN   TO   THEIR ROOTS 
+ WHEN IT REACHES   THE STRATOSPHERE 
+ THE HAIR   BETWEEN THE LIPS 
+ IT EXPANDS   RAPIDLY 
+ THEY LAY   MOTIONLESS   WITHOUT SPEAKING 
+ ASSUMES   THE WELL-KNOWN SHAPE   OF A MUSHROOM 
+ TILL HE MOVED   HIS FINGERS   SLOWLY 
+ THE SUMMIT   OF THE CLOUD 
+
+In 1961, Nanni Balestrini created one of the first computer-generated poems, TAPE MARK I, using an IBM 7090 mainframe. Each execution combined verses from three literary sources following algorithmic rules based on metrical compatibility and group constraints. This LOLWUT command reproduces Balestrini's original algorithm, generating new stanzas through the same computational poetry process described in Almanacco Letterario Bompiani, 1962.
+
+https://en.wikipedia.org/wiki/Digital_poetry
+https://www.youtube.com/watch?v=8i7uFCK7G0o (English subs)
+
+Use: LOLWUT IT for the original Italian output."
 `;
 
-exports[`lolwutBuffer should return Redis version by default 1`] = `Buffer<52 65 64 69 73 20 76 65 72 2e 20 38 2e 32 2e 31 0a>`;
+exports[`lolwutBuffer version 8 1`] = `
+" TRYING   TO GRASP 
+ THE BLINDING   GLOBE   OF FIRE 
+ THEY ALL RETURN   TO   THEIR ROOTS 
+ WHEN IT REACHES   THE STRATOSPHERE 
+ THE HAIR   BETWEEN THE LIPS 
+ IT EXPANDS   RAPIDLY 
+ THEY LAY   MOTIONLESS   WITHOUT SPEAKING 
+ ASSUMES   THE WELL-KNOWN SHAPE   OF A MUSHROOM 
+ TILL HE MOVED   HIS FINGERS   SLOWLY 
+ THE SUMMIT   OF THE CLOUD 
+
+In 1961, Nanni Balestrini created one of the first computer-generated poems, TAPE MARK I, using an IBM 7090 mainframe. Each execution combined verses from three literary sources following algorithmic rules based on metrical compatibility and group constraints. This LOLWUT command reproduces Balestrini's original algorithm, generating new stanzas through the same computational poetry process described in Almanacco Letterario Bompiani, 1962.
+
+https://en.wikipedia.org/wiki/Digital_poetry
+https://www.youtube.com/watch?v=8i7uFCK7G0o (English subs)
+
+Use: LOLWUT IT for the original Italian output."
+`;
