@@ -1,9 +1,16 @@
-<!-- markdownlint-disable --><!-- textlint-disable -->
+# ioredis-mock
 
-# 📓 Changelog
+## 8.9.2
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+### Patch Changes
+
+- [#1363](https://github.com/stipsan/ioredis-mock/pull/1363) [`1ee9c91`](https://github.com/stipsan/ioredis-mock/commit/1ee9c91e9190976653a6e5635e0048769ca403c9) Thanks [@mishaled](https://github.com/mishaled)! - Export `Pipeline` class
+
+## 8.9.1
+
+### Patch Changes
+
+- [`f0dc728`](https://github.com/stipsan/ioredis-mock/commit/f0dc7280cf65461423e0e43a01e9e3317bba2e34) Thanks [@stipsan](https://github.com/stipsan)! - Setup trusted publishing
 
 ## [8.9.0](https://github.com/stipsan/ioredis-mock/compare/v8.8.3...v8.9.0) (2023-09-29)
 

@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: github.repository == 'stipsan/ioredis-mock'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+        # temporary until setup-node action comes with npm version that contains oidc setup by default
+      - name: Update npm to use trusted publishing (OIDC)
+        run: npm install -g npm@latest
+      - run: npm ci
+      - uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
+        with:
+          publish: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
