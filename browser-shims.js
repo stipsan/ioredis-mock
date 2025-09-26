@@ -1,3 +1,5 @@
+import 'setimmediate'
+
 import hrtime from 'browser-process-hrtime'
 import { Buffer } from 'buffer'
 
