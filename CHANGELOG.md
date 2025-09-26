@@ -1,5 +1,11 @@
 # ioredis-mock
 
+## 8.12.1
+
+### Patch Changes
+
+- [#1446](https://github.com/stipsan/ioredis-mock/pull/1446) [`627c358`](https://github.com/stipsan/ioredis-mock/commit/627c3582e1ae7c0bfa466b9dee3ba11bda09b11f) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update compat.md
+
 ## 8.12.0
 
 ### Minor Changes
