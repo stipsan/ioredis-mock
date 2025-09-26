@@ -1,5 +1,11 @@
 # ioredis-mock
 
+## 8.11.2
+
+### Patch Changes
+
+- [#1415](https://github.com/stipsan/ioredis-mock/pull/1415) [`3eef1ec`](https://github.com/stipsan/ioredis-mock/commit/3eef1ec41b5c0ee02799887d92b3c46be20a0638) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix expired keys returned by KEYS and other enumeration commands
+
 ## 8.11.0
 
 ### Minor Changes
