@@ -75,8 +75,7 @@ class Pipeline {
     }
 
     // dirty if some watched keys have expired
-    const watchingKeys = this.redis.watching.values()
-    for (const key of watchingKeys) {
+    for (const key of this.redis.watching) {
       if (this.redis.expires.has(key) && this.redis.expires.isExpired(key)) {
         return true
       }
