@@ -17,19 +17,18 @@ describe('ping disconnect health check', () => {
     async () => {
       // Use lazyConnect to avoid actual connection in E2E tests
       const redis = new Redis({ lazyConnect: true })
-      
+
       // In mock tests, enableOfflineQueue: true allows commands to succeed
       expect(await healthCheck(redis)).toBe('UP')
       redis.disconnect()
       expect(await healthCheck(redis)).toBe('UP')
     }
   )
-
   ;(process.env.IS_E2E ? it.skip : it)(
     'should return UP after disconnect when enableOfflineQueue is explicitly true',
     async () => {
       const redis = new Redis({ lazyConnect: true, enableOfflineQueue: true })
-      
+
       // In mock tests, enableOfflineQueue: true allows commands to succeed
       expect(await healthCheck(redis)).toBe('UP')
       redis.disconnect()
@@ -39,7 +38,7 @@ describe('ping disconnect health check', () => {
 
   it('should return DOWN when enableOfflineQueue is explicitly false', async () => {
     const redis = new Redis({ lazyConnect: true, enableOfflineQueue: false })
-    
+
     // Both mock and real ioredis should return DOWN when enableOfflineQueue: false
     expect(await healthCheck(redis)).toBe('DOWN')
     redis.disconnect()
@@ -48,7 +47,7 @@ describe('ping disconnect health check', () => {
 
   it('should return DOWN when created with lazyConnect and not connected', async () => {
     const redis = new Redis({ lazyConnect: true, enableOfflineQueue: false })
-    
+
     // Both mock and real ioredis should return DOWN when not connected and enableOfflineQueue: false
     expect(await healthCheck(redis)).toBe('DOWN')
     redis.disconnect()
@@ -58,7 +57,7 @@ describe('ping disconnect health check', () => {
     // For health checks that need immediate feedback about connection status,
     // use enableOfflineQueue: false
     const redis = new Redis({ lazyConnect: true, enableOfflineQueue: false })
-    
+
     // Both environments should return DOWN when not connected with enableOfflineQueue: false
     expect(await healthCheck(redis)).toBe('DOWN')
     redis.disconnect()

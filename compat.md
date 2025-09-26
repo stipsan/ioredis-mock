@@ -1,9 +1,21 @@
-## Supported commands ![Commands Coverage: 65%](https://img.shields.io/badge/coverage-65%25-orange.svg)
+## Supported commands ![Commands Coverage: 60%](https://img.shields.io/badge/coverage-60%25-orange.svg)
 
 > PRs welcome :heart:
 
 | redis                  |      ioredis       |    ioredis-mock    |
 | ---------------------- | :----------------: | :----------------: |
+| [VADD]                 |        :x:         |        :x:         |
+| [VCARD]                |        :x:         |        :x:         |
+| [VDIM]                 |        :x:         |        :x:         |
+| [VEMB]                 |        :x:         |        :x:         |
+| [VGETATTR]             |        :x:         |        :x:         |
+| [VINFO]                |        :x:         |        :x:         |
+| [VISMEMBER]            |        :x:         |        :x:         |
+| [VLINKS]               |        :x:         |        :x:         |
+| [VRANDMEMBER]          |        :x:         |        :x:         |
+| [VREM]                 |        :x:         |        :x:         |
+| [VSETATTR]             |        :x:         |        :x:         |
+| [VSIM]                 |        :x:         |        :x:         |
 | [acl]                  | :white_check_mark: |        :x:         |
 | [append]               | :white_check_mark: | :white_check_mark: |
 | [asking]               | :white_check_mark: | :white_check_mark: |
@@ -71,6 +83,8 @@
 | [hexpiretime]          |        :x:         |        :x:         |
 | [hget]                 | :white_check_mark: | :white_check_mark: |
 | [hgetall]              | :white_check_mark: | :white_check_mark: |
+| [hgetdel]              |        :x:         |        :x:         |
+| [hgetex]               |        :x:         |        :x:         |
 | [hincrby]              | :white_check_mark: | :white_check_mark: |
 | [hincrbyfloat]         | :white_check_mark: | :white_check_mark: |
 | [hkeys]                | :white_check_mark: | :white_check_mark: |
@@ -85,6 +99,7 @@
 | [hrandfield]           | :white_check_mark: | :white_check_mark: |
 | [hscan]                | :white_check_mark: | :white_check_mark: |
 | [hset]                 | :white_check_mark: | :white_check_mark: |
+| [hsetex]               |        :x:         |        :x:         |
 | [hsetnx]               | :white_check_mark: | :white_check_mark: |
 | [hstrlen]              | :white_check_mark: | :white_check_mark: |
 | [httl]                 |        :x:         |        :x:         |
@@ -194,10 +209,12 @@
 | [waitaof]              |        :x:         |        :x:         |
 | [watch]                | :white_check_mark: | :white_check_mark: |
 | [xack]                 | :white_check_mark: |        :x:         |
+| [xackdel]              |        :x:         |        :x:         |
 | [xadd]                 | :white_check_mark: | :white_check_mark: |
 | [xautoclaim]           | :white_check_mark: |        :x:         |
 | [xclaim]               | :white_check_mark: |        :x:         |
 | [xdel]                 | :white_check_mark: |        :x:         |
+| [xdelex]               | :white_check_mark: |        :x:         |
 | [xgroup]               | :white_check_mark: |        :x:         |
 | [xinfo]                | :white_check_mark: |        :x:         |
 | [xlen]                 | :white_check_mark: | :white_check_mark: |
@@ -259,6 +276,18 @@
 | [slowlog] | Useful when you're on redis, not so much when on ioredis-mock                                                                                                     |
 
 [1]: https://github.com/luin/ioredis#handle-binary-data
+[VADD]: http://redis.io/commands/VADD
+[VCARD]: http://redis.io/commands/VCARD
+[VDIM]: http://redis.io/commands/VDIM
+[VEMB]: http://redis.io/commands/VEMB
+[VGETATTR]: http://redis.io/commands/VGETATTR
+[VINFO]: http://redis.io/commands/VINFO
+[VISMEMBER]: http://redis.io/commands/VISMEMBER
+[VLINKS]: http://redis.io/commands/VLINKS
+[VRANDMEMBER]: http://redis.io/commands/VRANDMEMBER
+[VREM]: http://redis.io/commands/VREM
+[VSETATTR]: http://redis.io/commands/VSETATTR
+[VSIM]: http://redis.io/commands/VSIM
 [acl]: http://redis.io/commands/ACL
 [append]: http://redis.io/commands/APPEND
 [asking]: http://redis.io/commands/ASKING
@@ -326,6 +355,8 @@
 [hexpiretime]: http://redis.io/commands/HEXPIRETIME
 [hget]: http://redis.io/commands/HGET
 [hgetall]: http://redis.io/commands/HGETALL
+[hgetdel]: http://redis.io/commands/HGETDEL
+[hgetex]: http://redis.io/commands/HGETEX
 [hincrby]: http://redis.io/commands/HINCRBY
 [hincrbyfloat]: http://redis.io/commands/HINCRBYFLOAT
 [hkeys]: http://redis.io/commands/HKEYS
@@ -340,6 +371,7 @@
 [hrandfield]: http://redis.io/commands/HRANDFIELD
 [hscan]: http://redis.io/commands/HSCAN
 [hset]: http://redis.io/commands/HSET
+[hsetex]: http://redis.io/commands/HSETEX
 [hsetnx]: http://redis.io/commands/HSETNX
 [hstrlen]: http://redis.io/commands/HSTRLEN
 [httl]: http://redis.io/commands/HTTL
@@ -449,10 +481,12 @@
 [waitaof]: http://redis.io/commands/WAITAOF
 [watch]: http://redis.io/commands/WATCH
 [xack]: http://redis.io/commands/XACK
+[xackdel]: http://redis.io/commands/XACKDEL
 [xadd]: http://redis.io/commands/XADD
 [xautoclaim]: http://redis.io/commands/XAUTOCLAIM
 [xclaim]: http://redis.io/commands/XCLAIM
 [xdel]: http://redis.io/commands/XDEL
+[xdelex]: http://redis.io/commands/XDELEX
 [xgroup]: http://redis.io/commands/XGROUP
 [xinfo]: http://redis.io/commands/XINFO
 [xlen]: http://redis.io/commands/XLEN
