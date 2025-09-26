@@ -1,5 +1,27 @@
 # ioredis-mock
 
+## 8.12.0
+
+### Minor Changes
+
+- [#1440](https://github.com/stipsan/ioredis-mock/pull/1440) [`b469d87`](https://github.com/stipsan/ioredis-mock/commit/b469d8783e9079cabad0a0923074dac8d3af73ea) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Update Redis Docker tag to v8.2.1 and internal Redis version data
+  - Updated CI workflows to use Redis 8.2.1 for end-to-end testing
+  - Updated internal Redis version data files from Redis 8.2.1
+  - Fixed XREAD command error message to match Redis v8 behavior (added '+' option)
+  - Updated test snapshots to reflect Redis 8.2.1 version information
+
+  This is a minor version bump as the core functionality remains compatible, with only cosmetic changes to version strings and one minor error message update.
+
+### Patch Changes
+
+- [#1416](https://github.com/stipsan/ioredis-mock/pull/1416) [`0c8df1e`](https://github.com/stipsan/ioredis-mock/commit/0c8df1e42a1266f5c5f58a6a22429d391c1e25bf) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix .ping() always returning 'PONG', even when disconnected
+
+## 8.11.2
+
+### Patch Changes
+
+- [#1415](https://github.com/stipsan/ioredis-mock/pull/1415) [`3eef1ec`](https://github.com/stipsan/ioredis-mock/commit/3eef1ec41b5c0ee02799887d92b3c46be20a0638) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix expired keys returned by KEYS and other enumeration commands
+
 ## 8.11.0
 
 ### Minor Changes
