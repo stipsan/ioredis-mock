@@ -8,6 +8,7 @@ import createCommand, { Command } from './command'
 import * as commands from './commands'
 import * as commandsStream from './commands-stream'
 import emitConnectEvent from './commands-utils/emitConnectEvent'
+import emitDisconnectEvent from './commands-utils/emitDisconnectEvent'
 import contextMap, { createContext } from './context'
 import { createData } from './data'
 import { createExpires } from './expires'
@@ -94,15 +95,20 @@ class RedisMock extends EventEmitter {
       contextMap.set(this.keyData, context)
     }
 
-    const context = contextMap.get(this.keyData)
+    this.context = contextMap.get(this.keyData)
 
-    this.expires = createExpires(context.expires, optionsWithDefault.keyPrefix)
+    this.expires = createExpires(this.context.expires, optionsWithDefault.keyPrefix)
     this.data = createData(
-      context.data,
+      this.context.data,
       this.expires,
       optionsWithDefault.data,
       optionsWithDefault.keyPrefix
     )
+
+    this.dirty = false
+    this.watching = new Set()
+    this._signalModifiedKey = this._signalModifiedKey.bind(this) // re-assign bound method to remove listener on disconnect
+    this.context.modifiedKeyEvents.on('modified', this._signalModifiedKey)
 
     this._initCommands()
 
@@ -201,6 +207,11 @@ class RedisMock extends EventEmitter {
 
     removeFrom(this.channels)
     removeFrom(this.patternChannels)
+
+    this.context.modifiedKeyEvents.off('modified', this._signalModifiedKey)
+    
+    emitDisconnectEvent(this)
+
     // no-op
   }
 
@@ -239,6 +250,12 @@ class RedisMock extends EventEmitter {
         })
       }
     })
+  }
+
+  _signalModifiedKey(key) {
+    if (!this.dirty && this.watching.has(key)) {
+      this.dirty = true
+    }
   }
 }
 

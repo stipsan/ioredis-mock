@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 66%](https://img.shields.io/badge/coverage-66%25-orange.svg)
+## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -66,6 +66,9 @@
 | [getset]               | :white_check_mark: | :white_check_mark: |
 | [hdel]                 | :white_check_mark: | :white_check_mark: |
 | [hexists]              | :white_check_mark: | :white_check_mark: |
+| [hexpire]              | :white_check_mark: |        :x:         |
+| [hexpireat]            |        :x:         |        :x:         |
+| [hexpiretime]          |        :x:         |        :x:         |
 | [hget]                 | :white_check_mark: | :white_check_mark: |
 | [hgetall]              | :white_check_mark: | :white_check_mark: |
 | [hincrby]              | :white_check_mark: | :white_check_mark: |
@@ -74,11 +77,17 @@
 | [hlen]                 | :white_check_mark: | :white_check_mark: |
 | [hmget]                | :white_check_mark: | :white_check_mark: |
 | [hmset]                | :white_check_mark: | :white_check_mark: |
+| [hpersist]             |        :x:         |        :x:         |
+| [hpexpire]             | :white_check_mark: |        :x:         |
+| [hpexpireat]           |        :x:         |        :x:         |
+| [hpexpiretime]         |        :x:         |        :x:         |
+| [hpttl]                |        :x:         |        :x:         |
 | [hrandfield]           | :white_check_mark: | :white_check_mark: |
 | [hscan]                | :white_check_mark: | :white_check_mark: |
 | [hset]                 | :white_check_mark: | :white_check_mark: |
 | [hsetnx]               | :white_check_mark: | :white_check_mark: |
 | [hstrlen]              | :white_check_mark: | :white_check_mark: |
+| [httl]                 |        :x:         |        :x:         |
 | [hvals]                | :white_check_mark: | :white_check_mark: |
 | [incr]                 | :white_check_mark: | :white_check_mark: |
 | [incrby]               | :white_check_mark: | :white_check_mark: |
@@ -316,6 +325,9 @@
 [getset]: http://redis.io/commands/GETSET
 [hdel]: http://redis.io/commands/HDEL
 [hexists]: http://redis.io/commands/HEXISTS
+[hexpire]: http://redis.io/commands/HEXPIRE
+[hexpireat]: http://redis.io/commands/HEXPIREAT
+[hexpiretime]: http://redis.io/commands/HEXPIRETIME
 [hget]: http://redis.io/commands/HGET
 [hgetall]: http://redis.io/commands/HGETALL
 [hincrby]: http://redis.io/commands/HINCRBY
@@ -324,11 +336,17 @@
 [hlen]: http://redis.io/commands/HLEN
 [hmget]: http://redis.io/commands/HMGET
 [hmset]: http://redis.io/commands/HMSET
+[hpersist]: http://redis.io/commands/HPERSIST
+[hpexpire]: http://redis.io/commands/HPEXPIRE
+[hpexpireat]: http://redis.io/commands/HPEXPIREAT
+[hpexpiretime]: http://redis.io/commands/HPEXPIRETIME
+[hpttl]: http://redis.io/commands/HPTTL
 [hrandfield]: http://redis.io/commands/HRANDFIELD
 [hscan]: http://redis.io/commands/HSCAN
 [hset]: http://redis.io/commands/HSET
 [hsetnx]: http://redis.io/commands/HSETNX
 [hstrlen]: http://redis.io/commands/HSTRLEN
+[httl]: http://redis.io/commands/HTTL
 [hvals]: http://redis.io/commands/HVALS
 [incr]: http://redis.io/commands/INCR
 [incrby]: http://redis.io/commands/INCRBY

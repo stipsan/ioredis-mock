@@ -62,4 +62,11 @@ describe('connect', () => {
       redis.disconnect()
     }
   })
+
+  it('should not throw if executing any command when not connected and using enableOfflineQueue as true', async () => {
+    const redis = new Redis({ lazyConnect: true, enableOfflineQueue: true })
+
+    await expect(redis.get('key')).resolves.not.toThrow()
+    redis.disconnect()
+  })
 })
