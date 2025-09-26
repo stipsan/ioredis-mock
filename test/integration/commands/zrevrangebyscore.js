@@ -169,7 +169,7 @@ describe('zrevrangebyscore', () => {
     const redis = new Redis({ data })
     return redis
       .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1)
-      .then(res => expect(res).toEqual(['fourth', 'third', 'second']))
+      .then(res => expect(res).toEqual(['fourth', 'third', 'second', 'first']))
   })
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)(
@@ -179,7 +179,7 @@ describe('zrevrangebyscore', () => {
       return redis
         .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1, 'WITHSCORES')
         .then(res =>
-          expect(res).toEqual(['fourth', '4', 'third', '3', 'second', '2'])
+          expect(res).toEqual(['fourth', '4', 'third', '3', 'second', '2', 'first', '1'])
         )
     }
   )
