@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-orange.svg)
+## Supported commands ![Commands Coverage: 64%](https://img.shields.io/badge/coverage-64%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -189,10 +189,10 @@
 | [type]                 | :white_check_mark: | :white_check_mark: |
 | [unlink]               | :white_check_mark: | :white_check_mark: |
 | [unsubscribe]          | :white_check_mark: | :white_check_mark: |
-| [unwatch]              | :white_check_mark: |        :x:         |
+| [unwatch]              | :white_check_mark: | :white_check_mark: |
 | [wait]                 | :white_check_mark: |        :x:         |
 | [waitaof]              |        :x:         |        :x:         |
-| [watch]                | :white_check_mark: |        :x:         |
+| [watch]                | :white_check_mark: | :white_check_mark: |
 | [xack]                 | :white_check_mark: |        :x:         |
 | [xadd]                 | :white_check_mark: | :white_check_mark: |
 | [xautoclaim]           | :white_check_mark: |        :x:         |
