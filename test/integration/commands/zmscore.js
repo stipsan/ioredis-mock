@@ -39,7 +39,11 @@ runTwinSuite('zmscore', command => {
     it('should return the scores of existing members', () => {
       return redis[command]('foo', 'third', 'fourth', 'fifth').then(res => {
         if (command.endsWith('Buffer')) {
-          expect(res).toEqual([Buffer.from('3'), Buffer.from('4'), Buffer.from('5')])
+          expect(res).toEqual([
+            Buffer.from('3'),
+            Buffer.from('4'),
+            Buffer.from('5'),
+          ])
         } else {
           expect(res).toEqual(['3', '4', '5'])
         }
@@ -47,7 +51,9 @@ runTwinSuite('zmscore', command => {
     })
 
     it('should return null when the member does not exist', () => {
-      return redis[command]('foo', 'sixth').then(res => expect(res).toEqual([null]))
+      return redis[command]('foo', 'sixth').then(res =>
+        expect(res).toEqual([null])
+      )
     })
 
     it('should return null in place of any members that are not in the set', () => {
@@ -64,22 +70,30 @@ runTwinSuite('zmscore', command => {
     ;(process.env.IS_E2E ? it.skip : it)(
       'should return null when the key is not a sorted set',
       () => {
-        return redis[command]('bar', 'first').then(res => expect(res).toEqual([null]))
+        return redis[command]('bar', 'first').then(res =>
+          expect(res).toEqual([null])
+        )
       }
     )
     // @TODO Rewrite test so it runs on a real Redis instance
     ;(process.env.IS_E2E ? it.skip : it)(
       'should return nulls for all members when the key is not a sorted set',
       () => {
-        return redis[command]('bar', 'first', 'second', 'third').then(res => expect(res).toEqual([null, null, null]))
+        return redis[command]('bar', 'first', 'second', 'third').then(res =>
+          expect(res).toEqual([null, null, null])
+        )
       }
     )
 
     it('should return null when the key does not exist', () => {
-      return redis[command]('baz', 'first').then(res => expect(res).toEqual([null]))
+      return redis[command]('baz', 'first').then(res =>
+        expect(res).toEqual([null])
+      )
     })
     it('should return nulls for all members when the key does not exist', () => {
-      return redis[command]('baz', 'first', 'second', 'third').then(res => expect(res).toEqual([null, null, null]))
+      return redis[command]('baz', 'first', 'second', 'third').then(res =>
+        expect(res).toEqual([null, null, null])
+      )
     })
   })
 })
