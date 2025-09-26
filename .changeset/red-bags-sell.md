@@ -1,5 +1,5 @@
 ---
-"ioredis-mock": patch
+'ioredis-mock': patch
 ---
 
 Add PUBSUB NUMSUB support

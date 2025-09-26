@@ -83,7 +83,9 @@ runTwinSuite('set', (command, equals) => {
       const redis = new Redis()
       await redis[command]('foo', 'bar')
 
-      expect(equals(await redis[command]('foo', 1, 'NX', 'GET'), 'bar')).toBe(true)
+      expect(equals(await redis[command]('foo', 1, 'NX', 'GET'), 'bar')).toBe(
+        true
+      )
       redis.disconnect()
     })
 

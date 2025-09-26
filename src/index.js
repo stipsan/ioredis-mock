@@ -46,8 +46,8 @@ const routeOptionsArgs = (...args) => {
       return typeof args[0] === 'string'
         ? { ...args[1], ...pathToHostPort(args[0]) }
         : Number.isInteger(args[0]) && typeof args[1] === 'string'
-        ? { port: args[0], host: args[1] }
-        : { ...args[1], port: args[0] }
+          ? { port: args[0], host: args[1] }
+          : { ...args[1], port: args[0] }
     case 1:
       // if args[0] is a string, then it's:
       // path: string
@@ -59,8 +59,8 @@ const routeOptionsArgs = (...args) => {
       return typeof args[0] === 'string'
         ? { ...pathToHostPort(args[0]) }
         : Number.isInteger(args[0])
-        ? { port: args[0] }
-        : { ...args[0] }
+          ? { port: args[0] }
+          : { ...args[0] }
     default:
       return {}
   }
@@ -97,7 +97,10 @@ class RedisMock extends EventEmitter {
 
     this.context = contextMap.get(this.keyData)
 
-    this.expires = createExpires(this.context.expires, optionsWithDefault.keyPrefix)
+    this.expires = createExpires(
+      this.context.expires,
+      optionsWithDefault.keyPrefix
+    )
     this.data = createData(
       this.context.data,
       this.expires,
@@ -209,7 +212,7 @@ class RedisMock extends EventEmitter {
     removeFrom(this.patternChannels)
 
     this.context.modifiedKeyEvents.off('modified', this._signalModifiedKey)
-    
+
     emitDisconnectEvent(this)
 
     // no-op
