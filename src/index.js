@@ -192,7 +192,6 @@ class RedisMock extends EventEmitter {
     return mock
   }
 
-  // eslint-disable-next-line class-methods-use-this
   disconnect() {
     const removeFrom = ({ instanceListeners }) => {
       if (!instanceListeners) {
@@ -212,6 +211,8 @@ class RedisMock extends EventEmitter {
     removeFrom(this.patternChannels)
 
     this.context.modifiedKeyEvents.off('modified', this._signalModifiedKey)
+
+    this.connected = false
 
     emitDisconnectEvent(this)
 
