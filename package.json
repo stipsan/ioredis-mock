@@ -62,7 +62,8 @@
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
     "update-compat": "node scripts/update-compat && npx prettier --write compat.md && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
-    "update-data": "node scripts/update-data"
+    "update-data": "node scripts/update-data",
+    "release": "changeset publish"
   },
   "prettier": {
     "arrowParens": "avoid",
@@ -83,7 +84,8 @@
     "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-env": "^7.22.20",
     "@babel/register": "^7.22.15",
-    "@sanity/semantic-release-preset": "^4.1.4",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.7",
     "browser-process-hrtime": "^1.0.0",
     "buffer": "^6.0.3",
     "chance": "^1.1.11",
@@ -125,7 +127,5 @@
     "node": ">=12.22"
   },
   "runkitExampleFilename": "example.js",
-  "publishConfig": {
-    "provenance": true
-  }
+  "packageManager": "npm@11.6.1"
 }

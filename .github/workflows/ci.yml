@@ -1,28 +1,10 @@
 name: CI & Release
 
-# Workflow name based on selected inputs. Fallback to default Github naming when expression evaluates to empty string
-run-name: >-
-  ${{
-    inputs.release && 'Publish to NPM' ||
-    ''
-  }}
-
 on:
   push:
     branches:
       - main
   pull_request:
-  workflow_dispatch:
-    inputs:
-      release:
-        description: 'Publish new release'
-        required: true
-        default: false
-        type: boolean
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
 
 permissions:
   contents: read # for checkout
@@ -32,10 +14,9 @@ jobs:
     name: Lint and build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          cache: npm
           node-version: lts/*
       - run: npm ci
       - run: npx ls-engines
@@ -70,10 +51,9 @@ jobs:
             # Test the oldest LTS release of Node that's still receiving bugfixes and security patches, versions older than that have reached End-of-Life
             node: lts/*
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          cache: npm
           node-version: ${{ matrix.node }}
       - run: npm install
       - run: npx ls-engines
@@ -87,10 +67,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          cache: npm
           node-version: lts/*
       - run: npm ci
       - name: build:browser.js, test:browser.js
@@ -112,10 +91,9 @@ jobs:
         ports:
           - 6379:6379
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          cache: npm
           node-version: lts/*
       - run: npm ci
       - name: test:e2e
@@ -128,34 +106,3 @@ jobs:
       #     npm run test:e2e -- --detectOpenHandles --forceExit
       #env:
       #  DEBUG: ioredis:*
-
-  release:
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
-    needs: [build, test, browser, e2e]
-    # only run if opt-in during workflow_dispatch
-    if: github.event.inputs.release == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          # Need to fetch entire commit history to
-          # analyze every commit since last release
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: npm
-      - run: npm ci --ignore-scripts
-      - run: npm audit signatures
-        # Branches that will release new versions are defined in .releaserc.json
-      - run: npx semantic-release
-        # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
-        # e.g. git tags were pushed but it exited before `npm publish`
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

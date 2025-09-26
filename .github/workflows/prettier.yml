@@ -16,21 +16,17 @@ jobs:
   run:
     name: Can the code be prettier? 🤔
     runs-on: ubuntu-latest
+    if: github.repository == 'stipsan/ioredis-mock'
     permissions:
       contents: write # for gr2m/create-or-update-pull-request-action to push local changes
       pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          cache: npm
           node-version: lts/*
       - run: npm ci --ignore-scripts --only-dev
-      - uses: actions/cache@v3
-        with:
-          path: node_modules/.cache/prettier/.prettier-cache
-          key: prettier-${{ hashFiles('package-lock.json') }}-${{ hashFiles('.gitignore') }}
-      - run: npx prettier --ignore-path .gitignore --cache --write .
+      - run: npx prettier --ignore-path .gitignore --write .
       - run: git restore .github/workflows data
       - uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5
         with:
@@ -40,4 +36,4 @@ jobs:
           commit-message: 'chore(prettier): 🤖 ✨'
           labels: 🤖 bot
           title: 'chore(prettier): 🤖 ✨'
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

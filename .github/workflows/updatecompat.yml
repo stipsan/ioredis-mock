@@ -16,6 +16,7 @@ jobs:
   format:
     name: Should compat.md be updated? 🤔
     runs-on: ubuntu-latest
+    if: github.repository == 'stipsan/ioredis-mock'
     permissions:
       contents: write # for gr2m/create-or-update-pull-request-action to push local changes
       pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
