@@ -24,7 +24,7 @@ describe('watching', () => {
       expect(redis.dirty).toBe(true)
     })
 
-    it('should should not add watched key if dirty', async () => {
+    it('should not add watched key if dirty', async () => {
       expect(await redis.watch('foo')).toBe('OK')
       await redis.set('foo', '')
       expect(redis.dirty).toBe(true)
