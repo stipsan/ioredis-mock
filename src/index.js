@@ -8,6 +8,7 @@ import createCommand, { Command } from './command'
 import * as commands from './commands'
 import * as commandsStream from './commands-stream'
 import emitConnectEvent from './commands-utils/emitConnectEvent'
+import emitDisconnectEvent from './commands-utils/emitDisconnectEvent'
 import contextMap, { createContext } from './context'
 import { createData } from './data'
 import { createExpires } from './expires'
@@ -206,7 +207,11 @@ class RedisMock extends EventEmitter {
 
     removeFrom(this.channels)
     removeFrom(this.patternChannels)
+
     this.context.modifiedKeyEvents.off('modified', this._signalModifiedKey)
+    
+    emitDisconnectEvent(this)
+
     // no-op
   }
 
