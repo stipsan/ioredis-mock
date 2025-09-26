@@ -1,3 +1,5 @@
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
 export function zmscore(key, ...members) {
   const map = this.data.get(key)
 
@@ -15,4 +17,9 @@ export function zmscore(key, ...members) {
 
     return entry.score.toString()
   })
+}
+
+export function zmscoreBuffer(...args) {
+  const val = zmscore.apply(this, args)
+  return convertStringToBuffer(val)
 }
