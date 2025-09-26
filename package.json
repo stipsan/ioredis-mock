@@ -1,6 +1,6 @@
 {
   "name": "ioredis-mock",
-  "version": "8.9.1",
+  "version": "8.9.2",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "keywords": [
     "fakeredis",
