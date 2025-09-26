@@ -6,6 +6,10 @@ export function slice(arr, start, end) {
 
 function normalizeCountToIndex(offset, count, array) {
   if (count < 0) {
+    // For count -1, return all elements from offset to end
+    if (count === -1) {
+      return array.length
+    }
     return -count > array.length ? 0 : array.length + count
   }
   return offset + count
