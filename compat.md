@@ -27,7 +27,7 @@
 | [cluster]              | :white_check_mark: | :white_check_mark: |
 | [command]              | :white_check_mark: | :white_check_mark: |
 | [config]               | :white_check_mark: | :white_check_mark: |
-| [copy]                 | :white_check_mark: |        :x:         |
+| [copy]                 | :white_check_mark: | :white_check_mark: |
 | [dbsize]               | :white_check_mark: | :white_check_mark: |
 | [decr]                 | :white_check_mark: | :white_check_mark: |
 | [decrby]               | :white_check_mark: | :white_check_mark: |
