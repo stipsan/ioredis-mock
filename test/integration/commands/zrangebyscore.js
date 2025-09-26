@@ -178,7 +178,16 @@ describe('zrangebyscore', () => {
       return redis
         .zrangebyscore('foo', '-inf', '+inf', 'LIMIT', 1, -1, 'WITHSCORES')
         .then(res =>
-          expect(res).toEqual(['second', '2', 'third', '3', 'fourth', '4', 'fifth', '5'])
+          expect(res).toEqual([
+            'second',
+            '2',
+            'third',
+            '3',
+            'fourth',
+            '4',
+            'fifth',
+            '5',
+          ])
         )
     }
   )
@@ -200,15 +209,24 @@ describe('zrangebyscore', () => {
   // Test case for the issue: https://github.com/stipsan/ioredis-mock/issues/xxxx
   it('should return all elements from offset when using LIMIT with count=-1', async () => {
     const redis = new Redis()
-    
+
     // Add 100 items as described in the issue
-    const itemsPending = Array(100).fill().map((_, index) => {
-      return redis.zadd('myZSet', index, `data_${index}`)
-    })
+    const itemsPending = Array(100)
+      .fill()
+      .map((_, index) => {
+        return redis.zadd('myZSet', index, `data_${index}`)
+      })
     await Promise.all(itemsPending)
 
     // Get all items with LIMIT 0, -1 (should return all 100 items)
-    const items = await redis.zrangebyscore('myZSet', '-inf', '+inf', 'LIMIT', 0, -1)
+    const items = await redis.zrangebyscore(
+      'myZSet',
+      '-inf',
+      '+inf',
+      'LIMIT',
+      0,
+      -1
+    )
     expect(items.length).toBe(100)
     expect(items[99]).toBe('data_99') // Ensure the last element is included
 

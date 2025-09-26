@@ -34,7 +34,7 @@ export function set(key, value, ...options) {
   this.data.set(key, value)
 
   const expireOptions = new Map(createGroupedArray(filteredOptions, 2))
-  
+
   // Handle different expiration options
   if (expireOptions.has('EX')) {
     expire.call(this, key, expireOptions.get('EX'))
