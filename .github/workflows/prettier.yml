@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'stipsan/ioredis-mock'
     permissions:
-      contents: write # for gr2m/create-or-update-pull-request-action to push local changes
-      pull-requests: write # for gr2m/create-or-update-pull-request-action to create a PR
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -28,12 +28,10 @@ jobs:
       - run: npm ci --ignore-scripts --only-dev
       - run: npx prettier --ignore-path .gitignore --write .
       - run: git restore .github/workflows data
-      - uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5
+      - uses: peter-evans/create-pull-request@v7
         with:
-          author: github-actions <41898282+github-actions[bot]@users.noreply.github.com>
-          body: I ran `npm run prettier` 🧑‍💻
           branch: actions/prettier
-          commit-message: 'chore(prettier): 🤖 ✨'
+          commit-message: "chore(prettier): 🤖 ✨"
           labels: 🤖 bot
-          title: 'chore(prettier): 🤖 ✨'
+          title: "chore(prettier): 🤖 ✨"
           token: ${{ secrets.GITHUB_TOKEN }}
