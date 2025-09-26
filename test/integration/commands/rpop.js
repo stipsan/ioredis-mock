@@ -68,45 +68,42 @@ runTwinSuite('rpop', (command, equals) => {
       }
     )
 
-    // @TODO Rewrite test so it runs on a real Redis instance
-    ;(process.env.IS_E2E ? it.skip : it)(
-      'should remove and return "count" elements from the end if second argument is provided',
-      () => {
-        const redis = new Redis({
-          data: {
-            foo: ['1', '2', '3', '4', '5'],
-          },
-        })
-
-        return redis[command]('foo', 2)
-          .then(result =>
-            expect(
-              result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
-            ).toEqual(['5', '4'])
-          )
-          .then(() => expect(redis.data.get('foo')).toEqual(['1', '2', '3']))
+    it('should remove and return "count" elements from the end if second argument is provided', async () => {
+      const redis = new Redis()
+      try {
+        // Set up test data
+        await redis.rpush('testlist', '1', '2', '3', '4', '5')
+        
+        const result = await redis[command]('testlist', 2)
+        const normalizedResult = result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+        expect(normalizedResult).toEqual(['5', '4'])
+        
+        // Verify remaining elements
+        const remaining = await redis.lrange('testlist', 0, -1)
+        expect(remaining).toEqual(['1', '2', '3'])
+      } finally {
+        await redis.del('testlist')
+        redis.disconnect()
       }
-    )
+    })
 
-    // @TODO Rewrite test so it runs on a real Redis instance  
-    ;(process.env.IS_E2E ? it.skip : it)(
-      'should remove key and return all elements on larger number if second argument is provided',
-      () => {
-        const redis = new Redis({
-          data: {
-            foo: ['1', '2', '3', '4', '5'],
-          },
-        })
-
-        return redis[command]('foo', 7)
-          .then(result =>
-            expect(
-              result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
-            ).toEqual(['5', '4', '3', '2', '1'])
-          )
-          .then(() => redis.exists('foo'))
-          .then(status => expect(status).toBe(0))
+    it('should remove key and return all elements on larger number if second argument is provided', async () => {
+      const redis = new Redis()
+      try {
+        // Set up test data
+        await redis.rpush('testlist', '1', '2', '3', '4', '5')
+        
+        const result = await redis[command]('testlist', 7)
+        const normalizedResult = result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+        expect(normalizedResult).toEqual(['5', '4', '3', '2', '1'])
+        
+        // Verify key was deleted
+        const exists = await redis.exists('testlist')
+        expect(exists).toBe(0)
+      } finally {
+        await redis.del('testlist')
+        redis.disconnect()
       }
-    )
+    })
   })
 })
