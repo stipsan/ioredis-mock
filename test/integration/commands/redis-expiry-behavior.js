@@ -5,7 +5,7 @@ import { runTwinSuite } from '../../../test-utils'
 
 runTwinSuite('Redis expiry behavior conformance', () => {
   describe('Redis-compatible expiry behavior', () => {
-    it('should demonstrate ioredis-mock lazy expiration behavior', async () => {
+    it('should exclude expired keys from enumeration like real Redis', async () => {
       const redis = new Redis()
 
       // Reproduce the exact scenario from issue #361
@@ -19,24 +19,24 @@ runTwinSuite('Redis expiry behavior conformance', () => {
       // Wait for expiry (1100ms for 1s TTL to ensure expiration)
       await new Promise(resolve => setTimeout(resolve, 1100))
       
-      // The key is expired but still in enumeration until accessed
-      let keysBeforeAccess = await redis.keys('*')
-      expect(keysBeforeAccess).toContain('test')
-      expect(await redis.dbsize()).toBe(1)
-      
-      // Now access the expired key - this triggers cleanup
+      // After expiry: GET returns null, TTL returns -2 (Redis standard)
       expect(await redis.get('test')).toBe(null)
       expect(await redis.ttl('test')).toBe(-2)
       
-      // After accessing, the key is removed from enumeration
-      const keysAfterAccess = await redis.keys('*')
-      expect(keysAfterAccess).toEqual([])
+      // Real Redis behavior: expired keys are excluded from enumeration
+      const keysAfterExpiry = await redis.keys('*')
+      expect(keysAfterExpiry).toEqual([])
       expect(await redis.dbsize()).toBe(0)
+      expect(await redis.randomkey()).toBe(null)
+      
+      // Scan should also exclude expired keys
+      const [, scanKeys] = await redis.scan(0)
+      expect(scanKeys).toEqual([])
 
       redis.disconnect()
     })
 
-    it('should show expired keys remain in enumeration until accessed', async () => {
+    it('should handle multiple expired keys consistently', async () => {
       const redis = new Redis()
 
       // Set multiple keys with different expiry times
@@ -47,25 +47,26 @@ runTwinSuite('Redis expiry behavior conformance', () => {
       // Wait for first key to expire
       await new Promise(resolve => setTimeout(resolve, 1100))
       
-      // All keys still present in enumeration (expired keys not cleaned up yet)
-      expect(await redis.keys('*')).toHaveLength(3)
-      expect(await redis.dbsize()).toBe(3)
-      
-      // Accessing expired key triggers cleanup
-      expect(await redis.get('expires-fast')).toBe(null)
-      
-      // Now the accessed expired key is gone from enumeration
+      // After first expiry, only 2 keys should remain
       expect(await redis.keys('*')).toHaveLength(2)
       expect(await redis.dbsize()).toBe(2)
       
-      // The other expired key (not accessed) remains in enumeration
-      expect(await redis.keys('*')).toContain('expires-slow')
-      expect(await redis.keys('*')).toContain('never-expires')
+      // The fast-expiring key should be gone, others remain
+      const keysAfterFirst = (await redis.keys('*')).sort()
+      expect(keysAfterFirst).toEqual(['expires-slow', 'never-expires'])
+      
+      // Wait for second key to expire
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // After second expiry, only never-expires should remain
+      expect(await redis.keys('*')).toHaveLength(1)
+      expect(await redis.dbsize()).toBe(1)
+      expect(await redis.keys('*')).toEqual(['never-expires'])
       
       redis.disconnect()
     })
 
-    it('should handle multiple expired keys consistently', async () => {
+    it('should exclude all expired keys from enumeration', async () => {
       const redis = new Redis()
 
       // Set multiple expiring keys
@@ -73,30 +74,27 @@ runTwinSuite('Redis expiry behavior conformance', () => {
       await redis.setex('key2', 1, 'val2') 
       await redis.setex('key3', 1, 'val3')
       
+      // Initially all present
+      expect(await redis.keys('*')).toHaveLength(3)
+      expect(await redis.dbsize()).toBe(3)
+      
       // Wait for all to expire
       await new Promise(resolve => setTimeout(resolve, 1100))
       
-      // All keys still in enumeration until accessed
-      let keys = await redis.keys('*')
-      expect(keys).toContain('key1')
-      expect(keys).toContain('key2') 
-      expect(keys).toContain('key3')
-      expect(await redis.dbsize()).toBe(3)
+      // All should be excluded from enumeration
+      expect(await redis.keys('*')).toEqual([])
+      expect(await redis.dbsize()).toBe(0)
+      expect(await redis.randomkey()).toBe(null)
       
-      // Access one expired key - it gets cleaned up
+      // But GET should still return null (not throw)
       expect(await redis.get('key1')).toBe(null)
-      
-      // Now only 2 keys remain in enumeration
-      keys = await redis.keys('*')
-      expect(keys).not.toContain('key1')
-      expect(keys).toContain('key2')
-      expect(keys).toContain('key3')
-      expect(await redis.dbsize()).toBe(2)
+      expect(await redis.get('key2')).toBe(null)
+      expect(await redis.get('key3')).toBe(null)
       
       redis.disconnect()
     })
 
-    it('should demonstrate the scenario from issue #361', async () => {
+    it('should demonstrate the fix for issue #361', async () => {
       const redis = new Redis()
 
       // Exact scenario from the issue
@@ -104,17 +102,14 @@ runTwinSuite('Redis expiry behavior conformance', () => {
       
       // Before expiry
       expect(await redis.get('test')).toBe('test val')
+      expect(await redis.keys('*')).toEqual(['test'])
       
       // Wait for expiry 
       await new Promise(resolve => setTimeout(resolve, 1100))
       
-      // The behavior described in issue #361:
-      // GET returns null but KEYS still shows the expired key
-      expect(await redis.keys('*')).toContain('test') // Key still in enumeration
-      expect(await redis.get('test')).toBe(null)      // But GET returns null
-      
-      // After GET accesses it, the key is cleaned up
-      expect(await redis.keys('*')).toEqual([])       // Now KEYS is empty
+      // The fix: both GET and KEYS should reflect expiration
+      expect(await redis.get('test')).toBe(null)      // GET returns null
+      expect(await redis.keys('*')).toEqual([])       // KEYS is empty (FIXED!)
       
       redis.disconnect()
     })
