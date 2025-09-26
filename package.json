@@ -115,7 +115,7 @@
     "setimmediate": "^1.0.5",
     "stream-browserify": "^3.0.0",
     "stream-mock": "^2.0.5",
-    "url": "^0.11.3",
+    "url": "^0.11.4",
     "write-file-atomic": "^5.0.1"
   },
   "peerDependencies": {
