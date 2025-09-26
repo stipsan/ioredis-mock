@@ -54,22 +54,20 @@ export function createSharedData(
       return {}.hasOwnProperty.call(raw, key)
     },
     keys(prefix) {
-      // First, prune any expired keys before returning the key list
+      // Filter out expired keys without deleting them from storage
       const allKeys = Object.keys(raw)
-      
-      // Check each key for expiration and delete if expired
-      allKeys.forEach(key => {
-        if (sharedExpires.has(key) && sharedExpires.isExpired(key)) {
-          this.delete(key)
+      const validKeys = allKeys.filter(key => {
+        // If key has no expiration, it's valid
+        if (!sharedExpires.has(key)) {
+          return true
         }
+        // If key has expiration but hasn't expired yet, it's valid
+        return !sharedExpires.isExpired(key)
       })
-      
-      // Get the updated keys list after pruning
-      const keys = Object.keys(raw)
 
-      if (!prefix) return keys
+      if (!prefix) return validKeys
 
-      return keys.filter(key => key.startsWith(prefix))
+      return validKeys.filter(key => key.startsWith(prefix))
     },
     set(key, val) {
       let item = val

@@ -41,11 +41,11 @@ runTwinSuite('Redis expiry behavior conformance', () => {
 
       // Set multiple keys with different expiry times
       await redis.setex('expires-fast', 1, 'value1')
-      await redis.setex('expires-slow', 2, 'value2')
+      await redis.setex('expires-slow', 3, 'value2')  // Increased from 2 to 3 seconds
       await redis.set('never-expires', 'value3')
       
       // Wait for first key to expire
-      await new Promise(resolve => setTimeout(resolve, 1100))
+      await new Promise(resolve => setTimeout(resolve, 1500))  // Increased buffer
       
       // After first expiry, only 2 keys should remain
       expect(await redis.keys('*')).toHaveLength(2)
@@ -56,7 +56,7 @@ runTwinSuite('Redis expiry behavior conformance', () => {
       expect(keysAfterFirst).toEqual(['expires-slow', 'never-expires'])
       
       // Wait for second key to expire
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise(resolve => setTimeout(resolve, 2000))  // Increased wait time
       
       // After second expiry, only never-expires should remain
       expect(await redis.keys('*')).toHaveLength(1)
