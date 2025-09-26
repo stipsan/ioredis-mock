@@ -2,6 +2,9 @@ import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
 import { set } from './index'
 
 export function mset(...msetData) {
+  if (msetData.length === 0) {
+    throw new Error("ERR wrong number of arguments for 'mset' command")
+  }
   for (let i = 0; i < msetData.length; i += 2) {
     set.call(this, msetData[i], msetData[i + 1])
   }
