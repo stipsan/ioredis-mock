@@ -129,8 +129,7 @@ runTwinSuite('copy', (command, equals) => {
     it('should work with Buffer variant', async () => {
       await redis.set('source', 'value')
       const result = await redis.copyBuffer('source', 'destination')
-      expect(Buffer.isBuffer(result)).toBe(false) // copy returns integer
-      expect(result).toBe(1)
+      expect(result).toBe(1) // copy returns integer, not buffer
       expect(await redis.get('destination')).toBe('value')
     })
   })

@@ -63,7 +63,4 @@ export function copy(source, destination, ...options) {
   return 1
 }
 
-export function copyBuffer(...args) {
-  const val = copy.apply(this, args)
-  return convertStringToBuffer(val)
-}
+export const copyBuffer = copy
