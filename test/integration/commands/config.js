@@ -112,16 +112,18 @@ runTwinSuite('config', (command, equals) => {
           expect(err.message).toMatchSnapshot()
         }
       })
+      ;(process.env.IS_E2E ? it.skip : it)(
+        'throws as redis is running without a config file',
+        async () => {
+          expect.hasAssertions()
 
-      it('throws as redis is running without a config file', async () => {
-        expect.hasAssertions()
-
-        try {
-          await redis[command]('REWRITE')
-        } catch (err) {
-          expect(err.message).toMatchSnapshot()
+          try {
+            await redis[command]('REWRITE')
+          } catch (err) {
+            expect(err.message).toMatchSnapshot()
+          }
         }
-      })
+      )
     })
 
     describe('help', () => {

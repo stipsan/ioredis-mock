@@ -250,7 +250,7 @@ describe('xread', () => {
       .xread('BLOCK', '0', 'STREAMS', 'stream', 'other-stream', '$')
       .catch(err =>
         expect(err.message).toBe(
-          "ERR Unbalanced 'xread' list of streams: for each stream key an ID or '$' must be specified."
+          "ERR Unbalanced 'xread' list of streams: for each stream key an ID, '+', or '$' must be specified."
         )
       )
   })
