@@ -49,7 +49,11 @@ runTwinSuite('lpop', (command, equals) => {
         })
 
         return redis[command]('foo', 2)
-          .then(result => expect(result.map(v => Buffer.isBuffer(v) ? v.toString() : v)).toEqual(['5', '4']))
+          .then(result =>
+            expect(
+              result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+            ).toEqual(['5', '4'])
+          )
           .then(() => expect(redis.data.get('foo')).toEqual(['3', '2', '1']))
       }
     )
@@ -65,7 +69,11 @@ runTwinSuite('lpop', (command, equals) => {
         })
 
         return redis[command]('foo', 7)
-          .then(result => expect(result.map(v => Buffer.isBuffer(v) ? v.toString() : v)).toEqual(['5', '4', '3', '2', '1']))
+          .then(result =>
+            expect(
+              result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+            ).toEqual(['5', '4', '3', '2', '1'])
+          )
           .then(() => redis.exists('foo'))
           .then(status => expect(status).toBe(0))
       }

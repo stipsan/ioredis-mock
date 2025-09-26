@@ -63,24 +63,16 @@ runTwinSuite('pubsub', command => {
         redis.subscribe('emails')
         redis.subscribe('messages')
 
-        expect(await redis[command]('NUMSUB', 'emails', 'messages', 'feed')).toMatchObject([
-          'emails',
-          1,
-          'messages',
-          1,
-          'feed',
-          0,
-        ])
+        expect(
+          await redis[command]('NUMSUB', 'emails', 'messages', 'feed')
+        ).toMatchObject(['emails', 1, 'messages', 1, 'feed', 0])
       })
 
       it('should report zero for channels that do not exist', async () => {
-        expect(await redis[command]('NUMSUB', 'somechannel', 'someotherchannel')).toMatchObject([
-          'somechannel',
-          0,
-          'someotherchannel',
-          0,
-        ])
+        expect(
+          await redis[command]('NUMSUB', 'somechannel', 'someotherchannel')
+        ).toMatchObject(['somechannel', 0, 'someotherchannel', 0])
       })
-    });
+    })
   })
 })

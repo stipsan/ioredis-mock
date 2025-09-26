@@ -13,19 +13,17 @@ export function set(key, value, ...options) {
   const nx = options.indexOf('NX') !== -1
   const xx = options.indexOf('XX') !== -1
   const get = options.indexOf('GET') !== -1
-  
+
   const filteredOptions = options.filter(
     option => option !== 'NX' && option !== 'XX'
   )
 
   if (nx && xx) throw new Error('ERR syntax error')
   if (nx && this.data.has(key)) {
-    if (get)
-      return this.data.get(key)
-    else
-      return null
+    if (get) return this.data.get(key)
+    else return null
   }
-  
+
   if (xx && !this.data.has(key)) return null
 
   let result = 'OK'

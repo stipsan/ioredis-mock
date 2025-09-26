@@ -8,7 +8,7 @@ describe('disconnect', () => {
 
     expect(redis.disconnect()).toBe(undefined)
 
-    await new Promise(resolve => setImmediate(resolve));
+    await new Promise(resolve => setImmediate(resolve))
 
     expect(events).toEqual(['end'])
   })
