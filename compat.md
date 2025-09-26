@@ -3,74 +3,10 @@
 
 | redis | ioredis | ioredis-mock |
 |-------|:-------:|:------------:|
-|[FT.ADD]|:x:|:x:|
-|[FT.AGGREGATE]|:x:|:x:|
-|[FT.ALIASADD]|:x:|:x:|
-|[FT.ALIASDEL]|:x:|:x:|
-|[FT.ALIASUPDATE]|:x:|:x:|
-|[FT.ALTER]|:x:|:x:|
-|[FT.CONFIG]|:x:|:x:|
-|[FT.CREATE]|:x:|:x:|
-|[FT.CURSOR]|:x:|:x:|
-|[FT.DEL]|:x:|:x:|
-|[FT.DICTADD]|:x:|:x:|
-|[FT.DICTDEL]|:x:|:x:|
-|[FT.DICTDUMP]|:x:|:x:|
-|[FT.DROP]|:x:|:x:|
-|[FT.DROPINDEX]|:x:|:x:|
-|[FT.EXPLAIN]|:x:|:x:|
-|[FT.EXPLAINCLI]|:x:|:x:|
-|[FT.GET]|:x:|:x:|
-|[FT.INFO]|:x:|:x:|
-|[FT.MGET]|:x:|:x:|
-|[FT.PROFILE]|:x:|:x:|
-|[FT.SEARCH]|:x:|:x:|
-|[FT.SPELLCHECK]|:x:|:x:|
-|[FT.SUGADD]|:x:|:x:|
-|[FT.SUGDEL]|:x:|:x:|
-|[FT.SUGGET]|:x:|:x:|
-|[FT.SUGLEN]|:x:|:x:|
-|[FT.SYNADD]|:x:|:x:|
-|[FT.SYNDUMP]|:x:|:x:|
-|[FT.SYNUPDATE]|:x:|:x:|
-|[FT.TAGVALS]|:x:|:x:|
-|[FT._ALIASADDIFNX]|:x:|:x:|
-|[FT._ALIASDELIFX]|:x:|:x:|
-|[FT._ALTERIFNX]|:x:|:x:|
-|[FT._CREATEIFNX]|:x:|:x:|
-|[FT._DROPIFX]|:x:|:x:|
-|[FT._DROPINDEXIFX]|:x:|:x:|
-|[FT._LIST]|:x:|:x:|
-|[VADD]|:x:|:x:|
-|[VCARD]|:x:|:x:|
-|[VDIM]|:x:|:x:|
-|[VEMB]|:x:|:x:|
-|[VGETATTR]|:x:|:x:|
-|[VINFO]|:x:|:x:|
-|[VISMEMBER]|:x:|:x:|
-|[VLINKS]|:x:|:x:|
-|[VRANDMEMBER]|:x:|:x:|
-|[VREM]|:x:|:x:|
-|[VSETATTR]|:x:|:x:|
-|[VSIM]|:x:|:x:|
-|[_FT.CONFIG]|:x:|:x:|
-|[_FT.DEBUG]|:x:|:x:|
-|[_FT.SAFEADD]|:x:|:x:|
 |[acl]|:white_check_mark:|:x:|
 |[append]|:white_check_mark:|:white_check_mark:|
 |[asking]|:white_check_mark:|:white_check_mark:|
 |[auth]|:white_check_mark:|:white_check_mark:|
-|[bf.add]|:x:|:x:|
-|[bf.card]|:x:|:x:|
-|[bf.debug]|:x:|:x:|
-|[bf.exists]|:x:|:x:|
-|[bf.info]|:x:|:x:|
-|[bf.insert]|:x:|:x:|
-|[bf.loadchunk]|:x:|:x:|
-|[bf.madd]|:x:|:x:|
-|[bf.mexists]|:x:|:x:|
-|[bf.reserve]|:x:|:x:|
-|[bf.scandump]|:x:|:x:|
 |[bgrewriteaof]|:white_check_mark:|:white_check_mark:|
 |[bgsave]|:white_check_mark:|:white_check_mark:|
 |[bitcount]|:white_check_mark:|:white_check_mark:|
@@ -86,28 +22,8 @@
 |[bzmpop]|:white_check_mark:|:x:|
 |[bzpopmax]|:white_check_mark:|:x:|
 |[bzpopmin]|:white_check_mark:|:x:|
-|[cf.add]|:x:|:x:|
-|[cf.addnx]|:x:|:x:|
-|[cf.compact]|:x:|:x:|
-|[cf.count]|:x:|:x:|
-|[cf.debug]|:x:|:x:|
-|[cf.del]|:x:|:x:|
-|[cf.exists]|:x:|:x:|
-|[cf.info]|:x:|:x:|
-|[cf.insert]|:x:|:x:|
-|[cf.insertnx]|:x:|:x:|
-|[cf.loadchunk]|:x:|:x:|
-|[cf.mexists]|:x:|:x:|
-|[cf.reserve]|:x:|:x:|
-|[cf.scandump]|:x:|:x:|
 |[client]|:white_check_mark:|:x:|
 |[cluster]|:white_check_mark:|:white_check_mark:|
-|[cms.incrby]|:x:|:x:|
-|[cms.info]|:x:|:x:|
-|[cms.initbydim]|:x:|:x:|
-|[cms.initbyprob]|:x:|:x:|
-|[cms.merge]|:x:|:x:|
-|[cms.query]|:x:|:x:|
 |[command]|:white_check_mark:|:white_check_mark:|
 |[config]|:white_check_mark:|:white_check_mark:|
 |[copy]|:white_check_mark:|:x:|
@@ -150,60 +66,25 @@
 |[hdel]|:white_check_mark:|:white_check_mark:|
 |[hexists]|:white_check_mark:|:white_check_mark:|
 |[hexpire]|:white_check_mark:|:x:|
-|[hexpireat]|:x:|:x:|
-|[hexpiretime]|:x:|:x:|
 |[hget]|:white_check_mark:|:white_check_mark:|
 |[hgetall]|:white_check_mark:|:white_check_mark:|
-|[hgetdel]|:x:|:x:|
-|[hgetex]|:x:|:x:|
 |[hincrby]|:white_check_mark:|:white_check_mark:|
 |[hincrbyfloat]|:white_check_mark:|:white_check_mark:|
 |[hkeys]|:white_check_mark:|:white_check_mark:|
 |[hlen]|:white_check_mark:|:white_check_mark:|
 |[hmget]|:white_check_mark:|:white_check_mark:|
 |[hmset]|:white_check_mark:|:white_check_mark:|
-|[hpersist]|:x:|:x:|
 |[hpexpire]|:white_check_mark:|:x:|
-|[hpexpireat]|:x:|:x:|
-|[hpexpiretime]|:x:|:x:|
-|[hpttl]|:x:|:x:|
 |[hrandfield]|:white_check_mark:|:white_check_mark:|
 |[hscan]|:white_check_mark:|:white_check_mark:|
 |[hset]|:white_check_mark:|:white_check_mark:|
-|[hsetex]|:x:|:x:|
 |[hsetnx]|:white_check_mark:|:white_check_mark:|
 |[hstrlen]|:white_check_mark:|:white_check_mark:|
-|[httl]|:x:|:x:|
 |[hvals]|:white_check_mark:|:white_check_mark:|
 |[incr]|:white_check_mark:|:white_check_mark:|
 |[incrby]|:white_check_mark:|:white_check_mark:|
 |[incrbyfloat]|:white_check_mark:|:white_check_mark:|
 |[info]|:white_check_mark:|:white_check_mark:|
-|[json.arrappend]|:x:|:x:|
-|[json.arrindex]|:x:|:x:|
-|[json.arrinsert]|:x:|:x:|
-|[json.arrlen]|:x:|:x:|
-|[json.arrpop]|:x:|:x:|
-|[json.arrtrim]|:x:|:x:|
-|[json.clear]|:x:|:x:|
-|[json.debug]|:x:|:x:|
-|[json.del]|:x:|:x:|
-|[json.forget]|:x:|:x:|
-|[json.get]|:x:|:x:|
-|[json.merge]|:x:|:x:|
-|[json.mget]|:x:|:x:|
-|[json.mset]|:x:|:x:|
-|[json.numincrby]|:x:|:x:|
-|[json.nummultby]|:x:|:x:|
-|[json.numpowby]|:x:|:x:|
-|[json.objkeys]|:x:|:x:|
-|[json.objlen]|:x:|:x:|
-|[json.resp]|:x:|:x:|
-|[json.set]|:x:|:x:|
-|[json.strappend]|:x:|:x:|
-|[json.strlen]|:x:|:x:|
-|[json.toggle]|:x:|:x:|
-|[json.type]|:x:|:x:|
 |[keys]|:white_check_mark:|:white_check_mark:|
 |[lastsave]|:white_check_mark:|:white_check_mark:|
 |[lcs]|:white_check_mark:|:x:|
@@ -263,9 +144,6 @@
 |[script]|:white_check_mark:|:x:|
 |[sdiff]|:white_check_mark:|:white_check_mark:|
 |[sdiffstore]|:white_check_mark:|:white_check_mark:|
-|[search.CLUSTERINFO]|:x:|:x:|
-|[search.CLUSTERREFRESH]|:x:|:x:|
-|[search.CLUSTERSET]|:x:|:x:|
 |[select]|:white_check_mark:|:x:|
 |[set]|:white_check_mark:|:white_check_mark:|
 |[setbit]|:white_check_mark:|:white_check_mark:|
@@ -297,58 +175,16 @@
 |[sunsubscribe]|:white_check_mark:|:x:|
 |[swapdb]|:white_check_mark:|:x:|
 |[sync]|:white_check_mark:|:x:|
-|[tdigest.add]|:x:|:x:|
-|[tdigest.byrank]|:x:|:x:|
-|[tdigest.byrevrank]|:x:|:x:|
-|[tdigest.cdf]|:x:|:x:|
-|[tdigest.create]|:x:|:x:|
-|[tdigest.info]|:x:|:x:|
-|[tdigest.max]|:x:|:x:|
-|[tdigest.merge]|:x:|:x:|
-|[tdigest.min]|:x:|:x:|
-|[tdigest.quantile]|:x:|:x:|
-|[tdigest.rank]|:x:|:x:|
-|[tdigest.reset]|:x:|:x:|
-|[tdigest.revrank]|:x:|:x:|
-|[tdigest.trimmed_mean]|:x:|:x:|
 |[time]|:white_check_mark:|:white_check_mark:|
-|[timeseries.CLUSTERSET]|:x:|:x:|
-|[timeseries.REFRESHCLUSTER]|:x:|:x:|
-|[topk.add]|:x:|:x:|
-|[topk.count]|:x:|:x:|
-|[topk.incrby]|:x:|:x:|
-|[topk.info]|:x:|:x:|
-|[topk.list]|:x:|:x:|
-|[topk.query]|:x:|:x:|
-|[topk.reserve]|:x:|:x:|
 |[touch]|:white_check_mark:|:x:|
-|[ts.add]|:x:|:x:|
-|[ts.alter]|:x:|:x:|
-|[ts.create]|:x:|:x:|
-|[ts.createrule]|:x:|:x:|
-|[ts.decrby]|:x:|:x:|
-|[ts.del]|:x:|:x:|
-|[ts.deleterule]|:x:|:x:|
-|[ts.get]|:x:|:x:|
-|[ts.incrby]|:x:|:x:|
-|[ts.info]|:x:|:x:|
-|[ts.madd]|:x:|:x:|
-|[ts.mget]|:x:|:x:|
-|[ts.mrange]|:x:|:x:|
-|[ts.mrevrange]|:x:|:x:|
-|[ts.queryindex]|:x:|:x:|
-|[ts.range]|:x:|:x:|
-|[ts.revrange]|:x:|:x:|
 |[ttl]|:white_check_mark:|:white_check_mark:|
 |[type]|:white_check_mark:|:white_check_mark:|
 |[unlink]|:white_check_mark:|:white_check_mark:|
 |[unsubscribe]|:white_check_mark:|:white_check_mark:|
 |[unwatch]|:white_check_mark:|:white_check_mark:|
 |[wait]|:white_check_mark:|:x:|
-|[waitaof]|:x:|:x:|
 |[watch]|:white_check_mark:|:white_check_mark:|
 |[xack]|:white_check_mark:|:x:|
-|[xackdel]|:x:|:x:|
 |[xadd]|:white_check_mark:|:white_check_mark:|
 |[xautoclaim]|:white_check_mark:|:x:|
 |[xclaim]|:white_check_mark:|:x:|
@@ -396,6 +232,170 @@
 |[zscore]|:white_check_mark:|:white_check_mark:|
 |[zunion]|:white_check_mark:|:x:|
 |[zunionstore]|:white_check_mark:|:x:|
+|[_FT.CONFIG]|:x:|:x:|
+|[_FT.DEBUG]|:x:|:x:|
+|[_FT.SAFEADD]|:x:|:x:|
+|[bf.add]|:x:|:x:|
+|[bf.card]|:x:|:x:|
+|[bf.debug]|:x:|:x:|
+|[bf.exists]|:x:|:x:|
+|[bf.info]|:x:|:x:|
+|[bf.insert]|:x:|:x:|
+|[bf.loadchunk]|:x:|:x:|
+|[bf.madd]|:x:|:x:|
+|[bf.mexists]|:x:|:x:|
+|[bf.reserve]|:x:|:x:|
+|[bf.scandump]|:x:|:x:|
+|[cf.add]|:x:|:x:|
+|[cf.addnx]|:x:|:x:|
+|[cf.compact]|:x:|:x:|
+|[cf.count]|:x:|:x:|
+|[cf.debug]|:x:|:x:|
+|[cf.del]|:x:|:x:|
+|[cf.exists]|:x:|:x:|
+|[cf.info]|:x:|:x:|
+|[cf.insert]|:x:|:x:|
+|[cf.insertnx]|:x:|:x:|
+|[cf.loadchunk]|:x:|:x:|
+|[cf.mexists]|:x:|:x:|
+|[cf.reserve]|:x:|:x:|
+|[cf.scandump]|:x:|:x:|
+|[cms.incrby]|:x:|:x:|
+|[cms.info]|:x:|:x:|
+|[cms.initbydim]|:x:|:x:|
+|[cms.initbyprob]|:x:|:x:|
+|[cms.merge]|:x:|:x:|
+|[cms.query]|:x:|:x:|
+|[FT._ALIASADDIFNX]|:x:|:x:|
+|[FT._ALIASDELIFX]|:x:|:x:|
+|[FT._ALTERIFNX]|:x:|:x:|
+|[FT._CREATEIFNX]|:x:|:x:|
+|[FT._DROPIFX]|:x:|:x:|
+|[FT._DROPINDEXIFX]|:x:|:x:|
+|[FT._LIST]|:x:|:x:|
+|[FT.ADD]|:x:|:x:|
+|[FT.AGGREGATE]|:x:|:x:|
+|[FT.ALIASADD]|:x:|:x:|
+|[FT.ALIASDEL]|:x:|:x:|
+|[FT.ALIASUPDATE]|:x:|:x:|
+|[FT.ALTER]|:x:|:x:|
+|[FT.CONFIG]|:x:|:x:|
+|[FT.CREATE]|:x:|:x:|
+|[FT.CURSOR]|:x:|:x:|
+|[FT.DEL]|:x:|:x:|
+|[FT.DICTADD]|:x:|:x:|
+|[FT.DICTDEL]|:x:|:x:|
+|[FT.DICTDUMP]|:x:|:x:|
+|[FT.DROP]|:x:|:x:|
+|[FT.DROPINDEX]|:x:|:x:|
+|[FT.EXPLAIN]|:x:|:x:|
+|[FT.EXPLAINCLI]|:x:|:x:|
+|[FT.GET]|:x:|:x:|
+|[FT.INFO]|:x:|:x:|
+|[FT.MGET]|:x:|:x:|
+|[FT.PROFILE]|:x:|:x:|
+|[FT.SEARCH]|:x:|:x:|
+|[FT.SPELLCHECK]|:x:|:x:|
+|[FT.SUGADD]|:x:|:x:|
+|[FT.SUGDEL]|:x:|:x:|
+|[FT.SUGGET]|:x:|:x:|
+|[FT.SUGLEN]|:x:|:x:|
+|[FT.SYNADD]|:x:|:x:|
+|[FT.SYNDUMP]|:x:|:x:|
+|[FT.SYNUPDATE]|:x:|:x:|
+|[FT.TAGVALS]|:x:|:x:|
+|[hexpireat]|:x:|:x:|
+|[hexpiretime]|:x:|:x:|
+|[hgetdel]|:x:|:x:|
+|[hgetex]|:x:|:x:|
+|[hpersist]|:x:|:x:|
+|[hpexpireat]|:x:|:x:|
+|[hpexpiretime]|:x:|:x:|
+|[hpttl]|:x:|:x:|
+|[hsetex]|:x:|:x:|
+|[httl]|:x:|:x:|
+|[json.arrappend]|:x:|:x:|
+|[json.arrindex]|:x:|:x:|
+|[json.arrinsert]|:x:|:x:|
+|[json.arrlen]|:x:|:x:|
+|[json.arrpop]|:x:|:x:|
+|[json.arrtrim]|:x:|:x:|
+|[json.clear]|:x:|:x:|
+|[json.debug]|:x:|:x:|
+|[json.del]|:x:|:x:|
+|[json.forget]|:x:|:x:|
+|[json.get]|:x:|:x:|
+|[json.merge]|:x:|:x:|
+|[json.mget]|:x:|:x:|
+|[json.mset]|:x:|:x:|
+|[json.numincrby]|:x:|:x:|
+|[json.nummultby]|:x:|:x:|
+|[json.numpowby]|:x:|:x:|
+|[json.objkeys]|:x:|:x:|
+|[json.objlen]|:x:|:x:|
+|[json.resp]|:x:|:x:|
+|[json.set]|:x:|:x:|
+|[json.strappend]|:x:|:x:|
+|[json.strlen]|:x:|:x:|
+|[json.toggle]|:x:|:x:|
+|[json.type]|:x:|:x:|
+|[search.CLUSTERINFO]|:x:|:x:|
+|[search.CLUSTERREFRESH]|:x:|:x:|
+|[search.CLUSTERSET]|:x:|:x:|
+|[tdigest.add]|:x:|:x:|
+|[tdigest.byrank]|:x:|:x:|
+|[tdigest.byrevrank]|:x:|:x:|
+|[tdigest.cdf]|:x:|:x:|
+|[tdigest.create]|:x:|:x:|
+|[tdigest.info]|:x:|:x:|
+|[tdigest.max]|:x:|:x:|
+|[tdigest.merge]|:x:|:x:|
+|[tdigest.min]|:x:|:x:|
+|[tdigest.quantile]|:x:|:x:|
+|[tdigest.rank]|:x:|:x:|
+|[tdigest.reset]|:x:|:x:|
+|[tdigest.revrank]|:x:|:x:|
+|[tdigest.trimmed_mean]|:x:|:x:|
+|[timeseries.CLUSTERSET]|:x:|:x:|
+|[timeseries.REFRESHCLUSTER]|:x:|:x:|
+|[topk.add]|:x:|:x:|
+|[topk.count]|:x:|:x:|
+|[topk.incrby]|:x:|:x:|
+|[topk.info]|:x:|:x:|
+|[topk.list]|:x:|:x:|
+|[topk.query]|:x:|:x:|
+|[topk.reserve]|:x:|:x:|
+|[ts.add]|:x:|:x:|
+|[ts.alter]|:x:|:x:|
+|[ts.create]|:x:|:x:|
+|[ts.createrule]|:x:|:x:|
+|[ts.decrby]|:x:|:x:|
+|[ts.del]|:x:|:x:|
+|[ts.deleterule]|:x:|:x:|
+|[ts.get]|:x:|:x:|
+|[ts.incrby]|:x:|:x:|
+|[ts.info]|:x:|:x:|
+|[ts.madd]|:x:|:x:|
+|[ts.mget]|:x:|:x:|
+|[ts.mrange]|:x:|:x:|
+|[ts.mrevrange]|:x:|:x:|
+|[ts.queryindex]|:x:|:x:|
+|[ts.range]|:x:|:x:|
+|[ts.revrange]|:x:|:x:|
+|[VADD]|:x:|:x:|
+|[VCARD]|:x:|:x:|
+|[VDIM]|:x:|:x:|
+|[VEMB]|:x:|:x:|
+|[VGETATTR]|:x:|:x:|
+|[VINFO]|:x:|:x:|
+|[VISMEMBER]|:x:|:x:|
+|[VLINKS]|:x:|:x:|
+|[VRANDMEMBER]|:x:|:x:|
+|[VREM]|:x:|:x:|
+|[VSETATTR]|:x:|:x:|
+|[VSIM]|:x:|:x:|
+|[waitaof]|:x:|:x:|
+|[xackdel]|:x:|:x:|
 
 
 
@@ -416,74 +416,10 @@
 |[slowlog]|Useful when you're on redis, not so much when on ioredis-mock|
 
 [1]: https://github.com/luin/ioredis#handle-binary-data
-  [FT.ADD]: http://redis.io/commands/FT.ADD
-  [FT.AGGREGATE]: http://redis.io/commands/FT.AGGREGATE
-  [FT.ALIASADD]: http://redis.io/commands/FT.ALIASADD
-  [FT.ALIASDEL]: http://redis.io/commands/FT.ALIASDEL
-  [FT.ALIASUPDATE]: http://redis.io/commands/FT.ALIASUPDATE
-  [FT.ALTER]: http://redis.io/commands/FT.ALTER
-  [FT.CONFIG]: http://redis.io/commands/FT.CONFIG
-  [FT.CREATE]: http://redis.io/commands/FT.CREATE
-  [FT.CURSOR]: http://redis.io/commands/FT.CURSOR
-  [FT.DEL]: http://redis.io/commands/FT.DEL
-  [FT.DICTADD]: http://redis.io/commands/FT.DICTADD
-  [FT.DICTDEL]: http://redis.io/commands/FT.DICTDEL
-  [FT.DICTDUMP]: http://redis.io/commands/FT.DICTDUMP
-  [FT.DROP]: http://redis.io/commands/FT.DROP
-  [FT.DROPINDEX]: http://redis.io/commands/FT.DROPINDEX
-  [FT.EXPLAIN]: http://redis.io/commands/FT.EXPLAIN
-  [FT.EXPLAINCLI]: http://redis.io/commands/FT.EXPLAINCLI
-  [FT.GET]: http://redis.io/commands/FT.GET
-  [FT.INFO]: http://redis.io/commands/FT.INFO
-  [FT.MGET]: http://redis.io/commands/FT.MGET
-  [FT.PROFILE]: http://redis.io/commands/FT.PROFILE
-  [FT.SEARCH]: http://redis.io/commands/FT.SEARCH
-  [FT.SPELLCHECK]: http://redis.io/commands/FT.SPELLCHECK
-  [FT.SUGADD]: http://redis.io/commands/FT.SUGADD
-  [FT.SUGDEL]: http://redis.io/commands/FT.SUGDEL
-  [FT.SUGGET]: http://redis.io/commands/FT.SUGGET
-  [FT.SUGLEN]: http://redis.io/commands/FT.SUGLEN
-  [FT.SYNADD]: http://redis.io/commands/FT.SYNADD
-  [FT.SYNDUMP]: http://redis.io/commands/FT.SYNDUMP
-  [FT.SYNUPDATE]: http://redis.io/commands/FT.SYNUPDATE
-  [FT.TAGVALS]: http://redis.io/commands/FT.TAGVALS
-  [FT._ALIASADDIFNX]: http://redis.io/commands/FT._ALIASADDIFNX
-  [FT._ALIASDELIFX]: http://redis.io/commands/FT._ALIASDELIFX
-  [FT._ALTERIFNX]: http://redis.io/commands/FT._ALTERIFNX
-  [FT._CREATEIFNX]: http://redis.io/commands/FT._CREATEIFNX
-  [FT._DROPIFX]: http://redis.io/commands/FT._DROPIFX
-  [FT._DROPINDEXIFX]: http://redis.io/commands/FT._DROPINDEXIFX
-  [FT._LIST]: http://redis.io/commands/FT._LIST
-  [VADD]: http://redis.io/commands/VADD
-  [VCARD]: http://redis.io/commands/VCARD
-  [VDIM]: http://redis.io/commands/VDIM
-  [VEMB]: http://redis.io/commands/VEMB
-  [VGETATTR]: http://redis.io/commands/VGETATTR
-  [VINFO]: http://redis.io/commands/VINFO
-  [VISMEMBER]: http://redis.io/commands/VISMEMBER
-  [VLINKS]: http://redis.io/commands/VLINKS
-  [VRANDMEMBER]: http://redis.io/commands/VRANDMEMBER
-  [VREM]: http://redis.io/commands/VREM
-  [VSETATTR]: http://redis.io/commands/VSETATTR
-  [VSIM]: http://redis.io/commands/VSIM
-  [_FT.CONFIG]: http://redis.io/commands/_FT.CONFIG
-  [_FT.DEBUG]: http://redis.io/commands/_FT.DEBUG
-  [_FT.SAFEADD]: http://redis.io/commands/_FT.SAFEADD
   [acl]: http://redis.io/commands/ACL
   [append]: http://redis.io/commands/APPEND
   [asking]: http://redis.io/commands/ASKING
   [auth]: http://redis.io/commands/AUTH
-  [bf.add]: http://redis.io/commands/BF.ADD
-  [bf.card]: http://redis.io/commands/BF.CARD
-  [bf.debug]: http://redis.io/commands/BF.DEBUG
-  [bf.exists]: http://redis.io/commands/BF.EXISTS
-  [bf.info]: http://redis.io/commands/BF.INFO
-  [bf.insert]: http://redis.io/commands/BF.INSERT
-  [bf.loadchunk]: http://redis.io/commands/BF.LOADCHUNK
-  [bf.madd]: http://redis.io/commands/BF.MADD
-  [bf.mexists]: http://redis.io/commands/BF.MEXISTS
-  [bf.reserve]: http://redis.io/commands/BF.RESERVE
-  [bf.scandump]: http://redis.io/commands/BF.SCANDUMP
   [bgrewriteaof]: http://redis.io/commands/BGREWRITEAOF
   [bgsave]: http://redis.io/commands/BGSAVE
   [bitcount]: http://redis.io/commands/BITCOUNT
@@ -499,28 +435,8 @@
   [bzmpop]: http://redis.io/commands/BZMPOP
   [bzpopmax]: http://redis.io/commands/BZPOPMAX
   [bzpopmin]: http://redis.io/commands/BZPOPMIN
-  [cf.add]: http://redis.io/commands/CF.ADD
-  [cf.addnx]: http://redis.io/commands/CF.ADDNX
-  [cf.compact]: http://redis.io/commands/CF.COMPACT
-  [cf.count]: http://redis.io/commands/CF.COUNT
-  [cf.debug]: http://redis.io/commands/CF.DEBUG
-  [cf.del]: http://redis.io/commands/CF.DEL
-  [cf.exists]: http://redis.io/commands/CF.EXISTS
-  [cf.info]: http://redis.io/commands/CF.INFO
-  [cf.insert]: http://redis.io/commands/CF.INSERT
-  [cf.insertnx]: http://redis.io/commands/CF.INSERTNX
-  [cf.loadchunk]: http://redis.io/commands/CF.LOADCHUNK
-  [cf.mexists]: http://redis.io/commands/CF.MEXISTS
-  [cf.reserve]: http://redis.io/commands/CF.RESERVE
-  [cf.scandump]: http://redis.io/commands/CF.SCANDUMP
   [client]: http://redis.io/commands/CLIENT
   [cluster]: http://redis.io/commands/CLUSTER
-  [cms.incrby]: http://redis.io/commands/CMS.INCRBY
-  [cms.info]: http://redis.io/commands/CMS.INFO
-  [cms.initbydim]: http://redis.io/commands/CMS.INITBYDIM
-  [cms.initbyprob]: http://redis.io/commands/CMS.INITBYPROB
-  [cms.merge]: http://redis.io/commands/CMS.MERGE
-  [cms.query]: http://redis.io/commands/CMS.QUERY
   [command]: http://redis.io/commands/COMMAND
   [config]: http://redis.io/commands/CONFIG
   [copy]: http://redis.io/commands/COPY
@@ -563,60 +479,25 @@
   [hdel]: http://redis.io/commands/HDEL
   [hexists]: http://redis.io/commands/HEXISTS
   [hexpire]: http://redis.io/commands/HEXPIRE
-  [hexpireat]: http://redis.io/commands/HEXPIREAT
-  [hexpiretime]: http://redis.io/commands/HEXPIRETIME
   [hget]: http://redis.io/commands/HGET
   [hgetall]: http://redis.io/commands/HGETALL
-  [hgetdel]: http://redis.io/commands/HGETDEL
-  [hgetex]: http://redis.io/commands/HGETEX
   [hincrby]: http://redis.io/commands/HINCRBY
   [hincrbyfloat]: http://redis.io/commands/HINCRBYFLOAT
   [hkeys]: http://redis.io/commands/HKEYS
   [hlen]: http://redis.io/commands/HLEN
   [hmget]: http://redis.io/commands/HMGET
   [hmset]: http://redis.io/commands/HMSET
-  [hpersist]: http://redis.io/commands/HPERSIST
   [hpexpire]: http://redis.io/commands/HPEXPIRE
-  [hpexpireat]: http://redis.io/commands/HPEXPIREAT
-  [hpexpiretime]: http://redis.io/commands/HPEXPIRETIME
-  [hpttl]: http://redis.io/commands/HPTTL
   [hrandfield]: http://redis.io/commands/HRANDFIELD
   [hscan]: http://redis.io/commands/HSCAN
   [hset]: http://redis.io/commands/HSET
-  [hsetex]: http://redis.io/commands/HSETEX
   [hsetnx]: http://redis.io/commands/HSETNX
   [hstrlen]: http://redis.io/commands/HSTRLEN
-  [httl]: http://redis.io/commands/HTTL
   [hvals]: http://redis.io/commands/HVALS
   [incr]: http://redis.io/commands/INCR
   [incrby]: http://redis.io/commands/INCRBY
   [incrbyfloat]: http://redis.io/commands/INCRBYFLOAT
   [info]: http://redis.io/commands/INFO
-  [json.arrappend]: http://redis.io/commands/JSON.ARRAPPEND
-  [json.arrindex]: http://redis.io/commands/JSON.ARRINDEX
-  [json.arrinsert]: http://redis.io/commands/JSON.ARRINSERT
-  [json.arrlen]: http://redis.io/commands/JSON.ARRLEN
-  [json.arrpop]: http://redis.io/commands/JSON.ARRPOP
-  [json.arrtrim]: http://redis.io/commands/JSON.ARRTRIM
-  [json.clear]: http://redis.io/commands/JSON.CLEAR
-  [json.debug]: http://redis.io/commands/JSON.DEBUG
-  [json.del]: http://redis.io/commands/JSON.DEL
-  [json.forget]: http://redis.io/commands/JSON.FORGET
-  [json.get]: http://redis.io/commands/JSON.GET
-  [json.merge]: http://redis.io/commands/JSON.MERGE
-  [json.mget]: http://redis.io/commands/JSON.MGET
-  [json.mset]: http://redis.io/commands/JSON.MSET
-  [json.numincrby]: http://redis.io/commands/JSON.NUMINCRBY
-  [json.nummultby]: http://redis.io/commands/JSON.NUMMULTBY
-  [json.numpowby]: http://redis.io/commands/JSON.NUMPOWBY
-  [json.objkeys]: http://redis.io/commands/JSON.OBJKEYS
-  [json.objlen]: http://redis.io/commands/JSON.OBJLEN
-  [json.resp]: http://redis.io/commands/JSON.RESP
-  [json.set]: http://redis.io/commands/JSON.SET
-  [json.strappend]: http://redis.io/commands/JSON.STRAPPEND
-  [json.strlen]: http://redis.io/commands/JSON.STRLEN
-  [json.toggle]: http://redis.io/commands/JSON.TOGGLE
-  [json.type]: http://redis.io/commands/JSON.TYPE
   [keys]: http://redis.io/commands/KEYS
   [lastsave]: http://redis.io/commands/LASTSAVE
   [lcs]: http://redis.io/commands/LCS
@@ -676,9 +557,6 @@
   [script]: http://redis.io/commands/SCRIPT
   [sdiff]: http://redis.io/commands/SDIFF
   [sdiffstore]: http://redis.io/commands/SDIFFSTORE
-  [search.CLUSTERINFO]: http://redis.io/commands/SEARCH.CLUSTERINFO
-  [search.CLUSTERREFRESH]: http://redis.io/commands/SEARCH.CLUSTERREFRESH
-  [search.CLUSTERSET]: http://redis.io/commands/SEARCH.CLUSTERSET
   [select]: http://redis.io/commands/SELECT
   [set]: http://redis.io/commands/SET
   [setbit]: http://redis.io/commands/SETBIT
@@ -710,58 +588,16 @@
   [sunsubscribe]: http://redis.io/commands/SUNSUBSCRIBE
   [swapdb]: http://redis.io/commands/SWAPDB
   [sync]: http://redis.io/commands/SYNC
-  [tdigest.add]: http://redis.io/commands/TDIGEST.ADD
-  [tdigest.byrank]: http://redis.io/commands/TDIGEST.BYRANK
-  [tdigest.byrevrank]: http://redis.io/commands/TDIGEST.BYREVRANK
-  [tdigest.cdf]: http://redis.io/commands/TDIGEST.CDF
-  [tdigest.create]: http://redis.io/commands/TDIGEST.CREATE
-  [tdigest.info]: http://redis.io/commands/TDIGEST.INFO
-  [tdigest.max]: http://redis.io/commands/TDIGEST.MAX
-  [tdigest.merge]: http://redis.io/commands/TDIGEST.MERGE
-  [tdigest.min]: http://redis.io/commands/TDIGEST.MIN
-  [tdigest.quantile]: http://redis.io/commands/TDIGEST.QUANTILE
-  [tdigest.rank]: http://redis.io/commands/TDIGEST.RANK
-  [tdigest.reset]: http://redis.io/commands/TDIGEST.RESET
-  [tdigest.revrank]: http://redis.io/commands/TDIGEST.REVRANK
-  [tdigest.trimmed_mean]: http://redis.io/commands/TDIGEST.TRIMMED_MEAN
   [time]: http://redis.io/commands/TIME
-  [timeseries.CLUSTERSET]: http://redis.io/commands/TIMESERIES.CLUSTERSET
-  [timeseries.REFRESHCLUSTER]: http://redis.io/commands/TIMESERIES.REFRESHCLUSTER
-  [topk.add]: http://redis.io/commands/TOPK.ADD
-  [topk.count]: http://redis.io/commands/TOPK.COUNT
-  [topk.incrby]: http://redis.io/commands/TOPK.INCRBY
-  [topk.info]: http://redis.io/commands/TOPK.INFO
-  [topk.list]: http://redis.io/commands/TOPK.LIST
-  [topk.query]: http://redis.io/commands/TOPK.QUERY
-  [topk.reserve]: http://redis.io/commands/TOPK.RESERVE
   [touch]: http://redis.io/commands/TOUCH
-  [ts.add]: http://redis.io/commands/TS.ADD
-  [ts.alter]: http://redis.io/commands/TS.ALTER
-  [ts.create]: http://redis.io/commands/TS.CREATE
-  [ts.createrule]: http://redis.io/commands/TS.CREATERULE
-  [ts.decrby]: http://redis.io/commands/TS.DECRBY
-  [ts.del]: http://redis.io/commands/TS.DEL
-  [ts.deleterule]: http://redis.io/commands/TS.DELETERULE
-  [ts.get]: http://redis.io/commands/TS.GET
-  [ts.incrby]: http://redis.io/commands/TS.INCRBY
-  [ts.info]: http://redis.io/commands/TS.INFO
-  [ts.madd]: http://redis.io/commands/TS.MADD
-  [ts.mget]: http://redis.io/commands/TS.MGET
-  [ts.mrange]: http://redis.io/commands/TS.MRANGE
-  [ts.mrevrange]: http://redis.io/commands/TS.MREVRANGE
-  [ts.queryindex]: http://redis.io/commands/TS.QUERYINDEX
-  [ts.range]: http://redis.io/commands/TS.RANGE
-  [ts.revrange]: http://redis.io/commands/TS.REVRANGE
   [ttl]: http://redis.io/commands/TTL
   [type]: http://redis.io/commands/TYPE
   [unlink]: http://redis.io/commands/UNLINK
   [unsubscribe]: http://redis.io/commands/UNSUBSCRIBE
   [unwatch]: http://redis.io/commands/UNWATCH
   [wait]: http://redis.io/commands/WAIT
-  [waitaof]: http://redis.io/commands/WAITAOF
   [watch]: http://redis.io/commands/WATCH
   [xack]: http://redis.io/commands/XACK
-  [xackdel]: http://redis.io/commands/XACKDEL
   [xadd]: http://redis.io/commands/XADD
   [xautoclaim]: http://redis.io/commands/XAUTOCLAIM
   [xclaim]: http://redis.io/commands/XCLAIM
@@ -809,6 +645,170 @@
   [zscore]: http://redis.io/commands/ZSCORE
   [zunion]: http://redis.io/commands/ZUNION
   [zunionstore]: http://redis.io/commands/ZUNIONSTORE
+  [_FT.CONFIG]: http://redis.io/commands/_FT.CONFIG
+  [_FT.DEBUG]: http://redis.io/commands/_FT.DEBUG
+  [_FT.SAFEADD]: http://redis.io/commands/_FT.SAFEADD
+  [bf.add]: http://redis.io/commands/BF.ADD
+  [bf.card]: http://redis.io/commands/BF.CARD
+  [bf.debug]: http://redis.io/commands/BF.DEBUG
+  [bf.exists]: http://redis.io/commands/BF.EXISTS
+  [bf.info]: http://redis.io/commands/BF.INFO
+  [bf.insert]: http://redis.io/commands/BF.INSERT
+  [bf.loadchunk]: http://redis.io/commands/BF.LOADCHUNK
+  [bf.madd]: http://redis.io/commands/BF.MADD
+  [bf.mexists]: http://redis.io/commands/BF.MEXISTS
+  [bf.reserve]: http://redis.io/commands/BF.RESERVE
+  [bf.scandump]: http://redis.io/commands/BF.SCANDUMP
+  [cf.add]: http://redis.io/commands/CF.ADD
+  [cf.addnx]: http://redis.io/commands/CF.ADDNX
+  [cf.compact]: http://redis.io/commands/CF.COMPACT
+  [cf.count]: http://redis.io/commands/CF.COUNT
+  [cf.debug]: http://redis.io/commands/CF.DEBUG
+  [cf.del]: http://redis.io/commands/CF.DEL
+  [cf.exists]: http://redis.io/commands/CF.EXISTS
+  [cf.info]: http://redis.io/commands/CF.INFO
+  [cf.insert]: http://redis.io/commands/CF.INSERT
+  [cf.insertnx]: http://redis.io/commands/CF.INSERTNX
+  [cf.loadchunk]: http://redis.io/commands/CF.LOADCHUNK
+  [cf.mexists]: http://redis.io/commands/CF.MEXISTS
+  [cf.reserve]: http://redis.io/commands/CF.RESERVE
+  [cf.scandump]: http://redis.io/commands/CF.SCANDUMP
+  [cms.incrby]: http://redis.io/commands/CMS.INCRBY
+  [cms.info]: http://redis.io/commands/CMS.INFO
+  [cms.initbydim]: http://redis.io/commands/CMS.INITBYDIM
+  [cms.initbyprob]: http://redis.io/commands/CMS.INITBYPROB
+  [cms.merge]: http://redis.io/commands/CMS.MERGE
+  [cms.query]: http://redis.io/commands/CMS.QUERY
+  [FT._ALIASADDIFNX]: http://redis.io/commands/FT._ALIASADDIFNX
+  [FT._ALIASDELIFX]: http://redis.io/commands/FT._ALIASDELIFX
+  [FT._ALTERIFNX]: http://redis.io/commands/FT._ALTERIFNX
+  [FT._CREATEIFNX]: http://redis.io/commands/FT._CREATEIFNX
+  [FT._DROPIFX]: http://redis.io/commands/FT._DROPIFX
+  [FT._DROPINDEXIFX]: http://redis.io/commands/FT._DROPINDEXIFX
+  [FT._LIST]: http://redis.io/commands/FT._LIST
+  [FT.ADD]: http://redis.io/commands/FT.ADD
+  [FT.AGGREGATE]: http://redis.io/commands/FT.AGGREGATE
+  [FT.ALIASADD]: http://redis.io/commands/FT.ALIASADD
+  [FT.ALIASDEL]: http://redis.io/commands/FT.ALIASDEL
+  [FT.ALIASUPDATE]: http://redis.io/commands/FT.ALIASUPDATE
+  [FT.ALTER]: http://redis.io/commands/FT.ALTER
+  [FT.CONFIG]: http://redis.io/commands/FT.CONFIG
+  [FT.CREATE]: http://redis.io/commands/FT.CREATE
+  [FT.CURSOR]: http://redis.io/commands/FT.CURSOR
+  [FT.DEL]: http://redis.io/commands/FT.DEL
+  [FT.DICTADD]: http://redis.io/commands/FT.DICTADD
+  [FT.DICTDEL]: http://redis.io/commands/FT.DICTDEL
+  [FT.DICTDUMP]: http://redis.io/commands/FT.DICTDUMP
+  [FT.DROP]: http://redis.io/commands/FT.DROP
+  [FT.DROPINDEX]: http://redis.io/commands/FT.DROPINDEX
+  [FT.EXPLAIN]: http://redis.io/commands/FT.EXPLAIN
+  [FT.EXPLAINCLI]: http://redis.io/commands/FT.EXPLAINCLI
+  [FT.GET]: http://redis.io/commands/FT.GET
+  [FT.INFO]: http://redis.io/commands/FT.INFO
+  [FT.MGET]: http://redis.io/commands/FT.MGET
+  [FT.PROFILE]: http://redis.io/commands/FT.PROFILE
+  [FT.SEARCH]: http://redis.io/commands/FT.SEARCH
+  [FT.SPELLCHECK]: http://redis.io/commands/FT.SPELLCHECK
+  [FT.SUGADD]: http://redis.io/commands/FT.SUGADD
+  [FT.SUGDEL]: http://redis.io/commands/FT.SUGDEL
+  [FT.SUGGET]: http://redis.io/commands/FT.SUGGET
+  [FT.SUGLEN]: http://redis.io/commands/FT.SUGLEN
+  [FT.SYNADD]: http://redis.io/commands/FT.SYNADD
+  [FT.SYNDUMP]: http://redis.io/commands/FT.SYNDUMP
+  [FT.SYNUPDATE]: http://redis.io/commands/FT.SYNUPDATE
+  [FT.TAGVALS]: http://redis.io/commands/FT.TAGVALS
+  [hexpireat]: http://redis.io/commands/HEXPIREAT
+  [hexpiretime]: http://redis.io/commands/HEXPIRETIME
+  [hgetdel]: http://redis.io/commands/HGETDEL
+  [hgetex]: http://redis.io/commands/HGETEX
+  [hpersist]: http://redis.io/commands/HPERSIST
+  [hpexpireat]: http://redis.io/commands/HPEXPIREAT
+  [hpexpiretime]: http://redis.io/commands/HPEXPIRETIME
+  [hpttl]: http://redis.io/commands/HPTTL
+  [hsetex]: http://redis.io/commands/HSETEX
+  [httl]: http://redis.io/commands/HTTL
+  [json.arrappend]: http://redis.io/commands/JSON.ARRAPPEND
+  [json.arrindex]: http://redis.io/commands/JSON.ARRINDEX
+  [json.arrinsert]: http://redis.io/commands/JSON.ARRINSERT
+  [json.arrlen]: http://redis.io/commands/JSON.ARRLEN
+  [json.arrpop]: http://redis.io/commands/JSON.ARRPOP
+  [json.arrtrim]: http://redis.io/commands/JSON.ARRTRIM
+  [json.clear]: http://redis.io/commands/JSON.CLEAR
+  [json.debug]: http://redis.io/commands/JSON.DEBUG
+  [json.del]: http://redis.io/commands/JSON.DEL
+  [json.forget]: http://redis.io/commands/JSON.FORGET
+  [json.get]: http://redis.io/commands/JSON.GET
+  [json.merge]: http://redis.io/commands/JSON.MERGE
+  [json.mget]: http://redis.io/commands/JSON.MGET
+  [json.mset]: http://redis.io/commands/JSON.MSET
+  [json.numincrby]: http://redis.io/commands/JSON.NUMINCRBY
+  [json.nummultby]: http://redis.io/commands/JSON.NUMMULTBY
+  [json.numpowby]: http://redis.io/commands/JSON.NUMPOWBY
+  [json.objkeys]: http://redis.io/commands/JSON.OBJKEYS
+  [json.objlen]: http://redis.io/commands/JSON.OBJLEN
+  [json.resp]: http://redis.io/commands/JSON.RESP
+  [json.set]: http://redis.io/commands/JSON.SET
+  [json.strappend]: http://redis.io/commands/JSON.STRAPPEND
+  [json.strlen]: http://redis.io/commands/JSON.STRLEN
+  [json.toggle]: http://redis.io/commands/JSON.TOGGLE
+  [json.type]: http://redis.io/commands/JSON.TYPE
+  [search.CLUSTERINFO]: http://redis.io/commands/SEARCH.CLUSTERINFO
+  [search.CLUSTERREFRESH]: http://redis.io/commands/SEARCH.CLUSTERREFRESH
+  [search.CLUSTERSET]: http://redis.io/commands/SEARCH.CLUSTERSET
+  [tdigest.add]: http://redis.io/commands/TDIGEST.ADD
+  [tdigest.byrank]: http://redis.io/commands/TDIGEST.BYRANK
+  [tdigest.byrevrank]: http://redis.io/commands/TDIGEST.BYREVRANK
+  [tdigest.cdf]: http://redis.io/commands/TDIGEST.CDF
+  [tdigest.create]: http://redis.io/commands/TDIGEST.CREATE
+  [tdigest.info]: http://redis.io/commands/TDIGEST.INFO
+  [tdigest.max]: http://redis.io/commands/TDIGEST.MAX
+  [tdigest.merge]: http://redis.io/commands/TDIGEST.MERGE
+  [tdigest.min]: http://redis.io/commands/TDIGEST.MIN
+  [tdigest.quantile]: http://redis.io/commands/TDIGEST.QUANTILE
+  [tdigest.rank]: http://redis.io/commands/TDIGEST.RANK
+  [tdigest.reset]: http://redis.io/commands/TDIGEST.RESET
+  [tdigest.revrank]: http://redis.io/commands/TDIGEST.REVRANK
+  [tdigest.trimmed_mean]: http://redis.io/commands/TDIGEST.TRIMMED_MEAN
+  [timeseries.CLUSTERSET]: http://redis.io/commands/TIMESERIES.CLUSTERSET
+  [timeseries.REFRESHCLUSTER]: http://redis.io/commands/TIMESERIES.REFRESHCLUSTER
+  [topk.add]: http://redis.io/commands/TOPK.ADD
+  [topk.count]: http://redis.io/commands/TOPK.COUNT
+  [topk.incrby]: http://redis.io/commands/TOPK.INCRBY
+  [topk.info]: http://redis.io/commands/TOPK.INFO
+  [topk.list]: http://redis.io/commands/TOPK.LIST
+  [topk.query]: http://redis.io/commands/TOPK.QUERY
+  [topk.reserve]: http://redis.io/commands/TOPK.RESERVE
+  [ts.add]: http://redis.io/commands/TS.ADD
+  [ts.alter]: http://redis.io/commands/TS.ALTER
+  [ts.create]: http://redis.io/commands/TS.CREATE
+  [ts.createrule]: http://redis.io/commands/TS.CREATERULE
+  [ts.decrby]: http://redis.io/commands/TS.DECRBY
+  [ts.del]: http://redis.io/commands/TS.DEL
+  [ts.deleterule]: http://redis.io/commands/TS.DELETERULE
+  [ts.get]: http://redis.io/commands/TS.GET
+  [ts.incrby]: http://redis.io/commands/TS.INCRBY
+  [ts.info]: http://redis.io/commands/TS.INFO
+  [ts.madd]: http://redis.io/commands/TS.MADD
+  [ts.mget]: http://redis.io/commands/TS.MGET
+  [ts.mrange]: http://redis.io/commands/TS.MRANGE
+  [ts.mrevrange]: http://redis.io/commands/TS.MREVRANGE
+  [ts.queryindex]: http://redis.io/commands/TS.QUERYINDEX
+  [ts.range]: http://redis.io/commands/TS.RANGE
+  [ts.revrange]: http://redis.io/commands/TS.REVRANGE
+  [VADD]: http://redis.io/commands/VADD
+  [VCARD]: http://redis.io/commands/VCARD
+  [VDIM]: http://redis.io/commands/VDIM
+  [VEMB]: http://redis.io/commands/VEMB
+  [VGETATTR]: http://redis.io/commands/VGETATTR
+  [VINFO]: http://redis.io/commands/VINFO
+  [VISMEMBER]: http://redis.io/commands/VISMEMBER
+  [VLINKS]: http://redis.io/commands/VLINKS
+  [VRANDMEMBER]: http://redis.io/commands/VRANDMEMBER
+  [VREM]: http://redis.io/commands/VREM
+  [VSETATTR]: http://redis.io/commands/VSETATTR
+  [VSIM]: http://redis.io/commands/VSIM
+  [waitaof]: http://redis.io/commands/WAITAOF
+  [xackdel]: http://redis.io/commands/XACKDEL
   [debug]: http://redis.io/commands/DEBUG
   [dump]: http://redis.io/commands/DUMP
   [hello]: http://redis.io/commands/HELLO
