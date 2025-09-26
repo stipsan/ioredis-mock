@@ -4,7 +4,7 @@ on:
   push:
     paths:
       # If renovatebot is updating Redis it'll touch these files
-      - ".github/workflows/*.yml"
+      - '.github/workflows/*.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -41,7 +41,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v7
         with:
           branch: actions/snapshots
-          commit-message: "chore(snapshots): 🤖 ✨"
+          commit-message: 'chore(snapshots): 🤖 ✨'
           labels: 🤖 bot
-          title: "chore(snapshots): 🤖 ✨"
+          title: 'chore(snapshots): 🤖 ✨'
           token: ${{ secrets.GITHUB_TOKEN }}

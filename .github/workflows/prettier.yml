@@ -31,7 +31,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v7
         with:
           branch: actions/prettier
-          commit-message: "chore(prettier): 🤖 ✨"
+          commit-message: 'chore(prettier): 🤖 ✨'
           labels: 🤖 bot
-          title: "chore(prettier): 🤖 ✨"
+          title: 'chore(prettier): 🤖 ✨'
           token: ${{ secrets.GITHUB_TOKEN }}

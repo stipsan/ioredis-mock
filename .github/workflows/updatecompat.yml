@@ -29,7 +29,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v7
         with:
           branch: actions/updatecompat
-          commit-message: "docs(compat.md): 🤖 ✨"
+          commit-message: 'docs(compat.md): 🤖 ✨'
           labels: 🤖 bot
-          title: "docs(compat.md): 🤖 ✨"
+          title: 'docs(compat.md): 🤖 ✨'
           token: ${{ secrets.GITHUB_TOKEN }}
