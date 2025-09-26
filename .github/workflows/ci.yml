@@ -21,8 +21,7 @@ jobs:
       - run: npm ci
       - run: npx ls-engines
       - run: npm run prepublishOnly
-      - name: lint, prettier --check
-        run: npm run lint
+      - run: npm run lint
       - name: build:lib, test:integration
         run: |
           npm run build:lib
@@ -82,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       redis:
-        image: redis:7.2.1
+        image: redis:7.4.5
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s

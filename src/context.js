@@ -9,12 +9,14 @@ export default contextMap
 
 export function createContext(keyPrefix) {
   const expires = createSharedExpires()
+  const modifiedKeyEvents = new EventEmitter()
 
   return {
     channels: new EventEmitter(),
     expires,
-    data: createSharedData(expires),
+    data: createSharedData(expires, modifiedKeyEvents),
     patternChannels: new EventEmitter(),
     keyPrefix,
+    modifiedKeyEvents,
   }
 }

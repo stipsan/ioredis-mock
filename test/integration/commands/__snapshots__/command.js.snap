@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`command count returns number of commands 1`] = `241`;
+exports[`command count returns number of commands 1`] = `250`;
 
 exports[`command count should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'command|count' command"`;
 
@@ -605,6 +605,9 @@ exports[`command list returns a list of all commands 1`] = `
   "hdel",
   "hello",
   "hexists",
+  "hexpire",
+  "hexpireat",
+  "hexpiretime",
   "hget",
   "hgetall",
   "hincrby",
@@ -613,11 +616,17 @@ exports[`command list returns a list of all commands 1`] = `
   "hlen",
   "hmget",
   "hmset",
+  "hpersist",
+  "hpexpire",
+  "hpexpireat",
+  "hpexpiretime",
+  "hpttl",
   "hrandfield",
   "hscan",
   "hset",
   "hsetnx",
   "hstrlen",
+  "httl",
   "hvals",
   "incr",
   "incrby",
@@ -5550,6 +5559,161 @@ exports[`command returns all commands by default 1`] = `
     [],
   ],
   [
+    "hexpire",
+    -6,
+    [
+      "write",
+      "denyoom",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@write",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RW",
+          "update",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hexpireat",
+    -6,
+    [
+      "write",
+      "denyoom",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@write",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RW",
+          "update",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hexpiretime",
+    -5,
+    [
+      "readonly",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@read",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RO",
+          "access",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
     "hget",
     3,
     [
@@ -5964,6 +6128,263 @@ exports[`command returns all commands by default 1`] = `
     [],
   ],
   [
+    "hpersist",
+    -5,
+    [
+      "write",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@write",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RW",
+          "update",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hpexpire",
+    -6,
+    [
+      "write",
+      "denyoom",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@write",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RW",
+          "update",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hpexpireat",
+    -6,
+    [
+      "write",
+      "denyoom",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@write",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RW",
+          "update",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hpexpiretime",
+    -5,
+    [
+      "readonly",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@read",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RO",
+          "access",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "hpttl",
+    -5,
+    [
+      "readonly",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@read",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RO",
+          "access",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
     "hrandfield",
     -2,
     [
@@ -6192,6 +6613,57 @@ exports[`command returns all commands by default 1`] = `
         "flags",
         [
           "RO",
+        ],
+        "begin_search",
+        [
+          "type",
+          "index",
+          "spec",
+          [
+            "index",
+            1,
+          ],
+        ],
+        "find_keys",
+        [
+          "type",
+          "range",
+          "spec",
+          [
+            "lastkey",
+            0,
+            "keystep",
+            1,
+            "limit",
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    "httl",
+    -5,
+    [
+      "readonly",
+      "fast",
+    ],
+    1,
+    1,
+    1,
+    [
+      "@read",
+      "@hash",
+      "@fast",
+    ],
+    [],
+    [
+      [
+        "flags",
+        [
+          "RO",
+          "access",
         ],
         "begin_search",
         [
@@ -10593,7 +11065,7 @@ exports[`command returns all commands by default 1`] = `
       [
         "flags",
         [
-          "RW",
+          "OW",
           "update",
         ],
         "begin_search",
@@ -12123,12 +12595,15 @@ exports[`command returns all commands by default 1`] = `
   [
     "wait",
     3,
-    [],
+    [
+      "blocking",
+    ],
     0,
     0,
     0,
     [
       "@slow",
+      "@blocking",
       "@connection",
     ],
     [
@@ -12142,13 +12617,14 @@ exports[`command returns all commands by default 1`] = `
     "waitaof",
     4,
     [
-      "noscript",
+      "blocking",
     ],
     0,
     0,
     0,
     [
       "@slow",
+      "@blocking",
       "@connection",
     ],
     [
@@ -15122,7 +15598,7 @@ exports[`command returns all commands by default 1`] = `
 
 exports[`command should throw on unknown subcommand 1`] = `"ERR unknown subcommand 'foobar'. Try COMMAND HELP."`;
 
-exports[`commandBuffer count returns number of commands 1`] = `241`;
+exports[`commandBuffer count returns number of commands 1`] = `250`;
 
 exports[`commandBuffer count should throw on wrong number of arguments 1`] = `"ERR wrong number of arguments for 'command|count' command"`;
 
@@ -15763,6 +16239,9 @@ exports[`commandBuffer list returns a list of all commands 1`] = `
   Buffer<68 64 65 6c>,
   Buffer<68 65 6c 6c 6f>,
   Buffer<68 65 78 69 73 74 73>,
+  Buffer<68 65 78 70 69 72 65>,
+  Buffer<68 65 78 70 69 72 65 61 74>,
+  Buffer<68 65 78 70 69 72 65 74 69 6d 65>,
   Buffer<68 67 65 74>,
   Buffer<68 67 65 74 61 6c 6c>,
   Buffer<68 69 6e 63 72 62 79>,
@@ -15771,11 +16250,17 @@ exports[`commandBuffer list returns a list of all commands 1`] = `
   Buffer<68 6c 65 6e>,
   Buffer<68 6d 67 65 74>,
   Buffer<68 6d 73 65 74>,
+  Buffer<68 70 65 72 73 69 73 74>,
+  Buffer<68 70 65 78 70 69 72 65>,
+  Buffer<68 70 65 78 70 69 72 65 61 74>,
+  Buffer<68 70 65 78 70 69 72 65 74 69 6d 65>,
+  Buffer<68 70 74 74 6c>,
   Buffer<68 72 61 6e 64 66 69 65 6c 64>,
   Buffer<68 73 63 61 6e>,
   Buffer<68 73 65 74>,
   Buffer<68 73 65 74 6e 78>,
   Buffer<68 73 74 72 6c 65 6e>,
+  Buffer<68 74 74 6c>,
   Buffer<68 76 61 6c 73>,
   Buffer<69 6e 63 72>,
   Buffer<69 6e 63 72 62 79>,
@@ -20876,6 +21361,161 @@ exports[`commandBuffer returns all commands by default 1`] = `
     [],
   ],
   [
+    Buffer<68 65 78 70 69 72 65>,
+    -6,
+    [
+      Buffer<77 72 69 74 65>,
+      Buffer<64 65 6e 79 6f 6f 6d>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 77 72 69 74 65>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 57>,
+          Buffer<75 70 64 61 74 65>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 65 78 70 69 72 65 61 74>,
+    -6,
+    [
+      Buffer<77 72 69 74 65>,
+      Buffer<64 65 6e 79 6f 6f 6d>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 77 72 69 74 65>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 57>,
+          Buffer<75 70 64 61 74 65>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 65 78 70 69 72 65 74 69 6d 65>,
+    -5,
+    [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 72 65 61 64>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 4f>,
+          Buffer<61 63 63 65 73 73>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
     Buffer<68 67 65 74>,
     3,
     [
@@ -21296,6 +21936,263 @@ exports[`commandBuffer returns all commands by default 1`] = `
     [],
   ],
   [
+    Buffer<68 70 65 72 73 69 73 74>,
+    -5,
+    [
+      Buffer<77 72 69 74 65>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 77 72 69 74 65>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 57>,
+          Buffer<75 70 64 61 74 65>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 70 65 78 70 69 72 65>,
+    -6,
+    [
+      Buffer<77 72 69 74 65>,
+      Buffer<64 65 6e 79 6f 6f 6d>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 77 72 69 74 65>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 57>,
+          Buffer<75 70 64 61 74 65>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 70 65 78 70 69 72 65 61 74>,
+    -6,
+    [
+      Buffer<77 72 69 74 65>,
+      Buffer<64 65 6e 79 6f 6f 6d>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 77 72 69 74 65>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 57>,
+          Buffer<75 70 64 61 74 65>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 70 65 78 70 69 72 65 74 69 6d 65>,
+    -5,
+    [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 72 65 61 64>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 4f>,
+          Buffer<61 63 63 65 73 73>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 70 74 74 6c>,
+    -5,
+    [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 72 65 61 64>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 4f>,
+          Buffer<61 63 63 65 73 73>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
     Buffer<68 72 61 6e 64 66 69 65 6c 64>,
     -2,
     [
@@ -21528,6 +22425,57 @@ exports[`commandBuffer returns all commands by default 1`] = `
         Buffer<66 6c 61 67 73>,
         [
           Buffer<52 4f>,
+        ],
+        Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<69 6e 64 65 78>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<69 6e 64 65 78>,
+            1,
+          ],
+        ],
+        Buffer<66 69 6e 64 5f 6b 65 79 73>,
+        [
+          Buffer<74 79 70 65>,
+          Buffer<72 61 6e 67 65>,
+          Buffer<73 70 65 63>,
+          [
+            Buffer<6c 61 73 74 6b 65 79>,
+            0,
+            Buffer<6b 65 79 73 74 65 70>,
+            1,
+            Buffer<6c 69 6d 69 74>,
+            0,
+          ],
+        ],
+      ],
+    ],
+    [],
+  ],
+  [
+    Buffer<68 74 74 6c>,
+    -5,
+    [
+      Buffer<72 65 61 64 6f 6e 6c 79>,
+      Buffer<66 61 73 74>,
+    ],
+    1,
+    1,
+    1,
+    [
+      Buffer<40 72 65 61 64>,
+      Buffer<40 68 61 73 68>,
+      Buffer<40 66 61 73 74>,
+    ],
+    [],
+    [
+      [
+        Buffer<66 6c 61 67 73>,
+        [
+          Buffer<52 4f>,
+          Buffer<61 63 63 65 73 73>,
         ],
         Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
         [
@@ -26073,7 +27021,7 @@ exports[`commandBuffer returns all commands by default 1`] = `
       [
         Buffer<66 6c 61 67 73>,
         [
-          Buffer<52 57>,
+          Buffer<4f 57>,
           Buffer<75 70 64 61 74 65>,
         ],
         Buffer<62 65 67 69 6e 5f 73 65 61 72 63 68>,
@@ -27660,12 +28608,15 @@ exports[`commandBuffer returns all commands by default 1`] = `
   [
     Buffer<77 61 69 74>,
     3,
-    [],
+    [
+      Buffer<62 6c 6f 63 6b 69 6e 67>,
+    ],
     0,
     0,
     0,
     [
       Buffer<40 73 6c 6f 77>,
+      Buffer<40 62 6c 6f 63 6b 69 6e 67>,
       Buffer<40 63 6f 6e 6e 65 63 74 69 6f 6e>,
     ],
     [
@@ -27683,13 +28634,14 @@ exports[`commandBuffer returns all commands by default 1`] = `
     Buffer<77 61 69 74 61 6f 66>,
     4,
     [
-      Buffer<6e 6f 73 63 72 69 70 74>,
+      Buffer<62 6c 6f 63 6b 69 6e 67>,
     ],
     0,
     0,
     0,
     [
       Buffer<40 73 6c 6f 77>,
+      Buffer<40 62 6c 6f 63 6b 69 6e 67>,
       Buffer<40 63 6f 6e 6e 65 63 74 69 6f 6e>,
     ],
     [
