@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 64%](https://img.shields.io/badge/coverage-64%25-orange.svg)
+## Supported commands ![Commands Coverage: 65%](https://img.shields.io/badge/coverage-65%25-orange.svg)
 
 > PRs welcome :heart:
 
