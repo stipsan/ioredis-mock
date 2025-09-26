@@ -54,7 +54,7 @@ describe('createSharedData', () => {
 
     // does not modify data
     data1.get('bar')
-    data2.has('bar');
+    data2.has('bar')
     sharedData.has('data1:baz')
     sharedData.keys('data1:baz')
 
@@ -64,7 +64,12 @@ describe('createSharedData', () => {
     sharedData.set('data1:foo', 'bar1')
     sharedData.set('data2:foo', 'bar2')
 
-    expect(modifiedKeys).toEqual(['data1:foo', 'data2:foo', 'data1:foo', 'data2:foo'])
+    expect(modifiedKeys).toEqual([
+      'data1:foo',
+      'data2:foo',
+      'data1:foo',
+      'data2:foo',
+    ])
   })
 })
 

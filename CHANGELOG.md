@@ -1,5 +1,31 @@
 # ioredis-mock
 
+## 8.10.0
+
+### Minor Changes
+
+- [#1339](https://github.com/stipsan/ioredis-mock/pull/1339) [`a541856`](https://github.com/stipsan/ioredis-mock/commit/a5418561bd308912cb4dd71ef764c3ebb8d7f92d) Thanks [@akadrac](https://github.com/akadrac)! - support for SET with NX and GET as per redis v7
+
+- [#1352](https://github.com/stipsan/ioredis-mock/pull/1352) [`0ce5388`](https://github.com/stipsan/ioredis-mock/commit/0ce53880e621828aa486ba094836c3cfe3199cbd) Thanks [@smcgivern](https://github.com/smcgivern)! - Add PUBSUB NUMSUB support
+
+- [#1347](https://github.com/stipsan/ioredis-mock/pull/1347) [`b37ceea`](https://github.com/stipsan/ioredis-mock/commit/b37ceeac911dacf2258196957ee352f162f18333) Thanks [@MiniGod](https://github.com/MiniGod)! - add `watch` and `unwatch` commands
+
+### Patch Changes
+
+- [#1391](https://github.com/stipsan/ioredis-mock/pull/1391) [`8fb6f25`](https://github.com/stipsan/ioredis-mock/commit/8fb6f2576b9d2eb0338a4d686fcc463d7441f584) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): Update dependency @ioredis/commands to ^1.4.0
+
+- [#1353](https://github.com/stipsan/ioredis-mock/pull/1353) [`c5fb8d4`](https://github.com/stipsan/ioredis-mock/commit/c5fb8d469d64f03bedc7ea0bb5fe197651971e16) Thanks [@stepanho](https://github.com/stepanho)! - Emits events on disconnect call
+
+- [#1390](https://github.com/stipsan/ioredis-mock/pull/1390) [`51b1d5d`](https://github.com/stipsan/ioredis-mock/commit/51b1d5d84c62d302ae5937daa1e02d7cb89c7f73) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ioredis to ^5.8.0
+
+- [#1354](https://github.com/stipsan/ioredis-mock/pull/1354) [`c29e8b0`](https://github.com/stipsan/ioredis-mock/commit/c29e8b0aafa97997d5768e26e838fe56b20f8677) Thanks [@italoiz](https://github.com/italoiz)! - fix: handle enableOfflineQueue correctly when disconnected
+
+- [#1330](https://github.com/stipsan/ioredis-mock/pull/1330) [`81d3d82`](https://github.com/stipsan/ioredis-mock/commit/81d3d8211cfef136c2f9dfd2324bfb1301485a68) Thanks [@roertbb](https://github.com/roertbb)! - Bugfixes for LPOP command:
+  - add 2nd argument - `count`
+  - remove key when list is empty
+
+  Resolves #1316
+
 ## 8.9.2
 
 ### Patch Changes
