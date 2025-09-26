@@ -39,11 +39,11 @@ const commandsList = list.filter(
 commandsList.sort((a, b) => {
   const aSupported = a in redis.prototype
   const bSupported = b in redis.prototype
-  
+
   // If one is supported by ioredis and the other is not, prioritize the supported one
   if (aSupported && !bSupported) return -1
   if (!aSupported && bSupported) return 1
-  
+
   // If both have the same ioredis support status, sort alphabetically
   return a.localeCompare(b)
 })
@@ -63,7 +63,7 @@ commandsList.forEach(command => {
   const ioredisCol = ioredisSupported ? ':white_check_mark:' : ':x:'
   const supportedCommand = mockCommands.includes(command)
   const ioredisMockCol = supportedCommand ? ':white_check_mark:' : ':x:'
-  
+
   // Only count commands supported by ioredis for coverage calculation
   if (ioredisSupported) {
     ioredisCommandsCount += 1
@@ -71,7 +71,7 @@ commandsList.forEach(command => {
       supportedCommands += 1
     }
   }
-  
+
   tableRows += `
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`
 
