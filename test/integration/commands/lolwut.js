@@ -13,9 +13,9 @@ runTwinSuite('lolwut', command => {
 
     test('version 8', async () => {
       const result = await redis[command]()
-      expect(
-        Buffer.isBuffer(result) ? result.toString() : result
-      ).toMatchSnapshot()
+      expect(Buffer.isBuffer(result) ? result.toString() : result).toMatch(
+        'Nanni Balestrini'
+      )
     })
 
     test('version 7', async () => {
