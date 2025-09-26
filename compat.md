@@ -66,7 +66,7 @@
 | [getset]               | :white_check_mark: | :white_check_mark: |
 | [hdel]                 | :white_check_mark: | :white_check_mark: |
 | [hexists]              | :white_check_mark: | :white_check_mark: |
-| [hexpire]              |        :x:         |        :x:         |
+| [hexpire]              | :white_check_mark: |        :x:         |
 | [hexpireat]            |        :x:         |        :x:         |
 | [hexpiretime]          |        :x:         |        :x:         |
 | [hget]                 | :white_check_mark: | :white_check_mark: |
@@ -78,7 +78,7 @@
 | [hmget]                | :white_check_mark: | :white_check_mark: |
 | [hmset]                | :white_check_mark: | :white_check_mark: |
 | [hpersist]             |        :x:         |        :x:         |
-| [hpexpire]             |        :x:         |        :x:         |
+| [hpexpire]             | :white_check_mark: |        :x:         |
 | [hpexpireat]           |        :x:         |        :x:         |
 | [hpexpiretime]         |        :x:         |        :x:         |
 | [hpttl]                |        :x:         |        :x:         |
