@@ -78,11 +78,11 @@
     "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.0",
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/eslint-parser": "^7.22.15",
-    "@babel/preset-env": "^7.22.20",
-    "@babel/register": "^7.22.15",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/register": "^7.28.3",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "browser-process-hrtime": "^1.0.0",
