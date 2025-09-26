@@ -1,16 +1,45 @@
-export function rpop(key) {
+import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
+
+export function rpop(key, count) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`)
   }
   const list = this.data.get(key) || []
 
-  const item = list.length > 0 ? list.pop() : null
+  if (list.length === 0) {
+    return null
+  }
 
-  this.data.set(key, list)
+  if (count) {
+    const itemCount = Math.min(count, list.length)
+    const items = []
+    
+    // Pop items from the end (rpop gets items from right/end of list)
+    for (let i = 0; i < itemCount; i++) {
+      items.push(list.pop())
+    }
+
+    if (list.length > 0) {
+      this.data.set(key, list)
+    } else {
+      this.data.delete(key)
+    }
+
+    return items
+  }
+
+  const item = list.pop()
+
+  if (list.length > 0) {
+    this.data.set(key, list)
+  } else {
+    this.data.delete(key)
+  }
 
   return item
 }
 
-export function rpopBuffer(key) {
-  return rpop.apply(this, [key])
+export function rpopBuffer(key, count) {
+  const val = rpop.apply(this, [key, count])
+  return convertStringToBuffer(val)
 }
