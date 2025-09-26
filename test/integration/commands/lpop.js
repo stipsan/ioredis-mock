@@ -72,5 +72,122 @@ runTwinSuite('lpop', (command, equals) => {
         )
       }
     )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return multiple elements when count is provided',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3', '4', '5'],
+          },
+        })
+
+        return redis[command]('foo', 3)
+          .then(result => {
+            expect(Array.isArray(result)).toBe(true)
+            if (command === 'lpopBuffer') {
+              expect(result.length).toBe(3)
+              expect(Buffer.isBuffer(result[0])).toBeTruthy()
+              expect(result[0].toString()).toBe('1')
+              expect(result[1].toString()).toBe('2')
+              expect(result[2].toString()).toBe('3')
+            } else {
+              expect(result).toEqual(['1', '2', '3'])
+            }
+            return expect(redis.data.get('foo')).toEqual(['4', '5'])
+          })
+      }
+    )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return all elements when count is larger than list size',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2'],
+          },
+        })
+
+        return redis[command]('foo', 5)
+          .then(result => {
+            expect(Array.isArray(result)).toBe(true)
+            if (command === 'lpopBuffer') {
+              expect(result.length).toBe(2)
+              expect(Buffer.isBuffer(result[0])).toBeTruthy()
+              expect(result[0].toString()).toBe('1')
+              expect(result[1].toString()).toBe('2')
+            } else {
+              expect(result).toEqual(['1', '2'])
+            }
+            return expect(redis.data.get('foo')).toEqual([])
+          })
+      }
+    )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return null when count is 0',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3'],
+          },
+        })
+
+        return redis[command]('foo', 0)
+          .then(result => {
+            expect(result).toBe(null)
+            return expect(redis.data.get('foo')).toEqual(['1', '2', '3'])
+          })
+      }
+    )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should return null when count is provided on empty list',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: [],
+          },
+        })
+
+        return redis[command]('foo', 3).then(result => expect(result).toBe(null))
+      }
+    )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw error for invalid count values',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3'],
+          },
+        })
+
+        return redis[command]('foo', -1).catch(err =>
+          expect(err.message).toBe('ERR value is not an integer or out of range')
+        )
+      }
+    )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should throw error for non-numeric count values',
+      () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2', '3'],
+          },
+        })
+
+        return redis[command]('foo', 'invalid').catch(err =>
+          expect(err.message).toBe('ERR value is not an integer or out of range')
+        )
+      }
+    )
   })
 })
