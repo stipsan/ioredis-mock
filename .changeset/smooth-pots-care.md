@@ -1,5 +1,5 @@
 ---
-'ioredis-mock': patch
+'ioredis-mock': minor
 ---
 
-feat: add `watch` and `unwatch` commands
+add `watch` and `unwatch` commands

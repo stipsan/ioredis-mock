@@ -1,5 +1,5 @@
 ---
-'ioredis-mock': patch
+'ioredis-mock': minor
 ---
 
-feat: support for SET with NX and GET as per redis v7
+support for SET with NX and GET as per redis v7
