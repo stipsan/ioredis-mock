@@ -50,6 +50,7 @@ commandsList.sort((a, b) => {
 const mockCommands = Object.keys(mockedRedis)
 let footerLinks = '[1]: https://github.com/luin/ioredis#handle-binary-data'
 let supportedCommands = 0
+let ioredisCommandsCount = 0 // Track ioredis-supported commands for coverage calculation
 let missingBufferCommands = ''
 let tableRows = `
 | redis | ioredis | ioredis-mock |
@@ -58,12 +59,19 @@ commandsList.forEach(command => {
   footerLinks += `
   [${command}]: http://redis.io/commands/${command.toUpperCase()}`
   const redisCol = `[${command}]`
-  const ioredisCol = command in redis.prototype ? ':white_check_mark:' : ':x:'
+  const ioredisSupported = command in redis.prototype
+  const ioredisCol = ioredisSupported ? ':white_check_mark:' : ':x:'
   const supportedCommand = mockCommands.includes(command)
   const ioredisMockCol = supportedCommand ? ':white_check_mark:' : ':x:'
-  if (supportedCommand) {
-    supportedCommands += 1
+  
+  // Only count commands supported by ioredis for coverage calculation
+  if (ioredisSupported) {
+    ioredisCommandsCount += 1
+    if (supportedCommand) {
+      supportedCommands += 1
+    }
   }
+  
   tableRows += `
 |${redisCol}|${ioredisCol}|${ioredisMockCol}|`
 
@@ -94,7 +102,7 @@ Object.keys(skipList).forEach(command => {
 |${redisCol}|${skipList[command]}|`
 })
 
-const percentage = Math.floor((supportedCommands / commandsList.length) * 100)
+const percentage = Math.floor((supportedCommands / ioredisCommandsCount) * 100)
 
 let color = 'red'
 if (percentage >= 60) {
