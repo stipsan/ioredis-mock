@@ -1,9 +1,12 @@
+import EventEmitter from 'events'
+
 import { createData, createSharedData } from '../../src/data'
 import { createExpires, createSharedExpires } from '../../src/expires'
 
 describe('createSharedData', () => {
+  const modifiedKeysEvents = new EventEmitter()
   const sharedExpires = createSharedExpires()
-  const sharedData = createSharedData(sharedExpires)
+  const sharedData = createSharedData(sharedExpires, modifiedKeysEvents)
   const expires = createExpires(sharedExpires)
   const data1 = createData(sharedData, expires, { foo: 'bar1' }, 'data1:')
   const data2 = createData(sharedData, expires, { foo: 'bar2' }, 'data2:')
@@ -43,6 +46,25 @@ describe('createSharedData', () => {
     expect(sharedData.get('data1:baz')).toEqual('foo1')
     expect(sharedData.has('data2:baz')).toBe(true)
     expect(sharedData.get('data2:baz')).toEqual('foo2')
+  })
+
+  it('should emit modified key events', () => {
+    const modifiedKeys = []
+    modifiedKeysEvents.on('modified', key => modifiedKeys.push(key))
+
+    // does not modify data
+    data1.get('bar')
+    data2.has('bar');
+    sharedData.has('data1:baz')
+    sharedData.keys('data1:baz')
+
+    // modifies data
+    data1.set('foo', 'bar1')
+    data2.set('foo', 'bar2')
+    sharedData.set('data1:foo', 'bar1')
+    sharedData.set('data2:foo', 'bar2')
+
+    expect(modifiedKeys).toEqual(['data1:foo', 'data2:foo', 'data1:foo', 'data2:foo'])
   })
 })
 
