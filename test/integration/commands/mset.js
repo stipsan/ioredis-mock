@@ -16,7 +16,9 @@ runTwinSuite('mset', (command, equals) => {
       }
 
       expect(error).toBeDefined()
-      expect(error.message).toBe("ERR wrong number of arguments for 'mset' command")
+      expect(error.message).toBe(
+        "ERR wrong number of arguments for 'mset' command"
+      )
 
       redis.disconnect()
     })
@@ -32,7 +34,9 @@ runTwinSuite('mset', (command, equals) => {
       }
 
       expect(error).toBeDefined()
-      expect(error.message).toBe("ERR wrong number of arguments for 'mset' command")
+      expect(error.message).toBe(
+        "ERR wrong number of arguments for 'mset' command"
+      )
 
       redis.disconnect()
     })

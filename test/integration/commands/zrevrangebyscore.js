@@ -179,7 +179,16 @@ describe('zrevrangebyscore', () => {
       return redis
         .zrevrangebyscore('foo', '+inf', '-inf', 'LIMIT', 1, -1, 'WITHSCORES')
         .then(res =>
-          expect(res).toEqual(['fourth', '4', 'third', '3', 'second', '2', 'first', '1'])
+          expect(res).toEqual([
+            'fourth',
+            '4',
+            'third',
+            '3',
+            'second',
+            '2',
+            'first',
+            '1',
+          ])
         )
     }
   )

@@ -43,9 +43,9 @@ runTwinSuite('set', (command, equals) => {
     it('should set value and expire with PX', async () => {
       const redis = new Redis()
 
-      expect(equals(await redis[command]('foo', 'bar', 'PX', 10000), 'OK')).toBe(
-        true
-      )
+      expect(
+        equals(await redis[command]('foo', 'bar', 'PX', 10000), 'OK')
+      ).toBe(true)
       expect(await redis.get('foo')).toBe('bar')
       expect(await redis.pttl('foo')).toBeGreaterThanOrEqual(1)
       redis.disconnect()
@@ -55,9 +55,9 @@ runTwinSuite('set', (command, equals) => {
       const redis = new Redis()
       const futureTime = Math.floor(Date.now() / 1000) + 10
 
-      expect(equals(await redis[command]('foo', 'bar', 'EXAT', futureTime), 'OK')).toBe(
-        true
-      )
+      expect(
+        equals(await redis[command]('foo', 'bar', 'EXAT', futureTime), 'OK')
+      ).toBe(true)
       expect(await redis.get('foo')).toBe('bar')
       expect(await redis.ttl('foo')).toBeGreaterThanOrEqual(1)
       redis.disconnect()
@@ -67,22 +67,22 @@ runTwinSuite('set', (command, equals) => {
       const redis = new Redis()
       const futureTime = Date.now() + 10000
 
-      expect(equals(await redis[command]('foo', 'bar', 'PXAT', futureTime), 'OK')).toBe(
-        true
-      )
+      expect(
+        equals(await redis[command]('foo', 'bar', 'PXAT', futureTime), 'OK')
+      ).toBe(true)
       expect(await redis.get('foo')).toBe('bar')
       expect(await redis.pttl('foo')).toBeGreaterThanOrEqual(1)
-      
+
       // Test that the key expires
       await new Promise(resolve => setTimeout(resolve, 200))
       // For a more immediate test, let's set a shorter expiration
       const shortFutureTime = Date.now() + 100
       await redis[command]('shortlived', 'value', 'PXAT', shortFutureTime)
       expect(await redis.get('shortlived')).toBe('value')
-      
+
       await new Promise(resolve => setTimeout(resolve, 200))
       expect(await redis.get('shortlived')).toBe(null)
-      
+
       redis.disconnect()
     })
 
@@ -147,7 +147,12 @@ runTwinSuite('set', (command, equals) => {
       await redis[command]('foo', 'original')
       const futureTime = Date.now() + 10000
 
-      expect(equals(await redis[command]('foo', 'new', 'PXAT', futureTime, 'GET'), 'original')).toBe(true)
+      expect(
+        equals(
+          await redis[command]('foo', 'new', 'PXAT', futureTime, 'GET'),
+          'original'
+        )
+      ).toBe(true)
       expect(await redis.get('foo')).toBe('new')
       expect(await redis.pttl('foo')).toBeGreaterThanOrEqual(1)
       redis.disconnect()
@@ -157,7 +162,12 @@ runTwinSuite('set', (command, equals) => {
       const redis = new Redis()
       const futureTime = Math.floor(Date.now() / 1000) + 10
 
-      expect(equals(await redis[command]('newkey', 'value', 'EXAT', futureTime, 'NX'), 'OK')).toBe(true)
+      expect(
+        equals(
+          await redis[command]('newkey', 'value', 'EXAT', futureTime, 'NX'),
+          'OK'
+        )
+      ).toBe(true)
       expect(await redis.get('newkey')).toBe('value')
       expect(await redis.ttl('newkey')).toBeGreaterThanOrEqual(1)
       redis.disconnect()
