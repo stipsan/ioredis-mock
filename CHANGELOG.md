@@ -1,5 +1,11 @@
 # ioredis-mock
 
+## 8.9.2
+
+### Patch Changes
+
+- [#1363](https://github.com/stipsan/ioredis-mock/pull/1363) [`1ee9c91`](https://github.com/stipsan/ioredis-mock/commit/1ee9c91e9190976653a6e5635e0048769ca403c9) Thanks [@mishaled](https://github.com/mishaled)! - Export `Pipeline` class
+
 ## 8.9.1
 
 ### Patch Changes
