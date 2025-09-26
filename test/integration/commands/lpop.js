@@ -83,20 +83,19 @@ runTwinSuite('lpop', (command, equals) => {
           },
         })
 
-        return redis[command]('foo', 3)
-          .then(result => {
-            expect(Array.isArray(result)).toBe(true)
-            if (command === 'lpopBuffer') {
-              expect(result.length).toBe(3)
-              expect(Buffer.isBuffer(result[0])).toBeTruthy()
-              expect(result[0].toString()).toBe('1')
-              expect(result[1].toString()).toBe('2')
-              expect(result[2].toString()).toBe('3')
-            } else {
-              expect(result).toEqual(['1', '2', '3'])
-            }
-            return expect(redis.data.get('foo')).toEqual(['4', '5'])
-          })
+        return redis[command]('foo', 3).then(result => {
+          expect(Array.isArray(result)).toBe(true)
+          if (command === 'lpopBuffer') {
+            expect(result.length).toBe(3)
+            expect(Buffer.isBuffer(result[0])).toBeTruthy()
+            expect(result[0].toString()).toBe('1')
+            expect(result[1].toString()).toBe('2')
+            expect(result[2].toString()).toBe('3')
+          } else {
+            expect(result).toEqual(['1', '2', '3'])
+          }
+          return expect(redis.data.get('foo')).toEqual(['4', '5'])
+        })
       }
     )
 
@@ -110,19 +109,18 @@ runTwinSuite('lpop', (command, equals) => {
           },
         })
 
-        return redis[command]('foo', 5)
-          .then(result => {
-            expect(Array.isArray(result)).toBe(true)
-            if (command === 'lpopBuffer') {
-              expect(result.length).toBe(2)
-              expect(Buffer.isBuffer(result[0])).toBeTruthy()
-              expect(result[0].toString()).toBe('1')
-              expect(result[1].toString()).toBe('2')
-            } else {
-              expect(result).toEqual(['1', '2'])
-            }
-            return expect(redis.data.get('foo')).toEqual([])
-          })
+        return redis[command]('foo', 5).then(result => {
+          expect(Array.isArray(result)).toBe(true)
+          if (command === 'lpopBuffer') {
+            expect(result.length).toBe(2)
+            expect(Buffer.isBuffer(result[0])).toBeTruthy()
+            expect(result[0].toString()).toBe('1')
+            expect(result[1].toString()).toBe('2')
+          } else {
+            expect(result).toEqual(['1', '2'])
+          }
+          return expect(redis.data.get('foo')).toEqual([])
+        })
       }
     )
 
@@ -136,11 +134,10 @@ runTwinSuite('lpop', (command, equals) => {
           },
         })
 
-        return redis[command]('foo', 0)
-          .then(result => {
-            expect(result).toBe(null)
-            return expect(redis.data.get('foo')).toEqual(['1', '2', '3'])
-          })
+        return redis[command]('foo', 0).then(result => {
+          expect(result).toBe(null)
+          return expect(redis.data.get('foo')).toEqual(['1', '2', '3'])
+        })
       }
     )
 
@@ -154,7 +151,9 @@ runTwinSuite('lpop', (command, equals) => {
           },
         })
 
-        return redis[command]('foo', 3).then(result => expect(result).toBe(null))
+        return redis[command]('foo', 3).then(result =>
+          expect(result).toBe(null)
+        )
       }
     )
 
@@ -169,7 +168,9 @@ runTwinSuite('lpop', (command, equals) => {
         })
 
         return redis[command]('foo', -1).catch(err =>
-          expect(err.message).toBe('ERR value is not an integer or out of range')
+          expect(err.message).toBe(
+            'ERR value is not an integer or out of range'
+          )
         )
       }
     )
@@ -185,7 +186,9 @@ runTwinSuite('lpop', (command, equals) => {
         })
 
         return redis[command]('foo', 'invalid').catch(err =>
-          expect(err.message).toBe('ERR value is not an integer or out of range')
+          expect(err.message).toBe(
+            'ERR value is not an integer or out of range'
+          )
         )
       }
     )

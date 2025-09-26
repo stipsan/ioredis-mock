@@ -31,9 +31,9 @@ export function lpop(key, count) {
 
   const itemsToReturn = Math.min(numCount, list.length)
   const result = list.splice(0, itemsToReturn)
-  
+
   this.data.set(key, list)
-  
+
   return result
 }
 
