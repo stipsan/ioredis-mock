@@ -11,7 +11,7 @@ describe('ping disconnect health check', () => {
     }
   }
 
-  it('should return DOWN after disconnect with default options', async () => {
+  it('should return UP after disconnect with default options (enableOfflineQueue: true)', async () => {
     const redis = new Redis()
     
     // Health check should work when connected
@@ -20,11 +20,12 @@ describe('ping disconnect health check', () => {
     // Disconnect the client
     redis.disconnect()
     
-    // Health check should now return DOWN
-    expect(await healthCheck(redis)).toBe('DOWN')
+    // Health check should still return UP because enableOfflineQueue defaults to true
+    // This matches ioredis behavior where commands are queued until reconnection
+    expect(await healthCheck(redis)).toBe('UP')
   })
 
-  it('should return UP after disconnect when enableOfflineQueue is true', async () => {
+  it('should return UP after disconnect when enableOfflineQueue is explicitly true', async () => {
     const redis = new Redis({ enableOfflineQueue: true })
     
     // Health check should work when connected
@@ -57,5 +58,15 @@ describe('ping disconnect health check', () => {
     expect(await healthCheck(redis)).toBe('DOWN')
     
     redis.disconnect()
+  })
+
+  it('demonstrates proper health check configuration for immediate feedback', async () => {
+    // For health checks that need immediate feedback about connection status,
+    // use enableOfflineQueue: false
+    const redis = new Redis({ enableOfflineQueue: false })
+    
+    expect(await healthCheck(redis)).toBe('UP')
+    redis.disconnect()
+    expect(await healthCheck(redis)).toBe('DOWN')
   })
 })

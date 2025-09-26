@@ -19,6 +19,7 @@ const defaultOptions = {
   data: {},
   keyPrefix: '',
   lazyConnect: false,
+  enableOfflineQueue: true, // Match ioredis default
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
   host: 'localhost',
   port: 6379,
