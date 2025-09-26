@@ -1,5 +1,20 @@
 # ioredis-mock
 
+
+## 8.11.0
+
+### Minor Changes
+
+- [#1385](https://github.com/stipsan/ioredis-mock/pull/1385) [`0c8383d`](https://github.com/stipsan/ioredis-mock/commit/0c8383db8bf1ba09544ca1cc6cbd1cbf95d110de) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Implement missing Redis command: BITCOUNT
+
+### Patch Changes
+
+- [#1418](https://github.com/stipsan/ioredis-mock/pull/1418) [`c115ad1`](https://github.com/stipsan/ioredis-mock/commit/c115ad1840928d288dae9196f141f354877cb8d7) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - ioredis zrangebyscore does not include the last element
+
+- [#1420](https://github.com/stipsan/ioredis-mock/pull/1420) [`700dde5`](https://github.com/stipsan/ioredis-mock/commit/700dde592c63a82857e10a3d06693dd6cc14e672) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - MGET and MSET behaviour differs from ioredis
+
+- [#1417](https://github.com/stipsan/ioredis-mock/pull/1417) [`5fac5b6`](https://github.com/stipsan/ioredis-mock/commit/5fac5b68a663f6379ebc57e39cc911269d842341) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - `set` command doesn't support PXAT option
+
 ## 8.10.0
 
 ### Minor Changes
