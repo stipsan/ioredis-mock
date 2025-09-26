@@ -243,8 +243,6 @@
 
 ## Missing buffer commands
 
-- [zmscoreBuffer][1]
-
 ## Commands that won't be implemented
 
 > This is just the current status, and may change in the future. If you have ideas on how to implement any of them feel free to tell us about it.
