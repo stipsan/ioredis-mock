@@ -111,7 +111,7 @@
     "ls-engines": "^0.9.3",
     "mkdirp": "^3.0.1",
     "prettier": "^3.0.3",
-    "prettier-plugin-packagejson": "^2.4.6",
+    "prettier-plugin-packagejson": "^2.5.19",
     "setimmediate": "^1.0.5",
     "stream-browserify": "^3.0.0",
     "stream-mock": "^2.0.5",
