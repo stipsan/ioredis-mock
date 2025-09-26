@@ -1,10 +1,5 @@
 # ioredis-mock
 
-## 8.11.1
-
-### Patch Changes
-
-- [#1419](https://github.com/stipsan/ioredis-mock/pull/1419) [`d25a81a`](https://github.com/stipsan/ioredis-mock/commit/d25a81a655fadd8257752f7642d9cd3db64977bf) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - ioredis-mock `rpop` doesn't react the same as ioredis `rpop`
 
 ## 8.11.0
 
