@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 63%](https://img.shields.io/badge/coverage-63%25-orange.svg)
+## Supported commands ![Commands Coverage: 64%](https://img.shields.io/badge/coverage-64%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -66,7 +66,7 @@
 | [getset]               | :white_check_mark: | :white_check_mark: |
 | [hdel]                 | :white_check_mark: | :white_check_mark: |
 | [hexists]              | :white_check_mark: | :white_check_mark: |
-| [hexpire]              |        :x:         |        :x:         |
+| [hexpire]              | :white_check_mark: |        :x:         |
 | [hexpireat]            |        :x:         |        :x:         |
 | [hexpiretime]          |        :x:         |        :x:         |
 | [hget]                 | :white_check_mark: | :white_check_mark: |
@@ -78,7 +78,7 @@
 | [hmget]                | :white_check_mark: | :white_check_mark: |
 | [hmset]                | :white_check_mark: | :white_check_mark: |
 | [hpersist]             |        :x:         |        :x:         |
-| [hpexpire]             |        :x:         |        :x:         |
+| [hpexpire]             | :white_check_mark: |        :x:         |
 | [hpexpireat]           |        :x:         |        :x:         |
 | [hpexpiretime]         |        :x:         |        :x:         |
 | [hpttl]                |        :x:         |        :x:         |
@@ -189,10 +189,10 @@
 | [type]                 | :white_check_mark: | :white_check_mark: |
 | [unlink]               | :white_check_mark: | :white_check_mark: |
 | [unsubscribe]          | :white_check_mark: | :white_check_mark: |
-| [unwatch]              | :white_check_mark: |        :x:         |
+| [unwatch]              | :white_check_mark: | :white_check_mark: |
 | [wait]                 | :white_check_mark: |        :x:         |
 | [waitaof]              |        :x:         |        :x:         |
-| [watch]                | :white_check_mark: |        :x:         |
+| [watch]                | :white_check_mark: | :white_check_mark: |
 | [xack]                 | :white_check_mark: |        :x:         |
 | [xadd]                 | :white_check_mark: | :white_check_mark: |
 | [xautoclaim]           | :white_check_mark: |        :x:         |

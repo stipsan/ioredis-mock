@@ -1,5 +1,6 @@
 .nyc_output
 .vscode
+.idea
 coverage
 junit
 lib

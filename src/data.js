@@ -1,4 +1,9 @@
-export function createSharedData(sharedExpires) {
+import { EventEmitter } from 'events'
+
+export function createSharedData(
+  sharedExpires,
+  modifiedKeyEvents = new EventEmitter()
+) {
   let raw = {}
 
   return Object.freeze({
@@ -10,6 +15,7 @@ export function createSharedData(sharedExpires) {
         sharedExpires.delete(key)
       }
       delete raw[key]
+      modifiedKeyEvents.emit('modified', key)
     },
     get(key) {
       if (sharedExpires.has(key) && sharedExpires.isExpired(key)) {
@@ -70,6 +76,7 @@ export function createSharedData(sharedExpires) {
       }
 
       raw[key] = item
+      modifiedKeyEvents.emit('modified', key)
     },
   })
 }

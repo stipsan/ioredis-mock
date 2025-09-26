@@ -21,8 +21,7 @@ jobs:
       - run: npm ci
       - run: npx ls-engines
       - run: npm run prepublishOnly
-      - name: lint, prettier --check
-        run: npm run lint
+      - run: npm run lint
       - name: build:lib, test:integration
         run: |
           npm run build:lib

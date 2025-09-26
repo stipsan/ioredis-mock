@@ -8,6 +8,7 @@ import createCommand, { Command } from './command'
 import * as commands from './commands'
 import * as commandsStream from './commands-stream'
 import emitConnectEvent from './commands-utils/emitConnectEvent'
+import emitDisconnectEvent from './commands-utils/emitDisconnectEvent'
 import contextMap, { createContext } from './context'
 import { createData } from './data'
 import { createExpires } from './expires'
@@ -45,8 +46,8 @@ const routeOptionsArgs = (...args) => {
       return typeof args[0] === 'string'
         ? { ...args[1], ...pathToHostPort(args[0]) }
         : Number.isInteger(args[0]) && typeof args[1] === 'string'
-        ? { port: args[0], host: args[1] }
-        : { ...args[1], port: args[0] }
+          ? { port: args[0], host: args[1] }
+          : { ...args[1], port: args[0] }
     case 1:
       // if args[0] is a string, then it's:
       // path: string
@@ -58,8 +59,8 @@ const routeOptionsArgs = (...args) => {
       return typeof args[0] === 'string'
         ? { ...pathToHostPort(args[0]) }
         : Number.isInteger(args[0])
-        ? { port: args[0] }
-        : { ...args[0] }
+          ? { port: args[0] }
+          : { ...args[0] }
     default:
       return {}
   }
@@ -94,15 +95,23 @@ class RedisMock extends EventEmitter {
       contextMap.set(this.keyData, context)
     }
 
-    const context = contextMap.get(this.keyData)
+    this.context = contextMap.get(this.keyData)
 
-    this.expires = createExpires(context.expires, optionsWithDefault.keyPrefix)
+    this.expires = createExpires(
+      this.context.expires,
+      optionsWithDefault.keyPrefix
+    )
     this.data = createData(
-      context.data,
+      this.context.data,
       this.expires,
       optionsWithDefault.data,
       optionsWithDefault.keyPrefix
     )
+
+    this.dirty = false
+    this.watching = new Set()
+    this._signalModifiedKey = this._signalModifiedKey.bind(this) // re-assign bound method to remove listener on disconnect
+    this.context.modifiedKeyEvents.on('modified', this._signalModifiedKey)
 
     this._initCommands()
 
@@ -201,6 +210,11 @@ class RedisMock extends EventEmitter {
 
     removeFrom(this.channels)
     removeFrom(this.patternChannels)
+
+    this.context.modifiedKeyEvents.off('modified', this._signalModifiedKey)
+
+    emitDisconnectEvent(this)
+
     // no-op
   }
 
@@ -239,6 +253,12 @@ class RedisMock extends EventEmitter {
         })
       }
     })
+  }
+
+  _signalModifiedKey(key) {
+    if (!this.dirty && this.watching.has(key)) {
+      this.dirty = true
+    }
   }
 }
 

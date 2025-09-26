@@ -46,7 +46,11 @@ export function throwIfInSubscriberMode(commandName, RedisMock) {
 
 export function throwIfNotConnected(commandName, RedisMock) {
   if (isNotConnected(RedisMock)) {
-    if (commandName !== 'connect' && commandName !== 'defineCommand') {
+    if (
+      commandName !== 'connect' &&
+      commandName !== 'defineCommand' &&
+      !RedisMock.options.enableOfflineQueue
+    ) {
       throw new Error(
         "Stream isn't writeable and enableOfflineQueue options is false"
       )
