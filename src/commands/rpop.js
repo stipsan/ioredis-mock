@@ -13,7 +13,7 @@ export function rpop(key, count) {
   if (count) {
     const itemCount = Math.min(count, list.length)
     const items = []
-    
+
     // Pop items from the end (rpop gets items from right/end of list)
     for (let i = 0; i < itemCount; i++) {
       items.push(list.pop())

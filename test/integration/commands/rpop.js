@@ -73,11 +73,13 @@ runTwinSuite('rpop', (command, equals) => {
       try {
         // Set up test data
         await redis.rpush('testlist', '1', '2', '3', '4', '5')
-        
+
         const result = await redis[command]('testlist', 2)
-        const normalizedResult = result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+        const normalizedResult = result.map(v =>
+          Buffer.isBuffer(v) ? v.toString() : v
+        )
         expect(normalizedResult).toEqual(['5', '4'])
-        
+
         // Verify remaining elements
         const remaining = await redis.lrange('testlist', 0, -1)
         expect(remaining).toEqual(['1', '2', '3'])
@@ -92,11 +94,13 @@ runTwinSuite('rpop', (command, equals) => {
       try {
         // Set up test data
         await redis.rpush('testlist', '1', '2', '3', '4', '5')
-        
+
         const result = await redis[command]('testlist', 7)
-        const normalizedResult = result.map(v => (Buffer.isBuffer(v) ? v.toString() : v))
+        const normalizedResult = result.map(v =>
+          Buffer.isBuffer(v) ? v.toString() : v
+        )
         expect(normalizedResult).toEqual(['5', '4', '3', '2', '1'])
-        
+
         // Verify key was deleted
         const exists = await redis.exists('testlist')
         expect(exists).toBe(0)
