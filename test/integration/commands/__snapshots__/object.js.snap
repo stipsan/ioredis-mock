@@ -4,11 +4,11 @@ exports[`object encoding returns the internal encoding for the Redis object 1`] 
 
 exports[`object encoding returns the internal encoding for the Redis object 2`] = `"int"`;
 
-exports[`object encoding returns the internal encoding for the Redis object 3`] = `"quicklist"`;
+exports[`object encoding returns the internal encoding for the Redis object 3`] = `"listpack"`;
 
 exports[`object encoding returns the internal encoding for the Redis object 4`] = `"intset"`;
 
-exports[`object encoding returns the internal encoding for the Redis object 5`] = `"hashtable"`;
+exports[`object encoding returns the internal encoding for the Redis object 5`] = `"listpack"`;
 
 exports[`object encoding returns the internal encoding for the Redis object 6`] = `"listpack"`;
 
@@ -24,11 +24,11 @@ exports[`objectBuffer encoding returns the internal encoding for the Redis objec
 
 exports[`objectBuffer encoding returns the internal encoding for the Redis object 2`] = `Buffer<69 6e 74>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 3`] = `Buffer<71 75 69 63 6b 6c 69 73 74>`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 3`] = `Buffer<6c 69 73 74 70 61 63 6b>`;
 
 exports[`objectBuffer encoding returns the internal encoding for the Redis object 4`] = `Buffer<69 6e 74 73 65 74>`;
 
-exports[`objectBuffer encoding returns the internal encoding for the Redis object 5`] = `Buffer<68 61 73 68 74 61 62 6c 65>`;
+exports[`objectBuffer encoding returns the internal encoding for the Redis object 5`] = `Buffer<6c 69 73 74 70 61 63 6b>`;
 
 exports[`objectBuffer encoding returns the internal encoding for the Redis object 6`] = `Buffer<6c 69 73 74 70 61 63 6b>`;
 

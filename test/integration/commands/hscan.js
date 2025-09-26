@@ -1,7 +1,4 @@
-import Chance from 'chance'
 import Redis from 'ioredis'
-
-const chance = new Chance()
 
 describe('hscan', () => {
   const redis = new Redis()
@@ -9,13 +6,9 @@ describe('hscan', () => {
     redis.disconnect()
   })
 
-  function createHashSet(keys) {
-    return keys.reduce((obj, key) => {
-      const res = obj
-      res[key] = chance.cc_type({ raw: true })
-      return res
-    }, {})
-  }
+  const keysToFlatEntries = keys => keys.flatMap(key => [key, `${key}v`])
+  const createHashSet = keys =>
+    Object.fromEntries(keys.map(key => [key, `${key}v`]))
 
   it('should return null array if hset does not exist', () => {
     return redis.hscan('key', 0).then(result => {
@@ -34,7 +27,7 @@ describe('hscan', () => {
 
     return redis.hscan('hset', 0).then(result => {
       expect(result[0]).toBe('0')
-      expect(result[1]).toEqual(['foo', 'bar', 'baz'])
+      expect(result[1]).toEqual(keysToFlatEntries(['foo', 'bar', 'baz']))
     })
   })
 
@@ -50,7 +43,7 @@ describe('hscan', () => {
 
       return redis.hscan('hset', 0, 'MATCH', 'foo*').then(result => {
         expect(result[0]).toBe('0')
-        expect(result[1]).toEqual(['foo0', 'foo1', 'foo2'])
+        expect(result[1]).toEqual(keysToFlatEntries(['foo0', 'foo1', 'foo2']))
       })
     }
   )
@@ -69,12 +62,12 @@ describe('hscan', () => {
         .hscan('hset', 0, 'MATCH', 'foo*', 'COUNT', 1)
         .then(result => {
           expect(result[0]).toBe('1') // more elements left, this is why cursor is not 0
-          expect(result[1]).toEqual(['foo0'])
+          expect(result[1]).toEqual(keysToFlatEntries(['foo0']))
           return redis.hscan('hset', result[0], 'MATCH', 'foo*', 'COUNT', 10)
         })
         .then(result2 => {
           expect(result2[0]).toBe('0')
-          expect(result2[1]).toEqual(['foo1', 'foo2'])
+          expect(result2[1]).toEqual(keysToFlatEntries(['foo1', 'foo2']))
         })
     }
   )
@@ -93,12 +86,12 @@ describe('hscan', () => {
         .hscan('hset', 0, 'COUNT', 3)
         .then(result => {
           expect(result[0]).toBe('3')
-          expect(result[1]).toEqual(['foo0', 'foo1', 'bar0'])
+          expect(result[1]).toEqual(keysToFlatEntries(['foo0', 'foo1', 'bar0']))
           return redis.hscan('hset', result[0], 'COUNT', 3)
         })
         .then(result2 => {
           expect(result2[0]).toBe('0')
-          expect(result2[1]).toEqual(['bar1'])
+          expect(result2[1]).toEqual(keysToFlatEntries(['bar1']))
         })
     }
   )

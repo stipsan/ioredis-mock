@@ -235,7 +235,7 @@ class RedisMock extends EventEmitter {
               )}, please check the full list over mocked commands: ${docsLink}`
             )
           },
-          writable: false,
+          writable: true,
         })
       }
     })
@@ -271,6 +271,8 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
     return this.clusterNodes.all // temporary return all until implemented slave and master logic
   }
 }
+
+RedisMock.Pipeline = Pipeline
 
 RedisMock.default = RedisMock
 

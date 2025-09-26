@@ -128,5 +128,23 @@ runTwinSuite('rpoplpush', (command, equals) => {
         )
       }
     )
+
+    // @TODO Rewrite test so it runs on a real Redis instance
+    ;(process.env.IS_E2E ? it.skip : it)(
+      'should rotate the list if the source and destination are the same',
+      async () => {
+        const redis = new Redis({
+          data: {
+            foo: ['1', '2'],
+          },
+        })
+
+        const result = await redis[command]('foo', 'foo', 'LEFT', 'RIGHT')
+        expect(result).toBe('2')
+
+        const list = await redis.lrange('foo', 0, -1)
+        expect(list).toEqual(['2', '1'])
+      }
+    )
   })
 })

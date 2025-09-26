@@ -1,9 +1,59 @@
-<!-- markdownlint-disable --><!-- textlint-disable -->
+# ioredis-mock
 
-# 📓 Changelog
+## 8.9.2
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+### Patch Changes
+
+- [#1363](https://github.com/stipsan/ioredis-mock/pull/1363) [`1ee9c91`](https://github.com/stipsan/ioredis-mock/commit/1ee9c91e9190976653a6e5635e0048769ca403c9) Thanks [@mishaled](https://github.com/mishaled)! - Export `Pipeline` class
+
+## 8.9.1
+
+### Patch Changes
+
+- [`f0dc728`](https://github.com/stipsan/ioredis-mock/commit/f0dc7280cf65461423e0e43a01e9e3317bba2e34) Thanks [@stipsan](https://github.com/stipsan)! - Setup trusted publishing
+
+## [8.9.0](https://github.com/stipsan/ioredis-mock/compare/v8.8.3...v8.9.0) (2023-09-29)
+
+### Features
+
+- add zdiff ([#1312](https://github.com/stipsan/ioredis-mock/issues/1312)) ([49a3b11](https://github.com/stipsan/ioredis-mock/commit/49a3b11ffa187012e3fc18cdf181a07cbf9ccdbc))
+
+### Bug Fixes
+
+- **deps:** update redis docker tag to v7.2.0 ([#1308](https://github.com/stipsan/ioredis-mock/issues/1308)) ([a5a9914](https://github.com/stipsan/ioredis-mock/commit/a5a9914fab5230e85ad72fcc52348ca41928c869))
+- **deps:** update redis docker tag to v7.2.1 ([#1317](https://github.com/stipsan/ioredis-mock/issues/1317)) ([06e2968](https://github.com/stipsan/ioredis-mock/commit/06e296866f2e8f1803dbf9b2a8c66bd88f08462b))
+- rpoplpush should rotate the list when source and destintation are the same ([#1321](https://github.com/stipsan/ioredis-mock/issues/1321)) ([897af68](https://github.com/stipsan/ioredis-mock/commit/897af68d44cffa4c3ed43ed02f15ff1c2365fb6a))
+- xread fixes ([#1318](https://github.com/stipsan/ioredis-mock/issues/1318)) ([3978302](https://github.com/stipsan/ioredis-mock/commit/3978302806c7b6f1a962038011c94f8496cc15f5))
+
+## [8.8.3](https://github.com/stipsan/ioredis-mock/compare/v8.8.2...v8.8.3) (2023-08-15)
+
+### Bug Fixes
+
+- **deps:** update dependency esbuild to ^0.19.2 ([#1306](https://github.com/stipsan/ioredis-mock/issues/1306)) ([c346711](https://github.com/stipsan/ioredis-mock/commit/c346711b5f2e7900de90f4174e07f7ce1055a4d1))
+
+## [8.8.2](https://github.com/stipsan/ioredis-mock/compare/v8.8.1...v8.8.2) (2023-08-13)
+
+### Bug Fixes
+
+- make `hscan` return flat list of entries ([#1300](https://github.com/stipsan/ioredis-mock/issues/1300)) ([6f440f0](https://github.com/stipsan/ioredis-mock/commit/6f440f0cef54e7e3f36e0e76e8d187dbb0e3ab52))
+- Make unsupported commands writable ([#1301](https://github.com/stipsan/ioredis-mock/issues/1301)) ([eb043e3](https://github.com/stipsan/ioredis-mock/commit/eb043e30184fff8d3483d858ffa6af5f597cbb02))
+
+## [8.8.1](https://github.com/stipsan/ioredis-mock/compare/v8.8.0...v8.8.1) (2023-07-14)
+
+### Bug Fixes
+
+- **commands:** add `lmoveBuffer` ([9cb31eb](https://github.com/stipsan/ioredis-mock/commit/9cb31eb5dc3eddfd225326bcbdb150adcb27eee7))
+- **deps:** update redis docker tag to v7.0.12 ([#1297](https://github.com/stipsan/ioredis-mock/issues/1297)) ([85726d0](https://github.com/stipsan/ioredis-mock/commit/85726d037731120a9121edd652dc5e0180ab3e27))
+
+## [8.8.0](https://github.com/stipsan/ioredis-mock/compare/v8.7.0...v8.8.0) (2023-07-14)
+
+### Features
+
+- **commands:** add new command LMOVE ([#1292](https://github.com/stipsan/ioredis-mock/issues/1292)) ([7222ca8](https://github.com/stipsan/ioredis-mock/commit/7222ca87beac4e2c5e0e5313b2e6a1e7e3bfc069))
+
+### Bug Fixes
+
+- **deps:** update dependency semver to v7.5.2 [security] ([#1286](https://github.com/stipsan/ioredis-mock/issues/1286)) ([23b0093](https://github.com/stipsan/ioredis-mock/commit/23b00932c6186e90b399fd7c2787a92a6930b080))
 
 ## [8.7.0](https://github.com/stipsan/ioredis-mock/compare/v8.6.0...v8.7.0) (2023-04-18)
 

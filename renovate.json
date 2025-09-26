@@ -1,4 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>sanity-io/renovate-presets//ecosystem/auto"]
+  "extends": ["github>sanity-io/renovate-config"],
+  "ignorePresets": ["github>sanity-io/renovate-config:group-non-major"],
+  "packageRules": [
+    {
+      "groupName": "redis",
+      "matchPackageNames": ["redis"],
+      "semanticCommitType": "fix"
+    }
+  ]
 }

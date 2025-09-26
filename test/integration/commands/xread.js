@@ -59,7 +59,7 @@ describe('xread', () => {
         },
       })
       return redis
-        .xread('COUNT', '2', 'STREAMS', 'stream', '1-0', 'other-stream', '1-0')
+        .xread('COUNT', '2', 'STREAMS', 'stream', 'other-stream', '1-0', '1-0')
         .then(events =>
           expect(events).toEqual([
             [
@@ -94,7 +94,7 @@ describe('xread', () => {
         },
       })
       return redis
-        .xread('COUNT', '2', 'STREAMS', 'stream', '1', 'other-stream', '1')
+        .xread('COUNT', '2', 'STREAMS', 'stream', 'other-stream', '1', '1')
         .then(events =>
           expect(events).toEqual([
             [
@@ -145,11 +145,69 @@ describe('xread', () => {
     }
   )
 
-  it('should block reads with a time out', () => {
-    return redis.xread('BLOCK', '500', 'STREAMS', 'stream', '$').then(row => {
-      expect(row).toBe(null)
-    })
+  it('should block reads on a stream with a time out', () => {
+    const redis = new Redis()
+    const before = performance.now()
+    return redis
+      .xread('BLOCK', '500', 'STREAMS', 'empty-stream', '$')
+      .then(row => {
+        const after = performance.now()
+        expect(after - before >= 500).toBe(true)
+        expect(row).toBe(null)
+      })
   })
+
+  it('should block reads on multiple streams with a time out', () => {
+    const redis = new Redis()
+    const before = performance.now()
+    return redis
+      .xread(
+        'BLOCK',
+        '500',
+        'STREAMS',
+        'empty-stream',
+        'empty-stream-2',
+        '$',
+        '$'
+      )
+      .then(row => {
+        const after = performance.now()
+        expect(after - before >= 500).toBe(true)
+        expect(row).toBe(null)
+      })
+  })
+
+  // @TODO Rewrite test so it runs on a real Redis instance
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'should block until data is provided and return',
+    () => {
+      const redis = new Redis()
+      const before = performance.now()
+
+      setTimeout(() => {
+        return redis.xadd('empty-stream-2', '*', 'key', 'val')
+      }, 100)
+
+      return redis
+        .xread(
+          'BLOCK',
+          '500',
+          'STREAMS',
+          'empty-stream',
+          'empty-stream-2',
+          '$',
+          '$'
+        )
+        .then(row => {
+          const after = performance.now()
+          expect(after - before >= 100).toBe(true)
+          expect(row).toEqual([
+            ['empty-stream-2', [['1-0', ['key', 'val']]]],
+            ['empty-stream', []],
+          ])
+        })
+    }
+  )
 
   // @TODO Rewrite test so it runs on a real Redis instance
   ;(process.env.IS_E2E ? it.skip : it)(
@@ -192,7 +250,7 @@ describe('xread', () => {
       .xread('BLOCK', '0', 'STREAMS', 'stream', 'other-stream', '$')
       .catch(err =>
         expect(err.message).toBe(
-          "ERR Unbalanced XREAD list of streams: for each stream key an ID or '$' must be specified."
+          "ERR Unbalanced 'xread' list of streams: for each stream key an ID or '$' must be specified."
         )
       )
   })

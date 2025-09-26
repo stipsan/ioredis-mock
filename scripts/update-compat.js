@@ -2,7 +2,6 @@ require('@babel/register')
 const path = require('path')
 const fs = require('fs')
 const redis = require('ioredis')
-const prettier = require('prettier')
 const { list } = require('../data/command-list.json')
 const RedisMock = require('../src')
 
@@ -125,7 +124,7 @@ ${footerLinks}`
 
 fs.writeFile(
   path.resolve(__dirname, '..', 'compat.md'),
-  prettier.format(tableMd, { parser: 'markdown' }),
+  tableMd,
   'utf8',
   err => {
     if (err) throw err

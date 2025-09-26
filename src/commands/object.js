@@ -7,7 +7,7 @@ function encoding(key) {
     if ([...val].every(n => n === parseInt(n, 10).toString())) {
       return 'intset'
     }
-    return 'hashtable'
+    return 'listpack'
   }
 
   if (val instanceof Map) {
@@ -15,7 +15,7 @@ function encoding(key) {
   }
 
   if (Array.isArray(val)) {
-    return 'quicklist'
+    return 'listpack'
   }
 
   if (typeof val.valueOf() === 'string') {
@@ -50,7 +50,7 @@ export function object(_subcommand, key, ...args) {
       '    Return the number of references of the value associated with the specified',
       '    <key>.',
       'HELP',
-      '    Prints this help.',
+      '    Print this help.',
     ]
   }
 

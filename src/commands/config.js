@@ -19,7 +19,7 @@ export function config(_subcommand, ...args) {
       'REWRITE',
       '    Rewrite the configuration file.',
       'HELP',
-      '    Prints this help.',
+      '    Print this help.',
     ]
   }
 
