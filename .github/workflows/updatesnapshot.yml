@@ -18,6 +18,9 @@ jobs:
     name: Are snapshots up to date? 🤔
     runs-on: ubuntu-latest
     if: github.repository == 'stipsan/ioredis-mock'
+    permissions:
+      contents: write
+      pull-requests: write
     services:
       redis:
         image: redis:7.2.1
