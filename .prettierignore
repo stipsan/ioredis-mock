@@ -4,3 +4,4 @@ coverage
 junit
 browser.js
 data
+.changeset/*.md
