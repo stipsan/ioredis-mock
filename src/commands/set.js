@@ -1,5 +1,5 @@
 import { convertStringToBuffer } from '../commands-utils/convertStringToBuffer'
-import { expire } from './index'
+import { expire, expireat, pexpire, pexpireat } from './index'
 
 function createGroupedArray(arr, groupSize) {
   const groups = []
@@ -34,10 +34,16 @@ export function set(key, value, ...options) {
   this.data.set(key, value)
 
   const expireOptions = new Map(createGroupedArray(filteredOptions, 2))
-  const ttlSeconds = expireOptions.get('EX') || expireOptions.get('PX') / 1000.0
-
-  if (ttlSeconds) {
-    expire.call(this, key, ttlSeconds)
+  
+  // Handle different expiration options
+  if (expireOptions.has('EX')) {
+    expire.call(this, key, expireOptions.get('EX'))
+  } else if (expireOptions.has('PX')) {
+    pexpire.call(this, key, expireOptions.get('PX'))
+  } else if (expireOptions.has('EXAT')) {
+    expireat.call(this, key, expireOptions.get('EXAT'))
+  } else if (expireOptions.has('PXAT')) {
+    pexpireat.call(this, key, expireOptions.get('PXAT'))
   } else {
     this.expires.delete(key)
   }
