@@ -1,6 +1,6 @@
 {
   "name": "ioredis-mock",
-  "version": "8.9.0",
+  "version": "8.9.1",
   "description": "This library emulates ioredis by performing all operations in-memory.",
   "keywords": [
     "fakeredis",
@@ -52,7 +52,6 @@
     "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:@ioredis/commands --external:@ioredis/as-callback --external:ioredis --external:./data/*.json --sourcemap --minify-syntax",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "prettier --check . && eslint .",
     "lint:fix": "prettier --write . && eslint . --fix",
     "prepublishOnly": "npm run build:lib && npm run build:browser.js -- --minify-whitespace --minify-identifiers",
@@ -62,7 +61,8 @@
     "test:e2e": "IS_E2E=true jest --config jest.config.redis.js --runInBand",
     "test:integration": "jest --config jest.config.integration.js",
     "update-compat": "node scripts/update-compat && npx prettier --write compat.md && git add compat.md README.md && git commit --quiet -m \"docs: Update feature compat table\" &> /dev/null || true",
-    "update-data": "node scripts/update-data"
+    "update-data": "node scripts/update-data",
+    "release": "changeset publish"
   },
   "prettier": {
     "arrowParens": "avoid",
@@ -83,11 +83,11 @@
     "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-env": "^7.22.20",
     "@babel/register": "^7.22.15",
-    "@sanity/semantic-release-preset": "^4.1.4",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.7",
     "browser-process-hrtime": "^1.0.0",
     "buffer": "^6.0.3",
     "chance": "^1.1.11",
-    "coveralls": "^3.1.1",
     "crypto-browserify": "^3.12.0",
     "esbuild": "^0.19.4",
     "eslint": "^8.50.0",
@@ -125,7 +125,5 @@
     "node": ">=12.22"
   },
   "runkitExampleFilename": "example.js",
-  "publishConfig": {
-    "provenance": true
-  }
+  "packageManager": "npm@11.6.1"
 }

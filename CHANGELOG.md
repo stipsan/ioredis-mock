@@ -1,9 +1,10 @@
-<!-- markdownlint-disable --><!-- textlint-disable -->
+# ioredis-mock
 
-# 📓 Changelog
+## 8.9.1
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+### Patch Changes
+
+- [`f0dc728`](https://github.com/stipsan/ioredis-mock/commit/f0dc7280cf65461423e0e43a01e9e3317bba2e34) Thanks [@stipsan](https://github.com/stipsan)! - Setup trusted publishing
 
 ## [8.9.0](https://github.com/stipsan/ioredis-mock/compare/v8.8.3...v8.9.0) (2023-09-29)
 
