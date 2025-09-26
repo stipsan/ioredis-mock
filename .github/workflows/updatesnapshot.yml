@@ -2,6 +2,7 @@ name: Update snapshots
 
 on:
   push:
+    branches: [main]
     paths:
       # If renovatebot is updating Redis it'll touch these files
       - '.github/workflows/*.yml'
