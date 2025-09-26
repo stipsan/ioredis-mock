@@ -48,7 +48,7 @@
     "example.js"
   ],
   "scripts": {
-    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap --external:ioredis/built/command",
+    "build:browser.js": "esbuild src/index.js --bundle --format=esm --outfile=browser.js --define:process=undefined --define:global.process=undefined --define:process.env.FENGARICONF=undefined --define:global=window  --define:process.browser=true --define:process.nextTick=nextTickShim --define:process.hrtime=hrtimeShim --define:setImmediate=nextTickShim --inject:./browser-shims.js --minify-syntax --sourcemap --external:ioredis/built/command --external:fs --external:path",
     "build:lib": "npx rimraf lib && esbuild src/index.js --outfile=lib/index.js --platform=node --target=node12 --bundle --external:fengari --external:fengari-interop --external:@ioredis/commands --external:@ioredis/as-callback --external:ioredis --external:./data/*.json --sourcemap --minify-syntax",
     "precoverage": "npx rimraf coverage && npx mkdirp coverage",
     "coverage": "jest --coverage",
