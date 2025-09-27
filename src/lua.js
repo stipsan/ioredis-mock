@@ -84,8 +84,6 @@ const makeReturnValue = L => {
   }
 
   const arrayLength = getTopLength(L)
-
-  const table = interop.tojs(L, -1)
   const retVal = []
 
   if (arrayLength === 0) {
@@ -93,12 +91,15 @@ const makeReturnValue = L => {
     return retVal
   }
 
+  // Make a copy of the table reference since we'll be manipulating the stack
+  const tableIndex = lua.lua_gettop(L)
+  
   for (let i = 1; i <= arrayLength; i++) {
-    interop.push(L, table.get(i))
-    retVal.push(makeReturnValue(L))
+    lua.lua_rawgeti(L, tableIndex, i)  // Get table[i], pushes result on stack
+    retVal.push(makeReturnValue(L))    // This pops the result
   }
 
-  lua.lua_pop(L, 1)
+  lua.lua_pop(L, 1)  // Pop the original table
   return retVal
 }
 

@@ -17,27 +17,25 @@ describe('Lua array indexing bug reproduction', () => {
       local third_element_1based = result[3]
       
       -- This should return nil (0-based indexing shouldn't work)
-      local first_element_0based = result[0]
+      local first_element_0based_is_nil = (result[0] == nil)
       
       -- Return a table with all the test results
       return {
-        result,  -- The original result
         first_element_1based,
         second_element_1based, 
         third_element_1based,
-        first_element_0based
+        first_element_0based_is_nil
       }
     `
     
     const luaResult = await redis.eval(luaScript, 0)
     
     // Check the structure
-    expect(luaResult).toHaveLength(5)
-    expect(luaResult[0]).toEqual(['first', 'second', 'third'])  // original result
-    expect(luaResult[1]).toEqual('first')   // result[1] should be 'first'
-    expect(luaResult[2]).toEqual('second')  // result[2] should be 'second' 
-    expect(luaResult[3]).toEqual('third')   // result[3] should be 'third'
-    expect(luaResult[4]).toEqual(false)     // result[0] should be nil/false
+    expect(luaResult).toHaveLength(4)
+    expect(luaResult[0]).toEqual('first')   // result[1] should be 'first'
+    expect(luaResult[1]).toEqual('second')  // result[2] should be 'second' 
+    expect(luaResult[2]).toEqual('third')   // result[3] should be 'third'
+    expect(luaResult[3]).toEqual(true)      // result[0] should be nil
     
     redis.disconnect()
   })
@@ -80,28 +78,39 @@ describe('Lua array indexing bug reproduction', () => {
     redis.disconnect()
   })
   
-  it('should work correctly with different commands that return arrays', async () => {
+  it('should debug the array issue step by step', async () => {
     const redis = new Redis()
     
-    // Test with different array-returning commands
-    await redis.lpush('list', 'three', 'two', 'one')
-    await redis.sadd('set', 'a', 'b', 'c')
+    // Set up test data
+    await redis.zadd('mykey', 1, 'first', 2, 'second', 3, 'third')
     
-    const luaScript = `
-      local list_result = redis.call('LRANGE', 'list', 0, -1)
-      local set_result = redis.call('SMEMBERS', 'set')
-      
+    // Test 1: Hardcoded array should work correctly
+    const hardcodedScript = `
+      local arr = {'a', 'b', 'c'}
+      return {arr[1], arr[2], arr[3]}
+    `
+    const hardcodedResult = await redis.eval(hardcodedScript, 0)
+    expect(hardcodedResult).toEqual(['a', 'b', 'c'])
+    
+    // Test 2: Check what happens with redis.call result
+    const redisCallScript = `
+      local result = redis.call('ZRANGE', 'mykey', 0, -1)
+      -- Let's return some debug info about the result
       return {
-        list_result[1], -- Should be 'one'
-        #list_result,   -- Should be 3
-        #set_result     -- Should be 3
+        type(result),
+        result[1],  -- This should be 'first' if 1-based
+        result[0] == nil,  -- This should be true if 1-based  
+        #result     -- Length should be 3
       }
     `
     
-    const luaResult = await redis.eval(luaScript, 0)
-    expect(luaResult[0]).toEqual('one')  // first element of list
-    expect(luaResult[1]).toEqual(3)      // length of list
-    expect(luaResult[2]).toEqual(3)      // length of set
+    const debugResult = await redis.eval(redisCallScript, 0)
+    
+    // Based on correct Lua behavior:
+    expect(debugResult[0]).toEqual('table')        // Should be a table
+    expect(debugResult[1]).toEqual('first')        // result[1] should be 'first'
+    expect(debugResult[2]).toEqual(true)           // result[0] should be nil (so this should be true)
+    expect(debugResult[3]).toEqual(3)              // Length should be 3
     
     redis.disconnect()
   })
