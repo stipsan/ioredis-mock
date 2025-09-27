@@ -1,5 +1,11 @@
 # ioredis-mock
 
+## 8.12.2
+
+### Patch Changes
+
+- [#1448](https://github.com/stipsan/ioredis-mock/pull/1448) [`1df7dbb`](https://github.com/stipsan/ioredis-mock/commit/1df7dbbe32b370b67f4b546e08cb913467b85190) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix keyData missing database number
+
 ## 8.12.1
 
 ### Patch Changes
