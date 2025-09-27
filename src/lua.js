@@ -83,6 +83,7 @@ const makeReturnValue = L => {
     return retVal
   }
 
+  // This is a proper Lua table that should be converted to a JavaScript array
   const arrayLength = getTopLength(L)
   const retVal = []
 
@@ -96,7 +97,8 @@ const makeReturnValue = L => {
   
   for (let i = 1; i <= arrayLength; i++) {
     lua.lua_rawgeti(L, tableIndex, i)  // Get table[i], pushes result on stack
-    retVal.push(makeReturnValue(L))    // This pops the result
+    const element = makeReturnValue(L) // This should pop the result
+    retVal.push(element)
   }
 
   lua.lua_pop(L, 1)  // Pop the original table
