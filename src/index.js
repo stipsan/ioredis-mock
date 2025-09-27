@@ -23,6 +23,7 @@ const defaultOptions = {
   notifyKeyspaceEvents: '', // string pattern as specified in https://redis.io/topics/notifications#configuration e.g. 'gxK'
   host: 'localhost',
   port: 6379,
+  db: 0,
 }
 
 const pathToHostPort = path => {
@@ -88,7 +89,7 @@ class RedisMock extends EventEmitter {
 
     const optionsWithDefault = { ...defaultOptions, ...getOptions(...args) }
 
-    this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}`
+    this.keyData = `${optionsWithDefault.host}:${optionsWithDefault.port}/${optionsWithDefault.db}`
 
     if (!contextMap.get(this.keyData)) {
       const context = createContext(optionsWithDefault.keyPrefix)
