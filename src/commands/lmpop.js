@@ -9,7 +9,7 @@ export function lmpop(...args) {
   
   const numKeys = parseInt(args[0], 10)
   
-  if (isNaN(numKeys) || numKeys < 1) {
+  if (Number.isNaN(numKeys) || numKeys < 1) {
     throw new Error('ERR numkeys should be greater than 0')
   }
   
@@ -34,7 +34,7 @@ export function lmpop(...args) {
         throw new Error('ERR syntax error')
       }
       const parsedCount = parseInt(remainingArgs[1], 10)
-      if (isNaN(parsedCount) || parsedCount < 1) {
+      if (Number.isNaN(parsedCount) || parsedCount < 1) {
         throw new Error('ERR count should be greater than 0')
       }
       count = parsedCount

@@ -1,20 +1,28 @@
-import Redis from '../../../src'
+import Redis from 'ioredis'
 
-// Test both the direct import and the built-in command
-const COMMANDS_UNDER_TEST = ['lmpop']
+// eslint-disable-next-line import/no-relative-parent-imports
+import { runTwinSuite } from '../../../test-utils'
 
-COMMANDS_UNDER_TEST.forEach(command => {
+runTwinSuite('lmpop', command => {
   describe(command, () => {
-    let redis
+    const redis = new Redis()
+    afterAll(() => {
+      redis.disconnect()
+    })
 
     beforeEach(async () => {
-      redis = new Redis()
       await redis.flushall()
     })
 
-    afterEach(() => {
-      redis.disconnect()
-    })
+    // Helper function to normalize LMPOP result for buffer/string variants
+    const normalizeResult = (result) => {
+      if (result === null) return null
+      const [key, elements] = result
+      return [
+        Buffer.isBuffer(key) ? key.toString() : key,
+        elements.map(v => Buffer.isBuffer(v) ? v.toString() : v),
+      ]
+    }
 
     it('should pop from the first non-empty list using LEFT direction', async () => {
       await redis.rpush('empty', 'should_not_be_here')
@@ -23,11 +31,10 @@ COMMANDS_UNDER_TEST.forEach(command => {
       await redis.rpush('list2', '1', '2', '3')
 
       const result = await redis[command](3, 'empty', 'list1', 'list2', 'LEFT')
-      
-      expect(result).toEqual(['list1', ['a']])
+      expect(normalizeResult(result)).toEqual(['list1', ['a']])
       
       const remaining = await redis.lrange('list1', 0, -1)
-      expect(remaining).toEqual(['b', 'c'])
+      expect(remaining.map(v => Buffer.isBuffer(v) ? v.toString() : v)).toEqual(['b', 'c'])
     })
 
     it('should pop from the first non-empty list using RIGHT direction', async () => {
@@ -35,22 +42,20 @@ COMMANDS_UNDER_TEST.forEach(command => {
       await redis.rpush('list2', '1', '2', '3')
 
       const result = await redis[command](2, 'list1', 'list2', 'RIGHT')
-      
-      expect(result).toEqual(['list1', ['c']])
+      expect(normalizeResult(result)).toEqual(['list1', ['c']])
       
       const remaining = await redis.lrange('list1', 0, -1)
-      expect(remaining).toEqual(['a', 'b'])
+      expect(remaining.map(v => Buffer.isBuffer(v) ? v.toString() : v)).toEqual(['a', 'b'])
     })
 
     it('should pop multiple elements with COUNT parameter', async () => {
       await redis.rpush('list1', 'a', 'b', 'c', 'd', 'e')
 
       const result = await redis[command](1, 'list1', 'LEFT', 'COUNT', 3)
-      
-      expect(result).toEqual(['list1', ['a', 'b', 'c']])
+      expect(normalizeResult(result)).toEqual(['list1', ['a', 'b', 'c']])
       
       const remaining = await redis.lrange('list1', 0, -1)
-      expect(remaining).toEqual(['d', 'e'])
+      expect(remaining.map(v => Buffer.isBuffer(v) ? v.toString() : v)).toEqual(['d', 'e'])
     })
 
     it('should pop all elements if COUNT is larger than list size', async () => {
@@ -58,7 +63,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](1, 'list1', 'RIGHT', 'COUNT', 5)
       
-      expect(result).toEqual(['list1', ['y', 'x']])
+      expect(normalizeResult(result)).toEqual(['list1', ['y', 'x']])
       
       // List should be deleted when empty
       expect(await redis.exists('list1')).toBe(0)
@@ -88,7 +93,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](3, 'list1', 'list2', 'list3', 'LEFT')
       
-      expect(result).toEqual(['list2', ['first']])
+      expect(normalizeResult(result)).toEqual(['list2', ['first']])
       
       const remaining = await redis.lrange('list2', 0, -1)
       expect(remaining).toEqual(['second'])
@@ -99,7 +104,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](1, 'list1', 'LEFT')
       
-      expect(result).toEqual(['list1', ['only']])
+      expect(normalizeResult(result)).toEqual(['list1', ['only']])
       expect(await redis.exists('list1')).toBe(0)
     })
 
@@ -107,10 +112,10 @@ COMMANDS_UNDER_TEST.forEach(command => {
       await redis.rpush('list1', 'a', 'b')
 
       const result1 = await redis[command](1, 'list1', 'left')
-      expect(result1).toEqual(['list1', ['a']])
+      expect(normalizeResult(result1)).toEqual(['list1', ['a']])
 
       const result2 = await redis[command](1, 'list1', 'Right')
-      expect(result2).toEqual(['list1', ['b']])
+      expect(normalizeResult(result2)).toEqual(['list1', ['b']])
     })
 
     it('should throw error for invalid numkeys', async () => {
@@ -203,7 +208,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](3, 'list1', 'list2', 'list3', 'RIGHT', 'COUNT', 2)
       
-      expect(result).toEqual(['list2', ['c', 'b']])
+      expect(normalizeResult(result)).toEqual(['list2', ['c', 'b']])
       
       const remaining = await redis.lrange('list2', 0, -1)
       expect(remaining).toEqual(['a'])
@@ -214,7 +219,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](1, 'list1', 'LEFT', 'COUNT', 1000)
       
-      expect(result).toEqual(['list1', ['a', 'b']])
+      expect(normalizeResult(result)).toEqual(['list1', ['a', 'b']])
       expect(await redis.exists('list1')).toBe(0)
     })
 
@@ -225,7 +230,7 @@ COMMANDS_UNDER_TEST.forEach(command => {
 
       const result = await redis[command](2, 'list1', 'list2', 'LEFT')
       
-      expect(result).toEqual(['list1', ['a']])
+      expect(normalizeResult(result)).toEqual(['list1', ['a']])
     })
 
     // Test buffer variant if available
@@ -235,9 +240,11 @@ COMMANDS_UNDER_TEST.forEach(command => {
       if (typeof redis[`${command}Buffer`] === 'function') {
         const result = await redis[`${command}Buffer`](1, 'list1', 'LEFT')
         expect(result).toBeInstanceOf(Array)
-        expect(result[0]).toEqual(Buffer.from('list1'))
+        expect(Buffer.isBuffer(result[0])).toBe(true)
+        expect(result[0].toString()).toBe('list1')
         expect(result[1]).toBeInstanceOf(Array)
-        expect(result[1][0]).toEqual(Buffer.from('hello'))
+        expect(Buffer.isBuffer(result[1][0])).toBe(true)
+        expect(result[1][0].toString()).toBe('hello')
       }
     })
   })
