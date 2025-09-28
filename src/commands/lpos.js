@@ -69,7 +69,8 @@ export function lpos(key, element, ...args) {
   
   // Handle COUNT
   if (count !== null) {
-    return count === 0 ? [] : selectedMatches.slice(0, count)
+    // COUNT 0 means return all matches, not zero matches
+    return count === 0 ? selectedMatches : selectedMatches.slice(0, count)
   } else {
     return selectedMatches.length > 0 ? selectedMatches[0] : null
   }

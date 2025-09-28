@@ -67,7 +67,7 @@ runTwinSuite('lpos', command => {
       await redis.del('mylist')
       await redis.rpush('mylist', 'a', 'b', 'a', 'b', 'a') // [a, b, a, b, a]
       
-      expect(await redis[command]('mylist', 'a', 'COUNT', 0)).toEqual([])
+      expect(await redis[command]('mylist', 'a', 'COUNT', 0)).toEqual([0, 2, 4])
       expect(await redis[command]('mylist', 'a', 'COUNT', 1)).toEqual([0])
       expect(await redis[command]('mylist', 'a', 'COUNT', 2)).toEqual([0, 2])
       expect(await redis[command]('mylist', 'a', 'COUNT', 3)).toEqual([0, 2, 4])
