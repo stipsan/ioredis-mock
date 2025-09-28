@@ -64,15 +64,11 @@ const callToRedisCommand = vm =>
     }
     if (!!result || result === 0) {
       if (Array.isArray(result)) {
-        // fix for one-based indices
-        result.unshift(null)
-        // https://github.com/fengari-lua/fengari-interop/blob/1626687fb15452cdd82ee522955dd1f144ea7a68/src/js.js#L845
-        result[Symbol.for('__len')] = function () {
-          const arr = this
-          return arr.length - 1
-        }
+        // Use vm.utils.push to create proper Lua tables with 1-based indexing
+        vm.utils.push(result)
+      } else {
+        interop.push(vm.L, result)
       }
-      interop.push(vm.L, result)
       return 1
     }
     return 0
