@@ -1,4 +1,4 @@
-## Supported commands ![Commands Coverage: 67%](https://img.shields.io/badge/coverage-67%25-orange.svg)
+## Supported commands ![Commands Coverage: 68%](https://img.shields.io/badge/coverage-68%25-orange.svg)
 
 > PRs welcome :heart:
 
@@ -11,8 +11,8 @@
 | [bgrewriteaof]              | :white_check_mark: | :white_check_mark: |
 | [bgsave]                    | :white_check_mark: | :white_check_mark: |
 | [bitcount]                  | :white_check_mark: | :white_check_mark: |
-| [bitfield]                  | :white_check_mark: |        :x:         |
-| [bitfield_ro]               | :white_check_mark: |        :x:         |
+| [bitfield]                  | :white_check_mark: | :white_check_mark: |
+| [bitfield_ro]               | :white_check_mark: | :white_check_mark: |
 | [bitop]                     | :white_check_mark: |        :x:         |
 | [bitpos]                    | :white_check_mark: |        :x:         |
 | [blmove]                    | :white_check_mark: |        :x:         |
