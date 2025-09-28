@@ -1,5 +1,15 @@
 # ioredis-mock
 
+## 8.13.0
+
+### Minor Changes
+
+- [#1454](https://github.com/stipsan/ioredis-mock/pull/1454) [`10dd91b`](https://github.com/stipsan/ioredis-mock/commit/10dd91bc0319bcb88a8664fdfd2d958028953f8c) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Implement LMPOP
+
+### Patch Changes
+
+- [#1448](https://github.com/stipsan/ioredis-mock/pull/1448) [`1df7dbb`](https://github.com/stipsan/ioredis-mock/commit/1df7dbbe32b370b67f4b546e08cb913467b85190) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Fix keyData missing database number
+
 ## 8.12.1
 
 ### Patch Changes
