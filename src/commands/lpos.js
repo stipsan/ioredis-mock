@@ -4,21 +4,23 @@ export function lpos(key, element, ...args) {
   if (this.data.has(key) && !(this.data.get(key) instanceof Array)) {
     throw new Error(`Key ${key} does not contain a list`)
   }
-  
+
   const list = this.data.get(key) || []
-  
+
   // Parse optional arguments
   let rank = 1 // default: first occurrence
   let count = null // default: return single index
   let maxlen = list.length // default: search entire list
-  
+
   for (let i = 0; i < args.length; i++) {
     const arg = String(args[i]).toUpperCase()
-    
+
     if (arg === 'RANK' && i + 1 < args.length) {
       rank = parseInt(args[i + 1], 10)
       if (rank === 0) {
-        throw new Error('ERR RANK can not be zero: use 1 to start from the first match, 2 from the second ... or use negative to start from the end of the list')
+        throw new Error(
+          'ERR RANK can not be zero: use 1 to start from the first match, 2 from the second ... or use negative to start from the end of the list'
+        )
       }
       i++ // skip the rank value
     } else if (arg === 'COUNT' && i + 1 < args.length) {
@@ -35,21 +37,21 @@ export function lpos(key, element, ...args) {
       i++ // skip the maxlen value
     }
   }
-  
+
   // Search for the element
   const matches = []
   const searchLength = Math.min(maxlen, list.length)
-  
+
   for (let i = 0; i < searchLength; i++) {
     if (list[i] === element) {
       matches.push(i)
     }
   }
-  
+
   if (matches.length === 0) {
     return count !== null ? [] : null
   }
-  
+
   // Handle RANK selection
   let selectedMatches
   if (rank > 0) {
@@ -66,7 +68,7 @@ export function lpos(key, element, ...args) {
     }
     selectedMatches = matches.slice(0, matches.length - absRank + 1).reverse()
   }
-  
+
   // Handle COUNT
   if (count !== null) {
     // COUNT 0 means return all matches, not zero matches
