@@ -1,5 +1,11 @@
 # ioredis-mock
 
+## 8.13.1
+
+### Patch Changes
+
+- [#1463](https://github.com/stipsan/ioredis-mock/pull/1463) [`6deb809`](https://github.com/stipsan/ioredis-mock/commit/6deb8098a68954b1167bd58a7ffad9335ae93fc1) Thanks [@github-actions](https://github.com/apps/github-actions)! - Implement LPOS command (#1456)
+
 ## 8.13.0
 
 ### Minor Changes
