@@ -96,7 +96,7 @@
 | [lmpop]                     | :white_check_mark: | :white_check_mark: |
 | [lolwut]                    | :white_check_mark: | :white_check_mark: |
 | [lpop]                      | :white_check_mark: | :white_check_mark: |
-| [lpos]                      | :white_check_mark: |        :x:         |
+| [lpos]                      | :white_check_mark: | :white_check_mark: |
 | [lpush]                     | :white_check_mark: | :white_check_mark: |
 | [lpushx]                    | :white_check_mark: | :white_check_mark: |
 | [lrange]                    | :white_check_mark: | :white_check_mark: |
