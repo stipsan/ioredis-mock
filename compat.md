@@ -11,8 +11,8 @@
 | [bgrewriteaof]              | :white_check_mark: | :white_check_mark: |
 | [bgsave]                    | :white_check_mark: | :white_check_mark: |
 | [bitcount]                  | :white_check_mark: | :white_check_mark: |
-| [bitfield]                  | :white_check_mark: |        :x:         |
-| [bitfield_ro]               | :white_check_mark: |        :x:         |
+| [bitfield]                  | :white_check_mark: | :white_check_mark: |
+| [bitfield_ro]               | :white_check_mark: | :white_check_mark: |
 | [bitop]                     | :white_check_mark: |        :x:         |
 | [bitpos]                    | :white_check_mark: |        :x:         |
 | [blmove]                    | :white_check_mark: |        :x:         |
