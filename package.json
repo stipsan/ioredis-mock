@@ -89,7 +89,7 @@
     "buffer": "^6.0.3",
     "chance": "^1.1.13",
     "crypto-browserify": "^3.12.1",
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.25.11",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.2",
