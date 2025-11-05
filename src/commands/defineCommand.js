@@ -55,6 +55,16 @@ const callToRedisCommand = vm =>
       if (name === 'hgetall') {
         result = [].concat(...Object.entries(result))
       }
+      // ensure `false` response when key is undefined for HMGET
+      // https://redis.io/docs/latest/develop/interact/programmability/lua-api/#resp2-to-lua-type-conversion
+      if (name === 'hmget') {
+        result = result.map((value) => {
+          if (typeof value === 'object' && String(value) === 'null') {
+            return false;
+          }
+          return value;
+        })
+      }
     } catch (err) {
       if (!returnError) {
         throw err
