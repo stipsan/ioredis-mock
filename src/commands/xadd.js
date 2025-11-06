@@ -25,18 +25,40 @@ export function xadd(stream, id, ...args) {
     keyId = args.shift()
   }
 
-  const eventId = `${
-    keyId === '*' ? this.data.get(stream).length + 1 : keyId
-  }-0`
   const list = this.data.get(stream)
+  // Last timestamp is relevant for auto generating valid ids
+  let lastTimestamp = 0
+  let lastCounter = 0
+  if (list.length > 0) {
+    ;[lastTimestamp, lastCounter] = list[list.length - 1][0].split('-')
+  }
 
-  if (list.length > 0 && list[0][0] === `${eventId}`) {
+  let [unixTimestamp, counter] = keyId.split('-')
+  if (unixTimestamp === '*') {
+    unixTimestamp =
+      Number(lastTimestamp) > Date.now() ? Number(lastTimestamp) : Date.now()
+  }
+  if (counter === undefined || counter === '*') {
+    counter =
+      Number(lastTimestamp) === Number(unixTimestamp)
+        ? Number(lastCounter) + 1
+        : 0
+  }
+
+  const sequentialIdProvided =
+    Number(unixTimestamp) > Number(lastTimestamp) ||
+    (Number(unixTimestamp) === Number(lastTimestamp) &&
+      Number(counter) >= Number(lastCounter))
+  if (!sequentialIdProvided) {
     throw new Error(
       'ERR The ID specified in XADD is equal or smaller than the target stream top item'
     )
   }
 
-  this.data.set(`stream:${stream}:${eventId}`, { polled: false })
+  const eventId = `${unixTimestamp}-${counter}`
+  this.data.set(`stream:${stream}:${eventId}`, {
+    polled: false,
+  })
 
   let newData = list.concat([[`${eventId}`, [...args]]])
   if (threshold && newData.length > threshold) {
