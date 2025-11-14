@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`info should return default info with CRLF 1`] = `"redis_version:8.2.1"`;
+exports[`info should return default info with CRLF 1`] = `"redis_version:8.2.2"`;
 
 exports[`info should return enough info to be useful 1`] = `
 [
   "# Server
 ",
-  "redis_version:8.2.1
+  "redis_version:8.2.2
 ",
   "redis_git_sha1:00000000
 ",
   "redis_git_dirty:1
 ",
-  "redis_build_id:b793b67ab490064b
+  "redis_build_id:fe8f07ffb18b0e6d
 ",
   "redis_mode:standalone
 ",
@@ -32,11 +32,11 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "process_supervised:no
 ",
-  "run_id:556514a650f1caea3bd6d85cfe9e7ebb8420d8f8
+  "run_id:6855c28023e23d180be3884b09854f4eee8cfc35
 ",
   "tcp_port:6379
 ",
-  "server_time_usec:1758901048395474
+  "server_time_usec:1761753594306390
 ",
   "uptime_in_seconds:78
 ",
@@ -46,7 +46,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "configured_hz:10
 ",
-  "lru_clock:14070584
+  "lru_clock:145914
 ",
   "executable:/tmp/redis-server
 ",
@@ -90,35 +90,35 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "# Memory
 ",
-  "used_memory:4303544
+  "used_memory:4331024
 ",
-  "used_memory_human:4.10M
+  "used_memory_human:4.13M
 ",
-  "used_memory_rss:27099136
+  "used_memory_rss:27553792
 ",
-  "used_memory_rss_human:25.84M
+  "used_memory_rss_human:26.28M
 ",
-  "used_memory_peak:4372592
+  "used_memory_peak:4400072
 ",
-  "used_memory_peak_human:4.17M
+  "used_memory_peak_human:4.20M
 ",
-  "used_memory_peak_time:1758901048
+  "used_memory_peak_time:1761753594
 ",
-  "used_memory_peak_perc:98.42%
+  "used_memory_peak_perc:98.43%
 ",
-  "used_memory_overhead:1041952
+  "used_memory_overhead:1046856
 ",
-  "used_memory_startup:964480
+  "used_memory_startup:967336
 ",
-  "used_memory_dataset:3261592
+  "used_memory_dataset:3284168
 ",
-  "used_memory_dataset_perc:97.68%
+  "used_memory_dataset_perc:97.64%
 ",
-  "allocator_allocated:5010048
+  "allocator_allocated:5089920
 ",
-  "allocator_active:5423104
+  "allocator_active:5455872
 ",
-  "allocator_resident:8687616
+  "allocator_resident:8720384
 ",
   "allocator_muzzy:0
 ",
@@ -126,11 +126,11 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "total_system_memory_human:15.62G
 ",
-  "used_memory_lua:41984
+  "used_memory_lua:43008
 ",
-  "used_memory_vm_eval:41984
+  "used_memory_vm_eval:43008
 ",
-  "used_memory_lua_human:41.00K
+  "used_memory_lua_human:42.00K
 ",
   "used_memory_scripts_eval:2528
 ",
@@ -140,11 +140,11 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "number_of_libraries:0
 ",
-  "used_memory_vm_functions:32768
+  "used_memory_vm_functions:33792
 ",
-  "used_memory_vm_total:74752
+  "used_memory_vm_total:76800
 ",
-  "used_memory_vm_total_human:73.00K
+  "used_memory_vm_total_human:75.00K
 ",
   "used_memory_functions:192
 ",
@@ -158,21 +158,21 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "maxmemory_policy:noeviction
 ",
-  "allocator_frag_ratio:1.07
+  "allocator_frag_ratio:1.06
 ",
-  "allocator_frag_bytes:320864
+  "allocator_frag_bytes:276960
 ",
   "allocator_rss_ratio:1.60
 ",
   "allocator_rss_bytes:3264512
 ",
-  "rss_overhead_ratio:3.12
+  "rss_overhead_ratio:3.16
 ",
-  "rss_overhead_bytes:18411520
+  "rss_overhead_bytes:18833408
 ",
-  "mem_fragmentation_ratio:6.33
+  "mem_fragmentation_ratio:6.39
 ",
-  "mem_fragmentation_bytes:22815192
+  "mem_fragmentation_bytes:23242368
 ",
   "mem_not_counted_for_evict:0
 ",
@@ -198,7 +198,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "lazyfree_pending_objects:0
 ",
-  "lazyfreed_objects:473
+  "lazyfreed_objects:483
 ",
   "
 ",
@@ -224,7 +224,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "rdb_bgsave_in_progress:0
 ",
-  "rdb_last_save_time:1758901048
+  "rdb_last_save_time:1761753594
 ",
   "rdb_last_bgsave_status:ok
 ",
@@ -234,7 +234,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "rdb_saves:3
 ",
-  "rdb_last_cow_size:385024
+  "rdb_last_cow_size:479232
 ",
   "rdb_last_load_keys_expired:0
 ",
@@ -246,7 +246,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "aof_rewrite_scheduled:0
 ",
-  "aof_last_rewrite_time_sec:0
+  "aof_last_rewrite_time_sec:1
 ",
   "aof_current_rewrite_time_sec:-1
 ",
@@ -258,7 +258,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "aof_last_write_status:ok
 ",
-  "aof_last_cow_size:487424
+  "aof_last_cow_size:475136
 ",
   "module_fork_in_progress:0
 ",
@@ -268,29 +268,29 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "# Threads
 ",
-  "io_thread_0:clients=1,reads=5705,writes=4392
+  "io_thread_0:clients=1,reads=5771,writes=4472
 ",
   "
 ",
   "# Stats
 ",
-  "total_connections_received:1036
+  "total_connections_received:1061
 ",
-  "total_commands_processed:5137
+  "total_commands_processed:5266
 ",
-  "instantaneous_ops_per_sec:269
+  "instantaneous_ops_per_sec:268
 ",
-  "total_net_input_bytes:196570
+  "total_net_input_bytes:201489
 ",
-  "total_net_output_bytes:6632358
+  "total_net_output_bytes:6783720
 ",
   "total_net_repl_input_bytes:0
 ",
   "total_net_repl_output_bytes:0
 ",
-  "instantaneous_input_kbps:9.38
+  "instantaneous_input_kbps:9.36
 ",
-  "instantaneous_output_kbps:393.60
+  "instantaneous_output_kbps:393.17
 ",
   "instantaneous_input_repl_kbps:0.00
 ",
@@ -308,7 +308,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "expired_keys:17
 ",
-  "expired_stale_perc:3.10
+  "expired_stale_perc:2.94
 ",
   "expired_time_cap_reached_count:0
 ",
@@ -324,9 +324,9 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "current_eviction_exceeded_time:0
 ",
-  "keyspace_hits:436
+  "keyspace_hits:452
 ",
-  "keyspace_misses:162
+  "keyspace_misses:170
 ",
   "pubsub_channels:0
 ",
@@ -334,7 +334,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "pubsubshard_channels:0
 ",
-  "latest_fork_usec:429
+  "latest_fork_usec:401
 ",
   "total_forks:2
 ",
@@ -366,9 +366,9 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "dump_payload_sanitizations:0
 ",
-  "total_reads_processed:5705
+  "total_reads_processed:5771
 ",
-  "total_writes_processed:4392
+  "total_writes_processed:4472
 ",
   "io_threaded_reads_processed:0
 ",
@@ -386,15 +386,15 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "reply_buffer_expands:0
 ",
-  "eventloop_cycles:7395
+  "eventloop_cycles:7491
 ",
-  "eventloop_duration_sum:964245
+  "eventloop_duration_sum:1295007
 ",
-  "eventloop_duration_cmd_sum:651704
+  "eventloop_duration_cmd_sum:954838
 ",
-  "instantaneous_eventloop_cycles_per_sec:408
+  "instantaneous_eventloop_cycles_per_sec:389
 ",
-  "instantaneous_eventloop_duration_usec:218
+  "instantaneous_eventloop_duration_usec:160
 ",
   "acl_access_denied_auth:0
 ",
@@ -414,7 +414,7 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "master_failover_state:no-failover
 ",
-  "master_replid:bd22f6d1bed9fdce04031c891ad5e29e55ceb3db
+  "master_replid:bab025cc1d386f2e1261addcda6cb838dcbabb58
 ",
   "master_replid2:0000000000000000000000000000000000000000
 ",
@@ -434,31 +434,31 @@ exports[`info should return enough info to be useful 1`] = `
 ",
   "# CPU
 ",
-  "used_cpu_sys:0.585126
+  "used_cpu_sys:0.670726
 ",
-  "used_cpu_user:0.451766
+  "used_cpu_user:0.502200
 ",
-  "used_cpu_sys_children:0.013692
+  "used_cpu_sys_children:0.016670
 ",
-  "used_cpu_user_children:0.008200
+  "used_cpu_user_children:0.005142
 ",
-  "used_cpu_sys_main_thread:0.542288
+  "used_cpu_sys_main_thread:0.625050
 ",
-  "used_cpu_user_main_thread:0.392513
+  "used_cpu_user_main_thread:0.433674
 ",
   "
 ",
   "# Modules
 ",
-  "module:name=search,ver=80201,api=1,filters=0,usedby=[],using=[ReJSON],options=[handle-io-errors]
+  "module:name=timeseries,ver=80200,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
 ",
   "module:name=vectorset,ver=1,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors|handle-repl-async-load]
 ",
-  "module:name=timeseries,ver=80200,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
+  "module:name=search,ver=80205,api=1,filters=0,usedby=[],using=[ReJSON],options=[handle-io-errors]
 ",
-  "module:name=bf,ver=80200,api=1,filters=0,usedby=[],using=[],options=[]
+  "module:name=bf,ver=80203,api=1,filters=0,usedby=[],using=[],options=[]
 ",
-  "module:name=ReJSON,ver=80200,api=1,filters=0,usedby=[search],using=[],options=[handle-io-errors]
+  "module:name=ReJSON,ver=80201,api=1,filters=0,usedby=[search],using=[],options=[handle-io-errors]
 ",
   "
 ",
@@ -489,23 +489,23 @@ exports[`info should return enough info to be useful 1`] = `
 `;
 
 exports[`info should return the Redis version number used during end-to-end testing 1`] = `
-"redis_version:8.2.1
+"redis_version:8.2.2
 "
 `;
 
-exports[`infoBuffer should return default info with CRLF 1`] = `"redis_version:8.2.1"`;
+exports[`infoBuffer should return default info with CRLF 1`] = `"redis_version:8.2.2"`;
 
 exports[`infoBuffer should return enough info to be useful 1`] = `
 [
   "# Server
 ",
-  "redis_version:8.2.1
+  "redis_version:8.2.2
 ",
   "redis_git_sha1:00000000
 ",
   "redis_git_dirty:1
 ",
-  "redis_build_id:b793b67ab490064b
+  "redis_build_id:fe8f07ffb18b0e6d
 ",
   "redis_mode:standalone
 ",
@@ -525,11 +525,11 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "process_supervised:no
 ",
-  "run_id:556514a650f1caea3bd6d85cfe9e7ebb8420d8f8
+  "run_id:6855c28023e23d180be3884b09854f4eee8cfc35
 ",
   "tcp_port:6379
 ",
-  "server_time_usec:1758901048395474
+  "server_time_usec:1761753594306390
 ",
   "uptime_in_seconds:78
 ",
@@ -539,7 +539,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "configured_hz:10
 ",
-  "lru_clock:14070584
+  "lru_clock:145914
 ",
   "executable:/tmp/redis-server
 ",
@@ -583,35 +583,35 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "# Memory
 ",
-  "used_memory:4303544
+  "used_memory:4331024
 ",
-  "used_memory_human:4.10M
+  "used_memory_human:4.13M
 ",
-  "used_memory_rss:27099136
+  "used_memory_rss:27553792
 ",
-  "used_memory_rss_human:25.84M
+  "used_memory_rss_human:26.28M
 ",
-  "used_memory_peak:4372592
+  "used_memory_peak:4400072
 ",
-  "used_memory_peak_human:4.17M
+  "used_memory_peak_human:4.20M
 ",
-  "used_memory_peak_time:1758901048
+  "used_memory_peak_time:1761753594
 ",
-  "used_memory_peak_perc:98.42%
+  "used_memory_peak_perc:98.43%
 ",
-  "used_memory_overhead:1041952
+  "used_memory_overhead:1046856
 ",
-  "used_memory_startup:964480
+  "used_memory_startup:967336
 ",
-  "used_memory_dataset:3261592
+  "used_memory_dataset:3284168
 ",
-  "used_memory_dataset_perc:97.68%
+  "used_memory_dataset_perc:97.64%
 ",
-  "allocator_allocated:5010048
+  "allocator_allocated:5089920
 ",
-  "allocator_active:5423104
+  "allocator_active:5455872
 ",
-  "allocator_resident:8687616
+  "allocator_resident:8720384
 ",
   "allocator_muzzy:0
 ",
@@ -619,11 +619,11 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "total_system_memory_human:15.62G
 ",
-  "used_memory_lua:41984
+  "used_memory_lua:43008
 ",
-  "used_memory_vm_eval:41984
+  "used_memory_vm_eval:43008
 ",
-  "used_memory_lua_human:41.00K
+  "used_memory_lua_human:42.00K
 ",
   "used_memory_scripts_eval:2528
 ",
@@ -633,11 +633,11 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "number_of_libraries:0
 ",
-  "used_memory_vm_functions:32768
+  "used_memory_vm_functions:33792
 ",
-  "used_memory_vm_total:74752
+  "used_memory_vm_total:76800
 ",
-  "used_memory_vm_total_human:73.00K
+  "used_memory_vm_total_human:75.00K
 ",
   "used_memory_functions:192
 ",
@@ -651,21 +651,21 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "maxmemory_policy:noeviction
 ",
-  "allocator_frag_ratio:1.07
+  "allocator_frag_ratio:1.06
 ",
-  "allocator_frag_bytes:320864
+  "allocator_frag_bytes:276960
 ",
   "allocator_rss_ratio:1.60
 ",
   "allocator_rss_bytes:3264512
 ",
-  "rss_overhead_ratio:3.12
+  "rss_overhead_ratio:3.16
 ",
-  "rss_overhead_bytes:18411520
+  "rss_overhead_bytes:18833408
 ",
-  "mem_fragmentation_ratio:6.33
+  "mem_fragmentation_ratio:6.39
 ",
-  "mem_fragmentation_bytes:22815192
+  "mem_fragmentation_bytes:23242368
 ",
   "mem_not_counted_for_evict:0
 ",
@@ -691,7 +691,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "lazyfree_pending_objects:0
 ",
-  "lazyfreed_objects:473
+  "lazyfreed_objects:483
 ",
   "
 ",
@@ -717,7 +717,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "rdb_bgsave_in_progress:0
 ",
-  "rdb_last_save_time:1758901048
+  "rdb_last_save_time:1761753594
 ",
   "rdb_last_bgsave_status:ok
 ",
@@ -727,7 +727,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "rdb_saves:3
 ",
-  "rdb_last_cow_size:385024
+  "rdb_last_cow_size:479232
 ",
   "rdb_last_load_keys_expired:0
 ",
@@ -739,7 +739,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "aof_rewrite_scheduled:0
 ",
-  "aof_last_rewrite_time_sec:0
+  "aof_last_rewrite_time_sec:1
 ",
   "aof_current_rewrite_time_sec:-1
 ",
@@ -751,7 +751,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "aof_last_write_status:ok
 ",
-  "aof_last_cow_size:487424
+  "aof_last_cow_size:475136
 ",
   "module_fork_in_progress:0
 ",
@@ -761,29 +761,29 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "# Threads
 ",
-  "io_thread_0:clients=1,reads=5705,writes=4392
+  "io_thread_0:clients=1,reads=5771,writes=4472
 ",
   "
 ",
   "# Stats
 ",
-  "total_connections_received:1036
+  "total_connections_received:1061
 ",
-  "total_commands_processed:5137
+  "total_commands_processed:5266
 ",
-  "instantaneous_ops_per_sec:269
+  "instantaneous_ops_per_sec:268
 ",
-  "total_net_input_bytes:196570
+  "total_net_input_bytes:201489
 ",
-  "total_net_output_bytes:6632358
+  "total_net_output_bytes:6783720
 ",
   "total_net_repl_input_bytes:0
 ",
   "total_net_repl_output_bytes:0
 ",
-  "instantaneous_input_kbps:9.38
+  "instantaneous_input_kbps:9.36
 ",
-  "instantaneous_output_kbps:393.60
+  "instantaneous_output_kbps:393.17
 ",
   "instantaneous_input_repl_kbps:0.00
 ",
@@ -801,7 +801,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "expired_keys:17
 ",
-  "expired_stale_perc:3.10
+  "expired_stale_perc:2.94
 ",
   "expired_time_cap_reached_count:0
 ",
@@ -817,9 +817,9 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "current_eviction_exceeded_time:0
 ",
-  "keyspace_hits:436
+  "keyspace_hits:452
 ",
-  "keyspace_misses:162
+  "keyspace_misses:170
 ",
   "pubsub_channels:0
 ",
@@ -827,7 +827,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "pubsubshard_channels:0
 ",
-  "latest_fork_usec:429
+  "latest_fork_usec:401
 ",
   "total_forks:2
 ",
@@ -859,9 +859,9 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "dump_payload_sanitizations:0
 ",
-  "total_reads_processed:5705
+  "total_reads_processed:5771
 ",
-  "total_writes_processed:4392
+  "total_writes_processed:4472
 ",
   "io_threaded_reads_processed:0
 ",
@@ -879,15 +879,15 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "reply_buffer_expands:0
 ",
-  "eventloop_cycles:7395
+  "eventloop_cycles:7491
 ",
-  "eventloop_duration_sum:964245
+  "eventloop_duration_sum:1295007
 ",
-  "eventloop_duration_cmd_sum:651704
+  "eventloop_duration_cmd_sum:954838
 ",
-  "instantaneous_eventloop_cycles_per_sec:408
+  "instantaneous_eventloop_cycles_per_sec:389
 ",
-  "instantaneous_eventloop_duration_usec:218
+  "instantaneous_eventloop_duration_usec:160
 ",
   "acl_access_denied_auth:0
 ",
@@ -907,7 +907,7 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "master_failover_state:no-failover
 ",
-  "master_replid:bd22f6d1bed9fdce04031c891ad5e29e55ceb3db
+  "master_replid:bab025cc1d386f2e1261addcda6cb838dcbabb58
 ",
   "master_replid2:0000000000000000000000000000000000000000
 ",
@@ -927,31 +927,31 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 ",
   "# CPU
 ",
-  "used_cpu_sys:0.585126
+  "used_cpu_sys:0.670726
 ",
-  "used_cpu_user:0.451766
+  "used_cpu_user:0.502200
 ",
-  "used_cpu_sys_children:0.013692
+  "used_cpu_sys_children:0.016670
 ",
-  "used_cpu_user_children:0.008200
+  "used_cpu_user_children:0.005142
 ",
-  "used_cpu_sys_main_thread:0.542288
+  "used_cpu_sys_main_thread:0.625050
 ",
-  "used_cpu_user_main_thread:0.392513
+  "used_cpu_user_main_thread:0.433674
 ",
   "
 ",
   "# Modules
 ",
-  "module:name=search,ver=80201,api=1,filters=0,usedby=[],using=[ReJSON],options=[handle-io-errors]
+  "module:name=timeseries,ver=80200,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
 ",
   "module:name=vectorset,ver=1,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors|handle-repl-async-load]
 ",
-  "module:name=timeseries,ver=80200,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
+  "module:name=search,ver=80205,api=1,filters=0,usedby=[],using=[ReJSON],options=[handle-io-errors]
 ",
-  "module:name=bf,ver=80200,api=1,filters=0,usedby=[],using=[],options=[]
+  "module:name=bf,ver=80203,api=1,filters=0,usedby=[],using=[],options=[]
 ",
-  "module:name=ReJSON,ver=80200,api=1,filters=0,usedby=[search],using=[],options=[handle-io-errors]
+  "module:name=ReJSON,ver=80201,api=1,filters=0,usedby=[search],using=[],options=[handle-io-errors]
 ",
   "
 ",
@@ -982,6 +982,6 @@ exports[`infoBuffer should return enough info to be useful 1`] = `
 `;
 
 exports[`infoBuffer should return the Redis version number used during end-to-end testing 1`] = `
-"redis_version:8.2.1
+"redis_version:8.2.2
 "
 `;
