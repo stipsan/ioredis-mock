@@ -538,6 +538,7 @@ exports[`command list returns a list of all commands 1`] = `
   "_FT.DEBUG|GIT_SHA",
   "_FT.DEBUG|HELP",
   "_FT.DEBUG|IDTODOCID",
+  "_FT.DEBUG|INDEXER_SLEEP_BEFORE_YIELD_MICROS",
   "_FT.DEBUG|INDEXES",
   "_FT.DEBUG|INFO",
   "_FT.DEBUG|INFO_TAGIDX",
@@ -2877,6 +2878,21 @@ exports[`command returns all commands by default 1`] = `
       ],
       [
         "_FT.DEBUG|IDTODOCID",
+        -2,
+        [
+          "readonly",
+          "module",
+        ],
+        0,
+        0,
+        0,
+        [],
+        [],
+        [],
+        [],
+      ],
+      [
+        "_FT.DEBUG|INDEXER_SLEEP_BEFORE_YIELD_MICROS",
         -2,
         [
           "readonly",
@@ -23672,6 +23688,10 @@ exports[`commandBuffer list returns a list of all commands 1`] = `
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 47 49 54 5f 53 48 41>,
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 48 45 4c 50>,
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 49 44 54 4f 44 4f 43 49 44>,
+  Buffer<
+  5f 46 54 2e 44 45 42 55 47 7c 49 4e 44 45 58 45 52 5f 53 4c 45 45 50 5f 42 45
+  46 4f 52 45 5f 59 49 45 4c 44 5f 4d 49 43 52 4f 53
+>,
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 49 4e 44 45 58 45 53>,
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 49 4e 46 4f>,
   Buffer<5f 46 54 2e 44 45 42 55 47 7c 49 4e 46 4f 5f 54 41 47 49 44 58>,
@@ -26080,6 +26100,24 @@ exports[`commandBuffer returns all commands by default 1`] = `
       ],
       [
         Buffer<5f 46 54 2e 44 45 42 55 47 7c 49 44 54 4f 44 4f 43 49 44>,
+        -2,
+        [
+          Buffer<72 65 61 64 6f 6e 6c 79>,
+          Buffer<6d 6f 64 75 6c 65>,
+        ],
+        0,
+        0,
+        0,
+        [],
+        [],
+        [],
+        [],
+      ],
+      [
+        Buffer<
+  5f 46 54 2e 44 45 42 55 47 7c 49 4e 44 45 58 45 52 5f 53 4c 45 45 50 5f 42 45
+  46 4f 52 45 5f 59 49 45 4c 44 5f 4d 49 43 52 4f 53
+>,
         -2,
         [
           Buffer<72 65 61 64 6f 6e 6c 79>,
