@@ -34,4 +34,16 @@ describe('cluster', () => {
       expect(cluster.connected).toEqual(false)
     }
   )
+  ;(process.env.IS_E2E ? it.skip : it)(
+    'can disconnect cluster nodes',
+    () => {
+      const nodes = ['redis://localhost:7001', 'redis://localhost:7002']
+      const cluster = new Redis.Cluster(nodes)
+      expect(cluster.connected).toEqual(true)
+      expect(cluster.nodes().every(node => node.connected)).toBeTruthy()
+      cluster.disconnect();
+      expect(cluster.connected).toEqual(false)
+      expect(cluster.nodes().every(node => node.connected)).toBeFalsy()
+    }
+  )
 })

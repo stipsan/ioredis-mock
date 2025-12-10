@@ -293,6 +293,13 @@ RedisMock.Cluster = class RedisClusterMock extends RedisMock {
     }
     return this.clusterNodes.all // temporary return all until implemented slave and master logic
   }
+
+  disconnect() {
+    super.disconnect();
+    this.clusterNodes.all.forEach(node =>
+      node.disconnect()
+    )
+  }
 }
 
 RedisMock.Pipeline = Pipeline
