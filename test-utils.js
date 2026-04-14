@@ -5,17 +5,19 @@ export function runTwinSuite(commandName, cb) {
   return commands.forEach(command =>
     command === commandName
       ? cb(command, (a, b) => a === b)
-      : cb(
-          command,
-          (a, b) => a.equals(Buffer.from(b))
-          /*
+      : cb(command, (a, b) => {
+          if (a === null && b === null) {
+            return true
+          }
+          return a.equals(Buffer.from(b))
+        }
+        /*
           // @TODO: detect when it happens so we can remove this
           if (Buffer.isBuffer(a)) return a.equals(Buffer.from(b))
 
           console.warn('a was expected to be a Buffer:', typeof a, { a, b })
           return a === b
-          // */
-        )
+          // */)
   )
 }
 
