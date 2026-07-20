@@ -10,11 +10,14 @@ function createGroupedArray(arr, groupSize) {
 }
 
 export function set(key, value, ...options) {
-  const nx = options.indexOf('NX') !== -1
-  const xx = options.indexOf('XX') !== -1
-  const get = options.indexOf('GET') !== -1
+  const normalizedOptions = options.map(option =>
+    typeof option === 'string' ? option.toUpperCase() : option
+  )
+  const nx = normalizedOptions.indexOf('NX') !== -1
+  const xx = normalizedOptions.indexOf('XX') !== -1
+  const get = normalizedOptions.indexOf('GET') !== -1
 
-  const filteredOptions = options.filter(
+  const filteredOptions = normalizedOptions.filter(
     option => option !== 'NX' && option !== 'XX'
   )
 

@@ -40,6 +40,17 @@ runTwinSuite('set', (command, equals) => {
       redis.disconnect()
     })
 
+    it('should handle expiration options case-insensitively', async () => {
+      const redis = new Redis()
+
+      expect(equals(await redis[command]('foo', 'bar', 'ex', 10), 'OK')).toBe(
+        true
+      )
+      expect(await redis.get('foo')).toBe('bar')
+      expect(await redis.ttl('foo')).toBeGreaterThanOrEqual(1)
+      redis.disconnect()
+    })
+
     it('should set value and expire with PX', async () => {
       const redis = new Redis()
 
