@@ -83,4 +83,13 @@ describe('exec', () => {
     ])
     redis2.disconnect()
   })
+
+  it('should clear watch state after a successful exec so subsequent pipelines are not aborted', async () => {
+    await redis.watch('user_next')
+    const firstResult = await redis.multi([['incr', 'user_next']]).exec()
+    expect(firstResult).toEqual([[null, 2]])
+
+    const secondResult = await redis.multi([['incr', 'user_next']]).exec()
+    expect(secondResult).toEqual([[null, 3]])
+  })
 })

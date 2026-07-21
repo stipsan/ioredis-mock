@@ -97,6 +97,10 @@ class Pipeline {
     const batch = this.batch
 
     this.batch = []
+    // Real Redis always clears watch state after EXEC, whether it succeeded or aborted.
+    // Clear before running batch so commands within the pipeline don't re-dirty the state.
+    this.redis.watching.clear()
+    this.redis.dirty = false
     return asCallback(
       Promise.all(batch.map(cmd => cmd())).then(replies =>
         replies.map(reply => [null, reply])
