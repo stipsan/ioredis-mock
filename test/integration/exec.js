@@ -83,4 +83,23 @@ describe('exec', () => {
     ])
     redis2.disconnect()
   })
+
+  it('should clear watch state after a successful exec so subsequent pipelines are not aborted', async () => {
+    await redis.watch('user_next')
+    const firstResult = await redis.multi([['incr', 'user_next']]).exec()
+    expect(firstResult).toEqual([[null, 2]])
+
+    const secondResult = await redis.multi([['incr', 'user_next']]).exec()
+    expect(secondResult).toEqual([[null, 3]])
+  })
+
+  it('should not clear watch state after a regular pipeline exec', async () => {
+    const redis2 = redis.duplicate()
+    await redis.watch('user_next')
+    await redis.pipeline([['incr', 'user_next']]).exec()
+    await redis2.incr('user_next') // modify watched key via another client
+    const result = await redis.multi([['incr', 'user_next']]).exec()
+    expect(result).toEqual(null)
+    redis2.disconnect()
+  })
 })
