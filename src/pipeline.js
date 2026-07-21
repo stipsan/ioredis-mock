@@ -85,22 +85,25 @@ class Pipeline {
   }
 
   exec(callback) {
-    // return null if WATCHed key was modified or expired
-    if (this._isDirty()) {
-      this.redis.dirty = false
+    // Only MULTI transactions respect WATCH state; regular pipelines run unconditionally.
+    if (this._isMulti) {
+      if (this._isDirty()) {
+        this.redis.dirty = false
+        this.redis.watching.clear()
+        this.batch = undefined
+        return asCallback(Promise.resolve(null), callback)
+      }
+
+      // Real Redis always clears watch state after EXEC, whether it succeeded or aborted.
+      // Clear before running batch so commands within the pipeline don't re-dirty the state.
       this.redis.watching.clear()
-      this.batch = undefined
-      return asCallback(Promise.resolve(null), callback)
+      this.redis.dirty = false
     }
 
     // eslint-disable-next-line prefer-destructuring
     const batch = this.batch
 
     this.batch = []
-    // Real Redis always clears watch state after EXEC, whether it succeeded or aborted.
-    // Clear before running batch so commands within the pipeline don't re-dirty the state.
-    this.redis.watching.clear()
-    this.redis.dirty = false
     return asCallback(
       Promise.all(batch.map(cmd => cmd())).then(replies =>
         replies.map(reply => [null, reply])
