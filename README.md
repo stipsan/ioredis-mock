@@ -54,6 +54,12 @@ console.log(await redis.get('foo'))
 
 ## Breaking Changes
 
+### from v8 to v9
+
+#### Node.js 20 or newer is required
+
+`ioredis@v6` [requires Node.js 20 or newer](https://github.com/redis/ioredis/releases/tag/v6.0.0), and `ioredis-mock` now follows suit. `ioredis@v5` is still supported (the peer dependency range is `^5 || ^6`), but on Node.js 20+. If you're on an older Node.js version, stay on `ioredis-mock@v8` with `ioredis@v5`.
+
 ### from v7 to v8
 
 #### `ioredis@v4` support dropped
