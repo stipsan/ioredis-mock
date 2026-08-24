@@ -105,7 +105,13 @@ export function processReply(result, commandName) {
       newResult = [].concat(...Object.entries(result))
     }
 
-    return Command.transformers.reply[commandName](newResult)
+    // the mock emulates RESP2 replies with ioredis' default "legacy" mapping,
+    // ioredis v6 transformers need this context while v5 ignores the extra arg
+    return Command.transformers.reply[commandName](newResult, {
+      commandName,
+      protocol: 2,
+      replyMapping: 'legacy',
+    })
   }
   return result
 }
